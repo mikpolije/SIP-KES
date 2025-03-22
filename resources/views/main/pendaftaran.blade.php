@@ -54,7 +54,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="nama">Nama Lengkap: <span class="danger">*</span></label>
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama"/>
+                                <input type="text" class="form-control required" id="nama" name="nama" placeholder="Masukkan nama"/>
                             </div>
                         </div>
                         <div class="col-md-3">
