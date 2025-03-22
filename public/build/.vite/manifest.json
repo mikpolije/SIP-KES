@@ -1,0 +1,1136 @@
+{
+  "resources/css/styles-rtl.css": {
+    "file": "css/styles-rtl.css",
+    "src": "resources/css/styles-rtl.css",
+    "isEntry": true
+  },
+  "resources/fonts/crypto-icons/cryptocoins.ttf": {
+    "file": "icons/cryptocoins.ttf",
+    "src": "resources/fonts/crypto-icons/cryptocoins.ttf"
+  },
+  "resources/fonts/crypto-icons/cryptocoins.woff": {
+    "file": "icons/cryptocoins.woff",
+    "src": "resources/fonts/crypto-icons/cryptocoins.woff"
+  },
+  "resources/fonts/crypto-icons/cryptocoins.woff2": {
+    "file": "icons/cryptocoins.woff2",
+    "src": "resources/fonts/crypto-icons/cryptocoins.woff2"
+  },
+  "resources/fonts/flag-icon-css/flags/ad.svg": {
+    "file": "icons/ad.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ad.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ae.svg": {
+    "file": "icons/ae.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ae.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/af.svg": {
+    "file": "icons/af.svg",
+    "src": "resources/fonts/flag-icon-css/flags/af.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ag.svg": {
+    "file": "icons/ag.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ag.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ai.svg": {
+    "file": "icons/ai.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ai.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/al.svg": {
+    "file": "icons/al.svg",
+    "src": "resources/fonts/flag-icon-css/flags/al.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/am.svg": {
+    "file": "icons/am.svg",
+    "src": "resources/fonts/flag-icon-css/flags/am.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ao.svg": {
+    "file": "icons/ao.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ao.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/aq.svg": {
+    "file": "icons/aq.svg",
+    "src": "resources/fonts/flag-icon-css/flags/aq.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ar.svg": {
+    "file": "icons/ar.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ar.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/as.svg": {
+    "file": "icons/as.svg",
+    "src": "resources/fonts/flag-icon-css/flags/as.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/at.svg": {
+    "file": "icons/at.svg",
+    "src": "resources/fonts/flag-icon-css/flags/at.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/au.svg": {
+    "file": "icons/au.svg",
+    "src": "resources/fonts/flag-icon-css/flags/au.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/aw.svg": {
+    "file": "icons/aw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/aw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ax.svg": {
+    "file": "icons/ax.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ax.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/az.svg": {
+    "file": "icons/az.svg",
+    "src": "resources/fonts/flag-icon-css/flags/az.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ba.svg": {
+    "file": "icons/ba.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ba.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bb.svg": {
+    "file": "icons/bb.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bb.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bd.svg": {
+    "file": "icons/bd.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bd.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/be.svg": {
+    "file": "icons/be.svg",
+    "src": "resources/fonts/flag-icon-css/flags/be.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bf.svg": {
+    "file": "icons/bf.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bg.svg": {
+    "file": "icons/bg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bh.svg": {
+    "file": "icons/bh.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bh.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bi.svg": {
+    "file": "icons/bi.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bi.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bj.svg": {
+    "file": "icons/bj.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bj.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bl.svg": {
+    "file": "icons/bl.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bl.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bm.svg": {
+    "file": "icons/bm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bn.svg": {
+    "file": "icons/bn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bo.svg": {
+    "file": "icons/bo.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bo.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bq.svg": {
+    "file": "icons/bq.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bq.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/br.svg": {
+    "file": "icons/br.svg",
+    "src": "resources/fonts/flag-icon-css/flags/br.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bs.svg": {
+    "file": "icons/bs.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bs.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bt.svg": {
+    "file": "icons/bt.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bv.svg": {
+    "file": "icons/bv.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bv.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bw.svg": {
+    "file": "icons/bw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/by.svg": {
+    "file": "icons/by.svg",
+    "src": "resources/fonts/flag-icon-css/flags/by.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/bz.svg": {
+    "file": "icons/bz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/bz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ca.svg": {
+    "file": "icons/ca.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ca.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cc.svg": {
+    "file": "icons/cc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cc.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cd.svg": {
+    "file": "icons/cd.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cd.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cf.svg": {
+    "file": "icons/cf.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cg.svg": {
+    "file": "icons/cg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ch.svg": {
+    "file": "icons/ch.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ch.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ci.svg": {
+    "file": "icons/ci.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ci.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ck.svg": {
+    "file": "icons/ck.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ck.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cl.svg": {
+    "file": "icons/cl.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cl.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cm.svg": {
+    "file": "icons/cm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cn.svg": {
+    "file": "icons/cn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/co.svg": {
+    "file": "icons/co.svg",
+    "src": "resources/fonts/flag-icon-css/flags/co.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cr.svg": {
+    "file": "icons/cr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cu.svg": {
+    "file": "icons/cu.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cu.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cv.svg": {
+    "file": "icons/cv.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cv.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cw.svg": {
+    "file": "icons/cw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cx.svg": {
+    "file": "icons/cx.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cx.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cy.svg": {
+    "file": "icons/cy.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cy.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/cz.svg": {
+    "file": "icons/cz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/cz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/de.svg": {
+    "file": "icons/de.svg",
+    "src": "resources/fonts/flag-icon-css/flags/de.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/dj.svg": {
+    "file": "icons/dj.svg",
+    "src": "resources/fonts/flag-icon-css/flags/dj.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/dk.svg": {
+    "file": "icons/dk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/dk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/dm.svg": {
+    "file": "icons/dm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/dm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/do.svg": {
+    "file": "icons/do.svg",
+    "src": "resources/fonts/flag-icon-css/flags/do.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/dz.svg": {
+    "file": "icons/dz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/dz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ec.svg": {
+    "file": "icons/ec.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ec.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ee.svg": {
+    "file": "icons/ee.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ee.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/eg.svg": {
+    "file": "icons/eg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/eg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/eh.svg": {
+    "file": "icons/eh.svg",
+    "src": "resources/fonts/flag-icon-css/flags/eh.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/er.svg": {
+    "file": "icons/er.svg",
+    "src": "resources/fonts/flag-icon-css/flags/er.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/es.svg": {
+    "file": "icons/es.svg",
+    "src": "resources/fonts/flag-icon-css/flags/es.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/et.svg": {
+    "file": "icons/et.svg",
+    "src": "resources/fonts/flag-icon-css/flags/et.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/fi.svg": {
+    "file": "icons/fi.svg",
+    "src": "resources/fonts/flag-icon-css/flags/fi.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/fj.svg": {
+    "file": "icons/fj.svg",
+    "src": "resources/fonts/flag-icon-css/flags/fj.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/fk.svg": {
+    "file": "icons/fk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/fk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/fm.svg": {
+    "file": "icons/fm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/fm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/fo.svg": {
+    "file": "icons/fo.svg",
+    "src": "resources/fonts/flag-icon-css/flags/fo.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/fr.svg": {
+    "file": "icons/fr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ga.svg": {
+    "file": "icons/ga.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ga.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gb.svg": {
+    "file": "icons/gb.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gb.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gd.svg": {
+    "file": "icons/gd.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gd.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ge.svg": {
+    "file": "icons/ge.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ge.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gf.svg": {
+    "file": "icons/gf.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gg.svg": {
+    "file": "icons/gg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gh.svg": {
+    "file": "icons/gh.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gh.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gi.svg": {
+    "file": "icons/gi.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gi.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gl.svg": {
+    "file": "icons/gl.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gl.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gm.svg": {
+    "file": "icons/gm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gn.svg": {
+    "file": "icons/gn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gp.svg": {
+    "file": "icons/fr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gq.svg": {
+    "file": "icons/gq.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gq.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gr.svg": {
+    "file": "icons/gr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gs.svg": {
+    "file": "icons/gs.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gs.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gt.svg": {
+    "file": "icons/gt.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gu.svg": {
+    "file": "icons/gu.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gu.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gw.svg": {
+    "file": "icons/gw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/gy.svg": {
+    "file": "icons/gy.svg",
+    "src": "resources/fonts/flag-icon-css/flags/gy.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/hk.svg": {
+    "file": "icons/hk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/hk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/hm.svg": {
+    "file": "icons/hm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/hm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/hn.svg": {
+    "file": "icons/hn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/hn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/hr.svg": {
+    "file": "icons/hr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/hr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ht.svg": {
+    "file": "icons/ht.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ht.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/hu.svg": {
+    "file": "icons/hu.svg",
+    "src": "resources/fonts/flag-icon-css/flags/hu.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/id.svg": {
+    "file": "icons/id.svg",
+    "src": "resources/fonts/flag-icon-css/flags/id.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ie.svg": {
+    "file": "icons/ie.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ie.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/il.svg": {
+    "file": "icons/il.svg",
+    "src": "resources/fonts/flag-icon-css/flags/il.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/im.svg": {
+    "file": "icons/im.svg",
+    "src": "resources/fonts/flag-icon-css/flags/im.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/in.svg": {
+    "file": "icons/in.svg",
+    "src": "resources/fonts/flag-icon-css/flags/in.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/io.svg": {
+    "file": "icons/io.svg",
+    "src": "resources/fonts/flag-icon-css/flags/io.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/iq.svg": {
+    "file": "icons/iq.svg",
+    "src": "resources/fonts/flag-icon-css/flags/iq.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ir.svg": {
+    "file": "icons/ir.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ir.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/is.svg": {
+    "file": "icons/is.svg",
+    "src": "resources/fonts/flag-icon-css/flags/is.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/it.svg": {
+    "file": "icons/it.svg",
+    "src": "resources/fonts/flag-icon-css/flags/it.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/je.svg": {
+    "file": "icons/je.svg",
+    "src": "resources/fonts/flag-icon-css/flags/je.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/jm.svg": {
+    "file": "icons/jm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/jm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/jo.svg": {
+    "file": "icons/jo.svg",
+    "src": "resources/fonts/flag-icon-css/flags/jo.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/jp.svg": {
+    "file": "icons/jp.svg",
+    "src": "resources/fonts/flag-icon-css/flags/jp.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ke.svg": {
+    "file": "icons/ke.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ke.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/kg.svg": {
+    "file": "icons/kg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/kg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/kh.svg": {
+    "file": "icons/kh.svg",
+    "src": "resources/fonts/flag-icon-css/flags/kh.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ki.svg": {
+    "file": "icons/ki.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ki.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/km.svg": {
+    "file": "icons/km.svg",
+    "src": "resources/fonts/flag-icon-css/flags/km.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/kn.svg": {
+    "file": "icons/kn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/kn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/kp.svg": {
+    "file": "icons/kp.svg",
+    "src": "resources/fonts/flag-icon-css/flags/kp.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/kr.svg": {
+    "file": "icons/kr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/kr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/kw.svg": {
+    "file": "icons/kw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/kw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ky.svg": {
+    "file": "icons/ky.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ky.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/kz.svg": {
+    "file": "icons/kz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/kz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/la.svg": {
+    "file": "icons/la.svg",
+    "src": "resources/fonts/flag-icon-css/flags/la.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/lb.svg": {
+    "file": "icons/lb.svg",
+    "src": "resources/fonts/flag-icon-css/flags/lb.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/lc.svg": {
+    "file": "icons/lc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/lc.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/li.svg": {
+    "file": "icons/li.svg",
+    "src": "resources/fonts/flag-icon-css/flags/li.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/lk.svg": {
+    "file": "icons/lk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/lk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/lr.svg": {
+    "file": "icons/lr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/lr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ls.svg": {
+    "file": "icons/ls.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ls.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/lt.svg": {
+    "file": "icons/lt.svg",
+    "src": "resources/fonts/flag-icon-css/flags/lt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/lu.svg": {
+    "file": "icons/lu.svg",
+    "src": "resources/fonts/flag-icon-css/flags/lu.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/lv.svg": {
+    "file": "icons/lv.svg",
+    "src": "resources/fonts/flag-icon-css/flags/lv.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ly.svg": {
+    "file": "icons/ly.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ly.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ma.svg": {
+    "file": "icons/ma.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ma.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mc.svg": {
+    "file": "icons/mc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mc.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/md.svg": {
+    "file": "icons/md.svg",
+    "src": "resources/fonts/flag-icon-css/flags/md.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/me.svg": {
+    "file": "icons/me.svg",
+    "src": "resources/fonts/flag-icon-css/flags/me.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mf.svg": {
+    "file": "icons/fr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mg.svg": {
+    "file": "icons/mg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mh.svg": {
+    "file": "icons/mh.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mh.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mk.svg": {
+    "file": "icons/mk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ml.svg": {
+    "file": "icons/ml.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ml.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mm.svg": {
+    "file": "icons/mm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mn.svg": {
+    "file": "icons/mn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mo.svg": {
+    "file": "icons/mo.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mo.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mp.svg": {
+    "file": "icons/mp.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mp.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mq.svg": {
+    "file": "icons/mq.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mq.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mr.svg": {
+    "file": "icons/mr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ms.svg": {
+    "file": "icons/ms.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ms.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mt.svg": {
+    "file": "icons/mt.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mu.svg": {
+    "file": "icons/mu.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mu.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mv.svg": {
+    "file": "icons/mv.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mv.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mw.svg": {
+    "file": "icons/mw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mx.svg": {
+    "file": "icons/mx.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mx.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/my.svg": {
+    "file": "icons/my.svg",
+    "src": "resources/fonts/flag-icon-css/flags/my.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/mz.svg": {
+    "file": "icons/mz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/mz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/na.svg": {
+    "file": "icons/na.svg",
+    "src": "resources/fonts/flag-icon-css/flags/na.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/nc.svg": {
+    "file": "icons/nc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ne.svg": {
+    "file": "icons/ne.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ne.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/nf.svg": {
+    "file": "icons/nf.svg",
+    "src": "resources/fonts/flag-icon-css/flags/nf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ng.svg": {
+    "file": "icons/ng.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ng.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ni.svg": {
+    "file": "icons/ni.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ni.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/nl.svg": {
+    "file": "icons/nl.svg",
+    "src": "resources/fonts/flag-icon-css/flags/nl.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/no.svg": {
+    "file": "icons/no.svg",
+    "src": "resources/fonts/flag-icon-css/flags/no.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/np.svg": {
+    "file": "icons/np.svg",
+    "src": "resources/fonts/flag-icon-css/flags/np.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/nr.svg": {
+    "file": "icons/nr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/nr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/nu.svg": {
+    "file": "icons/nu.svg",
+    "src": "resources/fonts/flag-icon-css/flags/nu.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/nz.svg": {
+    "file": "icons/nz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/nz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/om.svg": {
+    "file": "icons/om.svg",
+    "src": "resources/fonts/flag-icon-css/flags/om.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pa.svg": {
+    "file": "icons/pa.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pa.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pe.svg": {
+    "file": "icons/pe.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pe.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pf.svg": {
+    "file": "icons/pf.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pg.svg": {
+    "file": "icons/pg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ph.svg": {
+    "file": "icons/ph.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ph.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pk.svg": {
+    "file": "icons/pk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pl.svg": {
+    "file": "icons/pl.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pl.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pm.svg": {
+    "file": "icons/nc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pn.svg": {
+    "file": "icons/pn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pr.svg": {
+    "file": "icons/pr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ps.svg": {
+    "file": "icons/ps.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ps.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pt.svg": {
+    "file": "icons/pt.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/pw.svg": {
+    "file": "icons/pw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/pw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/py.svg": {
+    "file": "icons/py.svg",
+    "src": "resources/fonts/flag-icon-css/flags/py.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/qa.svg": {
+    "file": "icons/qa.svg",
+    "src": "resources/fonts/flag-icon-css/flags/qa.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/re.svg": {
+    "file": "icons/nc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ro.svg": {
+    "file": "icons/ro.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ro.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/rs.svg": {
+    "file": "icons/rs.svg",
+    "src": "resources/fonts/flag-icon-css/flags/rs.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ru.svg": {
+    "file": "icons/ru.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ru.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/rw.svg": {
+    "file": "icons/rw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/rw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sa.svg": {
+    "file": "icons/sa.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sa.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sb.svg": {
+    "file": "icons/sb.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sb.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sc.svg": {
+    "file": "icons/sc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sc.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sd.svg": {
+    "file": "icons/sd.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sd.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/se.svg": {
+    "file": "icons/se.svg",
+    "src": "resources/fonts/flag-icon-css/flags/se.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sg.svg": {
+    "file": "icons/sg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sh.svg": {
+    "file": "icons/sh.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sh.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/si.svg": {
+    "file": "icons/si.svg",
+    "src": "resources/fonts/flag-icon-css/flags/si.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sj.svg": {
+    "file": "icons/sj.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sj.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sk.svg": {
+    "file": "icons/sk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sl.svg": {
+    "file": "icons/sl.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sl.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sm.svg": {
+    "file": "icons/sm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sn.svg": {
+    "file": "icons/sn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/so.svg": {
+    "file": "icons/so.svg",
+    "src": "resources/fonts/flag-icon-css/flags/so.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sr.svg": {
+    "file": "icons/sr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ss.svg": {
+    "file": "icons/ss.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ss.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/st.svg": {
+    "file": "icons/st.svg",
+    "src": "resources/fonts/flag-icon-css/flags/st.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sv.svg": {
+    "file": "icons/sv.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sv.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sx.svg": {
+    "file": "icons/sx.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sx.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sy.svg": {
+    "file": "icons/sy.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sy.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/sz.svg": {
+    "file": "icons/sz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/sz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tc.svg": {
+    "file": "icons/tc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tc.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/td.svg": {
+    "file": "icons/td.svg",
+    "src": "resources/fonts/flag-icon-css/flags/td.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tf.svg": {
+    "file": "icons/tf.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tg.svg": {
+    "file": "icons/tg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/th.svg": {
+    "file": "icons/th.svg",
+    "src": "resources/fonts/flag-icon-css/flags/th.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tj.svg": {
+    "file": "icons/tj.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tj.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tk.svg": {
+    "file": "icons/tk.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tk.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tl.svg": {
+    "file": "icons/tl.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tl.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tm.svg": {
+    "file": "icons/tm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tn.svg": {
+    "file": "icons/tn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/to.svg": {
+    "file": "icons/to.svg",
+    "src": "resources/fonts/flag-icon-css/flags/to.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tr.svg": {
+    "file": "icons/tr.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tr.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tt.svg": {
+    "file": "icons/tt.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tv.svg": {
+    "file": "icons/tv.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tv.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tw.svg": {
+    "file": "icons/tw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tw.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/tz.svg": {
+    "file": "icons/tz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/tz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ua.svg": {
+    "file": "icons/ua.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ua.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ug.svg": {
+    "file": "icons/ug.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ug.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/um.svg": {
+    "file": "icons/um.svg",
+    "src": "resources/fonts/flag-icon-css/flags/us.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/us.svg": {
+    "file": "icons/um.svg",
+    "src": "resources/fonts/flag-icon-css/flags/us.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/uy.svg": {
+    "file": "icons/uy.svg",
+    "src": "resources/fonts/flag-icon-css/flags/uy.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/uz.svg": {
+    "file": "icons/uz.svg",
+    "src": "resources/fonts/flag-icon-css/flags/uz.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/va.svg": {
+    "file": "icons/va.svg",
+    "src": "resources/fonts/flag-icon-css/flags/va.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/vc.svg": {
+    "file": "icons/vc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/vc.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ve.svg": {
+    "file": "icons/ve.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ve.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/vg.svg": {
+    "file": "icons/vg.svg",
+    "src": "resources/fonts/flag-icon-css/flags/vg.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/vi.svg": {
+    "file": "icons/vi.svg",
+    "src": "resources/fonts/flag-icon-css/flags/vi.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/vn.svg": {
+    "file": "icons/vn.svg",
+    "src": "resources/fonts/flag-icon-css/flags/vn.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/vu.svg": {
+    "file": "icons/vu.svg",
+    "src": "resources/fonts/flag-icon-css/flags/vu.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/wf.svg": {
+    "file": "icons/wf.svg",
+    "src": "resources/fonts/flag-icon-css/flags/wf.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ws.svg": {
+    "file": "icons/ws.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ws.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/ye.svg": {
+    "file": "icons/ye.svg",
+    "src": "resources/fonts/flag-icon-css/flags/ye.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/yt.svg": {
+    "file": "icons/nc.svg",
+    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/za.svg": {
+    "file": "icons/za.svg",
+    "src": "resources/fonts/flag-icon-css/flags/za.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/zm.svg": {
+    "file": "icons/zm.svg",
+    "src": "resources/fonts/flag-icon-css/flags/zm.svg"
+  },
+  "resources/fonts/flag-icon-css/flags/zw.svg": {
+    "file": "icons/zw.svg",
+    "src": "resources/fonts/flag-icon-css/flags/zw.svg"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-brands-400.eot": {
+    "file": "icons/fa-brands-400.eot",
+    "src": "resources/fonts/font-awesome/webfonts/fa-brands-400.eot"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-brands-400.svg": {
+    "file": "icons/fa-brands-400.svg",
+    "src": "resources/fonts/font-awesome/webfonts/fa-brands-400.svg"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-brands-400.ttf": {
+    "file": "icons/fa-brands-400.ttf",
+    "src": "resources/fonts/font-awesome/webfonts/fa-brands-400.ttf"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-brands-400.woff": {
+    "file": "icons/fa-brands-400.woff",
+    "src": "resources/fonts/font-awesome/webfonts/fa-brands-400.woff"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-brands-400.woff2": {
+    "file": "icons/fa-brands-400.woff2",
+    "src": "resources/fonts/font-awesome/webfonts/fa-brands-400.woff2"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-regular-400.eot": {
+    "file": "icons/fa-regular-400.eot",
+    "src": "resources/fonts/font-awesome/webfonts/fa-regular-400.eot"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-regular-400.svg": {
+    "file": "icons/fa-regular-400.svg",
+    "src": "resources/fonts/font-awesome/webfonts/fa-regular-400.svg"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-regular-400.ttf": {
+    "file": "icons/fa-regular-400.ttf",
+    "src": "resources/fonts/font-awesome/webfonts/fa-regular-400.ttf"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-regular-400.woff": {
+    "file": "icons/fa-regular-400.woff",
+    "src": "resources/fonts/font-awesome/webfonts/fa-regular-400.woff"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-regular-400.woff2": {
+    "file": "icons/fa-regular-400.woff2",
+    "src": "resources/fonts/font-awesome/webfonts/fa-regular-400.woff2"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-solid-900.eot": {
+    "file": "icons/fa-solid-900.eot",
+    "src": "resources/fonts/font-awesome/webfonts/fa-solid-900.eot"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-solid-900.svg": {
+    "file": "icons/fa-solid-900.svg",
+    "src": "resources/fonts/font-awesome/webfonts/fa-solid-900.svg"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-solid-900.ttf": {
+    "file": "icons/fa-solid-900.ttf",
+    "src": "resources/fonts/font-awesome/webfonts/fa-solid-900.ttf"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-solid-900.woff": {
+    "file": "icons/fa-solid-900.woff",
+    "src": "resources/fonts/font-awesome/webfonts/fa-solid-900.woff"
+  },
+  "resources/fonts/font-awesome/webfonts/fa-solid-900.woff2": {
+    "file": "icons/fa-solid-900.woff2",
+    "src": "resources/fonts/font-awesome/webfonts/fa-solid-900.woff2"
+  },
+  "resources/fonts/tabler-icons/fonts/tabler-icons.eot": {
+    "file": "icons/tabler-icons.eot",
+    "src": "resources/fonts/tabler-icons/fonts/tabler-icons.eot"
+  },
+  "resources/fonts/tabler-icons/fonts/tabler-icons.svg": {
+    "file": "icons/tabler-icons.svg",
+    "src": "resources/fonts/tabler-icons/fonts/tabler-icons.svg"
+  },
+  "resources/fonts/tabler-icons/fonts/tabler-icons.ttf": {
+    "file": "icons/tabler-icons.ttf",
+    "src": "resources/fonts/tabler-icons/fonts/tabler-icons.ttf"
+  },
+  "resources/fonts/tabler-icons/fonts/tabler-icons.woff": {
+    "file": "icons/tabler-icons.woff",
+    "src": "resources/fonts/tabler-icons/fonts/tabler-icons.woff"
+  },
+  "resources/fonts/tabler-icons/fonts/tabler-icons.woff2": {
+    "file": "icons/tabler-icons.woff2",
+    "src": "resources/fonts/tabler-icons/fonts/tabler-icons.woff2"
+  },
+  "resources/images/backgrounds/line-bg-2.svg": {
+    "file": "icons/line-bg-2.svg",
+    "src": "resources/images/backgrounds/line-bg-2.svg"
+  },
+  "resources/images/backgrounds/line-bg.svg": {
+    "file": "icons/line-bg.svg",
+    "src": "resources/images/backgrounds/line-bg.svg"
+  },
+  "resources/images/blog/blog-img10.jpg": {
+    "file": "icons/blog-img10.jpg",
+    "src": "resources/images/blog/blog-img10.jpg"
+  },
+  "resources/images/blog/blog-img9.jpg": {
+    "file": "icons/blog-img9.jpg",
+    "src": "resources/images/blog/blog-img9.jpg"
+  },
+  "resources/images/shape/shape-1.svg": {
+    "file": "icons/shape-1.svg",
+    "src": "resources/images/shape/shape-1.svg"
+  },
+  "resources/images/shape/shape-2.svg": {
+    "file": "icons/shape-2.svg",
+    "src": "resources/images/shape/shape-2.svg"
+  },
+  "resources/images/svgs/danger.svg": {
+    "file": "icons/danger.svg",
+    "src": "resources/images/svgs/danger.svg"
+  },
+  "resources/images/svgs/success.svg": {
+    "file": "icons/success.svg",
+    "src": "resources/images/svgs/success.svg"
+  },
+  "resources/images/svgs/warning.svg": {
+    "file": "icons/warning.svg",
+    "src": "resources/images/svgs/warning.svg"
+  },
+  "resources/scss/styles.scss": {
+    "file": "css/styles.css",
+    "src": "resources/scss/styles.scss",
+    "isEntry": true
+  }
+}
