@@ -431,48 +431,212 @@
                     <!-- Step 3 -->
                     <h6>Pemeriksaan</h6>
                     <section>
+                    <h4 class="section-title">Data Pemeriksaan</h4>
+                    <div class="row mb-3">
+    <div class="col-md-12">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center me-3">
+                <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Surat Keterangan
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
+                        <li><a class="dropdown-item" href="#" value="suratketerangansehat">Surat Keterangan Sehat</a></li>
+                        <li><a class="dropdown-item" href="#" value="suratketerangansakit">Surat Keterangan Sakit</a></li>
+                        <li><a class="dropdown-item" href="#" value="generalconsent">General Consent</a></li>
+                        <li><a class="dropdown-item" href="#" value="informedconsent">Informed Consent</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mb-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="searchNoRM" placeholder="Cari berdasarkan No. RM">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary" onclick="searchRM()">Cari</button>
+                        </div>
+                    </div>
+
+                    <script>
+                    function searchRM() {
+                        var input, filter, table, tr, td, i, txtValue;
+                        input = document.getElementById("searchNoRM");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("yourTableID"); // Ganti dengan ID tabel Anda
+                        tr = table.getElementsByTagName("tr");
+
+                        for (i = 1; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[1]; // Ubah index sesuai posisi No. RM
+                            if (td) {
+                                txtValue = td.textContent || td.innerText;
+                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                } else {
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+                    </script>
+                    </div>
+                    </div>
                     <div class="row">
+                    <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" for="noantian">No Antrian <span class="danger"></span></label>
+                        <input type="text" class="form-control required" id="noantian" name="noantian"/>
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label" for="nama">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" />
+                    </div>
+                    </div>
+                    <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" for="no.rm">No. RM</label>
+                        <input type="text" class="form-control" id="no.rm" name="no.rm" />
+                    </div>
+                    </div>
+                    <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" for="tanggal">Tanggal</label>
+                        <input type="date" class="form-control required" id="tanggal" name="tanggal"/>
+                    </div>
+                    </div>
+                    <div class="col-md-2">
+                    <div class="mb-3">
+                        <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
+                        <select class="form-select required" id="jenispemeriksaan" data-placeholder="Type to search cities" name="jenispemeriksaan">
+                            <option value="poliumum">Poli Umum</option>
+                            <option value="poligigi">Poli Gigi</option>
+                            <option value="kia">KIA</option>
+                            <option value="circum">Circum</option>
+                            <option value="vaksininternasional">Vaksin Internasional</option>
+                    </select>
+                    </div>
+                    </div>
+                    </div>
                         <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label" for="wint1">Interview For :</label>
-                            <input type="text" class="form-control required" id="wint1" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="wintType1">Interview Type :</label>
-                            <select class="form-select required" id="wintType1" data-placeholder="Type to search cities"
-                            name="wintType1">
-                            <option value="Banquet">Normal</option>
-                            <option value="Fund Raiser">Difficult</option>
-                            <option value="Dinner Party">Hard</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="wLocation1">Location :</label>
-                            <select class="form-select required" id="wLocation1" name="wlocation">
-                            <option value="">Select City</option>
-                            <option value="India">India</option>
-                            <option value="USA">USA</option>
-                            <option value="Dubai">Dubai</option>
-                            </select>
+                            <label class="form-label" for="diagnosis">Diagnosis </label>
+                            <textarea name="diagnosis" id="diagnosis" rows="6" class="form-control" placeholder="Ketik diagnosis"></textarea>
                         </div>
                         </div>
                         <div class="col-md-6">
                         <div class="mb-3">
-                            <label class="form-label" for="wjobTitle2">Interview Date :</label>
-                            <input type="date" class="form-control required" id="wjobTitle2" />
+                            <label class="form-label" for="icd10">ICD 10 </label>
+                            <textarea name="icd10" id="icd10" rows="6" placeholder="Ketik kode diagnosis"
+                            class="form-control"></textarea>
                         </div>
+                        </div>
+                        <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="customRadio16" class="form-label">Requirements :</label>
-                            <div class="c-inputs-stacked">
-                            <div class="form-check">
-                                <input type="radio" id="customRadio16" name="customRadio" class="form-check-input" />
-                                <label class="form-check-label" for="customRadio16">Employee</label>
+                            <label class="form-label" for="subjective/keluhan">Subjective / Keluhan </label>
+                            <textarea name="subjective/keluhan" id="subjective/keluhan" rows="6"
+                            class="form-control"></textarea>
+                        </div>
+                        </div>
+                    <div class="row">
+                    <h4 class="section-title">Data Pemeriksaan</h4>
+                    <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="sistole">Sistole</label>
+                                <input type="text" class="form-control required" id="Sistole" name="Sistole"/>mmHg</label>
                             </div>
-                            <div class="form-check">
-                                <input type="radio" id="customRadio17" name="customRadio" class="form-check-input" />
-                                <label class="form-check-label" for="customRadio17">Contract</label>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="Diastole">Diastole</label>
+                                <input type="text" class="form-control" id="Diastole" name="Diastole" />mmHg</label>
+                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="Berat Badan">Berat Badan</label>
+                                <input type="text" class="form-control required" id="Berat Badadn" name="Berat Badan"/>Kg</label>
                             </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="Tinggi Badan">Tinggi Badan</label>
+                                <input type="text" class="form-control required" id="Tinggi Badan" name="Tinggi Badan"/>Cm</label>
                             </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-3">
+                         <div class="mb-3">
+                            <label class="form-label" for="suhu">Suhu</label>
+                            <input type="text" class="form-control required" id="suhu" name="suhu"/>°C
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="spo2">SpO2</label>
+                            <input type="text" class="form-control required" id="spo2" name="spo2"/>%
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="respiratory_rate">Respiratory Rate</label>
+                            <input type="text" class="form-control required" id="respiratory_rate" name="respiratory_rate"/>/mnt
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="assesment">Assesment </label>
+                            <textarea name="assesment" id="assesment" rows="6" class="form-control" placeholder="Ketik Assesment"></textarea>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="plan">Plan </label>
+                            <textarea name="plan" id="plan" rows="6" class="form-control" placeholder="Ketik Plan"></textarea>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="pemeriksaanfisik">Pemeriksaan Fisik </label>
+                            <textarea name="pemeriksaanfisik" id="pemeriksaanfisik" rows="6"
+                            class="form-control"></textarea>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="icd9-cm">ICD 9-CM </label>
+                            <textarea name="icd9-cm" id="icd9-cm" rows="6"
+                            class="form-control"></textarea>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="layanan">Layanan </label>
+                            <textarea name="layanan" id="layanan" rows="6" placeholder="Ketikkan Layanan"
+                            class="form-control"></textarea>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="rincianobat">Rincian Obat </label>
+                            <textarea name="rincianobat" id="rincianobat" rows="6" placeholder="Ketik Obat"
+                            class="form-control"></textarea>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="rencanakontrol">Rencana Kontrol </label>
+                            <textarea name="rencanakontrol" id="rencanakontrol" rows="6"
+                            class="form-control"></textarea>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="catatan">Catatan </label>
+                            <textarea name="catatan" id="catatan" rows="6" class="form-control" placeholder="Tambah Catatan Disini"></textarea>
                         </div>
                         </div>
                     </div>
