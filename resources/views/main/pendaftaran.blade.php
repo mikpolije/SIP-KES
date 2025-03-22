@@ -158,7 +158,6 @@
                             <div class="mb-3">
                                 <label class="form-label" for="perkawinan">Status Perkawinan:</label>
                                 <select class="form-select required" id="perkawinan" name="perkawinan">
-                                    <option value="belumkawin">aduh masih kecil</option>
                                     <option value="belumkawin">Belum Kawin</option>
                                     <option value="kawin">Kawin</option>
                                     <option value="ceraihidup">Cerai Hidup</option>
