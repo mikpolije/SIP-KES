@@ -128,7 +128,6 @@
                                 <label class="form-label" for="jeniskelamin">Jenis Kelamin: <span class="danger">*</span>
                                 </label>
                                 <select class="form-select required" id="jeniskelamin" name="jeniskelamin">
-                                <option value="">Jenis Kelamin</option>
                                 <option value="tidakdiketahui">Tidak Diketahui</option>
                                 <option value="lakilaki">Laki-laki</option>
                                 <option value="perempuan">Perempuan</option>
@@ -208,7 +207,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="telepon">Nomor Telepon:</label>
-                                <input type="text" class="form-control required" id="telepon" name="telepon" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
+                                <input type="text" class="form-control required" id="telepon" name="telepon" placeholder="08xxxxxxxxxx" required>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -290,7 +289,10 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="form-label" for="dokter">Dokter</label>
-                                <input type="text" class="form-control required" id="dokter" name="dokter" />
+                                <select class="form-select required" id="dokter" name="dokter">
+                                    <option value="dr1">dr jaemin</option>
+                                    <option value="dr2">dr joshua</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -380,52 +382,62 @@
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="sistole">Sistole</label>
-                                <input type="text" class="form-control required" id="sistole" name="sistole"/>mmHg
-                            </div>
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Sistol <small class="text-muted ms-2">mmHg</small></label>
+                            <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
+                              placeholder="Enter Value in mmHg" />
+                          </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="diastole">Diastole</label>
-                                <input type="text" class="form-control required" id="diastole" name="diastole" />mmHg
-                                </div>
+                          <div class="mb-3">
+                            <label class="form-label">Diastol <small class="text-muted ms-2">mmHg</small></label>
+                            <input type="text" class="form-control mmhg-diastol-inputmask" id="diastol-mask"
+                              placeholder="Enter Value in mmHg" />
+                          </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="beratbadan">Berat Badan</label>
-                                <input type="text" class="form-control required" id="beratbadadn" name="beratbadan"/>Kg
-                            </div>
+                          <div class="mb-3">
+                            <label class="form-label">Berat Badan <small class="text-muted ms-2">kg</small></label>
+                            <input type="text" class="form-control kg-inputmask" id="berat-mask"
+                              placeholder="Enter Value in kg" />
+                          </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="tinggibadan">Tinggi Badan</label>
-                                <input type="text" class="form-control required" id="tinggibadan" name="tinggibadan"/>Cm
-                            </div>
+                          <div class="mb-3">
+                            <label class="form-label">Tinggi Badan <small class="text-muted ms-2">cm</small></label>
+                            <input type="text" class="form-control cm-inputmask" id="tinggi-mask"
+                              placeholder="Enter Value in cm" />
+                          </div>
                         </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-3">
-                         <div class="mb-3">
-                            <label class="form-label" for="suhu">Suhu</label>
-                            <input type="text" class="form-control required" id="suhu" name="suhu"/>°C
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Suhu <small class="text-muted ms-2">°C</small></label>
+                            <input type="text" class="form-control celcius-inputmask" id="suhu-mask"
+                              placeholder="Enter Value in °C" />
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <label class="form-label" for="spo2">SpO2</label>
-                            <input type="text" class="form-control required" id="spo2" name="spo2"/>%
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">SpO2 <small class="text-muted ms-2">%</small></label>
+                            <input type="text" class="form-control spo2-inputmask" id="spo2-mask"
+                              placeholder="Enter Value in %" />
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <label class="form-label" for="respiratory_rate">Respiratory Rate</label>
-                            <input type="text" class="form-control required" id="respiratory_rate" name="respiratory_rate"/>/mnt
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Respiratory Rate <small class="text-muted ms-2">/mnt</small></label>
+                            <input type="text" class="form-control resp-rate-inputmask" id="resprate-mask"
+                              placeholder="Enter Value in /mnt" />
+                          </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="col-md-3">
+                          <!-- Kolom kosong atau parameter vital tambahan bisa ditambahkan di sini -->
+                        </div>
+                      </div>
                 </section>
 
                     <!-- Step 3 -->
@@ -519,19 +531,40 @@
                     </div>
                     </div>
                     </div>
+                    <div class="row">
+                        <!-- Kolom Diagnosis -->
                         <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="diagnosis">Diagnosis </label>
+                          <div class="mb-3">
+                            <label class="form-label" for="diagnosis">Diagnosis</label>
                             <textarea name="diagnosis" id="diagnosis" rows="6" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                          </div>
                         </div>
-                        </div>
+                        <!-- Kolom ICD 10 -->
                         <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="icd10">ICD 10 </label>
-                            <textarea name="icd10" id="icd10" rows="6" placeholder="Ketik kode diagnosis"
-                            class="form-control"></textarea>
+                          <div class="card mb-3">
+                            <div class="card-body">
+                              <label class="form-label fw-medium">ICD 10</label>
+                              <div class="position-relative">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" id="search-icd" placeholder="Ketik ICD 10" autocomplete="off">
+                                  <button class="btn btn-secondary" type="button" id="search-btn">Cari</button>
+                                </div>
+                                <!-- Dropdown hasil pencarian -->
+                                <div id="search-results" class="position-absolute w-100 bg-white border rounded shadow-sm mt-1 z-index-dropdown" style="display: none; max-height: 300px; overflow-y: auto;">
+                                  <!-- Hasil pencarian akan ditampilkan di sini -->
+                                </div>
+                              </div>
+                              <div class="mt-3">
+                                <label class="form-label fw-medium">Diagnosa Terpilih</label>
+                                <div id="selected-icds" class="p-2 rounded border min-height-80">
+                                  <p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>
+                                  <!-- ICD terpilih akan ditampilkan di sini -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        </div>
+                      </div>
                         <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="subjective/keluhan">Subjective / Keluhan </label>
@@ -541,52 +574,63 @@
                         </div>
                     <div class="row">
                     <h4 class="section-title">Data Pemeriksaan</h4>
-                    <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="sistole">Sistole</label>
-                                <input type="text" class="form-control required" id="Sistole" name="Sistole"/>mmHg</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="Diastole">Diastole</label>
-                                <input type="text" class="form-control" id="Diastole" name="Diastole" />mmHg</label>
-                                </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="Berat Badan">Berat Badan</label>
-                                <input type="text" class="form-control required" id="Berat Badadn" name="Berat Badan"/>Kg</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="Tinggi Badan">Tinggi Badan</label>
-                                <input type="text" class="form-control required" id="Tinggi Badan" name="Tinggi Badan"/>Cm</label>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
                     <div class="row">
-                    <div class="col-md-3">
-                         <div class="mb-3">
-                            <label class="form-label" for="suhu">Suhu</label>
-                            <input type="text" class="form-control required" id="suhu" name="suhu"/>°C
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Sistol <small class="text-muted ms-2">mmHg</small></label>
+                            <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
+                              placeholder="Enter Value in mmHg" />
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <label class="form-label" for="spo2">SpO2</label>
-                            <input type="text" class="form-control required" id="spo2" name="spo2"/>%
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Diastol <small class="text-muted ms-2">mmHg</small></label>
+                            <input type="text" class="form-control mmhg-diastol-inputmask" id="diastol-mask"
+                              placeholder="Enter Value in mmHg" />
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-3">
-                            <label class="form-label" for="respiratory_rate">Respiratory Rate</label>
-                            <input type="text" class="form-control required" id="respiratory_rate" name="respiratory_rate"/>/mnt
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Berat Badan <small class="text-muted ms-2">kg</small></label>
+                            <input type="text" class="form-control kg-inputmask" id="berat-mask"
+                              placeholder="Enter Value in kg" />
+                          </div>
                         </div>
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Tinggi Badan <small class="text-muted ms-2">cm</small></label>
+                            <input type="text" class="form-control cm-inputmask" id="tinggi-mask"
+                              placeholder="Enter Value in cm" />
+                          </div>
                         </div>
-                        <div class="col-md-6">
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Suhu <small class="text-muted ms-2">°C</small></label>
+                            <input type="text" class="form-control celcius-inputmask" id="suhu-mask"
+                              placeholder="Enter Value in °C" />
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">SpO2 <small class="text-muted ms-2">%</small></label>
+                            <input type="text" class="form-control spo2-inputmask" id="spo2-mask"
+                              placeholder="Enter Value in %" />
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label">Respiratory Rate <small class="text-muted ms-2">/mnt</small></label>
+                            <input type="text" class="form-control resp-rate-inputmask" id="resprate-mask"
+                              placeholder="Enter Value in /mnt" />
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <!-- Kolom kosong atau parameter vital tambahan bisa ditambahkan di sini -->
+                        </div>
+                      </div>
+                    <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label" for="assesment">Assesment </label>
                             <textarea name="assesment" id="assesment" rows="6" class="form-control" placeholder="Ketik Assesment"></textarea>
@@ -767,4 +811,6 @@
     <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
 @endsection
