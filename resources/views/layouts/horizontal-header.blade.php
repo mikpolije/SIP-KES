@@ -7,8 +7,8 @@
     </li>
     <li class="nav-item d-none d-xl-block">
       <a href="main/index" class="text-nowrap nav-link">
-        <img src="{{ URL::asset('build//images/logos/dark-logo.svg') }}" class="dark-logo" width="180" alt="modernize-img" />
-        <img src="{{ URL::asset('build//images/logos/light-logo.svg') }}" class="light-logo" width="180" alt="modernize-img" />
+        <img src="{{ URL::asset('/public/build/images/logos/logosipkes.png') }}" class="dark-logo" width="180" alt="modernize-img" />
+        <img src="{{ URL::asset('/public/build/images/logos/logosipkes.png') }}" class="light-logo" width="180" alt="modernize-img" />
       </a>
     </li>
     <li class="nav-item nav-icon-hover-bg rounded-circle d-none d-xl-flex">

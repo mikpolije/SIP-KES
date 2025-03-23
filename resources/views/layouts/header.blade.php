@@ -15,8 +15,8 @@
 
   <div class="d-block d-lg-none py-4">
     <a href="main/index" class="text-nowrap logo-img">
-      <img src="{{ URL::asset('build/images/logos/dark-logo.svg') }}" class="dark-logo" alt="Logo-Dark" />
-      <img src="{{ URL::asset('build/images/logos/light-logo.svg') }}" class="light-logo" alt="Logo-light" />
+      <img src="{{ URL::asset('/public/build/images/logos/logosipkes.png') }}" class="dark-logo" alt="Logo-Dark" />
+      <img src="{{ URL::asset('/public/build/images/logos/logosipkes.png') }}" class="light-logo" alt="Logo-light" />
     </a>
   </div>
   <a class="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0" href="javascript:void(0)" data-bs-toggle="collapse"
