@@ -10,4 +10,4 @@
 <!-- <script src="{{ URL::asset('build/css/styles.css') }}"></script> -->
 {{-- @vite(['resources/scss/styles.scss', 'resources/js/app.js']) --}}
 <link rel="stylesheet" href="{{asset('css/app.css')}}">
-<script src="{{asset(js/app.js)}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
