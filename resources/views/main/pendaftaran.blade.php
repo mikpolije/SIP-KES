@@ -813,4 +813,151 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    
+    <!-- ICD-10 Search Script -->
+    <script>
+    $(document).ready(function() {
+        // Variables to track selected ICDs
+        let selectedICDs = [];
+        
+        // Handle search input
+        $('#search-icd').on('input', function() {
+            const searchTerm = $(this).val();
+            
+            if (searchTerm.length < 2) {
+                $('#search-results').hide();
+                return;
+            }
+            
+            // Make AJAX request to search endpoint
+            $.ajax({
+                url: '{{ url("search_icd.php") }}',
+                data: { term: searchTerm },
+                dataType: 'json',
+                success: function(data) {
+                    // Clear previous results
+                    $('#search-results').empty();
+                    
+                    if (data.length > 0) {
+                        // Add each result to dropdown
+                        data.forEach(function(item) {
+                            $('#search-results').append(
+                                `<div class="search-item p-2 border-bottom hover-bg" data-id="${item.id}" data-name="${item.name}">
+                                    <strong>${item.id}</strong> - ${item.name}
+                                </div>`
+                            );
+                        });
+                        
+                        // Show results dropdown
+                        $('#search-results').show();
+                    } else {
+                        $('#search-results').append(
+                            `<div class="p-2 text-muted">Tidak ada hasil ditemukan</div>`
+                        );
+                        $('#search-results').show();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error searching ICD:', error);
+                    $('#search-results').html('<div class="p-2 text-danger">Error searching: ' + error + '</div>');
+                    $('#search-results').show();
+                }
+            });
+        });
+        
+        // Handle search button click
+        $('#search-btn').click(function() {
+            const searchTerm = $('#search-icd').val();
+            if (searchTerm.length >= 2) {
+                // Trigger the same search process
+                $('#search-icd').trigger('input');
+            }
+        });
+        
+        // Handle selecting an ICD from the results
+        $(document).on('click', '.search-item', function() {
+            const id = $(this).data('id');
+            const name = $(this).data('name');
+            
+            // Check if already selected
+            if (!selectedICDs.some(item => item.id === id)) {
+                // Add to selected ICDs
+                selectedICDs.push({ id, name });
+                
+                // Update the display of selected ICDs
+                updateSelectedICDs();
+            }
+            
+            // Clear search and hide results
+            $('#search-icd').val('');
+            $('#search-results').hide();
+        });
+        
+        // Function to update display of selected ICDs
+        function updateSelectedICDs() {
+            const container = $('#selected-icds');
+            
+            if (selectedICDs.length === 0) {
+                container.html('<p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>');
+            } else {
+                container.empty();
+                
+                selectedICDs.forEach(function(item, index) {
+                    container.append(
+                        `<div class="selected-icd-item mb-1 d-flex align-items-center">
+                            <span class="me-auto"><strong>${item.id}</strong> - ${item.name}</span>
+                            <button type="button" class="btn btn-sm btn-outline-danger remove-icd" data-index="${index}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>`
+                    );
+                });
+            }
+        }
+        
+        // Handle removing a selected ICD
+        $(document).on('click', '.remove-icd', function() {
+            const index = $(this).data('index');
+            selectedICDs.splice(index, 1);
+            updateSelectedICDs();
+        });
+        
+        // Close dropdown when clicking outside
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('#search-icd, #search-results, #search-btn').length) {
+                $('#search-results').hide();
+            }
+        });
+    });
+    </script>
+    
+    <!-- Tambahkan CSS untuk fitur ICD-10 -->
+    <style>
+        .search-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .search-item:hover {
+            background-color: #f8f9fa;
+        }
+        .selected-icd-item {
+            background-color: #e9f7fe;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        #search-results {
+            border: 1px solid #ced4da;
+            border-radius: 0 0 5px 5px;
+        }
+        .hover-bg:hover { 
+            background-color: #f0f0f0; 
+            cursor: pointer;
+        }
+        .z-index-dropdown {
+            z-index: 1000;
+        }
+        .min-height-80 {
+            min-height: 80px;
+        }
+    </style>
 @endsection
