@@ -2,6 +2,127 @@
 
 @section('title', 'SIP-Kes')
 
+@section('head')
+    <!-- Ensure proper viewport settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Responsive Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom Responsive Styles -->
+    <style>
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            font-weight: bold;
+            text-align: left;
+            color: #111754;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: bold;
+            text-align: left;
+            color: #1A1A1A;
+            padding: 9px 0;
+            margin-top: 1rem;
+        }
+        
+        /* Responsive Form Styles */
+        .form-control, .form-select {
+            padding: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 767.98px) {
+            .wizard-content .wizard > .steps > ul > li {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .wizard-content .wizard > .content {
+                padding: 10px;
+            }
+            
+            .wizard-content .wizard > .actions > ul > li {
+                margin: 0 0.25rem;
+            }
+            
+            .wizard-content .wizard > .actions > ul > li > a {
+                padding: 0.5rem 1rem;
+            }
+        }
+        
+        /* Touch-friendly elements */
+        .btn, .form-control, .form-select, .dropdown-item {
+            min-height: 38px;
+        }
+        
+        .search-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+            padding: 10px;
+        }
+        
+        .search-item:hover, .search-item:active {
+            background-color: #f8f9fa;
+        }
+        
+        .selected-icd-item {
+            background-color: #e9f7fe;
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        #search-results {
+            border: 1px solid #ced4da;
+            border-radius: 0 0 5px 5px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+        
+        .hover-bg:hover { 
+            background-color: #f0f0f0; 
+        }
+        
+        .z-index-dropdown {
+            z-index: 1050;
+        }
+        
+        .min-height-80 {
+            min-height: 80px;
+        }
+        
+        /* Accordion style for mobile view */
+        @media (max-width: 767.98px) {
+            .mobile-accordion .card-header {
+                cursor: pointer;
+            }
+            
+            .mobile-accordion .collapse-content {
+                padding: 0.75rem;
+            }
+        }
+        
+        /* Fix for spacing issues on mobile */
+        .mb-xs-3 {
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 767.98px) {
+            .row > [class*="col-"] {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+@endsection
+
 @section('pageContent')
         <div class="container-fluid">
             <div class="card w-100">
