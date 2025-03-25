@@ -310,7 +310,7 @@
                     <!-- Step 2 -->
                     <h6>Layanan</h6>
                     <section>
-                    <h4 class="section-title">Data Pendaftaran</h4>
+                    <h4 class="section-title">Data</h4>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="searchNoRM" placeholder="Cari berdasarkan No. RM">
