@@ -99,7 +99,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="/main/blog-detail" class="sidebar-link {{ request()->is('') ? 'active' : '' }}">
+                    <a href="/main/polikia" class="sidebar-link {{ request()->is('/main/polikia') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
