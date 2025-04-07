@@ -174,12 +174,13 @@
                 <span class="step"><i class="ti ti-clipboard-text"></i></span>Pendaftaran
             </h6>
             <section>
+           
             </section>
 
             <h6>
                 <span class="step"><i class="ti ti-nurse"></i></span>Layanan
             </h6>
-            <section>
+            <section class="d-none">
                 @include('main.polikia.layanan')
             </section>
 
@@ -195,7 +196,11 @@
                     @include('main.polikia.pemeriksaan.anak')
                 </div>
 
-                <div id="pemeriksaan-kehamilan">
+                <div id="pemeriksaan-persalinan" class="d-none">
+                    @include('main.polikia.pemeriksaan.persalinan')
+                </div>
+
+                <div id="pemeriksaan-kehamilan" class="d-none">
                     @include('main.polikia.pemeriksaan.kehamilan')
                 </div>
             </section>
