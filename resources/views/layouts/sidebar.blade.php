@@ -75,7 +75,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
+            <a class="sidebar-link has-arrow {{ active_class('main/polikia') }} {{ active_class('main/poliumum') }}" href="javascript:void(0)"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -88,7 +88,8 @@
                 </span>
                 <span class="hide-menu">Pemeriksaan</span>
             </a>
-            <ul aria-expanded="false" class="collapse first-level {{ request()->is('') ? 'in' : '' }}">
+            <ul aria-expanded="false" class="collapse first-level 
+                    {{ active_class('main/polikia', 'in') }} {{ active_class('main/poliumum', 'in') }} {{ active_class('main/rawat-inap', 'in') }} ">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
                         aria-expanded="false">
@@ -99,7 +100,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="/main/polikia" class="sidebar-link {{ request()->is('/main/polikia') ? 'active' : '' }}">
+                    <a href="/main/polikia" class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>

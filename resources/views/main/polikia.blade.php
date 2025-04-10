@@ -3,6 +3,7 @@
 @section('title', 'SIP-Kes | Poli KIA')
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
     .title{
@@ -216,11 +217,13 @@
 @endsection
 
 @section('scripts')
+
 <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
 <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <script>
 const pageTitle = {
@@ -229,6 +232,9 @@ const pageTitle = {
     kb: 'Formulir Keluarga Berencana',
     anak: 'Formulir Anak',
 };
+
+
+
 
 $(".validation-wizard").steps({
     headerTag: "h6",
@@ -255,9 +261,7 @@ $(".validation-wizard").steps({
             $('#page-subtitle').text('Data Pemeriksaan');
         }
 
-        return true;
-
-        return (
+        const isValid = (
             currentIndex > newIndex ||
             (!(3 === newIndex && Number($("#age-2").val()) < 18) &&
             (currentIndex < newIndex &&
@@ -266,6 +270,16 @@ $(".validation-wizard").steps({
             (form.validate().settings.ignore = ":disabled,:hidden"),
             form.valid()))
         );
+
+        if (!isValid) return false;
+        toastr.success('Berhasil', 'Data berhasil disimpan', {
+            positionClass: 'toast-top-right',
+            timeOut: 3000,
+            progressBar: true,
+            closeButton: true,
+        });
+        return true;
+        
     },
     onFinishing: function (event, currentIndex) {
         return (form.validate().settings.ignore = ":disabled"), form.valid();
