@@ -9,5 +9,4 @@
 <!-- Core Css -->
 <!-- <script src="{{ URL::asset('build/css/styles.css') }}"></script> -->
 {{-- @vite(['resources/scss/styles.scss']) --}}
-<link rel="stylesheet" href="{{asset('/public/build/css/styles.css')}}">
-<script src="{{asset('/resources/scss/styles.scss')}}"></script>
+<link rel="stylesheet" href="{{asset('build/css/styles.css')}}">
