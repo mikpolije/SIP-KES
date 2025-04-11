@@ -75,8 +75,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ active_class('main/polikia') }} {{ active_class('main/poliumum') }}" href="javascript:void(0)"
-                aria-expanded="false">
+            <a class="sidebar-link has-arrow {{ request()->is('main/polikia') ? 'active' : '' }} {{ request()->is('main/poliumum') ? 'active' : '' }}" href="#">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-heart-pulse" viewBox="0 0 16 16">
@@ -88,8 +87,7 @@
                 </span>
                 <span class="hide-menu">Pemeriksaan</span>
             </a>
-            <ul aria-expanded="false" class="collapse first-level 
-                    {{ active_class('main/polikia', 'in') }} {{ active_class('main/poliumum', 'in') }} {{ active_class('main/rawat-inap', 'in') }} ">
+                <ul aria-expanded="false" class="collapse first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }}">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
                         aria-expanded="false">
