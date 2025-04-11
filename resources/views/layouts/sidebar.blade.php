@@ -106,7 +106,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/"
+                    <a class="sidebar-link {{ request()->is('main/rawat-inap', 'main/rawat-inap/*') ? 'active' : '' }}" href="/main/rawat-inap"
                         aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
