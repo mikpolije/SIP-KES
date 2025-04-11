@@ -25,7 +25,7 @@
                 <div class="app-header with-horizontal">@include('layouts.horizontal-header')</div>
             </header>
             <!-- Header End -->
-            
+
             <aside class="left-sidebar with-horizontal">
                 @include('layouts.horizontal-sidebar')
             </aside>
@@ -37,9 +37,6 @@
             </div>
             @include('layouts.customizer')
         </div>
-
-        <x-headers.dd-searchbar/>
-        <x-headers.dd-shopping-cart/>
     </div>
     <div class="dark-transparent sidebartoggler"></div>
     @include('layouts.scripts')
