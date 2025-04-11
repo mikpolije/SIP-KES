@@ -175,7 +175,7 @@
                 <span class="step"><i class="ti ti-clipboard-text"></i></span>Pendaftaran
             </h6>
             <section>
-           
+
             </section>
 
             <h6>
@@ -279,7 +279,7 @@ $(".validation-wizard").steps({
             closeButton: true,
         });
         return true;
-        
+
     },
     onFinishing: function (event, currentIndex) {
         return (form.validate().settings.ignore = ":disabled"), form.valid();

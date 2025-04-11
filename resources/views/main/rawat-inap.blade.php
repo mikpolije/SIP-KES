@@ -2,5 +2,5 @@
 @section('title', 'SIP-Kes | Rawat Inap')
 
 @section('pageContent')
-initial page
+@livewire('rawat-inap.main')
 @endsection
