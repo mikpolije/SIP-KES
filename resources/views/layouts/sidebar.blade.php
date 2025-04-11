@@ -138,7 +138,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/" aria-expanded="false">
+            <a class="sidebar-link {{ request()->is('main/pembayaran', 'main/pembayaran/*') ? 'active' : '' }}" href="/main/pembayaran"
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-currency-dollar" viewBox="0 0 16 16">
