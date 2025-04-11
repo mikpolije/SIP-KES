@@ -14,7 +14,7 @@ $setActiveTab = function (string $tabName) {
             <div class="relative px-4 py-8 bg-white shadow-md rounded-lg sm:p-10">
                 <div class="max-w-md mx-auto md:max-w-xl lg:max-w-3xl">
                     <div>
-                        <h1 class="text-2xl font-semibold text-center text-gray-900 mb-6">Sistem Informasi</h1>
+                        <h1 class="title" id="page-title">Layanan</h1>
 
                         <div class="border-b border-gray-200 mb-6">
                             <div class="flex space-x-1">
