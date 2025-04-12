@@ -46,21 +46,21 @@ $setActiveTab = function (string $tabName) {
                             <!-- Pendaftaran Tab -->
                             @if ($activeTab === 'pendaftaran')
                             <div>
-                            page pendaftaran (perlu stepper)
+                                @livewire('rawat-inap.pendaftaran.main')
                             </div>
                             @endif
 
                             <!-- Pemeriksaan Tab -->
                             @if ($activeTab === 'pemeriksaan')
                             <div>
-                            page pemeriksaan (stepper juga)
+                                @livewire('rawat-inap.pemeriksaan.main')
                             </div>
                             @endif
 
                             <!-- Layanan Tab -->
                             @if ($activeTab === 'layanan')
                             <div>
-                            page layanan (stepper lagi)
+                                @livewire('rawat-inap.layanan.main')
                             </div>
                             @endif
                         </div>
