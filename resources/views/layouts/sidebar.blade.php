@@ -98,7 +98,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="/main/polikia" class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}">
+                    <a href="/main/polikia/layanan" class="sidebar-link {{ request()->is('main/polikia/layanan', 'main/polikia/layanan/*') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -125,9 +125,12 @@
                 </li>
             </ul>
         </li>
+		
+        <!-- farmasi -->
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="" aria-expanded="false">
-                <span>
+            <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
+                aria-expanded="false">
+                <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-capsule-pill" viewBox="0 0 16 16">
                         <path
@@ -136,9 +139,40 @@
                 </span>
                 <span class="hide-menu">Farmasi</span>
             </a>
+            <ul aria-expanded="false" class="collapse first-level {{ request()->is('') ? 'in' : '' }}">
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/farmasi/dataobat') ? 'active' : '' }}" href="/main/farmasi/dataobat"
+                        aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Data Obat</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/main/farmasi/datapengambilanobat"
+                        class="sidebar-link {{ request()->is('main/farmasi/datapengambilanobat') ? 'active' : '' }}"
+                        aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Data Pengambilan Obat</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/farmasi/dataresep') ? 'active' : '' }}" href="/main/farmasi/dataresep"
+                        aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Data Resep</span>
+                    </a>
+                </li>
+            </ul>
         </li>
+
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/pembayaran', 'main/pembayaran/*') ? 'active' : '' }}" href="/main/pembayaran"
+            <a class="sidebar-link {{ request()->is('main/polikia/pembayaran/pembayaran', 'main/polikia/pembayaran/pembayaran/*') ? 'active' : '' }}" href="/main/polikia/pembayaran/pembayaran"
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-currency-dollar" viewBox="0 0 16 16">
@@ -223,6 +257,14 @@
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Kunjungan</span>
+                    </a>
+                </li>
+				<li class="sidebar-item">
+                    <a href="/main/polikia/laporankia" class="sidebar-link {{ request()->is('main/polikia/laporankia') ? 'active' : '' }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Laporan KIA</span>
                     </a>
                 </li>
             </ul>
