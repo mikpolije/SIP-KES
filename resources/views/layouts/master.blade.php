@@ -119,6 +119,17 @@
             display: flex;
             justify-content: space-between;
         }
+
+
+        .signature-block {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .border-bottom {
+            border-color: #000 !important;
+        }
     </style>
 </head>
 
