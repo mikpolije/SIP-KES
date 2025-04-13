@@ -1,188 +1,190 @@
-<div x-data="{
-    activeTab: 'pendaftaran',
-    showPatientDetails: false,
-    selectedPatient: null,
-    selectedPatientName: null,
+<?php
 
-    selectPatient(id, name) {
-        this.selectedPatient = id;
-        this.selectedPatientName = name;
-        this.showPatientDetails = true;
-    },
+use Livewire\Volt\Component;
+use Livewire\Attributes\On;
 
-    backToList() {
-        this.showPatientDetails = false;
-        this.selectedPatient = null;
-        this.selectedPatientName = null;
+new class extends Component {
+    public $activeTab = 'pendaftaran';
+    public $showPatientDetails = false;
+    public $selectedPatient = null;
+    public $selectedPatientName = null;
+    public $search = '';
+
+    public $patients = [
+        [
+            'id' => '002001',
+            'name' => 'Aditya Attadewa',
+            'nik' => '3350168808650001',
+            'birth_date' => '12-09-1999',
+            'admission_date' => '27-02-2025',
+            'address' => 'SUMBERSARI',
+            'room' => '',
+            'note' => 'RUJUK INTERNAL IGD'
+        ],
+        [
+            'id' => '17171717',
+            'name' => 'Raihan Sigma',
+            'nik' => '3350168808651717',
+            'birth_date' => '12-09-2002',
+            'admission_date' => '27-02-2017',
+            'address' => 'SUMBERSARI',
+            'room' => '',
+            'note' => 'RUJUK INTERNAL IGD'
+        ],
+    ];
+
+    public function selectPatient($id, $name)
+    {
+        $this->selectedPatient = $id;
+        $this->selectedPatientName = $name;
+        $this->showPatientDetails = true;
+        $this->dispatch('patient-selected', patientId: $id);
     }
-}">
-    <div class="h-screen overflow-auto py-6 flex flex-col justify-center sm:py-12">
-        <div class="relative py-3 sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
-            <div class="relative px-4 py-8 bg-white shadow-md rounded-lg sm:p-10">
-                <div class="max-w-md mx-auto md:max-w-xl lg:max-w-3xl">
-                    <div>
-                        <h1 class="title mb-4 h3">Rawat Inap</h1>
 
-                        <div x-show="!showPatientDetails" class="mb-4">
-                            <div class="d-flex justify-content-end align-items-center mb-3">
-                                <div class="input-group" style="width: 300px;">
-                                    <input type="text" class="form-control" placeholder="Cari pasien...">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="ti ti-search"></i>
-                                    </button>
-                                </div>
-                            </div>
+    public function backToList()
+    {
+        $this->reset('selectedPatient', 'selectedPatientName', 'showPatientDetails');
+    }
 
-                            <div class="table-responsive">
-                                <table class="table table-sm table-hover table-bordered align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th class="text-center">#</th>
-                                            <th>RM</th>
-                                            <th>NAMA</th>
-                                            <th>NIK</th>
-                                            <th>TGL LAHIR</th>
-                                            <th>TGL MASUK</th>
-                                            <th>ALAMAT</th>
-                                            <th>RUANGAN</th>
-                                            <th>KET</th>
-                                            <th class="text-center">AKSI</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="small">
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>002001</td>
-                                            <td>Aditya Attadewa</td>
-                                            <td>3350168808650001</td>
-                                            <td>12-09-1999</td>
-                                            <td>27-02-2025</td>
-                                            <td>SUMBERSARI</td>
-                                            <td></td>
-                                            <td>RUJUK INTERNAL IGD</td>
-                                            <td class="text-center">
-                                                <button @click="selectPatient('002001', 'Aditya Attadewa')"
-                                                    class="btn btn-primary btn-sm py-0">Detail</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td>002031</td>
-                                            <td>Aditya Fadrisky</td>
-                                            <td>3579680742680003</td>
-                                            <td>04-10-1997</td>
-                                            <td>02-03-2025</td>
-                                            <td>PUGER</td>
-                                            <td></td>
-                                            <td>RUJUK INTERNAL RJ</td>
-                                            <td class="text-center">
-                                                <button @click="selectPatient('002031', 'Aditya Fadrisky')"
-                                                    class="btn btn-primary btn-sm py-0">Detail</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">3</td>
-                                            <td>002047</td>
-                                            <td>Aditya Hailudra</td>
-                                            <td>3790681478750008</td>
-                                            <td>29-01-2000</td>
-                                            <td>02-03-2025</td>
-                                            <td>AJUNG</td>
-                                            <td>DAHLIA</td>
-                                            <td>RUJUK INTERNAL IGD</td>
-                                            <td class="text-center">
-                                                <button @click="selectPatient('002047', 'Aditya Hailudra')"
-                                                    class="btn btn-primary btn-sm py-0">Detail</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+    public function changeTab($tab)
+    {
+        $this->activeTab = $tab;
+        if ($this->selectedPatient) {
+            $this->dispatch('patient-selected', patientId: $this->selectedPatient);
+        }
+    }
+
+    // buat filter pasien
+    public function getFilteredPatientsProperty()
+    {
+        return collect($this->patients)
+            ->when($this->search, function ($collection) {
+                return $collection->filter(function ($patient) {
+                    return str_contains(strtolower($patient['name']), strtolower($this->search)) ||
+                           str_contains(strtolower($patient['id']), strtolower($this->search));
+                });
+            })
+            ->all();
+    }
+}; ?>
+
+<div class="h-screen overflow-auto py-6 flex flex-col justify-center sm:py-12">
+    <div class="relative py-3 sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
+        <div class="relative px-4 py-8 bg-white shadow-md rounded-lg sm:p-10">
+            <div class="max-w-md mx-auto md:max-w-xl lg:max-w-3xl">
+                <div>
+                    <h1 class="title mb-4 h3">Rawat Inap</h1>
+
+                    @if(!$showPatientDetails)
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-end align-items-center mb-3">
+                            <div class="input-group" style="width: 300px;">
+                                <input type="text" class="form-control" placeholder="Cari pasien..."
+                                    wire:model.live.debounce.300ms="search">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="ti ti-search"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <div x-show="showPatientDetails">
-                            <div class="d-flex align-items-center mb-4">
-                                <button @click="backToList" class="btn btn-outline-primary me-3">
-                                    <i class="bi bi-arrow-left"></i> Kembali
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover table-bordered align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th>RM</th>
+                                        <th>NAMA</th>
+                                        <th>NIK</th>
+                                        <th>TGL LAHIR</th>
+                                        <th>TGL MASUK</th>
+                                        <th>ALAMAT</th>
+                                        <th>RUANGAN</th>
+                                        <th>KET</th>
+                                        <th class="text-center">AKSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="small">
+                                    @foreach($this->filteredPatients as $index => $patient)
+                                    <tr>
+                                        <td class="text-center">{{ $index + 1 }}</td>
+                                        <td>{{ $patient['id'] }}</td>
+                                        <td>{{ $patient['name'] }}</td>
+                                        <td>{{ $patient['nik'] }}</td>
+                                        <td>{{ $patient['birth_date'] }}</td>
+                                        <td>{{ $patient['admission_date'] }}</td>
+                                        <td>{{ $patient['address'] }}</td>
+                                        <td>{{ $patient['room'] }}</td>
+                                        <td>{{ $patient['note'] }}</td>
+                                        <td class="text-center">
+                                            <button
+                                                wire:click="selectPatient('{{ $patient['id'] }}', '{{ $patient['name'] }}')"
+                                                class="btn btn-primary btn-sm py-0">Detail</button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @else
+                    <div>
+                        <div class="d-flex align-items-center mb-4">
+                            <button wire:click="backToList" class="btn btn-outline-primary me-3">
+                                <i class="bi bi-arrow-left"></i> Kembali
+                            </button>
+                            <div>
+                                <span class="fw-bold">Pasien:</span>
+                                <span class="ms-2">{{ $selectedPatientName }} ({{ $selectedPatient }})</span>
+                            </div>
+                        </div>
+
+                        <!-- tabs navigation -->
+                        <ul class="nav nav-tabs mb-4" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button wire:click="changeTab('pendaftaran')"
+                                    class="nav-link {{ $activeTab === 'pendaftaran' ? 'active' : '' }}" type="button">
+                                    Pendaftaran
                                 </button>
-                                <div>
-                                    <span class="fw-bold">Pasien:</span>
-                                    <span class="ms-2"
-                                        x-text="selectedPatientName + ' (' + selectedPatient + ')'"></span>
-                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button wire:click="changeTab('pemeriksaan')"
+                                    class="nav-link {{ $activeTab === 'pemeriksaan' ? 'active' : '' }}" type="button">
+                                    Pemeriksaan
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button wire:click="changeTab('layanan')"
+                                    class="nav-link {{ $activeTab === 'layanan' ? 'active' : '' }}" type="button">
+                                    Layanan
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- tabs content
+                        ini pake key biar bisa aja di livewire,
+                        maybe theres another solution, idk and id-really-c
+                        -->
+                        <div>
+                            <!-- pendaftaran tab -->
+                            <div x-show="$wire.activeTab === 'pendaftaran'" x-transition>
+                                @livewire('rawat-inap.pendaftaran.main', ['patientId' => $selectedPatient],
+                                key('pendaftaran-'.$selectedPatient))
                             </div>
 
-                            <!-- Tabs -->
-                            <ul class="nav nav-tabs mb-4" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button @click="activeTab = 'pendaftaran'"
-                                        :class="activeTab === 'pendaftaran' ? 'nav-link active' : 'nav-link'"
-                                        id="pendaftaran-tab" type="button" role="tab" aria-controls="pendaftaran"
-                                        aria-selected="activeTab === 'pendaftaran'">
-                                        Pendaftaran
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button @click="activeTab = 'pemeriksaan'"
-                                        :class="activeTab === 'pemeriksaan' ? 'nav-link active' : 'nav-link'"
-                                        id="pemeriksaan-tab" type="button" role="tab" aria-controls="pemeriksaan"
-                                        aria-selected="activeTab === 'pemeriksaan'">
-                                        Pemeriksaan
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button @click="activeTab = 'layanan'"
-                                        :class="activeTab === 'layanan' ? 'nav-link active' : 'nav-link'"
-                                        id="layanan-tab" type="button" role="tab" aria-controls="layanan"
-                                        aria-selected="activeTab === 'layanan'">
-                                        Layanan
-                                    </button>
-                                </li>
-                            </ul>
+                            <!-- pemeriksaan tab -->
+                            <div x-show="$wire.activeTab === 'pemeriksaan'" x-transition>
+                                @livewire('rawat-inap.pemeriksaan.main', ['patientId' => $selectedPatient],
+                                key('pemeriksaan-'.$selectedPatient))
+                            </div>
 
-                            <!-- Tab Content -->
-                            <div class="tab-content py-3">
-                                <!-- Pendaftaran Tab -->
-                                <div x-show="activeTab === 'pendaftaran'"
-                                    :class="activeTab === 'pendaftaran' ? 'tab-pane fade show active' : 'tab-pane fade'"
-                                    id="pendaftaran" role="tabpanel" aria-labelledby="pendaftaran-tab">
-                                    <div x-data="{}" x-init="
-                                        $nextTick(() => {
-                                            Livewire.dispatch('patient-selected', { patientId: $parent.selectedPatient })
-                                        })
-                                    ">
-                                        @livewire('rawat-inap.pendaftaran.main')
-                                    </div>
-                                </div>
-
-                                <!-- Pemeriksaan Tab -->
-                                <div x-show="activeTab === 'pemeriksaan'"
-                                    :class="activeTab === 'pemeriksaan' ? 'tab-pane fade show active' : 'tab-pane fade'"
-                                    id="pemeriksaan" role="tabpanel" aria-labelledby="pemeriksaan-tab">
-                                    <div x-data="{}" x-init="
-                                        $nextTick(() => {
-                                            Livewire.dispatch('patient-selected', { patientId: $parent.selectedPatient })
-                                        })
-                                    ">
-                                        @livewire('rawat-inap.pemeriksaan.main')
-                                    </div>
-                                </div>
-
-                                <!-- Layanan Tab -->
-                                <div x-show="activeTab === 'layanan'"
-                                    :class="activeTab === 'layanan' ? 'tab-pane fade show active' : 'tab-pane fade'"
-                                    id="layanan" role="tabpanel" aria-labelledby="layanan-tab">
-                                    <div x-data="{}" x-init="
-                                        $nextTick(() => {
-                                            Livewire.dispatch('patient-selected', { patientId: $parent.selectedPatient })
-                                        })
-                                    ">
-                                        @livewire('rawat-inap.layanan.main')
-                                    </div>
-                                </div>
+                            <!-- layanan tab -->
+                            <div x-show="$wire.activeTab === 'layanan'" x-transition>
+                                @livewire('rawat-inap.layanan.main', ['patientId' => $selectedPatient],
+                                key('layanan-'.$selectedPatient))
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
