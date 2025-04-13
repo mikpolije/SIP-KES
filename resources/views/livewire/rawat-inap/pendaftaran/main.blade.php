@@ -138,6 +138,7 @@ new class extends Component {
         ]);
 
         session()->flash('message', 'Form submitted successfully!');
+        $this->dispatch('patient-registered', patientId: $this->patientId);
         $this->dispatch('switch-tab', tab: 'pemeriksaan');
     }
 }; ?>

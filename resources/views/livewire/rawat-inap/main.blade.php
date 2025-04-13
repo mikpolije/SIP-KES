@@ -103,6 +103,19 @@ new class extends Component {
         }
     }
 
+    #[On('patient-registered')]
+    public function handlePatientRegistered($patientId)
+    {
+        $this->patients = collect($this->patients)->map(function ($patient) use ($patientId) {
+            if ($patient['id'] == $patientId) {
+                $patient['is_registered'] = 1;
+            }
+            return $patient;
+        })->all();
+
+        $this->patientIsRegistered = true;
+    }
+
     // buat cek pasien ini pake tabs tidak
     // cek di selectPatient()
     public function shouldShowTab($tab)
@@ -220,31 +233,29 @@ new class extends Component {
                             <!-- Tab content -->
                             <div>
                                 @if(!$patientIsRegistered)
-                                <!-- Force show pendaftaran if not registered -->
+                                @livewire('rawat-inap.pendaftaran.main', ['patientId' => $selectedPatient],
+                                key('pendaftaran-'.$selectedPatient))
+                                @else
+                                @switch($activeTab)
+                                @case('pendaftaran')
                                 @livewire('rawat-inap.pendaftaran.main',
                                 ['patientId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient)
                                 )
-                                @else
-                                <!-- Show selected tab if registered -->
-                                <div x-show="$wire.activeTab === 'pendaftaran'" x-transition>
-                                    @livewire('rawat-inap.pendaftaran.main',
-                                    ['patientId' => $selectedPatient],
-                                    key('pendaftaran-'.$selectedPatient)
-                                    )
-                                </div>
-                                <div x-show="$wire.activeTab === 'pemeriksaan'" x-transition>
-                                    @livewire('rawat-inap.pemeriksaan.main',
-                                    ['patientId' => $selectedPatient],
-                                    key('pemeriksaan-'.$selectedPatient)
-                                    )
-                                </div>
-                                <div x-show="$wire.activeTab === 'layanan'" x-transition>
-                                    @livewire('rawat-inap.layanan.main',
-                                    ['patientId' => $selectedPatient],
-                                    key('layanan-'.$selectedPatient)
-                                    )
-                                </div>
+                                @break
+                                @case('pemeriksaan')
+                                @livewire('rawat-inap.pemeriksaan.main',
+                                ['patientId' => $selectedPatient],
+                                key('pemeriksaan-'.$selectedPatient)
+                                )
+                                @break
+                                @case('layanan')
+                                @livewire('rawat-inap.layanan.main',
+                                ['patientId' => $selectedPatient],
+                                key('layanan-'.$selectedPatient)
+                                )
+                                @break
+                                @endswitch
                                 @endif
                             </div>
                         </div>
