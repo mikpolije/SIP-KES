@@ -1,6 +1,14 @@
 @extends('layouts.master')
 @section('title', 'SIP-Kes | Rawat Inap')
 
+<!--
+
+jadi untuk summed up-nya.
+semua yang ada di rawat inap pake mix dari css dan scripts (yang ada di tiap section yg disediakan)
+sisanya untuk logic dan layout page pake livewire + alpinejs + kadang volt + pure bootstrap 5
+
+-->
+
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
