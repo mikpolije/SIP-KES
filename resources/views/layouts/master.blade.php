@@ -163,7 +163,7 @@
                     @yield('pageContent')
                 </div>
             </div>
-            @include('layouts.customizer')
+            <!-- @include('layouts.customizer') -->
         </div>
     </div>
     <div class="dark-transparent sidebartoggler"></div>

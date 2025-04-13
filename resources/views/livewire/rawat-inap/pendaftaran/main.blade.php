@@ -103,6 +103,7 @@ new class extends Component {
         if ($this->currentStep < $this->totalSteps) {
             $this->currentStep++;
         }
+        $this->dispatch('scroll-to-top');
     }
 
     public function prevStep()
@@ -450,7 +451,7 @@ new class extends Component {
 
     <!-- step 2 content - general consent -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
-        <div class="container bg-white shadow-sm rounded p-4 my-4">
+        <div>
             <form>
                 <!-- Header -->
                 <div class="text-center mb-4">
