@@ -4,22 +4,23 @@ use Livewire\Volt\Component;
 
 new class extends Component {
     public $msg = "main pemeriksaan";
-    public $count = 0;
-
-    public function increment()
-    {
-        $this->count++;
-    }
-
-    public function decrement()
-    {
-        $this->count--;
-    }
 } ?>
 
-<div>
-    ini adalah class {{ $this->msg }}
-    <h1>{{ $count }}</h1>
-    <button wire:click="increment">+</button>
-    <button wire:click="decrement">-</button>
+<div class="card w-100">
+    <div class="card-body wizard-content">
+        <form action="#" class="validation-wizard wizard-circle">
+            <h6>
+                <span class="step"><i class="ti ti-clipboard-text"></i></span>Assessement Awal
+            </h6>
+            <section>
+
+            </section>
+
+            <h6>
+                <span class="step"><i class="ti ti-nurse"></i></span>Informed Consent
+            </h6>
+            <section class="d-none">
+            </section>
+        </form>
+    </div>
 </div>
