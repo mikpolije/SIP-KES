@@ -3,71 +3,52 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public $currentStep = 1;
-    public $totalSteps = 2;
-
-    public function nextStep()
-    {
-        if ($this->currentStep < $this->totalSteps) {
-            $this->currentStep++;
-        }
-    }
-
-    public function prevStep()
-    {
-        if ($this->currentStep > 1) {
-            $this->currentStep--;
-        }
-    }
-
-    public function goToStep($step)
-    {
-        if ($step >= 1 && $step <= $this->totalSteps) {
-            $this->currentStep = $step;
-        }
-    }
 } ?>
 
-<div>
-    <div class="bs-stepper">
-        <div class="bs-stepper-header" role="tablist">
-            <!-- Step 1 -->
-            <div class="step {{ $currentStep >= 1 ? 'active' : '' }}">
-                <button type="button" class="step-trigger" role="tab" wire:click="goToStep(1)">
-                    <span class="bs-stepper-circle">{{ $currentStep > 1 ? '✓' : '1' }}</span>
-                    <span class="bs-stepper-label">Identitas Diri</span>
-                </button>
-            </div>
-            <div class="line"></div>
-            <!-- Step 2 -->
-            <div class="step {{ $currentStep >= 2 ? 'active' : '' }}">
-                <button type="button" class="step-trigger" role="tab" wire:click="goToStep(2)">
-                    <span class="bs-stepper-circle">2</span>
-                    <span class="bs-stepper-label">General Consent</span>
-                </button>
-            </div>
-        </div>
+<div class="card w-100">
+    <div class="card-body wizard-content">
+        <h1 class="title" id="page-title">Layanan</h1>
+        <form action="#" class="validation-wizard wizard-circle mt-5">
+            <h6>
+                <span class="step"><i class="ti ti-clipboard-text"></i></span>Pendaftaran
+            </h6>
+            <section>
 
-        <div class="bs-stepper-content">
-            <!-- Step 1 Content -->
-            <div id="logins-part" class="content {{ $currentStep === 1 ? 'd-block' : 'd-none' }}">
-                <p>apa kek isinya</p>
+            </section>
 
-                <div class="d-flex justify-content-end mt-4 gap-2">
-                    <button class="btn btn-secondary" disabled>Previous</button>
-                    <button class="btn btn-primary" wire:click="nextStep">Next</button>
+            <h6>
+                <span class="step"><i class="ti ti-nurse"></i></span>Layanan
+            </h6>
+            <section class="d-none">
+                one
+            </section>
+
+            <h6>
+                <span class="step"><i class="ti ti-stethoscope"></i></span>Pemeriksaan
+            </h6>
+            <section>
+                <div id="pemeriksaan-kb" class="d-none">
+                    two
                 </div>
-            </div>
 
-            <!-- Step 2 Content -->
-            <div id="information-part" class="content {{ $currentStep === 2 ? 'd-block' : 'd-none' }}">
-                <h4>kuliah di polije b aja</h4>
-
-                <div class="d-flex justify-content-end mt-4">
-                    <button class="btn btn-secondary" wire:click="prevStep">Previous</button>
-                    <button class="btn btn-success">Submit</button>
+                <div id="pemeriksaan-anak" class="d-none">
+                    three
                 </div>
-            </div>
-        </div>
+
+                <div id="pemeriksaan-persalinan" class="d-none">
+                    four
+                </div>
+
+                <div id="pemeriksaan-kehamilan" class="d-none">
+                    five
+                </div>
+            </section>
+
+            <h6><span class="step"><i class="ti ti-pill"></i></span>Farmasi</h6>
+            <section></section>
+
+            <h6><span class="step"><i class="ti ti-receipt-2"></i></span>Pembayaran</h6>
+            <section></section>
+        </form>
     </div>
 </div>
