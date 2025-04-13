@@ -65,8 +65,9 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: #4285F4;
-            color: white;
+            background-color: white;
+            color: #4285F4;
+            border: 2px solid #4285F4;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -76,9 +77,9 @@
         }
 
         .step-circle.active {
-            background-color: white;
-            color: #4285F4;
-            border: 2px solid #4285F4;
+            background-color: #4285F4;
+            color: white;
+            border: none;
         }
 
         .step-title {
