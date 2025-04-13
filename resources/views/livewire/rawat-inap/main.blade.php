@@ -9,6 +9,7 @@ new class extends Component {
     public $selectedPatient = null;
     public $selectedPatientName = null;
     public $patientIsRegistered = false;
+    public $patientIsExamined = false;
     public $search = '';
 
     public $patients = [
@@ -21,7 +22,8 @@ new class extends Component {
             'address' => 'SUMBERSARI',
             'room' => '',
             'note' => 'RUJUK INTERNAL IGD',
-            'is_registered' => 0
+            'is_registered' => 0,
+            'is_examined' => 0
         ],
         [
             'id' => '17171717',
@@ -32,7 +34,8 @@ new class extends Component {
             'address' => 'SUMBERSARI',
             'room' => '',
             'note' => 'RUJUK INTERNAL IGD',
-            'is_registered' => 1
+            'is_registered' => 1,
+            'is_examined' => 0
         ],
     ];
 
@@ -44,7 +47,16 @@ new class extends Component {
 
         $patient = collect($this->patients)->firstWhere('id', $id);
         $this->patientIsRegistered = (bool)($patient['is_registered'] ?? 0);
-        $this->activeTab = $this->patientIsRegistered ? 'layanan' : 'pendaftaran';
+        $this->patientIsExamined = (bool)($patient['is_examined'] ?? 0);
+
+        if (!$this->patientIsRegistered) {
+            $this->activeTab = 'pendaftaran';
+        } elseif (!$this->patientIsExamined) {
+            $this->activeTab = 'pemeriksaan';
+        } else {
+            $this->activeTab = 'layanan';
+        }
+
         $this->dispatch('patient-selected', patientId: $id);
     }
 
@@ -156,8 +168,7 @@ new class extends Component {
                                             <td class="text-center p-1">
                                                 <button
                                                     wire:click="selectPatient('{{ $patient['id'] }}', '{{ $patient['name'] }}')"
-                                                    class="btn btn-primary btn-sm p-0 px-1" data-bs-toggle="tooltip"
-                                                    title="Detail">
+                                                    class="btn btn-primary btn-sm p-0 px-1" title="Detail">
                                                     <i class="ti ti-eye"></i>
                                                 </button>
                                             </td>
