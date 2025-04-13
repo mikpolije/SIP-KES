@@ -17,9 +17,8 @@ new class extends Component {
     </div>
     @endverbatim
 
-    {{-- For debugging --}}
     @php
-        dump($patientId); // This will show in your Laravel debugbar
-        // dd($patientId); // Uncomment this to dump and die (stop execution)
+        dump($patientId);
+        // dd($patientId);
     @endphp
 </div>
