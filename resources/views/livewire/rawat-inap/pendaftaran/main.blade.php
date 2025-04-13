@@ -4,8 +4,9 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
 new class extends Component {
+    public $patientId;
     public $currentStep = 1;
-    public $totalSteps = 3; // Will be calculated in mount()
+    public $totalSteps = 2;
 
     #[Validate('required')]
     public $name = '';
@@ -16,10 +17,9 @@ new class extends Component {
     #[Validate('required')]
     public $examinationType = '';
 
-    public function mount()
+    public function mount($patientId)
     {
-        // In a real implementation, you might calculate total steps dynamically
-        // For this example, we'll keep it simple with 2 steps
+        $this->patientId = $patientId;
         $this->totalSteps = 2;
     }
 
@@ -50,34 +50,29 @@ new class extends Component {
             'examinationType' => 'required',
         ]);
 
-        // Process form submission here
-        // For example: save to database, send email, etc.
-
         session()->flash('message', 'Form submitted successfully!');
 
-        // Reset form or redirect
-        // $this->reset();
-        // return $this->redirect('/success');
+        $this->dispatch('switch-tab', tab: 'pemeriksaan');
     }
 }; ?>
 
-<div class="container stepper-container card w-100 p-4">
+<div class="container stepper-container p-4">
     <div class="stepper" id="stepper">
         <div class="step">
             <div class="step-circle {{ $currentStep >= 1 ? 'active' : '' }}" data-step="1">1</div>
-            <div class="step-title">Pendaftaran</div>
+            <div class="step-title">Identitas Diri</div>
         </div>
         <div class="step-connector {{ $currentStep >= 2 ? 'active' : '' }}" data-connector="1-2"></div>
         <div class="step">
             <div class="step-circle {{ $currentStep >= 2 ? 'active' : '' }}" data-step="2">2</div>
-            <div class="step-title">Pemeriksaan</div>
+            <div class="step-title">General Consent</div>
         </div>
     </div>
 
     <!-- Step 1 Content -->
     <div class="step-content {{ $currentStep === 1 ? 'active' : '' }}" data-step-content="1">
-        <h3>Pendaftaran</h3>
-        <p>Please fill in your registration details.</p>
+        <h3>Identitas Diri</h3>
+        <p>ini coba diganti nanti.</p>
         <div class="mb-3">
             <label for="name" class="form-label">Full Name</label>
             <input type="text" wire:model="name" class="form-control @error('name') is-invalid @enderror" id="name"
@@ -94,7 +89,7 @@ new class extends Component {
 
     <!-- Step 2 Content -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
-        <h3>Pemeriksaan</h3>
+        <h3>General Consent</h3>
         <p>Examination details and information.</p>
         <div class="mb-3">
             <label for="examination-type" class="form-label">Examination Type</label>

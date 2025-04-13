@@ -66,125 +66,153 @@ new class extends Component {
             })
             ->all();
     }
+
+    #[On('switch-tab')]
+    public function handleTabSwitch($tab)
+    {
+        // ini ganti sesuai tab ea
+        // kali ini, seperti yang didesign kan ada 3 buat "klik"-annya
+        $validTabs = ['pendaftaran', 'pemeriksaan', 'layanan'];
+
+        if (in_array($tab, $validTabs)) {
+            $this->activeTab = $tab;
+
+            if ($this->selectedPatient) {
+                $this->dispatch('patient-selected', patientId: $this->selectedPatient);
+            }
+        }
+    }
 }; ?>
 
-<div class="h-screen overflow-auto py-6 flex flex-col justify-center sm:py-12">
-    <div class="relative py-3 sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
-        <div class="relative px-4 py-8 bg-white shadow-md rounded-lg sm:p-10">
-            <div class="max-w-md mx-auto md:max-w-xl lg:max-w-3xl">
-                <div>
-                    <h1 class="title mb-4 h3">Rawat Inap</h1>
-
-                    @if(!$showPatientDetails)
-                    <div class="mb-4">
-                        <div class="d-flex justify-content-end align-items-center mb-3">
-                            <div class="input-group" style="width: 300px;">
-                                <input type="text" class="form-control" placeholder="Cari pasien..."
-                                    wire:model.live.debounce.300ms="search">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="ti ti-search"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-hover table-bordered align-middle">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th class="text-center">#</th>
-                                        <th>RM</th>
-                                        <th>NAMA</th>
-                                        <th>NIK</th>
-                                        <th>TGL LAHIR</th>
-                                        <th>TGL MASUK</th>
-                                        <th>ALAMAT</th>
-                                        <th>RUANGAN</th>
-                                        <th>KET</th>
-                                        <th class="text-center">AKSI</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="small">
-                                    @foreach($this->filteredPatients as $index => $patient)
-                                    <tr>
-                                        <td class="text-center">{{ $index + 1 }}</td>
-                                        <td>{{ $patient['id'] }}</td>
-                                        <td>{{ $patient['name'] }}</td>
-                                        <td>{{ $patient['nik'] }}</td>
-                                        <td>{{ $patient['birth_date'] }}</td>
-                                        <td>{{ $patient['admission_date'] }}</td>
-                                        <td>{{ $patient['address'] }}</td>
-                                        <td>{{ $patient['room'] }}</td>
-                                        <td>{{ $patient['note'] }}</td>
-                                        <td class="text-center">
-                                            <button
-                                                wire:click="selectPatient('{{ $patient['id'] }}', '{{ $patient['name'] }}')"
-                                                class="btn btn-primary btn-sm py-0">Detail</button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    @else
+<div class="w-100 card">
+    <div class="h-screen overflow-auto py-6 flex flex-col justify-center sm:py-12 w-100">
+        <div class="relative py-3 sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
+            <div class="relative px-4 py-8 bg-white shadow-md rounded-lg sm:p-10">
+                <div class="max-w-md mx-auto md:max-w-xl lg:max-w-3xl">
                     <div>
-                        <div class="d-flex align-items-center mb-4">
-                            <button wire:click="backToList" class="btn btn-outline-primary me-3">
-                                <i class="bi bi-arrow-left"></i> Kembali
-                            </button>
-                            <div>
-                                <span class="fw-bold">Pasien:</span>
-                                <span class="ms-2">{{ $selectedPatientName }} ({{ $selectedPatient }})</span>
+                        <h1 class="title mb-4 h3">Rawat Inap</h1>
+
+                        @if(!$showPatientDetails)
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-end align-items-center mb-3">
+                                <div class="input-group" style="width: 300px;">
+                                    <input type="text" class="form-control" placeholder="Cari pasien..."
+                                        wire:model.live.debounce.300ms="search">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="ti ti-search"></i>
+                                    </button>
+                                </div>
                             </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover table-bordered align-middle mb-1">
+                                    <thead class="table-light">
+                                        <tr class="small">
+                                            <th class="text-center" style="width: 5%">#</th>
+                                            <th style="width: 8%">RM</th>
+                                            <th style="width: 15%">NAMA</th>
+                                            <th style="width: 12%">NIK</th>
+                                            <th style="width: 8%">TGL LAHIR</th>
+                                            <th style="width: 8%">TGL MASUK</th>
+                                            <th style="width: 15%">ALAMAT</th>
+                                            <th style="width: 8%">RUANGAN</th>
+                                            <th style="width: 15%">KET</th>
+                                            <th class="text-center" style="width: 6%">AKSI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="small">
+                                        @foreach($this->filteredPatients as $index => $patient)
+                                        <tr>
+                                            <td class="text-center">{{ $index + 1 }}</td>
+                                            <td class="text-nowrap">{{ $patient['id'] }}</td>
+                                            <td class="text-truncate" data-bs-toggle="tooltip"
+                                                title="{{ $patient['name'] }}">{{ $patient['name'] }}</td>
+                                            <td class="text-nowrap">{{ $patient['nik'] }}</td>
+                                            <td class="text-nowrap">{{ $patient['birth_date'] }}</td>
+                                            <td class="text-nowrap">{{ $patient['admission_date'] }}</td>
+                                            <td class="text-truncate" data-bs-toggle="tooltip"
+                                                title="{{ $patient['address'] }}">{{ $patient['address'] }}</td>
+                                            <td>{{ $patient['room'] }}</td>
+                                            <td class="text-truncate" data-bs-toggle="tooltip"
+                                                title="{{ $patient['note'] }}">{{ $patient['note'] }}</td>
+                                            <td class="text-center p-1">
+                                                <button
+                                                    wire:click="selectPatient('{{ $patient['id'] }}', '{{ $patient['name'] }}')"
+                                                    class="btn btn-primary btn-sm p-0 px-1" data-bs-toggle="tooltip"
+                                                    title="Detail">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
+                        @else
+                        <div>
+                            <div class="d-flex align-items-center mb-4">
+                                <button wire:click="backToList" class="btn btn-outline-primary me-3">
+                                    <i class="bi bi-arrow-left"></i> Kembali
+                                </button>
+                                <div>
+                                    <span class="fw-bold">Pasien:</span>
+                                    <span class="ms-2">{{ $selectedPatientName }} ({{ $selectedPatient }})</span>
+                                </div>
+                            </div>
 
-                        <!-- tabs navigation -->
-                        <ul class="nav nav-tabs mb-4" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button wire:click="changeTab('pendaftaran')"
-                                    class="nav-link {{ $activeTab === 'pendaftaran' ? 'active' : '' }}" type="button">
-                                    Pendaftaran
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button wire:click="changeTab('pemeriksaan')"
-                                    class="nav-link {{ $activeTab === 'pemeriksaan' ? 'active' : '' }}" type="button">
-                                    Pemeriksaan
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button wire:click="changeTab('layanan')"
-                                    class="nav-link {{ $activeTab === 'layanan' ? 'active' : '' }}" type="button">
-                                    Layanan
-                                </button>
-                            </li>
-                        </ul>
+                            <!-- tabs navigation -->
+                            <ul class="nav nav-tabs mb-4" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button wire:click="changeTab('pendaftaran')"
+                                        class="nav-link {{ $activeTab === 'pendaftaran' ? 'active' : '' }}"
+                                        type="button">
+                                        Pendaftaran
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button wire:click="changeTab('pemeriksaan')"
+                                        class="nav-link {{ $activeTab === 'pemeriksaan' ? 'active' : '' }}"
+                                        type="button">
+                                        Pemeriksaan
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button wire:click="changeTab('layanan')"
+                                        class="nav-link {{ $activeTab === 'layanan' ? 'active' : '' }}" type="button">
+                                        Layanan
+                                    </button>
+                                </li>
+                            </ul>
+                            <hr>
 
-                        <!-- tabs content
+                            <!-- tabs content
                         ini pake key biar bisa aja di livewire,
                         maybe theres another solution, idk and id-really-c
                         -->
-                        <div>
-                            <!-- pendaftaran tab -->
-                            <div x-show="$wire.activeTab === 'pendaftaran'" x-transition>
-                                @livewire('rawat-inap.pendaftaran.main', ['patientId' => $selectedPatient],
-                                key('pendaftaran-'.$selectedPatient))
-                            </div>
+                            <div>
+                                <!-- pendaftaran tab -->
+                                <div x-show="$wire.activeTab === 'pendaftaran'" x-transition>
+                                    @livewire('rawat-inap.pendaftaran.main', ['patientId' => $selectedPatient],
+                                    key('pendaftaran-'.$selectedPatient))
+                                </div>
 
-                            <!-- pemeriksaan tab -->
-                            <div x-show="$wire.activeTab === 'pemeriksaan'" x-transition>
-                                @livewire('rawat-inap.pemeriksaan.main', ['patientId' => $selectedPatient],
-                                key('pemeriksaan-'.$selectedPatient))
-                            </div>
+                                <!-- pemeriksaan tab -->
+                                <div x-show="$wire.activeTab === 'pemeriksaan'" x-transition>
+                                    @livewire('rawat-inap.pemeriksaan.main', ['patientId' => $selectedPatient],
+                                    key('pemeriksaan-'.$selectedPatient))
+                                </div>
 
-                            <!-- layanan tab -->
-                            <div x-show="$wire.activeTab === 'layanan'" x-transition>
-                                @livewire('rawat-inap.layanan.main', ['patientId' => $selectedPatient],
-                                key('layanan-'.$selectedPatient))
+                                <!-- layanan tab -->
+                                <div x-show="$wire.activeTab === 'layanan'" x-transition>
+                                    @livewire('rawat-inap.layanan.main', ['patientId' => $selectedPatient],
+                                    key('layanan-'.$selectedPatient))
+                                </div>
                             </div>
                         </div>
+                        @endif
                     </div>
-                    @endif
                 </div>
             </div>
         </div>

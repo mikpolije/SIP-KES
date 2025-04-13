@@ -13,7 +13,7 @@ new class extends Component {
 <div class="card w-100">
     @verbatim
     <div class="alert alert-info">
-        Current Patient ID: {{ $patientId }}
+        Current Patient ID: {{ $this->patientId }}
     </div>
     @endverbatim
 
