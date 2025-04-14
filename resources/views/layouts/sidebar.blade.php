@@ -150,8 +150,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="/main/farmasi/datapengambilanobat"
-                        class="sidebar-link {{ request()->is('main/farmasi/datapengambilanobat') ? 'active' : '' }}"
+                    <a href="/main/datapengambilanobat"
+                        class="sidebar-link {{ request()->is('main/datapengambilanobat') ? 'active' : '' }}"
                         aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
@@ -160,7 +160,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/farmasi/dataresep') ? 'active' : '' }}" href="/main/farmasi/dataresep"
+                    <a class="sidebar-link {{ request()->is('main/dataresep') ? 'active' : '' }}" href="/main/dataresep"
                         aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
@@ -260,7 +260,7 @@
                     </a>
                 </li>
 				<li class="sidebar-item">
-                    <a href="/main/polikia/laporankia" class="sidebar-link {{ request()->is('main/polikia/laporankia') ? 'active' : '' }}">
+                    <a href="/main/laporankia" class="sidebar-link {{ request()->is('main/laporankia') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
