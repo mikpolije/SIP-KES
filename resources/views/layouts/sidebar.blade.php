@@ -98,7 +98,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="/main/polikia/layanan" class="sidebar-link {{ request()->is('main/polikia/layanan', 'main/polikia/layanan/*') ? 'active' : '' }}">
+                    <a href="/main/layanan" class="sidebar-link {{ request()->is('main/layanan', 'main/layanan/*') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -172,7 +172,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/polikia/pembayaran/pembayaran', 'main/polikia/pembayaran/pembayaran/*') ? 'active' : '' }}" href="/main/polikia/pembayaran/pembayaran"
+            <a class="sidebar-link {{ request()->is('main/pembayaran', 'main/pembayaran/*') ? 'active' : '' }}" href="/main/pembayaran"
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-currency-dollar" viewBox="0 0 16 16">
