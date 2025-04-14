@@ -141,7 +141,7 @@
             </a>
             <ul aria-expanded="false" class="collapse first-level {{ request()->is('') ? 'in' : '' }}">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/farmasi/dataobat') ? 'active' : '' }}" href="/main/farmasi/dataobat"
+                    <a class="sidebar-link {{ request()->is('main/dataobat') ? 'active' : '' }}" href="/main/dataobat"
                         aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
