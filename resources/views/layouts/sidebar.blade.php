@@ -5,7 +5,8 @@
 <div class="brand-logo d-flex align-items-center justify-content-between">
     <a href="/main/index" class="text-nowrap logo-img d-flex align-items-center">
         <img src="{{ URL::asset('build/images/logos/logosipkes.png') }}" class="dark-logo logo-size" alt="Logo-Dark" />
-        <img src="{{ URL::asset('build/images/logos/logosipkes.png') }}" class="light-logo logo-size" alt="Logo-light" />
+        <img src="{{ URL::asset('build/images/logos/logosipkes.png') }}" class="light-logo logo-size"
+            alt="Logo-light" />
     </a>
     <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
         <i class="ti ti-x"></i>
@@ -75,7 +76,8 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('main/polikia') ? 'active' : '' }} {{ request()->is('main/poliumum') ? 'active' : '' }}" href="#">
+            <a class="sidebar-link has-arrow {{ request()->is('main/polikia') ? 'active' : '' }} {{ request()->is('main/poliumum') ? 'active' : '' }}"
+                href="#">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-heart-pulse" viewBox="0 0 16 16">
@@ -87,7 +89,8 @@
                 </span>
                 <span class="hide-menu">Pemeriksaan</span>
             </a>
-                <ul aria-expanded="false" class="collapse first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }}">
+            <ul aria-expanded="false"
+                class="collapse first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }}">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
                         aria-expanded="false">
@@ -98,7 +101,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="/main/layanan" class="sidebar-link {{ request()->is('main/layanan', 'main/layanan/*') ? 'active' : '' }}">
+                    <a href="/main/layanan"
+                        class="sidebar-link {{ request()->is('main/layanan', 'main/layanan/*') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -106,8 +110,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/rawat-inap', 'main/rawat-inap/*') ? 'active' : '' }}" href="/main/rawat-inap"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('main/rawat-inap', 'main/rawat-inap/*') ? 'active' : '' }}"
+                        href="/main/rawat-inap" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -115,8 +119,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -125,7 +128,7 @@
                 </li>
             </ul>
         </li>
-		
+
         <!-- farmasi -->
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
@@ -172,8 +175,9 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/pembayaran', 'main/pembayaran/*') ? 'active' : '' }}" href="/main/pembayaran"
-                <span>
+            <a class="sidebar-link {{ request()->is('main/pembayaran') ? 'active' : '' }}"
+                href="/main/pembayaran" aria-expanded="false">
+                <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-currency-dollar" viewBox="0 0 16 16">
                         <path
@@ -197,8 +201,7 @@
             </a>
             <ul aria-expanded="false" class="collapse first-level {{ request()->is('') ? 'in' : '' }}">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -243,8 +246,7 @@
             </a>
             <ul aria-expanded="false" class="collapse first-level {{ request()->is('') ? 'in' : '' }}">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -259,8 +261,9 @@
                         <span class="hide-menu">Kunjungan</span>
                     </a>
                 </li>
-				<li class="sidebar-item">
-                    <a href="/main/laporankia" class="sidebar-link {{ request()->is('main/laporankia') ? 'active' : '' }}">
+                <li class="sidebar-item">
+                    <a href="/main/laporankia"
+                        class="sidebar-link {{ request()->is('main/laporankia') ? 'active' : '' }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
