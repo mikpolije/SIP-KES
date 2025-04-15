@@ -48,8 +48,8 @@
     <li class="sidebar-item">
       <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/" aria-expanded="false">
         <span class="d-flex">
-          <svg class="bi bi-speedometer2" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" viewBox="0 0 16 16">
+          <svg class="bi bi-speedometer2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            viewBox="0 0 16 16">
             <path
               d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518z" />
             <path fill-rule="evenodd"
@@ -63,8 +63,8 @@
       <a class="sidebar-link {{ request()->is('main/pendaftaran') ? 'active' : '' }}" href="/main/pendaftaran"
         aria-expanded="false">
         <span class="d-flex">
-          <svg class="bi bi-clipboard" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" viewBox="0 0 16 16">
+          <svg class="bi bi-clipboard" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            viewBox="0 0 16 16">
             <path
               d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
             <path
@@ -78,8 +78,8 @@
       <a class="sidebar-link has-arrow {{ request()->is('main/polikia') ? 'active' : '' }} {{ request()->is('main/poliumum') ? 'active' : '' }}"
         href="#">
         <span class="d-flex">
-          <svg class="bi bi-heart-pulse" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" viewBox="0 0 16 16">
+          <svg class="bi bi-heart-pulse" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            viewBox="0 0 16 16">
             <path
               d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857q.09.083.176.171a3 3 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5" />
             <path
@@ -134,8 +134,8 @@
       <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
         aria-expanded="false">
         <span class="d-flex">
-          <svg class="bi bi-capsule-pill" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" viewBox="0 0 16 16">
+          <svg class="bi bi-capsule-pill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            viewBox="0 0 16 16">
             <path
               d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8m-.5 1.042a3 3 0 0 0 0 5.917zm1 5.917a3 3 0 0 0 0-5.917z" />
           </svg>
@@ -231,8 +231,8 @@
     <li class="sidebar-item">
       <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="" aria-expanded="false">
         <span>
-          <svg class="bi bi-book" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" viewBox="0 0 16 16">
+          <svg class="bi bi-book" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            viewBox="0 0 16 16">
             <path
               d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
           </svg>
@@ -244,8 +244,8 @@
       <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
         aria-expanded="false">
         <span class="d-flex">
-          <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-            fill="currentColor" viewBox="0 0 16 16">
+          <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            viewBox="0 0 16 16">
             <path
               d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2" />
             <path
@@ -277,6 +277,39 @@
               <i class="ti ti-circle"></i>
             </div>
             <span class="hide-menu">Laporan KIA</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="sidebar-item">
+      <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
+        aria-expanded="false">
+        <span class="d-flex">
+          <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            viewBox="0 0 16 16">
+            <path
+              d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2" />
+            <path
+              d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0" />
+          </svg>
+        </span>
+        <span class="hide-menu">Master Data</span>
+      </a>
+      <ul class="first-level {{ request()->is('') ? 'in' : '' }} collapse" aria-expanded="false">
+        <li class="sidebar-item">
+          <a class="sidebar-link {{ request()->is('main/stokopname') ? 'active' : '' }}" href="/main/stokopname" aria-expanded="false">
+            <div class="round-16 d-flex align-items-center justify-content-center">
+              <i class="ti ti-circle"></i>
+            </div>
+            <span class="hide-menu">Data Pengguna Layanan</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/blog-detail">
+            <div class="round-16 d-flex align-items-center justify-content-center">
+              <i class="ti ti-circle"></i>
+            </div>
+            <span class="hide-menu">Layanan</span>
           </a>
         </li>
       </ul>
