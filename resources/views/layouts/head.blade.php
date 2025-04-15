@@ -11,3 +11,5 @@
 <!-- <script src="{{ URL::asset('build/css/styles.css') }}"></script> -->
 {{-- @vite(['resources/scss/styles.scss']) --}}
 <link rel="stylesheet" href="{{asset('/build/css/styles.css')}}">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css">
