@@ -20,4 +20,5 @@ return [
     'email' => ':attribute harus berupa email yang valid.',
     'confirmed' => 'Password dan konfirmasi password tidak sama.',
     'boolean' => ':attribute harus berupa 0 atau 1.',
+    'after_or_equal' => ':attribute harus setelah atau sama dengan :date.',
 ];

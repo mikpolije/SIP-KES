@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\LayananKia;
 use App\Models\Pendaftaran;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -90,4 +92,42 @@ class PoliKiaController extends Controller
             'data' => $data
         ]);
     }
+
+    public function report(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'tanggal_awal' => 'nullable|date',
+            'tanggal_akhir' => 'nullable|date|after_or_equal:tanggal_awal',
+            'jenis_pemeriksaan' => 'required|in:semua,ibu,anak',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $data = LayananKia::selectRaw('jenis_pemeriksaan, COUNT(*) as total')
+            ->when($request->tanggal_awal, function ($query) use ($request) {
+                $query->whereDate('tanggal', '>=', $request->tanggal_awal);
+            })
+            ->when($request->tanggal_akhir, function ($query) use ($request) {
+                $query->whereDate('tanggal', '<=', $request->tanggal_akhir);
+            })
+            ->when($request->jenis_pemeriksaan === 'ibu', function ($query) {
+                $query->whereIn('jenis_pemeriksaan', ['Kehamilan', 'Persalinan', 'KB']);
+            })
+            ->when($request->jenis_pemeriksaan === 'anak', function ($query) {
+                $query->where('jenis_pemeriksaan', 'Anak');
+            })
+            ->groupBy('jenis_pemeriksaan')
+            ->get();
+
+        return response()->json([
+            'message' => 'Berhasil mengambil data',
+            'data' => $data
+        ]);
+    }
+
 }
