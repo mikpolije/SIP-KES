@@ -32,7 +32,7 @@ class DoctorFactory extends Factory
 
         return [
             'email' => fake()->unique()->safeEmail(),
-            'nama_dokter' => fake()->name(),
+            'nama' => fake()->name(),
             'no_telepon' => fake()->numerify('08##########'),
             'alamat' => fake()->address(),
             'no_sip' => fake()->unique()->numerify('SIP/###/###/' . date('Y')),
