@@ -90,22 +90,37 @@
     </div>
 
     <div class="card w-100 mt-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-9">
+                    <label for="id_pendaftaran" class="form-label">ID Pendaftaran</label>
+                    <input type="text" class="form-control" name="id_pendaftaran" id="id_pendaftaran" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="cari_data_pendaftaran" class="form-label">&nbsp;</label>
+                    <input type="button" class="btn btn-primary form-control" name="cari_data_pendaftaran" id="cari_data_pendaftaran" value="Cari">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card w-100 mt-3">
         <div class="card-body row">
             <div class="col-md-2">
                 <label for="no_antrian" class="form-label">No Antrian</label>
-                <input type="text" class="form-control" name="no_antrian" id="no_antrian">
+                <input type="text" class="form-control" name="no_antrian" id="no_antrian" required>
             </div>
             <div class="col-md-2">
                 <label for="no_rm" class="form-label">No RM</label>
-                <input type="text" class="form-control" name="no_rm" id="no_rm">
+                <input type="text" class="form-control" name="no_rm" id="no_rm" disabled>
             </div>
             <div class="col-md-4">
                 <label for="nama_pemeriksaan" class="form-label">Nama</label>
-                <input type="text" class="form-control" name="nama_pemeriksaan" id="nama_pemeriksaan">
+                <input type="text" class="form-control" name="nama_pemeriksaan" id="nama_pemeriksaan" disabled>
             </div>
             <div class="col-md-2">
                 <label for="tanggal" class="form-label">Tanggal</label>
-                <input type="date" class="form-control" name="tanggal" id="tanggal">
+                <input type="date" class="form-control" name="tanggal" id="tanggal" required>
             </div>
             <div class="col-md-2">
                 <label for="jenis_pemeriksaan" class="form-label">Jenis Pemeriksaan</label>
@@ -147,16 +162,16 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="berat_badan" class="form-label">Berat Badan</label>
+                        <label for="bb" class="form-label">Berat Badan</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="berat_badan" required>
+                            <input type="text" class="form-control" id="bb" required>
                             <span class="input-group-text">kg</span>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="tinggi_badan" class="form-label">Tinggi Badan</label>
+                        <label for="tb" class="form-label">Tinggi Badan</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="tinggi_badan" required>
+                            <input type="text" class="form-control" id="tb" required>
                             <span class="input-group-text">cm</span>
                         </div>
                     </div>
@@ -175,9 +190,9 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="respiration" class="form-label">Respiration Rate</label>
+                        <label for="respirasi" class="form-label">Respiration Rate</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="respiration" required>
+                            <input type="text" class="form-control" id="respirasi" required>
                             <span class="input-group-text">/mnt</span>
                         </div>
                     </div>
@@ -187,7 +202,7 @@
     </div>
 
     <div class="d-flex justify-content-end mb-4">
-        <button type="submit" class="btn btn-primary"><i class="ti ti-device-floppy"></i> Submit</button>
+        <button type="button" class="btn btn-primary" id="submit_layanan"><i class="ti ti-device-floppy"></i> Submit</button>
     </div>
 </div>
 @endsection
@@ -202,6 +217,90 @@
                 if ($('label[for="' + id + '"].form-check-label').length) return;
                 $('label[for="' + id + '"]').addClass('required-label');
             }
+        });
+
+        $('input, select, textarea').on('input change', function () {
+            let id = $(this).attr('id');
+            $(`#error-${id}`).html('');
+        });
+
+        $(document).on('click', '#cari_data_pendaftaran', function (e) {
+            let eThis = $(this)
+            let id_pendaftaran = $('#id_pendaftaran').val()
+
+            if (!id_pendaftaran) {
+                alert('ID Pendaftaran tidak boleh kosong')
+                return
+            }
+
+            eThis.prop('disabled', true)
+            eThis.val('Loading...')
+
+            $.ajax({
+                url: "{{ route('api.poli-kia.show', ':idPendaftaran') }}".replace(':idPendaftaran', id_pendaftaran),
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }).done(function (res) {
+                let data = res.data
+                $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
+                $('#no_rm').val(data.data_pasien.no_rm)
+            }).fail(function (xhr, status, error) {
+                alert(xhr.responseJSON.message)
+            }).always(function () {
+                eThis.prop('disabled', false)
+                eThis.val('Cari')
+            })
+        });
+
+        $(document).on('click', '#submit_layanan', function (e) {
+            let eThis = $(this)
+            eThis.prop('disabled', true)
+            eThis.html('Loading...')
+
+            $.ajax({
+                url: "{{ route('api.poli-kia.store') }}",
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id_pendaftaran: $('#id_pendaftaran').val(),
+                    no_antrian: $('#no_antrian').val(),
+                    tanggal: $('#tanggal').val(),
+                    jenis_pemeriksaan: $('#jenis_pemeriksaan').val(),
+                    sistole: $('#sistole').val(),
+                    diastole: $('#diastole').val(),
+                    bb: $('#bb').val(),
+                    tb: $('#tb').val(),
+                    suhu: $('#suhu').val(),
+                    spo2: $('#spo2').val(),
+                    respirasi: $('#respirasi').val(),
+                }
+            }).done(function (res) {
+                alert(res.message)
+                window.location.reload()
+            }).fail(function (xhr, status, error) {
+                let errors = xhr.responseJSON.errors
+                if (errors != undefined) {
+                    for (const [key, value] of Object.entries(errors)) {
+                        const input = $(`#${key}`);
+
+                        const target = input.closest('.input-group').length > 0
+                            ? input.closest('.input-group')
+                            : input;
+
+                        target.next('.text-danger').remove();
+                        target.after(`<div class="text-danger text-sm" id="error-${key}">${value[0]}</div>`);
+                    }
+                } else {
+                    alert(xhr.responseJSON.message)
+                }
+            }).always(function () {
+                eThis.prop('disabled', false)
+                eThis.html('<i class="ti ti-device-floppy"></i> Submit')
+            })
         });
     });
 </script>

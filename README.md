@@ -1,0 +1,2 @@
+Run Migration:
+php artisan migrate --path=database/migrations/2025_04_14_215000_add_column_id_pendaftaran_to_poli_kia_table.php
