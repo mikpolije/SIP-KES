@@ -57,8 +57,6 @@
             align-items: center;
             position: relative;
             z-index: 1;
-            width: 120px;
-            /* Fixed width for each step */
         }
 
         .step-circle {
