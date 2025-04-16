@@ -243,7 +243,7 @@ new class extends Component {
         <div class="card-body p-4">
             <!-- Header -->
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="text-primary mb-0">Data Pembayaran</h4>
+                <h4 class="title mb-0">Pembayaran</h4>
                 <button class="btn btn-outline-primary rounded-pill">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
