@@ -35,7 +35,7 @@ new class extends Component {
             'room' => '',
             'note' => 'RUJUK INTERNAL IGD',
             'is_registered' => 1,
-            'is_examined' => 0
+            'is_examined' => 1
         ],
     ];
 

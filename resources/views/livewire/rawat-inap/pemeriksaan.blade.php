@@ -86,6 +86,7 @@ new class extends Component {
     {
         // Save data logic here
         session()->flash('message', 'Asesmen awal dan informed consent berhasil disimpan!');
+        $this->dispatch('switch-tab', tab: 'layanan');
     }
 }; ?>
 
