@@ -435,7 +435,6 @@ new class extends Component {
 
                     <!-- BUTTONS -->
                     <div class="d-flex justify-content-end gap-2">
-                        <button type="button" class="btn btn-primary">Simpan</button>
                         <button type="button" class="btn btn-primary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-printer" viewBox="0 0 16 16">
