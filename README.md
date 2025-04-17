@@ -1,2 +1,3 @@
 Run Migration:
 php artisan migrate --path=database/migrations/2025_04_14_215000_add_column_id_pendaftaran_to_poli_kia_table.php
+php artisan migrate --path=database/migrations/2025_04_16_110403_create_rincian_obat_table.php
