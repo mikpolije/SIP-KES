@@ -85,7 +85,7 @@ new class extends Component {
                 </div>
                 <div class="modal-body p-4">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2 class="text-center fw-bold mx-auto">CPPT</h2>
+                        <h2 class="text-center fw-bold mx-auto">Form CPPT</h2>
                         <div class="text-end">
                             <p class="text-muted mb-0">timestamp</p>
                             <span class="badge bg-light text-dark border" x-data
