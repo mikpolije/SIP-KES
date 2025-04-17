@@ -223,7 +223,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label for="telepon">Nomor Telepon:</label>
+                                        <label class="form-label" for="telepon">Nomor Telepon:</label>
                                         <input type="text" class="form-control required" id="telepon"
                                             name="telepon" placeholder="08xxxxxxxxxx" required>
                                     </div>
@@ -284,7 +284,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="notelpwali">Nomor Telepon Wali:</label>
+                                        <label class="form-label" for="notelpwali">Nomor Telepon Wali:</label>
                                         <input type="texr" class="form-control required" id="notelpwali"
                                             name="notelpwali" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
                                     </div>
@@ -964,7 +964,7 @@
                 if (selectedICDs.length === 0) {
                     container.html(
                         '<p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>'
-                        );
+                    );
                 } else {
                     container.empty();
 

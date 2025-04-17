@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
+Route::resource('pasien', PasienController::class);
