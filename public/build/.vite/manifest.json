@@ -314,7 +314,7 @@
   },
   "resources/fonts/flag-icon-css/flags/fr.svg": {
     "file": "icons/fr.svg",
-    "src": "resources/fonts/flag-icon-css/flags/mf.svg"
+    "src": "resources/fonts/flag-icon-css/flags/fr.svg"
   },
   "resources/fonts/flag-icon-css/flags/ga.svg": {
     "file": "icons/ga.svg",
@@ -362,7 +362,7 @@
   },
   "resources/fonts/flag-icon-css/flags/gp.svg": {
     "file": "icons/fr.svg",
-    "src": "resources/fonts/flag-icon-css/flags/mf.svg"
+    "src": "resources/fonts/flag-icon-css/flags/fr.svg"
   },
   "resources/fonts/flag-icon-css/flags/gq.svg": {
     "file": "icons/gq.svg",
@@ -578,7 +578,7 @@
   },
   "resources/fonts/flag-icon-css/flags/mf.svg": {
     "file": "icons/fr.svg",
-    "src": "resources/fonts/flag-icon-css/flags/mf.svg"
+    "src": "resources/fonts/flag-icon-css/flags/fr.svg"
   },
   "resources/fonts/flag-icon-css/flags/mg.svg": {
     "file": "icons/mg.svg",
@@ -658,7 +658,7 @@
   },
   "resources/fonts/flag-icon-css/flags/nc.svg": {
     "file": "icons/nc.svg",
-    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+    "src": "resources/fonts/flag-icon-css/flags/nc.svg"
   },
   "resources/fonts/flag-icon-css/flags/ne.svg": {
     "file": "icons/ne.svg",
@@ -734,7 +734,7 @@
   },
   "resources/fonts/flag-icon-css/flags/pm.svg": {
     "file": "icons/nc.svg",
-    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+    "src": "resources/fonts/flag-icon-css/flags/nc.svg"
   },
   "resources/fonts/flag-icon-css/flags/pn.svg": {
     "file": "icons/pn.svg",
@@ -766,7 +766,7 @@
   },
   "resources/fonts/flag-icon-css/flags/re.svg": {
     "file": "icons/nc.svg",
-    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+    "src": "resources/fonts/flag-icon-css/flags/nc.svg"
   },
   "resources/fonts/flag-icon-css/flags/ro.svg": {
     "file": "icons/ro.svg",
@@ -942,11 +942,11 @@
   },
   "resources/fonts/flag-icon-css/flags/um.svg": {
     "file": "icons/um.svg",
-    "src": "resources/fonts/flag-icon-css/flags/us.svg"
+    "src": "resources/fonts/flag-icon-css/flags/um.svg"
   },
   "resources/fonts/flag-icon-css/flags/us.svg": {
     "file": "icons/um.svg",
-    "src": "resources/fonts/flag-icon-css/flags/us.svg"
+    "src": "resources/fonts/flag-icon-css/flags/um.svg"
   },
   "resources/fonts/flag-icon-css/flags/uy.svg": {
     "file": "icons/uy.svg",
@@ -998,7 +998,7 @@
   },
   "resources/fonts/flag-icon-css/flags/yt.svg": {
     "file": "icons/nc.svg",
-    "src": "resources/fonts/flag-icon-css/flags/yt.svg"
+    "src": "resources/fonts/flag-icon-css/flags/nc.svg"
   },
   "resources/fonts/flag-icon-css/flags/za.svg": {
     "file": "icons/za.svg",

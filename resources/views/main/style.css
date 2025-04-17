@@ -1,0 +1,366 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f5f7fa;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    height: 100vh;
+    border-right: 1px solid #e0e0e0;
+}
+
+.sidebar .text-center.my-4 img {
+    max-width: 150px;
+}
+
+.sidebar ul.nav {
+    list-style: none;
+    margin-top: 40px;
+}
+
+.sidebar ul.nav li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul.nav li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: #555;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul.nav li a i.icon {
+    font-size: 20px;
+}
+
+.sidebar ul.nav li a:hover,
+.sidebar ul.nav li a.active {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+/* Container Utama */
+.container-fluid {
+    padding: 30px;
+}
+
+/* Card Umum */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.card .card-body {
+    padding: 25px;
+}
+
+.card-pembayaran {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.judul {
+    color: #0f1453;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    color: #0f1453;
+}
+
+.label {
+    width: 150px;
+}
+
+.colon {
+    margin-right: 8px;
+}
+
+.value {
+    flex: 1;
+}
+
+/* Judul Halaman */
+.title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: left;
+    color: #111754;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.section-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+    color: #1a1a1a;
+    padding: 9px 0;
+}
+
+/* Container utama buat progress steps */
+.progress-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px auto;
+    max-width: 800px;
+}
+
+/* Garis penghubung */
+.progress-container::before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 30px;
+    width: calc(100% - 50px);
+    height: 2px;
+    background-color: #4668e9;
+    z-index: 0;
+}
+
+/* Setiap step: cuma ikon dan teks (tanpa background card) */
+.progress-step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Buletan ikon */
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #4668e9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+/* Step aktif */
+.progress-step.active .step-icon {
+    background-color: #fff;
+    border: 3px solid #4668e9;
+    color: #4668e9;
+}
+
+/* Teks di bawah ikon (ambil dari data-title) */
+.progress-step::after {
+    content: attr(data-title);
+    margin-top: 8px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+/* --- Tabel --- */
+/* Styling Tabel */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: #686a82;
+    color: #f4f4f4;
+    font-weight: 600;
+
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.table tbody td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #333;
+}
+
+.table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* --- Input & Form Control --- */
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    box-shadow: none;
+}
+
+/* --- Select --- */
+.form-select {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 12px;
+    transition: border-color 0.3s;
+}
+
+.form-select:focus {
+    border-color: #3498db;
+    box-shadow: none;
+}
+
+/* --- Rincian Tambahan --- */
+.d-flex.gap-2 > * {
+    flex: 1;
+}
+
+.d-flex.gap-2 button {
+    padding: 10px;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.d-flex.gap-2 button:hover {
+    background-color: #2874a6;
+}
+
+/* --- Rincian Tagihan --- */
+.card-rincian {
+    background-color: #cfd8fc;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: auto;
+}
+
+.card-rincian .title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #1e1e4e;
+}
+
+.rincian-tagihan label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: #1e1e4e;
+}
+
+.rincian-tagihan label input {
+    margin-left: 10px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 60%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+.rincian-tagihan label input:focus {
+    border-color: #4a6cf7;
+    outline: none;
+}
+
+/* --- Tombol --- */
+.btn {
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #49bfff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2874a6;
+}
+
+.btn-secondary {
+    background-color: #49bfff;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #2874a6;
+}
+
+.btn-warning {
+    background-color: #f0ad4e;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #ec9a00;
+}
+
+/* --- Container Tombol Bawah --- */
+.d-flex.justify-content-between.mt-3 {
+    margin-top: 30px;
+}
+.btn-tambah {
+    background-color: #686a82 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px 8px 8px 8px !important;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-tambah:hover {
+    background-color: #4f5166 !important;
+}

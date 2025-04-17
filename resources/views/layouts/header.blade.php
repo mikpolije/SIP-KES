@@ -15,8 +15,8 @@
 
   <div class="d-block d-lg-none py-4">
     <a href="main/index" class="text-nowrap logo-img">
-      <img src="{{ URL::asset('/public/build/images/logos/logosipkes.png') }}" class="dark-logo img-fluid" style="max-width: 140px; height: auto;" alt="sipkes-logo" />
-      <img src="{{ URL::asset('/public/build/images/logos/logosipkes.png') }}" class="light-logo img-fluid" style="max-width: 140px; height: auto;" alt="sipkes-logo" />
+      <img src="{{ URL::asset('build/images/logos/logosipkes.png') }}" class="dark-logo img-fluid" style="max-width: 140px; height: auto;" alt="sipkes-logo" />
+      <img src="{{ URL::asset('build/images/logos/logosipkes.png') }}" class="light-logo img-fluid" style="max-width: 140px; height: auto;" alt="sipkes-logo" />
     </a>
   </div>
   <a class="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0" href="javascript:void(0)" data-bs-toggle="collapse"
