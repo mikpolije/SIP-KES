@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('title', 'SIP-Kes')
+<style>
+    body {
+        background-color: #B4AEAE; /* Ganti warna sesuai keinginan kamu */
+    }
+</style>
 
 @section('pageContent')
     <div class="container-fluid">
