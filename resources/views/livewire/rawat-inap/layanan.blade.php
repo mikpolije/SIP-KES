@@ -45,21 +45,21 @@ new class extends Component {
 
             <div class="step">
                 <div class="step-circle {{ $currentStep >= 2 ? 'active' : '' }}" data-step="2">2</div>
-                <div class="step-title">yg lain</div>
+                <div class="step-title">Asuhan Keperawatan</div>
             </div>
 
             <div class="step-connector {{ $currentStep >= 3 ? 'active' : '' }}" data-connector="2-3"></div>
 
             <div class="step">
                 <div class="step-circle {{ $currentStep >= 3 ? 'active' : '' }}" data-step="3">3</div>
-                <div class="step-title">yg lain</div>
+                <div class="step-title">Layanan</div>
             </div>
 
             <div class="step-connector {{ $currentStep >= 4 ? 'active' : '' }}" data-connector="3-4"></div>
 
             <div class="step">
                 <div class="step-circle {{ $currentStep >= 4 ? 'active' : '' }}" data-step="4">4</div>
-                <div class="step-title">yg lain lagi</div>
+                <div class="step-title">Resume Medis</div>
             </div>
         </div>
     </div>
