@@ -3,7 +3,7 @@
 @import "/node_modules/simplebar/dist/simplebar.min.css";
 @import "../fonts/tabler-icons/tabler-icons.css";
 [data-bs-theme=dark] .tooltip-inner {
-  color: #B4AEAE !important;
+  color: #DFE5EF !important;
 }
 
 [data-bs-theme=light][data-color-theme=Blue_Theme]:root,

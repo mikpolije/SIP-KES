@@ -3,7 +3,7 @@
 @section('title', 'SIP-Kes')
 <style>
     body {
-        background-color: #B4AEAE; 
+        background-color: #B4AEAE;
     }
 </style>
 
@@ -336,7 +336,7 @@
                     </section>
 
                     <!-- Step 2 -->
-                    <h6>Layanan</h6>
+                    <h6>Pemeriksaan Awal</h6>
                     <section>
                         <h4 class="section-title">Data Pendaftaran</h4>
                         <div class="row mb-3">
