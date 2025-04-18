@@ -16,9 +16,7 @@ new class extends Component {
 ?>
 
 <div>
-    <div class="py-4">
-        <h1 class="title text-center mb-4">CPPT</h1>
-
+    <div>
         <div class="p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
