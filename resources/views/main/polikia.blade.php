@@ -242,6 +242,8 @@ $(".validation-wizard").steps({
     transitionEffect: "fade",
     labels: {
         finish: "Submit",
+        next: "Selanjutnya",
+        previous: "Sebelumnya",
     },
     onStepChanging: function (event, currentIndex, newIndex) {
         const jenisPemeriksaan = $("#jenis_pemeriksaan").val().toLowerCase();
