@@ -4,11 +4,11 @@ use Livewire\Volt\Component;
 new class extends Component {
     public $patientId;
     public $currentStep = 1;
-    public $totalSteps = 3;
+    public $totalSteps;
 
     public function mount($patientId = null) {
         $this->patientId = $patientId;
-        $this->totalSteps = 3;
+        $this->totalSteps = 4;
     }
 
     public function nextStep()
@@ -54,6 +54,13 @@ new class extends Component {
                 <div class="step-circle {{ $currentStep >= 3 ? 'active' : '' }}" data-step="3">3</div>
                 <div class="step-title">yg lain</div>
             </div>
+
+            <div class="step-connector {{ $currentStep >= 4 ? 'active' : '' }}" data-connector="3-4"></div>
+
+            <div class="step">
+                <div class="step-circle {{ $currentStep >= 4 ? 'active' : '' }}" data-step="4">4</div>
+                <div class="step-title">yg lain lagi</div>
+            </div>
         </div>
     </div>
 
@@ -73,6 +80,11 @@ new class extends Component {
     <!-- step 3 layanan -->
     <div class="step-content {{ $currentStep === 3 ? 'active' : '' }}" data-step-content="3">
         @livewire('rawat-inap.layanan.layanan.main', ['patientId' => $patientId], key('layanan-'.$patientId))
+    </div>
+
+    <!-- step 4 resume medis -->
+    <div class="step-content {{ $currentStep === 4 ? 'active' : '' }}" data-step-content="4">
+        @livewire('rawat-inap.layanan.resume-medis.main', ['patientId' => $patientId], key('resume-medis-'.$patientId))
     </div>
 
     <!-- navigation -->
