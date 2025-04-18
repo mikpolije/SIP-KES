@@ -105,7 +105,7 @@
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
-                                <span class="hide-menu">Antrian Poli Umum</span>
+                                <span class="hide-menu">Antrian</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -114,7 +114,7 @@
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
                                 </div>
-                                <span class="hide-menu">Riwayat Pemeriksaan</span>
+                                <span class="hide-menu">Riwayat</span>
                             </a>
                         </li>
                     </ul>
