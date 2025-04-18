@@ -331,7 +331,7 @@
                     </section>
 
                     <!-- Step 2 -->
-                    <h6>Layanan</h6>
+                    <h6>Pemeriksaan Umum</h6>
                     <section>
                         <h4 class="section-title">Data Pendaftaran</h4>
                         <div class="row mb-3">
