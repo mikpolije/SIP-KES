@@ -4,11 +4,11 @@ use Livewire\Volt\Component;
 new class extends Component {
     public $patientId;
     public $currentStep = 1;
-    public $totalSteps = 2;
+    public $totalSteps = 3;
 
     public function mount($patientId = null) {
         $this->patientId = $patientId;
-        $this->totalSteps = 2;
+        $this->totalSteps = 3;
     }
 
     public function nextStep()
@@ -40,9 +40,18 @@ new class extends Component {
                 <div class="step-circle {{ $currentStep >= 1 ? 'active' : '' }}" data-step="1">1</div>
                 <div class="step-title">CPPT</div>
             </div>
+
             <div class="step-connector {{ $currentStep >= 2 ? 'active' : '' }}" data-connector="1-2"></div>
+
             <div class="step">
                 <div class="step-circle {{ $currentStep >= 2 ? 'active' : '' }}" data-step="2">2</div>
+                <div class="step-title">yg lain</div>
+            </div>
+
+            <div class="step-connector {{ $currentStep >= 3 ? 'active' : '' }}" data-connector="2-3"></div>
+
+            <div class="step">
+                <div class="step-circle {{ $currentStep >= 3 ? 'active' : '' }}" data-step="3">3</div>
                 <div class="step-title">yg lain</div>
             </div>
         </div>
@@ -56,8 +65,14 @@ new class extends Component {
     <!-- step 2 asuhan keperawatan -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
         <div class="container py-4">
-            @livewire('rawat-inap.layanan.asuhan-keperawatan.main', ['patientId' => $patientId], key('cppt-'.$patientId))
+            @livewire('rawat-inap.layanan.asuhan-keperawatan.main', ['patientId' => $patientId],
+            key('asuhan-'.$patientId))
         </div>
+    </div>
+
+    <!-- step 3 layanan -->
+    <div class="step-content {{ $currentStep === 3 ? 'active' : '' }}" data-step-content="3">
+        @livewire('rawat-inap.layanan.layanan.main', ['patientId' => $patientId], key('layanan-'.$patientId))
     </div>
 
     <!-- navigation -->
