@@ -46,8 +46,6 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 40px;
-            max-width: 500px;
-            /* Limit width for compactness */
             margin-left: auto;
             margin-right: auto;
         }
