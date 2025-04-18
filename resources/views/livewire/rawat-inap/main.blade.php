@@ -233,7 +233,7 @@ new class extends Component {
                             <!-- Tab content -->
                             <div>
                                 @if(!$patientIsRegistered)
-                                @livewire('rawat-inap.pendaftaran', ['patientId' => $selectedPatient],
+                                @livewire('rawat-inap.pendaftaran.main', ['patientId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient))
                                 @else
                                 @switch($activeTab)
