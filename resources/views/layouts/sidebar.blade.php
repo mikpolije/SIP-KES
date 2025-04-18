@@ -91,14 +91,14 @@
             <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }} collapse"
                 aria-expanded="false">
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow {{ request()->is('main/poliumum') ? 'active' : '' }}"
-                        href="/main/poliumum" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
+                        aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Poli Umum</span>
                     </a>
-                    <ul class="second-level collapse" aria-expanded="false">
+                    {{-- <ul class="second-level collapse" aria-expanded="false">
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
                                 href="/main/poliumum/antrian">
@@ -117,7 +117,7 @@
                                 <span class="hide-menu">Riwayat</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/layanan', 'main/layanan/*') ? 'active' : '' }}"
@@ -164,8 +164,8 @@
             </a>
             <ul class="first-level {{ request()->is('') ? 'in' : '' }} collapse" aria-expanded="false">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/dataobat') ? 'active' : '' }}"
-                        href="/main/dataobat" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('main/dataobat') ? 'active' : '' }}" href="/main/dataobat"
+                        aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
