@@ -15,7 +15,7 @@ new class extends Component {
         <div class="row justify-content-center">
             <div class="col-12">
                 <!-- Header -->
-                <h1 class="text-center fw-bold mb-4">ASUHAN KEPERAWATAN</h1>
+                <h1 class="title text-center mb-4">ASUHAN KEPERAWATAN</h1>
 
                 <!-- Top Row: Name and Medical Record Number -->
                 <div class="row mb-3">
