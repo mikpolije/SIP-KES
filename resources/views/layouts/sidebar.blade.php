@@ -91,8 +91,8 @@
             <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }} collapse"
                 aria-expanded="false">
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow {{ request()->is('main/poliumum') ? 'active' : '' }}"
-                        href="/main/poliumum" aria-expanded="false">
+                    <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="/main/poliumum"
+                        aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
