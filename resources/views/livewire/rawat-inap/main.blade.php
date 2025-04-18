@@ -238,7 +238,7 @@ new class extends Component {
                                 @else
                                 @switch($activeTab)
                                 @case('pendaftaran')
-                                @livewire('rawat-inap.pendaftaran',
+                                @livewire('rawat-inap.pendaftaran.main',
                                 ['patientId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient)
                                 )
