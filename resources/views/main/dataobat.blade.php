@@ -310,6 +310,11 @@
     <script src="{{ url('build/js/pagination.min.js') }}"></script>
     <script>
         $(document).ready(function () {
+            $('input, select, textarea').on('input change', function () {
+                let id = $(this).attr('id');
+                $(`#error-${id}`).html('');
+            });
+
             $('.add-obat').on('click', function(e){
                 let eThis = $(this)
                 eThis.prop('disabled', true)
