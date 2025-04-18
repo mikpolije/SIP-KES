@@ -23,7 +23,7 @@ return new class extends Migration
 
         Schema::create('pembelian_obat', function (Blueprint $table) {
             $table->id();
-            $table->date('no_faktur');
+            $table->string('no_faktur');
             $table->date('tanggal_faktur');
 
             $table->timestamps();
@@ -34,17 +34,17 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pembelian_obat');
             $table->unsignedBigInteger('id_obat');
             $table->date('tanggal_kadaluarsa');
-            $table->date('stok_opname');
-            $table->date('stok_gudang');
+            $table->integer('stok_opname');
+            $table->integer('stok_gudang');
 
             $table->foreign('id_obat')->references('id')->on('obat')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('id_pembelian_obat')->references('id')->on('pembelian_obat')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
 
         Schema::create('riwayat_stok_obat', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_obat');
+            $table->unsignedBigInteger('id_detail_pembelian_obat');
             $table->date('tanggal');
             $table->enum('jenis_transaksi', ['mutasi', 'koreksi', 'retur', 'konversi'])->default('koreksi');
             $table->integer('jumlah')->comment('positif = masuk, negatif = keluar');
@@ -62,9 +62,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('obat');
-        Schema::dropIfExists('pembelian_obat');
-        Schema::dropIfExists('detail_pembelian_obat');
         Schema::dropIfExists('riwayat_stok_obat');
+        Schema::dropIfExists('detail_pembelian_obat');
+        Schema::dropIfExists('pembelian_obat');
+        Schema::dropIfExists('obat');
     }
 };

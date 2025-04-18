@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'attributes' => [
+        'id_obat.*' => 'obat ke-:position',
+        'tanggal_kadaluarsa.*' => 'tanggal kadaluarsa ke-:position',
+        'stok_opname.*' => 'stok opname ke-:position',
+        'stok_gudang.*' => 'stok gudang ke-:position',
+    ],
     'required' => ':attribute harus diisi.',
     'max' => [
         'string' => 'Panjang :attribute maksimal :max karakter.',
