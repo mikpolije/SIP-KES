@@ -244,7 +244,7 @@ new class extends Component {
                                 )
                                 @break
                                 @case('pemeriksaan')
-                                @livewire('rawat-inap.pemeriksaan',
+                                @livewire('rawat-inap.pemeriksaan.main',
                                 ['patientId' => $selectedPatient],
                                 key('pemeriksaan-'.$selectedPatient)
                                 )
