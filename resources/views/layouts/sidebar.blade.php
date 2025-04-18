@@ -98,6 +98,26 @@
                         </div>
                         <span class="hide-menu">Poli Umum</span>
                     </a>
+                    <ul class="second-level collapse" aria-expanded="false">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link {{ request()->is('main/poliumum/antrian') ? 'active' : '' }}"
+                                href="/main/poliumum/antrian">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Antrian Poli Umum</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link {{ request()->is('main/poliumum/riwayat') ? 'active' : '' }}"
+                                href="/main/poliumum/riwayat">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Riwayat Pemeriksaan</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/layanan', 'main/layanan/*') ? 'active' : '' }}"
@@ -144,8 +164,8 @@
             </a>
             <ul class="first-level {{ request()->is('') ? 'in' : '' }} collapse" aria-expanded="false">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/dataobat') ? 'active' : '' }}" href="/main/dataobat"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('main/dataobat') ? 'active' : '' }}"
+                        href="/main/dataobat" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
