@@ -319,6 +319,8 @@ $(".validation-wizard").validate({
     },
 });
 
+$(".validation-wizard").steps("next");
+
 $('input[required], select[required], textarea[required]').each(function () {
     const id = $(this).attr('id');
     if (id) {
