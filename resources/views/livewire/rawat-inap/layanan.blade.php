@@ -53,11 +53,10 @@ new class extends Component {
         @livewire('rawat-inap.layanan.cppt.main', ['patientId' => $patientId], key('cppt-'.$patientId))
     </div>
 
-    <!-- step 2 sesuaiin ntar -->
+    <!-- step 2 asuhan keperawatan -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
         <div class="container py-4">
-            <h2 class="text-center mb-4">yg lain</h2>
-            <p class="text-center">tambahin ntar stepnya</p>
+            @livewire('rawat-inap.layanan.asuhan-keperawatan.main', ['patientId' => $patientId], key('cppt-'.$patientId))
         </div>
     </div>
 
