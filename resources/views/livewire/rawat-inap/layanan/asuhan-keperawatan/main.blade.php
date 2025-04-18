@@ -11,13 +11,9 @@ new class extends Component {
 }; ?>
 
 <div>
-    <div class="container mt-4 mb-5">
+    <div>
         <div class="row justify-content-center">
             <div class="col-12">
-                <!-- Header -->
-                <h1 class="title text-center mb-4">ASUHAN KEPERAWATAN</h1>
-
-                <!-- Top Row: Name and Medical Record Number -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="row">
