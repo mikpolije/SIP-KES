@@ -3,7 +3,7 @@
 @section('title', 'SIP-Kes')
 <style>
     body {
-        background-color: #B4AEAE; /* Ganti warna sesuai keinginan kamu */
+        background-color: #B4AEAE; 
     }
 </style>
 
