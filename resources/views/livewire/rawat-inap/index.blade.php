@@ -1,9 +1,12 @@
 <?php
 
+use Livewire\Attributes\Title;
 use Livewire\Volt\Component;
 use Livewire\Attributes\On;
 
-new class extends Component {
+new
+#[Title('Rawat Inap')]
+class extends Component {
     public $activeTab = 'pendaftaran';
     public $showPatientDetails = false;
     public $selectedPatient = null;
