@@ -66,25 +66,25 @@ new class extends Component {
 
     <!-- step 1 cppt -->
     <div class="step-content {{ $currentStep === 1 ? 'active' : '' }}" data-step-content="1">
-        @livewire('rawat-inap.layanan.cppt.main', ['patientId' => $patientId], key('cppt-'.$patientId))
+        @livewire('rawat-inap.layanan.cppt', ['patientId' => $patientId], key('cppt-'.$patientId))
     </div>
 
     <!-- step 2 asuhan keperawatan -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
         <div class="container py-4">
-            @livewire('rawat-inap.layanan.asuhan-keperawatan.main', ['patientId' => $patientId],
+            @livewire('rawat-inap.layanan.asuhan-keperawatan', ['patientId' => $patientId],
             key('asuhan-'.$patientId))
         </div>
     </div>
 
     <!-- step 3 layanan -->
     <div class="step-content {{ $currentStep === 3 ? 'active' : '' }}" data-step-content="3">
-        @livewire('rawat-inap.layanan.layanan.main', ['patientId' => $patientId], key('layanan-'.$patientId))
+        @livewire('rawat-inap.layanan.layanan', ['patientId' => $patientId], key('layanan-'.$patientId))
     </div>
 
     <!-- step 4 resume medis -->
     <div class="step-content {{ $currentStep === 4 ? 'active' : '' }}" data-step-content="4">
-        @livewire('rawat-inap.layanan.resume-medis.main', ['patientId' => $patientId], key('resume-medis-'.$patientId))
+        @livewire('rawat-inap.layanan.resume-medis', ['patientId' => $patientId], key('resume-medis-'.$patientId))
     </div>
 
     <!-- navigation -->

@@ -103,5 +103,5 @@ new class extends Component {
         </button>
     </div>
 
-    @livewire('rawat-inap.layanan.cppt.modal', ['patientId' => $patientId], key('cppt-modal-'.$patientId))
+    @livewire('rawat-inap.layanan.cppt-modal', ['patientId' => $patientId], key('cppt-modal-'.$patientId))
 </div>
