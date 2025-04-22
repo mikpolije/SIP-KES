@@ -57,12 +57,12 @@ new class extends Component {
 
     <!-- Step 1 content - Asessmen Awal -->
     <div class="step-content {{ $currentStep === 1 ? 'active' : '' }}" data-step-content="1">
-        <livewire:rawat-inap.pemeriksaan.asessmen-awal.main :patientId="$patientId" />
+        <livewire:rawat-inap.pemeriksaan.asessmen-awal :patientId="$patientId" />
     </div>
 
     <!-- Step 2 content - Informed Consent -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
-        <livewire:rawat-inap.pemeriksaan.informed-consent.main :patientId="$patientId" />
+        <livewire:rawat-inap.pemeriksaan.informed-consent :patientId="$patientId" />
     </div>
 
     <div class="navigation-buttons mt-4">

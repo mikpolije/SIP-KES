@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('pageContent')
-@livewire('pembayaran.main')
+@livewire('pembayaran.index')
 @endsection

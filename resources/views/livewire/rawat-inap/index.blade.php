@@ -1,9 +1,12 @@
 <?php
 
+use Livewire\Attributes\Title;
 use Livewire\Volt\Component;
 use Livewire\Attributes\On;
 
-new class extends Component {
+new
+#[Title('Rawat Inap')]
+class extends Component {
     public $activeTab = 'pendaftaran';
     public $showPatientDetails = false;
     public $selectedPatient = null;
@@ -233,24 +236,24 @@ new class extends Component {
                             <!-- Tab content -->
                             <div>
                                 @if(!$patientIsRegistered)
-                                @livewire('rawat-inap.pendaftaran.main', ['patientId' => $selectedPatient],
+                                @livewire('rawat-inap.pendaftaran.index', ['patientId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient))
                                 @else
                                 @switch($activeTab)
                                 @case('pendaftaran')
-                                @livewire('rawat-inap.pendaftaran.main',
+                                @livewire('rawat-inap.pendaftaran.index',
                                 ['patientId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient)
                                 )
                                 @break
                                 @case('pemeriksaan')
-                                @livewire('rawat-inap.pemeriksaan.main',
+                                @livewire('rawat-inap.pemeriksaan.index',
                                 ['patientId' => $selectedPatient],
                                 key('pemeriksaan-'.$selectedPatient)
                                 )
                                 @break
                                 @case('layanan')
-                                @livewire('rawat-inap.layanan.main',
+                                @livewire('rawat-inap.layanan.index',
                                 ['patientId' => $selectedPatient],
                                 key('layanan-'.$selectedPatient)
                                 )

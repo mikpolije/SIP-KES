@@ -75,7 +75,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('main/polikia') ? 'active' : '' }} {{ request()->is('main/poliumum') ? 'active' : '' }}"
+            <a class="sidebar-link has-arrow {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('rawat-inap') ? 'active' : '' }}"
                 href="#">
                 <span class="d-flex">
                     <svg class="bi bi-heart-pulse" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -88,7 +88,7 @@
                 </span>
                 <span class="hide-menu">Pemeriksaan</span>
             </a>
-            <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }} collapse"
+            <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('rawat-inap') ? 'in' : '' }} collapse"
                 aria-expanded="false">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
@@ -129,8 +129,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/rawat-inap', 'main/rawat-inap/*') ? 'active' : '' }}"
-                        href="/main/rawat-inap" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('rawat-inap', 'rawat-inap/*') ? 'active' : '' }}"
+                        href="/rawat-inap" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -194,7 +194,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/pembayaran') ? 'active' : '' }}" href="/main/pembayaran"
+            <a class="sidebar-link {{ request()->is('/pembayaran') ? 'active' : '' }}" href="/pembayaran"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-currency-dollar" xmlns="http://www.w3.org/2000/svg" width="16"
