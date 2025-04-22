@@ -25,7 +25,7 @@ new class extends Component {
 
         if (!$doctor) {
             session()->flash('error', 'Dokter tidak ditemukan');
-            return redirect()->route('dokter.index');
+            return redirect()->route('doctor.index');
         }
 
         $this->nama = $doctor->nama;
