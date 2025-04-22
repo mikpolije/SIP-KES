@@ -158,6 +158,7 @@
             <div class="body-wrapper">
                 <div class="container-fluid">
                     @yield('pageContent')
+                    {{ $slot ?? '' }}
                 </div>
             </div>
             <!-- @include('layouts.customizer') -->

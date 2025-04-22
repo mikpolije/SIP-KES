@@ -5,11 +5,11 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/png" href="{{ URL::asset('build/images/logos/logo.png') }}" />
+<link type="image/png" href="{{ URL::asset('build/images/logos/logo.png') }}" rel="shortcut icon" />
 
 <!-- Core Css -->
 <!-- <script src="{{ URL::asset('build/css/styles.css') }}"></script> -->
 {{-- @vite(['resources/scss/styles.scss']) --}}
-<link rel="stylesheet" href="{{asset('/build/css/styles.css')}}">
 
-<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css">
+
+<link href="{{ asset('build/css/styles.css') }}" rel="stylesheet">
