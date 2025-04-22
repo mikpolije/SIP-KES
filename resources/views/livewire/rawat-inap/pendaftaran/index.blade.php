@@ -56,12 +56,12 @@ new class extends Component {
 
     <!-- step 1 content - identitas diri -->
     <div class="step-content {{ $currentStep === 1 ? 'active' : '' }}" data-step-content="1">
-        <livewire:rawat-inap.pendaftaran.identitas-diri.main :patientId="$patientId" />
+        <livewire:rawat-inap.pendaftaran.identitas-diri :patientId="$patientId" />
     </div>
 
     <!-- step 2 content - general consent -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
-        <livewire:rawat-inap.pendaftaran.general-consent.main :patientId="$patientId" />
+        <livewire:rawat-inap.pendaftaran.general-consent :patientId="$patientId" />
     </div>
 
     <div class="navigation-buttons mt-4">

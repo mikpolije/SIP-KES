@@ -16,7 +16,7 @@
 <div class="card w-100 mt-3">
     <div class="card-body">
         <h6 class="section-title" style="font-weight: bold">PENDAMPINGAN IBU HAMIL KE-</h6>
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap" id="pendampingan">
             @foreach (range(1, 10) as $item)
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" id="pendampingan{{ $item }}" name="pendampingan" value="{{ $item }}" required>
@@ -189,11 +189,11 @@
                             <div class="form-label">{{ $i++ }}. {{ $q['label'] }}</div>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="{{ $q['label'] }}Y" name="{{ $q['label'] }}" value="1" required>
+                                    <input class="form-check-input" type="radio" id="{{ $q['id'] }}Y" name="{{ $q['id'] }}" value="1" required>
                                     <label class="form-check-label" for="{{ $q['label'] }}Y">Ya</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="{{ $q['label'] }}T" name="{{ $q['label'] }}" value="0">
+                                    <input class="form-check-input" type="radio" id="{{ $q['id'] }}T" name="{{ $q['id'] }}" value="0">
                                     <label class="form-check-label" for="{{ $q['label'] }}T">Tidak</label>
                                 </div>
                             </div>
@@ -220,14 +220,6 @@
                 <div class="col-md-6 mb-3">
                     <label for="his" class="form-label">HIS Mulai</label>
                     <input type="date" class="form-control" name="his" id="his">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="hpht" class="form-label">HPHT</label>
-                    <input type="date" class="form-control" name="hpht" id="hpht">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="hpl" class="form-label">HPL</label>
-                    <input type="date" class="form-control" name="hpl" id="hpl">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="jam" class="form-label">Jam</label>
@@ -347,6 +339,12 @@
                 <h6 class="section-title text-center" style="font-weight: bold">OBSERVASI (P)</h6>
                 <textarea name="observasi" id="observasi" cols="30" rows="8" class="form-control"></textarea>
             </div>
+        </div>
+
+
+        <div class="col-12 text-end mt-3">
+            <button type="button" class="btn btn-secondary previous-step me-2">Sebelumnya</button>
+            <button type="button" class="btn btn-primary" id="submit_pemeriksaan_kehamilan"><i class="fas fa-save me-2"></i>Simpan</button>
         </div>
     </div>
 </div>

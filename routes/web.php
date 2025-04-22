@@ -16,7 +16,4 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/{dokter}', 'doctor.edit')->name('edit');
 });
 
-// Volt::route('asuhan-kepera')
-
-
 Route::get('/{main}/{view}', [PageController::class, 'show']);
