@@ -39,6 +39,20 @@
                             }
                         </style>
                         <div class="card w-100">
+                        <div class="row mb-4 align-items-end">
+        <div class="col-md-10">
+            <label for="searchNoRM" class="form-label">No. RM</label>
+            <input class="form-control" list="noRMList" id="searchNoRM" placeholder="Ketik atau pilih No. RM">
+            <datalist id="noRMList">
+                <option value="RM001 - Budi">
+                <option value="RM002 - Siti">
+                <option value="RM003 - Agus">
+            </datalist>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">Cari</button>
+        </div>
+    </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
