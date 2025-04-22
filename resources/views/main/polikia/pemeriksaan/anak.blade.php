@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="umur" class="form-label">Umur</label>
-                    <input type="date" class="form-control" name="umur" id="umur" required>
+                    <input type="number" class="form-control" name="umur" id="umur" required>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
         <div class="row px-3">
             <div class="col-md-4 mb-3">
                 <label for="keadaan_umum" class="form-label">Keadaan Umum</label>
-                <input type="text" class="form-control" id="keadaan_umum" required>
+                <input type="text" class="form-control" id="keadaan_umum" name="keadaan_umum" required>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="kesadaran" class="form-label">Kesadaran</label>
@@ -154,54 +154,54 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="keluhan" class="form-label">Keluhan</label>
-                <input type="text" class="form-control" id="keluhan" required>
+                <input type="text" class="form-control" id="keluhan" name="keluhan" required>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="tensi" class="form-label">Tensi</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="tensi" required>
+                    <input type="text" class="form-control" id="tensi" name="tensi" required>
                     <span class="input-group-text">mmHg</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="tb" class="form-label">TB</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="tb" required>
+                    <input type="text" class="form-control" id="tb" name="tinggi_badan" required>
                     <span class="input-group-text">cm</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="ld" class="form-label">LD</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="ld" required>
+                    <input type="text" class="form-control" id="ld" name="lingkar_dada" required>
                     <span class="input-group-text">cm</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="rr" class="form-label">RR</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="rr" required>
+                    <input type="text" class="form-control" id="rr" name="respirasi" required>
                     <span class="input-group-text">x/mnt</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="nadi" class="form-label">Nadi</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="nadi" required>
+                    <input type="text" class="form-control" id="nadi" name="nadi" required>
                     <span class="input-group-text">x/mnt</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="bb" class="form-label">BB</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="bb" required>
+                    <input type="text" class="form-control" id="bb" name="berat_badan" required>
                     <span class="input-group-text">kg</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="lk" class="form-label">LK</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="lk" required>
+                    <input type="text" class="form-control" id="lk" name="lingkar_kepala" required>
                     <span class="input-group-text">cm</span>
                 </div>
             </div>
@@ -219,21 +219,21 @@
             <div class="col-md-3 mb-3">
                 <label for="suhu" class="form-label">Suhu</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="suhu" required>
+                    <input type="text" class="form-control" id="suhu" name="suhu" required>
                     <span class="input-group-text">°C</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="lp" class="form-label">LP</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="lp" required>
+                    <input type="text" class="form-control" id="lp" name="lingkar_perut" required>
                     <span class="input-group-text">cm</span>
                 </div>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="lila" class="form-label">LILA</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="lila" required>
+                    <input type="text" class="form-control" id="lila" name="lila" required>
                     <span class="input-group-text">cm</span>
                 </div>
             </div>
@@ -296,6 +296,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="col-12 text-end mt-3">
+            <button type="button" class="btn btn-secondary previous-step me-2">Sebelumnya</button>
+            <button type="button" class="btn btn-primary" id="submit_pemeriksaan_anak"><i class="fas fa-save me-2"></i>Simpan</button>
         </div>
     </div>
 </div>

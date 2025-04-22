@@ -1,9 +1,9 @@
-<div class="row mt-3">
+<div class="row mt-3" id="layanan">
     <div class="col-md-6">
-        <label for="subjective" class="form-label">Subjective / Keluhan</label>
+        <label for="keluhan" class="form-label">Subjective / Keluhan</label>
         <div class="card">
             <div class="card-body">
-                <textarea name="subjective" id="subjective" class="form-control" rows="15" placeholder="Ketik subjective / keluhan di sini"></textarea>
+                <textarea name="keluhan" id="keluhan" class="form-control" rows="15" placeholder="Ketik subjective / keluhan di sini"></textarea>
             </div>
         </div>
     </div>
@@ -26,16 +26,16 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="berat_badan" class="form-label">Berat Badan</label>
+                    <label for="bb" class="form-label">Berat Badan</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="berat_badan" id="berat_badan" required>
+                        <input type="text" class="form-control" name="bb" id="bb" required>
                         <span class="input-group-text">kg</span>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="tinggi_badan" class="form-label">Tinggi Badan</label>
+                    <label for="tb" class="form-label">Tinggi Badan</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="tinggi_badan" id="tinggi_badan" required>
+                        <input type="text" class="form-control" name="tb" id="tb" required>
                         <span class="input-group-text">cm</span>
                     </div>
                 </div>
@@ -54,13 +54,17 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="respiration" class="form-label">Respiration Rate</label>
+                    <label for="respirasi" class="form-label">Respiration Rate</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="respiration" id="respiration" required>
+                        <input type="text" class="form-control" name="respirasi" id="respirasi" required>
                         <span class="input-group-text">/mnt</span>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-12 text-end">
+        <button type="button" class="btn btn-secondary previous-step me-2">Sebelumnya</button>
+        <button type="button" class="btn btn-primary" id="submit_layanan"><i class="fas fa-save me-2"></i>Simpan</button>
     </div>
 </div>
