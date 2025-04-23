@@ -32,13 +32,13 @@
     }
 
     th, td {
-        white-space: nowrap;
-        text-align: center;
-        padding: 4px 8px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 14px;
-        border: 0.5px solid #B9B9B9;
-    }
+    white-space: nowrap;
+    text-align: center;
+    padding: 2px 4px; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    border: 0.5px solid #D4D4D4; /* garis halus */
+}
 
     th {
         background-color: #F9FAFC;
