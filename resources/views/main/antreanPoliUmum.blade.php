@@ -9,11 +9,11 @@
 
     .judul-antrean {
         font-family: 'Montserrat', sans-serif;
-        font-size: 70px;
-        font-weight: 800;
-        line-height: 100%;
-        letter-spacing: 5%;
-        color: #111754;
+                        font-size: 3rem;
+                        font-weight: bold;
+                        text-align: left;
+                        color: #111754;
+                        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
     }
 
     .tabel-wrapper {
