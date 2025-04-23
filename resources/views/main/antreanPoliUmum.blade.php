@@ -5,7 +5,7 @@
 @section('pageContent')
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
     .judul-antrean {
         font-family: 'Montserrat', sans-serif;
@@ -30,10 +30,9 @@
     th, td {
         white-space: nowrap;
         text-align: center;
-        padding: 4px 6px; /* dipadatkan lagi */
+        padding: 4px 8px; /* dipersempit tanpa ubah font */
         font-family: 'Poppins', sans-serif;
-        font-size: 12px; /* kecilin font */
-        line-height: 1.2;
+        font-size: 14px;
     }
 
     th {
@@ -46,6 +45,7 @@
         background-color: white;
     }
 </style>
+
 
 
 <div class="container py-4">
