@@ -24,16 +24,16 @@
         border-radius: 12px;
         padding: 32px;
         margin-bottom: 80px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* shadow dipertegas */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
     th, td {
         white-space: nowrap;
         text-align: center;
         vertical-align: middle;
-        padding: 12px 16px;
+        padding: 8px 10px; /* dibuat lebih padat */
         font-family: 'Poppins', sans-serif;
-        font-size: 14px;
+        font-size: 13px; /* sedikit dikecilkan */
     }
 
     th {
@@ -46,6 +46,7 @@
         background-color: white;
     }
 </style>
+
 
 <div class="container py-4">
     <h1 class="judul-antrean mb-4">Antrean Poli Umum</h1>
