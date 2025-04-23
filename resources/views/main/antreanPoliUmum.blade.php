@@ -22,37 +22,31 @@
         overflow-x: auto;
         background-color: #ffffff;
         border-radius: 12px;
-        padding: 32px;
-        margin-bottom: 80px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    table {
-        border-collapse: collapse;
+        max-height: 600px;
+        padding: 24px 32px; /* padding diperbesar */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* shadow diperkuat */
     }
 
     th, td {
-    white-space: nowrap;
-    text-align: center;
-    padding: 2px 4px; 
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    border: 0.5px solid #D4D4D4; /* garis halus */
-}
+        padding: 10px 16px !important; /* padding antar sel diperbesar sedikit */
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        font-family: 'Poppins', sans-serif;
+    }
 
     th {
-        background-color: #F9FAFC;
+        background-color: #F9FAFC !important;
+        border: 1px solid #B9B9B9 !important;
         font-weight: 600;
+        font-size: 14px;
     }
 
     td {
         background-color: white;
-        font-weight: 400; /* normal */
+        font-size: 14px;
     }
 </style>
-
-
-
 
 <div class="container py-4">
     <h1 class="judul-antrean mb-4">Antrean Poli Umum</h1>
