@@ -5,43 +5,45 @@
 @section('pageContent')
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
     .judul-antrean {
         font-family: 'Montserrat', sans-serif;
         font-size: 3rem;
-        font-weight: bold;
-        tex_align: left;
+        font-weight: 800;
+        text-align: left;
         line-height: 100%;
         letter-spacing: 5%;
         color: #111754;
-        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2)
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
     }
 
     .tabel-wrapper {
         overflow-x: auto;
         background-color: #ffffff;
         border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 80px; /* biar gak full sampai bawah */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 32px;
+        margin-bottom: 80px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* shadow dipertegas */
+    }
+
+    th, td {
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        padding: 12px 16px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
     }
 
     th {
-        white-space: nowrap;
         background-color: #F9FAFC !important;
         border: 1px solid #B9B9B9 !important;
         font-weight: 600;
-        font-family: 'Poppins', sans-serif;
-        text-align: center;
-        vertical-align: middle;
     }
 
     td {
-        white-space: nowrap;
         background-color: white;
-        text-align: center;
-        vertical-align: middle;
     }
 </style>
 
@@ -56,7 +58,7 @@
 
     {{-- Table --}}
     <div class="tabel-wrapper">
-        <table class="table table-bordered">
+        <table class="table table-bordered mb-0">
             <thead>
                 <tr>
                     <th>NO ANTRIAN</th>
