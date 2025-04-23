@@ -5,7 +5,7 @@
 @section('pageContent')
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
     .judul-antrean {
         font-family: 'Montserrat', sans-serif;
@@ -27,24 +27,30 @@
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
+    table {
+        border-collapse: collapse;
+    }
+
     th, td {
         white-space: nowrap;
         text-align: center;
-        padding: 4px 8px; /* dipersempit tanpa ubah font */
+        padding: 4px 8px;
         font-family: 'Poppins', sans-serif;
         font-size: 14px;
+        border: 0.5px solid #B9B9B9;
     }
 
     th {
-        background-color: #F9FAFC !important;
-        border: 1px solid #B9B9B9 !important;
+        background-color: #F9FAFC;
         font-weight: 600;
     }
 
     td {
         background-color: white;
+        font-weight: 400; /* normal */
     }
 </style>
+
 
 
 
