@@ -30,10 +30,10 @@
     th, td {
         white-space: nowrap;
         text-align: center;
-        vertical-align: middle;
-        padding: 8px 10px; /* dibuat lebih padat */
+        padding: 4px 6px; /* dipadatkan lagi */
         font-family: 'Poppins', sans-serif;
-        font-size: 13px; /* sedikit dikecilkan */
+        font-size: 12px; /* kecilin font */
+        line-height: 1.2;
     }
 
     th {
