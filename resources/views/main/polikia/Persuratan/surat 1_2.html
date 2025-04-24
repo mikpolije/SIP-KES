@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Keterangan Kematian</title>
+    <style>
+        body {
+    font-family: 'Poppins';
+    margin: 0;
+    display: flex;
+    background-color: #e3f2fd; /* Light blue background */
+}
+
+.sidebar {
+    background-color: #fff; /* White sidebar */
+    width: 250px;
+    color: #090F4E; /* Dark blue text on sidebar */
+    padding: 20px;
+    position: relative; /* Untuk memposisikan logo absolut */
+}
+
+.sidebar-header {
+    margin-bottom: 30px;
+}
+
+.sidebar-header img {
+            position: absolute;
+            width: 189.85px;
+            height: 45px;
+            left: 42px;
+            top: 34px;
+        }
+
+.sidebar-header h1 {
+    font-size: 1.5em;
+    margin: 0;
+    visibility: hidden; /* Sembunyikan judul jika hanya ingin menampilkan logo */
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 80px; /* Beri jarak dari logo */
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #090F4E;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: #5D87FF; /* Blue hover/active */
+    color: #fff;
+}
+
+.sidebar-menu a .icon {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+.sidebar-menu a .arrow {
+    margin-left: auto;
+    font-size: 0.9em;
+}
+
+.main-content {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #000000; /* Black heading */
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    width: 150px;
+    color: #000000; /* Black label text */
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group select {
+            appearance: none; /* Remove default arrow */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+        }
+
+        .death-info {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .signature {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .signature label {
+            margin-right: 10px;
+            color: #000000; /* Dark blue signature label */
+        }
+
+        .signature .signature-box {
+            width: 245px;
+            height: 145px;
+            border: 1px solid #90caf9; /* Light blue border */
+            border-radius: 4px;
+        }
+        .form-group .date-picker-icon {
+            margin-left: 10px;
+            color: #777;
+            cursor: pointer;
+        }
+        .form-actions {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            margin-right: 10px;
+        }
+        .form-actions button.simpan {
+            background-color: #43a047; /* Green */
+        }
+
+        .form-actions button.cetak {
+            background-color: #ffa000; /* Orange */
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="sipkes.jpg" alt="SIP-Kes Logo"> =
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-user-plus icon"></i> Pendaftaran
+                    <i class="fas fa-chevron-right arrow" style="margin-left: auto;"></i>
+                </a>
+                </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-notes-medical icon"></i> Pemeriksaan
+                    <i class="fas fa-chevron-right arrow" style="margin-left: auto;"></i>
+                </a>
+                </li>
+            <li><a href="#"><i class="fas fa-prescription-bottle-alt icon"></i> Farmasi</a></li>
+            <li><a href="#"><i class="fas fa-money-bill-wave icon"></i> Pembayaran</a></li>
+            <li>
+                <a href="#" style="background-color: #ddd;">
+                    <i class="fas fa-file-alt icon"></i> Persuratan
+                    <i class="fas fa-chevron-down arrow" style="margin-left: auto;"></i>
+                </a>
+                <ul style="list-style: none; padding-left: 20px;">
+                    <li><a href="#"><i class="far fa-circle icon" style="font-size: 0.8em;"></i> SK Kontrol</a></li>
+                    <li><a href="#"><i class="far fa-circle icon" style="font-size: 0.8em;"></i> Surat Pulang Paksa</a></li>
+                    <li><a href="#" style="font-weight: bold;"><i class="far fa-circle icon" style="font-size: 0.8em;"></i> Surat Kematian</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-folder-open icon"></i> Rekam Medis
+                    <i class="fas fa-chevron-right arrow" style="margin-left: auto;"></i>
+                </a>
+                </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar icon"></i> Laporan
+                    <i class="fas fa-chevron-right arrow" style="margin-left: auto;"></i>
+                </a>
+                </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="form-container">
+            <h2>SURAT KETERANGAN KEMATIAN</h2>
+            <div class="form-group">
+                <label for="nomor">Nomor:</label>
+                <input type="text" id="nomor" placeholder="/">
+            </div>
+            <p>Saya yang bertanda tangan di bawah ini menyatakan bahwa:</p>
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" placeholder="Nama Pasien">
+            </div>
+            <div class="form-group">
+                <label for="jenis_kelamin">Jenis Kelamin:</label>
+                <select id="jenis_kelamin">
+                    <option value="">Pilih</option>
+                    <option value="laki-laki">Laki-laki</option>
+                    <option value="perempuan">Perempuan</option>
+                    <option value="tidak_dapat_ditentukan">Tidak Dapat Ditentukan</option>
+                    <option value="tidak_mengisi">Tidak Mengisi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="alamat">Alamat:</label>
+                <input type="text" id="alamat">
+            </div>
+            <div class="form-group">
+                <label for="tanggal_lahir">Tgl. Lahir:</label>
+                <input type="date" id="tanggal_lahir" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="form-group">
+                <label for="tanggal_masuk_rs">Tgl. Masuk RS:</label>
+                <input type="date" id="tanggal_masuk_rs">
+            </div>
+            <div class="form-group">
+                <label for="pukul_masuk_rs">Pukul:</label>
+                <input type="text" id="pukul_masuk_rs">
+            </div>
+
+            <div class="death-info">
+                <p><strong>Telah Meninggal Dunia, pada:</strong></p>
+                <div class="form-group">
+                    <label for="tanggal_meninggal">Tanggal:</label>
+                    <input type="date" id="tanggal_meninggal">
+                </div>
+                <div class="form-group">
+                    <label for="pukul_meninggal">Pukul:</label>
+                    <input type="text" id="pukul_meninggal">
+                </div>
+                <div class="form-group">
+                    <label for="tempat_meninggal">Tempat:</label>
+                    <input type="text" id="tempat_meninggal" value="Klinik Insan Medika">
+                </div>
+                <div class="form-group">
+                    <label for="diagnosa">Diagnosa:</label>
+                    <input type="text" id="diagnosa">
+                </div>
+            </div>
+
+            <p>Demikian Surat Keterangan Kematian ini dinyatakan dengan sebenarnya untuk dapat dipergunakan sebagaimana mestinya.</p>
+
+            <div class="signature">
+                <label for="mengetahui">Jember,</label>
+                <input type="date" id="signature" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="signature">
+                <label for="mengetahui">Mengetahui</label>
+            </div>
+
+            <div class="signature">
+                <div class="signature-box"></div>
+            </div>
+
+            <div class="form-actions">
+                <button class="simpan">Simpan</button>
+                <button class="cetak">Cetak</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Basic script for toggling submenu (you might need more advanced logic)
+        const submenuLink = document.querySelector('.sidebar-menu li:nth-child(6) > a');
+        const submenu = document.querySelector('.sidebar-menu li:nth-child(6) ul');
+        const arrow = document.querySelector('.sidebar-menu li:nth-child(6) .arrow');
+
+        submenuLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (submenu.style.display === 'none' || submenu.style.display === '') {
+                submenu.style.display = 'block';
+                arrow.classList.remove('fa-chevron-right');
+                arrow.classList.add('fa-chevron-down');
+            } else {
+                submenu.style.display = 'none';
+                arrow.classList.remove('fa-chevron-down');
+                arrow.classList.add('fa-chevron-right');
+            }
+        });
+    </script>
+</body>
+</html>
