@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Rencana Kontrol</title>
+    <style>
+        body {
+            font-family: 'Poppins';
+            margin: 0;
+            display: flex;
+            background-color: #e3f2fd; /* Light blue background */
+        }
+
+        .sidebar {
+            background-color: #fff; /* Dark blue sidebar */
+            width: 250px;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-header img {
+            position: absolute;
+            width: 189.85px;
+            height: 45px;
+            left: 42px;
+            top: 34px;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #090F4E; /* Light blue text on sidebar */
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background-color: #5D87FF; /* Darker blue on hover/active */
+            color: #fff;
+        }
+
+        .sidebar-menu a .icon {
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        .sidebar-menu a .arrow {
+            margin-left: auto;
+            font-size: 0.9em;
+        }
+
+        .main-content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #000000; /* Dark blue heading */
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration-line: underline;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group label {
+            width: 150px;
+            color: #000000; /* Dark blue label text */
+            margin-right: 15px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group select {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #1967D4; /* Light blue border */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group select {
+            appearance: none; /* Remove default arrow */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+        }
+
+        .form-group .date-picker-icon {
+            margin-left: 10px;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .form-actions {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            margin-right: 10px;
+        }
+
+        .form-actions button.simpan {
+            background-color: #43a047; /* Green */
+        }
+
+        .form-actions button.cetak {
+            background-color: #ffa000; /* Orange */
+        }
+
+        .signature {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .signature label {
+            margin-right: 10px;
+            color: #000000; /* Dark blue signature label */
+        }
+
+        .signature .signature-box {
+            width: 245px;
+            height: 145px;
+            border: 1px solid #90caf9; /* Light blue border */
+            border-radius: 4px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="sipkes.jpg" alt="SIP-Kes Logo"> <h1>SIP-Kes</h1>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-user-plus icon"></i> Pendaftaran
+                    <i class="fas fa-chevron-right arrow"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-notes-medical icon"></i> Pemeriksaan
+                    <i class="fas fa-chevron-right arrow"></i>
+                </a>
+            </li>
+            <li><a href="#"><i class="fas fa-prescription-bottle-alt icon"></i> Farmasi</a></li>
+            <li><a href="#"><i class="fas fa-money-bill-wave icon"></i> Pembayaran</a></li>
+            <li>
+                <a href="#" class="active">
+                    <i class="fas fa-file-alt icon"></i> Persuratan
+                    <i class="fas fa-chevron-down arrow"></i>
+                </a>
+                <ul style="list-style: none; padding-left: 20px;">
+                    <li><a href="#"><i class="far fa-circle icon" style="font-size: 0.8em;"></i> SK Kontrol</a></li>
+                    <li><a href="#"><i class="far fa-circle icon" style="font-size: 0.8em;"></i> Surat Pulang Paksa</a></li>
+                    <li><a href="#"><i class="far fa-circle icon" style="font-size: 0.8em;"></i> Surat Kematian</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-folder-open icon"></i> Rekam Medis
+                    <i class="fas fa-chevron-right arrow"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar icon"></i> Laporan
+                    <i class="fas fa-chevron-right arrow"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="form-container">
+            <h2>SURAT RENCANA KONTROL</h2>
+            <div class="form-group">
+                <label for="nomor">No.</label>
+                <input type="text" id="nomor">
+            </div>
+            <div class="form-group">
+                <label for="tanggal">Tgl.</label>
+                <input type="text" id="tanggal">
+            </div>
+            <div class="form-group">
+                <label for="kepada">Kepada Yth.</label>
+                <select id="kepada">
+                    <option value="">Nama Dokter</option>
+                    <option value="dr_b_sp_pd">dr. B, Sp.PD</option>
+                    <option value="dr_c_sp_an">dr. C, Sp.An</option>
+                    <option value="bidan_dyah_ayu_wulandari">Bidan Dyah Ayu Wulandari</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <p>Mohon Pemeriksaan dan Penanganan Lebih Lanjut:</p>
+            </div>
+            <div class="form-group">
+                <label for="nomor_rm">Nomor RM</label>
+                <input type="text" id="nomor_rm" placeholder="Nomor RM">
+            </div>
+            <div class="form-group">
+                <label for="nama_pasien">Nama Pasien</label>
+                <input type="text" id="nama_pasien" placeholder="Nama Pasien">
+            </div>
+            <div class="form-group">
+                <label for="tanggal_lahir">Tgl. Lahir</label>
+                <input type="date" id="tanggal_lahir" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="form-group">
+                <label for="diagnosa">Diagnosa Akhir</label>
+                <input type="text" id="diagnosa" placeholder="Diagnosa Akhir">
+            </div>
+            <div class="form-group">
+                <label for="rencana_kontrol">Rencana Kontrol</label>
+                <input type="date" id="rencana_kontrol" placeholder="DD/MM/YYYY">
+            </div>
+            <p>Demikian atas bantuannya diucapkan banyak terima kasih.</p>
+
+            <div class="form-actions">
+                <button class="simpan">Simpan</button>
+                <button class="cetak">Cetak</button>
+            </div>
+
+            <div class="signature">
+                <label for="mengetahui">Jember,</label>
+                <input type="date" id="signature" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="signature">
+                <label for="mengetahui">Mengetahui</label>
+            </div>
+
+            <div class="signature">
+                <div class="signature-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic script for toggling submenu
+        const submenuLink = document.querySelector('.sidebar-menu li:nth-child(6) > a');
+        const submenu = document.querySelector('.sidebar-menu li:nth-child(6) ul');
+        const arrow = document.querySelector('.sidebar-menu li:nth-child(6) .arrow');
+
+        submenuLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (submenu.style.display === 'none' || submenu.style.display === '') {
+                submenu.style.display = 'block';
+                arrow.classList.remove('fa-chevron-right');
+                arrow.classList.add('fa-chevron-down');
+            } else {
+                submenu.style.display = 'none';
+                arrow.classList.remove('fa-chevron-down');
+                arrow.classList.add('fa-chevron-right');
+            }
+        });
+    </script>
+</body>
+</html>
