@@ -12,8 +12,6 @@
         font-size: 3rem;
         font-weight: 800;
         text-align: left;
-        line-height: 100%;
-        letter-spacing: 5%;
         color: #111754;
         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
     }
@@ -22,22 +20,22 @@
         overflow-x: auto;
         background-color: #ffffff;
         border-radius: 12px;
-        padding: 32px;
+        padding: 24px;
         margin-bottom: 80px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
     table {
         border-collapse: collapse;
+        width: 100%;
     }
 
     th, td {
-        white-space: nowrap;
-        text-align: center;
-        padding: 2px 4px; 
+        padding: 6px 10px; /* lebih kecil dari sebelumnya */
         font-family: 'Poppins', sans-serif;
-        font-size: 14px;
+        font-size: 13px;
         border: 0.5px solid #D4D4D4;
+        text-align: left;
     }
 
     th {
@@ -48,6 +46,11 @@
     td {
         background-color: white;
         font-weight: 400;
+    }
+
+    td button {
+        padding: 4px 10px;
+        font-size: 12px;
     }
 </style>
 <div class="container py-4">
