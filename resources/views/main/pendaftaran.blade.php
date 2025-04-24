@@ -531,17 +531,12 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">ICD 10</h5>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="search-icd"
-                                            placeholder="Ketik ICD 10">
-                                        <button class="btn btn-secondary" type="button" id="search-btn">Cari</button>
-                                    </div>
-                                    <div id="search-results" class="bg-white border rounded p-2" style="display: none;">
-                                    </div>
-                                    <label class="form-label fw-medium mt-2">Diagnosa Terpilih</label>
-                                    <div id="selected-icds" class="border p-2 rounded bg-light">
-                                        <p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa
-                                            yang dipilih</p>
+                                    <select id="icd10" class="form-select" style="width: 100%;">
+                                        <option value="">Ketik Kode Diagnosis</option>
+                                    </select>
+                                    <div id="selected-icds-icd10" class="border p-2 rounded bg-light mt-2">
+                                        <p class="text-muted text-center mb-0" id="no-icd-selected-icd10">Belum ada
+                                            diagnosa yang dipilih</p>
                                     </div>
                                 </div>
                             </div>
@@ -608,8 +603,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
+
+                        <!-- Pemeriksaan Fisik dan ICD 9 -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
@@ -630,44 +627,28 @@
                                     </table>
                                 </div>
                             </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <div class="card p-3 shadow-sm">
-                                        <h5 class="fw-bold">Tindakan</h5>
-                                        <label class="form-label" for="diagnosis">Tindakan</label>
-                                        <textarea id="tindakan" name="tindakan" rows="5" class="form-control" placeholder="Ketik tindakan"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card p-3 shadow-sm">
-                                        <h5 class="fw-bold">ICD 9</h5>
-                                        <div class="input-group mb-2">
-                                            <input type="text" class="form-control" id="search-icd"
-                                                placeholder="Ketik ICD 9">
-                                            <button class="btn btn-secondary" type="button"
-                                                id="search-btn">Cari</button>
-                                        </div>
-                                        <div id="search-results" class="bg-white border rounded p-2"
-                                            style="display: none;">
-                                        </div>
-                                        <label class="form-label fw-medium mt-2">Tindakan Terpilih</label>
-                                        <div id="selected-icds" class="border p-2 rounded bg-light">
-                                            <p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada Tindakan
-                                                yang dipilih</p>
-                                        </div>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <h5 class="fw-bold">ICD 9</h5>
+                                    <select id="icd9" class="form-select" style="width: 100%;">
+                                        <option value="">Ketik Kode Tindakan</option>
+                                    </select>
+                                    <div id="selected-icds-icd9" class="border p-2 rounded bg-light mt-2">
+                                        <p class="text-muted text-center mb-0" id="no-icd-selected-icd9">Belum ada
+                                            Tindakan yang dipilih</p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-6 mb-4">
+                        <!-- Layanan dan Rincian Obat -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
-                                    </div>
+                                    <select id="layanan" class="form-select" style="width: 100%;">
+                                        <option value="">Ketik Layanan</option>
+                                    </select>
                                     <table class="table table-bordered text-center">
                                         <thead class="table-dark">
                                             <tr>
@@ -684,15 +665,12 @@
                                     </table>
                                 </div>
                             </div>
-
-                            <div class="col-md-6 mb-4">
+                            <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Ketik Obat">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
-                                    </div>
+                                    <select id="obat" class="form-select" style="width: 100%;">
+                                        <option value="">Ketik Obat</option>
+                                    </select>
                                     <table class="table table-bordered text-center">
                                         <thead class="table-dark">
                                             <tr>
@@ -709,7 +687,10 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
 
+                        <!-- Rencana Kontrol dan Catatan -->
+                        <div class="row">
                             <div class="col-md-6 mb-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
@@ -739,7 +720,6 @@
                                     </table>
                                 </div>
                             </div>
-
                             <div class="col-md-6 mb-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Catatan</label>
