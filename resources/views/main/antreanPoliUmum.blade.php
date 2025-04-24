@@ -22,32 +22,34 @@
         overflow-x: auto;
         background-color: #ffffff;
         border-radius: 12px;
-        max-height: 600px;
-        padding: 24px 32px; /* padding diperbesar */
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* shadow diperkuat */
+        padding: 32px;
+        margin-bottom: 80px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    table {
+        border-collapse: collapse;
     }
 
     th, td {
-        padding: 10px 16px !important; /* padding antar sel diperbesar sedikit */
         white-space: nowrap;
         text-align: center;
-        vertical-align: middle;
+        padding: 2px 4px; 
         font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        border: 0.5px solid #D4D4D4;
     }
 
     th {
-        background-color: #F9FAFC !important;
-        border: 1px solid #B9B9B9 !important;
+        background-color: #F9FAFC;
         font-weight: 600;
-        font-size: 14px;
     }
 
     td {
         background-color: white;
-        font-size: 14px;
+        font-weight: 400;
     }
 </style>
-
 <div class="container py-4">
     <h1 class="judul-antrean mb-4">Antrean Poli Umum</h1>
 
@@ -79,8 +81,6 @@
                     <td>{{ $i }}</td>
                     <td>00100{{ $i }}</td>
                     <td>{{ ['Arga Pratama', 'Keisha Anindya', 'Dimas Fadlan', 'Nayla Putri', 'Rizqy Maulana', 'Alika Salsabila', 'Revan Aditya', 'Tania Ramadhani', 'Ilham Setiawan', 'Vania Lestari'][$i-1] }}</td>
-                    <td>{{ ['3590168908650001','359578436678975','3597752345678999','3527865357988752','3578864323456788','3594576445678956','3594733458886544','3598754323456788','3576544567899667','3590776555444332'][$i-1] }}</td>
-                    <td>{{ ['01-03-2004','16-12-2000','31-03-1998','07-10-2006','25-07-2001','23-01-1997','15-08-1978','19-11-2008','13-04-2005','14-02-1999'][$i-1] }}</td>
                     <td>17-04-2025</td>
                     <td>Umum</td>
                     <td>{{ ['dr. Oktavia', 'dr. Erwiyan', 'dr. Laili Fitriana', 'dr. Erwiyan', 'dr. Oktavia Putri', 'dr. Sisil Karina', 'dr. Shofi', 'dr. Arvin Maulana', 'dr. Arvin Maulana', 'dr. Sisil Karina'][$i-1] }}</td>
