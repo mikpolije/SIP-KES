@@ -354,11 +354,6 @@
                     <h6>Pemeriksaan Awal</h6>
                     <section>
                         <h4 class="section-title">Data Pendaftaran</h4>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="searchNoRM"
-                                    placeholder="Cari berdasarkan No. RM">
-                            </div>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="mb-3">
