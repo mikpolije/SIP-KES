@@ -609,28 +609,28 @@
                             </div>
                         </div>
                         <div class="row">
-    <div class="col-md-6 mb-4">
-        <div class="card p-3 h-100">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                <button class="btn btn-sm btn-secondary">Tambah +</button>
-            </div>
-            <table class="table table-bordered text-center">
-                <thead style="background-color: #676981; color: white;">
-                    <tr>
-                        <th>Nama</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="2">Tidak Ada Data</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
+                                        <button class="btn btn-sm btn-secondary">Tambah +</button>
+                                    </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead class="background-color: #676981;">
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Keterangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">Tidak Ada Data</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <div class="card p-3 shadow-sm">
