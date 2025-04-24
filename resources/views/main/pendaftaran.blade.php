@@ -674,7 +674,7 @@
                                         <h5 class="fw-bold">ICD 9</h5>
                                         <div class="input-group mb-2">
                                             <input type="text" class="form-control" id="search-icd"
-                                                placeholder="Ketik ICD 10">
+                                                placeholder="Ketik ICD 9">
                                             <button class="btn btn-secondary" type="button"
                                                 id="search-btn">Cari</button>
                                         </div>
