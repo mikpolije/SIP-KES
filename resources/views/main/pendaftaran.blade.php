@@ -532,7 +532,8 @@
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">ICD 10</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                        <input type="text" class="form-control"
+                                            placeholder="Ketik Kode atau Diagnosa">
                                         <button class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
@@ -632,9 +633,12 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">ICD 9</h5>
-                                    <select id="icd9" class="form-select" style="width: 100%;">
-                                        <option value="">Ketik Kode Tindakan</option>
-                                    </select>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control"
+                                            placeholder="Ketik Kode atau Tindakan>
+                                        <button class="btn
+                                            btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                                    </div>
                                     <div id="selected-icds-icd9" class="border p-2 rounded bg-light mt-2">
                                         <p class="text-muted text-center mb-0" id="no-icd-selected-icd9">Belum ada
                                             Tindakan yang dipilih</p>
@@ -648,9 +652,11 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
-                                    <select id="layanan" class="form-select" style="width: 100%;">
-                                        <option value="">Ketik Layanan</option>
-                                    </select>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
+                                    </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
@@ -670,9 +676,11 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <select id="obat" class="form-select" style="width: 100%;">
-                                        <option value="">Ketik Obat</option>
-                                    </select>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" placeholder="Ketik Obat">
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
+                                    </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
