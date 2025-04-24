@@ -30,15 +30,16 @@
         width: 100%;
         table-layout: auto;
     }
+
     th, td {
-    padding: 1px 6px; /* 🛠️ 2px atas-bawah, 6px kiri-kanan */
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    border: 0.3px solid #B9B9B9; /* garis super tipis */
-    white-space: nowrap;
-    text-align: middle;
-    vertical-align: middle;
-}
+        padding: 1px 6px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+        border: 0.3px solid #B9B9B9;
+        white-space: nowrap;
+        text-align: left;
+        vertical-align: middle;
+    }
 
     th {
         background-color: #F9FAFC;
@@ -55,6 +56,7 @@
         font-size: 12px;
     }
 </style>
+
 <div class="container py-4">
     <h1 class="judul-antrean mb-4">Antrean Poli Umum</h1>
 
