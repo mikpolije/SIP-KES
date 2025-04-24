@@ -531,9 +531,11 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">ICD 10</h5>
-                                    <select id="icd10" class="form-select" style="width: 100%;">
-                                        <option value="">Ketik Kode Diagnosis</option>
-                                    </select>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
+                                    </div>
                                     <div id="selected-icds-icd10" class="border p-2 rounded bg-light mt-2">
                                         <p class="text-muted text-center mb-0" id="no-icd-selected-icd10">Belum ada
                                             diagnosa yang dipilih</p>
