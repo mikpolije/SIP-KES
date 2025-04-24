@@ -39,20 +39,21 @@
                             }
                         </style>
                         <div class="card w-100">
-                        <div class="row mb-4 align-items-end">
-        <div class="col-md-10">
-            <label for="searchNoRM" class="form-label">No. RM</label>
-            <input class="form-control" list="noRMList" id="searchNoRM" placeholder="Ketik atau pilih No. RM">
-            <datalist id="noRMList">
-                <option value="RM001 - Budi">
-                <option value="RM002 - Siti">
-                <option value="RM003 - Agus">
-            </datalist>
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary w-100">Cari</button>
-        </div>
-    </div>
+                            <div class="row mb-4 align-items-end">
+                                <div class="col-md-10">
+                                    <label for="searchNoRM" class="form-label">No. RM</label>
+                                    <input class="form-control" list="noRMList" id="searchNoRM"
+                                        placeholder="Ketik atau pilih No. RM">
+                                    <datalist id="noRMList">
+                                        <option value="RM001 - Budi">
+                                        <option value="RM002 - Siti">
+                                        <option value="RM003 - Agus">
+                                    </datalist>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary w-100">Cari</button>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -491,278 +492,292 @@
 
                     <!-- Step 3 -->
                     <h6 class="fw-bold mt-4">Pemeriksaan</h6>
-<section>
-    <h4 class="section-title mb-3">Data Pemeriksaan</h4>
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="d-flex align-items-center">
-            <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
-            <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Surat Keterangan
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                    <li><a class="dropdown-item" href="#">Surat Keterangan Sehat</a></li>
-                    <li><a class="dropdown-item" href="#">Surat Keterangan Sakit</a></li>
-                    <li><a class="dropdown-item" href="#">General Consent</a></li>
-                    <li><a class="dropdown-item" href="#">Informed Consent</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="d-flex">
-            <input type="text" class="form-control me-2" id="searchNoRM" placeholder="Cari No. RM">
-            <button class="btn btn-primary" onclick="searchRM()">Cari</button>
-        </div>
-    </div>
+                    <section>
+                        <h4 class="section-title mb-3">Data Pemeriksaan</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" type="button"
+                                        id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Surat Keterangan
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
+                                        <li><a class="dropdown-item" href="#">Surat Keterangan Sehat</a></li>
+                                        <li><a class="dropdown-item" href="#">Surat Keterangan Sakit</a></li>
+                                        <li><a class="dropdown-item" href="#">General Consent</a></li>
+                                        <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <input type="text" class="form-control me-2" id="searchNoRM"
+                                    placeholder="Cari No. RM">
+                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
+                            </div>
+                        </div>
 
-    <!-- Antrian - Identitas Pasien -->
-    <div class="card p-3 mb-3 shadow-sm">
-        <div class="row">
-            <div class="col-md-2">
-                <label class="form-label" for="noantian">No Antrian</label>
-                <input type="text" class="form-control" id="noantian" name="noantian">
-            </div>
-            <div class="col-md-4">
-                <label class="form-label" for="nama">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label" for="no.rm">No. RM</label>
-                <input type="text" class="form-control" id="no.rm" name="no.rm">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label" for="tanggal">Tanggal</label>
-                <input type="date" class="form-control" id="tanggal" name="tanggal">
-            </div>
-            <div class="col-md-2">
-                <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
-                <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
-                    <option value="poliumum">Poli Umum</option>
-                    <option value="poligigi">Poli Gigi</option>
-                    <option value="kia">KIA</option>
-                    <option value="circum">Circum</option>
-                    <option value="vaksininternasional">Vaksin Internasional</option>
-                </select>
-            </div>
-        </div>
-    </div>
+                        <!-- Antrian - Identitas Pasien -->
+                        <div class="card p-3 mb-3 shadow-sm">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="form-label" for="noantian">No Antrian</label>
+                                    <input type="text" class="form-control" id="noantian" name="noantian">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="nama">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="no.rm">No. RM</label>
+                                    <input type="text" class="form-control" id="no.rm" name="no.rm">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="tanggal">Tanggal</label>
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal">
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
+                                    <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
+                                        <option value="poliumum">Poli Umum</option>
+                                        <option value="poligigi">Poli Gigi</option>
+                                        <option value="kia">KIA</option>
+                                        <option value="circum">Circum</option>
+                                        <option value="vaksininternasional">Vaksin Internasional</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Diagnosis dan ICD 10 -->
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm">
-                <h5 class="fw-bold">Diagnosis</h5>
-                <label class="form-label" for="diagnosis">Diagnosis</label>
-                <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm">
-                <h5 class="fw-bold">ICD 10</h5>
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="search-icd" placeholder="Ketik ICD 10">
-                    <button class="btn btn-secondary" type="button" id="search-btn">Cari</button>
-                </div>
-                <div id="search-results" class="bg-white border rounded p-2" style="display: none;"></div>
-                <label class="form-label fw-medium mt-2">Diagnosa Terpilih</label>
-                <div id="selected-icds" class="border p-2 rounded bg-light">
-                    <p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <!-- Diagnosis dan ICD 10 -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <h5 class="fw-bold">Diagnosis</h5>
+                                    <label class="form-label" for="diagnosis">Diagnosis</label>
+                                    <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <h5 class="fw-bold">ICD 10</h5>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" id="search-icd"
+                                            placeholder="Ketik ICD 10">
+                                        <button class="btn btn-secondary" type="button" id="search-btn">Cari</button>
+                                    </div>
+                                    <div id="search-results" class="bg-white border rounded p-2" style="display: none;">
+                                    </div>
+                                    <label class="form-label fw-medium mt-2">Diagnosa Terpilih</label>
+                                    <div id="selected-icds" class="border p-2 rounded bg-light">
+                                        <p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa
+                                            yang dipilih</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Subjective dan Objective -->
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm">
-                <h5 class="fw-bold">Subjective</h5>
-                <label class="form-label" for="subjective">Keluhan</label>
-                <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm">
-                <h5 class="fw-bold">Objective</h5>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="form-label">Sistol (mmHg)</label>
-                        <input type="text" class="form-control" id="sistol-mask">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Diastol (mmHg)</label>
-                        <input type="text" class="form-control" id="diastol-mask">
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">Berat Badan (kg)</label>
-                        <input type="text" class="form-control" id="berat-mask">
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">Tinggi Badan (cm)</label>
-                        <input type="text" class="form-control" id="tinggi-mask">
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">Suhu (°C)</label>
-                        <input type="text" class="form-control" id="suhu-mask">
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">SpO2 (%)</label>
-                        <input type="text" class="form-control" id="spo2-mask">
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">Respiration Rate (/mnt)</label>
-                        <input type="text" class="form-control" id="resprate-mask">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <!-- Subjective dan Objective -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <h5 class="fw-bold">Subjective</h5>
+                                    <label class="form-label" for="subjective">Keluhan</label>
+                                    <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <h5 class="fw-bold">Objective</h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Sistol (mmHg)</label>
+                                            <input type="text" class="form-control" id="sistol-mask">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Diastol (mmHg)</label>
+                                            <input type="text" class="form-control" id="diastol-mask">
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label">Berat Badan (kg)</label>
+                                            <input type="text" class="form-control" id="berat-mask">
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label">Tinggi Badan (cm)</label>
+                                            <input type="text" class="form-control" id="tinggi-mask">
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label">Suhu (°C)</label>
+                                            <input type="text" class="form-control" id="suhu-mask">
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label">SpO2 (%)</label>
+                                            <input type="text" class="form-control" id="spo2-mask">
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label">Respiration Rate (/mnt)</label>
+                                            <input type="text" class="form-control" id="resprate-mask">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- Assessment dan Plan -->
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm">
-                <label class="form-label" for="assesment">Assessment</label>
-                <textarea id="assesment" name="assesment" rows="5" class="form-control" placeholder="Ketik Assessment"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card p-3 shadow-sm">
-                <label class="form-label" for="plan">Plan</label>
-                <textarea id="plan" name="plan" rows="5" class="form-control" placeholder="Ketik Plan"></textarea>
-            </div>
-        </div>
-    </div>
-<div class="row">
-    <div class="col-md-6 mb-4">
-        <div class="card p-3 h-100">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                <button class="btn btn-sm btn-secondary">Tambah +</button>
-            </div>
-            <table class="table table-bordered text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Nama</th>
-                        <th>Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="2">Tidak Ada Data</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                        <!-- Assessment dan Plan -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <label class="form-label" for="assesment">Assessment</label>
+                                    <textarea id="assesment" name="assesment" rows="5" class="form-control" placeholder="Ketik Assessment"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <label class="form-label" for="plan">Plan</label>
+                                    <textarea id="plan" name="plan" rows="5" class="form-control" placeholder="Ketik Plan"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
+                                        <button class="btn btn-sm btn-secondary">Tambah +</button>
+                                    </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Keterangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">Tidak Ada Data</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-    <div class="col-md-6 mb-4">
-        <div class="card p-3 h-100">
-            <label class="form-label fw-bold">ICD 9 - CM</label>
-            <div class="input-group mb-2">
-                <input type="text" class="form-control" placeholder="Ketik Kode Tindakan">
-                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
-            </div>
-            <table class="table table-bordered text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Nama ICD 9 - CM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Tidak Ada Data</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="card p-3 shadow-sm">
+                                        <h5 class="fw-bold">Tindakan</h5>
+                                        <label class="form-label" for="diagnosis">Tindakan</label>
+                                        <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 shadow-sm">
+                                        <h5 class="fw-bold">ICD 9</h5>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" id="search-icd"
+                                                placeholder="Ketik ICD 10">
+                                            <button class="btn btn-secondary" type="button"
+                                                id="search-btn">Cari</button>
+                                        </div>
+                                        <div id="search-results" class="bg-white border rounded p-2"
+                                            style="display: none;">
+                                        </div>
+                                        <label class="form-label fw-medium mt-2">Tindakan Terpilih</label>
+                                        <div id="selected-icds" class="border p-2 rounded bg-light">
+                                            <p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada Tindakan
+                                                yang dipilih</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    <div class="col-md-6 mb-4">
-        <div class="card p-3 h-100">
-            <label class="form-label fw-bold">Layanan</label>
-            <div class="input-group mb-2">
-                <input type="text" class="form-control" placeholder="Ketik Layanan">
-                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
-            </div>
-            <table class="table table-bordered text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Jumlah</th>
-                        <th>Nama Layanan</th>
-                        <th>Harga Layanan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="3">Tidak Ada Data</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Layanan</label>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
+                                    </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Jumlah</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Harga Layanan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="3">Tidak Ada Data</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-    <div class="col-md-6 mb-4">
-        <div class="card p-3 h-100">
-            <label class="form-label fw-bold">Rincian Obat</label>
-            <div class="input-group mb-2">
-                <input type="text" class="form-control" placeholder="Ketik Obat">
-                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
-            </div>
-            <table class="table table-bordered text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Jumlah</th>
-                        <th>Nama Obat</th>
-                        <th>Harga Obat</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="3">Tidak Ada Data</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Rincian Obat</label>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" placeholder="Ketik Obat">
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
+                                    </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Jumlah</th>
+                                                <th>Nama Obat</th>
+                                                <th>Harga Obat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="3">Tidak Ada Data</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-    <div class="col-md-6 mb-4">
-        <div class="card p-3 h-100">
-            <label class="form-label fw-bold">Rencana Kontrol</label>
-            <div class="row g-2 mb-2">
-                <div class="col-md-5">
-                    <input type="date" class="form-control">
-                </div>
-                <div class="col-md-5">
-                    <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-secondary w-100">Tambah +</button>
-                </div>
-            </div>
-            <table class="table table-bordered text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Tanggal Kontrol</th>
-                        <th>Alasan Kontrol</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="2">Tidak Ada Data</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Rencana Kontrol</label>
+                                    <div class="row g-2 mb-2">
+                                        <div class="col-md-5">
+                                            <input type="date" class="form-control">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-secondary w-100">Tambah +</button>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Tanggal Kontrol</th>
+                                                <th>Alasan Kontrol</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">Tidak Ada Data</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-    <div class="col-md-6 mb-4">
-        <div class="card p-3 h-100">
-            <label class="form-label fw-bold">Catatan</label>
-            <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
-        </div>
-    </div>
-</div>
-</section>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Catatan</label>
+                                    <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
                     <section>
