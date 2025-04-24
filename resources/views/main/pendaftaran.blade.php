@@ -480,6 +480,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            <!-- Contoh Input untuk Pencarian No. RM -->
                             <div class="d-flex">
                                 <input type="text" class="form-control me-2" id="searchNoRM"
                                     placeholder="Cari No. RM">
@@ -531,7 +532,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">ICD 10</h5>
-                                    <select id="icd10" class="form-select" style="width: 100%;">
+                                    <select id="search-icd10" class="form-select" style="width: 100%;">
                                         <option value="">Ketik Kode Diagnosis</option>
                                     </select>
                                     <div id="selected-icds-icd10" class="border p-2 rounded bg-light mt-2">
@@ -630,7 +631,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">ICD 9</h5>
-                                    <select id="icd9" class="form-select" style="width: 100%;">
+                                    <select id="search-icd9" class="form-select" style="width: 100%;">
                                         <option value="">Ketik Kode Tindakan</option>
                                     </select>
                                     <div id="selected-icds-icd9" class="border p-2 rounded bg-light mt-2">
@@ -646,7 +647,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
-                                    <select id="layanan" class="form-select" style="width: 100%;">
+                                    <select id="search-layanan" class="form-select" style="width: 100%;">
                                         <option value="">Ketik Layanan</option>
                                     </select>
                                     <table class="table table-bordered text-center">
@@ -668,7 +669,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <select id="obat" class="form-select" style="width: 100%;">
+                                    <select id="search-obat" class="form-select" style="width: 100%;">
                                         <option value="">Ketik Obat</option>
                                     </select>
                                     <table class="table table-bordered text-center">
