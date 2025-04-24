@@ -616,7 +616,7 @@
                                         <button class="btn btn-sm btn-secondary">Tambah +</button>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead class="background-color: #676981; color: white;">
+                                        <thead class="background-color: #676981;">
                                             <tr>
                                                 <th>Nama</th>
                                                 <th>Keterangan</th>
