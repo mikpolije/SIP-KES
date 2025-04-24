@@ -65,9 +65,7 @@
                     <th>NO ANTRIAN</th>
                     <th>NOMOR RM</th>
                     <th>NAMA</th>
-                    <th>NIK</th>
-                    <th>TANGGAL LAHIR</th>
-                    <th>TANGGAL PERIKSA</th>
+                    <th>TANGGAL PENDAFTARAN</th>
                     <th>UNIT LAYANAN</th>
                     <th>DOKTER</th>
                     <th>TIPE PASIEN</th>
