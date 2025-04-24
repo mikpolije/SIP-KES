@@ -879,7 +879,7 @@
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
 
-    {{-- <!-- ICD-10 Search Script -->
+    <!-- ICD-10 Search Script -->
     <script>
         $(document).ready(function() {
             // Variables to track selected ICDs
@@ -1039,5 +1039,5 @@
         .min-height-80 {
             min-height: 80px;
         }
-    </style> --}}
+    </style>
 @endsection
