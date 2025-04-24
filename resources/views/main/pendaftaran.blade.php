@@ -635,9 +635,9 @@
                                     <h5 class="fw-bold">ICD 9</h5>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control"
-                                            placeholder="Ketik Kode atau Tindakan>
-                                        <button class="btn
-                                            btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                                            placeholder="Ketik Kode atau Tindakan">
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
                                     </div>
                                     <div id="selected-icds-icd9" class="border p-2 rounded bg-light mt-2">
                                         <p class="text-muted text-center mb-0" id="no-icd-selected-icd9">Belum ada
