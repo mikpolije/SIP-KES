@@ -30,16 +30,15 @@
         width: 100%;
         table-layout: auto;
     }
-
     th, td {
-        padding: 4px 6px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 13px;
-        border: 0.3px solid #DADADA; /* lebih tipis */
-        white-space: nowrap;
-        text-align: left;
-        vertical-align: middle;
-    }
+    padding: 2px 6px; /* 🛠️ 2px atas-bawah, 6px kiri-kanan */
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    border: 0.3px solid #DADADA; /* garis super tipis */
+    white-space: nowrap;
+    text-align: left;
+    vertical-align: middle;
+}
 
     th {
         background-color: #F9FAFC;
