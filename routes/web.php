@@ -10,7 +10,9 @@ use App\Http\Controllers\generalConsentController;
 Route::get('/', function () {
     return view('main.index');
 });
-
+Route::get('/login', function () {
+    return view('login');
+});
 
 Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/', 'doctor.index')->name('index');
