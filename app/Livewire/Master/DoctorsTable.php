@@ -6,7 +6,6 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Master\Doctor;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\IconColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class DoctorsTable extends DataTableComponent

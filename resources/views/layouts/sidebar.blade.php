@@ -304,7 +304,7 @@
             </ul>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('dokter') ? 'active' : '' }}" href="javascript:void(0)"
+            <a class="sidebar-link has-arrow {{ Route::is('doctor.*') ? 'active' : '' }}" href="javascript:void(0)"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -315,7 +315,7 @@
                 </span>
                 <span class="hide-menu">Master Data</span>
             </a>
-            <ul class="first-level {{ request()->is('dokter') ? 'in' : '' }} collapse" aria-expanded="false">
+            <ul class="first-level {{ Route::is('doctor.*') ? 'in' : '' }} collapse" aria-expanded="false">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/stokopname') ? 'active' : '' }}"
                         href="/main/stokopname" aria-expanded="false">
@@ -326,7 +326,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('dokter') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ Route::is('doctor.*') ? 'active' : '' }}"
                         href="{{ route('doctor.index') }}" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>

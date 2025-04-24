@@ -354,36 +354,6 @@
                     <h6>Pemeriksaan Awal</h6>
                     <section>
                         <h4 class="section-title">Data Pendaftaran</h4>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="searchNoRM"
-                                    placeholder="Cari berdasarkan No. RM">
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
-                            </div>
-                        </div>
-                        <script>
-                            function searchRM() {
-                                var input, filter, table, tr, td, i, txtValue;
-                                input = document.getElementById("searchNoRM");
-                                filter = input.value.toUpperCase();
-                                table = document.getElementById("yourTableID"); // Ganti dengan ID tabel Anda
-                                tr = table.getElementsByTagName("tr");
-
-                                for (i = 1; i < tr.length; i++) {
-                                    td = tr[i].getElementsByTagName("td")[1]; // Ubah index sesuai posisi No. RM
-                                    if (td) {
-                                        txtValue = td.textContent || td.innerText;
-                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                            tr[i].style.display = "";
-                                        } else {
-                                            tr[i].style.display = "none";
-                                        }
-                                    }
-                                }
-                            }
-                        </script>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="mb-3">
