@@ -359,8 +359,6 @@
                                 <input type="text" class="form-control" id="searchNoRM"
                                     placeholder="Cari berdasarkan No. RM">
                             </div>
-                            <div class="col-md-2">
-                        </div>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="mb-3">
