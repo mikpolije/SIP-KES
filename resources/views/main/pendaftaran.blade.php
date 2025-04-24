@@ -521,6 +521,15 @@
 
                         <!-- Diagnosis dan ICD 10 -->
                         <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <h5 class="fw-bold">Diagnosis</h5>
+                                    <label class="form-label" for="diagnosis">Diagnosis</label>
+                                    <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <div class="card p-3 h-100">
                                 <label class="form-label fw-bold">ICD 10</label>
                                 <div class="input-group mb-2">
