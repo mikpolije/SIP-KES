@@ -28,14 +28,17 @@
     table {
         border-collapse: collapse;
         width: 100%;
+        table-layout: auto;
     }
 
     th, td {
-        padding: 6px 10px; /* lebih kecil dari sebelumnya */
+        padding: 4px 6px;
         font-family: 'Poppins', sans-serif;
         font-size: 13px;
-        border: 0.5px solid #D4D4D4;
+        border: 0.3px solid #DADADA; /* lebih tipis */
+        white-space: nowrap;
         text-align: left;
+        vertical-align: middle;
     }
 
     th {
