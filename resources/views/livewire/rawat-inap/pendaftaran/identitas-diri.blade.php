@@ -47,10 +47,12 @@ new class extends Component {
     public $ruangInap = '';
     #[Validate('required')]
     public $pembayaran = 'umum';
+    public $patientId;
 
     public function mount($patientId)
     {
         $this->nomorRM = $patientId;
+        $this->$patientId = $patientId;
     }
 
     public function calculateAge($birthDate)
@@ -59,6 +61,13 @@ new class extends Component {
         $today = new DateTime();
         $age = $today->diff($birthDate);
         return $age->y;
+    }
+
+    public function submit()
+    {
+        session()->flash('message', 'Form submitted successfully!');
+        $this->dispatch('patient-registered', patientId: $this->patientId);
+        $this->dispatch('switch-tab', tab: 'pemeriksaan');
     }
 }; ?>
 
@@ -345,4 +354,12 @@ new class extends Component {
             </div>
         </div>
     </form>
+    <div class="navigation-buttons mt-4 d-flex justify-content-end">
+        <button class="btn btn-primary" wire:click="submit">Submit</button>
+    </div>
+    @if (session()->has('message'))
+    <div class="alert alert-success mt-3">
+        {{ session('message') }}
+    </div>
+    @endif
 </div>
