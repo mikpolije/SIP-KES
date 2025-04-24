@@ -666,7 +666,7 @@
                                     <div class="card p-3 shadow-sm">
                                         <h5 class="fw-bold">Tindakan</h5>
                                         <label class="form-label" for="diagnosis">Tindakan</label>
-                                        <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                                        <textarea id="tindakan" name="tindakan" rows="5" class="form-control" placeholder="Ketik tindakan"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
