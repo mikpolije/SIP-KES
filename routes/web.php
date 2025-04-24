@@ -13,6 +13,7 @@ Route::get('/', function () {
 
 Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/', 'doctor.index')->name('index');
+    Volt::route('/create', 'doctor.create')->name('create');
     Volt::route('/{dokter}', 'doctor.edit')->name('edit');
 });
 
