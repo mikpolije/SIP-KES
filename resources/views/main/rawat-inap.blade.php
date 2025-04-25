@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['hideLogo' => true])
 @section('title', 'SIP-Kes | Rawat Inap')
 
 <!--

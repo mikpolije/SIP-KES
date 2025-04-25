@@ -140,7 +140,9 @@
 
         <!-- Sidebar Start -->
         <aside class="left-sidebar with-vertical">
-            <div>@include('layouts.sidebar')</div>
+            <div>
+                @include('layouts.sidebar', ['hideLogo' => $hideLogo ?? false])
+            </div>
         </aside>
         <!-- Sidebar End -->
 
