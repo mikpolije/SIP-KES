@@ -7,6 +7,7 @@ use App\Http\Controllers\PageController;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\generalConsentController;
 use App\Http\Controllers\TriageController;
+use App\Http\Controllers\LayananController;
 
 Route::get('/', function () {
     return view('main.index');
@@ -24,7 +25,7 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
 Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
 Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
 
-// Route::resource('/layanan', LayananController::class);
+Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
 Route::resource('/triase', TriageController::class);
 

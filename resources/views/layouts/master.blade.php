@@ -5,6 +5,7 @@
     @include('layouts.head')
     <title>@yield('title', 'SIP-Kes')</title>
     @yield('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -167,6 +168,7 @@
     <div class="dark-transparent sidebartoggler"></div>
     @include('layouts.scripts')
     @yield('scripts')
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
 </body>
 
 </html>
