@@ -335,7 +335,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/blog-detail">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="{{ route('layanan.index') }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
