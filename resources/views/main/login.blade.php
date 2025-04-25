@@ -36,27 +36,39 @@
             <h2 class="text-2xl font-bold text-gray-900 font-montserrat">Welcome to SIP-Kes</h2>
             <p class="text-sm text-gray-500 mb-6 font-poppins">Your Admin Dashboard</p>
 
-            <form action="" method="POST">
-                @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm mb-2 font-poppins" for="username">Username</label>
-                    <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
-                </div>
+    @if ($errors->has('login'))
+    <div class="mb-4 text-red-500 text-sm">
+        {{ $errors->first('login') }}
+    </div>
+    @endif
 
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm mb-2 font-poppins" for="password">Password</label>
-                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
-                </div>
+            <form action="{{ route('login') }}" method="POST">
+    @csrf
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm mb-2 font-poppins" for="username">Username (Email)</label>
+        <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+        @error('username')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+        @enderror
+    </div>
 
-                <div class="flex items-center mb-6 ">
-                    <input type="checkbox" id="remember" name="remember" class="mr-2">
-                    <label for="remember" class="text-sm text-gray-700 font-poppins">Remember This Device</label>
-                </div>
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm mb-2 font-poppins" for="password">Password</label>
+        <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+        @error('password')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+        @enderror
+    </div>
 
-                <button type="submit" class="w-full text-white font-bold py-2 rounded-lg shadow-md transition duration-300 font-poppins" style="background-color: #293FCC">
-                    Sign In
-                </button>
-            </form>
+    <div class="flex items-center mb-6 ">
+        <input type="checkbox" id="remember" name="remember" class="mr-2">
+        <label for="remember" class="text-sm text-gray-700 font-poppins">Remember This Device</label>
+    </div>
+
+    <button type="submit" class="w-full text-white font-bold py-2 rounded-lg shadow-md transition duration-300 font-poppins" style="background-color: #293FCC">
+        Sign In
+    </button>
+</form>
         </div>
     </div>
 </body>

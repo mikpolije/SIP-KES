@@ -8,6 +8,7 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\generalConsentController;
 use App\Http\Controllers\TriageController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('main.index');
@@ -32,3 +33,6 @@ Route::resource('/triase', TriageController::class);
 // Route::get('/get-layanan-by-ajax', [LayananController::class, 'getByAjax'])->name('get-layanan-by-ajax');
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
