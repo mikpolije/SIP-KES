@@ -76,7 +76,7 @@
         </li>
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'active' : '' }}"
-                href="#">
+                href="{{ route('triase.create') }}">
                 <span class="d-flex">
                     <svg class="bi bi-heart-pulse" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">

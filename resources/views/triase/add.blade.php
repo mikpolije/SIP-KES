@@ -36,7 +36,7 @@
                             <div class="card-subtitle">Triase / Tambah</div>
                         </div>
                     </div>
-                    <form action="{{ route('layanan.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="#" method="post" enctype="multipart/form-data">
                         @csrf
                         <div id="step-1" class="step-1 row" data-step="1">
                             <div class="card col-md-12">
@@ -1340,7 +1340,7 @@
                 let id = $("#selectLayanan").val()
                 $.ajax({
                     type: "get",
-                    url: `{{ route('get-layanan-by-ajax') }}?id=${id}`,
+                    url: `#?id=${id}`,
                     success: function(res) {
                         $("#tbodyLayanan").append(`
                             <tr>
