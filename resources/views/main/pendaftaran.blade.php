@@ -12,15 +12,15 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 id="wizard-title" class="wizard-title">Pendaftaran</h1>
+                <h1 class="title">Pendaftaran Rawat Jalan</h1>
                 <style>
-                    .wizard-title {
+                    .title {
                         font-family: 'Montserrat', sans-serif;
                         font-size: 3rem;
                         font-weight: bold;
                         text-align: left;
                         color: #111754;
-                        margin-bottom: 20px;
+                        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
                     }
                 </style>
                 <form action="#" class="validation-wizard wizard-circle mt-5">
@@ -402,7 +402,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Sistole <small
+                                        <label class="form-label">Sistol <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
                                             placeholder="Enter Value in mmHg" />
@@ -410,7 +410,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Diastole <small
+                                        <label class="form-label">Diastol <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-diastol-inputmask"
                                             id="diastol-mask" placeholder="Enter Value in mmHg" />
@@ -483,10 +483,11 @@
                                     </ul>
                                 </div>
                             </div>
-
-                            <!-- Bagian ini dihapus (input pencarian dan tombol Cari) -->
+                            
                             <div class="d-flex">
-                                <!-- Kosongkan div ini untuk mempertahankan layout -->
+                                <input type="text" class="form-control me-2" id="searchNoRM"
+                                    placeholder="Cari No. RM">
+                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
                             </div>
                         </div>
 
@@ -513,7 +514,10 @@
                                     <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
                                     <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
                                         <option value="poliumum">Poli Umum</option>
+                                        <option value="poligigi">Poli Gigi</option>
+                                        <option value="kia">KIA</option>
                                         <option value="circum">Circum</option>
+                                        <option value="vaksininternasional">Vaksin Internasional</option>
                                     </select>
                                 </div>
                             </div>
@@ -558,11 +562,11 @@
                                     <h5 class="fw-bold">Objective</h5>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Sistole (mmHg)</label>
+                                            <label class="form-label">Sistol (mmHg)</label>
                                             <input type="text" class="form-control" id="sistol-mask">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Diastole (mmHg)</label>
+                                            <label class="form-label">Diastol (mmHg)</label>
                                             <input type="text" class="form-control" id="diastol-mask">
                                         </div>
                                         <div class="col-md-6 mt-3">
@@ -875,28 +879,6 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Daftar judul per step
-            const titles = [
-                'Pendaftaran', // Step 1
-                'Pemeriksaan Awal', // Step 2
-                'Pemeriksaan Poli Umum', // Step 3
-                'Farmasi', // Step 4
-                'Pembayaran' // Step 5
-            ];
-
-            const titleElement = document.getElementById('wizard-title');
-            const wizard = document.querySelector('.validation-wizard');
-
-            if (wizard) {
-                $(wizard).on('stepChanged', function(event, currentIndex) {
-                    titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
-                });
-            }
-        });
-    </script>
 
     {{-- <!-- ICD-10 Search Script -->
     <script>
