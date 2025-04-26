@@ -1153,7 +1153,7 @@
         }
 
         .icd-item:hover {
-            background-color: #f8f9fa;
+            background-color: #B3B9F9;
         }
 
         #selected-icds-icd10 {
@@ -1163,7 +1163,7 @@
 
         .table thead th {
             font-weight: bold;
-            background-color: #f0f2f5 !important;
+            background-color: #B3B9F9 !important;
         }
 
         .table thead th {
