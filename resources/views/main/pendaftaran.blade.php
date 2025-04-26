@@ -12,15 +12,15 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Pendaftaran Rawat Jalan</h1>
+                <h1 id="wizard-title" class="wizard-title">Pendaftaran Rawat Jalan</h1>
                 <style>
-                    .title {
+                    .wizard-title {
                         font-family: 'Montserrat', sans-serif;
                         font-size: 3rem;
                         font-weight: bold;
                         text-align: left;
                         color: #111754;
-                        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+                        margin-bottom: 20px;
                     }
                 </style>
                 <form action="#" class="validation-wizard wizard-circle mt-5">
@@ -351,8 +351,6 @@
                     </section>
 
                     <!-- Step 2 -->
-                    <h1 class="card-title"></h1>
-                    <h1 class="title">Pemeriksaan Awal</h1>
                     <h6>Pemeriksaan Awal</h6>
                     <section>
                         <h4 class="section-title">Data Pendaftaran</h4>
@@ -718,7 +716,7 @@
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981 !important; color: white !important;">
+                                        <thead style="background-color: #676981; color: white;">
                                             <tr>
                                                 <th>Tanggal Kontrol</th>
                                                 <th>Alasan Kontrol</th>
@@ -878,6 +876,28 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Daftar judul per step
+            const titles = [
+                'Pendaftaran Rawat Jalan', // Step 1
+                'Pemeriksaan Awal', // Step 2
+                'Pemeriksaan Poli Umum', // Step 3
+                'Farmasi', // Step 4
+                'Pembayaran' // Step 5
+            ];
+
+            const titleElement = document.getElementById('wizard-title');
+            const wizard = document.querySelector('.validation-wizard');
+
+            if (wizard) {
+                $(wizard).on('stepChanged', function(event, currentIndex) {
+                    titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
+                });
+            }
+        });
+    </script>
 
     {{-- <!-- ICD-10 Search Script -->
     <script>
