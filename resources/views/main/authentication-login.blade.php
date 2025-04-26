@@ -1,82 +1,83 @@
-@extends('layouts.master-auth')
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-@section('title', 'Modernize Bootstrap Admin')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SIP-Kes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-@section('pageContent')
-  <div id="main-wrapper" class="auth-customizer-none">
-    <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100">
-      <div class="position-relative z-index-5">
-        <div class="row">
-          <div class="col-xl-7 col-xxl-8">
-            <a href="/main/index" class="text-nowrap logo-img d-block px-4 py-9 w-100">
-              <img src="{{ URL::asset('build/images/logos/dark-logo.svg') }}" class="dark-logo" alt="Logo-Dark" />
-              <img src="{{ URL::asset('build/images/logos/light-logo.svg') }}" class="light-logo" alt="Logo-light" />
-            </a>
-            <div class="d-none d-xl-flex align-items-center justify-content-center h-n80">
-              <img src="{{ URL::asset('build/images/backgrounds/login-security.svg') }}" alt="modernize-img" class="img-fluid"
-                width="500">
-            </div>
-          </div>
-          <div class="col-xl-5 col-xxl-4">
-            <div class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
-              <div class="auth-max-width col-sm-8 col-md-6 col-xl-7 px-4">
-                <h2 class="mb-1 fs-7 fw-bolder">Welcome to Modernize</h2>
-                <p class="mb-7">Your Admin Dashboard</p>
-                <div class="row">
-                  <div class="col-6 mb-2 mb-sm-0">
-                    <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8"
-                      href="javascript:void(0)" role="button">
-                      <img src="{{ URL::asset('build/images/svgs/google-icon.svg') }}" alt="modernize-img" class="img-fluid me-2"
-                        width="18" height="18">
-                      <span class="flex-shrink-0">with Google</span>
-                    </a>
-                  </div>
-                  <div class="col-6">
-                    <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8"
-                      href="javascript:void(0)" role="button">
-                      <img src="{{ URL::asset('build/images/svgs/facebook-icon.svg') }}" alt="modernize-img"
-                        class="img-fluid me-2" width="18" height="18">
-                      <span class="flex-shrink-0">with FB</span>
-                    </a>
-                  </div>
-                </div>
-                <div class="position-relative text-center my-4">
-                  <p class="mb-0 fs-4 px-3 d-inline-block bg-body text-dark z-index-5 position-relative">or sign
-                    in
-                    with</p>
-                  <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
-                </div>
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  </div>
-                  <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                  </div>
-                  <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
-                      <label class="form-check-label text-dark fs-3" for="flexCheckChecked">
-                        Remeber this Device
-                      </label>
-                    </div>
-                    <a class="text-primary fw-medium fs-3"
-                      href="/main/authentication-forgot-password">Forgot Password ?</a>
-                  </div>
-                  <a href="/main/index" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign In</a>
-                  <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-medium">New to Modernize?</p>
-                    <a class="text-primary fw-medium ms-2" href="/main/authentication-register">Create an
-                      account</a>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+<style>
+    .form-check-input:checked {
+        background-color: #293FCC !important;
+        border-color: #293FCC !important;
+    }
+
+    .font-montserrat {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .font-poppins {
+        font-family: 'Poppins', sans-serif;
+    }
+</style>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="w-full max-w-4xl flex bg-white shadow-lg rounded-lg overflow-hidden">
+        <!-- Left Section: Logo -->
+        <div class="w-1/2 bg-gray-100 flex flex-col items-center justify-center p-10">
+            <img src="{{ URL::asset('build/images/logos/logopengembang.png') }}" alt="SIP-Kes Logo"
+                class="img-fluid w-75">
         </div>
-      </div>
+
+        <!-- Right Section: Login Form -->
+        <div class="w-1/2 p-10 flex flex-col justify-center">
+            <h2 class="text-2xl font-bold text-gray-900 font-montserrat">Welcome to SIP-Kes</h2>
+            <p class="text-sm text-gray-500 mb-6 font-poppins">Your Admin Dashboard</p>
+
+            @if ($errors->has('login'))
+                <div class="mb-4 text-red-500 text-sm">
+                    {{ $errors->first('login') }}
+                </div>
+            @endif
+
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm mb-2 font-poppins" for="username">Username (Email)</label>
+                    <input type="text" id="username" name="username"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        required>
+                    @error('username')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm mb-2 font-poppins" for="password">Password</label>
+                    <input type="password" id="password" name="password"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        required>
+                    @error('password')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="flex items-center mb-6 ">
+                    <input type="checkbox" id="remember" name="remember" class="mr-2">
+                    <label for="remember" class="text-sm text-gray-700 font-poppins">Remember This Device</label>
+                </div>
+
+                <button type="submit"
+                    class="w-full text-white font-bold py-2 rounded-lg shadow-md transition duration-300 font-poppins"
+                    style="background-color: #293FCC">
+                    Sign In
+                </button>
+            </form>
+        </div>
     </div>
-  </div>
-@endsection
+</body>
+
+</html>
