@@ -476,11 +476,11 @@
                                         Surat Keterangan
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
+                                        <li><a class="dropdown-item" href="#">Surat Keterangan Sehat</a></li>
                                         <li><a class="dropdown-item" href="#">Surat Keterangan Sakit</a></li>
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
                                         <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                    </ul>
                                     </ul>
                                 </div>
                             </div>
@@ -826,7 +826,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </section>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
@@ -1190,7 +1189,6 @@
         }
 
         .table thead th {
-            font-weight: bold;
             background-color: #B3B9F9 !important;
         }
 
