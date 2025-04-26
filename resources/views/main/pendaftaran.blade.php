@@ -484,10 +484,9 @@
                                 </div>
                             </div>
 
+                            <!-- Bagian ini dihapus (input pencarian dan tombol Cari) -->
                             <div class="d-flex">
-                                <input type="text" class="form-control me-2" id="searchNoRM"
-                                    placeholder="Cari No. RM">
-                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
+                                <!-- Kosongkan div ini untuk mempertahankan layout -->
                             </div>
                         </div>
 
