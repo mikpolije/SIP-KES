@@ -883,7 +883,7 @@
             const titles = [
                 'Pendaftaran Rawat Jalan', // Step 1
                 'Pemeriksaan Awal', // Step 2
-                'Pemeriksaan', // Step 3
+                'Pemeriksaan Poli Umum', // Step 3
                 'Farmasi', // Step 4
                 'Pembayaran' // Step 5
             ];
@@ -898,7 +898,7 @@
             }
         });
     </script>
-    
+
     {{-- <!-- ICD-10 Search Script -->
     <script>
         $(document).ready(function() {
