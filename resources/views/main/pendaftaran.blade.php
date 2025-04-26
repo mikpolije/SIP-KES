@@ -12,7 +12,7 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Pendaftaran Rawat Jalan</h1>
+                <h1 class="title">Pendaftaran</h1>
                 <style>
                     .title {
                         font-family: 'Montserrat', sans-serif;
@@ -1195,7 +1195,7 @@
         }
 
         .table thead th {
-            color: #000;
+            color: #FFFFFF;
             font-weight: bold;
         }
 
