@@ -716,7 +716,7 @@
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
+                                        <thead style="background-color: #676981 !important; color: white !important;">
                                             <tr>
                                                 <th>Tanggal Kontrol</th>
                                                 <th>Alasan Kontrol</th>
