@@ -513,10 +513,7 @@
                                     <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
                                     <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
                                         <option value="poliumum">Poli Umum</option>
-                                        <option value="poligigi">Poli Gigi</option>
-                                        <option value="kia">KIA</option>
                                         <option value="circum">Circum</option>
-                                        <option value="vaksininternasional">Vaksin Internasional</option>
                                     </select>
                                 </div>
                             </div>
