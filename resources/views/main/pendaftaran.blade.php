@@ -525,37 +525,57 @@
                         </div>
 
                         <!-- Diagnosis dan ICD 10 -->
-                        <h5 class="fw-bold">ICD 10</h5>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <div class="card p-3 shadow-sm">
+                                <div class="card p-3 shadow-sm h-100">
                                     <h5 class="fw-bold">Diagnosis</h5>
                                     <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
                                 </div>
                             </div>
-                            <div class="input-group mb-2">
-                                <input type="text" class="form-control" placeholder="Ketik Kode atau Diagnosa">
-                                <button class="btn btn-outline-secondary" type="button"><i
-                                        class="bi bi-search"></i></button>
-                            </div>
-                            <div id="selected-icds-icd10" class="border p-2 rounded bg-light mt-2">
-                                <!-- ICD Items with delete on hover -->
-                                <div class="icd-item position-relative py-1 px-2 mb-1 rounded">
-                                    H49.4 Progressive external ophthalmoplegia
-                                    <button class="btn btn-sm btn-danger position-absolute delete-btn"
-                                        style="right: 5px; top: 50%; transform: translateY(-50%); display: none;">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                                <div class="icd-item position-relative py-1 px-2 mb-1 rounded">
-                                    R51. Headache
-                                    <button class="btn btn-sm btn-danger position-absolute delete-btn"
-                                        style="right: 5px; top: 50%; transform: translateY(-50%); display: none;">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm h-100">
+                                    <h5 class="fw-bold">ICD 10</h5>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" id="icd10Search"
+                                            placeholder="Ketik Kode atau Diagnosa">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #f8f9fa;">
+                                                <tr>
+                                                    <th class="text-center">Nama ICD 10</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected-icds-icd10">
+                                                <tr class="icd-item">
+                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="icd-item">
+                                                    <td>R51. Headache</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <!-- Subjective dan Objective -->
                         <div class="row mb-3">
@@ -1132,16 +1152,18 @@
             font-size: 0.8rem;
         }
 
-        icd-item {
-            transition: background-color 0.2s;
-        }
-
         .icd-item:hover {
             background-color: #f8f9fa;
         }
 
-        .icd-item:hover .delete-btn {
-            display: block !important;
+        #selected-icds-icd10 {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .table thead th {
+            font-weight: bold;
+            background-color: #f0f2f5 !important;
         }
 
         .table thead th {
@@ -1296,12 +1318,15 @@
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                this.parentElement.remove();
-
-                // Optional: Add code here to also remove from database
-                // const icdCode = this.parentElement.textContent.trim();
-                // removeFromDatabase(icdCode);
+                this.closest('tr').remove();
             });
+        });
+
+        // Add search functionality (example)
+        document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
+            const searchTerm = document.getElementById('icd10Search').value;
+            // Here you would typically call an API to search ICD-10 codes
+            console.log('Searching for:', searchTerm);
         });
     </script>
 
