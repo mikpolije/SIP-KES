@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('riwayat_stok_obat', function (Blueprint $table) {
-            // $table->unsignedBigInteger('id_detail_pembelian_obat')->nullable()->after('id_obat');
+            $table->unsignedBigInteger('id_detail_pembelian_obat')->nullable()->after('id_obat');
 
-            // $table->foreign('id_detail_pembelian_obat')
-            //     ->references('id')
-            //     ->on('detail_pembelian_obat')
-            //     ->onDelete('cascade');
+            $table->foreign('id_detail_pembelian_obat')
+                ->references('id')
+                ->on('detail_pembelian_obat')
+                ->onDelete('cascade');
         });
     }
 
