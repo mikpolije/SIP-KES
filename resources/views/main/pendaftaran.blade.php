@@ -351,6 +351,8 @@
                     </section>
 
                     <!-- Step 2 -->
+                    <h1 class="card-title"></h1>
+                    <h1 class="title">Pemeriksaan Awal</h1>
                     <h6>Pemeriksaan Awal</h6>
                     <section>
                         <h4 class="section-title">Data Pendaftaran</h4>
