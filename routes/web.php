@@ -9,6 +9,12 @@ use App\Http\Controllers\generalConsentController;
 use App\Http\Controllers\TriageController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/surat-sakit', function () {
+    return view('suratSakit');
+});
+
 
 Route::get('/', function () {
     return view('main.index');
