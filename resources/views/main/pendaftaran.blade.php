@@ -480,6 +480,12 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="d-flex">
+                                <input type="text" class="form-control me-2" id="searchNoRM"
+                                    placeholder="Cari No. RM">
+                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
+                            </div>
+                        </div>
 
                         <!-- Antrian - Identitas Pasien -->
                         <div class="card p-3 mb-3 shadow-sm">
