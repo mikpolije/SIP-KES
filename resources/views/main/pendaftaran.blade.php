@@ -483,6 +483,159 @@
                                     </ul>
                                 </div>
                             </div>
+                            <!-- Modal Surat Keterangan Sehat -->
+                            <div class="modal fade" id="modalSehat" tabindex="-1" aria-labelledby="modalSehatLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content p-4 rounded-4 shadow-lg">
+                                        <div class="modal-header border-0">
+                                            <h2 class="modal-title fw-bold text-primary" id="modalSehatLabel">Surat
+                                                Keterangan Sehat</h2>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="nomorSurat" class="form-label">Nomor</label>
+                                                    <input type="text" class="form-control" id="nomorSurat"
+                                                        placeholder="000000">
+                                                </div>
+
+                                                <p>Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
+                                                    PRATAMA INSAN MEDIKA, menerangkan bahwa :</p>
+
+                                                <div class="row g-3">
+                                                    <div class="col-md-8">
+                                                        <label for="namaPasien" class="form-label">Nama</label>
+                                                        <input type="text" class="form-control" id="namaPasien"
+                                                            placeholder="Ketik nama">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="jenisKelamin" class="form-label">Jenis
+                                                            Kelamin</label>
+                                                        <select class="form-select" id="jenisKelamin">
+                                                            <option selected>Tidak diketahui</option>
+                                                            <option>Laki-laki</option>
+                                                            <option>Perempuan</option>
+                                                            <option>Tidak dapat ditentukan</option>
+                                                            <option>Tidak mengisi</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="tanggalLahir" class="form-label">Tanggal
+                                                            Lahir</label>
+                                                        <input type="date" class="form-control" id="tanggalLahir">
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label for="alamatPasien" class="form-label">Alamat</label>
+                                                        <input type="text" class="form-control" id="alamatPasien"
+                                                            placeholder="Jl. Mangga Putih Nomor 6">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <label class="form-label">Telah menjalani pemeriksaan kesehatan
+                                                        jasmani pada tanggal</label>
+                                                    <div class="row g-2">
+                                                        <div class="col-md-6">
+                                                            <input type="date" class="form-control"
+                                                                id="tanggalPemeriksaan">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control"
+                                                                id="hasilPemeriksaan" placeholder="Hasil pemeriksaan">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <label for="untukKeperluan" class="form-label">Surat keterangan ini
+                                                        dipergunakan untuk :</label>
+                                                    <textarea class="form-control" id="untukKeperluan" rows="2"
+                                                        placeholder="Untuk..."></textarea>
+                                                </div>
+
+                                                <div class="mt-4">
+                                                    <label class="form-label">Keterangan:</label>
+                                                    <div class="row g-3">
+                                                        <div class="col-md-4">
+                                                            <label for="beratBadan" class="form-label">Berat
+                                                                Badan</label>
+                                                            <div class="input-group">
+                                                                <input type="number" class="form-control"
+                                                                    id="beratBadan" placeholder="0">
+                                                                <span class="input-group-text">kg</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="tinggiBadan" class="form-label">Tinggi
+                                                                Badan</label>
+                                                            <div class="input-group">
+                                                                <input type="number" class="form-control"
+                                                                    id="tinggiBadan" placeholder="0">
+                                                                <span class="input-group-text">cm</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="golDarah" class="form-label">Golongan
+                                                                Darah</label>
+                                                            <select class="form-select" id="golDarah">
+                                                                <option>A</option>
+                                                                <option>B</option>
+                                                                <option>AB</option>
+                                                                <option>O</option>
+                                                                <option>Tidak diketahui</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mt-3">
+                                                        <label for="tekananDarah" class="form-label">Tekanan
+                                                            Darah</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="tekananDarah"
+                                                                placeholder="0">
+                                                            <span class="input-group-text">mmHg</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-4 text-end">
+                                                    <p>Jember,</p>
+                                                    <p>Dokter yang memeriksa:</p>
+
+                                                    <!-- Canvas untuk tanda tangan -->
+                                                    <div
+                                                        style="border: 1px solid #ccc; border-radius: 10px; position: relative;">
+                                                        <canvas id="signature-pad" width="100%" height="150px"
+                                                            style="display: block; background-color: #f8f9fa;"></canvas>
+                                                        <small class="text-muted"
+                                                            style="position: absolute; bottom: 5px; left: 10px;">
+                                                            Tanda tangan di area ini
+                                                        </small>
+                                                    </div>
+
+                                                    <!-- Tombol untuk reset tanda tangan -->
+                                                    <button type="button" class="btn btn-outline-secondary btn-sm mt-2"
+                                                        id="clear-signature">
+                                                        <i class="bi bi-eraser"></i> Hapus Tanda Tangan
+                                                    </button>
+
+                                                    <p class="mt-3">(Nama Dokter)</p>
+                                                    <p>SIP</p>
+                                                </div>
+                                                <div class="d-grid mt-4">
+                                                    <button type="submit"
+                                                        class="btn btn-primary rounded-pill">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="d-flex">
                                 <input type="text" class="form-control me-2" id="searchNoRM"
                                     placeholder="Cari No. RM">
