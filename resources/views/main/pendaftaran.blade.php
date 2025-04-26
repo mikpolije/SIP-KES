@@ -1195,8 +1195,7 @@
         }
 
         .table thead th {
-            color: #FFFFFF;
-            font-weight: bold;
+            color: #000000;
         }
 
         .table tbody td {
