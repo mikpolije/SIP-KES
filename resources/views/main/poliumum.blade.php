@@ -529,27 +529,55 @@
                         <!-- Diagnosis dan ICD 10 -->
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <div class="card p-3 shadow-sm">
+                                <div class="card p-3 shadow-sm h-100">
                                     <h5 class="fw-bold">Diagnosis</h5>
                                     <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="card p-3 shadow-sm">
+                                <div class="card p-3 shadow-sm h-100">
                                     <h5 class="fw-bold">ICD 10</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
-                                    <div id="selected-icds-icd10" class="border p-2 rounded bg-light mt-2">
-                                        <p class="text-muted text-center mb-0" id="no-icd-selected-icd10">Belum ada
-                                            diagnosa yang dipilih</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #f8f9fa;">
+                                                <tr>
+                                                    <th class="text-center">Nama ICD 10</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected-icds-icd10">
+                                                <tr class="icd-item">
+                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="icd-item">
+                                                    <td>R51. Headache</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <!-- Subjective dan Objective -->
                         <div class="row mb-3">
@@ -565,11 +593,11 @@
                                     <h5 class="fw-bold">Objective</h5>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Sistole (mmHg)</label>
+                                            <label class="form-label">Sistol (mmHg)</label>
                                             <input type="text" class="form-control" id="sistol-mask">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Diastole (mmHg)</label>
+                                            <label class="form-label">Diastol (mmHg)</label>
                                             <input type="text" class="form-control" id="diastol-mask">
                                         </div>
                                         <div class="col-md-6 mt-3">
@@ -613,41 +641,98 @@
                             </div>
                         </div>
 
+
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
+                            <!-- Pemeriksaan Fisik (Left Column) -->
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
                                         <button class="btn btn-sm btn-secondary">Tambah +</button>
                                     </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Nama</th>
-                                                <th>Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead style="background-color: #B3B9F9;">
+                                                <tr>
+                                                    <th class="text-center">Nama</th>
+                                                    <th class="text-center">Keterangan</th>
+                                                    <th class="text-center">Rincian</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Kepala</td>
+                                                    <td>Kelainan pada pembuluh darah</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-info view-details"
+                                                            title="Lihat Rincian">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="card p-3 shadow-sm">
-                                    <h5 class="fw-bold">ICD 9</h5>
+                                <div class="card p-3 h-100">
+                                    <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control" id="icd9Search"
                                             placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
-                                    <div id="selected-icds-icd9" class="border p-2 rounded bg-light mt-2">
-                                        <p class="text-muted text-center mb-0" id="no-icd-selected-icd9">Belum ada
-                                            Tindakan yang dipilih</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #B3B9F9;">
+                                                <tr>
+                                                    <th class="text-center">Nama ICD 9</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected-icds-icd9">
+                                                <tr>
+                                                    <td colspan="2" class="text-center text-muted">Belum ada Tindakan
+                                                        yang dipilih</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal for Pemeriksaan Fisik Details -->
+                        <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Rincian Pemeriksaan Fisik</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="physicalExamModalBody">
+                                        <div id="physicalExamDetails">
+                                            <!-- Detail content will be inserted here -->
+                                            <p><strong>Nama Pemeriksaan:</strong> Kepala</p>
+                                            <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
+                                            <p><strong>Detail:</strong></p>
+                                            <ul>
+                                                <li>Jenis Kelainan: Varises pembuluh darah</li>
+                                                <li>Tingkat Keparahan: Sedang</li>
+                                                <li>Catatan Tambahan: Diperlukan pemeriksaan lanjutan dengan USG Doppler
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Tutup</button>
                                     </div>
                                 </div>
                             </div>
@@ -1009,39 +1094,285 @@
         });
     </script>
 
-    <!-- Tambahkan CSS untuk fitur ICD-10 -->
     <style>
-        .search-item {
-            cursor: pointer;
-            transition: background-color 0.2s;
+        /* Styling khusus untuk modal Surat Keterangan Sehat */
+        #modalSehat .modal-content {
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+            border: none;
         }
 
-        .search-item:hover {
-            background-color: #f8f9fa;
+        #modalSehat .modal-header {
+            border-bottom: none;
         }
 
-        .selected-icd-item {
-            background-color: #e9f7fe;
-            padding: 5px 10px;
-            border-radius: 4px;
+        #modalSehat .modal-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0a0f5c;
+            /* Biru tua */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
-        #search-results {
-            border: 1px solid #ced4da;
-            border-radius: 0 0 5px 5px;
+        #modalSehat label.form-label {
+            font-weight: 600;
         }
 
-        .hover-bg:hover {
-            background-color: #f0f0f0;
-            cursor: pointer;
+        #modalSehat input.form-control,
+        #modalSehat select.form-select,
+        #modalSehat textarea.form-control {
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #dcdcdc;
         }
 
-        .z-index-dropdown {
-            z-index: 1000;
+        #modalSehat input::placeholder,
+        #modalSehat textarea::placeholder {
+            color: #c0c0c0;
+            font-style: italic;
         }
 
-        .min-height-80 {
-            min-height: 80px;
+        #modalSehat .btn-primary {
+            background-color: #2959f7;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 0;
+            border-radius: 25px;
+            box-shadow: 0px 5px 15px rgba(41, 89, 247, 0.4);
+            border: none;
+        }
+
+        #modalSehat .btn-primary:hover {
+            background-color: #1834a7;
+        }
+
+        #modalSehat .btn-close {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive kecil: padding lebih kecil */
+        @media (max-width: 576px) {
+            #modalSehat .modal-content {
+                padding: 20px;
+            }
+
+            #modalSehat .modal-title {
+                font-size: 26px;
+            }
+        }
+
+        /* Tambahkan ke stylesheet Anda */
+        #signature-pad {
+            touch-action: none;
+            /* Penting untuk perangkat touch */
+            cursor: crosshair;
+        }
+
+        .signature-instruction {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        .icd-item:hover {
+            background-color: #B3B9F9;
+        }
+
+        #selected-icds-icd10 {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .table thead th {
+            background-color: #B3B9F9 !important;
+        }
+
+        .table thead th {
+            color: #000000;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+        }
+
+        .table {
+            margin-bottom: 0;
+            border-color: #dee2e6;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(179, 185, 249, 0.1);
+        }
+
+        .view-details {
+            padding: 0.25rem 0.5rem;
         }
     </style>
+@endsection
+
+@section('scripts')
+    <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi canvas ketika modal ditampilkan
+            $('#modalSehat').on('shown.bs.modal', function() {
+                initSignaturePad();
+            });
+
+            function initSignaturePad() {
+                const canvas = document.getElementById('signature-pad');
+                const ctx = canvas.getContext('2d');
+
+                // Atur ukuran canvas yang tepat
+                function resizeCanvas() {
+                    const container = canvas.parentElement;
+                    canvas.width = container.offsetWidth;
+                    canvas.height = container.offsetHeight;
+                    ctx.lineWidth = 2;
+                    ctx.lineCap = 'round';
+                    ctx.strokeStyle = '#000000';
+                }
+
+                resizeCanvas();
+
+                // Variabel untuk tracking
+                let isDrawing = false;
+                let lastX = 0;
+                let lastY = 0;
+
+                // Fungsi untuk mendapatkan posisi mouse/touch
+                function getPosition(e) {
+                    let posX, posY;
+                    if (e.type.includes('touch')) {
+                        const touch = e.touches[0] || e.changedTouches[0];
+                        const rect = canvas.getBoundingClientRect();
+                        posX = touch.clientX - rect.left;
+                        posY = touch.clientY - rect.top;
+                    } else {
+                        const rect = canvas.getBoundingClientRect();
+                        posX = e.clientX - rect.left;
+                        posY = e.clientY - rect.top;
+                    }
+                    return {
+                        x: posX,
+                        y: posY
+                    };
+                }
+
+                // Event listeners untuk mouse
+                canvas.addEventListener('mousedown', (e) => {
+                    const pos = getPosition(e);
+                    isDrawing = true;
+                    [lastX, lastY] = [pos.x, pos.y];
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mousemove', (e) => {
+                    if (!isDrawing) return;
+                    const pos = getPosition(e);
+                    draw(pos.x, pos.y);
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mouseup', () => {
+                    isDrawing = false;
+                });
+
+                canvas.addEventListener('mouseout', () => {
+                    isDrawing = false;
+                });
+
+                // Event listeners untuk touch
+                canvas.addEventListener('touchstart', (e) => {
+                    const pos = getPosition(e);
+                    isDrawing = true;
+                    [lastX, lastY] = [pos.x, pos.y];
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('touchmove', (e) => {
+                    if (!isDrawing) return;
+                    const pos = getPosition(e);
+                    draw(pos.x, pos.y);
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('touchend', () => {
+                    isDrawing = false;
+                });
+
+                // Fungsi menggambar
+                function draw(x, y) {
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                    [lastX, lastY] = [x, y];
+                }
+
+                // Tombol hapus
+                document.getElementById('clear-signature').addEventListener('click', () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                });
+
+                // Handle resize window
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                });
+            }
+        });
+    </script>
+
+    <script>
+        // Add delete functionality
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.closest('tr').remove();
+            });
+        });
+
+        // Add search functionality (example)
+        document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
+            const searchTerm = document.getElementById('icd10Search').value;
+            // Here you would typically call an API to search ICD-10 codes
+            console.log('Searching for:', searchTerm);
+        });
+    </script>
+
+    <script>
+        // Add click event for view details button
+        document.querySelector('.view-details').addEventListener('click', function() {
+            // Set modal content based on the row data
+            const modalContent = `
+            <p><strong>Nama:</strong> Kepala</p>
+            <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
+            <p><strong>Detail Tambahan:</strong></p>
+            <ul>
+                <li>Jenis Kelainan: Varises pembuluh darah</li>
+                <li>Tingkat Keparahan: Sedang</li>
+                <li>Tanggal Pemeriksaan: 15-06-2023</li>
+            </ul>
+        `;
+
+            document.getElementById('modalBodyContent').innerHTML = modalContent;
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            modal.show();
+        });
+    </script>
 @endsection
