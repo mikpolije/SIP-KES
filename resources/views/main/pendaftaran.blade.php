@@ -396,6 +396,7 @@
                                     <textarea name="shortDescription" id="subjek" name="subjek" rows="6" class="form-control required"></textarea>
                                 </div>
                             </div>
+                            <h4 class="section-title">Objective</h4>
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="mb-3">
