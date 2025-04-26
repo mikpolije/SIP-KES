@@ -525,14 +525,18 @@
                         </div>
 
                         <!-- Diagnosis dan ICD 10 -->
-                        <div class="card p-3 shadow-sm">
-                            <h5 class="fw-bold">ICD 10</h5>
+                        <h5 class="fw-bold">ICD 10</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm">
+                                    <h5 class="fw-bold">Diagnosis</h5>
+                                    <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                                </div>
+                            </div>
                             <div class="input-group mb-2">
-                                <input type="text" class="form-control" id="icd10Search"
-                                    placeholder="Ketik Kode Diagnosis">
-                                <button class="btn btn-outline-secondary" type="button">
-                                    <i class="bi bi-search"></i>
-                                </button>
+                                <input type="text" class="form-control" placeholder="Ketik Kode atau Diagnosa">
+                                <button class="btn btn-outline-secondary" type="button"><i
+                                        class="bi bi-search"></i></button>
                             </div>
                             <div id="selected-icds-icd10" class="border p-2 rounded bg-light mt-2">
                                 <!-- ICD Items with delete on hover -->
@@ -617,155 +621,163 @@
 
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead style="background-color: #B3B9F9;">
-                                        <tr>
-                                            <th class="text-center">Nama</th>
-                                            <th class="text-center">Keterangan</th>
-                                            <th class="text-center">Rincian</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Kepala</td>
-                                            <td>Kelainan pada pembuluh darah</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-sm btn-info view-details" title="Lihat Rincian">
-                                                    <i class="bi bi-eye"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- Modal for Details -->
-                            <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Rincian Lengkap</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                            <div class="col-md-6">
+                                <div class="card p-3 h-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
+                                        <button class="btn btn-sm btn-secondary">Tambah +</button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead style="background-color: #B3B9F9;">
+                                                <tr>
+                                                    <th class="text-center">Nama</th>
+                                                    <th class="text-center">Keterangan</th>
+                                                    <th class="text-center">Rincian</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Kepala</td>
+                                                    <td>Kelainan pada pembuluh darah</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-info view-details"
+                                                            title="Lihat Rincian">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- Modal for Details -->
+                                    <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Rincian Lengkap</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body" id="modalBodyContent">
+                                                    <!-- Detail content will be inserted here -->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="modal-body" id="modalBodyContent">
-                                            <!-- Detail content will be inserted here -->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card p-3 shadow-sm">
+                                        <h5 class="fw-bold">ICD 9</h5>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control"
+                                                placeholder="Ketik Kode atau Tindakan">
+                                            <button class="btn btn-outline-secondary" type="button"><i
+                                                    class="bi bi-search"></i></button>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Tutup</button>
+                                        <div id="selected-icds-icd9" class="border p-2 rounded bg-light mt-2">
+                                            <p class="text-muted text-center mb-0" id="no-icd-selected-icd9">Belum ada
+                                                Tindakan yang dipilih</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card p-3 shadow-sm">
-                                    <h5 class="fw-bold">ICD 9</h5>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control"
-                                            placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
+                            <!-- Layanan dan Rincian Obat -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Layanan</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                            <button class="btn btn-outline-secondary" type="button"><i
+                                                    class="bi bi-search"></i></button>
+                                        </div>
+                                        <table class="table table-bordered text-center">
+                                            <thead style="background-color: #676981; color: white;">
+                                                <tr>
+                                                    <th>Jumlah</th>
+                                                    <th>Nama Layanan</th>
+                                                    <th>Harga Layanan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3">Tidak Ada Data</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div id="selected-icds-icd9" class="border p-2 rounded bg-light mt-2">
-                                        <p class="text-muted text-center mb-0" id="no-icd-selected-icd9">Belum ada
-                                            Tindakan yang dipilih</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Rincian Obat</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="Ketik Obat">
+                                            <button class="btn btn-outline-secondary" type="button"><i
+                                                    class="bi bi-search"></i></button>
+                                        </div>
+                                        <table class="table table-bordered text-center">
+                                            <thead style="background-color: #676981; color: white;">
+                                                <tr>
+                                                    <th>Jumlah</th>
+                                                    <th>Nama Obat</th>
+                                                    <th>Harga Obat</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3">Tidak Ada Data</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Layanan dan Rincian Obat -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Layanan</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
-                                    </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Rincian Obat</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Ketik Obat">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
-                                    </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Obat</th>
-                                                <th>Harga Obat</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="row g-2 mb-2">
-                                        <div class="col-md-5">
-                                            <input type="date" class="form-control">
+                            <!-- Rencana Kontrol dan Catatan -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Rencana Kontrol</label>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-md-5">
+                                                <input type="date" class="form-control">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-secondary w-100">Tambah +</button>
+                                            </div>
                                         </div>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-secondary w-100">Tambah +</button>
-                                        </div>
+                                        <table class="table table-bordered text-center">
+                                            <thead style="background-color: #676981; color: white;">
+                                                <tr>
+                                                    <th>Tanggal Kontrol</th>
+                                                    <th>Alasan Kontrol</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2">Tidak Ada Data</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Tanggal Kontrol</th>
-                                                <th>Alasan Kontrol</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Catatan</label>
+                                        <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Catatan</label>
-                                    <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
-                                </div>
-                            </div>
-                        </div>
 
                     </section>
                     <!-- Step 4 -->
@@ -1292,6 +1304,7 @@
             });
         });
     </script>
+
     <script>
         // Add click event for view details button
         document.querySelector('.view-details').addEventListener('click', function() {
