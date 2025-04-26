@@ -238,6 +238,22 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
+                        <span class="hide-menu">Surat Keterangan Sehat</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/blog-detail">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Surat Keterangan Sakit</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/blog-detail">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
                         <span class="hide-menu">Surat Control</span>
                     </a>
                 </li>
