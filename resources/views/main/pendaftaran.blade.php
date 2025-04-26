@@ -43,7 +43,7 @@
                                 <div class="col-md-10">
                                     <label for="searchNoRM" class="form-label">No. RM</label>
                                     <input class="form-control" list="noRMList" id="searchNoRM"
-                                        placeholder="Ketik atau pilih No. RM">
+                                        placeholder="Cari Data Pasien">
                                     <datalist id="noRMList">
                                         <option value="RM001 - Budi">
                                         <option value="RM002 - Siti">
@@ -480,12 +480,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <input type="text" class="form-control me-2" id="searchNoRM"
-                                    placeholder="Cari No. RM">
-                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
-                            </div>
-                        </div>
 
                         <!-- Antrian - Identitas Pasien -->
                         <div class="card p-3 mb-3 shadow-sm">
