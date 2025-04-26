@@ -409,7 +409,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Sistol <small
+                                        <label class="form-label">Sistole <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
                                             placeholder="Enter Value in mmHg" />
@@ -417,7 +417,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Diastol <small
+                                        <label class="form-label">Diastole <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-diastol-inputmask"
                                             id="diastol-mask" placeholder="Enter Value in mmHg" />
