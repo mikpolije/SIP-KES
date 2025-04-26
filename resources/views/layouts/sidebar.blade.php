@@ -6,8 +6,8 @@
 @unless($hideLogo ?? false)
 <div class="brand-logo d-flex align-items-center justify-content-between">
     <a class="logo-img d-flex align-items-center text-nowrap" href="/main/index">
-        <img class="dark-logo logo-size" src="{{ URL::asset('build/images/logos/logosipkes.png') }}" alt="Logo-Dark" />
-        <img class="light-logo logo-size" src="{{ URL::asset('build/images/logos/logosipkes.png') }}"
+        <img class="dark-logo logo-size" src="{{ URL::asset('build/images/logos/logopengembang.png') }}" alt="Logo-Dark" />
+        <img class="light-logo logo-size" src="{{ URL::asset('build/images/logos/logopengembang.png') }}"
             alt="Logo-light" />
     </a>
     <a class="sidebartoggler text-decoration-none fs-5 d-block d-xl-none ms-auto" href="javascript:void(0)">

@@ -31,7 +31,7 @@
         <!-- Sidebar -->
         <aside class="bg-white shadow-md p-6 space-y-6">
             <div class="text-center">
-                <img src= "img/logosipkes.png" alt="Logo SIPKES" width="200"/>
+                <img src= "img/logopengembang.png" alt="Logo SIPKES" width="200"/>
                 <p class="text-sm text-gray-500 mt-1">Sistem Informasi Pelayanan Kesehatan</p>
             </div>
             <nav class="space-y-2">

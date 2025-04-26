@@ -28,7 +28,7 @@
     <div class="w-full max-w-4xl flex bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Left Section: Logo -->
         <div class="w-1/2 bg-gray-100 flex flex-col items-center justify-center p-10">
-            <img src="{{ URL::asset('build/images/logos/logosipkes.png') }}" alt="SIP-Kes Logo" class="img-fluid w-75">
+            <img src="{{ URL::asset('build/images/logos/logopengembang.png') }}" alt="SIP-Kes Logo" class="img-fluid w-75">
         </div>
 
         <!-- Right Section: Login Form -->

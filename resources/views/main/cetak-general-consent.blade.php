@@ -51,7 +51,7 @@
     {{-- HEADER --}}
     <div class="row mb-4">
         <div class="col-6">
-            <img src="{{ URL::asset('/build/images/logos/logosipkes.png') }}" height="40" alt="Logo">
+            <img src="{{ URL::asset('/build/images/logos/logopengembang.png') }}" height="40" alt="Logo">
         </div>
         <div class="col-6">
             <div class="text-center w-100">
