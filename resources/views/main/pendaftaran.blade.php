@@ -617,27 +617,48 @@
 
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button class="btn btn-sm btn-secondary">Tambah +</button>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead style="background-color: #B3B9F9;">
+                                        <tr>
+                                            <th class="text-center">Nama</th>
+                                            <th class="text-center">Keterangan</th>
+                                            <th class="text-center">Rincian</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Kepala</td>
+                                            <td>Kelainan pada pembuluh darah</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-info view-details" title="Lihat Rincian">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Modal for Details -->
+                            <div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Rincian Lengkap</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" id="modalBodyContent">
+                                            <!-- Detail content will be inserted here -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
                                     </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Nama</th>
-                                                <th>Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">ICD 9</h5>
@@ -1110,6 +1131,33 @@
         .icd-item:hover .delete-btn {
             display: block !important;
         }
+
+        .table thead th {
+            color: #000;
+            font-weight: bold;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+        }
+
+        .table {
+            margin-bottom: 0;
+            border-color: #dee2e6;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(179, 185, 249, 0.1);
+        }
+
+        .view-details {
+            padding: 0.25rem 0.5rem;
+        }
     </style>
 @endsection
 
@@ -1242,6 +1290,28 @@
                 // const icdCode = this.parentElement.textContent.trim();
                 // removeFromDatabase(icdCode);
             });
+        });
+    </script>
+    <script>
+        // Add click event for view details button
+        document.querySelector('.view-details').addEventListener('click', function() {
+            // Set modal content based on the row data
+            const modalContent = `
+                <p><strong>Nama:</strong> Kepala</p>
+                <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
+                <p><strong>Detail Tambahan:</strong></p>
+                <ul>
+                    <li>Jenis Kelainan: Varises pembuluh darah</li>
+                    <li>Tingkat Keparahan: Sedang</li>
+                    <li>Tanggal Pemeriksaan: 15-06-2023</li>
+                </ul>
+            `;
+
+            document.getElementById('modalBodyContent').innerHTML = modalContent;
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            modal.show();
         });
     </script>
 
