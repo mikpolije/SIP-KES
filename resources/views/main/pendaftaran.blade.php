@@ -618,7 +618,7 @@
                                         <button class="btn btn-sm btn-secondary">Tambah +</button>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981 !important; color: white !important;">
+                                        <thead class="custom-thead">
                                             <tr>
                                                 <th>Nama</th>
                                                 <th>Keterangan</th>
@@ -660,7 +660,7 @@
                                                 class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981 !important; color: white !important;">
+                                        <thead class="custom-thead">
                                             <tr>
                                                 <th>Jumlah</th>
                                                 <th>Nama Layanan</th>
@@ -684,7 +684,7 @@
                                                 class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981 !important; color: white !important;">
+                                        <thead class="custom-thead">
                                             <tr>
                                                 <th>Jumlah</th>
                                                 <th>Nama Obat</th>
@@ -718,7 +718,7 @@
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981 !important; color: white !important;">
+                                        <thead class="custom-thead">
                                             <tr>
                                                 <th>Tanggal Kontrol</th>
                                                 <th>Alasan Kontrol</th>
@@ -882,8 +882,8 @@
     <script>
         .custom - thead {
                 background - color: #676981 !important;
-                color: white !important;
-            }
+                    color: white !important;
+                }
     </script>
 
     {{-- <!-- ICD-10 Search Script -->
