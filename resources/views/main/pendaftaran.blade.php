@@ -12,7 +12,7 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Pendaftaran</h1>
+                <h1 class="title">Pendaftaran Rawat Jalan</h1>
                 <style>
                     .title {
                         font-family: 'Montserrat', sans-serif;
@@ -402,7 +402,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Sistole <small
+                                        <label class="form-label">Sistol <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
                                             placeholder="Enter Value in mmHg" />
@@ -410,7 +410,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Diastole <small
+                                        <label class="form-label">Diastol <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-diastol-inputmask"
                                             id="diastol-mask" placeholder="Enter Value in mmHg" />
@@ -562,11 +562,11 @@
                                     <h5 class="fw-bold">Objective</h5>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Sistole (mmHg)</label>
+                                            <label class="form-label">Sistol (mmHg)</label>
                                             <input type="text" class="form-control" id="sistol-mask">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Diastole (mmHg)</label>
+                                            <label class="form-label">Diastol (mmHg)</label>
                                             <input type="text" class="form-control" id="diastol-mask">
                                         </div>
                                         <div class="col-md-6 mt-3">
