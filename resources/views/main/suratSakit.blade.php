@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($suratSakit as $index => $surat)
+                    @foreach ($suratSakit as $index => $suratSakit)
                     <tr class="text-center">
                         <td class="px-4 py-2 border">{{ $index + 1 }}</td>
                         <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($surat->tanggal_periksa)->format('d-m-Y') }}</td>
