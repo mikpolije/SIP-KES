@@ -476,8 +476,10 @@
                                         Surat Keterangan
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                        <li><a class="dropdown-item" href="#">Surat Keterangan Sehat</a></li>
-                                        <li><a class="dropdown-item" href="#">Surat Keterangan Sakit</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
                                         <li><a class="dropdown-item" href="#">Informed Consent</a></li>
                                     </ul>
@@ -1218,6 +1220,220 @@
             padding: 0.25rem 0.5rem;
         }
     </style>
+
+<!-- Modal Surat Keterangan Sakit-->
+<div class="modal fade" id="modalSakit" tabindex="-1" aria-labelledby="modalSakitLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content p-4 rounded-4 shadow-lg">
+            <div class="modal-header border-0">
+                <h2 class="modal-title fw-bold text-primary" id="modalSakitLabel">Surat Keterangan Sakit</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label for="nomorSurat" class="col-form-label">Nomor</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="nomorSurat" placeholder="000000">
+                        </div>
+                    </div>
+
+                    <label class="form-label">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan
+                        bahwa:</label>
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-3">
+                            <label for="namaPasien" class="col-form-label">Nama</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="namaPasien" placeholder="Ketik nama">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-3">
+                            <label for="tanggalLahir" class="col-form-label">Tanggal Lahir</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="date" class="form-control" id="tanggalLahir">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-3">
+                            <label for="jenisKelamin" class="col-form-label">Jenis Kelamin</label>
+                        </div>
+                        <div class="col-md-9">
+                            <select class="form-select" id="jenisKelamin">
+                                <option selected>Tidak diketahui</option>
+                                <option>Laki-laki</option>
+                                <option>Perempuan</option>
+                                <option>Tidak dapat ditentukan</option>
+                                <option>Tidak mengisi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-3">
+                            <label for="alamatPasien" class="col-form-label">Alamat</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="alamatPasien"
+                                placeholder="Jl. Mangga Putih Nomor 6">
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="form-label">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga
+                            perlu istirahat selama</label>
+                        <div style="display: inline-block; margin-left: 10px;">
+                            <input type="text" class="form-control" id="banyakHari" placeholder=""
+                                style="width: 50px; display: inline;">
+                        </div>
+                        <label class="form-label" style="margin-left: 10px;">hari</label>
+                    </div>
+
+                    <div class="mt-3" style="display: flex; align-items: center;">
+                        <label class="form-label" style="margin-right: 10px; white-space: nowrap;">mulai
+                            tanggal</label>
+                        <input type="text" id="rangeCalendar" class="form-control" style="width: 300px;"
+                            placeholder="DD/MM/YYYY sampai DD/MM/YYYY">
+                    </div>
+
+                    <!-- Tambahkan ini di bawah sebelum </body> -->
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+                    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+                    <script>
+                        flatpickr("#rangeCalendar", {
+                            mode: "range",
+                            dateFormat: "d/m/Y",
+                            locale: {
+                                rangeSeparator: " s/d "
+                            }
+                        });
+                    </script>
+
+                    <div>
+                        <label class="form-label">Demikian agar digunakan sebagaimana mestinya.</label>
+
+                        <div class="mt-4 text-end">
+                            <p>Jember,</p>
+                            <p>Dokter yang memeriksa:</p>
+
+                            Canvas untuk tanda tangan
+                            <div style="border: 1px solid #ccc; border-radius: 10px; position: relative;">
+                                <canvas id="signature-pad-sakit" width="100%" height="150px"
+                                    style="display: block; background-color: #f8f9fa;"></canvas>
+                                <small class="text-muted" style="position: absolute; bottom: 5px; left: 10px;">
+                                    Tanda tangan di area ini
+                                </small>
+                            </div>
+
+                            <!-- Tombol untuk reset tanda tangan -->
+                            <button type="button" class="btn btn-outline-secondary btn-sm mt-2"
+                                id="clear-signature-sakit">
+                                <i class="bi bi-eraser"></i> Hapus Tanda Tangan
+                            </button>
+
+                            <p class="mt-3">(Nama Dokter)</p>
+                            <p>SIP</p>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    /* Styling khusus untuk modal Surat Keterangan Sakit */
+    #modalSakit .modal-content {
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+        border: none;
+    }
+
+    #modalSakit .modal-header {
+        border-bottom: none;
+    }
+
+    #modalSakit .modal-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #0a0f5c;
+        /* Biru tua */
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    #modalSakit label.form-label {
+        font-weight: 600;
+    }
+
+    #modalSakit input.form-control,
+    #modalSakit select.form-select,
+    #modalSakit textarea.form-control {
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #dcdcdc;
+    }
+
+    #modalSakit input::placeholder,
+    #modalSakit textarea::placeholder {
+        color: #c0c0c0;
+        font-style: italic;
+    }
+
+    #modalSakit .btn-primary {
+        background-color: #2959f7;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 0;
+        border-radius: 25px;
+        box-shadow: 0px 5px 15px rgba(41, 89, 247, 0.4);
+        border: none;
+    }
+
+    #modalSakit .btn-primary:hover {
+        background-color: #1834a7;
+    }
+
+    #modalSakit .btn-close {
+        font-size: 1.2rem;
+    }
+
+    /* Responsive kecil: padding lebih kecil */
+    @media (max-width: 576px) {
+        #modalSakit .modal-content {
+            padding: 20px;
+        }
+
+        #modalSakit .modal-title {
+            font-size: 26px;
+        }
+    }
+
+    /* Tambahkan ke stylesheet Anda */
+    #signature-pad-sakit {
+        touch-action: none;
+        /* Penting untuk perangkat touch */
+        cursor: crosshair;
+    }
+
+    .signature-instruction {
+        position: absolute;
+        bottom: 5px;
+        left: 10px;
+        color: #6c757d;
+        font-size: 0.8rem;
+    }
+</style>
+
 @endsection
 
 @section('scripts')
@@ -1231,11 +1447,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
             $('#modalSehat').on('shown.bs.modal', function() {
-                initSignaturePad();
+                initSignaturePad('signature-pad', 'clear-signature');
+            });
+            // Untuk modal surat sakit
+            $('#modalSakit').on('shown.bs.modal', function() {
+                initSignaturePad('signature-pad-sakit','clear-signature-sakit');
             });
 
-            function initSignaturePad() {
-                const canvas = document.getElementById('signature-pad');
+            function initSignaturePad(canvasId, clearButtonId) {
+                const canvas = document.getElementById(canvasId);
                 const ctx = canvas.getContext('2d');
 
                 // Atur ukuran canvas yang tepat
