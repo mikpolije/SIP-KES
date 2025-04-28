@@ -8,6 +8,6 @@ class SuratKeteranganSehatController extends Controller
 {
     public function index()
     {
-        return view('poliUmum.surat-keterangan-sehat');
+        return view('PoliUmum.surat-keterangan-sehat');
     }
 }
