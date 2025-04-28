@@ -39,3 +39,7 @@ Route::post('/login', [AuthController::class, 'login']);
 // route suratSakit
 use App\Http\Controllers\SuratKeteranganSakitController;
 Route::get('/surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
+// route suratSehat
+use App\Http\Controllers\SuratKeteranganSehatController;
+Route::get('/surat-keterangan-sakit', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
+
