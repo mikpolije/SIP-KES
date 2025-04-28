@@ -1599,39 +1599,7 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function() {
-            // Initialize the form wizard
-            var form = $(".validation-wizard").show();
 
-            // Custom initialization to skip first step
-            $(".validation-wizard").steps({
-                headerTag: "h6",
-                bodyTag: "section",
-                transitionEffect: "fade",
-                titleTemplate: '<span class="step">#index#</span> #title#',
-                labels: {
-                    finish: "Submit"
-                },
-                onStepChanging: function(event, currentIndex, newIndex) {
-                    // Allow all steps except the first one
-                    return currentIndex > 0 || newIndex > 0;
-                },
-                onInit: function(event, currentIndex) {
-                    // Automatically move to step 2 when initialized
-                    if (currentIndex === 0) {
-                        $(this).steps('next');
-                    }
-                }
-            });
-
-            // Make sure the first step is not clickable
-            $(".validation-wizard .steps ul li:first-child").addClass('inactive-step');
-
-            // ICD-10 Search Script and other scripts remain the same
-            // ...
-        });
-    </script>
 
     {{-- <!-- ICD-10 Search Script -->
         <script>
