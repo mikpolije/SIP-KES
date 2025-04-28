@@ -1,21 +1,26 @@
 @extends('layouts.master')
 
 @section('title', 'SIP-Kes')
+<style>
+    body {
+        background-color: #B4AEAE;
+    }
+</style>
 
 @section('pageContent')
     <div class="container-fluid">
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Pendaftaran Rawat Jalan</h1>
+                <h1 id="wizard-title" class="wizard-title">Pendaftaran</h1>
                 <style>
-                    .title {
+                    .wizard-title {
                         font-family: 'Montserrat', sans-serif;
                         font-size: 3rem;
                         font-weight: bold;
                         text-align: left;
                         color: #111754;
-                        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+                        margin-bottom: 20px;
                     }
                 </style>
                 <form action="#" class="validation-wizard wizard-circle mt-5">
@@ -34,6 +39,21 @@
                             }
                         </style>
                         <div class="card w-100">
+                            <div class="row mb-4 align-items-end">
+                                <div class="col-md-10">
+                                    <label for="searchNoRM" class="form-label">Cari Data Pasien</label>
+                                    <input class="form-control" list="noRMList" id="searchNoRM"
+                                        placeholder="Cari Data Pasien">
+                                    <datalist id="noRMList">
+                                        <option value="RM001 - Budi">
+                                        <option value="RM002 - Siti">
+                                        <option value="RM003 - Agus">
+                                    </datalist>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary w-100">Cari</button>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -331,39 +351,11 @@
                     </section>
 
                     <!-- Step 2 -->
+                    <h1 class="card-title"></h1>
+                    <h1 class="title">Pemeriksaan Awal</h1>
                     <h6>Pemeriksaan Awal</h6>
                     <section>
                         <h4 class="section-title">Data Pendaftaran</h4>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="searchNoRM"
-                                    placeholder="Cari berdasarkan No. RM">
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
-                            </div>
-                        </div>
-                        <script>
-                            function searchRM() {
-                                var input, filter, table, tr, td, i, txtValue;
-                                input = document.getElementById("searchNoRM");
-                                filter = input.value.toUpperCase();
-                                table = document.getElementById("yourTableID"); // Ganti dengan ID tabel Anda
-                                tr = table.getElementsByTagName("tr");
-
-                                for (i = 1; i < tr.length; i++) {
-                                    td = tr[i].getElementsByTagName("td")[1]; // Ubah index sesuai posisi No. RM
-                                    if (td) {
-                                        txtValue = td.textContent || td.innerText;
-                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                            tr[i].style.display = "";
-                                        } else {
-                                            tr[i].style.display = "none";
-                                        }
-                                    }
-                                }
-                            }
-                        </script>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="mb-3">
@@ -406,10 +398,11 @@
                                     <textarea name="shortDescription" id="subjek" name="subjek" rows="6" class="form-control required"></textarea>
                                 </div>
                             </div>
+                            <h4 class="section-title">Objective</h4>
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Sistole <small
+                                        <label class="form-label">Sistol <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
                                             placeholder="Enter Value in mmHg" />
@@ -417,7 +410,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label">Diastole <small
+                                        <label class="form-label">Diastol <small
                                                 class="text-muted ms-2">mmHg</small></label>
                                         <input type="text" class="form-control mmhg-diastol-inputmask"
                                             id="diastol-mask" placeholder="Enter Value in mmHg" />
@@ -483,17 +476,21 @@
                                         Surat Keterangan
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                        <li><a class="dropdown-item" href="#">Surat Keterangan Sehat</a></li>
-                                        <li><a class="dropdown-item" href="#">Surat Keterangan Sakit</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
                                         <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                    </ul>
                                     </ul>
                                 </div>
                             </div>
 
-                            <!-- Bagian ini dihapus (input pencarian dan tombol Cari) -->
                             <div class="d-flex">
-                                <!-- Kosongkan div ini untuk mempertahankan layout -->
+                                <input type="text" class="form-control me-2" id="searchNoRM"
+                                    placeholder="Cari No. RM">
+                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
                             </div>
                         </div>
 
@@ -520,7 +517,10 @@
                                     <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
                                     <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
                                         <option value="poliumum">Poli Umum</option>
+                                        <option value="poligigi">Poli Gigi</option>
+                                        <option value="kia">KIA</option>
                                         <option value="circum">Circum</option>
+                                        <option value="vaksininternasional">Vaksin Internasional</option>
                                     </select>
                                 </div>
                             </div>
@@ -958,142 +958,146 @@
         </div>
     </div>
     </div>
-@endsection
+    <!-- Modal Surat Keterangan Sehat-->
+    <div class="modal fade" id="modalSehat" tabindex="-1" aria-labelledby="modalSehatLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content p-4 rounded-4 shadow-lg">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title fw-bold text-primary" id="modalSehatLabel">Surat
+                        Keterangan Sehat</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="nomorSurat" class="form-label">Nomor</label>
+                            <input type="text" class="form-control" id="nomorSurat" placeholder="000000">
+                        </div>
 
-@section('scripts')
-    <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+                        <p>Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
+                            PRATAMA INSAN MEDIKA, menerangkan bahwa :</p>
 
-    <!-- ICD-10 Search Script -->
-    <script>
-        $(document).ready(function() {
-            // Variables to track selected ICDs
-            let selectedICDs = [];
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label for="namaPasien" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="namaPasien" placeholder="Ketik nama">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="jenisKelamin" class="form-label">Jenis
+                                    Kelamin</label>
+                                <select class="form-select" id="jenisKelamin">
+                                    <option selected>Tidak diketahui</option>
+                                    <option>Laki-laki</option>
+                                    <option>Perempuan</option>
+                                    <option>Tidak dapat ditentukan</option>
+                                    <option>Tidak mengisi</option>
+                                </select>
+                            </div>
 
-            // Handle search input
-            $('#search-icd').on('input', function() {
-                const searchTerm = $(this).val();
+                            <div class="col-md-6">
+                                <label for="tanggalLahir" class="form-label">Tanggal
+                                    Lahir</label>
+                                <input type="date" class="form-control" id="tanggalLahir">
+                            </div>
 
-                if (searchTerm.length < 2) {
-                    $('#search-results').hide();
-                    return;
-                }
+                            <div class="col-md-6">
+                                <label for="alamatPasien" class="form-label">Alamat</label>
+                                <input type="text" class="form-control" id="alamatPasien"
+                                    placeholder="Jl. Mangga Putih Nomor 6">
+                            </div>
+                        </div>
 
-                // Make AJAX request to search endpoint
-                $.ajax({
-                    url: '{{ url('search_icd.php') }}',
-                    data: {
-                        term: searchTerm
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        // Clear previous results
-                        $('#search-results').empty();
+                        <div class="mt-4">
+                            <label class="form-label">Telah menjalani pemeriksaan kesehatan
+                                jasmani pada tanggal</label>
+                            <div class="row g-2">
+                                <div class="col-md-6">
+                                    <input type="date" class="form-control" id="tanggalPemeriksaan">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="hasilPemeriksaan"
+                                        placeholder="Hasil pemeriksaan">
+                                </div>
+                            </div>
+                        </div>
 
-                        if (data.length > 0) {
-                            // Add each result to dropdown
-                            data.forEach(function(item) {
-                                $('#search-results').append(
-                                    `<div class="search-item p-2 border-bottom hover-bg" data-id="${item.id}" data-name="${item.name}">
-                                    <strong>${item.id}</strong> - ${item.name}
-                                </div>`
-                                );
-                            });
+                        <div class="mt-4">
+                            <label for="untukKeperluan" class="form-label">Surat keterangan ini
+                                dipergunakan untuk :</label>
+                            <textarea class="form-control" id="untukKeperluan" rows="2" placeholder="Untuk..."></textarea>
+                        </div>
 
-                            // Show results dropdown
-                            $('#search-results').show();
-                        } else {
-                            $('#search-results').append(
-                                `<div class="p-2 text-muted">Tidak ada hasil ditemukan</div>`
-                            );
-                            $('#search-results').show();
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error searching ICD:', error);
-                        $('#search-results').html(
-                            '<div class="p-2 text-danger">Error searching: ' + error +
-                            '</div>');
-                        $('#search-results').show();
-                    }
-                });
-            });
+                        <div class="mt-4">
+                            <label class="form-label">Keterangan:</label>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="beratBadan" class="form-label">Berat
+                                        Badan</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="beratBadan" placeholder="0">
+                                        <span class="input-group-text">kg</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="tinggiBadan" class="form-label">Tinggi
+                                        Badan</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="tinggiBadan" placeholder="0">
+                                        <span class="input-group-text">cm</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="golDarah" class="form-label">Golongan
+                                        Darah</label>
+                                    <select class="form-select" id="golDarah">
+                                        <option>A</option>
+                                        <option>B</option>
+                                        <option>AB</option>
+                                        <option>O</option>
+                                        <option>Tidak diketahui</option>
+                                    </select>
+                                </div>
+                            </div>
 
-            // Handle search button click
-            $('#search-btn').click(function() {
-                const searchTerm = $('#search-icd').val();
-                if (searchTerm.length >= 2) {
-                    // Trigger the same search process
-                    $('#search-icd').trigger('input');
-                }
-            });
+                            <div class="mt-3">
+                                <label for="tekananDarah" class="form-label">Tekanan
+                                    Darah</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="tekananDarah" placeholder="0">
+                                    <span class="input-group-text">mmHg</span>
+                                </div>
+                            </div>
+                        </div>
 
-            // Handle selecting an ICD from the results
-            $(document).on('click', '.search-item', function() {
-                const id = $(this).data('id');
-                const name = $(this).data('name');
+                        <div class="mt-4 text-end">
+                            <p>Jember,</p>
+                            <p>Dokter yang memeriksa:</p>
 
-                // Check if already selected
-                if (!selectedICDs.some(item => item.id === id)) {
-                    // Add to selected ICDs
-                    selectedICDs.push({
-                        id,
-                        name
-                    });
+                            Canvas untuk tanda tangan
+                            <div style="border: 1px solid #ccc; border-radius: 10px; position: relative;">
+                                <canvas id="signature-pad" width="100%" height="150px"
+                                    style="display: block; background-color: #f8f9fa;"></canvas>
+                                <small class="text-muted" style="position: absolute; bottom: 5px; left: 10px;">
+                                    Tanda tangan di area ini
+                                </small>
+                            </div>
 
-                    // Update the display of selected ICDs
-                    updateSelectedICDs();
-                }
-
-                // Clear search and hide results
-                $('#search-icd').val('');
-                $('#search-results').hide();
-            });
-
-            // Function to update display of selected ICDs
-            function updateSelectedICDs() {
-                const container = $('#selected-icds');
-
-                if (selectedICDs.length === 0) {
-                    container.html(
-                        '<p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>'
-                    );
-                } else {
-                    container.empty();
-
-                    selectedICDs.forEach(function(item, index) {
-                        container.append(
-                            `<div class="selected-icd-item mb-1 d-flex align-items-center">
-                            <span class="me-auto"><strong>${item.id}</strong> - ${item.name}</span>
-                            <button type="button" class="btn btn-sm btn-outline-danger remove-icd" data-index="${index}">
-                                <i class="fas fa-times"></i>
+                            <!-- Tombol untuk reset tanda tangan -->
+                            <button type="button" class="btn btn-outline-secondary btn-sm mt-2" id="clear-signature">
+                                <i class="bi bi-eraser"></i> Hapus Tanda Tangan
                             </button>
-                        </div>`
-                        );
-                    });
-                }
-            }
 
-            // Handle removing a selected ICD
-            $(document).on('click', '.remove-icd', function() {
-                const index = $(this).data('index');
-                selectedICDs.splice(index, 1);
-                updateSelectedICDs();
-            });
-
-            // Close dropdown when clicking outside
-            $(document).on('click', function(event) {
-                if (!$(event.target).closest('#search-icd, #search-results, #search-btn').length) {
-                    $('#search-results').hide();
-                }
-            });
-        });
-    </script>
-
+                            <p class="mt-3">(Nama Dokter)</p>
+                            <p>SIP</p>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sehat */
         #modalSehat .modal-content {
@@ -1216,6 +1220,221 @@
             padding: 0.25rem 0.5rem;
         }
     </style>
+
+    <!-- Modal Surat Keterangan Sakit-->
+    <div class="modal fade" id="modalSakit" tabindex="-1" aria-labelledby="modalSakitLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content p-4 rounded-4 shadow-lg">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title fw-bold text-primary" id="modalSakitLabel">Surat Keterangan Sakit</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <label for="nomorSurat" class="col-form-label">Nomor</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" class="form-control" id="nomorSurat" placeholder="000000">
+                            </div>
+                        </div>
+
+                        <label class="form-label">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA
+                            INSAN MEDIKA, menerangkan
+                            bahwa:</label>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="namaPasien" class="col-form-label">Nama</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="namaPasien" placeholder="Ketik nama">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="tanggalLahir" class="col-form-label">Tanggal Lahir</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="tanggalLahir">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="jenisKelamin" class="col-form-label">Jenis Kelamin</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select class="form-select" id="jenisKelamin">
+                                    <option selected>Tidak diketahui</option>
+                                    <option>Laki-laki</option>
+                                    <option>Perempuan</option>
+                                    <option>Tidak dapat ditentukan</option>
+                                    <option>Tidak mengisi</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="alamatPasien" class="col-form-label">Alamat</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="alamatPasien"
+                                    placeholder="Jl. Mangga Putih Nomor 6">
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="form-label">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga
+                                perlu istirahat selama</label>
+                            <div style="display: inline-block; margin-left: 10px;">
+                                <input type="text" class="form-control" id="banyakHari" placeholder=""
+                                    style="width: 50px; display: inline;">
+                            </div>
+                            <label class="form-label" style="margin-left: 10px;">hari</label>
+                        </div>
+
+                        <div class="mt-3" style="display: flex; align-items: center;">
+                            <label class="form-label" style="margin-right: 10px; white-space: nowrap;">mulai
+                                tanggal</label>
+                            <input type="text" id="rangeCalendar" class="form-control" style="width: 300px;"
+                                placeholder="DD/MM/YYYY sampai DD/MM/YYYY">
+                        </div>
+
+                        <!-- Tambahkan ini di bawah sebelum </body> -->
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+                        <script>
+                            flatpickr("#rangeCalendar", {
+                                mode: "range",
+                                dateFormat: "d/m/Y",
+                                locale: {
+                                    rangeSeparator: " s/d "
+                                }
+                            });
+                        </script>
+
+                        <div>
+                            <label class="form-label">Demikian agar digunakan sebagaimana mestinya.</label>
+
+                            <div class="mt-4 text-end">
+                                <p>Jember,</p>
+                                <p>Dokter yang memeriksa:</p>
+
+                                Canvas untuk tanda tangan
+                                <div style="border: 1px solid #ccc; border-radius: 10px; position: relative;">
+                                    <canvas id="signature-pad-sakit" width="100%" height="150px"
+                                        style="display: block; background-color: #f8f9fa;"></canvas>
+                                    <small class="text-muted" style="position: absolute; bottom: 5px; left: 10px;">
+                                        Tanda tangan di area ini
+                                    </small>
+                                </div>
+
+                                <!-- Tombol untuk reset tanda tangan -->
+                                <button type="button" class="btn btn-outline-secondary btn-sm mt-2"
+                                    id="clear-signature-sakit">
+                                    <i class="bi bi-eraser"></i> Hapus Tanda Tangan
+                                </button>
+
+                                <p class="mt-3">(Nama Dokter)</p>
+                                <p>SIP</p>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        /* Styling khusus untuk modal Surat Keterangan Sakit */
+        #modalSakit .modal-content {
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+            border: none;
+        }
+
+        #modalSakit .modal-header {
+            border-bottom: none;
+        }
+
+        #modalSakit .modal-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0a0f5c;
+            /* Biru tua */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        #modalSakit label.form-label {
+            font-weight: 600;
+        }
+
+        #modalSakit input.form-control,
+        #modalSakit select.form-select,
+        #modalSakit textarea.form-control {
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #dcdcdc;
+        }
+
+        #modalSakit input::placeholder,
+        #modalSakit textarea::placeholder {
+            color: #c0c0c0;
+            font-style: italic;
+        }
+
+        #modalSakit .btn-primary {
+            background-color: #2959f7;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 0;
+            border-radius: 25px;
+            box-shadow: 0px 5px 15px rgba(41, 89, 247, 0.4);
+            border: none;
+        }
+
+        #modalSakit .btn-primary:hover {
+            background-color: #1834a7;
+        }
+
+        #modalSakit .btn-close {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive kecil: padding lebih kecil */
+        @media (max-width: 576px) {
+            #modalSakit .modal-content {
+                padding: 20px;
+            }
+
+            #modalSakit .modal-title {
+                font-size: 26px;
+            }
+        }
+
+        /* Tambahkan ke stylesheet Anda */
+        #signature-pad-sakit {
+            touch-action: none;
+            /* Penting untuk perangkat touch */
+            cursor: crosshair;
+        }
+
+        .signature-instruction {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+    </style>
+
 @endsection
 
 @section('scripts')
@@ -1229,11 +1448,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
             $('#modalSehat').on('shown.bs.modal', function() {
-                initSignaturePad();
+                initSignaturePad('signature-pad', 'clear-signature');
+            });
+            // Untuk modal surat sakit
+            $('#modalSakit').on('shown.bs.modal', function() {
+                initSignaturePad('signature-pad-sakit', 'clear-signature-sakit');
             });
 
-            function initSignaturePad() {
-                const canvas = document.getElementById('signature-pad');
+            function initSignaturePad(canvasId, clearButtonId) {
+                const canvas = document.getElementById(canvasId);
                 const ctx = canvas.getContext('2d');
 
                 // Atur ukuran canvas yang tepat
@@ -1358,15 +1581,15 @@
         document.querySelector('.view-details').addEventListener('click', function() {
             // Set modal content based on the row data
             const modalContent = `
-            <p><strong>Nama:</strong> Kepala</p>
-            <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
-            <p><strong>Detail Tambahan:</strong></p>
-            <ul>
-                <li>Jenis Kelainan: Varises pembuluh darah</li>
-                <li>Tingkat Keparahan: Sedang</li>
-                <li>Tanggal Pemeriksaan: 15-06-2023</li>
-            </ul>
-        `;
+                <p><strong>Nama:</strong> Kepala</p>
+                <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
+                <p><strong>Detail Tambahan:</strong></p>
+                <ul>
+                    <li>Jenis Kelainan: Varises pembuluh darah</li>
+                    <li>Tingkat Keparahan: Sedang</li>
+                    <li>Tanggal Pemeriksaan: 15-06-2023</li>
+                </ul>
+            `;
 
             document.getElementById('modalBodyContent').innerHTML = modalContent;
 
@@ -1375,4 +1598,232 @@
             modal.show();
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Daftar judul per step
+            const titles = [
+                'Pendaftaran', // Step 1
+                'Pemeriksaan Awal', // Step 2
+                'Pemeriksaan Poli Umum', // Step 3
+                'Farmasi', // Step 4
+                'Pembayaran' // Step 5
+            ];
+
+            const titleElement = document.getElementById('wizard-title');
+            const wizard = document.querySelector('.validation-wizard');
+
+            if (wizard) {
+                $(wizard).on('stepChanged', function(event, currentIndex) {
+                    titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
+                });
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi wizard
+            const wizard = $(".validation-wizard").steps({
+                headerTag: "h6",
+                bodyTag: "section",
+                transitionEffect: "fade",
+                enableAllSteps: true, // Menampilkan semua step tetapi tidak aktif
+                onStepChanging: function(event, currentIndex, newIndex) {
+                    // Nonaktifkan Step 1, Step 4, dan Step 5
+                    if (newIndex === 0 || newIndex === 3 || newIndex === 4) {
+                        return false; // Mencegah navigasi ke step ini
+                    }
+                    return true;
+                },
+                onInit: function(event, currentIndex) {
+                    // Langsung ke Step 2 saat halaman dimuat
+                    if (currentIndex === 0) {
+                        wizard.steps("next"); // Pindah ke Step 2
+                    }
+                }
+            });
+
+            // Ubah judul wizard dinamis
+            const titles = [
+                'Pendaftaran', // Step 1 (dinonaktifkan)
+                'Pemeriksaan Awal', // Step 2
+                'Pemeriksaan Poli Umum', // Step 3
+                'Farmasi', // Step 4 (dinonaktifkan)
+                'Pembayaran' // Step 5 (dinonaktifkan)
+            ];
+
+            const titleElement = document.getElementById('wizard-title');
+            $(wizard).on('stepChanged', function(event, currentIndex) {
+                if (currentIndex === 0 || currentIndex === 3 || currentIndex === 4) {
+                    titleElement.innerText = 'Pemeriksaan Rawat Jalan';
+                } else {
+                    titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
+                }
+            });
+        });
+    </script>
+
+
+    {{-- <!-- ICD-10 Search Script -->
+    <script>
+        $(document).ready(function() {
+            // Variables to track selected ICDs
+            let selectedICDs = [];
+
+            // Handle search input
+            $('#search-icd').on('input', function() {
+                const searchTerm = $(this).val();
+
+                if (searchTerm.length < 2) {
+                    $('#search-results').hide();
+                    return;
+                }
+
+                // Make AJAX request to search endpoint
+                $.ajax({
+                    url: '{{ url('search_icd.php') }}',
+data: {
+term: searchTerm
+},
+dataType: 'json',
+success: function(data) {
+// Clear previous results
+$('#search-results').empty();
+
+if (data.length > 0) {
+// Add each result to dropdown
+data.forEach(function(item) {
+$('#search-results').append(
+`<div class="search-item p-2 border-bottom hover-bg" data-id="${item.id}" data-name="${item.name}">
+    <strong>${item.id}</strong> - ${item.name}
+</div>`
+);
+});
+
+// Show results dropdown
+$('#search-results').show();
+} else {
+$('#search-results').append(
+`<div class="p-2 text-muted">Tidak ada hasil ditemukan</div>`
+);
+$('#search-results').show();
+}
+},
+error: function(xhr, status, error) {
+console.error('Error searching ICD:', error);
+$('#search-results').html(
+'<div class="p-2 text-danger">Error searching: ' + error +
+    '</div>');
+$('#search-results').show();
+}
+});
+});
+
+// Handle search button click
+$('#search-btn').click(function() {
+const searchTerm = $('#search-icd').val();
+if (searchTerm.length >= 2) {
+// Trigger the same search process
+$('#search-icd').trigger('input');
+}
+});
+
+// Handle selecting an ICD from the results
+$(document).on('click', '.search-item', function() {
+const id = $(this).data('id');
+const name = $(this).data('name');
+
+// Check if already selected
+if (!selectedICDs.some(item => item.id === id)) {
+// Add to selected ICDs
+selectedICDs.push({
+id,
+name
+});
+
+// Update the display of selected ICDs
+updateSelectedICDs();
+}
+
+// Clear search and hide results
+$('#search-icd').val('');
+$('#search-results').hide();
+});
+
+// Function to update display of selected ICDs
+function updateSelectedICDs() {
+const container = $('#selected-icds');
+
+if (selectedICDs.length === 0) {
+container.html(
+'<p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>'
+);
+} else {
+container.empty();
+
+selectedICDs.forEach(function(item, index) {
+container.append(
+`<div class="selected-icd-item mb-1 d-flex align-items-center">
+    <span class="me-auto"><strong>${item.id}</strong> - ${item.name}</span>
+    <button type="button" class="btn btn-sm btn-outline-danger remove-icd" data-index="${index}">
+        <i class="fas fa-times"></i>
+    </button>
+</div>`
+);
+});
+}
+}
+
+// Handle removing a selected ICD
+$(document).on('click', '.remove-icd', function() {
+const index = $(this).data('index');
+selectedICDs.splice(index, 1);
+updateSelectedICDs();
+});
+
+// Close dropdown when clicking outside
+$(document).on('click', function(event) {
+if (!$(event.target).closest('#search-icd, #search-results, #search-btn').length) {
+$('#search-results').hide();
+}
+});
+});
+</script>
+
+<!-- Tambahkan CSS untuk fitur ICD-10 -->
+<style>
+.search-item {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-item:hover {
+    background-color: #f8f9fa;
+}
+
+.selected-icd-item {
+    background-color: #e9f7fe;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#search-results {
+    border: 1px solid #ced4da;
+    border-radius: 0 0 5px 5px;
+}
+
+.hover-bg:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.z-index-dropdown {
+    z-index: 1000;
+}
+
+.min-height-80 {
+    min-height: 80px;
+}
+</style> --}}
 @endsection
