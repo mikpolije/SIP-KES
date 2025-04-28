@@ -202,6 +202,10 @@
                 <span class="step"><i class="ti ti-stethoscope"></i></span>Pemeriksaan
             </h6>
             <section>
+                <div class="alert alert-success w-100 mb-3 d-none" role="alert" id="alert-pemeriksaan">
+                    Pemeriksaan telah dilakukan.
+                </div>
+
                 <div id="pemeriksaan-kb" class="d-none">
                     @include('main.polikia.pemeriksaan.kb')
                 </div>
@@ -265,7 +269,26 @@ const pemeriksaanFieldLists = {
         'pemeriksaan_dalam', 'hasil_vt', 'penilaian', 'observasi'
     ],
     persalinan: [
-
+        'id_bidan', 'tempat_persalinan', 'alamat_persalinan', 'catatan_rujukan', 'alasan_merujuk',
+        'tempat_merujuk', 'pendamping', 'partogram', 'masalah_lain_kala_i', 'penatalaksana',
+        'hasil', 'eposotormy', 'tindakan_eposotormy', 'gawat_janin', 'tindakan_gawat_janin',
+        'destosia', 'tindakan_destosia', 'waktu_kala_iii', 'waktu_oksitosin', 'tindakan_waktu_oksitosin',
+        'waktu_ulang_oksitosin', 'tindakan_waktu_ulang_oksitosin', 'penegangan_tali', 'tindakan_penegangan_tali', 'uteri',
+        'tindakan_uteri', 'atoni_uteri', 'tindakan_atoni_uteri', 'plasenta_lahir', 'tindakan_plasenta_lahir',
+        'plasenta_tidak_lahir', 'tindakan_plasenta_tidak_lahir', 'laserasi', 'tindakan_laserasi', 'laserasi_perineum',
+        'penjahitan', 'alasan_penjahitan', 'jumlah_pendarahan', 'masalah_lain_kala_iii', 'penatalaksanaan_masalah',
+        'hasil_kala_iii', 'ku', 'td', 'nadi', 'napas', 'masalah_kala_iv', // Ini 6
+        'normal', 'cacat_bawaan', 'masalah_lain_bayi', 'tindakan_masalah_lain_bayi', 'cek_asfiksia',
+        'asfiksia', 'cek_pemberian_asi', 'pemberian_asi', 'jam_pemberian_asi', 'cek_penatalaksanaan',
+        'penatalaksanaan', 'hpht', 'his', 'lendir', 'darah',
+        'ketuban', 'keluhan', 'riwayat_persalinan_lalu', 'riwayat_alergi', 'tekanan_darah_o',
+        'suhu', 'nadi_o', 'odema', 'palpasi', 'teraba',
+        'djj', 'kontraksi', 'pemeriksaan_dalam', 'oleh', 'hasil_v1',
+        'a', 'observasi_kala_i'
+    ],
+    persalinan_detail: [
+        'jam_ke', 'tekanan_darah', 'tinggi_fundus', 'kandung_kemih', 'waktu',
+        'nadi_kala_iv', 'kontraksi_uterus', 'pendarahan',
     ],
     kb: [
         'nama', 'umur', 'pekerjaan', 'agama', 'pendidikan',
@@ -405,6 +428,10 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
             });
 
             $(".validation-wizard").steps("next");
+        }
+
+        if (res.data.layanan_terisi) {
+            $('#alert-pemeriksaan').removeClass('d-none')
         }
     }).fail(function (xhr, status, error) {
         errorMessage(xhr.responseJSON.message)
@@ -573,11 +600,141 @@ $(document).on('click', '#submit_pemeriksaan_anak', function (e) {
     })
 })
 
+$(document).on('click', '#tambah_detail_persalinan', function (e) {
+    let formData = {};
+    let errors = {};
+    pemeriksaanFieldLists['persalinan_detail'].forEach(field => {
+        const $input = $(`#pemeriksaan-persalinan [name=${field}]`);
+        let value = '';
+
+        if ($input.is(':radio')) {
+            value = $(`#pemeriksaan-persalinan [name=${field}]:checked`).val() || '';
+        } else {
+            value = $input.val() || '';
+        }
+
+        formData[field] = value;
+
+        if (!value) {
+            errors[field] = [`${field.replaceAll('_', ' ')} wajib diisi.`];
+        }
+
+        if ($input.attr('type') === 'number' && value) {
+            if (isNaN(value)) {
+                errors[field] = [`${field.replaceAll('_', ' ')} harus berupa angka.`];
+            }
+        }
+    });
+
+    if (Object.keys(errors).length > 0) {
+        showErrorsOnFields(errors, 'pemeriksaan-persalinan', false);
+        return;
+    }
+
+    let $detail = $('#pemeriksaan-persalinan #pemeriksaan-persalinan-detail .detail-item')
+    if ($detail.length <= 0) {
+        $('#pemeriksaan-persalinan-detail').html('')
+    }
+
+    $('#pemeriksaan-persalinan-detail').append(`
+        <tr class="detail-item">
+            <td name="detail[][jam_ke]">${formData['jam_ke']}</td>
+            <td name="detail[][waktu]">${formData['waktu']}</td>
+            <td name="detail[][tekanan_darah]">${formData['tekanan_darah']}</td>
+            <td name="detail[][nadi_kala_iv]">${formData['nadi_kala_iv']}</td>
+            <td name="detail[][tinggi_fundus]">${formData['tinggi_fundus']}</td>
+            <td name="detail[][kontraksi_uterus]">${formData['kontraksi_uterus']}</td>
+            <td name="detail[][kandung_kemih]">${formData['kandung_kemih']}</td>
+            <td name="detail[][pendarahan]">${formData['pendarahan']}</td>
+            <td>
+                <button type="button" class="btn btn-danger hapus-detail-persalinan"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+    `)
+})
+
+$(document).on('click', '.hapus-detail-persalinan', function (e) {
+    $(this).closest('.detail-item').remove()
+    let $detail = $('#pemeriksaan-persalinan #pemeriksaan-persalinan-detail .detail-item')
+    if ($detail.length <= 0) {
+        $('#pemeriksaan-persalinan-detail').append(`
+            <tr>
+                <td colspan="9" class="text-center">Belum ada data.</td>
+            </tr>
+        `)
+    }
+})
+
+
+$(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
+    let eThis = $(this)
+    eThis.prop('disabled', true)
+    eThis.html('Loading...')
+
+    let formData = {
+        detail: []
+    };
+    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
+    pemeriksaanFieldLists['persalinan'].forEach(field => {
+        const $input = $(`#pemeriksaan-persalinan [name="${field}"], #pemeriksaan-persalinan [name="${field}[]"]`);
+
+        if ($input.is(':radio')) {
+            formData[field] = $(`#pemeriksaan-persalinan [name="${field}"]:checked`).val() || '';
+        } else if ($input.is(':checkbox')) {
+            const values = $(`#pemeriksaan-persalinan [name="${field}[]"]:checked`)
+                .map(function () {
+                    return this.value;
+                }).get().join(',');
+            formData[field] = values;
+        } else {
+            formData[field] = $input.val() || '';
+        }
+    });
+
+    let $detail = $('#pemeriksaan-persalinan #pemeriksaan-persalinan-detail .detail-item')
+    if ($detail.length <= 0) {
+        errorMessage("Pemantauan Persalianan Kala IV Belum Diisi!")
+        eThis.prop('disabled', false)
+        eThis.html('<i class="fas fa-save me-2"></i>Simpan')
+    }
+
+    $detail.each((index, detail) => {
+        let detailItem = {};
+
+        pemeriksaanFieldLists['persalinan_detail'].forEach(field => {
+            detailItem[field] = $(detail).find(`td[name="detail[][${field}]"]`).html() || '';
+        });
+
+        formData.detail.push(detailItem);
+    });
+
+    $.ajax({
+        url: "{{ route('api.poli-kia.pemeriksaan-persalinan') }}",
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: formData
+    }).done(function (res) {
+        successMessage(res.message)
+        $(".validation-wizard").steps("next");
+    }).fail(function (xhr, status, error) {
+        let errors = xhr.responseJSON.errors
+        errorMessage(xhr.responseJSON.message)
+        if (errors != undefined) {
+            showErrorsOnFields(errors, 'pemeriksaan-persalinan')
+        }
+    }).always(function () {
+        eThis.prop('disabled', false)
+        eThis.html('<i class="fas fa-save me-2"></i>Simpan')
+    })
+})
+
 // Function Helper
 function setFieldValue(id, value) {
     $(`${id}`).val(value ?? '').trigger('change');
 }
-function showErrorsOnFields(errors, id) {
+function showErrorsOnFields(errors, id, scrollTop = true) {
     for (const [key, value] of Object.entries(errors)) {
         const input = $(`#${id} [name=${key}], #${id} [name="${key}[]"]`);
 
@@ -595,7 +752,9 @@ function showErrorsOnFields(errors, id) {
         }
     }
 
-    $("html, body").animate({ scrollTop: 0 }, "slow");
+    if (scrollTop) {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
 }
 function errorMessage(msg) {
     toastr.error('Gagal', msg, {

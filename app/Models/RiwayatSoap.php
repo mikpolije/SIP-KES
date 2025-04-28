@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FormulirPersalinan extends Model
+class RiwayatSoap extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi_persalinan';
+    protected $table = 'riwayat_soap';
 
     protected $primaryKey = 'id';
 

@@ -50,9 +50,10 @@ $bbl_asfiksia = [
     <div class="row g-5 mb-5">
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="nama_bidan" class="form-label">Nama Bidan</label>
-                <select name="nama_bidan" class="form-control" id="nama_bidan" required>
+                <label for="id_bidan" class="form-label">Nama Bidan</label>
+                <select name="id_bidan" class="form-control" id="id_bidan" required>
                     <option value="">Pilih Bidan</option>
+                    <option value="1">Testt</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -161,8 +162,8 @@ $bbl_asfiksia = [
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="masalah_lain" class="form-label mb-3">Masalah lain, sebutkan</label>
-                        <input type="text" class="form-control" name="masalah_lain" id="masalah_lain">
+                        <label for="masalah_lain_kala_i" class="form-label mb-3">Masalah lain, sebutkan</label>
+                        <input type="text" class="form-control" name="masalah_lain_kala_i" id="masalah_lain_kala_i">
                     </div>
                     <div class="mb-3">
                         <label for="penatalaksana" class="form-label mb-3">Penatalaksana masalah tersebut</label>
@@ -186,17 +187,17 @@ $bbl_asfiksia = [
                         <div class="row gap-3">
                             <div class="row-6 d-flex gap-5 align-items-center">
                                 <div class="form-check w-50">
-                                    <input class="form-check-input" type="radio" name="partogram" id="radioDefault1"
+                                    <input class="form-check-input" type="radio" name="eposotormy" id="radioDefault1"
                                         required>
                                     <label class="form-check-label" for="radioDefault1">
                                         Ya, Indikasi
                                     </label>
                                 </div>
-                                <input type="text" class="form-control" name="eposotormy" id="eposotormy">
+                                <input type="text" class="form-control" name="tindakan_eposotormy" id="eposotormy">
                             </div>
                             <div class="row-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="partogram" id="radioDefault2"
+                                    <input class="form-check-input" type="radio" name="eposotormy" id="radioDefault2"
                                         required>
                                     <label class="form-check-label" for="radioDefault2">
                                         Tidak
@@ -206,21 +207,21 @@ $bbl_asfiksia = [
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="gawat-janin" class="form-label mb-3">Gawat Janin</label>
+                        <label for="gawat_janin" class="form-label mb-3">Gawat Janin</label>
                         <div class="row gap-3">
                             <div class="row-6 d-flex gap-4 align-items-center">
                                 <div class="form-check w-50">
-                                    <input class="form-check-input" type="radio" name="gawat-janin" id="radioDefault1"
+                                    <input class="form-check-input" type="radio" name="gawat_janin" id="radioDefault1"
                                         required>
                                     <label class="form-check-label" for="radioDefault1">
                                         Ya, tindakan yang dilakukan
                                     </label>
                                 </div>
-                                <input type="text" class="form-control" name="tindakan-gawat-janin" id="tindakan-gawat-janin">
+                                <input type="text" class="form-control" name="tindakan_gawat_janin" id="tindakan_gawat_janin">
                             </div>
                             <div class="row-6">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gawat-janin" id="radioDefault2"
+                                    <input class="form-check-input" type="radio" name="gawat_janin" id="radioDefault2"
                                         required>
                                     <label class="form-check-label" for="radioDefault2">
                                         Tidak
@@ -240,7 +241,7 @@ $bbl_asfiksia = [
                                         Ya, tindakan yang dilakukan
                                     </label>
                                 </div>
-                                <input type="text" class="form-control" name="destosia" id="destosia">
+                                <input type="text" class="form-control" name="tindakan_destosia" id="destosia">
                             </div>
                             <div class="row-6">
                                 <div class="form-check">
@@ -253,7 +254,7 @@ $bbl_asfiksia = [
                             </div>
                         </div>
                     </div>
-                
+
                 </div>
             </div>
         </div>
@@ -265,29 +266,29 @@ $bbl_asfiksia = [
                 <div class="card-body row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="waktu-kala" class="form-label mb-3">Lama kala III</label>
+                            <label for="waktu_kala_iii" class="form-label mb-3">Lama kala III</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="waktu-kala" id="waktu-kala"> 
+                                <input type="text" class="form-control" name="waktu_kala_iii" id="waktu_kala_iii">
                                 <span class="input-group-text">Menit</span>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="waktu-oksitosin" class="form-label mb-3">Pemberian oksitosin 10 U im?</label>
+                            <label for="waktu_oksitosin" class="form-label mb-3">Pemberian oksitosin 10 U im?</label>
                             <div class="row gap-3">
                                 <div class="row-6 input-group">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="waktu-oksitosin" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="waktu_oksitosin" id="radioDefault1"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Ya, waktu
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="waktu-oksitosin" id="waktu-oksitosin">
+                                    <input type="text" class="form-control" name="tindakan_waktu_oksitosin" id="tindakan_waktu_oksitosin">
                                     <span class="input-group-text">Menit</span>
                                 </div>
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="waktu-oksitosin" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="waktu_oksitosin" id="radioDefault2"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Tidak, alasan
@@ -297,22 +298,22 @@ $bbl_asfiksia = [
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="waktu-ulang-oksitosin" class="form-label mb-3">Pemberian ulang oksitosin (2x)?</label>
+                            <label for="waktu_ulang_oksitosin" class="form-label mb-3">Pemberian ulang oksitosin (2x)?</label>
                             <div class="row gap-3">
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="waktu-ulang-oksitosin" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="waktu_ulang_oksitosin" id="radioDefault1"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Ya, alasan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="waktu-ulang-oksitosin" id="waktu-ulang-oksitosin">
-                    
+                                    <input type="text" class="form-control" name="tindakan_waktu_ulang_oksitosin" id="tindakan_waktu_ulang_oksitosin">
+
                                 </div>
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="waktu-ulang-oksitosin" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="waktu_ulang_oksitosin" id="radioDefault2"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Tidak
@@ -322,35 +323,35 @@ $bbl_asfiksia = [
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="penegangan-tali" class="form-label mb-3">Penegangan tali pusat terkendali?</label>
+                            <label for="penegangan_tali" class="form-label mb-3">Penegangan tali pusat terkendali?</label>
                             <div class="row gap-3">
-                         
+
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="penegangan-tali" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="penegangan_tali" id="radioDefault2"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Ya
                                         </label>
-                                    </div>  
+                                    </div>
                                 </div>
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="penegangan-tali" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="penegangan_tali" id="radioDefault1"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Tidak, alasan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="penegangan-tali" id="penegangan-tali">
-                    
+                                    <input type="text" class="form-control" name="tindakan_penegangan_tali" id="tindakan_penegangan_tali">
+
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="uteri" class="form-label mb-3">Mesase fundus uteri?</label>
                             <div class="row gap-3">
-                         
+
                                 <div class="row-6">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="uteri" id="radioDefault2"
@@ -358,7 +359,7 @@ $bbl_asfiksia = [
                                         <label class="form-check-label" for="radioDefault2">
                                             Ya
                                         </label>
-                                    </div>  
+                                    </div>
                                 </div>
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
@@ -368,46 +369,46 @@ $bbl_asfiksia = [
                                             Tidak, alasan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="uteri" id="uteri">
-                    
+                                    <input type="text" class="form-control" name="tindakan_uteri" id="uteri">
+
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="atoni-uteri" class="form-label mb-3">Atoni uteri?</label>
+                            <label for="atoni_uteri" class="form-label mb-3">Atoni uteri?</label>
                             <div class="row gap-3">
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="atoni-uteri" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="atoni_uteri" id="radioDefault1"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Ya, tindakan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="atoni-uteri" id="atoni-uteri">
-                    
+                                    <input type="text" class="form-control" name="tindakan_atoni_uteri" id="tindakan_atoni_uteri">
+
                                 </div>
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="atoni-uteri" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="atoni_uteri" id="radioDefault2"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Tidak
                                         </label>
-                                    </div>  
+                                    </div>
                                 </div>
-           
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="plasenta-lahir" class="form-label mb-3">Plasenta lahir lengkap (intact)?</label>
+                            <label for="plasenta_lahir" class="form-label mb-3">Plasenta lahir lengkap (intact)?</label>
                             <div class="row gap-3">
 
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="plasenta-lahir" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="plasenta_lahir" id="radioDefault2"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Ya
@@ -416,34 +417,34 @@ $bbl_asfiksia = [
                                 </div>
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="plasenta-lahir" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="plasenta_lahir" id="radioDefault1"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Tidak, tindakan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="plasenta-lahir" id="plasenta-lahir">
-                    
+                                    <input type="text" class="form-control" name="tindakan_plasenta_lahir" id="tindakan_plasenta_lahir">
+
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="plasenta-tidak-lahir" class="form-label mb-3">Plasenta  tidak lahir > 30 menit?</label>
+                            <label for="plasenta_tidak_lahir" class="form-label mb-3">Plasenta  tidak lahir > 30 menit?</label>
                             <div class="row gap-3">
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="plasenta-tidak-lahir" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="plasenta_tidak_lahir" id="radioDefault1"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Ya, tindakan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="plasenta-tidak-lahir" id="plasenta-tidak-lahir">
-                    
+                                    <input type="text" class="form-control" name="tindakan_plasenta_tidak_lahir" id="tindakan_plasenta_tidak_lahir">
+
                                 </div>
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="plasenta-tidak-lahir" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="plasenta_tidak_lahir" id="radioDefault2"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Tidak
@@ -464,8 +465,8 @@ $bbl_asfiksia = [
                                             Ya, dimana
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="laserasi" id="laserasi">
-                    
+                                    <input type="text" class="form-control" name="tindakan_laserasi" id="tindakan_laserasi">
+
                                 </div>
                                 <div class="row-6">
                                     <div class="form-check">
@@ -480,14 +481,14 @@ $bbl_asfiksia = [
                             </div>
                         </div>
                         <div class="mb-3 d-flex gap-5 align-items-center">
-                            <label for="laserasi-perineum" class="form-label mb-3">Jika laserasi perineum, derajat?</label>
+                            <label for="laserasi_perineum" class="form-label mb-3">Jika laserasi perineum, derajat?</label>
                             <div>
                                 @foreach(collect($laserasi_perineum)->chunk(4) as $chunk)
                                 <div class="row">
                                         @foreach($chunk as $key => $value)
                                         <div class="col-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="laserasi-perineum"
+                                                <input class="form-check-input" type="radio" name="laserasi_perineum"
                                                     id="radio-{{ $loop->parent->index }}-{{ $loop->index }}" required>
                                                 <label class="form-check-label"
                                                     for="radio-{{ $loop->parent->index }}-{{ $loop->index }}">
@@ -501,12 +502,12 @@ $bbl_asfiksia = [
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="tindakan-penjahitan" class="form-label mb-3">Tindakan?</label>
+                            <label for="penjahitan" class="form-label mb-3">Tindakan?</label>
                             <div class="row gap-3">
 
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="tindakan-penjahitan" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="penjahitan" id="radioDefault2"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Penjahitan dengan / tanpa anestesi
@@ -515,34 +516,34 @@ $bbl_asfiksia = [
                                 </div>
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="tindakan-penjahitan" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="penjahitan" id="radioDefault1"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Tidak dijahit, alasan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="tindakan-penjahitan" id="tindakan-penjahitan">
-                    
+                                    <input type="text" class="form-control" name="alasan_penjahitan" id="penjahitan">
+
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="jumlah-pendarahan">Jumlah Pendarahan</label>
-                            <input type="text" class="form-control" name="jumlah-pendarahan" required>
+                            <label for="jumlah_pendarahan">Jumlah Pendarahan</label>
+                            <input type="text" class="form-control" name="jumlah_pendarahan" required>
                         </div>
                         <div class="mb-3">
-                            <label for="masalah_lain">Masalah lain, sebutkan</label>
-                            <input type="text" class="form-control" name="masalah_lain" required>
+                            <label for="masalah_lain_kala_iii">Masalah lain, sebutkan</label>
+                            <input type="text" class="form-control" name="masalah_lain_kala_iii" required>
                         </div>
                         <div class="mb-3">
-                            <label for="penatalaksanaan-masalah">Penatalaksanaan masalah tersebut</label>
-                            <input type="text" class="form-control" name="penatalaksanaan-masalah" required>
+                            <label for="penatalaksanaan_masalah">Penatalaksanaan masalah tersebut</label>
+                            <input type="text" class="form-control" name="penatalaksanaan_masalah" required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="hasil">Hasilnya</label>
-                            <input type="text" class="form-control" name="hasil" required>
+                            <label for="hasil_kala_iii">Hasilnya</label>
+                            <input type="text" class="form-control" name="hasil_kala_iii" required>
                         </div>
                     </div>
                 </div>
@@ -590,8 +591,8 @@ $bbl_asfiksia = [
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="masalah-kala" class="form-label mb-3">Masalah pada kala IV dan penatalaksanaannya</label>
-                            <textarea name="masalah-kala" id="masalah-kala" class="form-control" cols="30" rows="5"></textarea>
+                            <label for="masalah_kala_iv" class="form-label mb-3">Masalah pada kala IV dan penatalaksanaannya</label>
+                            <textarea name="masalah_kala_iv" id="masalah_kala_iv" class="form-control" cols="30" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
@@ -606,46 +607,46 @@ $bbl_asfiksia = [
                     <div class="col-md-6">
                         <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" name="normal" id="normal" class="form-check-input">
+                                <input type="checkbox" name="normal[]" id="normal" class="form-check-input">
                                 <label for="normal" class="form-check-label">Normal</label>
                             </div>
                             <div class="ms-3">
                                 @foreach($bbl_normal as $key => $value)
                                 <div class="form-check">
-                                    <input type="checkbox" name="normal-{{ $key }}" id="normal-{{ $key }}" class="form-check-input">
+                                    <input type="checkbox" name="normal[]" id="normal-{{ $key }}" class="form-check-input" value="{{ $value }}">
                                     <label for="normal-{{ $key }}" class="form-check-label">{{ $value }}</label>
                                 </div>
-                                @endforeach 
+                                @endforeach
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" name="cacat-bawaan" id="cacat-bawaan" class="form-check-input">
-                                <label for="cacat-bawaan" class="form-check-label">Cacat bawaan, sebutkan</label>
+                                <input type="checkbox" id="cacat_bawaan" class="form-check-input">
+                                <label for="cacat_bawaan" class="form-check-label">Cacat bawaan, sebutkan</label>
                             </div>
-                            <textarea name="cacat-bawaan" id="cacat-bawaan" class="form-control" cols="30" rows="3"></textarea>
+                            <textarea name="cacat_bawaan" id="cacat_bawaan" class="form-control" cols="30" rows="3"></textarea>
                         </div>
-                     
-                        <div class="mb-3">
+
+                        {{-- <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" name="hipotermia" id="hipotermia" class="form-check-input">
-                                <label for="hipotermia" class="form-check-label">Masalah lain, sebutkan</label>
+                                <input type="checkbox" name="masalah_lain_bayi[]" id="masalah_lain_bayi" class="form-check-input">
+                                <label for="masalah_lain_bayi" class="form-check-label">Masalah lain, sebutkan</label>
                             </div>
                             <div class="row gap-3 ms-4">
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="hipotermia" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="masalah_lain_bayi[]" id="radioDefault1" value="ya"
                                             required>
                                         <label class="form-check-label" for="radioDefault1">
                                             Ya, tindakan
                                         </label>
                                     </div>
-                                    <input type="text" class="form-control" name="hipotermia" id="hipotermia">
-                    
+                                    <input type="text" class="form-control" name="tindakan_masalah_lain_bayi" id="masalah_lain_bayi">
+
                                 </div>
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="hipotermia" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="masalah_lain_bayi[]" id="radioDefault2" value="tidak"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Tidak
@@ -654,39 +655,39 @@ $bbl_asfiksia = [
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" name="cacat-bawaan" id="cacat-bawaan" class="form-check-input">
+                                <input type="checkbox" name="cek_masalah_lain_bayi" id="masalah_lain_bayi" class="form-check-input">
                                 <label for="bbl-masalah-lain" class="form-check-label">Masalah lain, sebutkan</label>
                             </div>
-                            <textarea name="bbl-masalah-lain" id="bbl-masalah-lain" class="form-control" cols="30" rows="3"></textarea>
+                            <textarea name="masalah_lain_bayi" id="bbl-masalah-lain" class="form-control" cols="30" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" name="asfiksia" id="asfiksia" class="form-check-input">
+                                <input type="checkbox" name="cek_asfiksia[]" id="asfiksia" class="form-check-input" value="ya">
                                 <label for="asfiksia" class="form-check-label">Asfiksia</label>
                             </div>
                             <div class="ms-3">
                                 @foreach($bbl_asfiksia as $key => $value)
                                 <div class="form-check">
-                                    <input type="checkbox" name="asfiksia-{{ $key }}" id="asfiksia-{{ $key }}" class="form-check-input">
+                                    <input type="checkbox" name="asfiksia[]" id="asfiksia-{{ $key }}" class="form-check-input">
                                     <label for="asfiksia-{{ $key }}" class="form-check-label">{{ $value }}</label>
                                 </div>
-                                @endforeach 
+                                @endforeach
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                                <input type="checkbox" name="hipotermia" id="hipotermia" class="form-check-input">
-                                <label for="pemberian-asi" class="form-check-label">Pemberian ASI setelah jam pertama bayi kahir</label>
+                                <input type="checkbox" name="cek_pemberian_asi[]" id="cek_pemberian_asi" class="form-check-input" value="ya">
+                                <label for="pemberian_asi" class="form-check-label">Pemberian ASI setelah jam pertama bayi kahir</label>
                             </div>
                             <div class="row gap-3 ms-4">
                                 <div class="row-6 d-flex gap-4 align-items-center">
                                     <div class="form-check w-50">
-                                        <input class="form-check-input" type="radio" name="pemberian-asi" id="radioDefault1"
+                                        <input class="form-check-input" type="radio" name="pemberian_asi" id="radioDefault1" value="tidak"
                                             required>
                                         <label class="flex-shrink-0 form-check-label" for="radioDefault1">
                                             Ya, waktu
@@ -694,13 +695,13 @@ $bbl_asfiksia = [
                                     </div>
                                     <div class="input-group">
 
-                                        <input type="text" class="form-control" name="pemberian-asi" id="pemberian-asi">
-                                        <span class="input-group-text">jam setelah bayi lahir</span>                    
+                                        <input type="text" class="form-control" name="jam_pemberian_asi" id="pemberian_asi">
+                                        <span class="input-group-text">jam setelah bayi lahir</span>
                                     </div>
                                 </div>
                                 <div class="row-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="pemberian-asi" id="radioDefault2"
+                                        <input class="form-check-input" type="radio" name="pemberian_asi" id="radioDefault2" value="tidak"
                                             required>
                                         <label class="form-check-label" for="radioDefault2">
                                             Tidak, alasan
@@ -709,10 +710,10 @@ $bbl_asfiksia = [
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input type="checkbox" name="cacat-bawaan" id="cacat-bawaan" class="form-check-input">
-                                        <label for="bbl-pentalasan-dan-hasil" class="form-check-label">Penatalaksanaan dan Hasilnya</label>
+                                        <input type="checkbox" name="cek_penatalaksanaan[]" id="cek_penatalaksanaan" class="form-check-input" value="ya">
+                                        <label for="penatalaksanaan" class="form-check-label">Penatalaksanaan dan Hasilnya</label>
                                     </div>
-                                    <textarea name="bbl-pentalasan-dan-hasil" id="bbl-pentalasan-dan-hasil" class="form-control" cols="30" rows="6"></textarea>
+                                    <textarea name="penatalaksanaan" id="penatalaksanaan" class="form-control" cols="30" rows="6"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -720,6 +721,8 @@ $bbl_asfiksia = [
                 </div>
             </div>
         </div>
+
+        {{-- UNTUK TABEL --}}
         <div class="col-md-12">
             <div class="card w-100">
                 <div class="card-header bg-white d-flex justify-content-center">
@@ -729,26 +732,26 @@ $bbl_asfiksia = [
                     <div class="col-md-12 mb-4">
                         <div class="row">
                             <div class="col-md-3">
-                              <label for="jam-ke" class="form-label">Jam ke</label>
-                              <input type="text" class="form-control" name="jam-ke" id="jam-ke">
+                              <label for="jam_ke" class="form-label">Jam ke</label>
+                              <input type="text" class="form-control" name="jam_ke" id="jam_ke">
                             </div>
                             <div class="col-md-3">
-                              <label for="tekanan-darah" class="form-label">Tekanan darah</label>
+                              <label for="tekanan_darah" class="form-label">Tekanan darah</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" name="tekanan-darah" id="tekanan-darah">
+                                <input type="number" class="form-control" name="tekanan_darah" id="tekanan_darah">
                                 <span class="input-group-text">mmHg</span>
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="tinggi-fundus" class="form-label">Tinggi fundus uteri</label>
+                              <label for="tinggi_fundus" class="form-label">Tinggi fundus uteri</label>
                               <div class="input-group">
-                                  <input type="text" class="form-control" name="tinggi-fundus" id="tinggi-fundus">
+                                  <input type="number" class="form-control" name="tinggi_fundus" id="tinggi_fundus">
                                   <span class="input-group-text">cm</span>
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="kandung-kemih" class="form-label">Kandung kemih</label>
-                              <input type="text" class="form-control" name="kandung-kemih" id="kandung-kemih">
+                              <label for="kandung_kemih" class="form-label">Kandung kemih</label>
+                              <input type="text" class="form-control" name="kandung_kemih" id="kandung_kemih">
                             </div>
                         </div>
                     </div>
@@ -759,17 +762,17 @@ $bbl_asfiksia = [
                               <input type="text" class="form-control" name="waktu" id="waktu">
                             </div>
                             <div class="col-md-3">
-                              <label for="nado-kala-iv" class="form-label">Nadi</label>
+                              <label for="nadi_kala_iv" class="form-label">Nadi</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" name="nado-kala-iv" id="nado-kala-iv">
+                                <input type="number" class="form-control" name="nadi_kala_iv" id="nadi_kala_iv">
                                 <span class="input-group-text">bpm</span>
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <label for="kontraksi-uterus" class="form-label">Kontraksi Uterus</label>
+                              <label for="kontraksi_uterus" class="form-label">Kontraksi Uterus</label>
                               <div class="input-group">
-                                  <input type="text" class="form-control" name="kontraksi-uterus" id="kontraksi-uterus">
-                                
+                                  <input type="text" class="form-control" name="kontraksi_uterus" id="kontraksi_uterus">
+
                               </div>
                             </div>
                             <div class="col-md-3">
@@ -777,6 +780,9 @@ $bbl_asfiksia = [
                               <input type="text" class="form-control" name="pendarahan" id="pendarahan">
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <button type="button" class="btn btn-primary w-100" id="tambah_detail_persalinan"><i class="fas fa-save me-2"></i>Simpan</button>
                     </div>
                     <div class="col-md-12">
                         <table class="table">
@@ -790,11 +796,12 @@ $bbl_asfiksia = [
                                 <th scope="col">Kontraksi</th>
                                 <th scope="col">Kandung kemih</th>
                                 <th scope="col">Penderahan</th>
+                                <th scope="col">Aksi</th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="pemeriksaan-persalinan-detail">
                               <tr>
-                                <td colspan="8" class="text-center">Belum ada data.</td>
+                                <td colspan="9" class="text-center">Belum ada data.</td>
                               </tr>
                             </tbody>
                           </table>
@@ -803,6 +810,7 @@ $bbl_asfiksia = [
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -837,7 +845,7 @@ $bbl_asfiksia = [
                                                 Ya
                                             </label>
                                         </div>
-                    
+
                                     </div>
                                     <div class="col-2">
                                         <div class="form-check">
@@ -861,7 +869,7 @@ $bbl_asfiksia = [
                                                 Ya
                                             </label>
                                         </div>
-                    
+
                                     </div>
                                     <div class="col-2">
                                         <div class="form-check">
@@ -887,7 +895,7 @@ $bbl_asfiksia = [
                                                 Pecah
                                             </label>
                                         </div>
-                    
+
                                     </div>
                                     <div class="col-4">
                                         <div class="form-check">
@@ -906,12 +914,12 @@ $bbl_asfiksia = [
                             <input type="text" class="form-control" name="keluhan" id="keluhan">
                         </div>
                         <div class="mb-3">
-                            <label for="riwayat-persalinan-ini" class="form-label mb-3">Riwayat persalinan yang lalu:</label>
-                            <input type="text" class="form-control" name="riwayat-persalinan-ini" id="riwayat-persalinan-ini">
+                            <label for="riwayat_persalinan_lalu" class="form-label mb-3">Riwayat persalinan yang lalu:</label>
+                            <input type="text" class="form-control" name="riwayat_persalinan_lalu" id="riwayat_persalinan_lalu">
                         </div>
                         <div class="mb-3">
-                            <label for="riwayat-alergi" class="form-label mb-3">Riwayat alergi obat-obatan:</label>
-                            <input type="text" class="form-control" name="riwayat-alergi" id="riwayat-alergi">
+                            <label for="riwayat_alergi" class="form-label mb-3">Riwayat alergi obat-obatan:</label>
+                            <input type="text" class="form-control" name="riwayat_alergi" id="riwayat_alergi">
                         </div>
                     </div>
                 </div>
@@ -924,9 +932,9 @@ $bbl_asfiksia = [
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="tekanan-darah-o" class="form-label mb-3">Tekanan darah</label>
+                                <label for="tekanan_darah_o" class="form-label mb-3">Tekanan darah</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="tekanan-darah-o" id="tekanan-darah-o">
+                                    <input type="text" class="form-control" name="tekanan_darah_o" id="tekanan_darah_o">
                                     <span class="input-group-text">mmHg</span>
                                 </div>
                             </div>
@@ -940,9 +948,9 @@ $bbl_asfiksia = [
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="nadi-o" class="form-label mb-3">Nadi</label>
+                                <label for="nadi_o" class="form-label mb-3">Nadi</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="nadi-o" id="nadi-o">
+                                    <input type="text" class="form-control" name="nadi_o" id="nadi_o">
                                     <span class="input-group-text">x/mnt</span>
                                 </div>
                             </div>
@@ -950,7 +958,7 @@ $bbl_asfiksia = [
                                 <label for="odema" class="form-label mb-3">Oedema</label>
                                 <div class="input-group">
                                 <input type="number" class="form-control" name="odema" id="odema">
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -974,18 +982,18 @@ $bbl_asfiksia = [
                                 <label for="kontraksi" class="form-label mb-3">Kontraksi</label>
                                 <div class="input-group">
                                 <input type="number" class="form-control" name="kontraksi" id="kontraksi">
-                                  
+
                                 </div>
                             </div>
-     
-                            
+
+
                         </div>
                         <div class="row">
                             <div class="mb-3">
                                 <label for="pemeriksaan_dalam" class="form-label mb-3">Pemeriksaan dalam (V1)</label>
                                 <div class="input-group">
                                 <input type="number" class="form-control" name="pemeriksaan_dalam" id="pemeriksaan_dalam">
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -994,28 +1002,28 @@ $bbl_asfiksia = [
                                 <label for="oleh" class="form-label mb-3">Oleh</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="oleh" id="oleh">
-                                  
+
                                 </div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="hasil_v1" class="form-label mb-3">Hasil V1</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="hasil_v1" id="hasil_v1">
-                                  
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <label for="" class="form-label mb-3">(A)</label>
-                        <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                        <textarea name="a" class="form-control" id="" cols="30" rows="10"></textarea>
                     </div>
                 </div>
             </div>
@@ -1023,10 +1031,15 @@ $bbl_asfiksia = [
                 <div class="card">
                     <div class="card-body">
                         <label for="" class="form-label mb-3">(P/I) observasi kala I (fase laten 0 < 4cm)</label>
-                        <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
+                        <textarea name="observasi_kala_i" class="form-control" id="" cols="30" rows="10"></textarea>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="col-12 text-end mt-3">
+            <button type="button" class="btn btn-secondary previous-step me-2">Sebelumnya</button>
+            <button type="button" class="btn btn-primary" id="submit_pemeriksaan_persalinan"><i class="fas fa-save me-2"></i>Simpan</button>
         </div>
     </div>
 </div>

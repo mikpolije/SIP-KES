@@ -15,4 +15,8 @@ class LayananKia extends Model
 
     protected $guarded = ['id'];
 
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
+    }
 }

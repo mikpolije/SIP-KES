@@ -11,6 +11,7 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::post('/poli-kia/pemeriksaan/kehamilan', [PoliKiaController::class, 'pemeriksaanKehamilan'])->name('poli-kia.pemeriksaan-kehamilan');
     Route::post('/poli-kia/pemeriksaan/kb', [PoliKiaController::class, 'pemeriksaanKb'])->name('poli-kia.pemeriksaan-kb');
     Route::post('/poli-kia/pemeriksaan/anak', [PoliKiaController::class, 'pemeriksaanAnak'])->name('poli-kia.pemeriksaan-anak');
+    Route::post('/poli-kia/pemeriksaan/persalinan', [PoliKiaController::class, 'pemeriksaanPersalinan'])->name('poli-kia.pemeriksaan-persalinan');
     Route::get('/poli-kia/laporan/data', [PoliKiaController::class, 'report'])->name('poli-kia.report');
 
     Route::get('/obat', [ObatController::class, 'index'])->name('obat.index');

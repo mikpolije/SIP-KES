@@ -8,6 +8,9 @@ Run Migration:
 4. ```php artisan migrate --path=database/migrations/2025_04_21_103028_update_transaksi_p_kehamilan_table.php```
 5. ```php artisan migrate --path=database/migrations/2025_04_21_124832_update_transaksi_program_kb_table.php```
 6. ```php artisan migrate --path=database/migrations/2025_04_21_234601_update_transaksi_p_anak_table.php```
+7. ```php artisan migrate --path=database/migrations/2025_04_28_025341_update_transaksi_persalinan_table.php```
+8. ```php artisan migrate --path=database/migrations/2025_04_28_025605_add_id_transaksi_persalinan_to_riwayat_soap_table.php```
+9. ```php artisan migrate --path=database/migrations/2025_04_28_214200_add_pengambilan_obat_table.php```
 
 ### TOLONG JANGAN COMMIT .ENV KE REPO INI
 <hr>
