@@ -36,3 +36,6 @@ Route::get('/{main}/{view}', [PageController::class, 'show']);
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+// route suratSakit
+use App\Http\Controllers\SuratKeteranganSakitController;
+Route::get('/surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
