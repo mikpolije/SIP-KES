@@ -37,14 +37,6 @@
                                 color: #1A1A1A;
                                 padding: 9px 0;
                             }
-
-                            /* Added consistent font styling for all form elements */
-                            .form-label,
-                            .form-control,
-                            .form-select,
-                            .btn {
-                                font-family: 'Amiri Quran Colored', sans-serif;
-                            }
                         </style>
 
                         <div class="row mb-4 align-items-end">
