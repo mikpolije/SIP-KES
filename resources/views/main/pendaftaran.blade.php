@@ -495,14 +495,7 @@
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
                                         <li><a class="dropdown-item" href="#">Informed Consent</a></li>
                                     </ul>
-                                    </ul>
                                 </div>
-                            </div>
-
-                            <div class="d-flex">
-                                <input type="text" class="form-control me-2" id="searchNoRM"
-                                    placeholder="Cari No. RM">
-                                <button class="btn btn-primary" onclick="searchRM()">Cari</button>
                             </div>
                         </div>
 
@@ -529,10 +522,7 @@
                                     <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
                                     <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
                                         <option value="poliumum">Poli Umum</option>
-                                        <option value="poligigi">Poli Gigi</option>
-                                        <option value="kia">KIA</option>
                                         <option value="circum">Circum</option>
-                                        <option value="vaksininternasional">Vaksin Internasional</option>
                                     </select>
                                 </div>
                             </div>
@@ -588,8 +578,6 @@
                                 </div>
                             </div>
                         </div>
-
-
 
                         <!-- Subjective dan Objective -->
                         <div class="row mb-3">
@@ -652,7 +640,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
