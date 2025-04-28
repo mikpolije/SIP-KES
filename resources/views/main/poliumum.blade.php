@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Poli Umum')
+@section('title', 'SIP-Kes')
 <style>
     body {
         background-color: #B4AEAE;
@@ -25,10 +25,7 @@
                 </style>
                 <form action="#" class="validation-wizard wizard-circle mt-5">
                     <!-- Step 1 -->
-                    <div class="step">
-                        <span class="step-icon"><i class="fas fa-file-alt"></i></span>
-                        <p>Pendaftaran</p>
-                    </div>
+                    <h6>Pendaftaran</h6>
                     <section>
                         <h5 class="section-title">Data Identitas Pasien</h5>
                         <style>
@@ -1095,61 +1092,6 @@
         </div>
     </div>
     <style>
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            text-decoration: none;
-            color: #5A6A85;
-            width: 120px;
-        }
-
-        .nav-item.active {
-            color: #3272F0;
-        }
-
-        .circle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid #E9ECEF;
-            margin-bottom: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item.active .circle {
-            border-color: #3272F0;
-            background-color: #F2F7FF;
-        }
-
-        .icon {
-            font-size: 24px;
-            color: #5A6A85;
-        }
-
-        .nav-item.active .icon {
-            color: #3272F0;
-        }
-
-        .nav-text {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
         /* Styling khusus untuk modal Surat Keterangan Sehat */
         #modalSehat .modal-content {
             border-radius: 20px;
