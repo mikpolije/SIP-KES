@@ -24,74 +24,6 @@
                     }
                 </style>
                 <form action="#" class="validation-wizard wizard-circle mt-5">
-                    <div class="nav-container">
-                        <a href="#" class="nav-item active">
-                            <div class="circle">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                            </div>
-                            <span class="nav-text">1. Pendaftaran</span>
-                        </a>
-
-                        <a href="#" class="nav-item">
-                            <div class="circle">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                                    <line x1="12" y1="16" x2="12" y2="16"></line>
-                                </svg>
-                            </div>
-                            <span class="nav-text">2. Layanan</span>
-                        </a>
-
-                        <a href="#" class="nav-item">
-                            <div class="circle">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path
-                                        d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-5a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3">
-                                    </path>
-                                    <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path>
-                                    <circle cx="20" cy="10" r="2"></circle>
-                                </svg>
-                            </div>
-                            <span class="nav-text">3. Pemeriksaan</span>
-                        </a>
-
-                        <a href="#" class="nav-item">
-                            <div class="circle">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="m17 8 4 4-4 4"></path>
-                                    <path d="M3 12h18"></path>
-                                </svg>
-                            </div>
-                            <span class="nav-text">4. Farmasi</span>
-                        </a>
-
-                        <a href="#" class="nav-item">
-                            <div class="circle">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                                    <line x1="2" y1="10" x2="22" y2="10"></line>
-                                </svg>
-                            </div>
-                            <span class="nav-text">5. Pembayaran</span>
-                        </a>
-                    </div>
                     <!-- Step 1 -->
                     <h6>Pendaftaran</h6>
                     <section>
@@ -110,8 +42,7 @@
                         <div class="row mb-4 align-items-end">
                             <div class="col-md-10">
                                 <label for="searchNoRM" class="form-label">Cari Data Pasien</label>
-                                <input class="form-control" list="noRMList" id="searchNoRM"
-                                    placeholder="Cari Data Pasien">
+                                <input class="form-control" list="noRMList" id="searchNoRM" placeholder="Cari Data Pasien">
                                 <datalist id="noRMList">
                                     <option value="RM001 - Budi">
                                     <option value="RM002 - Siti">
@@ -153,8 +84,7 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="provinsi">Provinsi:</label>
-                                    <input type="text" class="form-control required" id="provinsi"
-                                        name="provinsi" />
+                                    <input type="text" class="form-control required" id="provinsi" name="provinsi" />
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -175,15 +105,13 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="kecamatan">Kecamatan:</label>
-                                    <input type="text" class="form-control required" id="kecamatan"
-                                        name="kecamatan" />
+                                    <input type="text" class="form-control required" id="kecamatan" name="kecamatan" />
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="kelurahan">Kelurahan/Desa: </label>
-                                    <input type="text" class="form-control required" id="kelurahan"
-                                        name="kelurahan" />
+                                    <input type="text" class="form-control required" id="kelurahan" name="kelurahan" />
                                 </div>
                             </div>
                         </div>
