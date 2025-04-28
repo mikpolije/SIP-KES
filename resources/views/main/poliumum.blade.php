@@ -78,7 +78,7 @@
                                     <label class="form-label" for="nama">Nama Lengkap: <span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="nama" name="nama"
-                                        placeholder="Masukkan nama" />
+                                        placeholder="Masukkan Nama" />
                                 </div>
                             </div>
                             <div class="col-md-3">
