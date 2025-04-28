@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes')
+@section('title', 'SIP-Kes | Poli Umum')
 <style>
     body {
         background-color: #B4AEAE;
@@ -25,7 +25,10 @@
                 </style>
                 <form action="#" class="validation-wizard wizard-circle mt-5">
                     <!-- Step 1 -->
-                    <h6>Pendaftaran</h6>
+                    <div class="step">
+                        <span class="step-icon"><i class="fas fa-file-alt"></i></span>
+                        <p>Pendaftaran</p>
+                    </div>
                     <section>
                         <h5 class="section-title">Data Identitas Pasien</h5>
                         <style>
