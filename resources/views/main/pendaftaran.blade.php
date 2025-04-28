@@ -1094,7 +1094,6 @@
             </div>
         </div>
     </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .nav-container {
             display: flex;
@@ -1271,58 +1270,7 @@
         .view-details {
             padding: 0.25rem 0.5rem;
         }
-
-            {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .validation-wizard {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .step-icon {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            border-radius: 50%;
-            background-color: #e9f5ff;
-            color: #007bff;
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .step p {
-            font-size: 14px;
-            color: #333;
-        }
-
-        .step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: -50px;
-            width: 50px;
-            height: 2px;
-            background-color: #e9f5ff;
-        }
     </style>
-
 
     <!-- Modal Surat Keterangan Sakit-->
     <div class="modal fade" id="modalSakit" tabindex="-1" aria-labelledby="modalSakitLabel" aria-hidden="true">
