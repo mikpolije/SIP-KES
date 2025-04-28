@@ -38,316 +38,309 @@
                                 padding: 9px 0;
                             }
                         </style>
-                        <div class="card w-100">
-                            <div class="row mb-4 align-items-end">
-                                <div class="col-md-10">
-                                    <label for="searchNoRM" class="form-label">Cari Data Pasien</label>
-                                    <input class="form-control" list="noRMList" id="searchNoRM"
-                                        placeholder="Cari Data Pasien">
-                                    <datalist id="noRMList">
-                                        <option value="RM001 - Budi">
-                                        <option value="RM002 - Siti">
-                                        <option value="RM003 - Agus">
-                                    </datalist>
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-primary w-100">Cari</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="norm"> No RM : <span class="danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control required" id="norm" name="norm"
-                                            placeholder="Masukkan No. RM" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="alamatlengkap"> Alamat Lengkap : <span
-                                                class="danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control required" id="alamatlengkap"
-                                            name="alamatlengkap" placeholder="Nama Jalan/Blok/Nomor Rumah" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row align-items-end">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="nama">Nama Lengkap: <span
-                                                class="danger">*</span></label>
-                                        <input type="text" class="form-control required" id="nama" name="nama"
-                                            placeholder="Masukkan nama" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="provinsi">Provinsi:</label>
-                                        <input type="text" class="form-control required" id="provinsi"
-                                            name="provinsi" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="kota">Kota/Kabupaten:</label>
-                                        <input type="text" class="form-control required" id="kota" name="kota" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
-                                        <input type="text" class="form-control required" id="nik" name="nik"
-                                            placeholder="16 digit" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="kecamatan">Kecamatan:</label>
-                                        <input type="text" class="form-control required" id="kecamatan"
-                                            name="kecamatan" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="kelurahan">Kelurahan/Desa: </label>
-                                        <input type="text" class="form-control required" id="kelurahan"
-                                            name="kelurahan" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="tempatlahir">Tempat Lahir: <span
-                                                class="danger">*</span></label>
-                                        <input type="text" class="form-control required" id="tempatlahir"
-                                            name="tempatlahir" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="kodepos">Kode Pos:</label>
-                                        <input type="text" class="form-control required" id="kodepos"
-                                            name="kodepos" />
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="rt">RT:</label>
-                                        <input type="text" class="form-control required" id="rt"
-                                            name="rt" />
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="rt">RW:</label>
-                                        <input type="text" class="form-control required" id="rw"
-                                            name="rw" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="tanggallahir">Tanggal Lahir: <span
-                                                class="danger">*</span></label>
-                                        <input type="date" class="form-control required" id="tanggallahir"
-                                            name="tanggallahir" />
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="jeniskelamin">Jenis Kelamin: <span
-                                                class="danger">*</span>
-                                        </label>
-                                        <select class="form-select required" id="jeniskelamin" name="jeniskelamin">
-                                            <option value="tidakdiketahui">Tidak Diketahui</option>
-                                            <option value="lakilaki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
-                                            <option value="tidakdapatditentukan">Tidak dapat ditentukan</option>
-                                            <option value="tidakmengisi">Tidak mengisi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="agama">Agama:</label>
-                                        <select class="form-select required" id="agama" name="agama">
-                                            <option value="islam">Islam</option>
-                                            <option value="kristen">Kristen (Protestan)</option>
-                                            <option value="katolik">Katolik</option>
-                                            <option value="hindu">Hindu</option>
-                                            <option value="buddha">Buddha</option>
-                                            <option value="konghucu">Konghucu</option>
-                                            <option value="penghayat">Penghayat</option>
-                                            <option value="lainlain">Lain-Lain</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="perkawinan">Status Perkawinan:</label>
-                                        <select class="form-select required" id="perkawinan" name="perkawinan">
-                                            <option value="belumkawin">Belum Kawin</option>
-                                            <option value="kawin">Kawin</option>
-                                            <option value="ceraihidup">Cerai Hidup</option>
-                                            <option value="ceraimati">Cerai Mati</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="pendidikan">Pendidikan:</label>
-                                        <select class="form-select required" id="pendidikan" name="pendidikan">
-                                            <option value="tidaksekolah">Tidak Sekolah</option>
-                                            <option value="sd">SD</option>
-                                            <option value="sltpsederajat">SLTP Sederajat</option>
-                                            <option value="sltasederajat">SLTA Sederajat</option>
-                                            <option value="d1d3">D1-D3 Sederajat</option>
-                                            <option value="d4">D4</option>
-                                            <option value="s1">S1</option>
-                                            <option value="s2">S2</option>
-                                            <option value="s3">S3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="pekerjaan">Pekerjaan:</label>
-                                        <select class="form-select required" id="pekerjaan" name="pekerjaan">
-                                            <option value="tidakbekerja">Tidak bekerja</option>
-                                            <option value="pns">PNS</option>
-                                            <option value="tnipolri">TNI/Polri</option>
-                                            <option value="bumn">BUMN</option>
-                                            <option value="pegawaiswasta">Pegawai Swasta/Wirausaha</option>
-                                            <option value="lain-lain">Lain-lain</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="kewarganegaraan">Kewarganegaraan:</label>
-                                        <select class="form-select required" id="kewarganegaraan" name="kewarganegaraan">
-                                            <option value="wni">WNI</option>
-                                            <option value="wna">WNA</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="telepon">Nomor Telepon:</label>
-                                        <input type="text" class="form-control required" id="telepon"
-                                            name="telepon" placeholder="08xxxxxxxxxx" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="ibukandung">Nama Ibu Kandung:</label>
-                                        <input type="text" class="form-control required" id="ibukandung"
-                                            name="ibukandung" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="goldar">Golongan Darah:</label>
-                                        <select class="form-select required" id="goldar" name="goldar">
-                                            <option value="a">A</option>
-                                            <option value="b">B</option>
-                                            <option value="ab">AB</option>
-                                            <option value="o">O</option>
-                                            <option value="tidakdiketahui">Tidak Diketahui</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <h4 class="section-title">Identitas Wali</h4>
+                        <div class="row mb-4 align-items-end">
+                            <div class="col-md-10">
+                                <label for="searchNoRM" class="form-label">Cari Data Pasien</label>
+                                <input class="form-control" list="noRMList" id="searchNoRM" placeholder="Cari Data Pasien">
+                                <datalist id="noRMList">
+                                    <option value="RM001 - Budi">
+                                    <option value="RM002 - Siti">
+                                    <option value="RM003 - Agus">
+                                </datalist>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary w-100">Cari</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="norm"> No RM : <span class="danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control required" id="norm" name="norm"
+                                        placeholder="Masukkan No. RM" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="alamatlengkap"> Alamat Lengkap : <span
+                                            class="danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control required" id="alamatlengkap"
+                                        name="alamatlengkap" placeholder="Nama Jalan/Blok/Nomor Rumah" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="nama">Nama Lengkap: <span
+                                            class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="nama" name="nama"
+                                        placeholder="Masukkan nama" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="provinsi">Provinsi:</label>
+                                    <input type="text" class="form-control required" id="provinsi" name="provinsi" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="kota">Kota/Kabupaten:</label>
+                                    <input type="text" class="form-control required" id="kota" name="kota" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="nik" name="nik"
+                                        placeholder="16 digit" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="kecamatan">Kecamatan:</label>
+                                    <input type="text" class="form-control required" id="kecamatan" name="kecamatan" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="kelurahan">Kelurahan/Desa: </label>
+                                    <input type="text" class="form-control required" id="kelurahan" name="kelurahan" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="tempatlahir">Tempat Lahir: <span
+                                            class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="tempatlahir"
+                                        name="tempatlahir" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="kodepos">Kode Pos:</label>
+                                    <input type="text" class="form-control required" id="kodepos" name="kodepos" />
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="mb-3">
+                                    <label class="form-label" for="rt">RT:</label>
+                                    <input type="text" class="form-control required" id="rt" name="rt" />
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="mb-3">
+                                    <label class="form-label" for="rt">RW:</label>
+                                    <input type="text" class="form-control required" id="rw" name="rw" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="tanggallahir">Tanggal Lahir: <span
+                                            class="danger">*</span></label>
+                                    <input type="date" class="form-control required" id="tanggallahir"
+                                        name="tanggallahir" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="jeniskelamin">Jenis Kelamin: <span
+                                            class="danger">*</span>
+                                    </label>
+                                    <select class="form-select required" id="jeniskelamin" name="jeniskelamin">
+                                        <option value="tidakdiketahui">Tidak Diketahui</option>
+                                        <option value="lakilaki">Laki-laki</option>
+                                        <option value="perempuan">Perempuan</option>
+                                        <option value="tidakdapatditentukan">Tidak dapat ditentukan</option>
+                                        <option value="tidakmengisi">Tidak mengisi</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="agama">Agama:</label>
+                                    <select class="form-select required" id="agama" name="agama">
+                                        <option value="islam">Islam</option>
+                                        <option value="kristen">Kristen (Protestan)</option>
+                                        <option value="katolik">Katolik</option>
+                                        <option value="hindu">Hindu</option>
+                                        <option value="buddha">Buddha</option>
+                                        <option value="konghucu">Konghucu</option>
+                                        <option value="penghayat">Penghayat</option>
+                                        <option value="lainlain">Lain-Lain</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="perkawinan">Status Perkawinan:</label>
+                                    <select class="form-select required" id="perkawinan" name="perkawinan">
+                                        <option value="belumkawin">Belum Kawin</option>
+                                        <option value="kawin">Kawin</option>
+                                        <option value="ceraihidup">Cerai Hidup</option>
+                                        <option value="ceraimati">Cerai Mati</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="pendidikan">Pendidikan:</label>
+                                    <select class="form-select required" id="pendidikan" name="pendidikan">
+                                        <option value="tidaksekolah">Tidak Sekolah</option>
+                                        <option value="sd">SD</option>
+                                        <option value="sltpsederajat">SLTP Sederajat</option>
+                                        <option value="sltasederajat">SLTA Sederajat</option>
+                                        <option value="d1d3">D1-D3 Sederajat</option>
+                                        <option value="d4">D4</option>
+                                        <option value="s1">S1</option>
+                                        <option value="s2">S2</option>
+                                        <option value="s3">S3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="pekerjaan">Pekerjaan:</label>
+                                    <select class="form-select required" id="pekerjaan" name="pekerjaan">
+                                        <option value="tidakbekerja">Tidak bekerja</option>
+                                        <option value="pns">PNS</option>
+                                        <option value="tnipolri">TNI/Polri</option>
+                                        <option value="bumn">BUMN</option>
+                                        <option value="pegawaiswasta">Pegawai Swasta/Wirausaha</option>
+                                        <option value="lain-lain">Lain-lain</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="kewarganegaraan">Kewarganegaraan:</label>
+                                    <select class="form-select required" id="kewarganegaraan" name="kewarganegaraan">
+                                        <option value="wni">WNI</option>
+                                        <option value="wna">WNA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="telepon">Nomor Telepon:</label>
+                                    <input type="text" class="form-control required" id="telepon" name="telepon"
+                                        placeholder="08xxxxxxxxxx" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ibukandung">Nama Ibu Kandung:</label>
+                                    <input type="text" class="form-control required" id="ibukandung"
+                                        name="ibukandung" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="goldar">Golongan Darah:</label>
+                                    <select class="form-select required" id="goldar" name="goldar">
+                                        <option value="a">A</option>
+                                        <option value="b">B</option>
+                                        <option value="ab">AB</option>
+                                        <option value="o">O</option>
+                                        <option value="tidakdiketahui">Tidak Diketahui</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="section-title">Identitas Wali</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="hubungan">Hubungan dengan pasien:</label>
+                                    <select class="form-select required" id="hubungan" name="hubungan">
+                                        <option value="dirisendiri">Diri Sendiri</option>
+                                        <option value="ortu">Orang Tua</option>
+                                        <option value="anak">Anak</option>
+                                        <option value="suamiistri">Suami/Istri</option>
+                                        <option value="kerabat">Kerabat/Saudara</option>
+                                        <option value="lainlain">Lain-lain</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="namawali">Nama Wali:</label>
+                                    <input type="text" class="form-control required" id="namawali"
+                                        name="namawali" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="tlwali">Tanggal Lahir Wali :</label>
+                                    <input type="date" class="form-control required" id="tlwali" name="tlwali" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="notelpwali">Nomor Telepon Wali:</label>
+                                    <input type="texr" class="form-control required" id="notelpwali"
+                                        name="notelpwali" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="alamatwali">Alamat Wali</label>
+                                    <input type="text" class="form-control required" id="alamatwali"
+                                        name="alamatwali" />
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="hubungan">Hubungan dengan pasien:</label>
-                                        <select class="form-select required" id="hubungan" name="hubungan">
-                                            <option value="dirisendiri">Diri Sendiri</option>
-                                            <option value="ortu">Orang Tua</option>
-                                            <option value="anak">Anak</option>
-                                            <option value="suamiistri">Suami/Istri</option>
-                                            <option value="kerabat">Kerabat/Saudara</option>
-                                            <option value="lainlain">Lain-lain</option>
+                                        <label class="form-label" for="layanan">Layanan</label>
+                                        <select class="form-select required" id="layanan" name="layanan">
+                                            <option value="poliumum">Poli Umum</option>
+                                            <option value="poligigi">Poli Gigi</option>
+                                            <option value="kia">KIA</option>
+                                            <option value="circum">Circum</option>
+                                            <option value="vaksin">Vaksin Internasional</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="namawali">Nama Wali:</label>
-                                        <input type="text" class="form-control required" id="namawali"
-                                            name="namawali" />
+                                        <label class="form-label" for="dokter">Dokter</label>
+                                        <select class="form-select required" id="dokter" name="dokter">
+                                            <option value="dr1">dr. Ida Lailatul Hasanah</option>
+                                            <option value="dr2">dr. Dewi Wahyu Wulandari</option>
+                                            <option value="dr3">dr. Nina Raditya Septiana</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="tlwali">Tanggal Lahir Wali :</label>
-                                        <input type="date" class="form-control required" id="tlwali"
-                                            name="tlwali" />
+                                        <label class="form-label" for="bayar">Cara Pembayaran</label>
+                                        <select class="form-select required" id="bayar" name="bayar">
+                                            <option value="umum">Umum</option>
+                                            <option value="bpjs">BPJS</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="notelpwali">Nomor Telepon Wali:</label>
-                                        <input type="texr" class="form-control required" id="notelpwali"
-                                            name="notelpwali" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="alamatwali">Alamat Wali</label>
-                                        <input type="text" class="form-control required" id="alamatwali"
-                                            name="alamatwali" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="layanan">Layanan</label>
-                                            <select class="form-select required" id="layanan" name="layanan">
-                                                <option value="poliumum">Poli Umum</option>
-                                                <option value="poligigi">Poli Gigi</option>
-                                                <option value="kia">KIA</option>
-                                                <option value="circum">Circum</option>
-                                                <option value="vaksin">Vaksin Internasional</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="dokter">Dokter</label>
-                                            <select class="form-select required" id="dokter" name="dokter">
-                                                <option value="dr1">dr jaemin</option>
-                                                <option value="dr2">dr joshua</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="bayar">Cara Pembayaran</label>
-                                            <select class="form-select required" id="bayar" name="bayar">
-                                                <option value="umum">Umum</option>
-                                                <option value="bpjs">BPJS</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                     </section>
 
                     <!-- Step 2 -->
@@ -477,9 +470,9 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
+                                                data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
+                                                data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
                                         <li><a class="dropdown-item" href="#">Informed Consent</a></li>
                                     </ul>
@@ -1221,218 +1214,219 @@
         }
     </style>
 
-<!-- Modal Surat Keterangan Sakit-->
-<div class="modal fade" id="modalSakit" tabindex="-1" aria-labelledby="modalSakitLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content p-4 rounded-4 shadow-lg">
-            <div class="modal-header border-0">
-                <h2 class="modal-title fw-bold text-primary" id="modalSakitLabel">Surat Keterangan Sakit</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label for="nomorSurat" class="col-form-label">Nomor</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="nomorSurat" placeholder="000000">
-                        </div>
-                    </div>
-
-                    <label class="form-label">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan
-                        bahwa:</label>
-
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-md-3">
-                            <label for="namaPasien" class="col-form-label">Nama</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="namaPasien" placeholder="Ketik nama">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-md-3">
-                            <label for="tanggalLahir" class="col-form-label">Tanggal Lahir</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="date" class="form-control" id="tanggalLahir">
-                        </div>
-                    </div>
-
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-md-3">
-                            <label for="jenisKelamin" class="col-form-label">Jenis Kelamin</label>
-                        </div>
-                        <div class="col-md-9">
-                            <select class="form-select" id="jenisKelamin">
-                                <option selected>Tidak diketahui</option>
-                                <option>Laki-laki</option>
-                                <option>Perempuan</option>
-                                <option>Tidak dapat ditentukan</option>
-                                <option>Tidak mengisi</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-md-3">
-                            <label for="alamatPasien" class="col-form-label">Alamat</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="alamatPasien"
-                                placeholder="Jl. Mangga Putih Nomor 6">
-                        </div>
-                    </div>
-
-                    <div class="mt-4">
-                        <label class="form-label">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga
-                            perlu istirahat selama</label>
-                        <div style="display: inline-block; margin-left: 10px;">
-                            <input type="text" class="form-control" id="banyakHari" placeholder=""
-                                style="width: 50px; display: inline;">
-                        </div>
-                        <label class="form-label" style="margin-left: 10px;">hari</label>
-                    </div>
-
-                    <div class="mt-3" style="display: flex; align-items: center;">
-                        <label class="form-label" style="margin-right: 10px; white-space: nowrap;">mulai
-                            tanggal</label>
-                        <input type="text" id="rangeCalendar" class="form-control" style="width: 300px;"
-                            placeholder="DD/MM/YYYY sampai DD/MM/YYYY">
-                    </div>
-
-                    <!-- Tambahkan ini di bawah sebelum </body> -->
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-                    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-                    <script>
-                        flatpickr("#rangeCalendar", {
-                            mode: "range",
-                            dateFormat: "d/m/Y",
-                            locale: {
-                                rangeSeparator: " s/d "
-                            }
-                        });
-                    </script>
-
-                    <div>
-                        <label class="form-label">Demikian agar digunakan sebagaimana mestinya.</label>
-
-                        <div class="mt-4 text-end">
-                            <p>Jember,</p>
-                            <p>Dokter yang memeriksa:</p>
-
-                            Canvas untuk tanda tangan
-                            <div style="border: 1px solid #ccc; border-radius: 10px; position: relative;">
-                                <canvas id="signature-pad-sakit" width="100%" height="150px"
-                                    style="display: block; background-color: #f8f9fa;"></canvas>
-                                <small class="text-muted" style="position: absolute; bottom: 5px; left: 10px;">
-                                    Tanda tangan di area ini
-                                </small>
+    <!-- Modal Surat Keterangan Sakit-->
+    <div class="modal fade" id="modalSakit" tabindex="-1" aria-labelledby="modalSakitLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content p-4 rounded-4 shadow-lg">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title fw-bold text-primary" id="modalSakitLabel">Surat Keterangan Sakit</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <label for="nomorSurat" class="col-form-label">Nomor</label>
                             </div>
-
-                            <!-- Tombol untuk reset tanda tangan -->
-                            <button type="button" class="btn btn-outline-secondary btn-sm mt-2"
-                                id="clear-signature-sakit">
-                                <i class="bi bi-eraser"></i> Hapus Tanda Tangan
-                            </button>
-
-                            <p class="mt-3">(Nama Dokter)</p>
-                            <p>SIP</p>
+                            <div class="col-auto">
+                                <input type="text" class="form-control" id="nomorSurat" placeholder="000000">
+                            </div>
                         </div>
-                        <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
+
+                        <label class="form-label">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA
+                            INSAN MEDIKA, menerangkan
+                            bahwa:</label>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="namaPasien" class="col-form-label">Nama</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="namaPasien" placeholder="Ketik nama">
+                            </div>
                         </div>
-                </form>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="tanggalLahir" class="col-form-label">Tanggal Lahir</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" id="tanggalLahir">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="jenisKelamin" class="col-form-label">Jenis Kelamin</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select class="form-select" id="jenisKelamin">
+                                    <option selected>Tidak diketahui</option>
+                                    <option>Laki-laki</option>
+                                    <option>Perempuan</option>
+                                    <option>Tidak dapat ditentukan</option>
+                                    <option>Tidak mengisi</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-md-3">
+                                <label for="alamatPasien" class="col-form-label">Alamat</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" id="alamatPasien"
+                                    placeholder="Jl. Mangga Putih Nomor 6">
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="form-label">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga
+                                perlu istirahat selama</label>
+                            <div style="display: inline-block; margin-left: 10px;">
+                                <input type="text" class="form-control" id="banyakHari" placeholder=""
+                                    style="width: 50px; display: inline;">
+                            </div>
+                            <label class="form-label" style="margin-left: 10px;">hari</label>
+                        </div>
+
+                        <div class="mt-3" style="display: flex; align-items: center;">
+                            <label class="form-label" style="margin-right: 10px; white-space: nowrap;">mulai
+                                tanggal</label>
+                            <input type="text" id="rangeCalendar" class="form-control" style="width: 300px;"
+                                placeholder="DD/MM/YYYY sampai DD/MM/YYYY">
+                        </div>
+
+                        <!-- Tambahkan ini di bawah sebelum </body> -->
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+                        <script>
+                            flatpickr("#rangeCalendar", {
+                                mode: "range",
+                                dateFormat: "d/m/Y",
+                                locale: {
+                                    rangeSeparator: " s/d "
+                                }
+                            });
+                        </script>
+
+                        <div>
+                            <label class="form-label">Demikian agar digunakan sebagaimana mestinya.</label>
+
+                            <div class="mt-4 text-end">
+                                <p>Jember,</p>
+                                <p>Dokter yang memeriksa:</p>
+
+                                Canvas untuk tanda tangan
+                                <div style="border: 1px solid #ccc; border-radius: 10px; position: relative;">
+                                    <canvas id="signature-pad-sakit" width="100%" height="150px"
+                                        style="display: block; background-color: #f8f9fa;"></canvas>
+                                    <small class="text-muted" style="position: absolute; bottom: 5px; left: 10px;">
+                                        Tanda tangan di area ini
+                                    </small>
+                                </div>
+
+                                <!-- Tombol untuk reset tanda tangan -->
+                                <button type="button" class="btn btn-outline-secondary btn-sm mt-2"
+                                    id="clear-signature-sakit">
+                                    <i class="bi bi-eraser"></i> Hapus Tanda Tangan
+                                </button>
+
+                                <p class="mt-3">(Nama Dokter)</p>
+                                <p>SIP</p>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary rounded-pill">Simpan</button>
+                            </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<style>
-    /* Styling khusus untuk modal Surat Keterangan Sakit */
-    #modalSakit .modal-content {
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
-        border: none;
-    }
-
-    #modalSakit .modal-header {
-        border-bottom: none;
-    }
-
-    #modalSakit .modal-title {
-        font-size: 32px;
-        font-weight: 800;
-        color: #0a0f5c;
-        /* Biru tua */
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    #modalSakit label.form-label {
-        font-weight: 600;
-    }
-
-    #modalSakit input.form-control,
-    #modalSakit select.form-select,
-    #modalSakit textarea.form-control {
-        border-radius: 10px;
-        background-color: #f9f9f9;
-        border: 1px solid #dcdcdc;
-    }
-
-    #modalSakit input::placeholder,
-    #modalSakit textarea::placeholder {
-        color: #c0c0c0;
-        font-style: italic;
-    }
-
-    #modalSakit .btn-primary {
-        background-color: #2959f7;
-        font-weight: 600;
-        font-size: 16px;
-        padding: 10px 0;
-        border-radius: 25px;
-        box-shadow: 0px 5px 15px rgba(41, 89, 247, 0.4);
-        border: none;
-    }
-
-    #modalSakit .btn-primary:hover {
-        background-color: #1834a7;
-    }
-
-    #modalSakit .btn-close {
-        font-size: 1.2rem;
-    }
-
-    /* Responsive kecil: padding lebih kecil */
-    @media (max-width: 576px) {
+    <style>
+        /* Styling khusus untuk modal Surat Keterangan Sakit */
         #modalSakit .modal-content {
-            padding: 20px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+            border: none;
+        }
+
+        #modalSakit .modal-header {
+            border-bottom: none;
         }
 
         #modalSakit .modal-title {
-            font-size: 26px;
+            font-size: 32px;
+            font-weight: 800;
+            color: #0a0f5c;
+            /* Biru tua */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
-    }
 
-    /* Tambahkan ke stylesheet Anda */
-    #signature-pad-sakit {
-        touch-action: none;
-        /* Penting untuk perangkat touch */
-        cursor: crosshair;
-    }
+        #modalSakit label.form-label {
+            font-weight: 600;
+        }
 
-    .signature-instruction {
-        position: absolute;
-        bottom: 5px;
-        left: 10px;
-        color: #6c757d;
-        font-size: 0.8rem;
-    }
-</style>
+        #modalSakit input.form-control,
+        #modalSakit select.form-select,
+        #modalSakit textarea.form-control {
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #dcdcdc;
+        }
+
+        #modalSakit input::placeholder,
+        #modalSakit textarea::placeholder {
+            color: #c0c0c0;
+            font-style: italic;
+        }
+
+        #modalSakit .btn-primary {
+            background-color: #2959f7;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 0;
+            border-radius: 25px;
+            box-shadow: 0px 5px 15px rgba(41, 89, 247, 0.4);
+            border: none;
+        }
+
+        #modalSakit .btn-primary:hover {
+            background-color: #1834a7;
+        }
+
+        #modalSakit .btn-close {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive kecil: padding lebih kecil */
+        @media (max-width: 576px) {
+            #modalSakit .modal-content {
+                padding: 20px;
+            }
+
+            #modalSakit .modal-title {
+                font-size: 26px;
+            }
+        }
+
+        /* Tambahkan ke stylesheet Anda */
+        #signature-pad-sakit {
+            touch-action: none;
+            /* Penting untuk perangkat touch */
+            cursor: crosshair;
+        }
+
+        .signature-instruction {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+    </style>
 
 @endsection
 
@@ -1451,7 +1445,7 @@
             });
             // Untuk modal surat sakit
             $('#modalSakit').on('shown.bs.modal', function() {
-                initSignaturePad('signature-pad-sakit','clear-signature-sakit');
+                initSignaturePad('signature-pad-sakit', 'clear-signature-sakit');
             });
 
             function initSignaturePad(canvasId, clearButtonId) {
