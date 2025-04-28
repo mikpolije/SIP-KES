@@ -279,7 +279,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="hubungan">Hubungan dengan pasien: <span
+                                    <label class="form-label" for="hubungan">Hubungan dengan Pasien: <span
                                             class="danger">*</span></label>
                                     <select class="form-select required" id="hubungan" name="hubungan">
                                         <option value="dirisendiri">Diri Sendiri</option>
