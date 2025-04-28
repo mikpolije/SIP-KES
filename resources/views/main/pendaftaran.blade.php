@@ -43,7 +43,7 @@
                             .form-control,
                             .form-select,
                             .btn {
-                                font-family: 'Poppins', sans-serif;
+                                font-family: 'Amiri Quran Colored', sans-serif;
                             }
                         </style>
 
