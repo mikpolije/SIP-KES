@@ -17,10 +17,13 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::get('/obat', [ObatController::class, 'index'])->name('obat.index');
     Route::get('/obat/all', [ObatController::class, 'all'])->name('obat.all');
     Route::get('/obat/rincian', [ObatController::class, 'rincian'])->name('obat.rincian');
+    Route::get('/obat/detail-pembelian', [ObatController::class, 'detailPembelian'])->name('obat.detail-pembelian');
     Route::post('/obat/rincian/{id}/koreksi', [ObatController::class, 'koreksi'])->name('obat.rincian.koreksi');
     Route::get('/obat/akan-kadaluarsa', [ObatController::class, 'akanKadaluarsa'])->name('obat.akan-kadaluarsa');
     Route::get('/obat/kadaluarsa', [ObatController::class, 'kadaluarsa'])->name('obat.kadaluarsa');
     Route::post('/obat/kadaluarsa/{detailPembelianObatId}', [ObatController::class, 'hapusObatKadaluarsa'])->name('obat.kadaluarsa.delete');
+    Route::post('/obat/pengambilan/{idPendaftaran}', [ObatController::class, 'pengambilan'])->name('obat.pengambilan');
+    Route::post('/obat/racikan/{idPendaftaran}', [ObatController::class, 'racikan'])->name('obat.racikan');
 
     Route::post('/obat/rincian', [ObatController::class, 'rincianStore'])->name('obat.rincian.store');
 

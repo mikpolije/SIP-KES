@@ -2,8 +2,13 @@
 
 @section('title', 'SIP-Kes')
 
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+@endsection
+
 @section('pageContent')
-    <div class="container-fluid">
+    <div class="container-fluid" id="all-content">
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
@@ -16,6 +21,42 @@
                         text-align: left;
                         color: #111754;
                         text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+                    }
+                </style>
+
+                <!-- Tambahkan CSS untuk fitur ICD-10 -->
+                <style>
+                    .search-item {
+                        cursor: pointer;
+                        transition: background-color 0.2s;
+                    }
+
+                    .search-item:hover {
+                        background-color: #f8f9fa;
+                    }
+
+                    .selected-icd-item {
+                        background-color: #e9f7fe;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                    }
+
+                    #search-results {
+                        border: 1px solid #ced4da;
+                        border-radius: 0 0 5px 5px;
+                    }
+
+                    .hover-bg:hover {
+                        background-color: #f0f0f0;
+                        cursor: pointer;
+                    }
+
+                    .z-index-dropdown {
+                        z-index: 1000;
+                    }
+
+                    .min-height-80 {
+                        min-height: 80px;
                     }
                 </style>
 
@@ -53,9 +94,9 @@
 
                             <!-- Search bar and button -->
                             <div class="d-flex">
-                                <input type="text" class="form-control search-bar me-2" id="" placeholder="Data Pasien"
+                                <input type="text" class="form-control search-bar me-2" id="id_pendaftaran" placeholder="ID Pendaftaran"
                                     style="width: 250px;">
-                                <button class="btn btn-primary search-button" onclick="searchobat()">Cari</button>
+                                <button class="btn btn-primary search-button" id="cari_data_pendaftaran">Cari</button>
                             </div>
 
                             <style>
@@ -102,7 +143,7 @@
                         <div class="col-md-2">
                             <div class="mb-3">
                                 <label class="form-label" for="behName2">No. Antrian:</label>
-                                <input type="text" class="form-control required" id="behName2" />
+                                <input type="text" class="form-control required" id="no_antrian" name="no_antrian"/>
                             </div>
                         </div>
 
@@ -110,23 +151,23 @@
                         <div class="col-md-2">
                             <div class="mb-3">
                                 <label class="form-label" for="participants3">No. RM:</label>
-                                <input type="text" class="form-control required" id="participants3" />
+                                <input type="text" class="form-control required" id="no_rm" disabled/>
                             </div>
                         </div>
 
                         <!-- Nama -->
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label" for="participants3">Nama:</label>
-                                <input type="text" class="form-control required" id="participants3" />
+                                <input type="text" class="form-control required" id="nama_pemeriksaan" disabled/>
                             </div>
                         </div>
 
                         <!-- Tanggal Penyerahan -->
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="mb-3">
                                 <label class="form-label" for="tlwali">Tanggal Penyerahan:</label>
-                                <input type="date" class="form-control required" id="tlwali" name="tlwali" />
+                                <input type="date" class="form-control required" id="tlwali" name="tanggal_penyerahan" />
                             </div>
                         </div>
                         <style>
@@ -157,17 +198,11 @@
                         <!-- Rincian Obat and Table -->
                         <div class="col-md-8">
                             <label class="form-label" for="decisions3">Rincian Obat</label>
-                            <div class="d-flex mb-3">
-                                <input type="text" class="form-control me-2" id="" placeholder="Cari Obat"
-                                    style="width: 70%;">
-                                <button class="btn btn-primary btn-3d me-auto" onclick="searchobat()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-plus-circle" viewBox="0 0 16 16" style="margin-right: 5px;">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                        <path
-                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                                    </svg>
-                                    Tambah
+                            <div class="d-flex mb-3 position-relative">
+                                <input type="text" class="form-control me-2" id="cari-obat" placeholder="Cari Obat (minimal 2 huruf)" style="width: 70%;">
+                                <div id="hasil-search-obat" class="list-group position-absolute" style="top: 100%; z-index: 1000; width: 70%; display: none;"></div>
+                                <button class="btn btn-primary btn-3d me-auto" onclick="tambahObat()">
+                                    <i class="ti ti-plus"></i> Tambah
                                 </button>
                                 <button class="btn btn-primary btn-3d" onclick="searchobat()">Cari</button>
                             </div>
@@ -202,20 +237,9 @@
                                         <th class="text-light">Harga Obat</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tabel-obat">
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
+                                        <td colspan="3" class="text-center">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -230,23 +254,9 @@
                                         <th class="text-light">Harga Obat</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tabel-pengambilan-obat">
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -268,7 +278,7 @@
                         <div class="col-md-4" style="margin-top: 5px;">
                             <div class="mb-3">
                                 <label class="form-label" for="decisions3">Catatan</label>
-                                <textarea name="decisions" id="decisions3" rows="10" class="form-control"></textarea>
+                                <textarea name="catatan" id="decisions3" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -278,7 +288,7 @@
                         <div class="col-md-8 d-flex justify-content-end">
                             <button type="button" class="btn btn-info btn-3d" style="margin-right: 10px;"
                                 onclick="window.location.href='{{ url('main/dataobat') }}'">Sebelumnya</button>
-                            <button type="button" class="btn btn-success btn-3d" style="margin-right: 10px;">Simpan
+                            <button type="button" class="btn btn-success btn-3d" id="simpan-draf" style="margin-right: 10px;">Simpan
                                 Draf</button>
                             <button type="button" class="btn btn-warning btn-3d" style="margin-right: 10px;"
                                 onclick="printTables()">Cetak</button>
@@ -325,6 +335,7 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         function printTables() {
             // Get both table elements
@@ -350,165 +361,311 @@
         }
     </script>
 
-    <!-- ICD-10 Search Script -->
     <script>
         $(document).ready(function () {
-            // Variables to track selected ICDs
-            let selectedICDs = [];
+            $(document).on('click', '#cari_data_pendaftaran', function (e) {
+                let eThis = $(this)
+                let id_pendaftaran = $('#id_pendaftaran').val()
 
-            // Handle search input
-            $('#search-icd').on('input', function () {
-                const searchTerm = $(this).val();
-
-                if (searchTerm.length < 2) {
-                    $('#search-results').hide();
-                    return;
+                if (!id_pendaftaran) {
+                    errorMessage('ID Pendaftaran tidak boleh kosong')
+                    return
                 }
 
-                // Make AJAX request to search endpoint
+                eThis.prop('disabled', true)
+                eThis.html('Loading...')
+
                 $.ajax({
-                    url: '{{ url('search_icd.php') }}',
-                    data: {
-                        term: searchTerm
-                    },
-                    dataType: 'json',
-                    success: function (data) {
-                        // Clear previous results
-                        $('#search-results').empty();
+                    url: "{{ route('api.poli-kia.show', ':idPendaftaran') }}".replace(':idPendaftaran', id_pendaftaran),
+                    type: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                }).done(function (res) {
+                    let data = res.data
+                    $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
+                    $('#no_rm').val(data.data_pasien.no_rm)
 
-                        if (data.length > 0) {
-                            // Add each result to dropdown
-                            data.forEach(function (item) {
-                                $('#search-results').append(
-                                    `<div class="search-item p-2 border-bottom hover-bg" data-id="${item.id}" data-name="${item.name}">
-                                                                                                                                                                                                                                                                                                        <strong>${item.id}</strong> - ${item.name}
-                                                                                                                                                                                                                                                                                                    </div>`
-                                );
-                            });
+                    if (data.pengambilan_obat) {
+                        $('[name="no_antrian"]').val(data.pengambilan_obat.no_antrian)
+                        $('[name="tanggal_penyerahan"]').val(data.pengambilan_obat.tanggal_penyerahan)
+                        $('[name="catatan"]').html(data.pengambilan_obat.catatan)
 
-                            // Show results dropdown
-                            $('#search-results').show();
-                        } else {
-                            $('#search-results').append(
-                                `<div class="p-2 text-muted">Tidak ada hasil ditemukan</div>`
-                            );
-                            $('#search-results').show();
+                        if (data.pengambilan_obat.detail_pengambilan_obat.length > 0) {
+                            $('#tabel-obat').html('')
+                            $('#tabel-pengambilan-obat').html('')
+                            data.pengambilan_obat.detail_pengambilan_obat.forEach((obat, index) => {
+                                let random = Math.random().toString(36).substring(7);
+                                let nama = obat.detail_pembelian_obat.obat.nama
+                                let harga = obat.detail_pembelian_obat.obat.harga
+                                $('#tabel-obat').append(`
+                                    <tr class="item-tabel-obat parent-multiple-data">
+                                        <td>
+                                            <input type="hidden" name="id_detail_pembelian_obat[]" value="${obat.detail_pembelian_obat.id}">
+                                            <input type="number" class="form-control" name="jumlah[]" value="${obat.jumlah}" min="1" id="${random}">
+                                            <input type="hidden" name="harga[]" value="${harga}">
+                                        </td>
+                                        <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
+                                        <td>${harga}</td>
+                                    </tr>
+                                `)
+
+                                $('#tabel-pengambilan-obat').append(`
+                                    <tr class="item-tabel-pengambilan-obat parent-multiple-data">
+                                        <td>
+                                            <input type="date" class="form-control" name="tanggal[]" value="${obat.tanggal}">
+                                        </td>
+                                        <td>
+                                            <span class="${random}">${obat.jumlah}</span>
+                                        </td>
+                                        <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
+                                        <td>${harga}</td>
+                                    </tr>
+                                `)
+                            })
                         }
-                    },
-                    error: function (xhr, status, error) {
-                        console.error('Error searching ICD:', error);
-                        $('#search-results').html(
-                            '<div class="p-2 text-danger">Error searching: ' + error +
-                            '</div>');
-                        $('#search-results').show();
+                    } else {
+                        $('[name="no_antrian"]').val('')
+                        $('[name="tanggal_penyerahan"]').val('')
+                        $('[name="catatan"]').html('')
+                        $('#tabel-obat').html(`
+                            <tr>
+                                <td colspan="3" class="text-center">Tidak Ada Data</td>
+                            </tr>
+                        `)
+                        $('#tabel-pengambilan-obat').html(`
+                            <tr>
+                                <td colspan="4" class="text-center">Tidak Ada Data</td>
+                            </tr>
+                        `)
+                    }
+                }).fail(function (xhr, status, error) {
+                    errorMessage(xhr.responseJSON.message)
+                }).always(function () {
+                    eThis.prop('disabled', false)
+                    eThis.html('Cari')
+                })
+            });
+        });
+
+        let timer = null;
+
+        $('#cari-obat').on('input', function() {
+            clearTimeout(timer);
+
+            const query = $(this).val();
+            if (query.length < 2) {
+                $('#hasil-search-obat').hide().empty();
+                return;
+            }
+
+            timer = setTimeout(() => {
+                $.ajax({
+                    url: "{{ route('api.obat.detail-pembelian') }}",
+                    method: 'GET',
+                    data: { search: query },
+                    success: function(response) {
+                        $('#hasil-search-obat').empty();
+
+                        if (response.data.length === 0) {
+                            $('#hasil-search-obat').hide();
+                            return;
+                        }
+
+                        response.data.forEach(obat => {
+                            $('#hasil-search-obat').append(`
+                                <button type="button" class="list-group-item list-group-item-action" onclick="pilihObat('${obat.obat.nama} (Exp ${obat.tanggal_kadaluarsa} ~ Stok ${obat.stok_gudang})', '${obat.id}', '${obat.obat.harga}')">
+                                    ${obat.obat.nama} (Exp ${obat.tanggal_kadaluarsa} ~ Stok ${obat.stok_gudang})
+                                </button>
+                            `);
+                        });
+
+                        $('#hasil-search-obat').show();
                     }
                 });
-            });
+            }, 300);
+        });
 
-            // Handle search button click
-            $('#search-btn').click(function () {
-                const searchTerm = $('#search-icd').val();
-                if (searchTerm.length >= 2) {
-                    // Trigger the same search process
-                    $('#search-icd').trigger('input');
+        function pilihObat(nama, id, harga) {
+            $('#cari-obat').val(nama);
+            $('#hasil-search-obat').hide().empty();
+            $('#cari-obat').attr('data-id', id);
+            $('#cari-obat').attr('data-harga', harga);
+        }
+
+        function searchobat() {
+            $('#cari-obat').trigger('input');
+        }
+
+        function tambahObat() {
+            const nama = $('#cari-obat').val();
+            const harga = $('#cari-obat').attr('data-harga');
+            const id = $('#cari-obat').attr('data-id');
+
+            if (!id) {
+                errorMessage('Pilih obat dari daftar terlebih dahulu.');
+                return;
+            }
+
+            let random = Math.floor(Math.random() * 100000000) + 1;
+
+            if ($('#tabel-obat .item-tabel-obat').length == 0) {
+                $('#tabel-obat').html('')
+            }
+
+            $('#tabel-obat').append(`
+                <tr class="item-tabel-obat parent-multiple-data">
+                    <td>
+                        <input type="hidden" name="id_detail_pembelian_obat[]" value="${id}">
+                        <input type="number" class="form-control" name="jumlah[]" value="1" min="1" id="${random}">
+                        <input type="hidden" name="harga[]" value="${harga}">
+                    </td>
+                    <td>${nama}</td>
+                    <td>${harga}</td>
+                </tr>
+            `)
+
+            if ($('#tabel-pengambilan-obat .item-tabel-pengambilan-obat').length == 0) {
+                $('#tabel-pengambilan-obat').html('')
+            }
+
+            $('#tabel-pengambilan-obat').append(`
+                <tr class="item-tabel-pengambilan-obat parent-multiple-data">
+                    <td>
+                        <input type="date" class="form-control" name="tanggal[]">
+                    </td>
+                    <td>
+                        <span class="${random}">1</span>
+                    </td>
+                    <td>${nama}</td>
+                    <td>${harga}</td>
+                </tr>
+            `)
+        }
+
+        $(document).on('input', 'input[name="jumlah[]"]', function (e) {
+            const id = $(this).attr('id');
+            const value = $(this).val();
+            $(`.${id}`).text(value);
+        })
+
+        $(document).on('click', '#simpan-draf', function (e) {
+            let eThis = $(this)
+            eThis.prop('disabled', true)
+            eThis.html('Loading...')
+            let id = $('#id_pendaftaran').val()
+
+            if (id == '') {
+                errorMessage('Pilih pasien terlebih dahulu.')
+                eThis.prop('disabled', false)
+                eThis.html('Simpan Draf')
+                return
+            }
+
+            let data = {
+                no_antrian: $('input[name="no_antrian"]').val(),
+                tanggal_penyerahan: $('input[name="tanggal_penyerahan"]').val(),
+                catatan: $('textarea[name="catatan"]').val(),
+            }
+
+            $('#tabel-obat').find('.item-tabel-obat').each(function (index, item) {
+                data[`id_detail_pembelian_obat[${index}]`] = $(item).find('input[name="id_detail_pembelian_obat[]"]').val()
+                data[`jumlah[${index}]`] = $(item).find('input[name="jumlah[]"]').val()
+                data[`harga[${index}]`] = $(item).find('input[name="harga[]"]').val()
+            })
+
+            $('#tabel-pengambilan-obat').find('.item-tabel-pengambilan-obat').each(function (index, item) {
+                data[`tanggal[${index}]`] = $(item).find('input[name="tanggal[]"]').val()
+            })
+
+            $.ajax({
+                url: `{{ route('api.obat.pengambilan', ':id') }}`.replace(':id', id),
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: data
+            }).done(function (res) {
+                successMessage(res.message)
+            }).fail(function (xhr, status, error) {
+                let errors = xhr.responseJSON.errors
+                errorMessage(xhr.responseJSON.message)
+                if (errors != undefined) {
+                    showErrorsOnFields(errors, 'all-content')
                 }
-            });
+            }).always(function () {
+                eThis.prop('disabled', false)
+                eThis.html('Simpan Draf')
+            })
+        })
 
-            // Handle selecting an ICD from the results
-            $(document).on('click', '.search-item', function () {
-                const id = $(this).data('id');
-                const name = $(this).data('name');
 
-                // Check if already selected
-                if (!selectedICDs.some(item => item.id === id)) {
-                    // Add to selected ICDs
-                    selectedICDs.push({
-                        id,
-                        name
+
+        $(document).on('input change', 'input, select, textarea', function () {
+            let name = $(this).attr('name');
+            if (!name) {
+                return;
+            }
+            if (name.includes('[]')) {
+                let index = $(this).closest('.parent-multiple-data').index();
+
+                $(`#error-${name.replace('[]', '')}_${index}`).remove();
+            } else {
+                $(`#error-${name}`).remove();
+            }
+        });
+        function setFieldValue(id, value) {
+            $(`${id}`).val(value ?? '').trigger('change');
+        }
+        function showErrorsOnFields(errors, id, scrollTop = true) {
+            for (const [key, value] of Object.entries(errors)) {
+                let input;
+
+                if (key.includes('.')) {
+                    const [base, index] = key.split('.');
+
+                    $(`#${id} [name="${base}[]"]`).each((i, el) => {
+                        if (parseInt(index) === i) {
+                            input = $(el);
+                        }
                     });
-
-                    // Update the display of selected ICDs
-                    updateSelectedICDs();
-                }
-
-                // Clear search and hide results
-                $('#search-icd').val('');
-                $('#search-results').hide();
-            });
-
-            // Function to update display of selected ICDs
-            function updateSelectedICDs() {
-                const container = $('#selected-icds');
-
-                if (selectedICDs.length === 0) {
-                    container.html(
-                        '<p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>'
-                    );
                 } else {
-                    container.empty();
+                    input = $(`#${id} [name="${key}"], #${id} [name="${key}[]"]`);
+                }
 
-                    selectedICDs.forEach(function (item, index) {
-                        container.append(
-                            `<div class="selected-icd-item mb-1 d-flex align-items-center">
-                                                                                                                                                                                                                                                                                                <span class="me-auto"><strong>${item.id}</strong> - ${item.name}</span>
-                                                                                                                                                                                                                                                                                                <button type="button" class="btn btn-sm btn-outline-danger remove-icd" data-index="${index}">
-                                                                                                                                                                                                                                                                                                    <i class="fas fa-times"></i>
-                                                                                                                                                                                                                                                                                                </button>
-                                                                                                                                                                                                                                                                                            </div>`
-                        );
-                    });
+                if (input.is(':radio') || input.is(':checkbox')) {
+                    const lastRadio = input.last();
+                    lastRadio.closest('.form-check-inline, .form-check').next('.text-danger').remove();
+                    lastRadio.closest('.form-check-inline, .form-check').after(`<div class="text-danger text-sm" id="error-${key.replace('.', '_')}">${value[0]}</div>`);
+                } else {
+                    const target = input.closest('.input-group').length > 0
+                        ? input.closest('.input-group')
+                        : input;
+
+                    target.next('.text-danger').remove();
+                    target.after(`<div class="text-danger text-sm" id="error-${key.replace('.', '_')}">${value[0]}</div>`);
                 }
             }
 
-            // Handle removing a selected ICD
-            $(document).on('click', '.remove-icd', function () {
-                const index = $(this).data('index');
-                selectedICDs.splice(index, 1);
-                updateSelectedICDs();
+            if (scrollTop) {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        }
+        function errorMessage(msg) {
+            toastr.error('Gagal', msg, {
+                positionClass: 'toast-top-right',
+                timeOut: 3000,
+                progressBar: true,
+                closeButton: true,
             });
-
-            // Close dropdown when clicking outside
-            $(document).on('click', function (event) {
-                if (!$(event.target).closest('#search-icd, #search-results, #search-btn').length) {
-                    $('#search-results').hide();
-                }
+        }
+        function successMessage(msg) {
+            toastr.success('Berhasil', msg, {
+                positionClass: 'toast-top-right',
+                timeOut: 3000,
+                progressBar: true,
+                closeButton: true,
             });
-        });
+        }
     </script>
-
-    <!-- Tambahkan CSS untuk fitur ICD-10 -->
-    <style>
-        .search-item {
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .search-item:hover {
-            background-color: #f8f9fa;
-        }
-
-        .selected-icd-item {
-            background-color: #e9f7fe;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-
-        #search-results {
-            border: 1px solid #ced4da;
-            border-radius: 0 0 5px 5px;
-        }
-
-        .hover-bg:hover {
-            background-color: #f0f0f0;
-            cursor: pointer;
-        }
-
-        .z-index-dropdown {
-            z-index: 1000;
-        }
-
-        .min-height-80 {
-            min-height: 80px;
-        }
-    </style>
 @endsection

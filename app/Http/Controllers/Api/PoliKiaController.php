@@ -25,6 +25,8 @@ class PoliKiaController extends Controller
                 'formulirKehamilan',
                 'formulirPersalinan',
                 'formulirAnak',
+                'pengambilan_obat.detail_pengambilan_obat.detail_pembelian_obat.obat',
+                'pengambilan_obat.racikan.detail_pembelian_obat.obat'
             ])
             ->where('id_pendaftaran', $idPendaftaran)
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
