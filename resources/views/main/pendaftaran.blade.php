@@ -405,79 +405,87 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <!-- Subjective Section -->
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="subjek">Subjective/Keluhan</label>
-                                        <textarea name="shortDescription" id="subjek" name="subjek" rows="6" class="form-control required"></textarea>
+                                        <label class="form-label">Subjective/Keluhan</label>
+                                        <textarea name="shortDescription" id="subjek" rows="6" class="form-control required"></textarea>
                                     </div>
                                 </div>
+
+                                <!-- Objective Section -->
                                 <div class="col-md-6">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Objective</label>
-                                            <div class="objective-fields">
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label class="form-label">Sistole</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control number-input"
-                                                                id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
-                                                            <span class="input-group-text">mmHg</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label class="form-label">Diastole</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control number-input"
-                                                                id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
-                                                            <span class="input-group-text">mmHg</span>
-                                                        </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Objective</label>
+                                        <div class="objective-fields">
+                                            <!-- Blood Pressure Row -->
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Sistole</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label class="form-label">Berat Badan</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control decimal-input"
-                                                                id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
-                                                            <span class="input-group-text">Kg</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label class="form-label">Tinggi Badan</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control decimal-input"
-                                                                id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
-                                                            <span class="input-group-text">Cm</span>
-                                                        </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Diastole</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label class="form-label">Suhu</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control decimal-input"
-                                                                id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
-                                                            <span class="input-group-text">°C</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label class="form-label">SpO2</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control number-input"
-                                                                id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
-                                                            <span class="input-group-text">%</span>
-                                                        </div>
+                                            </div>
+
+                                            <!-- Weight/Height Row -->
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Berat Badan</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">Kg</span>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label class="form-label">Respiration Rate</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control number-input"
-                                                                id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
-                                                            <span class="input-group-text">/mmt</span>
-                                                        </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Tinggi Badan</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">Cm</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Temperature/SpO2 Row -->
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Suhu</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">°C</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">SpO2</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Respiration Rate Row -->
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Respiration Rate</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">/mmt</span>
                                                     </div>
                                                 </div>
                                             </div>
