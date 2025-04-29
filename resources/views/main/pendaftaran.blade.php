@@ -427,20 +427,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Berat Badan (kg)</label>
-                                            <input type="text" class="form-control decimal-input" id="berat-mask"
-                                                placeholder="Enter Value in kg" pattern="[0-9.,]*" inputmode="decimal">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Tinggi Badan (cm)</label>
-                                            <input type="text" class="form-control decimal-input" id="tinggi-mask"
-                                                placeholder="Enter Value in cm" pattern="[0-9.,]*" inputmode="decimal">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
                                             <label class="form-label">Suhu (°C)</label>
                                             <input type="text" class="form-control decimal-input" id="suhu-mask"
                                                 placeholder="Enter Value in °C" pattern="[0-9.,]*" inputmode="decimal">
@@ -449,6 +435,20 @@
                                             <label class="form-label">SpO2 (%)</label>
                                             <input type="text" class="form-control number-input" id="spo2-mask"
                                                 placeholder="Enter Value in %" pattern="[0-9]*" inputmode="numeric">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Berat Badan (kg)</label>
+                                            <input type="text" class="form-control decimal-input" id="berat-mask"
+                                                placeholder="Enter Value in kg" pattern="[0-9.,]*" inputmode="decimal">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Tinggi Badan (cm)</label>
+                                            <input type="text" class="form-control decimal-input" id="tinggi-mask"
+                                                placeholder="Enter Value in cm" pattern="[0-9.,]*" inputmode="decimal">
                                         </div>
                                     </div>
                                     <div class="row">
