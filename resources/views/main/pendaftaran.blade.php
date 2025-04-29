@@ -415,47 +415,68 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Sistole (mmHg)</label>
-                                            <input type="text" class="form-control number-input" id="sistole-mask"
-                                                placeholder="Enter Value in mmHg" pattern="[0-9]*" inputmode="numeric">
+                                            <label class="form-label">Sistole</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input" id="sistole-mask"
+                                                    pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">mmHg</span>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Diastole (mmHg)</label>
-                                            <input type="text" class="form-control number-input" id="diastole-mask"
-                                                placeholder="Enter Value in mmHg" pattern="[0-9]*" inputmode="numeric">
+                                            <label class="form-label">Diastole</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input"
+                                                    id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">mmHg</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Suhu (°C)</label>
-                                            <input type="text" class="form-control decimal-input" id="suhu-mask"
-                                                placeholder="Enter Value in °C" pattern="[0-9.,]*" inputmode="decimal">
+                                            <label class="form-label">Suhu</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="suhu-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">°C</span>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">SpO2 (%)</label>
-                                            <input type="text" class="form-control number-input" id="spo2-mask"
-                                                placeholder="Enter Value in %" pattern="[0-9]*" inputmode="numeric">
+                                            <label class="form-label">SpO2</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input" id="spo2-mask"
+                                                    pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">%</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Berat Badan (kg)</label>
-                                            <input type="text" class="form-control decimal-input" id="berat-mask"
-                                                placeholder="Enter Value in kg" pattern="[0-9.,]*" inputmode="decimal">
+                                            <label class="form-label">Berat Badan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="berat-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">Kg</span>
+                                            </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Tinggi Badan (cm)</label>
-                                            <input type="text" class="form-control decimal-input" id="tinggi-mask"
-                                                placeholder="Enter Value in cm" pattern="[0-9.,]*" inputmode="decimal">
+                                            <label class="form-label">Tinggi Badan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="tinggi-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">Cm</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Respiration Rate (/mnt)</label>
-                                            <input type="text" class="form-control number-input" id="resprate-mask"
-                                                placeholder="Enter Value in /mnt" pattern="[0-9]*" inputmode="numeric">
+                                            <label class="form-label">Respiration Rate</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input"
+                                                    id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">/mnt</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
