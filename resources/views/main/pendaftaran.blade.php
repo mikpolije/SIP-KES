@@ -367,7 +367,7 @@
                     <h1 class="title">Pemeriksaan Awal</h1>
                     <h6>Pemeriksaan Awal</h6>
                     <section>
-                        <h4 class="section-title">Data Pendaftaran</h4>
+                        <h4 class="section-title">Data Pemeriksaan Awal</h4>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="mb-3">
@@ -404,15 +404,17 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="subjek">Subjek/Keluhan</label>
-                                    <textarea name="shortDescription" id="subjek" name="subjek" rows="6" class="form-control required"></textarea>
-                                </div>
-                            </div>
-                            <h4 class="section-title">Objective</h4>
                             <div class="row">
                                 <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="subjek">Subjective/Keluhan</label>
+                                        <textarea name="shortDescription" id="subjek" name="subjek" rows="6" class="form-control required"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Objective Section (Right) -->
+                                <div class="col-md-6">
+                                    <h4 class="section-title">Objective</h4>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Sistole</label>
@@ -428,6 +430,24 @@
                                                 <input type="text" class="form-control number-input"
                                                     id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
                                                 <span class="input-group-text">mmHg</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Berat Badan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="berat-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">Kg</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Tinggi Badan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="tinggi-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">Cm</span>
                                             </div>
                                         </div>
                                     </div>
@@ -449,33 +469,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Berat Badan</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control decimal-input" id="berat-mask"
-                                                    pattern="[0-9.,]*" inputmode="decimal">
-                                                <span class="input-group-text">Kg</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Tinggi Badan</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control decimal-input" id="tinggi-mask"
-                                                    pattern="[0-9.,]*" inputmode="decimal">
-                                                <span class="input-group-text">Cm</span>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Respiration Rate</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control number-input"
                                                     id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
-                                                <span class="input-group-text">/mnt</span>
+                                                <span class="input-group-text">/mmt</span>
                                             </div>
                                         </div>
                                     </div>
