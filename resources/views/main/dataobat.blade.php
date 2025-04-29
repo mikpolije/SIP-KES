@@ -168,7 +168,7 @@
                                     <th class="text-light">Nama Obat</th>
                                     <th class="text-light">Keterangan Obat</th>
                                     <th class="text-light">Stok</th>
-                                    <th class="text-light">Kadaluwarsa</th>
+                                    <th class="text-light">Kadaluwarsa Terdekat</th>
                                     <th class="text-light">Bentuk Obat</th>
                                     <th class="text-light">Harga Obat</th>
                                     <th class="text-light">Aksi</th>

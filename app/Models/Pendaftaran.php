@@ -47,6 +47,11 @@ class Pendaftaran extends Model
         return $this->hasOne(FormulirKehamilan::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 
+    public function pengambilan_obat()
+    {
+        return $this->hasOne(PengambilanObat::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
     public function getLayananTerisiAttribute()
     {
         if (!$this->relationLoaded('layanan_kia')) {
