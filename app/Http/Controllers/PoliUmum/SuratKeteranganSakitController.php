@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\PoliUmum;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SuratKeteranganSakitController extends Controller
