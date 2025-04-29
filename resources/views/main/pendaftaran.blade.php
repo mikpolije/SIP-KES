@@ -1645,8 +1645,9 @@
                     [lastX, lastY] = [x, y];
                 }
 
-                // Tombol hapus
-                document.getElementById('clear-signature').addEventListener('click', () => {
+                // Tombol hapus (clear canvas)
+                const clearButton = document.getElementById(clearButtonId);
+                clearButton.addEventListener('click', () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                 });
 
