@@ -412,41 +412,51 @@
                             </div>
                             <h4 class="section-title">Objective</h4>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sistole (mmHg)</label>
-                                        <input type="text" class="form-control number-input" id="sistole-mask"
-                                            placeholder="Enter Value in mmHg" pattern="[0-9]*" inputmode="numeric">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Sistole (mmHg)</label>
+                                            <input type="text" class="form-control number-input" id="sistole-mask"
+                                                placeholder="Enter Value in mmHg" pattern="[0-9]*" inputmode="numeric">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Diastole (mmHg)</label>
+                                            <input type="text" class="form-control number-input" id="diastole-mask"
+                                                placeholder="Enter Value in mmHg" pattern="[0-9]*" inputmode="numeric">
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Diastole (mmHg)</label>
-                                        <input type="text" class="form-control number-input" id="diastole-mask"
-                                            placeholder="Enter Value in mmHg" pattern="[0-9]*" inputmode="numeric">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Berat Badan (kg)</label>
+                                            <input type="text" class="form-control decimal-input" id="berat-mask"
+                                                placeholder="Enter Value in kg" pattern="[0-9.,]*" inputmode="decimal">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Tinggi Badan (cm)</label>
+                                            <input type="text" class="form-control decimal-input" id="tinggi-mask"
+                                                placeholder="Enter Value in cm" pattern="[0-9.,]*" inputmode="decimal">
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 mt-3">
-                                        <label class="form-label">Berat Badan (kg)</label>
-                                        <input type="text" class="form-control decimal-input" id="berat-mask"
-                                            placeholder="Enter Value in kg" pattern="[0-9.,]*" inputmode="decimal">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Suhu (°C)</label>
+                                            <input type="text" class="form-control decimal-input" id="suhu-mask"
+                                                placeholder="Enter Value in °C" pattern="[0-9.,]*" inputmode="decimal">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">SpO2 (%)</label>
+                                            <input type="text" class="form-control number-input" id="spo2-mask"
+                                                placeholder="Enter Value in %" pattern="[0-9]*" inputmode="numeric">
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 mt-3">
-                                        <label class="form-label">Tinggi Badan (cm)</label>
-                                        <input type="text" class="form-control decimal-input" id="tinggi-mask"
-                                            placeholder="Enter Value in cm" pattern="[0-9.,]*" inputmode="decimal">
-                                    </div>
-                                    <div class="col-md-6 mt-3">
-                                        <label class="form-label">Suhu (°C)</label>
-                                        <input type="text" class="form-control decimal-input" id="suhu-mask"
-                                            placeholder="Enter Value in °C" pattern="[0-9.,]*" inputmode="decimal">
-                                    </div>
-                                    <div class="col-md-6 mt-3">
-                                        <label class="form-label">SpO2 (%)</label>
-                                        <input type="text" class="form-control number-input" id="spo2-mask"
-                                            placeholder="Enter Value in %" pattern="[0-9]*" inputmode="numeric">
-                                    </div>
-                                    <div class="col-md-6 mt-3">
-                                        <label class="form-label">Respiration Rate (/mnt)</label>
-                                        <input type="text" class="form-control number-input" id="resprate-mask"
-                                            placeholder="Enter Value in /mnt" pattern="[0-9]*" inputmode="numeric">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Respiration Rate (/mnt)</label>
+                                            <input type="text" class="form-control number-input" id="resprate-mask"
+                                                placeholder="Enter Value in /mnt" pattern="[0-9]*" inputmode="numeric">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
