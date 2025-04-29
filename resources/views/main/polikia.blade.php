@@ -127,7 +127,7 @@
 @section('pageContent')
 <div class="card w-100">
     <div class="card-body wizard-content">
-        <h1 class="title" id="page-title">Layanan</h1>
+        <h1 class="title" id="page-title">Layanan KIA</h1>
         <form action="#" class="validation-wizard wizard-circle mt-5">
             <div id="header-section" class="d-none">
                 <div class="row justify-content-between align-items-center mt-5">
