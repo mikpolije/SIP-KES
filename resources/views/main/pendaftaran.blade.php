@@ -412,65 +412,73 @@
                             </div>
                             <h4 class="section-title">Objective</h4>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sistol <small
-                                                class="text-muted ms-2">mmHg</small></label>
-                                        <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
-                                            placeholder="Enter Value in mmHg" />
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Sistole</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input" id="sistole-mask"
+                                                    pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">mmHg</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Diastole</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input"
+                                                    id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">mmHg</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Suhu</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="suhu-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">°C</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">SpO2</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input" id="spo2-mask"
+                                                    pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Diastol <small
-                                                class="text-muted ms-2">mmHg</small></label>
-                                        <input type="text" class="form-control mmhg-diastol-inputmask"
-                                            id="diastol-mask" placeholder="Enter Value in mmHg" />
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Berat Badan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="berat-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">Kg</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Tinggi Badan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control decimal-input" id="tinggi-mask"
+                                                    pattern="[0-9.,]*" inputmode="decimal">
+                                                <span class="input-group-text">Cm</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Berat Badan <small
-                                                class="text-muted ms-2">kg</small></label>
-                                        <input type="text" class="form-control kg-inputmask" id="berat-mask"
-                                            placeholder="Enter Value in kg" />
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Respiration Rate</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control number-input"
+                                                    id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                <span class="input-group-text">/mnt</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Tinggi Badan <small
-                                                class="text-muted ms-2">cm</small></label>
-                                        <input type="text" class="form-control cm-inputmask" id="tinggi-mask"
-                                            placeholder="Enter Value in cm" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Suhu <small class="text-muted ms-2">°C</small></label>
-                                        <input type="text" class="form-control celcius-inputmask" id="suhu-mask"
-                                            placeholder="Enter Value in °C" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">SpO2 <small class="text-muted ms-2">%</small></label>
-                                        <input type="text" class="form-control spo2-inputmask" id="spo2-mask"
-                                            placeholder="Enter Value in %" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Respiratory Rate <small
-                                                class="text-muted ms-2">/mnt</small></label>
-                                        <input type="text" class="form-control resp-rate-inputmask" id="resprate-mask"
-                                            placeholder="Enter Value in /mnt" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <!-- Kolom kosong atau parameter vital tambahan bisa ditambahkan di sini -->
                                 </div>
                             </div>
                     </section>
@@ -593,12 +601,12 @@
                                     <h5 class="fw-bold">Objective</h5>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="form-label">Sistol (mmHg)</label>
-                                            <input type="text" class="form-control" id="sistol-mask">
+                                            <label class="form-label">Sistole (mmHg)</label>
+                                            <input type="text" class="form-control" id="sistole-mask">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label">Diastol (mmHg)</label>
-                                            <input type="text" class="form-control" id="diastol-mask">
+                                            <label class="form-label">Diastole (mmHg)</label>
+                                            <input type="text" class="form-control" id="diastole-mask">
                                         </div>
                                         <div class="col-md-6 mt-3">
                                             <label class="form-label">Berat Badan (kg)</label>
@@ -1617,6 +1625,69 @@
                     titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
                 });
             }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fungsi untuk memproses input desimal
+            function processDecimalInput(input, value) {
+                // Ganti koma dengan titik untuk konsistensi
+                let newValue = value.replace(/,/g, '.');
+
+                // Hapus karakter yang bukan angka atau titik
+                newValue = newValue.replace(/[^0-9.]/g, '');
+
+                // Pastikan hanya ada satu titik desimal
+                const parts = newValue.split('.');
+                if (parts.length > 2) {
+                    newValue = parts[0] + '.' + parts.slice(1).join('');
+                }
+
+                // Jika dimulai dengan titik, tambahkan 0 di depan
+                if (newValue.startsWith('.')) {
+                    newValue = '0' + newValue;
+                }
+
+                return newValue;
+            }
+
+            // Input angka biasa (tanpa desimal)
+            const numberInputs = document.querySelectorAll('.number-input');
+            numberInputs.forEach(input => {
+                input.addEventListener('input', function(e) {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain');
+                    const numbers = pasteData.replace(/[^0-9]/g, '');
+                    document.execCommand('insertText', false, numbers);
+                });
+            });
+
+            // Input desimal (menerima titik atau koma)
+            const decimalInputs = document.querySelectorAll('.decimal-input');
+            decimalInputs.forEach(input => {
+                input.addEventListener('input', function(e) {
+                    this.value = processDecimalInput(this, this.value);
+                });
+
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain');
+                    const processedValue = processDecimalInput(this, pasteData);
+                    document.execCommand('insertText', false, processedValue);
+                });
+
+                // Validasi saat kehilangan fokus
+                input.addEventListener('blur', function() {
+                    if (this.value.endsWith('.')) {
+                        this.value = this.value.slice(0, -1);
+                    }
+                });
+            });
         });
     </script>
 
