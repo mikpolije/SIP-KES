@@ -231,9 +231,8 @@
                     <span class="hide-menu">Surat Kematian</span>
                 </a>
             </li>
-
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('surat-keterangan-sehat*') ? 'active' : '' }}"
+                <a class="sidebar-link {{ request()->is('poli-umum/surat-keterangan-sehat*') ? 'active' : '' }}"
                     href="{{ route('surat.sehat') }}" aria-expanded="false">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
@@ -243,7 +242,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('surat-keterangan-sakit*') ? 'active' : '' }}"
+                <a class="sidebar-link {{ request()->is('poli-umum/surat-keterangan-sakit*') ? 'active' : '' }}"
                     href="{{ route('surat.sakit') }}" aria-expanded="false">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
@@ -251,7 +250,6 @@
                     <span class="hide-menu">Surat Keterangan Sakit</span>
                 </a>
             </li>
-
             <li class="sidebar-item">
                 <a class="sidebar-link {{ request()->is('main/blog-detail') ? 'active' : '' }}" href="/main/blog-detail"
                     aria-expanded="false">
