@@ -416,16 +416,16 @@
                                     <div class="mb-3">
                                         <label class="form-label">Sistole <small
                                                 class="text-muted ms-2">mmHg</small></label>
-                                        <input type="text" class="form-control mmhg-sistol-inputmask" id="sistol-mask"
-                                            placeholder="Enter Value in mmHg" />
+                                        <input type="text" class="form-control mmhg-sistole-inputmask"
+                                            id="sistole-mask" placeholder="Enter Value in mmHg" />
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label">Diastole <small
                                                 class="text-muted ms-2">mmHg</small></label>
-                                        <input type="text" class="form-control mmhg-diastol-inputmask"
-                                            id="diastol-mask" placeholder="Enter Value in mmHg" />
+                                        <input type="text" class="form-control mmhg-diastole-inputmask"
+                                            id="diastole-mask" placeholder="Enter Value in mmHg" />
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -594,11 +594,19 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="form-label">Sistole (mmHg)</label>
+<<<<<<< Updated upstream
                                             <input type="text" class="form-control" id="sistol-mask">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">Diastole (mmHg)</label>
                                             <input type="text" class="form-control" id="diastol-mask">
+=======
+                                            <input type="text" class="form-control" id="sistole-mask">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Diastole (mmHg)</label>
+                                            <input type="text" class="form-control" id="diastole-mask">
+>>>>>>> Stashed changes
                                         </div>
                                         <div class="col-md-6 mt-3">
                                             <label class="form-label">Berat Badan (kg)</label>
