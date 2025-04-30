@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes')
+@section('title', 'SIP-Kes | Data Obat')
 
 
 @section('css')
@@ -150,10 +150,15 @@
                         <!-- Magnifier icon on the left -->
                         <div class="row mb-9 justify-content-end">
                             <div class="col-md-13 d-flex justify-content-end">
-                                <button class="btn btn-secondary btn-add-obat" data-bs-toggle="modal" data-bs-target="#addModal">
+                                <button class="btn btn-secondary btn-add-obat me-2" data-bs-toggle="modal" data-bs-target="#addModal">
                                     <i class="fas fa-plus me-2"></i>
                                     Tambah
                                 </button>
+                                <a href="{{ url('main/stokopname') }}">
+                                    <button class="btn btn-dark">
+                                        Stok Opname
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>

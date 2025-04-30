@@ -22,8 +22,8 @@ class ObatController extends Controller
     {
         $data = Obat::select(
             'obat.*',
-            DB::raw('"-" as kadaluarsa'),
-            DB::raw('0 as stok')
+            DB::raw("(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_opname"),
+            DB::raw("(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_gudang"),
         );
 
         $search = $request->input('search.value', '');

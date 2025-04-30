@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stok Opname</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+@extends('layouts.master')
 
-    <link rel="stylesheet" href="{{asset('/build/css/styles.css')}}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+@section('title', 'SIP-Kes | Stok Opname')
+
+@section('css')
     <style>
         .tab-content {
             transition: opacity 0.3s ease-in-out;
@@ -25,125 +18,107 @@
             justify-content: flex-end !important;
         }
     </style>
-</head>
-<body class="bg-gray-200 font-sans">
-    <div class="flex min-h-screen">
-        <!-- Sidebar -->
-        <aside class="bg-white shadow-md p-6 space-y-6">
-            <div class="text-center">
-                <img src= "img/logopengembang.png" alt="Logo SIPKES" width="200"/>
-                <p class="text-sm text-gray-500 mt-1">Sistem Informasi Pelayanan Kesehatan</p>
-            </div>
-            <nav class="space-y-2">
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Dashboard</a>
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Pendaftaran</a>
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Pemeriksaan</a>
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Farmasi</a>
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Pembayaran</a>
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Persuratan</a>
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Rekam Medis</a>
-                <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Laporan</a>
-                <div>
-                    <p class="text-gray-600 text-xs mt-2">Master Data</p>
-                    <a href="#" class="block text-sm text-blue-600">Data Pengguna</a>
-                    <a href="#" class="block text-sm text-gray-800 hover:text-blue-600">Layanan</a>
-                </div>
-            </nav>
-        </aside>
+@endsection
 
-        <!-- Main Content -->
-        <main class="flex-1 p-10">
-            <h1 class="text-3xl font-bold text-gray-900 mb-6">Stok Opname</h1>
+@section('pageContent')
+    <div class="container-fluid">
+        <div class="card w-100">
+            <main class="flex-1 p-4">
+                <h1 class="text-3xl fw-bold text-dark mb-4">Stok Opname</h1>
 
-            <!-- Card Container -->
-            <div class="bg-white shadow-md rounded-2xl">
-                <!-- Tabs -->
-                <div class="flex">
-                    <button onclick="showTab('ringkasan', event)" class="tab-btn bg-white border-b-4 border-blue-400 text-white-900 px-4 py-2 font-medium w-full transition-colors duration-200">Data Ringkasan Obat</button>
-                    <button onclick="showTab('rincian', event)" class="tab-btn bg-blue-400 text-white-900 px-4 py-2 font-medium w-full transition-colors duration-200">Data Rincian Obat</button>
-                    <button onclick="showTab('akanKadaluarsa', event)" class="tab-btn bg-blue-400 text-white-900 px-4 py-2 font-medium w-full transition-colors duration-200">Obat Akan Kadaluarsa</button>
-                    <button onclick="showTab('kadaluarsa', event)" class="tab-btn bg-blue-400 text-white-900 px-4 py-2 font-medium w-full transition-colors duration-200">Obat Kadaluarsa</button>
-                </div>
+                <!-- Nav Pills -->
+                <ul class="nav nav-pills mb-3" id="stokTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button onclick="showTab('ringkasan', event)" class="nav-link active" id="ringkasan-tab" data-bs-toggle="pill" data-bs-target="#ringkasan" type="button" role="tab">Data Ringkasan Obat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button onclick="showTab('rincian', event)" class="nav-link" id="rincian-tab" data-bs-toggle="pill" data-bs-target="#rincian" type="button" role="tab">Data Rincian Obat</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button onclick="showTab('akanKadaluarsa', event)" class="nav-link" id="akanKadaluarsa-tab" data-bs-toggle="pill" data-bs-target="#akanKadaluarsa" type="button" role="tab">Obat Akan Kadaluarsa</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button onclick="showTab('kadaluarsa', event)" class="nav-link" id="kadaluarsa-tab" data-bs-toggle="pill" data-bs-target="#kadaluarsa" type="button" role="tab">Obat Kadaluarsa</button>
+                    </li>
+                </ul>
 
-                <!-- Tab Contents -->
-                <div id="ringkasan" class="tab-content block opacity-100 p-4">
-                    <table class="table border-top nowrap">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama Obat</th>
-                                <th>Stok Opname</th>
-                                <th>Stok Gudang</th>
-                                <th>Stok Bebas</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-
-                <!-- Tab Contents -->
-                <div id="rincian" class="tab-content hidden opacity-0 p-4">
-                    <div class="flex justify-end mb-4">
-                        <button class="btn btn-primary btn-3d" data-bs-toggle="modal" data-bs-target="#addRincianObatModal">
-                            <i class="fas fa-plus me-2"></i>
-                            Tambah Rincian Obat
-                        </button>
+                <!-- Tab Content -->
+                <div class="tab-content p-3 bg-white shadow rounded-3" id="stokTabContent">
+                    <div class="tab-pane fade show active" id="ringkasan" role="tabpanel">
+                        <table class="table table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama Obat</th>
+                                    <th>Stok Opname</th>
+                                    <th>Stok Gudang</th>
+                                    <th>Stok Bebas</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
-                    <table class="table border-top nowrap">
-                        <thead>
-                            <tr>
-                                <th>Nama Obat</th>
-                                <th>Tanggal Kadaluarsa</th>
-                                <th>No Fraktur</th>
-                                <th>Tanggal Faktur</th>
-                                <th>Stok Opname</th>
-                                <th>Stok Gudang</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+
+                    <div class="tab-pane fade" id="rincian" role="tabpanel">
+                        <div class="d-flex justify-content-end mb-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRincianObatModal">
+                                <i class="fas fa-plus me-2"></i>Tambah Rincian Obat
+                            </button>
+                        </div>
+                        <table class="table table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Nama Obat</th>
+                                    <th>Tanggal Kadaluarsa</th>
+                                    <th>No Fraktur</th>
+                                    <th>Tanggal Faktur</th>
+                                    <th>Stok Opname</th>
+                                    <th>Stok Gudang</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane fade" id="akanKadaluarsa" role="tabpanel">
+                        <table class="table table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Nama Obat</th>
+                                    <th>Tanggal Kadaluarsa</th>
+                                    <th>No Fraktur</th>
+                                    <th>Tanggal Faktur</th>
+                                    <th>Stok Opname</th>
+                                    <th>Stok Gudang</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane fade" id="kadaluarsa" role="tabpanel">
+                        <table class="table table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Nama Obat</th>
+                                    <th>Tanggal Kadaluarsa</th>
+                                    <th>No Fraktur</th>
+                                    <th>Tanggal Faktur</th>
+                                    <th>Stok Opname</th>
+                                    <th>Stok Gudang</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
 
-                <!-- Tab Contents -->
-                <div id="akanKadaluarsa" class="tab-content hidden opacity-0 p-4">
-                    <table class="table border-top nowrap">
-                        <thead>
-                            <tr>
-                                <th>Nama Obat</th>
-                                <th>Tanggal Kadaluarsa</th>
-                                <th>No Fraktur</th>
-                                <th>Tanggal Faktur</th>
-                                <th>Stok Opname</th>
-                                <th>Stok Gudang</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <!-- Navigation Buttons -->
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <button class="btn btn-info text-white">Sebelumnya</button>
+                    <button class="btn btn-info text-white">Selanjutnya</button>
                 </div>
-
-
-                <!-- Tab Contents -->
-                <div id="kadaluarsa" class="tab-content hidden opacity-0 p-4">
-                    <table class="table border-top nowrap">
-                        <thead>
-                            <tr>
-                                <th>Nama Obat</th>
-                                <th>Tanggal Kadaluarsa</th>
-                                <th>No Fraktur</th>
-                                <th>Tanggal Faktur</th>
-                                <th>Stok Opname</th>
-                                <th>Stok Gudang</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div class="flex justify-end space-x-4 mt-6">
-                <button class="bg-sky-400 hover:bg-sky-500 text-white px-4 py-2 rounded-lg">Sebelumnya</button>
-                <button class="bg-sky-400 hover:bg-sky-500 text-white px-4 py-2 rounded-lg">Selanjutnya</button>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
+
 
     <div class="modal fade" id="addRincianObatModal" tabindex="-1" aria-labelledby="addRincianObatModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -251,42 +226,14 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{{ URL::asset('build/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script>
         function showTab(id, event) {
-            const tabs = document.querySelectorAll('.tab-content');
-            const buttons = document.querySelectorAll('.tab-btn');
-
-            tabs.forEach(tab => {
-                tab.classList.remove('block');
-                tab.classList.add('hidden');
-                tab.classList.remove('opacity-100');
-                tab.classList.add('opacity-0');
-            });
-
-            const activeTab = document.getElementById(id);
-            activeTab.classList.remove('hidden');
-            setTimeout(() => {
-                activeTab.classList.add('opacity-100');
-            }, 10);
-
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-white', 'border-b-4', 'border-blue-500', 'text-blue-900');
-                btn.classList.add('bg-blue-200', 'text-blue-800');
-            });
-
-            const clickedButton = event.target;
-            clickedButton.classList.remove('bg-blue-200', 'text-blue-800');
-            clickedButton.classList.add('bg-white', 'border-b-4', 'border-blue-500', 'text-blue-900');
-
             switch (id) {
                 case "ringkasan":
                     loadRingkasanObat();
@@ -351,9 +298,9 @@
                         }
                     },
                     { data: 'nama' },
-                    { data: 'stok' },
-                    { data: 'stok' },
-                    { data: 'stok' },
+                    { data: 'stok_opname' },
+                    { data: 'stok_gudang' },
+                    { data: 'stok_opname' },
                 ],
                 buttons: [
                     {
@@ -680,7 +627,7 @@
                 }).done(function(res) {
                     alert(res.message)
                     loadRincianObat()
-                    $('#addRincianObatModal').modal('hide');
+                    $('.btn-close').trigger('click')
                     $('#formRincianObat')[0].reset();
                     $('#obatList').empty();
                 }).fail(function(xhr, status, error) {
@@ -753,7 +700,7 @@
                 }).done(function(res) {
                     alert(res.message)
                     loadRincianObat()
-                    $('#koreksiModal').modal('hide');
+                    $('.btn-close').trigger('click')
                     $('#formKoreksiObat')[0].reset();
                 }).fail(function(xhr, status, error) {
                     let errors = xhr.responseJSON.errors;
@@ -819,5 +766,4 @@
             });
         });
     </script>
-</body>
-</html>
+@endsection
