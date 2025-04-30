@@ -439,32 +439,28 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="sistole-mask"
-                                                            placeholder="Enter Value" />
+                                                        <input type="text" class="form-control" id="sistole-mask" />
                                                         <span class="unit-label">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="berat-mask"
-                                                            placeholder="Enter Value" />
+                                                        <input type="text" class="form-control" id="berat-mask" />
                                                         <span class="unit-label">kg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="suhu-mask"
-                                                            placeholder="Enter Value" />
+                                                        <input type="text" class="form-control" id="suhu-mask" />
                                                         <span class="unit-label">°C</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="resprate-mask"
-                                                            placeholder="Enter Value" />
+                                                        <input type="text" class="form-control" id="resprate-mask" />
                                                         <span class="unit-label">/mnt</span>
                                                     </div>
                                                 </div>
@@ -475,24 +471,21 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Diastole</label>
                                                     <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="diastole-mask"
-                                                            placeholder="Enter Value" />
+                                                        <input type="text" class="form-control" id="diastole-mask" />
                                                         <span class="unit-label">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="tinggi-mask"
-                                                            placeholder="Enter Value" />
+                                                        <input type="text" class="form-control" id="tinggi-mask" />
                                                         <span class="unit-label">cm</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
                                                     <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="spo2-mask"
-                                                            placeholder="Enter Value" />
+                                                        <input type="text" class="form-control" id="spo2-mask" />
                                                         <span class="unit-label">%</span>
                                                     </div>
                                                 </div>
@@ -1145,8 +1138,11 @@
 
         .input-with-unit .form-control {
             flex: 1;
-            /* input akan mengambil ruang yang tersisa */
-            margin-right: 10px;
+            /* agar input mengambil ruang yang tersisa */
+            width: 100%;
+            /* pastikan input penuh di dalam kotak */
+            max-width: 200px;
+            /* ubah sesuai kebutuhan tampilan */
         }
 
         .unit-label {
