@@ -2050,9 +2050,17 @@ $('#search-results').hide();
         document.addEventListener("DOMContentLoaded", function() {
             const nextBtn = document.querySelector('a[href="#next"]');
             if (nextBtn) {
-                nextBtn.textContent = "Simpan";
+                nextBtn.textContent = "Selanjutnya";
             }
         });
     </script>
 
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nextBtn = document.querySelector('a[href="#next"]');
+            if (nextBtn) {
+                nextBtn.textContent = "Sebelumnya";
+            }
+        });
+    </script>
 @endsection
