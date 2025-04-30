@@ -34,6 +34,8 @@ Route::resource('/triase', TriageController::class);
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
 
+Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
+
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 // route suratSakit

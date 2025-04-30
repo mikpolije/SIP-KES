@@ -11,6 +11,7 @@ Run Migration:
 7. ```php artisan migrate --path=database/migrations/2025_04_28_025341_update_transaksi_persalinan_table.php```
 8. ```php artisan migrate --path=database/migrations/2025_04_28_025605_add_id_transaksi_persalinan_to_riwayat_soap_table.php```
 9. ```php artisan migrate --path=database/migrations/2025_04_28_214200_add_pengambilan_obat_table.php```
+9. ```php artisan migrate --path=database/migrations/2025_04_30_081757_create_persuratan_poli_kia_table.php```
 
 ### TOLONG JANGAN COMMIT .ENV KE REPO INI
 <hr>

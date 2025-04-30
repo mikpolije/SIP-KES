@@ -18,4 +18,15 @@ class PageController extends Controller
             abort(404);
         }
     }
+
+    public function showByPath($path)
+    {
+        $view = 'main.' . str_replace('/', '.', $path);
+
+        if (view()->exists($view)) {
+            return view($view);
+        } else {
+            abort(404);
+        }
+    }
 }

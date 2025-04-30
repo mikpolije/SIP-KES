@@ -14,6 +14,10 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::post('/poli-kia/pemeriksaan/persalinan', [PoliKiaController::class, 'pemeriksaanPersalinan'])->name('poli-kia.pemeriksaan-persalinan');
     Route::get('/poli-kia/laporan/data', [PoliKiaController::class, 'report'])->name('poli-kia.report');
 
+    // Surat
+    Route::post('/poli-kia/surat-kontrol', [PoliKiaController::class, 'suratKontrol'])->name('poli-kia.surat-kontrol.store');
+    Route::post('/poli-kia/surat-kematian', [PoliKiaController::class, 'suratKematian'])->name('poli-kia.surat-kematian.store');
+
     Route::get('/obat', [ObatController::class, 'index'])->name('obat.index');
     Route::get('/obat/all', [ObatController::class, 'all'])->name('obat.all');
     Route::get('/obat/rincian', [ObatController::class, 'rincian'])->name('obat.rincian');

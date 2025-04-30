@@ -117,10 +117,12 @@
     ];
 
     $certificates = [
-        'General Consent',
-        'Informed Consent',
-        'Surat Sehat',
-        'Surat Sakit',
+        // 'General Consent',
+        // 'Informed Consent',
+        // 'Surat Sehat',
+        // 'Surat Sakit',
+        'Surat Kontrol' => url("main/polikia/persuratan/kontrol"),
+        'Surat Kematian' => url("main/polikia/persuratan/kematian"),
     ];
 @endphp
 
@@ -128,7 +130,16 @@
 <div class="card w-100">
     <div class="card-body wizard-content">
         <h1 class="title" id="page-title">Layanan KIA</h1>
-        <form action="#" class="validation-wizard wizard-circle mt-5">
+        <div class="mt-5 d-none" id="persuratan-container">
+            <label for="persuratan" class="form-label">Buat Surat</label>
+            <select id="persuratan" name="persuratan" class="form-select">
+                <option value="" selected disabled>Pilih Jenis Persuratan</option>
+                @foreach ($certificates as $key => $certificate)
+                    <option value="{{ $certificate }}">{{ $key }}</option>
+                @endforeach
+            </select>
+        </div>
+        <form action="#" class="validation-wizard wizard-circle mt-2">
             <div id="header-section" class="d-none">
                 <div class="row justify-content-between align-items-center mt-5">
                     <div class="col-md-6">
@@ -359,6 +370,12 @@ $(".validation-wizard").steps({
             $('#page-subtitle').text('Data Pemeriksaan');
         }
 
+        if (newIndex > 0) {
+            $('#persuratan-container').removeClass('d-none');
+        } else {
+            $('#persuratan-container').addClass('d-none');
+        }
+
         return true;
     },
     onFinishing: function (event, currentIndex) {
@@ -440,6 +457,16 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
         eThis.val('Cari')
     })
 });
+
+$(document).on('change', '#persuratan', function (e) {
+    let val = $(this).val()
+
+    let id = ''
+    if ($('#id_pendaftaran').val()) {
+        id = '?id_pendaftaran=' + $('#id_pendaftaran').val()
+    }
+    window.open(val+id, '_blank');
+})
 
 $(document).on('click', '#submit_layanan', function (e) {
     let eThis = $(this)
@@ -664,7 +691,6 @@ $(document).on('click', '.hapus-detail-persalinan', function (e) {
         `)
     }
 })
-
 
 $(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
     let eThis = $(this)

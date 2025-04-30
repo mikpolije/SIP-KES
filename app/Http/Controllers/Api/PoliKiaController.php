@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\FormulirKb;
 use App\Models\LayananKia;
 use App\Models\Pendaftaran;
+use App\Models\RiwayatSoap;
 use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\FormulirAnak;
-use App\Models\FormulirKb;
+use App\Models\SuratKontrol;
+use Illuminate\Http\Request;
 use App\Models\FormulirKehamilan;
 use App\Models\FormulirPersalinan;
-use App\Models\RiwayatSoap;
+use App\Http\Controllers\Controller;
+use App\Models\SuratKematian;
 use Illuminate\Support\Facades\Validator;
 
 class PoliKiaController extends Controller
@@ -26,7 +28,9 @@ class PoliKiaController extends Controller
                 'formulirPersalinan',
                 'formulirAnak',
                 'pengambilan_obat.detail_pengambilan_obat.detail_pembelian_obat.obat',
-                'pengambilan_obat.racikan.detail_pembelian_obat.obat'
+                'pengambilan_obat.racikan.detail_pembelian_obat.obat',
+                'surat_kontrol',
+                'surat_kematian',
             ])
             ->where('id_pendaftaran', $idPendaftaran)
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
@@ -655,4 +659,105 @@ class PoliKiaController extends Controller
         ]);
     }
 
+    public function suratKontrol(Request $request)
+    {
+        $data = Pendaftaran::with([
+            'data_pasien',
+            'layanan_kia',
+            'formulirKb',
+            'formulirKehamilan',
+            'formulirPersalinan',
+            'formulirAnak',
+        ])
+        ->where('id_pendaftaran', $request->id_pendaftaran??'null')
+        ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+        ->first();
+
+        if (!$data) {
+            return response()->json([
+                'message' => 'Pendaftaran Tidak Ditemukan.',
+                'data' => []
+            ], 404);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'id_pendaftaran' => 'required|exists:pendaftaran,id_pendaftaran',
+            'nomor' => 'required',
+            'tanggal' => 'required|date',
+            'kepada' => 'required',
+            'diagnosa' => 'required',
+            'rencana_kontrol' => 'required',
+            'tanggal_tanda_tangan' => 'required|date',
+            'penandatangan' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        SuratKontrol::updateOrCreate(
+            ['id_pendaftaran' => $request->id_pendaftaran],
+            $request->all()
+        );
+
+        return response()->json([
+            'message' => 'Data Berhasil Disimpan',
+            'data' => null
+        ]);
+    }
+
+    public function suratKematian(Request $request)
+    {
+        $data = Pendaftaran::with([
+            'data_pasien',
+            'layanan_kia',
+            'formulirKb',
+            'formulirKehamilan',
+            'formulirPersalinan',
+            'formulirAnak',
+        ])
+        ->where('id_pendaftaran', $request->id_pendaftaran??'null')
+        ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+        ->first();
+
+        if (!$data) {
+            return response()->json([
+                'message' => 'Pendaftaran Tidak Ditemukan.',
+                'data' => []
+            ], 404);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'id_pendaftaran' => 'required|exists:pendaftaran,id_pendaftaran',
+            'nomor' => 'required',
+            'tanggal_masuk_rs' => 'required|date',
+            'waktu_masuk_rs' => 'required',
+            'tanggal_kematian' => 'required|date',
+            'waktu_kematian' => 'required',
+            'tempat_kematian' => 'required',
+            'diagnosa' => 'required',
+            'tanggal_tanda_tangan' => 'required|date',
+            'penandatangan' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        SuratKematian::updateOrCreate(
+            ['id_pendaftaran' => $request->id_pendaftaran],
+            $request->all()
+        );
+
+        return response()->json([
+            'message' => 'Data Berhasil Disimpan',
+            'data' => null
+        ]);
+    }
 }
