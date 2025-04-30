@@ -367,113 +367,136 @@
                     <h1 class="title">Pemeriksaan Awal</h1>
                     <h6>Pemeriksaan Awal</h6>
                     <section>
-                        <h4 class="section-title">Data Pendaftaran</h4>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label" for="noantrian">No. Antrian</label>
-                                    <input type="text" class="form-control required" id="noantrian"
-                                        name="noantrian" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label" for="norm">No. RM</label>
-                                    <input type="text" class="form-control required" id="norm" name="norm" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="nama">Nama</label>
-                                    <input type="text" class="form-control required" id="nama" name="nama" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="tanggalperiksa">Tanggal Pemeriksaan</label>
-                                    <input type="date" class="form-control required" id="tanggalperiksa"
-                                        name="tanggalperiksa" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="kunjunganasakit"> Kunjungan Sakit</label>
-                                    <select class="form-select required" id="kunjungansakit" name="kunjungansakit">
-                                        <option value="Tidak">Tidak</option>
-                                        <option value="Ya">Ya</option>
-                                    </select>
+                        <h4 class="section-title">Data Pemeriksaan Awal</h4>
+
+                        <!-- Card 1: Data Pendaftaran -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="noantrian">No. Antrian</label>
+                                            <input type="text" class="form-control required" id="noantrian"
+                                                name="noantrian" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="norm">No. RM</label>
+                                            <input type="text" class="form-control required" id="norm"
+                                                name="norm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="nama">Nama</label>
+                                            <input type="text" class="form-control required" id="nama"
+                                                name="nama" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="tanggalperiksa">Tanggal Pemeriksaan</label>
+                                            <input type="date" class="form-control required" id="tanggalperiksa"
+                                                name="tanggalperiksa" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="kunjungansakit">Kunjungan Sakit</label>
+                                            <select class="form-select required" id="kunjungansakit"
+                                                name="kunjungansakit">
+                                                <option value="Tidak">Tidak</option>
+                                                <option value="Ya">Ya</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Modified layout for Subjective and Objective sections side by side -->
                         <div class="row">
-                            <!-- Subjective section on the left -->
+                            <!-- Card 2: Subjective section -->
                             <div class="col-md-6">
-                                <label class="form-label">Subjek/Keluhan</label>
-                                <div class="mb-3">
-                                    <textarea name="shortDescription" id="subjek" name="subjek" rows="12" class="form-control required"></textarea>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label class="form-label">Subjek/Keluhan</label>
+                                        <div class="mb-3">
+                                            <textarea name="shortDescription" id="subjek" name="subjek" rows="12" class="form-control required"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Objective section on the right -->
+                            <!-- Card 3: Objective section -->
                             <div class="col-md-6">
-                                <label class="form-label">Objective</label>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Sistole <small
-                                                    class="text-muted ms-2">mmHg</small></label>
-                                            <input type="text" class="form-control mmhg-sistole-inputmask"
-                                                id="sistole-mask" placeholder="Enter Value in mmHg" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Diastole <small
-                                                    class="text-muted ms-2">mmHg</small></label>
-                                            <input type="text" class="form-control mmhg-diastole-inputmask"
-                                                id="diastole-mask" placeholder="Enter Value in mmHg" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Berat Badan <small
-                                                    class="text-muted ms-2">kg</small></label>
-                                            <input type="text" class="form-control kg-inputmask" id="berat-mask"
-                                                placeholder="Enter Value in kg" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tinggi Badan <small
-                                                    class="text-muted ms-2">cm</small></label>
-                                            <input type="text" class="form-control cm-inputmask" id="tinggi-mask"
-                                                placeholder="Enter Value in cm" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Suhu <small
-                                                    class="text-muted ms-2">°C</small></label>
-                                            <input type="text" class="form-control celcius-inputmask" id="suhu-mask"
-                                                placeholder="Enter Value in °C" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">SpO2 <small
-                                                    class="text-muted ms-2">%</small></label>
-                                            <input type="text" class="form-control spo2-inputmask" id="spo2-mask"
-                                                placeholder="Enter Value in %" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Respiratory Rate <small
-                                                    class="text-muted ms-2">/mnt</small></label>
-                                            <input type="text" class="form-control resp-rate-inputmask"
-                                                id="resprate-mask" placeholder="Enter Value in /mnt" />
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label class="form-label">Objective</label>
+                                        <div class="row">
+                                            <!-- Kolom Kiri -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Sistole</label>
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="sistole-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">mmHg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Berat Badan</label>
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="berat-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">kg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Suhu</label>
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="suhu-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">°C</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Respiratory Rate</label>
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="resprate-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">/mnt</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Kolom Kanan -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Diastole</label>
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="diastole-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">mmHg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tinggi Badan</label>
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="tinggi-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">cm</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">SpO2</label>
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="spo2-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1111,6 +1134,28 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .input-with-unit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* jarak antara input dan unit */
+        }
+
+        .input-with-unit .form-control {
+            flex: 1;
+            /* input akan mengambil ruang yang tersisa */
+            margin-right: 10px;
+        }
+
+        .unit-label {
+            white-space: nowrap;
+            font-size: 0.95rem;
+            color: #666;
+        }
+    </style>
+
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sehat */
         #modalSehat .modal-content {
