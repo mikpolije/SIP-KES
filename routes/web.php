@@ -37,12 +37,13 @@ Route::get('/{main}/{view}', [PageController::class, 'show']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-//Route Suraht keterangan GOLB
 use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
 
-Route::prefix('poli-umum')->group(function () {
-    Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
-    Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
-});
+// Route Surat Keterangan Sehat
+Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
+
+// Route Surat Keterangan Sakit
+Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
+
 
