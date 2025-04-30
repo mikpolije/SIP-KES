@@ -434,7 +434,7 @@
                                     <div class="card-body">
                                         <label class="form-label">Objective</label>
                                         <div class="row">
-                                            <!-- Kolom Pertama -->
+                                            <!-- Kolom Kiri -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
@@ -470,7 +470,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Kolom Kedua -->
+                                            <!-- Kolom Kanan -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Diastole</label>
@@ -1134,6 +1134,28 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .input-with-unit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* jarak antara input dan unit */
+        }
+
+        .input-with-unit .form-control {
+            flex: 1;
+            /* input akan mengambil ruang yang tersisa */
+            margin-right: 10px;
+        }
+
+        .unit-label {
+            white-space: nowrap;
+            font-size: 0.95rem;
+            color: #666;
+        }
+    </style>
+
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sehat */
         #modalSehat .modal-content {
