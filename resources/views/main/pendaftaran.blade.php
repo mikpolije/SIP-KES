@@ -410,7 +410,7 @@
                         <div class="row">
                             <!-- Subjective section on the left -->
                             <div class="col-md-6">
-                                <h4 class="section-title">Subjek/Keluhan</h4>
+                                <label class="form-label">Subjek/Keluhan</label>
                                 <div class="mb-3">
                                     <textarea name="shortDescription" id="subjek" name="subjek" rows="12" class="form-control required"></textarea>
                                 </div>
@@ -418,7 +418,7 @@
 
                             <!-- Objective section on the right -->
                             <div class="col-md-6">
-                                <h4 class="section-title">Objective</h4>
+                                <label class="form-label">Objective</label>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
