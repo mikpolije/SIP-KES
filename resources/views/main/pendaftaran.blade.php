@@ -404,75 +404,81 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                        </div>
+
+                        <!-- Modified layout for Subjective and Objective sections side by side -->
+                        <div class="row">
+                            <!-- Subjective section on the left -->
+                            <div class="col-md-6">
+                                <h4 class="section-title">Subjek/Keluhan</h4>
                                 <div class="mb-3">
-                                    <label class="form-label" for="subjek">Subjek/Keluhan</label>
-                                    <textarea name="shortDescription" id="subjek" name="subjek" rows="6" class="form-control required"></textarea>
-                                </div>
-                            </div>
-                            <h4 class="section-title">Objective</h4>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Sistole <small
-                                                class="text-muted ms-2">mmHg</small></label>
-                                        <input type="text" class="form-control mmhg-sistole-inputmask"
-                                            id="sistole-mask" placeholder="Enter Value in mmHg" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Diastole <small
-                                                class="text-muted ms-2">mmHg</small></label>
-                                        <input type="text" class="form-control mmhg-diastole-inputmask"
-                                            id="diastole-mask" placeholder="Enter Value in mmHg" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Berat Badan <small
-                                                class="text-muted ms-2">kg</small></label>
-                                        <input type="text" class="form-control kg-inputmask" id="berat-mask"
-                                            placeholder="Enter Value in kg" />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Tinggi Badan <small
-                                                class="text-muted ms-2">cm</small></label>
-                                        <input type="text" class="form-control cm-inputmask" id="tinggi-mask"
-                                            placeholder="Enter Value in cm" />
-                                    </div>
+                                    <textarea name="shortDescription" id="subjek" name="subjek" rows="12" class="form-control required"></textarea>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Suhu <small class="text-muted ms-2">°C</small></label>
-                                        <input type="text" class="form-control celcius-inputmask" id="suhu-mask"
-                                            placeholder="Enter Value in °C" />
+                            <!-- Objective section on the right -->
+                            <div class="col-md-6">
+                                <h4 class="section-title">Objective</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Sistole <small
+                                                    class="text-muted ms-2">mmHg</small></label>
+                                            <input type="text" class="form-control mmhg-sistole-inputmask"
+                                                id="sistole-mask" placeholder="Enter Value in mmHg" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">SpO2 <small class="text-muted ms-2">%</small></label>
-                                        <input type="text" class="form-control spo2-inputmask" id="spo2-mask"
-                                            placeholder="Enter Value in %" />
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Diastole <small
+                                                    class="text-muted ms-2">mmHg</small></label>
+                                            <input type="text" class="form-control mmhg-diastole-inputmask"
+                                                id="diastole-mask" placeholder="Enter Value in mmHg" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Respiratory Rate <small
-                                                class="text-muted ms-2">/mnt</small></label>
-                                        <input type="text" class="form-control resp-rate-inputmask" id="resprate-mask"
-                                            placeholder="Enter Value in /mnt" />
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Berat Badan <small
+                                                    class="text-muted ms-2">kg</small></label>
+                                            <input type="text" class="form-control kg-inputmask" id="berat-mask"
+                                                placeholder="Enter Value in kg" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <!-- Kolom kosong atau parameter vital tambahan bisa ditambahkan di sini -->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Tinggi Badan <small
+                                                    class="text-muted ms-2">cm</small></label>
+                                            <input type="text" class="form-control cm-inputmask" id="tinggi-mask"
+                                                placeholder="Enter Value in cm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Suhu <small
+                                                    class="text-muted ms-2">°C</small></label>
+                                            <input type="text" class="form-control celcius-inputmask" id="suhu-mask"
+                                                placeholder="Enter Value in °C" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">SpO2 <small
+                                                    class="text-muted ms-2">%</small></label>
+                                            <input type="text" class="form-control spo2-inputmask" id="spo2-mask"
+                                                placeholder="Enter Value in %" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Respiratory Rate <small
+                                                    class="text-muted ms-2">/mnt</small></label>
+                                            <input type="text" class="form-control resp-rate-inputmask"
+                                                id="resprate-mask" placeholder="Enter Value in /mnt" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                     </section>
 
                     <!-- Step 3 -->
