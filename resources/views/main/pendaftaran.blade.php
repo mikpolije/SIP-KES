@@ -437,57 +437,65 @@
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
-                                                    <input type="text" class="form-control mmhg-sistole-inputmask"
-                                                        id="sistole-mask" placeholder="Masukkan nilai dalam mmHg" />
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="sistole-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">mmHg</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label">Diastole</label>
-                                                    <input type="text" class="form-control mmhg-diastole-inputmask"
-                                                        id="diastole-mask" placeholder="Masukkan nilai dalam mmHg" />
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="diastole-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">mmHg</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <input type="text" class="form-control kg-inputmask"
-                                                        id="berat-mask" placeholder="Masukkan nilai dalam kg" />
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="berat-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">kg</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
-                                                    <input type="text" class="form-control cm-inputmask"
-                                                        id="tinggi-mask" placeholder="Masukkan nilai dalam cm" />
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="tinggi-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">cm</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label">Suhu</label>
-                                                    <input type="text" class="form-control celcius-inputmask"
-                                                        id="suhu-mask" placeholder="Masukkan nilai dalam °C" />
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="suhu-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">°C</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label">SpO2</label>
-                                                    <input type="text" class="form-control spo2-inputmask"
-                                                        id="spo2-mask" placeholder="Masukkan nilai dalam %" />
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="spo2-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">%</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
-                                                    <input type="text" class="form-control resp-rate-inputmask"
-                                                        id="resprate-mask" placeholder="Masukkan nilai dalam /mnt" />
+                                                    <div class="input-with-unit">
+                                                        <input type="text" class="form-control" id="resprate-mask"
+                                                            placeholder="Enter Value" />
+                                                        <span class="unit-label">/mnt</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </section>
 
                     <!-- Step 3 -->
