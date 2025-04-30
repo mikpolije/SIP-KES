@@ -868,11 +868,43 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                        @foreach($obats as $obat)
+                                        <tr>
+                                            <td>
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalObat{{ $obat->id }}">
+                                                    Pilih
+                                                </button>
+                                            </td>
+                                            <td>{{ $obat->nama }}</td>
+                                            <td>Rp {{ number_format($obat->harga_jual, 0, ',', '.') }}, -</td>
+                                            <td>{{ $obat->stok }}</td>
+                                        </tr>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modalObat{{ $obat->id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ $obat->id }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalLabel{{ $obat->id }}">{{ $obat->nama }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p><strong>Harga Jual:</strong> Rp {{ number_format($obat->harga_jual, 0, ',', '.') }}, -</p>
+                                                        <p><strong>Stok:</strong> {{ $obat->stok }}</p>
+                                                        <p><strong>Deskripsi:</strong> {{ $obat->deskripsi }}</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        <button type="button" class="btn btn-primary">Ambil Obat</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                                 </div>
                             </div>
                         </div>
