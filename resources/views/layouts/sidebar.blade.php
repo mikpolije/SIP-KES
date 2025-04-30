@@ -106,7 +106,7 @@
                         aria-expanded="{{ request()->is('main/poliumum*') ? 'true' : 'false' }}">
                         <div class="d-flex align-items-center">
                             <i class="ti ti-circle ms-1"></i>
-                            <span class="hide-menu ms-5">Poli Umum</span>
+                            <span class="hide-menu ms-4">Poli Umum</span>
                         </div>
                     </a>
                     <ul id="submenu-poliumum"
