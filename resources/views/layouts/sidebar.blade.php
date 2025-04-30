@@ -103,7 +103,7 @@
                         </div>
                         <span class="hide-menu">Poli Umum</span>
                     </a>
-                    {{-- <ul class="second-level collapse" aria-expanded="false">
+                     <ul class="second-level collapse" aria-expanded="false">
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
                     href="/main/poliumum/antrian">
@@ -121,7 +121,7 @@
                         <span class="hide-menu">Riwayat</span>
                     </a>
                 </li>
-            </ul> --}}
+            </ul> 
         </li>
         <li class="sidebar-item">
             <a class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}"
