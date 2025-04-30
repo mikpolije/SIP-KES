@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\PoliUmum;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class SuratKeteranganSakit extends Controller
+class SuratKeteranganSakitController extends Controller
 {
     public function index()
     {
