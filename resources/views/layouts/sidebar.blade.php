@@ -233,8 +233,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/blog-detail') ? 'active' : '' }}"
-                        href="/main/blog-detail" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('surat-keterangan-sehat') ? 'active' : '' }}"
+                        href="{{ route('surat.sehat') }}" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
