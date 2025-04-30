@@ -859,6 +859,10 @@
                                         <button class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
+                                    <div class="col-md-2">
+                                         <!-- Tombol untuk membuka popup -->
+                                         <button onclick="openPopup()">Tampilkan Data Obat</button>
+                                    </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
