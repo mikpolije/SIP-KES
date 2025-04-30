@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Poli Umum')
+@section('title', 'SIP-Kes | Pendaftaran')
 <style>
     body {
         background-color: #B4AEAE;
