@@ -37,6 +37,13 @@
                                 color: #1A1A1A;
                                 padding: 9px 0;
                             }
+
+                            /* Added style for error message */
+                            .error-message {
+                                color: red;
+                                font-size: 0.8rem;
+                                display: none;
+                            }
                         </style>
 
                         <div class="row mb-4 align-items-end">
@@ -99,8 +106,9 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="nik" name="nik"
-                                        placeholder="16 digit" />
+                                    <input type="number" class="form-control required" id="nik" name="nik"
+                                        placeholder="16 digit" oninput="validateNIK(this)" maxlength="16" />
+                                    <small class="error-message" id="nik-error">NIK harus berupa 16 digit angka</small>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -114,7 +122,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="kelurahan">Kelurahan/Desa: <span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kelurahan" name="kelurahan" />
+                                    <input type="text" class="form-control required" id="kelurahan"
+                                        name="kelurahan" />
                                 </div>
                             </div>
                         </div>
@@ -131,19 +140,26 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="kodepos">Kode Pos: <span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kodepos" name="kodepos" />
+                                    <input type="number" class="form-control required" id="kodepos" name="kodepos"
+                                        oninput="validateNumeric(this, 5)" maxlength="5" />
+                                    <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
                                     <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="rt" name="rt" />
+                                    <input type="number" class="form-control required" id="rt" name="rt"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" />
+                                    <small class="error-message" id="rt-error">RT harus berupa angka</small>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
-                                    <label class="form-label" for="rt">RW: <span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="rw" name="rw" />
+                                    <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
+                                    <input type="number" class="form-control required" id="rw" name="rw"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" />
+                                    <small class="error-message" id="rw-error">RW harus berupa angka</small>
                                 </div>
                             </div>
                         </div>
@@ -246,8 +262,11 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="telepon">Nomor Telepon: <span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="telepon" name="telepon"
-                                        placeholder="08xxxxxxxxxx" required>
+                                    <input type="number" class="form-control required" id="telepon" name="telepon"
+                                        placeholder="08xxxxxxxxxx" oninput="validateTelepon(this)" maxlength="13"
+                                        required>
+                                    <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -312,8 +331,11 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="notelpwali">Nomor Telepon Wali: <span
                                             class="danger">*</span></label>
-                                    <input type="texr" class="form-control required" id="notelpwali"
-                                        name="notelpwali" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
+                                    <input type="number" class="form-control required" id="notelpwali"
+                                        name="notelpwali" placeholder="08xxxxxxxxxx" oninput="validateTelepon(this)"
+                                        maxlength="13" required>
+                                    <small class="error-message" id="notelpwali-error">Nomor telepon wali harus berupa
+                                        10-13 digit angka</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -1694,6 +1716,94 @@
                     titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
                 });
             }
+        });
+    </script>
+
+    <script>
+        // Function to validate NIK (16 digits)
+        function validateNIK(input) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+
+            // Set max length
+            if (value.length > 16) {
+                value = value.slice(0, 16);
+            }
+
+            // Update input value
+            input.value = value;
+
+            // Show/hide error message
+            const errorElement = document.getElementById('nik-error');
+            if (value.length > 0 && value.length !== 16) {
+                errorElement.style.display = 'block';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        }
+
+        // Function to validate numeric inputs with specific length
+        function validateNumeric(input, maxLength) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+
+            // Set max length if specified
+            if (maxLength && value.length > maxLength) {
+                value = value.slice(0, maxLength);
+            }
+
+            // Update input value
+            input.value = value;
+
+            // Show/hide error message
+            const fieldId = input.id;
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            if (errorElement) {
+                if (value.length > 0 && maxLength && value.length !== maxLength) {
+                    errorElement.style.display = 'block';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            }
+        }
+
+        // Function to validate phone numbers (10-13 digits)
+        function validateTelepon(input) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+
+            // Set max length
+            if (value.length > 13) {
+                value = value.slice(0, 13);
+            }
+
+            // Update input value
+            input.value = value;
+
+            // Show/hide error message
+            const fieldId = input.id;
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            if (errorElement) {
+                if (value.length > 0 && (value.length < 10 || value.length > 13)) {
+                    errorElement.style.display = 'block';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            }
+        }
+
+        // Fix for input type="number" with maxlength attribute (since maxlength doesn't work on number inputs)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply to all numeric inputs
+            const numericInputs = document.querySelectorAll('input[type="number"]');
+            numericInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    const maxLength = this.getAttribute('maxlength');
+                    if (maxLength && this.value.length > maxLength) {
+                        this.value = this.value.slice(0, maxLength);
+                    }
+                });
+            });
         });
     </script>
 
