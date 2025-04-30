@@ -429,6 +429,7 @@
                                         <button type="submit" class="btn btn-primary">Lanjutkan</button>
                                     </div>
                                 </div>
+                            </div>
                         </form>
                     </section>
 
