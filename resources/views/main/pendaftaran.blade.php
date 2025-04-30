@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Pendaftaran')
+@section('title', 'SIP-Kes | Poli Umum')
 <style>
     body {
         background-color: #B4AEAE;
@@ -36,6 +36,13 @@
                                 text-align: left;
                                 color: #1A1A1A;
                                 padding: 9px 0;
+                            }
+
+                            /* Added style for error message */
+                            .error-message {
+                                color: red;
+                                font-size: 0.8rem;
+                                display: none;
                             }
                         </style>
 
@@ -99,8 +106,9 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="nik" name="nik"
-                                        placeholder="16 digit" />
+                                    <input type="number" class="form-control required" id="nik" name="nik"
+                                        placeholder="16 digit" oninput="validateNIK(this)" maxlength="16" />
+                                    <small class="error-message" id="nik-error">NIK harus berupa 16 digit angka</small>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -114,7 +122,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="kelurahan">Kelurahan/Desa: <span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kelurahan" name="kelurahan" />
+                                    <input type="text" class="form-control required" id="kelurahan"
+                                        name="kelurahan" />
                                 </div>
                             </div>
                         </div>
@@ -131,19 +140,26 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="kodepos">Kode Pos: <span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kodepos" name="kodepos" />
+                                    <input type="number" class="form-control required" id="kodepos" name="kodepos"
+                                        oninput="validateNumeric(this, 5)" maxlength="5" />
+                                    <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
                                     <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="rt" name="rt" />
+                                    <input type="number" class="form-control required" id="rt" name="rt"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" />
+                                    <small class="error-message" id="rt-error">RT harus berupa angka</small>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
-                                    <label class="form-label" for="rt">RW: <span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="rw" name="rw" />
+                                    <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
+                                    <input type="number" class="form-control required" id="rw" name="rw"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" />
+                                    <small class="error-message" id="rw-error">RW harus berupa angka</small>
                                 </div>
                             </div>
                         </div>
@@ -246,8 +262,11 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="telepon">Nomor Telepon: <span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="telepon" name="telepon"
-                                        placeholder="08xxxxxxxxxx" required>
+                                    <input type="number" class="form-control required" id="telepon" name="telepon"
+                                        placeholder="08xxxxxxxxxx" oninput="validateTelepon(this)" maxlength="13"
+                                        required>
+                                    <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -312,8 +331,11 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="notelpwali">Nomor Telepon Wali: <span
                                             class="danger">*</span></label>
-                                    <input type="texr" class="form-control required" id="notelpwali"
-                                        name="notelpwali" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
+                                    <input type="number" class="form-control required" id="notelpwali"
+                                        name="notelpwali" placeholder="08xxxxxxxxxx" oninput="validateTelepon(this)"
+                                        maxlength="13" required>
+                                    <small class="error-message" id="notelpwali-error">Nomor telepon wali harus berupa
+                                        10-13 digit angka</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -367,120 +389,141 @@
                     <h1 class="title">Pemeriksaan Awal</h1>
                     <h6>Pemeriksaan Awal</h6>
                     <section>
-                        <h4 class="section-title">Data Pendaftaran</h4>
+                        <h4 class="section-title">Data Pemeriksaan Awal</h4>
+
+                        <!-- Card 1: Data Pendaftaran -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="noantrian">No. Antrian</label>
+                                            <input type="text" class="form-control required" id="noantrian"
+                                                name="noantrian" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="norm">No. RM</label>
+                                            <input type="text" class="form-control required" id="norm"
+                                                name="norm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="nama">Nama</label>
+                                            <input type="text" class="form-control required" id="nama"
+                                                name="nama" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="tanggalperiksa">Tanggal Pemeriksaan</label>
+                                            <input type="date" class="form-control required" id="tanggalperiksa"
+                                                name="tanggalperiksa" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="kunjungansakit">Kunjungan Sakit</label>
+                                            <select class="form-select required" id="kunjungansakit"
+                                                name="kunjungansakit">
+                                                <option value="Tidak">Tidak</option>
+                                                <option value="Ya">Ya</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label" for="noantrian">No. Antrian</label>
-                                    <input type="text" class="form-control required" id="noantrian"
-                                        name="noantrian" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label" for="norm">No. RM</label>
-                                    <input type="text" class="form-control required" id="norm" name="norm" />
-                                </div>
-                            </div>
+                            <!-- Card 2: Subjective section -->
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="nama">Nama</label>
-                                    <input type="text" class="form-control required" id="nama" name="nama" />
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label class="form-label">Subjek/Keluhan</label>
+                                        <div class="mb-3">
+                                            <textarea name="shortDescription" id="subjek" name="subjek" rows="12" class="form-control required"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- Card 3: Objective section -->
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="tanggalperiksa">Tanggal Pemeriksaan</label>
-                                    <input type="date" class="form-control required" id="tanggalperiksa"
-                                        name="tanggalperiksa" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="kunjunganasakit"> Kunjungan Sakit</label>
-                                    <select class="form-select required" id="kunjungansakit" name="kunjungansakit">
-                                        <option value="Tidak">Tidak</option>
-                                        <option value="Ya">Ya</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="subjek">Subjek/Keluhan</label>
-                                    <textarea name="shortDescription" id="subjek" name="subjek" rows="6" class="form-control required"></textarea>
-                                </div>
-                            </div>
-                            <h4 class="section-title">Objective</h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Sistole</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control number-input" id="sistole-mask"
-                                                    pattern="[0-9]*" inputmode="numeric">
-                                                <span class="input-group-text">mmHg</span>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label class="form-label">Objective</label>
+                                        <div class="row">
+                                            <!-- Left Column -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Sistole</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Berat Badan</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">kg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Suhu</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">°C</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Respiratory Rate</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">/mnt</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Diastole</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control number-input"
-                                                    id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
-                                                <span class="input-group-text">mmHg</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Suhu</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control decimal-input" id="suhu-mask"
-                                                    pattern="[0-9.,]*" inputmode="decimal">
-                                                <span class="input-group-text">°C</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">SpO2</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control number-input" id="spo2-mask"
-                                                    pattern="[0-9]*" inputmode="numeric">
-                                                <span class="input-group-text">%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Berat Badan</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control decimal-input" id="berat-mask"
-                                                    pattern="[0-9.,]*" inputmode="decimal">
-                                                <span class="input-group-text">Kg</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Tinggi Badan</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control decimal-input" id="tinggi-mask"
-                                                    pattern="[0-9.,]*" inputmode="decimal">
-                                                <span class="input-group-text">Cm</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Respiration Rate</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control number-input"
-                                                    id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
-                                                <span class="input-group-text">/mnt</span>
+
+                                            <!-- Right Column -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Diastole</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tinggi Badan</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">cm</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">SpO2</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </section>
 
                     <!-- Step 3 -->
@@ -597,36 +640,73 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="card p-3 shadow-sm">
-                                    <h5 class="fw-bold">Objective</h5>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Sistole (mmHg)</label>
-                                            <input type="text" class="form-control" id="sistole-mask">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Diastole (mmHg)</label>
-                                            <input type="text" class="form-control" id="diastole-mask">
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <label class="form-label">Berat Badan (kg)</label>
-                                            <input type="text" class="form-control" id="berat-mask">
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <label class="form-label">Tinggi Badan (cm)</label>
-                                            <input type="text" class="form-control" id="tinggi-mask">
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <label class="form-label">Suhu (°C)</label>
-                                            <input type="text" class="form-control" id="suhu-mask">
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <label class="form-label">SpO2 (%)</label>
-                                            <input type="text" class="form-control" id="spo2-mask">
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <label class="form-label">Respiration Rate (/mnt)</label>
-                                            <input type="text" class="form-control" id="resprate-mask">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <label class="form-label">Objective</label>
+                                        <div class="row">
+                                            <!-- Left Column -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Sistole</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Berat Badan</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">kg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Suhu</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">°C</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Respiratory Rate</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">/mnt</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Right Column -->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Diastole</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tinggi Badan</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">cm</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">SpO2</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1105,6 +1185,31 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .input-with-unit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* jarak antara input dan unit */
+        }
+
+        .input-with-unit .form-control {
+            flex: 1;
+            /* agar input mengambil ruang yang tersisa */
+            width: 100%;
+            /* pastikan input penuh di dalam kotak */
+            max-width: 200px;
+            /* ubah sesuai kebutuhan tampilan */
+        }
+
+        .unit-label {
+            white-space: nowrap;
+            font-size: 0.95rem;
+            color: #666;
+        }
+    </style>
+
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sehat */
         #modalSehat .modal-content {
@@ -1629,22 +1734,110 @@
     </script>
 
     <script>
+        // Function to validate NIK (16 digits)
+        function validateNIK(input) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+
+            // Set max length
+            if (value.length > 16) {
+                value = value.slice(0, 16);
+            }
+
+            // Update input value
+            input.value = value;
+
+            // Show/hide error message
+            const errorElement = document.getElementById('nik-error');
+            if (value.length > 0 && value.length !== 16) {
+                errorElement.style.display = 'block';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        }
+
+        // Function to validate numeric inputs with specific length
+        function validateNumeric(input, maxLength) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+
+            // Set max length if specified
+            if (maxLength && value.length > maxLength) {
+                value = value.slice(0, maxLength);
+            }
+
+            // Update input value
+            input.value = value;
+
+            // Show/hide error message
+            const fieldId = input.id;
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            if (errorElement) {
+                if (value.length > 0 && maxLength && value.length !== maxLength) {
+                    errorElement.style.display = 'block';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            }
+        }
+
+        // Function to validate phone numbers (10-13 digits)
+        function validateTelepon(input) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+
+            // Set max length
+            if (value.length > 13) {
+                value = value.slice(0, 13);
+            }
+
+            // Update input value
+            input.value = value;
+
+            // Show/hide error message
+            const fieldId = input.id;
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            if (errorElement) {
+                if (value.length > 0 && (value.length < 10 || value.length > 13)) {
+                    errorElement.style.display = 'block';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            }
+        }
+
+        // Fix for input type="number" with maxlength attribute (since maxlength doesn't work on number inputs)
         document.addEventListener('DOMContentLoaded', function() {
-            // Fungsi untuk memproses input desimal
+            // Apply to all numeric inputs
+            const numericInputs = document.querySelectorAll('input[type="number"]');
+            numericInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    const maxLength = this.getAttribute('maxlength');
+                    if (maxLength && this.value.length > maxLength) {
+                        this.value = this.value.slice(0, maxLength);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to process decimal input (accepts both . and , as decimal separators)
             function processDecimalInput(input, value) {
-                // Ganti koma dengan titik untuk konsistensi
+                // Replace comma with dot for consistency
                 let newValue = value.replace(/,/g, '.');
 
-                // Hapus karakter yang bukan angka atau titik
+                // Remove any characters that aren't numbers or dots
                 newValue = newValue.replace(/[^0-9.]/g, '');
 
-                // Pastikan hanya ada satu titik desimal
+                // Ensure only one decimal point
                 const parts = newValue.split('.');
                 if (parts.length > 2) {
                     newValue = parts[0] + '.' + parts.slice(1).join('');
                 }
 
-                // Jika dimulai dengan titik, tambahkan 0 di depan
+                // If starts with dot, add 0 before
                 if (newValue.startsWith('.')) {
                     newValue = '0' + newValue;
                 }
@@ -1652,10 +1845,10 @@
                 return newValue;
             }
 
-            // Input angka biasa (tanpa desimal)
+            // Number inputs (whole numbers only)
             const numberInputs = document.querySelectorAll('.number-input');
             numberInputs.forEach(input => {
-                input.addEventListener('input', function(e) {
+                input.addEventListener('input', function() {
                     this.value = this.value.replace(/[^0-9]/g, '');
                 });
 
@@ -1667,10 +1860,10 @@
                 });
             });
 
-            // Input desimal (menerima titik atau koma)
+            // Decimal inputs (accepts numbers and decimal points)
             const decimalInputs = document.querySelectorAll('.decimal-input');
             decimalInputs.forEach(input => {
-                input.addEventListener('input', function(e) {
+                input.addEventListener('input', function() {
                     this.value = processDecimalInput(this, this.value);
                 });
 
@@ -1681,7 +1874,7 @@
                     document.execCommand('insertText', false, processedValue);
                 });
 
-                // Validasi saat kehilangan fokus
+                // Remove trailing decimal point when losing focus
                 input.addEventListener('blur', function() {
                     if (this.value.endsWith('.')) {
                         this.value = this.value.slice(0, -1);

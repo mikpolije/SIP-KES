@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PoliUmum;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SuratKeteranganSakitController extends Controller
 {
     public function index()
     {
-        return view('main.surat-keterangan-sakit');
+        return view('PoliUmum.surat-keterangan-sakit');
     }
 }
+

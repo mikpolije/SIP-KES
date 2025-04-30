@@ -38,10 +38,14 @@ Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path',
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-// route suratSakit
-use App\Http\Controllers\SuratKeteranganSakitController;
-Route::get('/surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
-// route suratSehat
-use App\Http\Controllers\SuratKeteranganSehatController;
-Route::get('/surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
+
+use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
+use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
+
+// Route Surat Keterangan Sehat
+Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
+
+// Route Surat Keterangan Sakit
+Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
+
 
