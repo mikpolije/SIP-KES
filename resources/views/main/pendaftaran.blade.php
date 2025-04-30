@@ -428,12 +428,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row mt-4">
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Lanjutkan</button>
-                                    </div>
-                                </div>
                         </form>
                     </section>
 
