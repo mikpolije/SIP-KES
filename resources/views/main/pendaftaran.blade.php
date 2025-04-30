@@ -456,59 +456,66 @@
                                     <div class="card-body">
                                         <label class="form-label">Objective</label>
                                         <div class="row">
-                                            <!-- Kolom Kiri -->
+                                            <!-- Left Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="sistole-mask" />
-                                                        <span class="unit-label">mmHg</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="berat-mask" />
-                                                        <span class="unit-label">kg</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">kg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="suhu-mask" />
-                                                        <span class="unit-label">°C</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="resprate-mask" />
-                                                        <span class="unit-label">/mnt</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">/mnt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <!-- Kolom Kanan -->
+                                            <!-- Right Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Diastole</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="diastole-mask" />
-                                                        <span class="unit-label">mmHg</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="tinggi-mask" />
-                                                        <span class="unit-label">cm</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">cm</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="spo2-mask" />
-                                                        <span class="unit-label">%</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -637,59 +644,66 @@
                                     <div class="card-body">
                                         <label class="form-label">Objective</label>
                                         <div class="row">
-                                            <!-- Kolom Kiri -->
+                                            <!-- Left Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="sistole-mask" />
-                                                        <span class="unit-label">mmHg</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="berat-mask" />
-                                                        <span class="unit-label">kg</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">kg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="suhu-mask" />
-                                                        <span class="unit-label">°C</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="resprate-mask" />
-                                                        <span class="unit-label">/mnt</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">/mnt</span>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <!-- Kolom Kanan -->
+                                            <!-- Right Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Diastole</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="diastole-mask" />
-                                                        <span class="unit-label">mmHg</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="tinggi-mask" />
-                                                        <span class="unit-label">cm</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <span class="input-group-text">cm</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
-                                                    <div class="input-with-unit">
-                                                        <input type="text" class="form-control" id="spo2-mask" />
-                                                        <span class="unit-label">%</span>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">%</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1801,6 +1815,69 @@
                     const maxLength = this.getAttribute('maxlength');
                     if (maxLength && this.value.length > maxLength) {
                         this.value = this.value.slice(0, maxLength);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to process decimal input (accepts both . and , as decimal separators)
+            function processDecimalInput(input, value) {
+                // Replace comma with dot for consistency
+                let newValue = value.replace(/,/g, '.');
+
+                // Remove any characters that aren't numbers or dots
+                newValue = newValue.replace(/[^0-9.]/g, '');
+
+                // Ensure only one decimal point
+                const parts = newValue.split('.');
+                if (parts.length > 2) {
+                    newValue = parts[0] + '.' + parts.slice(1).join('');
+                }
+
+                // If starts with dot, add 0 before
+                if (newValue.startsWith('.')) {
+                    newValue = '0' + newValue;
+                }
+
+                return newValue;
+            }
+
+            // Number inputs (whole numbers only)
+            const numberInputs = document.querySelectorAll('.number-input');
+            numberInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain');
+                    const numbers = pasteData.replace(/[^0-9]/g, '');
+                    document.execCommand('insertText', false, numbers);
+                });
+            });
+
+            // Decimal inputs (accepts numbers and decimal points)
+            const decimalInputs = document.querySelectorAll('.decimal-input');
+            decimalInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = processDecimalInput(this, this.value);
+                });
+
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain');
+                    const processedValue = processDecimalInput(this, pasteData);
+                    document.execCommand('insertText', false, processedValue);
+                });
+
+                // Remove trailing decimal point when losing focus
+                input.addEventListener('blur', function() {
+                    if (this.value.endsWith('.')) {
+                        this.value = this.value.slice(0, -1);
                     }
                 });
             });
