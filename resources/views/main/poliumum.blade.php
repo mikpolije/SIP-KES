@@ -864,6 +864,12 @@
                                         .modal-content {
                                         box-shadow: none;
                                         }
+
+                                        .bi bi-search {
+                                        background-color: transparent;
+                                        border: none;
+                                        color: #333;
+                                        }
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
