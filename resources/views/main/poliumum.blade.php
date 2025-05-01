@@ -946,6 +946,12 @@
                                                             <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
                                                      </div>
