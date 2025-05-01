@@ -832,7 +832,6 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button class="open-modal-btn" id="openModalBtn"><i class="bi bi-search"></i></button>
                                         <button id="searchButton" class="btn btn-outline-secondary" type="button">
                                             <i class="bi bi-search"></i>
                                         </button>
@@ -867,6 +866,11 @@
                                         box-shadow: none;
                                         }
 
+                                        .modal-contentScroll {
+                                        max-height: 800; /* atur tinggi maksimum */
+                                        padding: 20px;
+                                        }
+
                                         .bi bi-search {
                                         background-color: transparent;
                                         border: none;
@@ -899,10 +903,10 @@
 
                                         .stok-kosong {
                                         color: red;
+                                        border: none;
                                         font-size: 12px;
                                         padding: 5px 10px;
                                         cursor: pointer;
-                                        }
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
@@ -919,6 +923,7 @@
                                                  <div class="modal-body">
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
+                                                    <div class="modal-contentScroll">
                                                         <h2>Data Obat</h2>
                                                         <label>Tampilkan
                                                             <select>
@@ -943,13 +948,20 @@
                                                             <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg</td><td>Rp 833,-</td><td>0</td><td><span class="stok-kosong">Stok Kosong</span></td></tr>
                                                             <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
+                                                     </div>
                                                      </div>
                                                  </div>
                                             </div>
@@ -1674,49 +1686,6 @@
         }
     </style>
 
-<!-- Modal Pop-up -->
-<div id="popupModal" class="modal" style="display: none;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Data Layanan</h5>
-                <button type="button" class="btn-close" id="closeModal"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-hover table-bordered text-center">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>Aksi</th>
-                            <th>Nama Layanan</th>
-                            <th>Tarif</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><button class="btn btn-sm btn-primary" onclick="pilihLayanan('Jasa Perawat')">Pilih</button></td>
-                            <td>Jasa Perawat</td>
-                            <td>Rp 10.000</td>
-                        </tr>
-                        <!-- Tambah baris sesuai kebutuhan -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<style>
-    .modal {
-        position: fixed;
-        z-index: 1050;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-    </style>
-
 @endsection
 
 @section('scripts')
@@ -1726,24 +1695,6 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        document.getElementById("searchButton").addEventListener("click", function () {
-            document.getElementById("popupModal").style.display = "block";
-        });
-
-        document.getElementById("closeModal").addEventListener("click", function () {
-            document.getElementById("popupModal").style.display = "none";
-        });
-
-        function pilihLayanan(namaLayanan) {
-            const input = document.querySelector('input[placeholder="Ketik Layanan"]');
-            input.value = namaLayanan;
-            document.getElementById("popupModal").style.display = "none";
-        }
-    </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
