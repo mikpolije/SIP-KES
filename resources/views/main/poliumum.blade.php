@@ -2180,7 +2180,6 @@ $('#search-results').hide();
         });
     </script>
 
-@push('scripts')
 <!-- DataTables CDN -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -2213,7 +2212,5 @@ $('#search-results').hide();
     });
   });
 </script>
-@endpush
-
 
 @endsection
