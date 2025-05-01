@@ -852,7 +852,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="card p-3 h-100">
+                            <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Obat">
