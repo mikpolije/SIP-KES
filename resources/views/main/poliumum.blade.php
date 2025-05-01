@@ -856,9 +856,7 @@
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <div class="input-group">
                                         <input type="search" id="searchInput" class="form-control" placeholder="Cari">
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                        Search
-                                        </button>
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
