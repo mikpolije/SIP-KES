@@ -2325,7 +2325,7 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-        const modal = document.getElementById("icdModal");
+    const modal = document.getElementById("icdModal");
       const openBtn = document.getElementById("openModalBtn");
       const closeBtn = document.getElementById("closeModalBtn");
 
