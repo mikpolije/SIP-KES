@@ -327,8 +327,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-<<<<<<< HEAD
+                                </div> 
                     </section>
 
                     <!-- Step 2 -->
@@ -469,14 +468,11 @@
                                     <!-- Kolom kosong atau parameter vital tambahan bisa ditambahkan di sini -->
                                 </div>
                             </div>
-=======
->>>>>>> f2368eef36929ce11bd75329325244616e7fa2a3
                     </section>
 
                     <!-- Step 2 -->
                     <h6>Pemeriksaan Awal</h6>
                     <section>
-<<<<<<< HEAD
                         <h4 class="section-title mb-3">Data Pemeriksaan</h4>
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="d-flex align-items-center">
@@ -493,7 +489,6 @@
                                         <li><a class="dropdown-item" href="#">Informed Consent</a></li>
                                     </ul>
                                 </div>
-=======
                         <h4 class="section-title">Data Pendaftaran</h4>
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -502,7 +497,6 @@
                             </div>
                             <div class="col-md-2">
                                 <button class="btn btn-primary" onclick="searchRM()">Cari</button>
->>>>>>> f2368eef36929ce11bd75329325244616e7fa2a3
                             </div>
 
                             <!-- Bagian ini dihapus (input pencarian dan tombol Cari) -->
@@ -1448,8 +1442,6 @@
             min-height: 80px;
         }
     </style>
-<<<<<<< HEAD
-=======
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const previousBtn = document.querySelector('a[href="#previous"]');
