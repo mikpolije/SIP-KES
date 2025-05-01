@@ -832,6 +832,7 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                        <button class="open-modal-btn" id="openModalBtn"><i class="bi bi-search"></i></button>
                                         <button id="searchButton" class="btn btn-outline-secondary" type="button">
                                             <i class="bi bi-search"></i>
                                         </button>
