@@ -2321,10 +2321,8 @@ $('#search-results').hide();
             paging: true,
             searching: true,
             info: true,
-            dom: 'Bfrtip', // Menambahkan tombol-tombol seperti Excel, Print
-            buttons: [
-                'copy', 'excel', 'pdf', 'print'
-            ]
+            pageLength: 10, // Default: tampilkan 10 entri
+            lengthMenu: [5, 10, 25, 50, 100]
     });
       
       
