@@ -898,6 +898,8 @@
                                         .stok-kosong {
                                         color: red;
                                         font-size: 12px;
+                                        padding: 5px 10px;
+                                        cursor: pointer;
                                         }
                                     </style>
                                     <div class="input-group mb-2">
