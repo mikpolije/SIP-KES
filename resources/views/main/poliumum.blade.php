@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Pendaftaran')
+@section('title', 'SIP-Kes | Poli Umum')
 <style>
     body {
         background-color: #B4AEAE;
@@ -598,6 +598,29 @@
                                         </button>
                                     </div>
 
+                                    <div>
+                                        <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header d-flex align-items-center">
+                                                        <h4 class="modal-title" id="myLargeModalLabel">
+                                                            Large modal
+                                                        </h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <h4>
+                                                        Overflowing text to show scroll behavior
+                                                    </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
@@ -906,6 +929,7 @@
                                     .stok-kosong {
                                         color: red;
                                         font-size: 12px;
+<<<<<<< HEAD
                                         padding: 5px 10px;
                                         cursor: pointer;
                                     }
@@ -914,6 +938,15 @@
                                     <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#bs-example-modal-lg">
+=======
+                                        align-items: center; /* vertikal tengah */
+                                        justify-content: flex-end; /* posisi di kanan */
+                                        }
+                                    </style>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+>>>>>>> fa277cb092f1181106bc45a4075df3d2f54210dd
                                         <i class="bi bi-search"></i>
                                 </div>
                                 <div class="modal fade" id="bs-example-modal-lg" tabindex="-1"
@@ -1034,6 +1067,174 @@
                                 </table>
                             </div>
                         </div>
+<<<<<<< HEAD
+=======
+
+                        <!-- Rencana Kontrol dan Catatan -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Rencana Kontrol</label>
+                                    <div class="row g-2 mb-2">
+                                        <div class="col-md-5">
+                                            <input type="date" class="form-control">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                        </div>
+                                        <div class="col-md-2 d-flex">
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead style="background-color: #676981; color: white;">
+                                            <tr>
+                                                <th>Tanggal Kontrol</th>
+                                                <th>Alasan Kontrol</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">Tidak Ada Data</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Catatan</label>
+                                    <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Step 4 -->
+                    <h6>Farmasi</h6>
+                    <section>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="behName2">Behaviour :</label>
+                                    <input type="text" class="form-control required" id="behName2" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="participants3">Confidance</label>
+                                    <input type="text" class="form-control required" id="participants3" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="participants4">Result</label>
+                                    <select class="form-select required" id="participants4" name="location">
+                                        <option value="">Select Result</option>
+                                        <option value="Selected">Selected</option>
+                                        <option value="Rejected">Rejected</option>
+                                        <option value="Call Second-time"> Call Second-time </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="decisions3">Comments</label>
+                                    <textarea name="decisions" id="decisions3" rows="4" class="form-control"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customRadio11" class="form-label">Rate Interviwer :</label>
+                                    <div class="c-inputs-stacked">
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio11" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio11">1 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio12" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio12">2 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio13" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio13">3 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio14" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio14">4 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio15" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio15">5 star</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Step 5 -->
+                    <h6>Pembayaran</h6>
+                    <section>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="paymentMethod">Metode Pembayaran :</label>
+                                    <select class="form-select required" id="paymentMethod" name="paymentMethod">
+                                        <option value="">Pilih Metode</option>
+                                        <option value="Cash">Tunai</option>
+                                        <option value="Credit">Kartu Kredit</option>
+                                        <option value="Debit">Kartu Debit</option>
+                                        <option value="BPJS">BPJS</option>
+                                        <option value="Insurance">Asuransi</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="totalAmount">Total Biaya :</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" class="form-control required" id="totalAmount"
+                                            name="totalAmount" />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="discountCode">Kode Diskon (Opsional) :</label>
+                                    <input type="text" class="form-control" id="discountCode" name="discountCode" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="paymentDate">Tanggal Pembayaran :</label>
+                                    <input type="date" class="form-control required" id="paymentDate"
+                                        name="paymentDate" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="paymentNotes">Catatan Pembayaran :</label>
+                                    <textarea name="paymentNotes" id="paymentNotes" rows="4" class="form-control"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Status Pembayaran :</label>
+                                    <div class="c-inputs-stacked">
+                                        <div class="form-check">
+                                            <input type="radio" id="paidFull" name="paymentStatus"
+                                                class="form-check-input" value="paidFull" />
+                                            <label class="form-check-label" for="paidFull">Lunas</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="paidPartial" name="paymentStatus"
+                                                class="form-check-input" value="paidPartial" />
+                                            <label class="form-check-label" for="paidPartial">Bayar Sebagian</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="pending" name="paymentStatus"
+                                                class="form-check-input" value="pending" />
+                                            <label class="form-check-label" for="pending">Tertunda</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+>>>>>>> fa277cb092f1181106bc45a4075df3d2f54210dd
             </div>
 
             <!-- Rencana Kontrol dan Catatan -->
