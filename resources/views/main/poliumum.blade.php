@@ -1599,7 +1599,34 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+                <table id="icdTable" class="table table-striped" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Nama</th>
+                        <th>Usia</th>
+                        <th>Kota</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>John</td>
+                        <td>28</td>
+                        <td>New York</td>
+                      </tr>
+                      <tr>
+                        <td>Jane</td>
+                        <td>35</td>
+                        <td>London</td>
+                      </tr>
+                      <tr>
+                        <td>Mike</td>
+                        <td>50</td>
+                        <td>Paris</td>
+                      </tr>
+                      <!-- Tambahkan data lainnya di sini -->
+                    </tbody>
+                  </table>
+                  
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -1698,8 +1725,8 @@
 
 @section('scripts')
   
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
@@ -2237,7 +2264,16 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-        $("#icdTable").DataTable();
+        const table = new DataTable('#icdTable', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            dom: 'Bfrtip', // Menambahkan tombol-tombol seperti Excel, Print
+            buttons: [
+                'copy', 'excel', 'pdf', 'print'
+            ]
+    });
       
       
 </script>
