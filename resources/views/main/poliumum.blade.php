@@ -1,8 +1,22 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes')
+@section('title', 'SIP-Kes | Poli Umum')
+<style>
+    body {
+        background-color: #B4AEAE;
+    }
+</style>
 
 @section('pageContent')
+<div class="container-fluid">
+        <div class="card w-100">
+            <div class="card-body wizard-content">
+                <h1 class="card-title"></h1>
+                <h1 id="wizard-title" class="wizard-title">Pendaftaran</h1>
+                <style>
+                    .wizard-title {
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 3rem;
 <div class="container-fluid">
     <div class="card w-100">
         <div class="card-body wizard-content">
@@ -29,6 +43,8 @@
                         font-size: 2rem;
                         font-weight: bold;
                         text-align: left;
+                        color: #111754;
+                        margin-bottom: 20px;
                         color: #1A1A1A;
                         padding: 9px 0;
                     }
