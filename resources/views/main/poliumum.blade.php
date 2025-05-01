@@ -598,7 +598,7 @@
                                             <i class="bi bi-search"></i> 
                                         </button> --}}
 
-                                        <button class="open-modal-btn" type="button" id="openModalBtn">Test</button>
+                                        <button data-bs-toggle="modal" data-bs-target="#icdModal" type="button" id="openModalBtn">Test</button>
                                     </div>
 
                                     <div class="table-responsive">
@@ -2328,27 +2328,9 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-        const modal = document.getElementById("icdModal");
-      const openBtn = document.getElementById("openModalBtn");
-      const closeBtn = document.getElementById("closeModalBtn");
-
-      openBtn.onclick = () => {
-        modal.style.display = "block";
-        if (!$.fn.dataTable.isDataTable("#icdTable")) {
-          $("#icdTable").DataTable();
-          console.log("ppp")
-        }
-      };
-
-      closeBtn.onclick = () => {
-        modal.style.display = "none";
-      };
-
-      window.onclick = (e) => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      };
+        $("#icdTable").DataTable();
+      
+      
 </script>
 
 @endsection
