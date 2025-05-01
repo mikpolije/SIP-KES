@@ -899,7 +899,7 @@
                                         .stok-kosong {
                                         color: red;
                                         font-size: 12px;
-                                        padding: 5px 6px;
+                                        padding: 5px 10px;
                                         cursor: pointer;
                                         }
                                     </style>
@@ -933,7 +933,6 @@
                                                             <th>Nama Obat</th>
                                                             <th>Harga Jual</th>
                                                             <th>Stok Obat</th>
-                                                            <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
