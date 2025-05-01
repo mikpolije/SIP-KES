@@ -983,7 +983,7 @@
                                         <div class="col-md-4">
                                             <input type="date" class="form-control">
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-6">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-3">
