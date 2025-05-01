@@ -59,7 +59,7 @@
     }
 </style>
 
-<div class="container py-4">
+<div class="container-fluid py-4">
     <h1 class="judul-antrean mb-4">Antrean Pemeriksaan</h1>
 
     {{-- Search Bar --}}
