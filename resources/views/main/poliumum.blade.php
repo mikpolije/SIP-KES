@@ -1377,7 +1377,6 @@
                 if (selectedICDs.length === 0) {
                     container.html(
                         '<p class="text-muted text-center mb-0" id="no-icd-selected">Belum ada diagnosa yang dipilih</p>'
-<<<<<<< HEAD
                     );
 =======
                         );
