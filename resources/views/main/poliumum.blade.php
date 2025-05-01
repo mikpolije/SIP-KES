@@ -593,7 +593,7 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
-                                        <a href="#" class="btn btn-outline-secondary open-modal-btn" type="button"
+                                        <button href="#" class="btn btn-outline-secondary open-modal-btn" type="button"
                                         id="openModalBtn">
                                             <i class="bi bi-search"></i> 
                                         </button>
