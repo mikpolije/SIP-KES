@@ -747,7 +747,7 @@
                                                     <th class="text-center">Rincian</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="pemeriksaanFisikTable">
                                                 <tr>
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
@@ -1126,7 +1126,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
+                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 500px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
