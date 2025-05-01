@@ -957,7 +957,7 @@
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2 d-flex">
-                                            <button class="btn btn-secondary flex-grow-0">Tambah +</button>
+                                            <button class="btn btn-outline-secondary border-0 bg-transparent p-0">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
