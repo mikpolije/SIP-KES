@@ -913,7 +913,6 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                    <p>Ini Pop-Up Dilla</p>
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
                                                         <h2>Data Obat</h2>
@@ -986,7 +985,7 @@
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2 d-flex">
-                                            <button class="btn btn-outline-secondary border-0 bg-transparent p-0">Tambah +</button>
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
