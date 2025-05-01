@@ -863,8 +863,11 @@
                                         /* Opsional: ubah modal agar tidak punya bayangan hitam */
                                         .modal-content {
                                         box-shadow: none;
+                                        max-height: 400px; /* atur tinggi maksimum */
+                                        overflow-y: auto;
+                                        padding: 20px;
                                         }
-
+                                        
                                         .bi bi-search {
                                         background-color: transparent;
                                         border: none;
@@ -917,6 +920,7 @@
                                                  <div class="modal-body">
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
+                                                    <div class="modal-content">
                                                         <h2>Data Obat</h2>
                                                         <label>Tampilkan
                                                             <select>
@@ -954,6 +958,7 @@
                                                             <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
+                                                     </div>
                                                      </div>
                                                  </div>
                                             </div>
