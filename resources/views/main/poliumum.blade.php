@@ -593,9 +593,9 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary open-modal-btn" type="button"
-                                        id="openModalBtn">
-                                            <i class="bi bi-search"></i>
+                                        <a href="#" class="btn btn-outline-secondary open-icd-btn" type="button"
+                                        id="icdModal">
+                                            <i class="bi bi-search"></i> 
                                         </button>
                                     </div>
 
@@ -1590,98 +1590,108 @@
         </div>
     </div>
     <div
+      class="modal fade"
       id="icdModal"
-      class="modal"
+      tabindex="-1"
+      aria-labelledby="icdModalLabel"
+      aria-hidden="true"
     >
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Data ICD 10</h2>
-          <span
-            class="close"
-            id="closeModalBtn"
-            >&times;</span
-          >
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-primary" id="icdModalLabel">
+              Data ICD 10
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <table
+              id="icdTable"
+              class="table table-striped table-hover"
+              style="width: 100%"
+            >
+              <thead class="table-primary">
+                <tr>
+                  <th></th>
+                  <th>Kode</th>
+                  <th>Subkode</th>
+                  <th>Nama</th>
+                  <th>Nama Inggris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A00</td>
+                  <td>0</td>
+                  <td>Kolera</td>
+                  <td>Cholera</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A00</td>
+                  <td>1</td>
+                  <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
+                  <td>Cholera due to Vibrio cholerae 01</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A00</td>
+                  <td>9</td>
+                  <td>Kolera, tidak terspesifikasi</td>
+                  <td>Cholera, unspecified</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A01</td>
+                  <td>0</td>
+                  <td>Demam tifoid dan paratifoid</td>
+                  <td>Typhoid and paratyphoid</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A01</td>
+                  <td>1</td>
+                  <td>Demam tifoid</td>
+                  <td>Typhoid fever</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A01</td>
+                  <td>2</td>
+                  <td>Demam paratifoid A</td>
+                  <td>Paratyphoid fever A</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A01</td>
+                  <td>3</td>
+                  <td>Demam paratifoid B</td>
+                  <td>Paratyphoid fever B</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A01</td>
+                  <td>4</td>
+                  <td>Demam paratifoid C</td>
+                  <td>Paratyphoid fever C</td>
+                </tr>
+                <tr>
+                  <td><button class="btn-pilih">Pilih</button></td>
+                  <td>A01</td>
+                  <td>-</td>
+                  <td>Demam paratifoid, tidak terspesifikasi</td>
+                  <td>Paratyphoid fever, unspecified</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-
-        <table
-          id="icdTable"
-          class="display"
-        >
-          <thead>
-            <tr>
-              <th></th>
-              <th>Kode</th>
-              <th>Subkode</th>
-              <th>Nama</th>
-              <th>Nama Inggris</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A00</td>
-              <td>0</td>
-              <td>Kolera</td>
-              <td>Cholera</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A00</td>
-              <td>1</td>
-              <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
-              <td>Cholera due to Vibrio cholerae 01</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A00</td>
-              <td>9</td>
-              <td>Kolera, tidak terspesifikasi</td>
-              <td>Cholera, unspecified</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A01</td>
-              <td>0</td>
-              <td>Demam tifoid dan paratifoid</td>
-              <td>Typhoid and paratyphoid</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A01</td>
-              <td>1</td>
-              <td>Demam tifoid</td>
-              <td>Typhoid fever</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A01</td>
-              <td>2</td>
-              <td>Demam paratifoid A</td>
-              <td>Paratyphoid fever A</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A01</td>
-              <td>3</td>
-              <td>Demam paratifoid B</td>
-              <td>Paratyphoid fever B</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A01</td>
-              <td>4</td>
-              <td>Demam paratifoid C</td>
-              <td>Paratyphoid fever C</td>
-            </tr>
-            <tr>
-              <td><button class="btn-pilih">Pilih</button></td>
-              <td>A01</td>
-              <td>-</td>
-              <td>Demam paratifoid, tidak terspesifikasi</td>
-              <td>Paratyphoid fever, unspecified</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
     <style>
@@ -1770,13 +1780,21 @@
 
 @endsection
 
+@push('style')
+    <link rel="stylesheet"  href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+@endpush
+
+
 @section('scripts')
+  
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
@@ -2301,32 +2319,11 @@ $('#search-results').hide();
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const nextBtn = document.querySelector('a[href="#next"]');
-            if (nextBtn) {
-                nextBtn.textContent = "Simpan";
-            }
+ $('#icdModal').on('shown.bs.modal', function () {
+          if (!$.fn.DataTable.isDataTable('#icdTable')) {
+            $('#icdTable').DataTable();
+          }
         });
-        const modal = document.getElementById("icdModal");
-      const openBtn = document.getElementById("openModalBtn");
-      const closeBtn = document.getElementById("closeModalBtn");
-
-      openBtn.onclick = () => {
-        modal.style.display = "block";
-        if (!$.fn.dataTable.isDataTable("#icdTable")) {
-          $("#icdTable").DataTable();
-        }
-      };
-
-      closeBtn.onclick = () => {
-        modal.style.display = "none";
-      };
-
-      window.onclick = (e) => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      };
 </script>
 
 @endsection
