@@ -884,8 +884,42 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                    <p>Ini adalah contoh tampilan hasil pencarian.</p>
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
+                                                    <div id="popupObat" class="popup-container" style="display: none;">
+                                                    <div class="popup">
+                                                        <h2>Data Obat</h2>
+                                                        <label>Tampilkan 
+                                                            <select>
+                                                                <option>10</option>
+                                                                <option>25</option>
+                                                                <option>50</option>
+                                                            </select> entri
+                                                        </label>
+                                                        <input type="text" placeholder="Cari..." style="float: right;">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                <th>Nama Obat</th>
+                                                                <th>Harga Jual</th>
+                                                                <th>Stok Obat</th>
+                                                                <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                        <tbody>
+                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
+                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                        </tbody>
+                                                        </table>
+                                                     </div>
+                                                     </div>
                                                  </div>
                                             </div>
                                         </div>
