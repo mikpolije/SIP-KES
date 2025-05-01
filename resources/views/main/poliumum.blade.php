@@ -857,7 +857,7 @@
                                     <style>
                                         /* Membuat backdrop modal transparan */
                                         .modal-backdrop.show {
-                                        opacity: 0 !important;
+                                        background-color: rgba(128, 128, 128, 0.5) !important;
                                         }
 
                                         /* Opsional: ubah modal agar tidak punya bayangan hitam */
