@@ -864,7 +864,9 @@
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
-                                            <input type="text" id="searchInput" class="form-control" placeholder="Ketikkan Layanan">
+                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                        <div class="input-group mb-2">
+                                            <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                             <i class="bi bi-search"></i>
                                     </div>
