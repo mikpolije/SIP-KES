@@ -919,13 +919,22 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
+                                    <style>
+                                        /* Membuat backdrop modal transparan */
+                                        .modal-backdrop.show {
+                                        background-color: rgba(128, 128, 128, 0.5) !important;
+                                        }
+
+                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                        .modal-content {
+                                        box-shadow: none;
+                                        }
+                                    </style>
                                     <div class="input-group mb-2">
-                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <input type="text" class="form-control" placeholder="Cari Obat">
+                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                         <i class="bi bi-search"></i>
                                     </div>
-<<<<<<< HEAD
-=======
                                     <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
@@ -946,7 +955,6 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
->>>>>>> 74772187cd37817f2c75171fd6ad5d3a0aee8356
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
@@ -1145,7 +1153,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="{{ asset('images/image.png') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
+                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
