@@ -793,6 +793,76 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Tombol untuk membuka popup -->
+<button onclick="openPopup()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+  Pilih ICD 9
+</button>
+
+<!-- Popup -->
+<div id="popupIcd" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+  <div class="w-full max-w-3xl bg-white rounded-lg shadow-xl overflow-hidden">
+    
+    <!-- Header -->
+    <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+      <h2 class="text-xl font-bold text-blue-900">Data ICD 9</h2>
+      <button onclick="closePopup()" class="text-gray-600 hover:text-gray-800">
+        &times;
+      </button>
+    </div>
+
+    <!-- Controls -->
+    <div class="p-4 flex justify-between items-center border-b border-gray-200">
+      <div class="flex items-center">
+        <span class="mr-2">Tampilkan</span>
+        <select class="border border-gray-300 rounded px-2 py-1">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+        <span class="ml-2">entri</span>
+      </div>
+
+      <div class="flex items-center">
+        <span class="mr-2">Cari:</span>
+        <input
+          type="text"
+          id="searchInput"
+          onkeyup="filterIcd()"
+          class="border border-gray-300 rounded px-3 py-1"
+          placeholder="Cari ICD"
+        />
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto max-h-96">
+      <table class="w-full table-auto" id="icdTable">
+        <thead>
+          <tr class="bg-gray-100 text-gray-700">
+            <th class="w-16 p-2 text-left border-b"></th>
+            <th class="w-24 p-2 text-left border-b">Kode</th>
+            <th class="p-2 text-left border-b">Nama</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($icdList as $icd)
+          <tr class="bg-white hover:bg-blue-50">
+            <td class="p-2 border-b">
+              <button onclick="selectIcd('{{ $icd->code }}', '{{ $icd->name }}')" class="bg-blue-400 text-white text-sm py-1 px-3 rounded hover:bg-blue-500">
+                Pilih
+              </button>
+            </td>
+            <td class="p-2 border-b">{{ $icd->code }}</td>
+            <td class="p-2 border-b">{{ $icd->name }}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -2132,6 +2202,36 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
+</script>
+
+<!-- JS -->
+<script>
+  function openPopup() {
+    document.getElementById('popupIcd').classList.remove('hidden');
+  }
+
+  function closePopup() {
+    document.getElementById('popupIcd').classList.add('hidden');
+  }
+
+  function filterIcd() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let rows = document.querySelectorAll('#icdTable tbody tr');
+
+    rows.forEach(row => {
+      const name = row.cells[2].textContent.toLowerCase();
+      const code = row.cells[1].textContent.toLowerCase();
+      row.style.display = name.includes(input) || code.includes(input) ? '' : 'none';
+    });
+  }
+
+  function selectIcd(code, name) {
+    alert('ICD dipilih: ' + code + ' - ' + name);
+    closePopup();
+
+    // Kamu bisa ganti alert ini dengan set nilai ke input, misal:
+    // document.getElementById('input_icd_code').value = code;
+  }
 </script>
 
 @endsection
