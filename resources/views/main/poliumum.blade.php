@@ -854,11 +854,35 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
+<<<<<<< HEAD
                                     <div class="input-group">
                                         <input type="search" id="searchInput" class="form-control" placeholder="Cari">
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                         Search
                                         </button>
+=======
+                                    <style>
+                                        /* Membuat backdrop modal transparan */
+                                        .modal-backdrop.show {
+                                        background-color: rgba(128, 128, 128, 0.5) !important;
+                                        }
+
+                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                        .modal-content {
+                                        box-shadow: none;
+                                        }
+
+                                        .bi bi-search {
+                                        background-color: transparent;
+                                        border: none;
+                                        color: #333;
+                                        }
+                                    </style>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <i class="bi bi-search"></i>
+>>>>>>> f014ebc086fe57b717a9c67fa6dc3ba4ffb5a50a
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
