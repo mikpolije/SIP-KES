@@ -1139,6 +1139,59 @@
         </div>
     </div>
 
+    <!-- Modal ICD 10 -->
+<div class="modal fade" id="modalICD10" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-primary fw-semibold">Pilih ICD 10</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Pencarian ICD 10 -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control rounded-start" id="searchIcd10" placeholder="Cari ICD 10 (contoh: headache, A00)">
+                    <button class="btn btn-outline-secondary rounded-end" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+                <!-- Tabel ICD 10 -->
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="text-white" style="background-color: #8c9eff;">
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama ICD 10</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>H49.4</td>
+                                <td>Progressive external ophthalmoplegia</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-primary rounded-pill" onclick="pilihICD('H49.4', 'Progressive external ophthalmoplegia')">Pilih</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>R51</td>
+                                <td>Headache</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-primary rounded-pill" onclick="pilihICD('R51', 'Headache')">Pilih</button>
+                                </td>
+                            </tr>
+                            <!-- Tambahkan baris lain sesuai kebutuhan -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Modal Surat Keterangan Sehat-->
     <div class="modal fade" id="modalSehat" tabindex="-1" aria-labelledby="modalSehatLabel" aria-hidden="true">
