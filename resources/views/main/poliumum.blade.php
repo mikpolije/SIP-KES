@@ -598,7 +598,7 @@
                                             <i class="bi bi-search"></i> 
                                         </button> --}}
 
-                                        <button class="open-modal-btn" id="openModalBtn">Test</button>
+                                        <button class="open-modal-btn" type="button" id="openModalBtn">Test</button>
                                     </div>
 
                                     <div class="table-responsive">
