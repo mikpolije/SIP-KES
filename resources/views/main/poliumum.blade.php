@@ -855,8 +855,8 @@
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <div class="input-group">
-                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"></i></button>
+                                        <input type="text" class="form-control" placeholder="Ketik Obat">
+                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
