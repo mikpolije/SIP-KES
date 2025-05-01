@@ -886,7 +886,6 @@
                                                  <div class="modal-body">
                                                     <p>Ini Pop-Up Dilla</p>
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                    <div id="popupObat" class="popup-container" style="display: none;">
                                                     <div class="popup">
                                                         <h2>Data Obat</h2>
                                                         <label>Tampilkan 
@@ -919,7 +918,6 @@
                                                             <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
-                                                     </div>
                                                      </div>
                                                  </div>
                                             </div>
