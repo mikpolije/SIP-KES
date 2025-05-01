@@ -747,7 +747,7 @@
                                                     <th class="text-center">Rincian</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="pemeriksaanFisikTable">
+                                            <tbody>
                                                 <tr>
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
@@ -854,60 +854,8 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <style>
-                                        /* Membuat backdrop modal transparan */
-                                        .modal-backdrop.show {
-                                        background-color: rgba(128, 128, 128, 0.5) !important;
-                                        }
-
-                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
-                                        .modal-content {
-                                        box-shadow: none;
-                                        }
-
-                                        .bi bi-search {
-                                        background-color: transparent;
-                                        border: none;
-                                        color: #333;
-                                        }
-
-                                        table {
-                                        width: 100%;
-                                        border-collapse: collapse;
-                                        margin-top: 20px;
-                                        }
-
-                                        th, td {
-                                        text-align: left;
-                                        padding: 10px;
-                                        border-bottom: 1px solid #ddd;
-                                        }
-
-                                        th {
-                                        background-color: #f4f4f4;
-                                        }
-
-                                        .btn-pilih {
-                                        background-color: #2196F3;
-                                        color: white;
-                                        border: none;
-                                        padding: 5px 10px;
-                                        cursor: pointer;
-                                        }
-
-                                        .stok-kosong {
-                                        color: red;
-                                        font-size: 12px;
-                                        padding: 5px 10px;
-                                        cursor: pointer;
-                                        }
-                                    </style>
                                     <div class="input-group mb-2">
-<<<<<<< HEAD
                                         <input type="search" id="searchInput" class="form-control" placeholder="Cari">
-=======
-                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
->>>>>>> 86242b48c916fa143145b418e68be6e09da20220
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                         <i class="bi bi-search"></i>
                                     </div>
@@ -919,50 +867,12 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-<<<<<<< HEAD
                                                     <p>Ini adalah contoh tampilan hasil pencarian.</p>
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                  </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
                                                 </div>
-=======
-                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                    <div class="popup">
-                                                        <h2>Data Obat</h2>
-                                                        <label>Tampilkan
-                                                            <select>
-                                                                <option>10</option>
-                                                                <option>25</option>
-                                                                <option>50</option>
-                                                            </select> entri
-                                                        </label>
-                                                        <input type="text" placeholder="Cari..." style="float: right;">
-                                                        <table>
-                                                        <thead>
-                                                            <tr>
-                                                            <th>Nama Obat</th>
-                                                            <th>Harga Jual</th>
-                                                            <th>Stok Obat</th>
-                                                            <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
-                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                        </tbody>
-                                                        </table>
-                                                     </div>
-                                                 </div>
->>>>>>> 86242b48c916fa143145b418e68be6e09da20220
                                             </div>
                                         </div>
                                     </div>
@@ -1000,11 +910,7 @@
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2">
-<<<<<<< HEAD
                                             <button class="btn btn-secondary w-100">Tambah +</button>
-=======
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah+</button>
->>>>>>> 86242b48c916fa143145b418e68be6e09da20220
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
@@ -1171,11 +1077,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-<<<<<<< HEAD
                         <img src="{{ asset('images/image.png') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
-=======
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 500px;">
->>>>>>> 86242b48c916fa143145b418e68be6e09da20220
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
@@ -1355,80 +1257,7 @@
             color: #666;
         }
     </style>
-<<<<<<< HEAD
-<!-- Modal Data Layanan -->
-<div class="modal fade" id="layananModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Data Layanan</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table id="layananTable" class="display" style="width: 100%">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Nama Layanan</th>
-              <th>Tarif</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><button class="btn btn-primary btn-sm pilih-layanan">Pilih</button></td>
-              <td>Jasa Perawat</td>
-              <td>Rp 10.000,-</td>
-            </tr>
-            <tr>
-              <td><button class="btn btn-primary btn-sm pilih-layanan">Pilih</button></td>
-              <td>Jasa Pasang Infus</td>
-              <td>Rp 30.000,-</td>
-            </tr>
-            <tr>
-              <td><button class="btn btn-primary btn-sm pilih-layanan">Pilih</button></td>
-              <td>Bekam</td>
-              <td>Rp 50.000,-</td>
-            </tr>
-            <tr>
-              <td><button class="btn btn-primary btn-sm pilih-layanan">Pilih</button></td>
-              <td>Perawatan Luka Ringan</td>
-              <td>Rp 30.000,-</td>
-            </tr>
-            <tr>
-              <td><button class="btn btn-primary btn-sm pilih-layanan">Pilih</button></td>
-              <td>Perawatan Luka Infeksi</td>
-              <td>Rp 70.000,-</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- jQuery dan DataTables -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script>
-  $(document).ready(function () {
-    $('#layananTable').DataTable();
-
-    $('#openLayananModal').on('click', function () {
-      $('#layananModal').modal('show');
-    });
-
-    $(document).on('click', '.pilih-layanan', function () {
-      const nama = $(this).closest('tr').find('td:eq(1)').text();
-      const tarif = $(this).closest('tr').find('td:eq(2)').text();
-      $('#layananInput').val(nama);
-      $('#layananModal').modal('hide');
-      // Tambahan logika jika ingin memasukkan ke tabel layanan juga
-    });
-  });
-</script>
-=======
-
->>>>>>> 86242b48c916fa143145b418e68be6e09da20220
+    
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sehat */
         #modalSehat .modal-content {
