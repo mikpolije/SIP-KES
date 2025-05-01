@@ -870,6 +870,35 @@
                                         border: none;
                                         color: #333;
                                         }
+
+                                        table {
+                                        width: 100%;
+                                        border-collapse: collapse;
+                                        margin-top: 20px;
+                                        }
+
+                                        th, td {
+                                        text-align: left;
+                                        padding: 10px;
+                                        border-bottom: 1px solid #ddd;
+                                        }
+
+                                        th {
+                                        background-color: #f4f4f4;
+                                        }
+
+                                        .btn-pilih {
+                                        background-color: #2196F3;
+                                        color: white;
+                                        border: none;
+                                        padding: 5px 10px;
+                                        cursor: pointer;
+                                        }
+
+                                        .stok-kosong {
+                                        color: red;
+                                        font-size: 12px;
+                                        }
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
