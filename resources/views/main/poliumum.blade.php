@@ -767,7 +767,7 @@
                                                     <th class="text-center">Rincian</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="pemeriksaanFisikTable">
+                                            <tbody>
                                                 <tr>
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
@@ -874,6 +874,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
+<<<<<<< HEAD
                                     <style>
                                         /* Membuat backdrop modal transparan */
                                         .modal-backdrop.show {
@@ -918,12 +919,14 @@
                                         .stok-kosong {
                                         color: red;
                                         font-size: 12px;
-                                        padding: 5px 10px;
-                                        cursor: pointer;
+                                        align-items: center; /* vertikal tengah */
+                                        justify-content: flex-end; /* posisi di kanan */
                                         }
                                     </style>
+=======
+>>>>>>> f1f62ccbbdd5b7ebdc7a88f3a2eb35b6d9638b23
                                     <div class="input-group mb-2">
-                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                         <i class="bi bi-search"></i>
                                     </div>
@@ -935,41 +938,12 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
+                                                    <p>Ini adalah contoh tampilan hasil pencarian.</p>
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                    <div class="popup">
-                                                        <h2>Data Obat</h2>
-                                                        <label>Tampilkan
-                                                            <select>
-                                                                <option>10</option>
-                                                                <option>25</option>
-                                                                <option>50</option>
-                                                            </select> entri
-                                                        </label>
-                                                        <input type="text" placeholder="Cari..." style="float: right;">
-                                                        <table>
-                                                        <thead>
-                                                            <tr>
-                                                            <th>Nama Obat</th>
-                                                            <th>Harga Jual</th>
-                                                            <th>Stok Obat</th>
-                                                            <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
-                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                        </tbody>
-                                                        </table>
-                                                     </div>
                                                  </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1000,14 +974,14 @@
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row g-2 mb-2">
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <input type="date" class="form-control">
                                         </div>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                            <button class="btn btn-secondary w-100">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
@@ -1174,7 +1148,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 500px;">
+                        <img src="{{ asset('images/image.png') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
@@ -1354,7 +1328,7 @@
             color: #666;
         }
     </style>
-
+    
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sehat */
         #modalSehat .modal-content {
