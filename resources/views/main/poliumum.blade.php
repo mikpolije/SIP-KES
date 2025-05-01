@@ -598,37 +598,238 @@
                                         </button>
                                     </div>
 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #f8f9fa;">
-                                                <tr>
-                                                    <th class="text-center">Nama ICD 10</th>
-                                                    <th class="text-center">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="selected-icds-icd10">
-                                                <tr class="icd-item">
-                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="icd-item">
-                                                    <td>R51. Headache</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <head>
+    <meta charset="UTF-8" />
+    <title>Pop Up ICD 10</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <!-- DataTables CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #c1f0d6;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        overflow: auto;
+      }
+
+      .modal-content {
+        background: #fff;
+        margin: 5% auto;
+        padding: 20px 30px;
+        border-radius: 12px;
+        width: 95%;
+        max-width: 1000px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .modal-header h2 {
+        font-size: 20px;
+        color: #1e3a8a;
+      }
+
+      .close {
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #444;
+      }
+
+      .btn-pilih {
+        background-color: #3b82f6;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      table.dataTable tbody tr {
+        background-color: #f0f4ff;
+      }
+
+      table.dataTable tbody tr:hover {
+        background-color: #dbeafe;
+      }
+
+      .open-modal-btn {
+        margin: 20px;
+        padding: 10px 20px;
+        background-color: #22c55e;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .footer-id {
+        margin-top: 20px;
+        font-weight: bold;
+        background: #059669;
+        display: inline-block;
+        padding: 5px 10px;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <button
+      class="open-modal-btn"
+      id="openModalBtn"
+    >
+      Pop Up ICD 10
+    </button>
+
+    <div
+      id="icdModal"
+      class="modal"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Data ICD 10</h2>
+          <span
+            class="close"
+            id="closeModalBtn"
+            >&times;</span
+          >
+        </div>
+
+        <table
+          id="icdTable"
+          class="display"
+        >
+          <thead>
+            <tr>
+              <th></th>
+              <th>Kode</th>
+              <th>Subkode</th>
+              <th>Nama</th>
+              <th>Nama Inggris</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A00</td>
+              <td>0</td>
+              <td>Kolera</td>
+              <td>Cholera</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A00</td>
+              <td>1</td>
+              <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
+              <td>Cholera due to Vibrio cholerae 01</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A00</td>
+              <td>9</td>
+              <td>Kolera, tidak terspesifikasi</td>
+              <td>Cholera, unspecified</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>0</td>
+              <td>Demam tifoid dan paratifoid</td>
+              <td>Typhoid and paratyphoid</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>1</td>
+              <td>Demam tifoid</td>
+              <td>Typhoid fever</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>2</td>
+              <td>Demam paratifoid A</td>
+              <td>Paratyphoid fever A</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>3</td>
+              <td>Demam paratifoid B</td>
+              <td>Paratyphoid fever B</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>4</td>
+              <td>Demam paratifoid C</td>
+              <td>Paratyphoid fever C</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>-</td>
+              <td>Demam paratifoid, tidak terspesifikasi</td>
+              <td>Paratyphoid fever, unspecified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- jQuery dan DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+      const modal = document.getElementById("icdModal");
+      const openBtn = document.getElementById("openModalBtn");
+      const closeBtn = document.getElementById("closeModalBtn");
+
+      openBtn.onclick = () => {
+        modal.style.display = "block";
+        if (!$.fn.dataTable.isDataTable("#icdTable")) {
+          $("#icdTable").DataTable();
+        }
+      };
+
+      closeBtn.onclick = () => {
+        modal.style.display = "none";
+      };
+
+      window.onclick = (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
 
                         <!-- Subjective dan Objective -->
                         <div class="row mb-3">
