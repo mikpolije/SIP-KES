@@ -747,7 +747,7 @@
                                                     <th class="text-center">Rincian</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="pemeriksaanFisikTable">
+                                            <tbody>
                                                 <tr>
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
@@ -886,41 +886,40 @@
                                                  <div class="modal-body">
                                                     <p>Ini Pop-Up Dilla</p>
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                    <div class="modal fade" id="popupObat" tabindex="-1" aria-hidden="true">
-                                                        <div class="modal-dialog modal-xl modal-dialog-centered">
-                                                            <div class="modal-content rounded-4">
-                                                                <div class="modal-body p-4">
-                                                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                                                    <h4 class="text-primary">Data Obat</h4>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                                </div>
-                                                            <table id="tabelObat" class="table table-striped table-bordered" style="width:100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                    <th></th>
-                                                                    <th>Nama Obat</th>
-                                                                    <th>Harga Jual</th>
-                                                                    <th>Stok Obat</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td><button class="btn-pilih">Pilih</button></td>
-                                                                        <td>Acyclovir</td>
-                                                                        <td>Rp 1.000,-</td>
-                                                                        <td>64</td>
-                                                                    </tr>
-                                                                        <tr>
-                                                                        <td><button class="btn-pilih">Pilih</button></td>
-                                                                        <td>Acyclovir salep</td>
-                                                                        <td>Rp 9000,-</td>
-                                                                        <td>3</td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                            </table>
-                                                        </div>
-                                                 </div>
-                                            </div>
+                                                    <div class="popup">
+                                                        <h2>Data Obat</h2>
+                                                        <label>Tampilkan 
+                                                            <select>
+                                                                <option>10</option>
+                                                                <option>25</option>
+                                                                <option>50</option>
+                                                            </select> entri
+                                                        </label>
+                                                        <input type="text" placeholder="Cari..." style="float: right;">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                <th>Nama Obat</th>
+                                                                <th>Harga Jual</th>
+                                                                <th>Stok Obat</th>
+                                                                <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                        <tbody>
+                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
+                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                        </tbody>
+                                                        </table>
+                                                     </div>
+                                                     </div>
                                                  </div>
                                             </div>
                                         </div>
@@ -1126,7 +1125,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="resources/images/apps/Anatomi.jpg" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
+                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
