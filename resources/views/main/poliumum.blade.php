@@ -794,6 +794,44 @@
                             </div>
                         </div>
 
+                        <!-- Modal ICD 9 -->
+<div class="modal fade" id="modalICD9" tabindex="-1" aria-labelledby="modalICD9Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Data ICD 9</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                <table id="tableICD9" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Nama</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($icd9 as $item)
+                            <tr>
+                                <td>{{ $item->kode }}</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-success pilih-icd9"
+                                            data-nama="{{ $item->nama }}">
+                                        Pilih
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
@@ -2116,5 +2154,45 @@ $('#search-results').hide();
             }
         });
     </script>
+
+<!-- DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tableICD9').DataTable();
+
+        $('.pilih-icd9').on('click', function () {
+            let nama = $(this).data('nama');
+
+            $('#row-empty').remove();
+
+            $('#selected-icds-icd9').append(`
+                <tr>
+                    <td>${nama}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-danger hapus-icd">🗑️</button>
+                    </td>
+                </tr>
+            `);
+
+            $('#modalICD9').modal('hide');
+        });
+
+        $(document).on('click', '.hapus-icd', function () {
+            $(this).closest('tr').remove();
+
+            if ($('#selected-icds-icd9 tr').length === 0) {
+                $('#selected-icds-icd9').append(`
+                    <tr id="row-empty">
+                        <td colspan="2" class="text-center text-muted">Belum ada Tindakan yang dipilih</td>
+                    </tr>
+                `);
+            }
+        });
+    });
+</script>
 
 @endsection
