@@ -593,10 +593,12 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
-                                        <button href="#" class="btn btn-outline-secondary open-modal-btn" type="button"
+                                        {{-- <button href="#" class="btn btn-outline-secondary " type="button"
                                         id="openModalBtn">
                                             <i class="bi bi-search"></i> 
-                                        </button>
+                                        </button> --}}
+
+                                        <button class="open-modal-btn" id="openModalBtn">Test</button>
                                     </div>
 
                                     <div class="table-responsive">
