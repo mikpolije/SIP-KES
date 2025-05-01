@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Poli Umum')
+@section('title', 'SIP-Kes | Pendaftaran')
 <style>
     body {
         background-color: #B4AEAE;
@@ -898,14 +898,14 @@
                                                         </label>
                                                         <input type="text" placeholder="Cari..." style="float: right;">
                                                         <table>
-                                                            <thead>
-                                                                <tr>
-                                                                <th>Nama Obat</th>
-                                                                <th>Harga Jual</th>
-                                                                <th>Stok Obat</th>
-                                                                <th></th>
-                                                                </tr>
-                                                            </thead>
+                                                        <thead>
+                                                            <tr>
+                                                            <th>Nama Obat</th>
+                                                            <th>Harga Jual</th>
+                                                            <th>Stok Obat</th>
+                                                            <th></th>
+                                                            </tr>
+                                                        </thead>
                                                         <tbody>
                                                             <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
