@@ -867,7 +867,6 @@
 
                                         .modal-contentScroll {
                                         max-height: 800; /* atur tinggi maksimum */
-                                        overflow-y: auto;
                                         padding: 20px;
                                         }
                                         
