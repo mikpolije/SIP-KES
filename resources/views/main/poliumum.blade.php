@@ -897,6 +897,7 @@
 
                                         .stok-kosong {
                                         color: red;
+                                        border: none;
                                         font-size: 12px;
                                         padding: 5px 10px;
                                         cursor: pointer;
