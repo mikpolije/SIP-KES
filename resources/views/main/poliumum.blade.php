@@ -2048,10 +2048,16 @@ $('#search-results').hide();
 
 <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const nextBtn = document.querySelector('a[href="#next"]');
-            if (nextBtn) {
-                nextBtn.textContent = "Simpan";
-            }
+        const nextBtn = document.querySelector('a[href="#next"]');
+        if (nextBtn) {
+            nextBtn.textContent = "Selanjutnya";
+        }
+
+        const prevBtn = document.querySelector('a[href="#previous"]');
+        if (prevBtn) {
+            prevBtn.textContent = "Sebelumnya";
+        }
+    });
         });
     </script>
 @endsection
