@@ -1609,6 +1609,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              id="closeModalBtn"
             ></button>
           </div>
           <div class="modal-body">
