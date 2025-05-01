@@ -604,37 +604,89 @@
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                             <div class="modal-header">
-                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <h2>Data ICD 10</h2>
                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <table id="icdTable" class="table table-striped" style="width:100%">
-                                                    <thead>
-                                                      <tr>
-                                                        <th>Nama</th>
-                                                        <th>Usia</th>
-                                                        <th>Kota</th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <td>John</td>
-                                                        <td>28</td>
-                                                        <td>New York</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Jane</td>
-                                                        <td>35</td>
-                                                        <td>London</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Mike</td>
-                                                        <td>50</td>
-                                                        <td>Paris</td>
-                                                      </tr>
-                                                      <!-- Tambahkan data lainnya di sini -->
-                                                    </tbody>
-                                                  </table>
+                                                <table
+                                                id="icdTable"
+                                                class="display"
+                                              >
+                                                <thead>
+                                                  <tr>
+                                                    <th></th>
+                                                    <th>Kode</th>
+                                                    <th>Subkode</th>
+                                                    <th>Nama</th>
+                                                    <th>Nama Inggris</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A00</td>
+                                                    <td>0</td>
+                                                    <td>Kolera</td>
+                                                    <td>Cholera</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A00</td>
+                                                    <td>1</td>
+                                                    <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
+                                                    <td>Cholera due to Vibrio cholerae 01</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A00</td>
+                                                    <td>9</td>
+                                                    <td>Kolera, tidak terspesifikasi</td>
+                                                    <td>Cholera, unspecified</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>0</td>
+                                                    <td>Demam tifoid dan paratifoid</td>
+                                                    <td>Typhoid and paratyphoid</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>1</td>
+                                                    <td>Demam tifoid</td>
+                                                    <td>Typhoid fever</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>2</td>
+                                                    <td>Demam paratifoid A</td>
+                                                    <td>Paratyphoid fever A</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>3</td>
+                                                    <td>Demam paratifoid B</td>
+                                                    <td>Paratyphoid fever B</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>4</td>
+                                                    <td>Demam paratifoid C</td>
+                                                    <td>Paratyphoid fever C</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>-</td>
+                                                    <td>Demam paratifoid, tidak terspesifikasi</td>
+                                                    <td>Paratyphoid fever, unspecified</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
                                                   
                                             </div>
                                             <div class="modal-footer">
