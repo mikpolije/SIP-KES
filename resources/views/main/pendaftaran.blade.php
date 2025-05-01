@@ -1884,6 +1884,22 @@
         });
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const previousBtn = document.querySelector('a[href="#previous"]');
+            if (previousBtn) {
+                previousBtn.textContent = "Sebelumnya";
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nextBtn = document.querySelector('a[href="#next"]');
+            if (nextBtn) {
+                nextBtn.textContent = "Simpan";
+            }
+        });
+    </script>
     {{-- <!-- ICD-10 Search Script -->
     <script>
         $(document).ready(function() {
