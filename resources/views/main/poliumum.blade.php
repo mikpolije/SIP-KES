@@ -1032,4 +1032,20 @@
             min-height: 80px;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const previousBtn = document.querySelector('a[href="#previous"]');
+            if (previousBtn) {
+                previousBtn.textContent = "Sebelumnya";
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nextBtn = document.querySelector('a[href="#next"]');
+            if (nextBtn) {
+                nextBtn.textContent = "Selanjutnya";
+            }
+        });
+    </script>
 @endsection
