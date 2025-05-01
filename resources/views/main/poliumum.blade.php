@@ -736,7 +736,8 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
+                                            data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -826,325 +827,385 @@
                         </div>
 
                         <!-- Layanan dan Rincian Obat -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Layanan</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
-                                    </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div class="col-md-6">
+                            <div class="card p-3 h-100">
+                                <label class="form-label fw-bold">Layanan</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#layananModal">
+                                        <i class="bi bi-search"></i> Cari
+                                    </button>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Jumlah</label>
+                                    <input type="number" class="form-control">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Nama Layanan</label>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Harga Layanan</label>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+
+                                <div class="alert alert-info py-2">
+                                    <i class="bi bi-info-circle"></i> Tidak Ada Data
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Rincian Obat</label>
-                                    <style>
-                                        /* Membuat backdrop modal transparan */
-                                        .modal-backdrop.show {
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card p-3 h-100">
+                                <label class="form-label fw-bold">Rincian Obat</label>
+                                <style>
+                                    /* Membuat backdrop modal transparan */
+                                    .modal-backdrop.show {
                                         background-color: rgba(128, 128, 128, 0.5) !important;
-                                        }
+                                    }
 
-                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
-                                        .modal-content {
+                                    /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                    .modal-content {
                                         box-shadow: none;
-                                        }
+                                    }
 
-                                        .bi bi-search {
+                                    .bi bi-search {
                                         background-color: transparent;
                                         border: none;
                                         color: #333;
-                                        }
+                                    }
 
-                                        table {
+                                    table {
                                         width: 100%;
                                         border-collapse: collapse;
                                         margin-top: 20px;
-                                        }
+                                    }
 
-                                        th, td {
+                                    th,
+                                    td {
                                         text-align: left;
                                         padding: 10px;
                                         border-bottom: 1px solid #ddd;
-                                        }
+                                    }
 
-                                        th {
+                                    th {
                                         background-color: #f4f4f4;
-                                        }
+                                    }
 
-                                        .btn-pilih {
+                                    .btn-pilih {
                                         background-color: #2196F3;
                                         color: white;
                                         border: none;
                                         padding: 5px 10px;
                                         cursor: pointer;
-                                        }
+                                    }
 
-                                        .stok-kosong {
+                                    .stok-kosong {
                                         color: red;
                                         font-size: 12px;
                                         padding: 5px 10px;
                                         cursor: pointer;
-                                        }
-                                    </style>
-                                    <div class="input-group mb-2">
-                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                    }
+                                </style>
+                                <div class="input-group mb-2">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#bs-example-modal-lg">
                                         <i class="bi bi-search"></i>
-                                    </div>
-                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header d-flex align-items-center">
-                                                    <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                 </div>
-                                                 <div class="modal-body">
-                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                    <div class="popup">
-                                                        <h2>Data Obat</h2>
-                                                        <label>Tampilkan
-                                                            <select>
-                                                                <option>10</option>
-                                                                <option>25</option>
-                                                                <option>50</option>
-                                                            </select> entri
-                                                        </label>
-                                                        <input type="text" placeholder="Cari..." style="float: right;">
-                                                        <table>
+                                </div>
+                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1"
+                                    aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-flex align-items-center">
+                                                <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
+                                                <div class="popup">
+                                                    <h2>Data Obat</h2>
+                                                    <label>Tampilkan
+                                                        <select>
+                                                            <option>10</option>
+                                                            <option>25</option>
+                                                            <option>50</option>
+                                                        </select> entri
+                                                    </label>
+                                                    <input type="text" placeholder="Cari..." style="float: right;">
+                                                    <table>
                                                         <thead>
                                                             <tr>
-                                                            <th>Nama Obat</th>
-                                                            <th>Harga Jual</th>
-                                                            <th>Stok Obat</th>
-                                                            <th></th>
+                                                                <th>Nama Obat</th>
+                                                                <th>Harga Jual</th>
+                                                                <th>Stok Obat</th>
+                                                                <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
-                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr>
+                                                                <td>Acyclovir</td>
+                                                                <td>Rp 1.000,-</td>
+                                                                <td>64</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Acyclovir salep</td>
+                                                                <td>Rp 9.000,-</td>
+                                                                <td>3</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>AKITA</td>
+                                                                <td>Rp 441,-</td>
+                                                                <td>2</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Alkohol SWAB</td>
+                                                                <td>Rp 1.000,-</td>
+                                                                <td>71</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ALLOPURINOL TAB 100 mg</td>
+                                                                <td>Rp 442,-</td>
+                                                                <td>197</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ALLOPURINOL TAB 300 mg <br><span
+                                                                        class="stok-kosong">Stok Kosong</span></td>
+                                                                <td>Rp 833,-</td>
+                                                                <td>0</td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ALPARA</td>
+                                                                <td>Rp 1.776,-</td>
+                                                                <td>6</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Ambroxol</td>
+                                                                <td>Rp 416,-</td>
+                                                                <td>170</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>AMLODIPINE BASILATE TAB 5 mg</td>
+                                                                <td>Rp 245,-</td>
+                                                                <td>105</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>AMLODIPINE TAB 10 mg</td>
+                                                                <td>Rp 791,-</td>
+                                                                <td>148</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                            </tr>
                                                         </tbody>
-                                                        </table>
-                                                     </div>
-                                                 </div>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
-                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                </div>
+                                <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
+                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Obat</th>
-                                                <th>Harga Obat</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <table class="table table-bordered text-center">
+                                    <thead style="background-color: #676981; color: white;">
+                                        <tr>
+                                            <th>Jumlah</th>
+                                            <th>Nama Obat</th>
+                                            <th>Harga Obat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="3">Tidak Ada Data</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                        <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="row g-2 mb-2">
-                                        <div class="col-md-4">
-                                            <input type="date" class="form-control">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
-                                        </div>
-                                    </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Tanggal Kontrol</th>
-                                                <th>Alasan Kontrol</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Catatan</label>
-                                    <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Step 4 -->
-                    <h6>Farmasi</h6>
-                    <section>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="behName2">Behaviour :</label>
-                                    <input type="text" class="form-control required" id="behName2" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="participants3">Confidance</label>
-                                    <input type="text" class="form-control required" id="participants3" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="participants4">Result</label>
-                                    <select class="form-select required" id="participants4" name="location">
-                                        <option value="">Select Result</option>
-                                        <option value="Selected">Selected</option>
-                                        <option value="Rejected">Rejected</option>
-                                        <option value="Call Second-time"> Call Second-time </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="decisions3">Comments</label>
-                                    <textarea name="decisions" id="decisions3" rows="4" class="form-control"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="customRadio11" class="form-label">Rate Interviwer :</label>
-                                    <div class="c-inputs-stacked">
-                                        <div class="form-check">
-                                            <input type="radio" id="customRadio11" name="customRadio"
-                                                class="form-check-input" />
-                                            <label class="form-check-label" for="customRadio11">1 star</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="customRadio12" name="customRadio"
-                                                class="form-check-input" />
-                                            <label class="form-check-label" for="customRadio12">2 star</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="customRadio13" name="customRadio"
-                                                class="form-check-input" />
-                                            <label class="form-check-label" for="customRadio13">3 star</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="customRadio14" name="customRadio"
-                                                class="form-check-input" />
-                                            <label class="form-check-label" for="customRadio14">4 star</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="customRadio15" name="customRadio"
-                                                class="form-check-input" />
-                                            <label class="form-check-label" for="customRadio15">5 star</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Step 5 -->
-                    <h6>Pembayaran</h6>
-                    <section>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="paymentMethod">Metode Pembayaran :</label>
-                                    <select class="form-select required" id="paymentMethod" name="paymentMethod">
-                                        <option value="">Pilih Metode</option>
-                                        <option value="Cash">Tunai</option>
-                                        <option value="Credit">Kartu Kredit</option>
-                                        <option value="Debit">Kartu Debit</option>
-                                        <option value="BPJS">BPJS</option>
-                                        <option value="Insurance">Asuransi</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="totalAmount">Total Biaya :</label>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text">Rp</span>
-                                        <input type="number" class="form-control required" id="totalAmount"
-                                            name="totalAmount" />
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="discountCode">Kode Diskon (Opsional) :</label>
-                                    <input type="text" class="form-control" id="discountCode" name="discountCode" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="paymentDate">Tanggal Pembayaran :</label>
-                                    <input type="date" class="form-control required" id="paymentDate"
-                                        name="paymentDate" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="paymentNotes">Catatan Pembayaran :</label>
-                                    <textarea name="paymentNotes" id="paymentNotes" rows="4" class="form-control"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Status Pembayaran :</label>
-                                    <div class="c-inputs-stacked">
-                                        <div class="form-check">
-                                            <input type="radio" id="paidFull" name="paymentStatus"
-                                                class="form-check-input" value="paidFull" />
-                                            <label class="form-check-label" for="paidFull">Lunas</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="paidPartial" name="paymentStatus"
-                                                class="form-check-input" value="paidPartial" />
-                                            <label class="form-check-label" for="paidPartial">Bayar Sebagian</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" id="pending" name="paymentStatus"
-                                                class="form-check-input" value="pending" />
-                                            <label class="form-check-label" for="pending">Tertunda</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </form>
             </div>
+
+            <!-- Rencana Kontrol dan Catatan -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card p-3 h-100">
+                        <label class="form-label fw-bold">Rencana Kontrol</label>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-4">
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                            </div>
+                        </div>
+                        <table class="table table-bordered text-center">
+                            <thead style="background-color: #676981; color: white;">
+                                <tr>
+                                    <th>Tanggal Kontrol</th>
+                                    <th>Alasan Kontrol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">Tidak Ada Data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card p-3 h-100">
+                        <label class="form-label fw-bold">Catatan</label>
+                        <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <!-- Step 4 -->
+            <h6>Farmasi</h6>
+            <section>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="behName2">Behaviour :</label>
+                            <input type="text" class="form-control required" id="behName2" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="participants3">Confidance</label>
+                            <input type="text" class="form-control required" id="participants3" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="participants4">Result</label>
+                            <select class="form-select required" id="participants4" name="location">
+                                <option value="">Select Result</option>
+                                <option value="Selected">Selected</option>
+                                <option value="Rejected">Rejected</option>
+                                <option value="Call Second-time"> Call Second-time </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="decisions3">Comments</label>
+                            <textarea name="decisions" id="decisions3" rows="4" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customRadio11" class="form-label">Rate Interviwer :</label>
+                            <div class="c-inputs-stacked">
+                                <div class="form-check">
+                                    <input type="radio" id="customRadio11" name="customRadio"
+                                        class="form-check-input" />
+                                    <label class="form-check-label" for="customRadio11">1 star</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="customRadio12" name="customRadio"
+                                        class="form-check-input" />
+                                    <label class="form-check-label" for="customRadio12">2 star</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="customRadio13" name="customRadio"
+                                        class="form-check-input" />
+                                    <label class="form-check-label" for="customRadio13">3 star</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="customRadio14" name="customRadio"
+                                        class="form-check-input" />
+                                    <label class="form-check-label" for="customRadio14">4 star</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="customRadio15" name="customRadio"
+                                        class="form-check-input" />
+                                    <label class="form-check-label" for="customRadio15">5 star</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 5 -->
+            <h6>Pembayaran</h6>
+            <section>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="paymentMethod">Metode Pembayaran :</label>
+                            <select class="form-select required" id="paymentMethod" name="paymentMethod">
+                                <option value="">Pilih Metode</option>
+                                <option value="Cash">Tunai</option>
+                                <option value="Credit">Kartu Kredit</option>
+                                <option value="Debit">Kartu Debit</option>
+                                <option value="BPJS">BPJS</option>
+                                <option value="Insurance">Asuransi</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="totalAmount">Total Biaya :</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Rp</span>
+                                <input type="number" class="form-control required" id="totalAmount"
+                                    name="totalAmount" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="discountCode">Kode Diskon (Opsional) :</label>
+                            <input type="text" class="form-control" id="discountCode" name="discountCode" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="paymentDate">Tanggal Pembayaran :</label>
+                            <input type="date" class="form-control required" id="paymentDate" name="paymentDate" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="paymentNotes">Catatan Pembayaran :</label>
+                            <textarea name="paymentNotes" id="paymentNotes" rows="4" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status Pembayaran :</label>
+                            <div class="c-inputs-stacked">
+                                <div class="form-check">
+                                    <input type="radio" id="paidFull" name="paymentStatus" class="form-check-input"
+                                        value="paidFull" />
+                                    <label class="form-check-label" for="paidFull">Lunas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="paidPartial" name="paymentStatus" class="form-check-input"
+                                        value="paidPartial" />
+                                    <label class="form-check-label" for="paidPartial">Bayar Sebagian</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="pending" name="paymentStatus" class="form-check-input"
+                                        value="pending" />
+                                    <label class="form-check-label" for="pending">Tertunda</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </form>
         </div>
     </div>
     </div>
+    </div>
 
-   <!-- Modal Status Lokalis -->
-   <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
+    <!-- Modal Status Lokalis -->
+    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header border-0">
@@ -1154,7 +1215,8 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 500px;">
+                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh"
+                            class="img-fluid" style="max-height: 500px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
@@ -1163,12 +1225,70 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-primary rounded-pill px-4" onclick="simpanStatusLokalis()">Simpan</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4"
+                        onclick="simpanStatusLokalis()">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal Popup for Layanan Search -->
+    <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="layananModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="layananModalLabel">Data Layanan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="search" class="form-control" placeholder="Tampikan">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead style="background-color: #676981; color: white;">
+                                <tr>
+                                    <th>Name Layanan</th>
+                                    <th>T₁₀</th>
+                                    <th>Tarif</th>
+                                    <th>T₁₂</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sample data rows (same as your image) -->
+                                <tr>
+                                    <td><strong>PIII</strong></td>
+                                    <td>Jasa Perawat</td>
+                                    <td>Rp 10.000, -</td>
+                                    <td></td>
+                                </tr>
+                                <!-- Add other rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="text-muted">
+                            Menampilkan 1 sampai 10 dari 155 entri
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-secondary me-1">Sebelumnya</button>
+                            <button class="btn btn-sm btn-outline-secondary">Selanjutnya</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Pilih</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Surat Keterangan Sehat-->
     <div class="modal fade" id="modalSehat" tabindex="-1" aria-labelledby="modalSehatLabel" aria-hidden="true">
@@ -1681,6 +1801,8 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
@@ -2171,14 +2293,14 @@ $('#search-results').hide();
 }
 </style> --}}
 
-<!-- JavaScript Tambahan -->
-<script>
-    function simpanStatusLokalis() {
-        const keterangan = document.getElementById("lokalisKeterangan").value.trim();
-        if (keterangan) {
-            const tableBody = document.getElementById("pemeriksaanFisikTable");
-            const newRow = document.createElement("tr");
-            newRow.innerHTML = `
+    <!-- JavaScript Tambahan -->
+    <script>
+        function simpanStatusLokalis() {
+            const keterangan = document.getElementById("lokalisKeterangan").value.trim();
+            if (keterangan) {
+                const tableBody = document.getElementById("pemeriksaanFisikTable");
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
                 <td>Status Lokalis</td>
                 <td>${keterangan}</td>
                 <td class="text-center">
@@ -2187,16 +2309,16 @@ $('#search-results').hide();
                     </button>
                 </td>
             `;
-            tableBody.appendChild(newRow);
-            bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
-            document.getElementById("lokalisKeterangan").value = '';
-        } else {
-            alert("Harap isi keterangan terlebih dahulu.");
+                tableBody.appendChild(newRow);
+                bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
+                document.getElementById("lokalisKeterangan").value = '';
+            } else {
+                alert("Harap isi keterangan terlebih dahulu.");
+            }
         }
-    }
-</script>
+    </script>
 
-<script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             const previousBtn = document.querySelector('a[href="#previous"]');
             if (previousBtn) {
@@ -2211,6 +2333,6 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-</script>
+    </script>
 
 @endsection
