@@ -581,71 +581,53 @@
 
                         <!-- Diagnosis dan ICD 10 -->
                         <div class="row mb-3">
-                        <div class="col-md-6">
-                            <div class="card p-3 shadow-sm h-100">
-                            <h5 class="fw-bold">Diagnosis</h5>
-                            <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm h-100">
+                                    <h5 class="fw-bold">Diagnosis</h5>
+                                    <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="card p-3 shadow-sm h-100">
-                            <h5 class="fw-bold">ICD 10</h5>
-                            <div class="input-group mb-2">
-                                <input type="text" class="form-control" id="icd10Search" placeholder="Ketik Kode atau Diagnosa">
-                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                <i class="bi bi-search"></i>
-                                </button>
-                            </div>
-
-                            <div>
-                                <!-- Modal ICD -->
-                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header d-flex align-items-center">
-                                        <h4 class="modal-title" id="myLargeModalLabel">Pilih ICD 10</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm h-100">
+                                    <h5 class="fw-bold">ICD 10</h5>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" id="icd10Search"
+                                            placeholder="Ketik Kode atau Diagnosa">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <!-- Tabel ICD 10 -->
-                                        <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                            <th>Kode</th>
-                                            <th>Nama ICD</th>
-                                            <th>Subkode</th>
-                                            <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                            <td>A00</td>
-                                            <td>Kolera</td>
-                                            <td>0</td>
-                                            <td><button class="btn btn-sm btn-primary">Pilih</button></td>
-                                            </tr>
-                                            <tr>
-                                            <td>A01</td>
-                                            <td>Demam tifoid</td>
-                                            <td>1</td>
-                                            <td><button class="btn btn-sm btn-primary">Pilih</button></td>
-                                            </tr>
-                                            <tr>
-                                            <td>R51</td>
-                                            <td>Sakit Kepala</td>
-                                            <td>-</td>
-                                            <td><button class="btn btn-sm btn-primary">Pilih</button></td>
-                                            </tr>
-                                        </tbody>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #f8f9fa;">
+                                                <tr>
+                                                    <th class="text-center">Nama ICD 10</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected-icds-icd10">
+                                                <tr class="icd-item">
+                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="icd-item">
+                                                    <td>R51. Headache</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
-                            </div>
-                        </div>
                         </div>
 
                         <!-- Subjective dan Objective -->
@@ -850,9 +832,8 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button id="searchButton" class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
@@ -962,6 +943,9 @@
                                                             <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
                                                             <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
                                                      </div>
@@ -1688,49 +1672,6 @@
         }
     </style>
 
-<!-- Modal Pop-up -->
-<div id="popupModal" class="modal" style="display: none;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Data Layanan</h5>
-                <button type="button" class="btn-close" id="closeModal"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-hover table-bordered text-center">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>Aksi</th>
-                            <th>Nama Layanan</th>
-                            <th>Tarif</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><button class="btn btn-sm btn-primary" onclick="pilihLayanan('Jasa Perawat')">Pilih</button></td>
-                            <td>Jasa Perawat</td>
-                            <td>Rp 10.000</td>
-                        </tr>
-                        <!-- Tambah baris sesuai kebutuhan -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<style>
-    .modal {
-        position: fixed;
-        z-index: 1050;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-    </style>
-
 @endsection
 
 @section('scripts')
@@ -1740,24 +1681,6 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        document.getElementById("searchButton").addEventListener("click", function () {
-            document.getElementById("popupModal").style.display = "block";
-        });
-
-        document.getElementById("closeModal").addEventListener("click", function () {
-            document.getElementById("popupModal").style.display = "none";
-        });
-
-        function pilihLayanan(namaLayanan) {
-            const input = document.querySelector('input[placeholder="Ketik Layanan"]');
-            input.value = namaLayanan;
-            document.getElementById("popupModal").style.display = "none";
-        }
-    </script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
