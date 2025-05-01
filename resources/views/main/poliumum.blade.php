@@ -736,7 +736,7 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -793,71 +793,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Tombol untuk membuka modal 9-->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#icd9Modal">
-  Pilih ICD 9
-</button>
-
-<!-- Modal icd9-->
-<div class="modal fade" id="icd9Modal" tabindex="-1" aria-labelledby="icd9ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header">
-        <h5 class="modal-title text-primary fw-bold" id="icd9ModalLabel">Data ICD 9</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-      </div>
-
-      <div class="modal-body">
-        <!-- Controls icd9-->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <div class="d-flex align-items-center">
-            <label class="me-2 mb-0">Tampilkan</label>
-            <select class="form-select form-select-sm w-auto me-2">
-              <option>10</option>
-              <option>25</option>
-              <option>50</option>
-            </select>
-            <label class="mb-0">entri</label>
-          </div>
-          <div class="d-flex align-items-center">
-            <label class="me-2 mb-0">Cari :</label>
-            <input type="text" id="icdSearch" class="form-control form-control-sm" placeholder="Cari ICD...">
-          </div>
-        </div>
-
-        <!-- Table icd9-->
-        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
-          <table class="table table-bordered table-hover" id="icdTable">
-            <thead class="table-light text-center">
-              <tr>
-                <th></th>
-                <th class="text-nowrap">Kode</th>
-                <th>Nama</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($icdList as $icd)
-              <tr>
-                <td class="text-center">
-                  <button class="btn btn-sm btn-info text-white" onclick="selectIcd('{{ $icd->code }}', '{{ $icd->name }}')">Pilih</button>
-                </td>
-                <td>{{ $icd->code }}</td>
-                <td>{{ $icd->name }}</td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -919,42 +854,12 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <style>
-                                        /* Membuat backdrop modal transparan */
-                                        .modal-backdrop.show {
-                                        background-color: rgba(128, 128, 128, 0.5) !important;
-                                        }
-
-                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
-                                        .modal-content {
-                                        box-shadow: none;
-                                        }
-                                    </style>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Cari Obat">
-                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                        <i class="bi bi-search"></i>
+                                    <div class="input-group">
+                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        Search
+                                        </button>
                                     </div>
-                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header d-flex align-items-center">
-                                                    <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                 </div>
-                                                 <div class="modal-body">
-                                                    <p>Ini adalah contoh tampilan hasil pencarian.</p>
-                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                 </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
-                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
@@ -2210,28 +2115,6 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-</script>
-
-<!-- Script Pencarian 9-->
-<script>
-  document.getElementById('icdSearch').addEventListener('keyup', function () {
-    const input = this.value.toLowerCase();
-    const rows = document.querySelectorAll('#icdTable tbody tr');
-
-    rows.forEach(row => {
-      const kode = row.cells[1].textContent.toLowerCase();
-      const nama = row.cells[2].textContent.toLowerCase();
-      row.style.display = kode.includes(input) || nama.includes(input) ? '' : 'none';
-    });
-  });
-
-  function selectIcd(code, name) {
-    alert("ICD dipilih: " + code + " - " + name);
-    const modal = bootstrap.Modal.getInstance(document.getElementById('icd9Modal'));
-    modal.hide();
-    // Anda bisa ganti alert dengan isi form:
-    // document.getElementById('icd_code').value = code;
-  }
-</script>
+    </script>
 
 @endsection
