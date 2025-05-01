@@ -1075,7 +1075,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
+                        <img src="{{ asset('images/image.png') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
