@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Pendaftaran')
+@section('title', 'SIP-Kes | Poli Umum')
 <style>
     body {
         background-color: #B4AEAE;
@@ -736,7 +736,7 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button class="btn btn-sm btn-secondary">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -854,10 +854,10 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <div class="input-group">
+                                    <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Obat">
-                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                            <i class="bi bi-search"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button"><i
+                                                class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
@@ -1045,34 +1045,6 @@
         </div>
     </div>
     </div>
-
-   <!-- Modal Status Lokalis -->
-   <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content rounded-4 shadow">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title text-primary fw-semibold">Status Lokalis</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Gambar Anatomi -->
-                    <div class="text-center mb-4">
-                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
-                    </div>
-                    <!-- Textarea Keterangan -->
-                    <div class="mb-3">
-                        <label for="lokalisKeterangan" class="form-label fw-medium">Keterangan</label>
-                        <textarea id="lokalisKeterangan" class="form-control rounded-3" rows="5" placeholder="Ketik di sini"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-primary rounded-pill px-4" onclick="simpanStatusLokalis()">Simpan</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!-- Modal Surat Keterangan Sehat-->
     <div class="modal fade" id="modalSehat" tabindex="-1" aria-labelledby="modalSehatLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -2073,47 +2045,4 @@ $('#search-results').hide();
     min-height: 80px;
 }
 </style> --}}
-
-<!-- JavaScript Tambahan -->
-<script>
-    function simpanStatusLokalis() {
-        const keterangan = document.getElementById("lokalisKeterangan").value.trim();
-        if (keterangan) {
-            const tableBody = document.getElementById("pemeriksaanFisikTable");
-            const newRow = document.createElement("tr");
-            newRow.innerHTML = `
-                <td>Status Lokalis</td>
-                <td>${keterangan}</td>
-                <td class="text-center">
-                    <button class="btn btn-sm btn-info view-details" title="Lihat Rincian">
-                        <i class="bi bi-eye"></i>
-                    </button>
-                </td>
-            `;
-            tableBody.appendChild(newRow);
-            bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
-            document.getElementById("lokalisKeterangan").value = '';
-        } else {
-            alert("Harap isi keterangan terlebih dahulu.");
-        }
-    }
-</script>
-
-<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const previousBtn = document.querySelector('a[href="#previous"]');
-            if (previousBtn) {
-                previousBtn.textContent = "Sebelumnya";
-            }
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const nextBtn = document.querySelector('a[href="#next"]');
-            if (nextBtn) {
-                nextBtn.textContent = "Simpan";
-            }
-        });
-    </script>
-
 @endsection
