@@ -866,8 +866,8 @@
                                         }
                                     </style>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Cari Obat">
-                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                         <i class="bi bi-search"></i>
                                     </div>
                                     <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
