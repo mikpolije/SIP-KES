@@ -876,6 +876,11 @@
                                                             auctor.
                                                         </p>
                                                     </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn bg-danger-subtle text-danger  waves-effect text-start" data-bs-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                         </div>
