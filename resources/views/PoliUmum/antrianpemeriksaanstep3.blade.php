@@ -94,9 +94,9 @@
                     <td>{{ $i % 3 == 0 ? 'BPJS' : 'Umum' }}</td>
                     <td>
                         @if($i <= 5)
-                            <span style="color: #007bff;">Diperiksa</span>
+                            <span style="color: #007bff;">Sudah Diperiksa</span>
                         @else
-                            <span style="color: #F5A623;">Antri</span>
+                            <span style="color: #F5A623;">Belum Diperiksa</span>
                         @endif
                     </td>
                     <td>
