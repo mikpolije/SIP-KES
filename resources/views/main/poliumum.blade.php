@@ -1576,69 +1576,6 @@
         }
     </style>
 
-    <!-- Input pencarian ICD dan tombol untuk membuka popup -->
-<div class="mb-3">
-  <label for="cari_icd9" class="form-label">ICD 9 - CM</label>
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Ketik Kode Tindakan" readonly>
-    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#modalICD9">
-      🔍
-    </button>
-  </div>
-</div>
-
-<!-- Tabel Daftar ICD 9 yang sudah dipilih -->
-<table class="table table-bordered">
-  <thead class="table-primary">
-    <tr>
-      <th>Nama ICD 9 - CM</th>
-      <th>Aksi</th>
-    </tr>
-  </thead>
-  <tbody id="daftar_icd_terpilih">
-    <!-- Diisi melalui JavaScript -->
-  </tbody>
-</table>
-
-<!-- Modal ICD-9 -->
-<div class="modal fade" id="modalICD9" tabindex="-1" aria-labelledby="modalICD9Label" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalICD9Label">Data ICD 9</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-      </div>
-      <div class="modal-body">
-        <table id="tabelICD9" class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Kode</th>
-              <th>Nama</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($icd9 as $item)
-              <tr>
-                <td>{{ $item->kode }}</td>
-                <td>{{ $item->nama }}</td>
-                <td>
-                  <button type="button" class="btn btn-sm btn-success pilih-icd9"
-                          data-kode="{{ $item->kode }}"
-                          data-nama="{{ $item->nama }}">
-                    Pilih
-                  </button>
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 @endsection
 
 @section('scripts')
@@ -2179,39 +2116,5 @@ $('#search-results').hide();
             }
         });
     </script>
-
-@push('scripts')
-<!-- DataTables CDN -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
-<script>
-  $(document).ready(function () {
-    $('#tabelICD9').DataTable();
-
-    // Saat user klik tombol "Pilih"
-    $('.pilih-icd9').on('click', function () {
-      let nama = $(this).data('nama');
-
-      // Tambahkan ke daftar
-      $('#daftar_icd_terpilih').append(`
-        <tr>
-          <td>${nama}</td>
-          <td>
-            <button type="button" class="btn btn-sm btn-danger hapus-icd">🗑️</button>
-          </td>
-        </tr>
-      `);
-
-      $('#modalICD9').modal('hide');
-    });
-
-    // Hapus dari daftar
-    $(document).on('click', '.hapus-icd', function () {
-      $(this).closest('tr').remove();
-    });
-  });
-</script>
 
 @endsection
