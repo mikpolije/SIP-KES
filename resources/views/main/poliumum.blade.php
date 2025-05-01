@@ -865,15 +865,12 @@
                                         box-shadow: none;
                                         }
 
-<<<<<<< HEAD
                                         .modal-contentScroll {
                                         max-height: 800; /* atur tinggi maksimum */
                                         overflow-y: auto;
                                         padding: 20px;
                                         }
                                         
-=======
->>>>>>> bffd9f896edda9e8f5d612f476c385a7de0a112c
                                         .bi bi-search {
                                         background-color: transparent;
                                         border: none;
@@ -906,10 +903,10 @@
 
                                         .stok-kosong {
                                         color: red;
+                                        border: none;
                                         font-size: 12px;
                                         padding: 5px 10px;
                                         cursor: pointer;
-                                        }
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
@@ -926,6 +923,7 @@
                                                  <div class="modal-body">
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
+                                                    <div class="modal-contentScroll">
                                                         <h2>Data Obat</h2>
                                                         <label>Tampilkan
                                                             <select>
@@ -950,13 +948,20 @@
                                                             <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg</td><td>Rp 833,-</td><td>0</td><td><span class="stok-kosong">Stok Kosong</span></td></tr>
                                                             <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
+                                                     </div>
                                                      </div>
                                                  </div>
                                             </div>
