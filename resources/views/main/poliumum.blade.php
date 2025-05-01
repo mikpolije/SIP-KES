@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Pendaftaran')
+@section('title', 'SIP-Kes | Poli Umum')
 <style>
     body {
         background-color: #B4AEAE;
@@ -897,7 +897,6 @@
 
                                         .stok-kosong {
                                         color: red;
-                                        border: none;
                                         font-size: 12px;
                                         padding: 5px 10px;
                                         cursor: pointer;
