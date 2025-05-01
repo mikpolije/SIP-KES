@@ -887,9 +887,6 @@
                                                     <p>Ini adalah contoh tampilan hasil pencarian.</p>
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                  </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
