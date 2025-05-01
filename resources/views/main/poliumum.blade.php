@@ -1103,6 +1103,48 @@
         </div>
     </div>
 
+<!-- Modal ICD 10 -->
+<div class="modal fade" id="icdModal" tabindex="-1" aria-labelledby="icdModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex align-items-center">
+        <h4 class="modal-title" id="icdModalLabel">Data ICD 10</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Konten modal -->
+        <table class="table table-bordered text-center">
+          <thead style="background-color: #676981; color: white;">
+            <tr>
+              <th></th>
+              <th>Kode</th>
+              <th>Subkode</th>
+              <th>Nama</th>
+              <th>Nama Inggris</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A00</td><td>0</td><td>Kolera</td><td>Cholera</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A00</td><td>1</td><td>Kolera disebabkan oleh Vibrio cholerae 01</td><td>Cholera due to Vibrio cholerae 01</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A00</td><td>9</td><td>Kolera, tidak terspesifikasi</td><td>Cholera, unspecified</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A01</td><td>0</td><td>Demam tifoid dan paratifoid</td><td>Typhoid and paratyphoid</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A01</td><td>1</td><td>Demam tifoid</td><td>Typhoid fever</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A01</td><td>2</td><td>Demam paratifoid A</td><td>Paratyphoid fever A</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A01</td><td>3</td><td>Demam paratifoid B</td><td>Paratyphoid fever B</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A01</td><td>4</td><td>Demam paratifoid C</td><td>Paratyphoid fever C</td></tr>
+            <tr><td><button class="btn btn-sm btn-success">Pilih</button></td><td>A01</td><td>-</td><td>Demam paratifoid, tidak terspesifikasi</td><td>Paratyphoid fever, unspecified</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS Bundle (agar modal bisa berjalan) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Modal Surat Keterangan Sehat-->
     <div class="modal fade" id="modalSehat" tabindex="-1" aria-labelledby="modalSehatLabel" aria-hidden="true">
