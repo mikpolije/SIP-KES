@@ -583,48 +583,20 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm h-100">
-                                <h5 class="fw-bold">ICD 10</h5>
+                                    <h5 class="fw-bold">Diagnosis</h5>
+                                    <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm h-100">
+                                    <h5 class="fw-bold">ICD 10</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd10Search" placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                        <i class="bi bi-search"></i>
+                                        <input type="text" class="form-control" id="icd10Search"
+                                            placeholder="Ketik Kode atau Diagnosa">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
                                         </button>
                                     </div>
-                                <div>
-                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="myLargeModalLabel">Pilih ICD 10</h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                        <div class="modal-body">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                    <th>Kode</th>
-                                                    <th>Nama ICD</th>
-                                                    <th>Subkode</th>
-                                                    <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                    <td>A00</td>
-                                                    <td>Kolera</td>
-                                                    <td>0</td>
-                                                    <td><button class="btn btn-sm btn-primary">Pilih</button></td>
-                                                    </tr>
-                                                </tbody>
-                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Bootstrap JS and Popper.js -->
-                                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
@@ -860,8 +832,9 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
+                                        <button id="searchButton" class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
@@ -1700,6 +1673,49 @@
         }
     </style>
 
+<!-- Modal Pop-up -->
+<div id="popupModal" class="modal" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Data Layanan</h5>
+                <button type="button" class="btn-close" id="closeModal"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-bordered text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Aksi</th>
+                            <th>Nama Layanan</th>
+                            <th>Tarif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><button class="btn btn-sm btn-primary" onclick="pilihLayanan('Jasa Perawat')">Pilih</button></td>
+                            <td>Jasa Perawat</td>
+                            <td>Rp 10.000</td>
+                        </tr>
+                        <!-- Tambah baris sesuai kebutuhan -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal {
+        position: fixed;
+        z-index: 1050;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    </style>
+
 @endsection
 
 @section('scripts')
@@ -1709,6 +1725,22 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script>
+        document.getElementById("searchButton").addEventListener("click", function () {
+            document.getElementById("popupModal").style.display = "block";
+        });
+
+        document.getElementById("closeModal").addEventListener("click", function () {
+            document.getElementById("popupModal").style.display = "none";
+        });
+
+        function pilihLayanan(namaLayanan) {
+            const input = document.querySelector('input[placeholder="Ketik Layanan"]');
+            input.value = namaLayanan;
+            document.getElementById("popupModal").style.display = "none";
+        }
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
