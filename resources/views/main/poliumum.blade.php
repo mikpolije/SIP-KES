@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Poli Umum')
+@section('title', 'SIP-Kes | Pendaftaran')
 <style>
     body {
         background-color: #B4AEAE;
@@ -589,14 +589,48 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm h-100">
-                                    <h5 class="fw-bold">ICD 10</h5>
+                                <h5 class="fw-bold">ICD 10</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd10Search"
-                                            placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
+                                        <input type="text" class="form-control" id="icd10Search" placeholder="Ketik Kode atau Diagnosa">
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <i class="bi bi-search"></i>
                                         </button>
                                     </div>
+                                <div>
+                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-flex align-items-center">
+                                                <h4 class="modal-title" id="myLargeModalLabel">Pilih ICD 10</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        <div class="modal-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                    <th>Kode</th>
+                                                    <th>Nama ICD</th>
+                                                    <th>Subkode</th>
+                                                    <th>Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <td>A00</td>
+                                                    <td>Kolera</td>
+                                                    <td>0</td>
+                                                    <td><button class="btn btn-sm btn-primary">Pilih</button></td>
+                                                    </tr>
+                                                </tbody>
+                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bootstrap JS and Popper.js -->
+                                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
@@ -898,7 +932,7 @@
                                         .stok-kosong {
                                         color: red;
                                         font-size: 12px;
-                                        padding: 5px 8px;
+                                        padding: 5px 10px;
                                         cursor: pointer;
                                         }
                                     </style>
@@ -941,7 +975,7 @@
                                                             <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg</td><td>Rp 833,-</td><td>0</td><td><span class="stok-kosong">Stok Kosong</span></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
                                                             <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
