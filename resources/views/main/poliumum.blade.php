@@ -2325,7 +2325,7 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-    const modal = document.getElementById("icdModal");
+        const modal = document.getElementById("icdModal");
       const openBtn = document.getElementById("openModalBtn");
       const closeBtn = document.getElementById("closeModalBtn");
 
@@ -2333,6 +2333,7 @@ $('#search-results').hide();
         modal.style.display = "block";
         if (!$.fn.dataTable.isDataTable("#icdTable")) {
           $("#icdTable").DataTable();
+          console.log("ppp")
         }
       };
 
