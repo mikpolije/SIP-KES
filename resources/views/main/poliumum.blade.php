@@ -1694,21 +1694,18 @@
 
 @endsection
 
-@push('style')
-    <link rel="stylesheet"  href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-@endpush
 
 
 @section('scripts')
   
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
