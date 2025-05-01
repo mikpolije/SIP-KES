@@ -593,7 +593,8 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary" type="button">
+                                        <button class="btn btn-outline-secondary open-modal-btn" type="button"
+                                        id="openModalBtn">
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </div>
@@ -1588,6 +1589,101 @@
             </div>
         </div>
     </div>
+    <div
+      id="icdModal"
+      class="modal"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Data ICD 10</h2>
+          <span
+            class="close"
+            id="closeModalBtn"
+            >&times;</span
+          >
+        </div>
+
+        <table
+          id="icdTable"
+          class="display"
+        >
+          <thead>
+            <tr>
+              <th></th>
+              <th>Kode</th>
+              <th>Subkode</th>
+              <th>Nama</th>
+              <th>Nama Inggris</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A00</td>
+              <td>0</td>
+              <td>Kolera</td>
+              <td>Cholera</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A00</td>
+              <td>1</td>
+              <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
+              <td>Cholera due to Vibrio cholerae 01</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A00</td>
+              <td>9</td>
+              <td>Kolera, tidak terspesifikasi</td>
+              <td>Cholera, unspecified</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>0</td>
+              <td>Demam tifoid dan paratifoid</td>
+              <td>Typhoid and paratyphoid</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>1</td>
+              <td>Demam tifoid</td>
+              <td>Typhoid fever</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>2</td>
+              <td>Demam paratifoid A</td>
+              <td>Paratyphoid fever A</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>3</td>
+              <td>Demam paratifoid B</td>
+              <td>Paratyphoid fever B</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>4</td>
+              <td>Demam paratifoid C</td>
+              <td>Paratyphoid fever C</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>A01</td>
+              <td>-</td>
+              <td>Demam paratifoid, tidak terspesifikasi</td>
+              <td>Paratyphoid fever, unspecified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sakit */
         #modalSakit .modal-content {
@@ -2211,6 +2307,26 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
+        const modal = document.getElementById("icdModal");
+      const openBtn = document.getElementById("openModalBtn");
+      const closeBtn = document.getElementById("closeModalBtn");
+
+      openBtn.onclick = () => {
+        modal.style.display = "block";
+        if (!$.fn.dataTable.isDataTable("#icdTable")) {
+          $("#icdTable").DataTable();
+        }
+      };
+
+      closeBtn.onclick = () => {
+        modal.style.display = "none";
+      };
+
+      window.onclick = (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      };
 </script>
 
 @endsection
