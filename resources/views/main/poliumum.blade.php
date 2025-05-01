@@ -863,7 +863,10 @@
                                         /* Opsional: ubah modal agar tidak punya bayangan hitam */
                                         .modal-content {
                                         box-shadow: none;
-                                        max-height: 400px; /* atur tinggi maksimum */
+                                        }
+
+                                        .modal-contentScroll {
+                                        max-height: 800; /* atur tinggi maksimum */
                                         overflow-y: auto;
                                         padding: 20px;
                                         }
@@ -920,7 +923,7 @@
                                                  <div class="modal-body">
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
-                                                    <div class="modal-content">
+                                                    <div class="modal-contentScroll">
                                                         <h2>Data Obat</h2>
                                                         <label>Tampilkan
                                                             <select>
