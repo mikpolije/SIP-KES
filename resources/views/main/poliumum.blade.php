@@ -600,7 +600,50 @@
 
                                         <button data-bs-toggle="modal" data-bs-target="#icdModal" type="button" id="openModalBtn">Test</button>
                                     </div>
-
+                                    <div class="modal fade" id="icdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table id="icdTable" class="table table-striped" style="width:100%">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>Nama</th>
+                                                        <th>Usia</th>
+                                                        <th>Kota</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>John</td>
+                                                        <td>28</td>
+                                                        <td>New York</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Jane</td>
+                                                        <td>35</td>
+                                                        <td>London</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Mike</td>
+                                                        <td>50</td>
+                                                        <td>Paris</td>
+                                                      </tr>
+                                                      <!-- Tambahkan data lainnya di sini -->
+                                                    </tbody>
+                                                  </table>
+                                                  
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
@@ -1591,50 +1634,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="icdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table id="icdTable" class="table table-striped" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>Nama</th>
-                        <th>Usia</th>
-                        <th>Kota</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>John</td>
-                        <td>28</td>
-                        <td>New York</td>
-                      </tr>
-                      <tr>
-                        <td>Jane</td>
-                        <td>35</td>
-                        <td>London</td>
-                      </tr>
-                      <tr>
-                        <td>Mike</td>
-                        <td>50</td>
-                        <td>Paris</td>
-                      </tr>
-                      <!-- Tambahkan data lainnya di sini -->
-                    </tbody>
-                  </table>
-                  
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
+
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sakit */
         #modalSakit .modal-content {
