@@ -933,6 +933,7 @@
                                                             <th>Nama Obat</th>
                                                             <th>Harga Jual</th>
                                                             <th>Stok Obat</th>
+                                                            <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -941,7 +942,7 @@
                                                             <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg</td><td>Rp 833,-</td><td>0</td><td><span class="stok-kosong">Stok Kosong</span></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
                                                             <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
@@ -1721,6 +1722,8 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         document.getElementById("searchButton").addEventListener("click", function () {
             document.getElementById("popupModal").style.display = "block";
