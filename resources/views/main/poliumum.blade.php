@@ -898,10 +898,10 @@
 
                                         .stok-kosong {
                                         color: red;
+                                        border: none;
                                         font-size: 12px;
                                         padding: 5px 10px;
                                         cursor: pointer;
-                                        }
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
