@@ -854,10 +854,11 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <div class="input-group">
+                                    <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Obat">
                                         <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                             <i class="bi bi-search"></i></button>
+                                            <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
