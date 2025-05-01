@@ -581,53 +581,71 @@
 
                         <!-- Diagnosis dan ICD 10 -->
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="card p-3 shadow-sm h-100">
-                                    <h5 class="fw-bold">Diagnosis</h5>
-                                    <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="card p-3 shadow-sm h-100">
+                            <h5 class="fw-bold">Diagnosis</h5>
+                            <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card p-3 shadow-sm h-100">
-                                    <h5 class="fw-bold">ICD 10</h5>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd10Search"
-                                            placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-                                    </div>
+                        </div>
 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #f8f9fa;">
-                                                <tr>
-                                                    <th class="text-center">Nama ICD 10</th>
-                                                    <th class="text-center">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="selected-icds-icd10">
-                                                <tr class="icd-item">
-                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="icd-item">
-                                                    <td>R51. Headache</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
+                        <div class="col-md-6">
+                            <div class="card p-3 shadow-sm h-100">
+                            <h5 class="fw-bold">ICD 10</h5>
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="icd10Search" placeholder="Ketik Kode atau Diagnosa">
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+
+                            <div>
+                                <!-- Modal ICD -->
+                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                    <div class="modal-header d-flex align-items-center">
+                                        <h4 class="modal-title" id="myLargeModalLabel">Pilih ICD 10</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Tabel ICD 10 -->
+                                        <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                            <th>Kode</th>
+                                            <th>Nama ICD</th>
+                                            <th>Subkode</th>
+                                            <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td>A00</td>
+                                            <td>Kolera</td>
+                                            <td>0</td>
+                                            <td><button class="btn btn-sm btn-primary">Pilih</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td>A01</td>
+                                            <td>Demam tifoid</td>
+                                            <td>1</td>
+                                            <td><button class="btn btn-sm btn-primary">Pilih</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td>R51</td>
+                                            <td>Sakit Kepala</td>
+                                            <td>-</td>
+                                            <td><button class="btn btn-sm btn-primary">Pilih</button></td>
+                                            </tr>
+                                        </tbody>
                                         </table>
                                     </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
+                            </div>
+                        </div>
                         </div>
 
                         <!-- Subjective dan Objective -->
