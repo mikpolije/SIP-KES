@@ -736,8 +736,7 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -859,69 +858,64 @@
                                     <style>
                                         /* Membuat backdrop modal transparan */
                                         .modal-backdrop.show {
-                                            background-color: rgba(128, 128, 128, 0.5) !important;
+                                        background-color: rgba(128, 128, 128, 0.5) !important;
                                         }
 
                                         /* Opsional: ubah modal agar tidak punya bayangan hitam */
                                         .modal-content {
-                                            box-shadow: none;
+                                        box-shadow: none;
                                         }
 
                                         .bi bi-search {
-                                            background-color: transparent;
-                                            border: none;
-                                            color: #333;
+                                        background-color: transparent;
+                                        border: none;
+                                        color: #333;
                                         }
 
                                         table {
-                                            width: 100%;
-                                            border-collapse: collapse;
-                                            margin-top: 20px;
+                                        width: 100%;
+                                        border-collapse: collapse;
+                                        margin-top: 20px;
                                         }
 
-                                        th,
-                                        td {
-                                            text-align: left;
-                                            padding: 10px;
-                                            border-bottom: 1px solid #ddd;
+                                        th, td {
+                                        text-align: left;
+                                        padding: 10px;
+                                        border-bottom: 1px solid #ddd;
                                         }
 
                                         th {
-                                            background-color: #f4f4f4;
+                                        background-color: #f4f4f4;
                                         }
 
                                         .btn-pilih {
-                                            background-color: #2196F3;
-                                            color: white;
-                                            border: none;
-                                            padding: 5px 10px;
-                                            cursor: pointer;
+                                        background-color: #2196F3;
+                                        color: white;
+                                        border: none;
+                                        padding: 5px 10px;
+                                        cursor: pointer;
                                         }
 
                                         .stok-kosong {
-                                            color: red;
-                                            font-size: 12px;
-                                            padding: 5px 10px;
-                                            cursor: pointer;
+                                        color: red;
+                                        font-size: 12px;
+                                        padding: 5px 10px;
+                                        cursor: pointer;
                                         }
                                     </style>
                                     <div class="input-group mb-2">
-                                        <input type="text" id="searchInput" class="form-control"
-                                            placeholder="Cari Obat">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#bs-example-modal-lg">
-                                            <i class="bi bi-search"></i>
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <i class="bi bi-search"></i>
                                     </div>
-                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1"
-                                        aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header d-flex align-items-center">
                                                     <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
                                                         <h2>Data Obat</h2>
@@ -932,87 +926,14 @@
                                                                 <option>50</option>
                                                             </select> entri
                                                         </label>
-                                                        <input type="text" placeholder="Cari..."
-                                                            style="float: right;">
+                                                        <input type="text" placeholder="Cari..." style="float: right;">
                                                         <table>
-<<<<<<< HEAD
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Nama Obat</th>
-                                                                    <th>Harga Jual</th>
-                                                                    <th>Stok Obat</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Acyclovir</td>
-                                                                    <td>Rp 1.000,-</td>
-                                                                    <td>64</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Acyclovir salep</td>
-                                                                    <td>Rp 9.000,-</td>
-                                                                    <td>3</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>AKITA</td>
-                                                                    <td>Rp 441,-</td>
-                                                                    <td>2</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Alkohol SWAB</td>
-                                                                    <td>Rp 1.000,-</td>
-                                                                    <td>71</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>ALLOPURINOL TAB 100 mg</td>
-                                                                    <td>Rp 442,-</td>
-                                                                    <td>197</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>ALLOPURINOL TAB 300 mg <br><span
-                                                                            class="stok-kosong">Stok Kosong</span></td>
-                                                                    <td>Rp 833,-</td>
-                                                                    <td>0</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>ALPARA</td>
-                                                                    <td>Rp 1.776,-</td>
-                                                                    <td>6</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Ambroxol</td>
-                                                                    <td>Rp 416,-</td>
-                                                                    <td>170</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>AMLODIPINE BASILATE TAB 5 mg</td>
-                                                                    <td>Rp 245,-</td>
-                                                                    <td>105</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>AMLODIPINE TAB 10 mg</td>
-                                                                    <td>Rp 791,-</td>
-                                                                    <td>148</td>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                </tr>
-                                                            </tbody>
-=======
                                                         <thead>
                                                             <tr>
                                                             <th>Nama Obat</th>
                                                             <th>Harga Jual</th>
                                                             <th>Stok Obat</th>
+                                                            <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -1021,16 +942,15 @@
                                                             <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg</td><td>Rp 833,-</td><td>0</td><td><span class="stok-kosong">Stok Kosong</span></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
                                                             <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
->>>>>>> 01ac8d0f3bf51fc224fa74d20be716fdef67a5e3
                                                         </table>
-                                                    </div>
-                                                </div>
+                                                     </div>
+                                                 </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1224,8 +1144,8 @@
     </div>
     </div>
 
-    <!-- Modal Status Lokalis -->
-    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
+   <!-- Modal Status Lokalis -->
+   <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header border-0">
@@ -1235,8 +1155,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh"
-                            class="img-fluid" style="max-height: 500px;">
+                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 500px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
@@ -1245,8 +1164,7 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-primary rounded-pill px-4"
-                        onclick="simpanStatusLokalis()">Simpan</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" onclick="simpanStatusLokalis()">Simpan</button>
                 </div>
             </div>
         </div>
@@ -1755,48 +1673,47 @@
         }
     </style>
 
-    <!-- Modal Pop-up -->
-    <div id="popupModal" class="modal" style="display: none;">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Data Layanan</h5>
-                    <button type="button" class="btn-close" id="closeModal"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-hover table-bordered text-center">
-                        <thead class="table-primary">
-                            <tr>
-                                <th>Aksi</th>
-                                <th>Nama Layanan</th>
-                                <th>Tarif</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><button class="btn btn-sm btn-primary"
-                                        onclick="pilihLayanan('Jasa Perawat')">Pilih</button></td>
-                                <td>Jasa Perawat</td>
-                                <td>Rp 10.000</td>
-                            </tr>
-                            <!-- Tambah baris sesuai kebutuhan -->
-                        </tbody>
-                    </table>
-                </div>
+<!-- Modal Pop-up -->
+<div id="popupModal" class="modal" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Data Layanan</h5>
+                <button type="button" class="btn-close" id="closeModal"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-bordered text-center">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Aksi</th>
+                            <th>Nama Layanan</th>
+                            <th>Tarif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><button class="btn btn-sm btn-primary" onclick="pilihLayanan('Jasa Perawat')">Pilih</button></td>
+                            <td>Jasa Perawat</td>
+                            <td>Rp 10.000</td>
+                        </tr>
+                        <!-- Tambah baris sesuai kebutuhan -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <style>
-        .modal {
-            position: fixed;
-            z-index: 1050;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+</div>
+<style>
+    .modal {
+        position: fixed;
+        z-index: 1050;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
     </style>
 
 @endsection
@@ -1811,16 +1728,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.getElementById("searchButton").addEventListener("click", function() {
-            const modal = new bootstrap.Modal(document.getElementById("popupModal"));
-            modal.show();
+        document.getElementById("searchButton").addEventListener("click", function () {
+            document.getElementById("popupModal").style.display = "block";
         });
 
-        document.getElementById("closeModal").addEventListener("click", function() {
-            const modalEl = document.getElementById("popupModal");
-            const modal = bootstrap.Modal.getInstance(modalEl);
-            modal.hide();
+        document.getElementById("closeModal").addEventListener("click", function () {
+            document.getElementById("popupModal").style.display = "none";
         });
+
+        function pilihLayanan(namaLayanan) {
+            const input = document.querySelector('input[placeholder="Ketik Layanan"]');
+            input.value = namaLayanan;
+            document.getElementById("popupModal").style.display = "none";
+        }
     </script>
 
     <script>
@@ -2313,14 +2233,14 @@ $('#search-results').hide();
 }
 </style> --}}
 
-    <!-- JavaScript Tambahan -->
-    <script>
-        function simpanStatusLokalis() {
-            const keterangan = document.getElementById("lokalisKeterangan").value.trim();
-            if (keterangan) {
-                const tableBody = document.getElementById("pemeriksaanFisikTable");
-                const newRow = document.createElement("tr");
-                newRow.innerHTML = `
+<!-- JavaScript Tambahan -->
+<script>
+    function simpanStatusLokalis() {
+        const keterangan = document.getElementById("lokalisKeterangan").value.trim();
+        if (keterangan) {
+            const tableBody = document.getElementById("pemeriksaanFisikTable");
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
                 <td>Status Lokalis</td>
                 <td>${keterangan}</td>
                 <td class="text-center">
@@ -2329,16 +2249,16 @@ $('#search-results').hide();
                     </button>
                 </td>
             `;
-                tableBody.appendChild(newRow);
-                bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
-                document.getElementById("lokalisKeterangan").value = '';
-            } else {
-                alert("Harap isi keterangan terlebih dahulu.");
-            }
+            tableBody.appendChild(newRow);
+            bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
+            document.getElementById("lokalisKeterangan").value = '';
+        } else {
+            alert("Harap isi keterangan terlebih dahulu.");
         }
-    </script>
+    }
+</script>
 
-    <script>
+<script>
         document.addEventListener("DOMContentLoaded", function() {
             const previousBtn = document.querySelector('a[href="#previous"]');
             if (previousBtn) {
@@ -2353,6 +2273,6 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-    </script>
+</script>
 
 @endsection
