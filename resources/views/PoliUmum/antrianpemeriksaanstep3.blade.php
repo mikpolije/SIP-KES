@@ -17,6 +17,8 @@
     }
 
     .tabel-wrapper {
+        width: 100%; /* tambahkan ini */
+    max-width: 100%; /* atau set lebar maksimum lebih besar */
         overflow-x: auto;
         background-color: #ffffff;
         border-radius: 12px;
@@ -57,7 +59,7 @@
     }
 </style>
 
-<div class="container py-4">
+<div class="container-fluid py-4">
     <h1 class="judul-antrean mb-4">Antrean Pemeriksaan</h1>
 
     {{-- Search Bar --}}
