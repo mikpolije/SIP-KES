@@ -618,6 +618,9 @@
                                         </div>
                                     </div>
 
+                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
