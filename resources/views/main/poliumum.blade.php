@@ -986,7 +986,7 @@
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
                                         </div>
                                     </div>
