@@ -858,6 +858,35 @@
                                         <input type="text" class="form-control" placeholder="Ketik Obat">
                                         <button class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
+                                        <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                            <div class="modal-header d-flex align-items-center">
+                                                <h4 class="modal-title" id="myLargeModalLabel">
+                                                    Large modal
+                                                </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h4>
+                                                    Overflowing text to show scroll behavior
+                                                </h4>
+                                                <p>
+                                                    Praesent commodo cursus magna, vel scelerisque
+                                                    nisl consectetur et. Vivamus sagittis lacus
+                                                    vel augue laoreet rutrum faucibus dolor
+                                                    auctor.
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn bg-danger-subtle text-danger  waves-effect text-start" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                            </div>
+                                             <!-- /.modal-dialog -->
+                                            </div>
+                                        </div>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
