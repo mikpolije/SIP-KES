@@ -598,6 +598,26 @@
                                         </button>
                                     </div>
 
+                                    <div>
+                                        <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header d-flex align-items-center">
+                                                        <h4 class="modal-title" id="myLargeModalLabel">
+                                                            Large modal
+                                                        </h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <h4>
+                                                        Overflowing text to show scroll behavior
+                                                    </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
