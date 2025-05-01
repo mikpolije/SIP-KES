@@ -736,7 +736,7 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -793,44 +793,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Modal ICD 9 -->
-<div class="modal fade" id="modalICD9" tabindex="-1" aria-labelledby="modalICD9Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Data ICD 9</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-            </div>
-            <div class="modal-body">
-                <table id="tableICD9" class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Kode</th>
-                            <th>Nama</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($icd9 as $item)
-                            <tr>
-                                <td>{{ $item->kode }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-success pilih-icd9"
-                                            data-nama="{{ $item->nama }}">
-                                        Pilih
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -892,6 +854,13 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
+<<<<<<< HEAD
+                                    <div class="input-group">
+                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        Search
+                                        </button>
+=======
                                     <style>
                                         /* Membuat backdrop modal transparan */
                                         .modal-backdrop.show {
@@ -908,27 +877,8 @@
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                         <i class="bi bi-search"></i>
+>>>>>>> f014ebc086fe57b717a9c67fa6dc3ba4ffb5a50a
                                     </div>
-                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header d-flex align-items-center">
-                                                    <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                 </div>
-                                                 <div class="modal-body">
-                                                    <p>Ini adalah contoh tampilan hasil pencarian.</p>
-                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                 </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
-                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
@@ -2184,46 +2134,6 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-</script>
-
-<!-- DataTables -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#tableICD9').DataTable();
-
-        $('.pilih-icd9').on('click', function () {
-            let nama = $(this).data('nama');
-
-            $('#row-empty').remove();
-
-            $('#selected-icds-icd9').append(`
-                <tr>
-                    <td>${nama}</td>
-                    <td class="text-center">
-                        <button type="button" class="btn btn-sm btn-danger hapus-icd">🗑️</button>
-                    </td>
-                </tr>
-            `);
-
-            $('#modalICD9').modal('hide');
-        });
-
-        $(document).on('click', '.hapus-icd', function () {
-            $(this).closest('tr').remove();
-
-            if ($('#selected-icds-icd9 tr').length === 0) {
-                $('#selected-icds-icd9').append(`
-                    <tr id="row-empty">
-                        <td colspan="2" class="text-center text-muted">Belum ada Tindakan yang dipilih</td>
-                    </tr>
-                `);
-            }
-        });
-    });
-</script>
+    </script>
 
 @endsection
