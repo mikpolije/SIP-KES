@@ -898,8 +898,8 @@
                                         .stok-kosong {
                                         color: red;
                                         font-size: 12px;
-                                        padding: 5px 10px;
-                                        cursor: pointer;
+                                        align-items: center; /* vertikal tengah */
+                                        justify-content: flex-end; /* posisi di kanan */
                                         }
                                     </style>
                                     <div class="input-group mb-2">
