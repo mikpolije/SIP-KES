@@ -593,8 +593,8 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
-                                        <a href="#" class="btn btn-outline-secondary open-icd-btn" type="button"
-                                        id="icdModal">
+                                        <a href="#" class="btn btn-outline-secondary open-modal-btn" type="button"
+                                        id="openModalBtn">
                                             <i class="bi bi-search"></i> 
                                         </button>
                                     </div>
@@ -2319,11 +2319,32 @@ $('#search-results').hide();
         });
     </script>
     <script>
- $('#icdModal').on('shown.bs.modal', function () {
-          if (!$.fn.DataTable.isDataTable('#icdTable')) {
-            $('#icdTable').DataTable();
-          }
+        document.addEventListener("DOMContentLoaded", function() {
+            const nextBtn = document.querySelector('a[href="#next"]');
+            if (nextBtn) {
+                nextBtn.textContent = "Simpan";
+            }
         });
+        const modal = document.getElementById("icdModal");
+      const openBtn = document.getElementById("openModalBtn");
+      const closeBtn = document.getElementById("closeModalBtn");
+
+      openBtn.onclick = () => {
+        modal.style.display = "block";
+        if (!$.fn.dataTable.isDataTable("#icdTable")) {
+          $("#icdTable").DataTable();
+        }
+      };
+
+      closeBtn.onclick = () => {
+        modal.style.display = "none";
+      };
+
+      window.onclick = (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      };
 </script>
 
 @endsection
