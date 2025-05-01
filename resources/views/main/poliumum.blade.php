@@ -854,6 +854,17 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
+                                    <style>
+                                        /* Membuat backdrop modal transparan */
+                                        .modal-backdrop.show {
+                                        opacity: 0 !important;
+                                        }
+
+                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                        .modal-content {
+                                        box-shadow: none;
+                                        }
+                                    </style>
                                     <div class="input-group mb-2">
                                         <input type="search" id="searchInput" class="form-control" placeholder="Cari">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
@@ -1077,7 +1088,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="{{ asset('images/image.png') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
+                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
