@@ -736,7 +736,7 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -854,10 +854,11 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Ketik Obat">
-                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                            <i class="bi bi-search"></i></button>
+                                    <div class="input-group mb-2">
+                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        Search
+                                        </button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
@@ -2114,6 +2115,6 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-    </script>
+</script>
 
 @endsection
