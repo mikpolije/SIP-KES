@@ -889,7 +889,7 @@
                                                     <div id="popupObat" class="popup-container" style="display: none;">
                                                     <div class="popup">
                                                         <h2>Data Obat</h2>
-                                                        <label>Tampilkan 
+                                                        <label>Tampilkan
                                                             <select>
                                                                 <option>10</option>
                                                                 <option>25</option>
@@ -958,8 +958,8 @@
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-secondary w-100">Tambah +</button>
+                                        <div class="col-md-2 d-flex">
+                                            <button class="btn btn-secondary flex-grow-0">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
