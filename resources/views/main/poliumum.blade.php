@@ -832,8 +832,9 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
+                                        <button id="searchButton" class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
@@ -870,7 +871,7 @@
                                         overflow-y: auto;
                                         padding: 20px;
                                         }
-                                        
+
                                         .bi bi-search {
                                         background-color: transparent;
                                         border: none;
@@ -1682,6 +1683,163 @@
         }
     </style>
 
+<div
+      id="dataModal"
+      class="modal"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Data Layanan</h2>
+          <span
+            class="close"
+            id="closeModalBtn"
+            >&times;</span
+          >
+        </div>
+
+        <table
+          id="layananTable"
+          class="display"
+        >
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nama Layanan</th>
+              <th>Tarif</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Jasa Perawat</td>
+              <td>Rp 10.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Jasa Pasang Infus</td>
+              <td>Rp 30.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Bekam</td>
+              <td>Rp 50.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Perawatan Luka Ringan</td>
+              <td>Rp 30.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Perawatan Luka Infeksi</td>
+              <td>Rp 70.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Administrasi</td>
+              <td>Rp 5.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Injeksi Vitamin</td>
+              <td>Rp 50.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Nebulizer</td>
+              <td>Rp 25.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Tensi</td>
+              <td>Rp 10.000,-</td>
+            </tr>
+            <tr>
+              <td><button class="btn-pilih">Pilih</button></td>
+              <td>Cek Gula Darah</td>
+              <td>Rp 10.000,-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <style>
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 9999;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content {
+          background-color: #fff;
+          margin: 5% auto;
+          padding: 20px 30px;
+          border-radius: 12px;
+          width: 90%;
+          max-width: 800px;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+          position: relative;
+        }
+
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 15px;
+        }
+
+        .modal-header h2 {
+          font-size: 20px;
+          color: #1e3a8a;
+        }
+
+        .close {
+          font-size: 22px;
+          font-weight: bold;
+          cursor: pointer;
+          color: #888;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+          border-radius: 6px;
+          padding: 5px;
+          border: 1px solid #ccc;
+        }
+
+        table.dataTable tbody td {
+          background-color: #f0f4ff;
+        }
+
+        table.dataTable tbody tr:hover td {
+          background-color: #dbeafe;
+        }
+
+        .btn-pilih {
+          background-color: #3b82f6;
+          border: none;
+          color: white;
+          padding: 5px 10px;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+
+        .open-modal-btn {
+          margin: 20px;
+          padding: 10px 20px;
+          background-color: #22c55e;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+      </style>
+
 @endsection
 
 @section('scripts')
@@ -1691,6 +1849,30 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        const modal = document.getElementById("dataModal");
+        const openBtn = document.getElementById("openModalBtn");
+        const closeBtn = document.getElementById("closeModalBtn");
+
+        openBtn.onclick = () => {
+          modal.style.display = "block";
+          if (!$.fn.dataTable.isDataTable("#layananTable")) {
+            $("#layananTable").DataTable();
+          }
+        };
+
+        closeBtn.onclick = () => {
+          modal.style.display = "none";
+        };
+
+        window.onclick = (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
