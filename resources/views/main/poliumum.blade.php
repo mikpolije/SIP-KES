@@ -856,10 +856,32 @@
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <div class="input-group mb-2">
                                         <input type="search" id="searchInput" class="form-control" placeholder="Cari">
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                        Search
-                                        </button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <i class="bi bi-search"></i>
                                     </div>
+<<<<<<< HEAD
+=======
+                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header d-flex align-items-center">
+                                                    <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                    <p>Ini adalah contoh tampilan hasil pencarian.</p>
+                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
+                                                 </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+>>>>>>> 74772187cd37817f2c75171fd6ad5d3a0aee8356
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
@@ -1058,7 +1080,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
+                        <img src="{{ asset('images/image.png') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
