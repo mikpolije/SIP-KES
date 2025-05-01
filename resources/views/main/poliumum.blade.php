@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Poli Umum')
+@section('title', 'SIP-Kes | Pendaftaran')
 <style>
     body {
         background-color: #B4AEAE;
@@ -591,44 +591,38 @@
                                 <div class="card p-3 shadow-sm h-100">
                                     <h5 class="fw-bold">ICD 10</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd10Search"
-                                            placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
-                                            data-bs-target="#bs-example-modal-lg">
-                                            <i class="bi bi-search"></i>
+                                        <input type="text" class="form-control" id="icd10Search" placeholder="Ketik Kode atau Diagnosa">
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <i class="bi bi-search"></i>
                                         </button>
                                     </div>
-                                    <div>
-                                        <div class="modal fade" id="bs-example-modal-lg" tabindex="-1"
-                                            aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header d-flex align-items-center">
-                                                        <h4 class="modal-title" id="myLargeModalLabel">Pilih ICD 10</h4>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table class="table table-bordered">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Kode</th>
-                                                                    <th>Nama ICD</th>
-                                                                    <th>Subkode</th>
-                                                                    <th>Aksi</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>A00</td>
-                                                                    <td>Kolera</td>
-                                                                    <td>0</td>
-                                                                    <td><button
-                                                                            class="btn btn-sm btn-primary">Pilih</button>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                    </div>
+                                <div>
+                                <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-flex align-items-center">
+                                                <h4 class="modal-title" id="myLargeModalLabel">Pilih ICD 10</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        <div class="modal-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                    <th>Kode</th>
+                                                    <th>Nama ICD</th>
+                                                    <th>Subkode</th>
+                                                    <th>Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <td>A00</td>
+                                                    <td>Kolera</td>
+                                                    <td>0</td>
+                                                    <td><button class="btn btn-sm btn-primary">Pilih</button></td>
+                                                    </tr>
+                                                </tbody>
+                                        </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -945,17 +939,15 @@
 
                                     .stok-kosong {
                                         color: red;
+                                        border: none;
                                         font-size: 12px;
-                                        align-items: center;
-                                        /* vertikal tengah */
-                                        justify-content: flex-end;
-                                        /* posisi di kanan */
-                                    }
-                                </style>
-                                <div class="input-group mb-2">
-                                    <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#bs-example-modal-lg">
+                                        align-items: center; /* vertikal tengah */
+                                        justify-content: flex-end; /* posisi di kanan */
+                                        }
+                                    </style>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
                                         <i class="bi bi-search"></i>
                                 </div>
                                 <div class="modal fade" id="bs-example-modal-lg" tabindex="-1"
@@ -1078,106 +1070,106 @@
                         </div>
             </div>
 
-            <!-- Rencana Kontrol dan Catatan -->
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card p-3 h-100">
-                        <label class="form-label fw-bold">Rencana Kontrol</label>
-                        <div class="row g-2 mb-2">
-                            <div class="col-md-5">
-                                <input type="date" class="form-control">
+                        <!-- Rencana Kontrol dan Catatan -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Rencana Kontrol</label>
+                                    <div class="row g-2 mb-2">
+                                        <div class="col-md-5">
+                                            <input type="date" class="form-control">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                        </div>
+                                        <div class="col-md-2 d-flex">
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead style="background-color: #676981; color: white;">
+                                            <tr>
+                                                <th>Tanggal Kontrol</th>
+                                                <th>Alasan Kontrol</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">Tidak Ada Data</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="col-md-5">
-                                <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                            </div>
-                            <div class="col-md-2 d-flex">
-                                <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
-                            </div>
-                        </div>
-                        <table class="table table-bordered text-center">
-                            <thead style="background-color: #676981; color: white;">
-                                <tr>
-                                    <th>Tanggal Kontrol</th>
-                                    <th>Alasan Kontrol</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="2">Tidak Ada Data</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card p-3 h-100">
-                        <label class="form-label fw-bold">Catatan</label>
-                        <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
-                    </div>
-                </div>
-            </div>
-            </section>
-            <!-- Step 4 -->
-            <h6>Farmasi</h6>
-            <section>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="behName2">Behaviour :</label>
-                            <input type="text" class="form-control required" id="behName2" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="participants3">Confidance</label>
-                            <input type="text" class="form-control required" id="participants3" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="participants4">Result</label>
-                            <select class="form-select required" id="participants4" name="location">
-                                <option value="">Select Result</option>
-                                <option value="Selected">Selected</option>
-                                <option value="Rejected">Rejected</option>
-                                <option value="Call Second-time"> Call Second-time </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label class="form-label" for="decisions3">Comments</label>
-                            <textarea name="decisions" id="decisions3" rows="4" class="form-control"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="customRadio11" class="form-label">Rate Interviwer :</label>
-                            <div class="c-inputs-stacked">
-                                <div class="form-check">
-                                    <input type="radio" id="customRadio11" name="customRadio"
-                                        class="form-check-input" />
-                                    <label class="form-check-label" for="customRadio11">1 star</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="customRadio12" name="customRadio"
-                                        class="form-check-input" />
-                                    <label class="form-check-label" for="customRadio12">2 star</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="customRadio13" name="customRadio"
-                                        class="form-check-input" />
-                                    <label class="form-check-label" for="customRadio13">3 star</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="customRadio14" name="customRadio"
-                                        class="form-check-input" />
-                                    <label class="form-check-label" for="customRadio14">4 star</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="customRadio15" name="customRadio"
-                                        class="form-check-input" />
-                                    <label class="form-check-label" for="customRadio15">5 star</label>
+                            <div class="col-md-6 mb-4">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Catatan</label>
+                                    <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </section>
+                    <!-- Step 4 -->
+                    <h6>Farmasi</h6>
+                    <section>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="behName2">Behaviour :</label>
+                                    <input type="text" class="form-control required" id="behName2" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="participants3">Confidance</label>
+                                    <input type="text" class="form-control required" id="participants3" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="participants4">Result</label>
+                                    <select class="form-select required" id="participants4" name="location">
+                                        <option value="">Select Result</option>
+                                        <option value="Selected">Selected</option>
+                                        <option value="Rejected">Rejected</option>
+                                        <option value="Call Second-time"> Call Second-time </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="decisions3">Comments</label>
+                                    <textarea name="decisions" id="decisions3" rows="4" class="form-control"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customRadio11" class="form-label">Rate Interviwer :</label>
+                                    <div class="c-inputs-stacked">
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio11" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio11">1 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio12" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio12">2 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio13" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio13">3 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio14" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio14">4 star</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" id="customRadio15" name="customRadio"
+                                                class="form-check-input" />
+                                            <label class="form-check-label" for="customRadio15">5 star</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
             <!-- Step 5 -->
             <h6>Pembayaran</h6>
