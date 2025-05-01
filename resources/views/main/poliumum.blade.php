@@ -899,12 +899,8 @@
                                         .stok-kosong {
                                         color: red;
                                         font-size: 12px;
-                                        align-items: center; /* vertikal tengah */
-                                        justify-content: flex-end; /* posisi di kanan */
                                         }
                                     </style>
-=======
->>>>>>> f1f62ccbbdd5b7ebdc7a88f3a2eb35b6d9638b23
                                     <div class="input-group mb-2">
                                         <input type="search" id="searchInput" class="form-control" placeholder="Cari">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
