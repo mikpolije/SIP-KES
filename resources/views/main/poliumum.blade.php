@@ -856,9 +856,8 @@
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <div class="input-group mb-2">
                                         <input type="search" id="searchInput" class="form-control" placeholder="Cari">
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                        Search
-                                        </button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <i class="bi bi-search"></i>
                                     </div>
                                     <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
@@ -877,6 +876,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
