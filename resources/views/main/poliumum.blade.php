@@ -618,7 +618,7 @@
                                                     <th>Kode</th>
                                                     <th>Subkode</th>
                                                     <th>Nama</th>
-                                                    <th>Nama Inggris</th>
+                                                    <th>Termin</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
