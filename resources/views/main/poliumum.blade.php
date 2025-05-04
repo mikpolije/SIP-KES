@@ -595,103 +595,10 @@
                                             placeholder="Ketik Kode atau Diagnosa">
                                         <button  data-bs-toggle="modal" data-bs-target="#icdModal" class="btn btn-outline-secondary " type="button"
                                        >
-                                            <i class="bi bi-search"></i> 
+                                            <i class="bi bi-search"></i>
                                         </button>
-
-                                      
                                     </div>
-                                    <div class="modal fade" id="icdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h2>Data ICD 10</h2>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <table
-                                                id="icdTable"
-                                                class="display"
-                                              >
-                                                <thead>
-                                                  <tr>
-                                                    <th></th>
-                                                    <th>Kode</th>
-                                                    <th>Subkode</th>
-                                                    <th>Nama</th>
-                                                    <th>Termin</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A00</td>
-                                                    <td>0</td>
-                                                    <td>Kolera</td>
-                                                    <td>Cholera</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A00</td>
-                                                    <td>1</td>
-                                                    <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
-                                                    <td>Cholera due to Vibrio cholerae 01</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A00</td>
-                                                    <td>9</td>
-                                                    <td>Kolera, tidak terspesifikasi</td>
-                                                    <td>Cholera, unspecified</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A01</td>
-                                                    <td>0</td>
-                                                    <td>Demam tifoid dan paratifoid</td>
-                                                    <td>Typhoid and paratyphoid</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A01</td>
-                                                    <td>1</td>
-                                                    <td>Demam tifoid</td>
-                                                    <td>Typhoid fever</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A01</td>
-                                                    <td>2</td>
-                                                    <td>Demam paratifoid A</td>
-                                                    <td>Paratyphoid fever A</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A01</td>
-                                                    <td>3</td>
-                                                    <td>Demam paratifoid B</td>
-                                                    <td>Paratyphoid fever B</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A01</td>
-                                                    <td>4</td>
-                                                    <td>Demam paratifoid C</td>
-                                                    <td>Paratyphoid fever C</td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>A01</td>
-                                                    <td>-</td>
-                                                    <td>Demam paratifoid, tidak terspesifikasi</td>
-                                                    <td>Paratyphoid fever, unspecified</td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                                  
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
@@ -830,7 +737,7 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -841,7 +748,7 @@
                                                     <th class="text-center">Rincian</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="pemeriksaanFisikTable">
+                                            <tbody>
                                                 <tr>
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
@@ -864,9 +771,8 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd9Search"
                                             placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                            <button class="btn btn-outline-secondary" type="button"><i
+                                            class="bi bi-search"></i></button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
@@ -926,7 +832,7 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button data-bs-toggle="modal" data-bs-target="#layananModal" class="btn btn-outline-secondary" type="button"><i
+                                        <button class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
@@ -945,193 +851,15 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table
-                                        id="layananTable"
-                                        class="display"
-                                      >
-                                        <thead>
-                                          <tr>
-                                            <th></th>
-                                            <th>Nama Layanan</th>
-                                            <th>Tarif</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Jasa Perawat</td>
-                                            <td>Rp 10.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Jasa Pasang Infus</td>
-                                            <td>Rp 30.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Bekam</td>
-                                            <td>Rp 50.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Perawatan Luka Ringan</td>
-                                            <td>Rp 30.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Perawatan Luka Infeksi</td>
-                                            <td>Rp 70.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Administrasi</td>
-                                            <td>Rp 5.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Injeksi Vitamin</td>
-                                            <td>Rp 50.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Nebulizer</td>
-                                            <td>Rp 25.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Tensi</td>
-                                            <td>Rp 10.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Cek Gula Darah</td>
-                                            <td>Rp 10.000,-</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-  
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <style>
-                                        /* Membuat backdrop modal transparan */
-                                        .modal-backdrop.show {
-                                        background-color: rgba(128, 128, 128, 0.5) !important;
-                                        }
-
-                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
-                                        .modal-content {
-                                        box-shadow: none;
-                                        }
-
-                                        .bi bi-search {
-                                        background-color: transparent;
-                                        border: none;
-                                        color: #333;
-                                        }
-
-                                        table {
-                                        width: 100%;
-                                        border-collapse: collapse;
-                                        margin-top: 20px;
-                                        }
-
-                                        th, td {
-                                        text-align: left;
-                                        padding: 10px;
-                                        border-bottom: 1px solid #ddd;
-                                        }
-
-                                        th {
-                                        background-color: #f4f4f4;
-                                        }
-
-                                        .btn-pilih {
-                                        background-color: #2196F3;
-                                        color: white;
-                                        border: none;
-                                        padding: 5px 10px;
-                                        cursor: pointer;
-                                        }
-
-                                        .stok-kosong {
-                                        color: red;
-                                        font-size: 12px;
-                                        padding: 5px 10px;
-                                        cursor: pointer;
-                                        }
-                                    </style>
-                                    <div class="input-group mb-2">
-                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                        <i class="bi bi-search"></i>
+                                    <div class="input-group">
+                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
+                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        Search
+                                        </button>
                                     </div>
-                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header d-flex align-items-center">
-                                                    <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                 </div>
-                                                 <div class="modal-body">
-                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                    <div class="popup">
-                                                        <h2>Data Obat</h2>
-                                                        <label>Tampilkan
-                                                            <select>
-                                                                <option>10</option>
-                                                                <option>25</option>
-                                                                <option>50</option>
-                                                            </select> entri
-                                                        </label>
-                                                        <input type="text" placeholder="Cari..." style="float: right;">
-                                                        <table>
-                                                        <thead>
-                                                            <tr>
-                                                            <th>Nama Obat</th>
-                                                            <th>Harga Jual</th>
-                                                            <th>Stok Obat</th>
-                                                            <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
-                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                        </tbody>
-                                                        </table>
-                                                     </div>
-                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
-                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
@@ -1156,14 +884,14 @@
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row g-2 mb-2">
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <input type="date" class="form-control">
                                         </div>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                            <button class="btn btn-secondary w-100">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
@@ -1330,7 +1058,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 500px;">
+                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
@@ -1764,7 +1492,6 @@
             </div>
         </div>
     </div>
-
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sakit */
         #modalSakit .modal-content {
@@ -1851,19 +1578,13 @@
 
 @endsection
 
-
-
 @section('scripts')
-  
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-  
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
@@ -2394,24 +2115,6 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-        const table = new DataTable('#icdTable', {
-            responsive: true,
-            paging: true,
-            searching: true,
-            info: true,
-            pageLength: 10, // Default: tampilkan 10 entri
-            lengthMenu: [5, 10, 25, 50, 100]
-    });
-      
-});
-        const table = new DataTable('#layananTable', {
-            responsive: true,
-            paging: true,
-            searching: true,
-            info: true,
-            pageLength: 10, // Default: tampilkan 10 entri
-            lengthMenu: [5, 10, 25, 50, 100]
-    });
-</script>
+    </script>
 
 @endsection
