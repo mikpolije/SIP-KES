@@ -869,6 +869,15 @@
                                             </button>
                                     </div>
                                     
+                                    <div id="popup-container" class="popup-container">
+                                        <div id="popup-content" class="popup-content">
+                                            <span class="close-button">&times;</span>
+                                            <h2>Data ICD 9</h2>
+                                            <div id="hasil-pencarian">
+                                            </div>
+                                        </div>
+                                    </div>
+
 <style>
     .popup-container {
     display: none;
