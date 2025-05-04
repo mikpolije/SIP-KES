@@ -864,36 +864,17 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd9Search"
                                             placeholder="Ketik Kode atau Tindakan">
-                                            <button data-bs-toggle="modal" data-bs-target="#layananModal" class="btn btn-outline-secondary" type="button">
-                                                <i class="bi bi-search"></i>
+                                            <button class="btn btn-outline-secondary" type="button" id="cari-icd9">
+                                                <i class="bi bi-search"></i> 
                                             </button>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #B3B9F9;">
-                                                <tr>
-                                                    <th class="text-center">Nama ICD 9</th>
-                                                    <th class="text-center">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="selected-icds-icd9">
-                                                <tr>
-                                                    <td colspan="2" class="text-center text-muted">Belum ada Tindakan
-                                                        yang dipilih</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div id="popup-container" class="popup-container">
+                                    <div id="popup-container" class="popup-container">
     <div id="popup-content" class="popup-content">
         <span class="close-button">&times;</span>
         <h2>Data ICD 9</h2>
         <div id="hasil-pencarian">
-            </div>
+        </div>
     </div>
 </div>
 
@@ -956,6 +937,128 @@
         background-color: #0056b3;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cariIcd9Button = document.getElementById('cari-icd9');
+        const popupContainer = document.getElementById('popup-container');
+        const closeButton = document.querySelector('.close-button');
+        const hasilPencarianDiv = document.getElementById('hasil-pencarian');
+        const icd9SearchInput = document.getElementById('icd9Search'); // Gunakan ID input yang benar
+
+        cariIcd9Button.addEventListener('click', function() {
+            const kodeAtauTindakan = icd9SearchInput.value.trim();
+
+            // **Simulasi Data ICD 9 (Ganti dengan data atau API Anda)**
+            const dataIcd9 = [
+                { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
+                { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
+                { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
+                { kode: '0009', nama: 'Other therapeutic ultrasound' },
+                { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
+                { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
+                { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
+                { kode: '0013', nama: 'Injection or infusion of nesiritide' },
+                { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
+                { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
+                // ... tambahkan data ICD 9 lengkap Anda di sini
+            ];
+
+            // Filter data berdasarkan input
+            const hasilPencarianFilter = dataIcd9.filter(item =>
+                item.kode.toLowerCase().includes(kodeAtauTindakan.toLowerCase()) ||
+                item.nama.toLowerCase().includes(kodeAtauTindakan.toLowerCase())
+            );
+
+            // Tampilkan hasil dalam bentuk tabel
+            hasilPencarianDiv.innerHTML = '';
+            if (hasilPencarianFilter.length > 0) {
+                const table = document.createElement('table');
+                table.classList.add('hasil-pencarian-table');
+
+                // Header tabel
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                const kodeHeader = document.createElement('th');
+                kodeHeader.textContent = 'Kode';
+                const namaHeader = document.createElement('th');
+                namaHeader.textContent = 'Nama';
+                const aksiHeader = document.createElement('th');
+                aksiHeader.textContent = 'Aksi';
+                headerRow.appendChild(kodeHeader);
+                headerRow.appendChild(namaHeader);
+                headerRow.appendChild(aksiHeader);
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                // Body tabel
+                const tbody = document.createElement('tbody');
+                hasilPencarianFilter.forEach(item => {
+                    const row = document.createElement('tr');
+                    const kodeCell = document.createElement('td');
+                    kodeCell.textContent = item.kode;
+                    const namaCell = document.createElement('td');
+                    namaCell.textContent = item.nama;
+                    const aksiCell = document.createElement('td');
+                    const pilihButton = document.createElement('button');
+                    pilihButton.classList.add('pilih-button');
+                    pilihButton.textContent = 'Pilih';
+                    pilihButton.addEventListener('click', function() {
+                        // **Ganti dengan logika untuk mengisi input yang sesuai di form Anda**
+                        // Contoh: Jika Anda ingin mengisi input dengan ID 'kode_icd9'
+                        const kodeIcd9Input = document.getElementById('kode_icd9');
+                        if (kodeIcd9Input) {
+                            kodeIcd9Input.value = item.kode;
+                        }
+                        // Tutup pop-up
+                        popupContainer.style.display = 'none';
+                    });
+                    aksiCell.appendChild(pilihButton);
+                    row.appendChild(kodeCell);
+                    row.appendChild(namaCell);
+                    row.appendChild(aksiCell);
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
+                hasilPencarianDiv.appendChild(table);
+            } else {
+                hasilPencarianDiv.textContent = 'Tidak ada hasil ditemukan.';
+            }
+
+            popupContainer.style.display = 'block';
+        });
+
+        closeButton.addEventListener('click', function() {
+            popupContainer.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === popupContainer) {
+                popupContainer.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #B3B9F9;">
+                                                <tr>
+                                                    <th class="text-center">Nama ICD 9</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected-icds-icd9">
+                                                <tr>
+                                                    <td colspan="2" class="text-center text-muted">Belum ada Tindakan
+                                                        yang dipilih</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -2480,104 +2583,6 @@ $('#search-results').hide();
             info: true,
             pageLength: 10, // Default: tampilkan 10 entri
             lengthMenu: [5, 10, 25, 50, 100]
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const cariIcd9Button = document.getElementById('cari-icd9');
-        const popupContainer = document.getElementById('popup-container');
-        const closeButton = document.querySelector('.close-button');
-        const hasilPencarianDiv = document.getElementById('hasil-pencarian');
-        const icd9Input = document.getElementById('icd9'); // Sesuaikan ID dengan input ICD 9 Anda
-
-        cariIcd9Button.addEventListener('click', function() {
-            const kodeIcd9 = icd9Input.value.trim();
-
-            // **Simulasi Data ICD 9 (Ganti dengan data atau API Anda)**
-            const dataIcd9 = [
-                { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
-                { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
-                { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
-                { kode: '0009', nama: 'Other therapeutic ultrasound' },
-                { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
-                { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
-                { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
-                { kode: '0013', nama: 'Injection or infusion of nesiritide' },
-                { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
-                { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
-                // ... tambahkan data ICD 9 lengkap Anda di sini
-            ];
-
-            // Filter data berdasarkan input
-            const hasilPencarianFilter = dataIcd9.filter(item =>
-                item.kode.toLowerCase().includes(kodeIcd9.toLowerCase()) ||
-                item.nama.toLowerCase().includes(kodeIcd9.toLowerCase())
-            );
-
-            // Tampilkan hasil dalam bentuk tabel
-            hasilPencarianDiv.innerHTML = '';
-            if (hasilPencarianFilter.length > 0) {
-                const table = document.createElement('table');
-                table.classList.add('hasil-pencarian-table');
-
-                // Header tabel
-                const thead = document.createElement('thead');
-                const headerRow = document.createElement('tr');
-                const kodeHeader = document.createElement('th');
-                kodeHeader.textContent = 'Kode';
-                const namaHeader = document.createElement('th');
-                namaHeader.textContent = 'Nama';
-                const aksiHeader = document.createElement('th');
-                aksiHeader.textContent = 'Aksi';
-                headerRow.appendChild(kodeHeader);
-                headerRow.appendChild(namaHeader);
-                headerRow.appendChild(aksiHeader);
-                thead.appendChild(headerRow);
-                table.appendChild(thead);
-
-                // Body tabel
-                const tbody = document.createElement('tbody');
-                hasilPencarianFilter.forEach(item => {
-                    const row = document.createElement('tr');
-                    const kodeCell = document.createElement('td');
-                    kodeCell.textContent = item.kode;
-                    const namaCell = document.createElement('td');
-                    namaCell.textContent = item.nama;
-                    const aksiCell = document.createElement('td');
-                    const pilihButton = document.createElement('button');
-                    pilihButton.classList.add('pilih-button');
-                    pilihButton.textContent = 'Pilih';
-                    pilihButton.addEventListener('click', function() {
-                        // Isi input ICD 9 dengan kode yang dipilih
-                        icd9Input.value = item.kode;
-                        // Tutup pop-up
-                        popupContainer.style.display = 'none';
-                    });
-                    aksiCell.appendChild(pilihButton);
-                    row.appendChild(kodeCell);
-                    row.appendChild(namaCell);
-                    row.appendChild(aksiCell);
-                    tbody.appendChild(row);
-                });
-                table.appendChild(tbody);
-                hasilPencarianDiv.appendChild(table);
-            } else {
-                hasilPencarianDiv.textContent = 'Tidak ada hasil ditemukan.';
-            }
-
-            popupContainer.style.display = 'block';
-        });
-
-        closeButton.addEventListener('click', function() {
-            popupContainer.style.display = 'none';
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target === popupContainer) {
-                popupContainer.style.display = 'none';
-            }
-        });
     });
 </script>
 
