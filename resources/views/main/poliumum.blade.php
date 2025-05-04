@@ -868,17 +868,7 @@
                                                 <i class="bi bi-search"></i> 
                                             </button>
                                     </div>
-
-                                    <!-- Tombol trigger -->
-<button id="cari-icd9">Cari ICD-9</button>
-<input type="text" id="icd9Search" placeholder="Masukkan kode atau tindakan ICD-9" />
-
-<!-- Pop-up Container -->
-<div id="popup-container" class="popup-container">
-  <div id="popup-content" class="popup-content"></div>
-</div>
-
-
+                                    
 <style>
     .popup-container {
     display: none;
