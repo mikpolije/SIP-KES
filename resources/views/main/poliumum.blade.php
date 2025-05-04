@@ -794,6 +794,51 @@
                             </div>
                         </div>
 
+                        <!-- Modal ICD 9 -->
+  <div class="modal fade" id="icd9Modal" tabindex="-1" aria-labelledby="icd9ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Data ICD 9</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <table id="icd9Table" class="display table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Pilih</th>
+                <th>Kode</th>
+                <th>Nama</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                <td>0001</td>
+                <td>Therapeutic ultrasound of vessels of head and neck</td>
+              </tr>
+              <tr>
+                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                <td>0002</td>
+                <td>Therapeutic ultrasound of hearth</td>
+              </tr>
+              <tr>
+                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                <td>0003</td>
+                <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+              </tr>
+              <tr>
+                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                <td>0009</td>
+                <td>Other therapeutic ultrasound</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
@@ -1585,6 +1630,7 @@
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
@@ -2099,6 +2145,31 @@ $('#search-results').hide();
         }
     }
 </script>
+
+<script>
+    const icdData = [
+      { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
+      { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
+      { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
+      { kode: '0009', nama: 'Other therapeutic ultrasound' }
+    ];
+
+    const tbody = document.getElementById("icd9Body");
+    icdData.forEach(item => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><button class="btn btn-primary btn-sm" onclick="pilihICD('${item.kode}', '${item.nama}')">Pilih</button></td>
+        <td>${item.kode}</td>
+        <td>${item.nama}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    function pilihICD(kode, nama) {
+      alert("Anda memilih ICD: " + kode + " - " + nama);
+      // Anda bisa ganti alert dengan logika menyimpan ke form, dll
+    }
+  </script>
 
 <script>
         document.addEventListener("DOMContentLoaded", function() {
