@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Pendaftaran')
+@section('title', 'SIP-Kes | Poli Umum')
 <style>
     body {
         background-color: #B4AEAE;
@@ -593,11 +593,105 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
+                                        <button  data-bs-toggle="modal" data-bs-target="#icdModal" class="btn btn-outline-secondary " type="button"
+                                       >
+                                            <i class="bi bi-search"></i> 
                                         </button>
-                                    </div>
 
+                                      
+                                    </div>
+                                    <div class="modal fade" id="icdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2>Data ICD 10</h2>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table
+                                                id="icdTable"
+                                                class="display"
+                                              >
+                                                <thead>
+                                                  <tr>
+                                                    <th></th>
+                                                    <th>Kode</th>
+                                                    <th>Subkode</th>
+                                                    <th>Nama</th>
+                                                    <th>Termin</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A00</td>
+                                                    <td>0</td>
+                                                    <td>Kolera</td>
+                                                    <td>Cholera</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A00</td>
+                                                    <td>1</td>
+                                                    <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
+                                                    <td>Cholera due to Vibrio cholerae 01</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A00</td>
+                                                    <td>9</td>
+                                                    <td>Kolera, tidak terspesifikasi</td>
+                                                    <td>Cholera, unspecified</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>0</td>
+                                                    <td>Demam tifoid dan paratifoid</td>
+                                                    <td>Typhoid and paratyphoid</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>1</td>
+                                                    <td>Demam tifoid</td>
+                                                    <td>Typhoid fever</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>2</td>
+                                                    <td>Demam paratifoid A</td>
+                                                    <td>Paratyphoid fever A</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>3</td>
+                                                    <td>Demam paratifoid B</td>
+                                                    <td>Paratyphoid fever B</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>4</td>
+                                                    <td>Demam paratifoid C</td>
+                                                    <td>Paratyphoid fever C</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>A01</td>
+                                                    <td>-</td>
+                                                    <td>Demam paratifoid, tidak terspesifikasi</td>
+                                                    <td>Paratyphoid fever, unspecified</td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                                  
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
@@ -736,7 +830,7 @@
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
-                                        <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
+                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -747,7 +841,7 @@
                                                     <th class="text-center">Rincian</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="pemeriksaanFisikTable">
                                                 <tr>
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
@@ -764,21 +858,16 @@
                                 </div>
                             </div>
 
-                            <head>
-  <meta charset="UTF-8">
-  <title>Pop-up ICD-9 Sederhana</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd9Search" placeholder="Ketik kode atau tindakan ICD 9">
-                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#icd9Modal">
-                                        <i class="bi bi-search"></i>
+                                        <input type="text" class="form-control" id="icd9Search"
+                                            placeholder="Ketik Kode atau Tindakan">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
                                         </button>
                                     </div>
-
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #B3B9F9;">
@@ -798,51 +887,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Modal ICD 9 -->
-  <div class="modal fade" id="icd9Modal" tabindex="-1" aria-labelledby="icd9ModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Data ICD 9</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <div class="modal-body">
-          <table id="icd9Table" class="display table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Pilih</th>
-                <th>Kode</th>
-                <th>Nama</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0001</td>
-                <td>Therapeutic ultrasound of vessels of head and neck</td>
-              </tr>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0002</td>
-                <td>Therapeutic ultrasound of hearth</td>
-              </tr>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0003</td>
-                <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-              </tr>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0009</td>
-                <td>Other therapeutic ultrasound</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -904,12 +948,108 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
-                                    <div class="input-group">
-                                        <input type="search" id="searchInput" class="form-control" placeholder="Cari">
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
-                                        Search
-                                        </button>
+                                    <style>
+                                        /* Membuat backdrop modal transparan */
+                                        .modal-backdrop.show {
+                                        background-color: rgba(128, 128, 128, 0.5) !important;
+                                        }
+
+                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                        .modal-content {
+                                        box-shadow: none;
+                                        }
+
+                                        .bi bi-search {
+                                        background-color: transparent;
+                                        border: none;
+                                        color: #333;
+                                        }
+
+                                        table {
+                                        width: 100%;
+                                        border-collapse: collapse;
+                                        margin-top: 20px;
+                                        }
+
+                                        th, td {
+                                        text-align: left;
+                                        padding: 10px;
+                                        border-bottom: 1px solid #ddd;
+                                        }
+
+                                        th {
+                                        background-color: #f4f4f4;
+                                        }
+
+                                        .btn-pilih {
+                                        background-color: #2196F3;
+                                        color: white;
+                                        border: none;
+                                        padding: 5px 10px;
+                                        cursor: pointer;
+                                        }
+
+                                        .stok-kosong {
+                                        color: red;
+                                        font-size: 12px;
+                                        padding: 5px 10px;
+                                        cursor: pointer;
+                                        }
+                                    </style>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <i class="bi bi-search"></i>
                                     </div>
+                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header d-flex align-items-center">
+                                                    <h4 class="modal-title" id="myLargeModalLabel">Hasil Pencarian</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
+                                                    <div class="popup">
+                                                        <h2>Data Obat</h2>
+                                                        <label>Tampilkan
+                                                            <select>
+                                                                <option>10</option>
+                                                                <option>25</option>
+                                                                <option>50</option>
+                                                            </select> entri
+                                                        </label>
+                                                        <input type="text" placeholder="Cari..." style="float: right;">
+                                                        <table>
+                                                        <thead>
+                                                            <tr>
+                                                            <th>Nama Obat</th>
+                                                            <th>Harga Jual</th>
+                                                            <th>Stok Obat</th>
+                                                            <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
+                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                        </tbody>
+                                                        </table>
+                                                     </div>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
@@ -934,14 +1074,14 @@
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row g-2 mb-2">
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <input type="date" class="form-control">
                                         </div>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2">
-                                            <button class="btn btn-secondary w-100">Tambah +</button>
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
@@ -1108,7 +1248,7 @@
                 <div class="modal-body">
                     <!-- Gambar Anatomi -->
                     <div class="text-center mb-4">
-                        <img src="path/to/anatomi.png" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 300px;">
+                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh" class="img-fluid" style="max-height: 500px;">
                     </div>
                     <!-- Textarea Keterangan -->
                     <div class="mb-3">
@@ -1542,6 +1682,7 @@
             </div>
         </div>
     </div>
+
     <style>
         /* Styling khusus untuk modal Surat Keterangan Sakit */
         #modalSakit .modal-content {
@@ -1628,15 +1769,19 @@
 
 @endsection
 
+
+
 @section('scripts')
+  
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
@@ -2153,31 +2298,6 @@ $('#search-results').hide();
 </script>
 
 <script>
-    const icdData = [
-      { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
-      { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
-      { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
-      { kode: '0009', nama: 'Other therapeutic ultrasound' }
-    ];
-
-    const tbody = document.getElementById("icd9Body");
-    icdData.forEach(item => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td><button class="btn btn-primary btn-sm" onclick="pilihICD('${item.kode}', '${item.nama}')">Pilih</button></td>
-        <td>${item.kode}</td>
-        <td>${item.nama}</td>
-      `;
-      tbody.appendChild(row);
-    });
-
-    function pilihICD(kode, nama) {
-      alert("Anda memilih ICD: " + kode + " - " + nama);
-      // Anda bisa ganti alert dengan logika menyimpan ke form, dll
-    }
-  </script>
-
-<script>
         document.addEventListener("DOMContentLoaded", function() {
             const previousBtn = document.querySelector('a[href="#previous"]');
             if (previousBtn) {
@@ -2192,6 +2312,16 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
-    </script>
+        const table = new DataTable('#icdTable', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            pageLength: 10, // Default: tampilkan 10 entri
+            lengthMenu: [5, 10, 25, 50, 100]
+    });
+      
+      
+</script>
 
 @endsection
