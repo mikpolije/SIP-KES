@@ -772,12 +772,13 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
-                                    <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="icd9Search" placeholder="Ketik kode atau tindakan">
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" id="icd9Search" placeholder="Ketik kode atau tindakan ICD 9">
                                         <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#icd9Modal">
-                                         <i class="bi bi-search"></i> Cari
-                                         </button>
+                                        <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #B3B9F9;">
@@ -1635,6 +1636,7 @@
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi canvas ketika modal ditampilkan
