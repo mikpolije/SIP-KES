@@ -965,14 +965,16 @@
         }
     </style>
 
-<div id="icd9Popup" class="popup-container">
-    <div class="popup-content">
-        <div class="popup-header">
-            <span class="popup-title">Data ICD 9</span>
-            <span class="close-button" onclick="closePopup()">&times;</span>
-        </div>
-
-        <div class="filter-controls">
+<div id="popup-container" class="popup-container">
+                                        <div id="popup-content" class="popup-content">
+                                            <span class="close-button">&times;</span>
+                                            <h2>Data ICD 9</h2>
+                                            <div id="hasil-pencarian">
+                                            </div>
+                                        </div>
+                                    </div
+                                    
+                                    class="filter-controls">
             <label for="tampilkan">Tampilkan</label>
             <select id="tampilkan">
                 <option value="10">10</option>
