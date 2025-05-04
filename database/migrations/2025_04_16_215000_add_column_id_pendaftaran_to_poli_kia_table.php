@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('layanan_kia', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran');
             $table->string('no_antrian');
             $table->date('tanggal');
             $table->enum('jenis_pemeriksaan', ['Kehamilan','Persalinan','KB','Anak']);
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->integer('spo2');
             $table->integer('respirasi');
 
-            // $table->foreign('id_pendaftaran')->references('id_pendaftaran')->on('pendaftaran');
+            $table->foreign('id_pendaftaran')->references('id_pendaftaran')->on('pendaftaran');
 
             $table->timestamps();
         });
