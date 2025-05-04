@@ -154,24 +154,29 @@ return new class extends Migration
         Schema::create('pendaftaran', function (Blueprint $table) {
             $table->id('id_pendaftaran');
             $table->string('no_rm', 6);
-            $table->unsignedBigInteger('id_dokter');
-            $table->unsignedBigInteger('id_wali_pasien');
 
             $table->foreign('no_rm')
                 ->references('no_rm')
                 ->on('data_pasien')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreign('id_dokter')
+            $table->foreignId('id_dokter')
                 ->references('id')
                 ->on('dokter')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreign('id_wali_pasien')
+            $table->foreignId('id_wali_pasien')
                 ->references('id')
                 ->on('wali_pasien')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+        });
+
+        Schema::create('icd10', function (Blueprint $table) {
+            $table->id();
+            $table->string('code', 6)->unique();
+            $table->string('display');
+            $table->string('version', 10);
         });
     }
 
@@ -187,5 +192,6 @@ return new class extends Migration
         Schema::dropIfExists('anak');
         Schema::dropIfExists('bidan');
         Schema::dropIfExists('pendaftaran');
+        Schema::dropIfExists('icd10');
     }
 };
