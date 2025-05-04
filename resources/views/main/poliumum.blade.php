@@ -880,164 +880,227 @@
 
 <style>
     .popup-container {
-        display: none; /* Sembunyikan pop-up secara default */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
-        z-index: 1000; /* Pastikan pop-up berada di atas elemen lain */
-    }
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: auto; /* Tambahkan overflow untuk seluruh pop-up jika terlalu tinggi */
+}
 
-    .popup-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        width: 80%; /* Sesuaikan lebar pop-up */
-        max-height: 80vh; /* Sesuaikan tinggi maksimum pop-up */
-        overflow-y: auto; /* Tambahkan scroll jika konten terlalu panjang */
-    }
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px; /* Tambahkan border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan shadow */
+    width: 90%; /* Sesuaikan lebar */
+    max-width: 700px; /* Tambahkan max-width */
+    padding: 20px;
+}
 
-    .close-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee; /* Garis bawah header */
+    padding-bottom: 10px;
+}
 
-    .hasil-pencarian-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+.popup-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
 
-    .hasil-pencarian-table th, .hasil-pencarian-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+.close-button {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
 
-    .pilih-button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 3px;
-        cursor: pointer;
-    }
+.close-button:hover {
+    color: #333;
+}
 
-    .pilih-button:hover {
-        background-color: #0056b3;
-    }
+.hasil-pencarian-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.hasil-pencarian-table th, .hasil-pencarian-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Garis pemisah baris */
+}
+
+.hasil-pencarian-table th {
+    background-color: #f8f9fa; /* Warna latar belakang header */
+    font-weight: bold;
+    color: #555;
+}
+
+.hasil-pencarian-table tbody tr:hover {
+    background-color: #f5f5f5; /* Efek hover pada baris */
+}
+
+.pilih-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.pilih-button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling tambahan untuk input dan search (jika ada di pop-up) */
+.popup-search-container {
+    margin-bottom: 15px;
+}
+
+.popup-search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const cariIcd9Button = document.getElementById('cari-icd9');
-        const popupContainer = document.getElementById('popup-container');
-        const closeButton = document.querySelector('.close-button');
-        const hasilPencarianDiv = document.getElementById('hasil-pencarian');
-        const icd9SearchInput = document.getElementById('icd9Search'); // Gunakan ID input yang benar
+    const cariIcd9Button = document.getElementById('cari-icd9');
+    const popupContainer = document.getElementById('popup-container');
+    const hasilPencarianDiv = document.getElementById('hasil-pencarian');
+    const icd9SearchInput = document.getElementById('icd9Search');
 
-        cariIcd9Button.addEventListener('click', function() {
-            const kodeAtauTindakan = icd9SearchInput.value.trim();
+    // Fungsi untuk menampilkan pop-up
+    function showPopup(results) {
+        hasilPencarianDiv.innerHTML = ''; // Bersihkan hasil sebelumnya
 
-            // **Simulasi Data ICD 9 (Ganti dengan data atau API Anda)**
-            const dataIcd9 = [
-                { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
-                { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
-                { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
-                { kode: '0009', nama: 'Other therapeutic ultrasound' },
-                { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
-                { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
-                { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
-                { kode: '0013', nama: 'Injection or infusion of nesiritide' },
-                { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
-                { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
-                // ... tambahkan data ICD 9 lengkap Anda di sini
-            ];
+        // Buat header pop-up
+        const popupHeader = document.createElement('div');
+        popupHeader.classList.add('popup-header');
 
-            // Filter data berdasarkan input
-            const hasilPencarianFilter = dataIcd9.filter(item =>
-                item.kode.toLowerCase().includes(kodeAtauTindakan.toLowerCase()) ||
-                item.nama.toLowerCase().includes(kodeAtauTindakan.toLowerCase())
-            );
+        const popupTitle = document.createElement('h2');
+        popupTitle.classList.add('popup-title');
+        popupTitle.textContent = 'Data ICD 9';
 
-            // Tampilkan hasil dalam bentuk tabel
-            hasilPencarianDiv.innerHTML = '';
-            if (hasilPencarianFilter.length > 0) {
-                const table = document.createElement('table');
-                table.classList.add('hasil-pencarian-table');
-
-                // Header tabel
-                const thead = document.createElement('thead');
-                const headerRow = document.createElement('tr');
-                const kodeHeader = document.createElement('th');
-                kodeHeader.textContent = 'Kode';
-                const namaHeader = document.createElement('th');
-                namaHeader.textContent = 'Nama';
-                const aksiHeader = document.createElement('th');
-                aksiHeader.textContent = 'Aksi';
-                headerRow.appendChild(kodeHeader);
-                headerRow.appendChild(namaHeader);
-                headerRow.appendChild(aksiHeader);
-                thead.appendChild(headerRow);
-                table.appendChild(thead);
-
-                // Body tabel
-                const tbody = document.createElement('tbody');
-                hasilPencarianFilter.forEach(item => {
-                    const row = document.createElement('tr');
-                    const kodeCell = document.createElement('td');
-                    kodeCell.textContent = item.kode;
-                    const namaCell = document.createElement('td');
-                    namaCell.textContent = item.nama;
-                    const aksiCell = document.createElement('td');
-                    const pilihButton = document.createElement('button');
-                    pilihButton.classList.add('pilih-button');
-                    pilihButton.textContent = 'Pilih';
-                    pilihButton.addEventListener('click', function() {
-                        // **Ganti dengan logika untuk mengisi input yang sesuai di form Anda**
-                        // Contoh: Jika Anda ingin mengisi input dengan ID 'kode_icd9'
-                        const kodeIcd9Input = document.getElementById('kode_icd9');
-                        if (kodeIcd9Input) {
-                            kodeIcd9Input.value = item.kode;
-                        }
-                        // Tutup pop-up
-                        popupContainer.style.display = 'none';
-                    });
-                    aksiCell.appendChild(pilihButton);
-                    row.appendChild(kodeCell);
-                    row.appendChild(namaCell);
-                    row.appendChild(aksiCell);
-                    tbody.appendChild(row);
-                });
-                table.appendChild(tbody);
-                hasilPencarianDiv.appendChild(table);
-            } else {
-                hasilPencarianDiv.textContent = 'Tidak ada hasil ditemukan.';
-            }
-
-            popupContainer.style.display = 'block';
-        });
-
-        closeButton.addEventListener('click', function() {
+        const closeButton = document.createElement('button');
+        closeButton.classList.add('close-button');
+        closeButton.innerHTML = '&times;';
+        closeButton.addEventListener('click', () => {
             popupContainer.style.display = 'none';
         });
 
-        window.addEventListener('click', function(event) {
-            if (event.target === popupContainer) {
-                popupContainer.style.display = 'none';
-            }
-        });
+        popupHeader.appendChild(popupTitle);
+        popupHeader.appendChild(closeButton);
+        hasilPencarianDiv.appendChild(popupHeader);
+
+        if (results.length > 0) {
+            const table = document.createElement('table');
+            table.classList.add('hasil-pencarian-table');
+
+            // Header tabel
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            const kodeHeader = document.createElement('th');
+            kodeHeader.textContent = 'Kode';
+            const namaHeader = document.createElement('th');
+            namaHeader.textContent = 'Nama';
+            const aksiHeader = document.createElement('th');
+            aksiHeader.textContent = 'Aksi';
+            headerRow.appendChild(kodeHeader);
+            headerRow.appendChild(namaHeader);
+            headerRow.appendChild(aksiHeader);
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Body tabel
+            const tbody = document.createElement('tbody');
+            results.forEach(item => {
+                const row = document.createElement('tr');
+                const kodeCell = document.createElement('td');
+                kodeCell.textContent = item.kode;
+                const namaCell = document.createElement('td');
+                namaCell.textContent = item.nama;
+                const aksiCell = document.createElement('td');
+                const pilihButton = document.createElement('button');
+                pilihButton.classList.add('pilih-button');
+                pilihButton.textContent = 'Pilih';
+                pilihButton.addEventListener('click', function() {
+                    const kodeIcd9Input = document.getElementById('kode_icd9'); // Ganti dengan ID input ICD 9 Anda
+                    if (kodeIcd9Input) {
+                        kodeIcd9Input.value = item.kode;
+                    }
+                    popupContainer.style.display = 'none';
+                });
+                aksiCell.appendChild(pilihButton);
+                row.appendChild(kodeCell);
+                row.appendChild(namaCell);
+                row.appendChild(aksiCell);
+                tbody.appendChild(row);
+            });
+            table.appendChild(tbody);
+            hasilPencarianDiv.appendChild(table);
+        } else {
+            const noResults = document.createElement('p');
+            noResults.textContent = 'Tidak ada hasil ditemukan.';
+            hasilPencarianDiv.appendChild(noResults);
+        }
+
+        popupContainer.style.display = 'block';
+    }
+
+    cariIcd9Button.addEventListener('click', function() {
+        const kodeAtauTindakan = icd9SearchInput.value.trim();
+
+        // **Simulasi Data ICD 9 (Ganti dengan data atau API Anda)**
+        const dataIcd9 = [
+            { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
+            { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
+            { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
+            { kode: '0009', nama: 'Other therapeutic ultrasound' },
+            { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
+            { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
+            { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
+            { kode: '0013', nama: 'Injection or infusion of nesiritide' },
+            { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
+            { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
+            // ... tambahkan data ICD 9 lengkap Anda di sini
+        ];
+
+        // Filter data berdasarkan input
+        const hasilPencarianFilter = dataIcd9.filter(item =>
+            item.kode.toLowerCase().includes(kodeAtauTindakan.toLowerCase()) ||
+            item.nama.toLowerCase().includes(kodeAtauTindakan.toLowerCase())
+        );
+
+        showPopup(hasilPencarianFilter);
     });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === popupContainer) {
+            popupContainer.style.display = 'none';
+        }
+    });
+});
 </script>
 
                                     <div class="table-responsive">
