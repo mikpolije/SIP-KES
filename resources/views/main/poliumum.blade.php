@@ -861,12 +861,12 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
-                                    <div class="icd9-section">
-    <label>ICD 9 - CM</label><br>
-    <input type="text" placeholder="Ketik Kode Tindakan">
-    <button onclick="openPopup()">🔍</button>
-  </div>
-
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" id="icd9Search"
+                                            placeholder="Ketik Kode atau Tindakan">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
@@ -887,8 +887,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -928,7 +926,7 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button class="btn btn-outline-secondary" type="button"><i
+                                        <button data-bs-toggle="modal" data-bs-target="#layananModal" class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
@@ -947,6 +945,88 @@
                                     </table>
                                 </div>
                             </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table
+                                        id="layananTable"
+                                        class="display"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th></th>
+                                            <th>Nama Layanan</th>
+                                            <th>Tarif</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Jasa Perawat</td>
+                                            <td>Rp 10.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Jasa Pasang Infus</td>
+                                            <td>Rp 30.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Bekam</td>
+                                            <td>Rp 50.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Perawatan Luka Ringan</td>
+                                            <td>Rp 30.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Perawatan Luka Infeksi</td>
+                                            <td>Rp 70.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Administrasi</td>
+                                            <td>Rp 5.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Injeksi Vitamin</td>
+                                            <td>Rp 50.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Nebulizer</td>
+                                            <td>Rp 25.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Tensi</td>
+                                            <td>Rp 10.000,-</td>
+                                          </tr>
+                                          <tr>
+                                            <td><button class="btn-pilih">Pilih</button></td>
+                                            <td>Cek Gula Darah</td>
+                                            <td>Rp 10.000,-</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+  
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
@@ -2323,7 +2403,15 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
     });
       
-      
+});
+        const table = new DataTable('#layananTable', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            pageLength: 10, // Default: tampilkan 10 entri
+            lengthMenu: [5, 10, 25, 50, 100]
+    });
 </script>
 
 @endsection
