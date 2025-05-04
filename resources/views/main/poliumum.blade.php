@@ -1150,12 +1150,7 @@
                 { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
                 { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
                 { kode: '0013', nama: 'Injection or infusion of nesiritide' },
-                { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
-                { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
-                { kode: '0016', nama: 'Some other procedure 1' },
-                { kode: '0017', nama: 'Another procedure 2' },
-                { kode: '0018', nama: 'Yet another procedure 3' },
-                { kode: '0019', nama: 'Final procedure example 4' },
+                
                 // ... tambahkan data ICD 9 lengkap Anda di sini
             ];
             const hasilPencarianFilter = dataIcd9.filter(item =>
