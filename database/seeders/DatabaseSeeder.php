@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DataPasien;
 use App\Models\Dokter;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,6 +29,8 @@ class DatabaseSeeder extends Seeder
             DistrictsSeeder::class,
             VillagesSeeder::class,
         ]);
+
+        DataPasien::factory(50)->create();
 
         User::factory()->create([
             'name' => 'Test User',
