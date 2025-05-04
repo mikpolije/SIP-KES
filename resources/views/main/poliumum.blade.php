@@ -864,9 +864,9 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd9Search"
                                             placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                            <button data-bs-toggle="modal" data-bs-target="#layananModal" class="btn btn-outline-secondary" type="button">
+                                                <i class="bi bi-search"></i>
+                                            </button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
@@ -887,6 +887,75 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div id="popup-container" class="popup-container">
+    <div id="popup-content" class="popup-content">
+        <span class="close-button">&times;</span>
+        <h2>Data ICD 9</h2>
+        <div id="hasil-pencarian">
+            </div>
+    </div>
+</div>
+
+<style>
+    .popup-container {
+        display: none; /* Sembunyikan pop-up secara default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
+        z-index: 1000; /* Pastikan pop-up berada di atas elemen lain */
+    }
+
+    .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 80%; /* Sesuaikan lebar pop-up */
+        max-height: 80vh; /* Sesuaikan tinggi maksimum pop-up */
+        overflow-y: auto; /* Tambahkan scroll jika konten terlalu panjang */
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .hasil-pencarian-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .hasil-pencarian-table th, .hasil-pencarian-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .pilih-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .pilih-button:hover {
+        background-color: #0056b3;
+    }
+</style>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -2411,6 +2480,104 @@ $('#search-results').hide();
             info: true,
             pageLength: 10, // Default: tampilkan 10 entri
             lengthMenu: [5, 10, 25, 50, 100]
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cariIcd9Button = document.getElementById('cari-icd9');
+        const popupContainer = document.getElementById('popup-container');
+        const closeButton = document.querySelector('.close-button');
+        const hasilPencarianDiv = document.getElementById('hasil-pencarian');
+        const icd9Input = document.getElementById('icd9'); // Sesuaikan ID dengan input ICD 9 Anda
+
+        cariIcd9Button.addEventListener('click', function() {
+            const kodeIcd9 = icd9Input.value.trim();
+
+            // **Simulasi Data ICD 9 (Ganti dengan data atau API Anda)**
+            const dataIcd9 = [
+                { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
+                { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
+                { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
+                { kode: '0009', nama: 'Other therapeutic ultrasound' },
+                { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
+                { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
+                { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
+                { kode: '0013', nama: 'Injection or infusion of nesiritide' },
+                { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
+                { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
+                // ... tambahkan data ICD 9 lengkap Anda di sini
+            ];
+
+            // Filter data berdasarkan input
+            const hasilPencarianFilter = dataIcd9.filter(item =>
+                item.kode.toLowerCase().includes(kodeIcd9.toLowerCase()) ||
+                item.nama.toLowerCase().includes(kodeIcd9.toLowerCase())
+            );
+
+            // Tampilkan hasil dalam bentuk tabel
+            hasilPencarianDiv.innerHTML = '';
+            if (hasilPencarianFilter.length > 0) {
+                const table = document.createElement('table');
+                table.classList.add('hasil-pencarian-table');
+
+                // Header tabel
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                const kodeHeader = document.createElement('th');
+                kodeHeader.textContent = 'Kode';
+                const namaHeader = document.createElement('th');
+                namaHeader.textContent = 'Nama';
+                const aksiHeader = document.createElement('th');
+                aksiHeader.textContent = 'Aksi';
+                headerRow.appendChild(kodeHeader);
+                headerRow.appendChild(namaHeader);
+                headerRow.appendChild(aksiHeader);
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                // Body tabel
+                const tbody = document.createElement('tbody');
+                hasilPencarianFilter.forEach(item => {
+                    const row = document.createElement('tr');
+                    const kodeCell = document.createElement('td');
+                    kodeCell.textContent = item.kode;
+                    const namaCell = document.createElement('td');
+                    namaCell.textContent = item.nama;
+                    const aksiCell = document.createElement('td');
+                    const pilihButton = document.createElement('button');
+                    pilihButton.classList.add('pilih-button');
+                    pilihButton.textContent = 'Pilih';
+                    pilihButton.addEventListener('click', function() {
+                        // Isi input ICD 9 dengan kode yang dipilih
+                        icd9Input.value = item.kode;
+                        // Tutup pop-up
+                        popupContainer.style.display = 'none';
+                    });
+                    aksiCell.appendChild(pilihButton);
+                    row.appendChild(kodeCell);
+                    row.appendChild(namaCell);
+                    row.appendChild(aksiCell);
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
+                hasilPencarianDiv.appendChild(table);
+            } else {
+                hasilPencarianDiv.textContent = 'Tidak ada hasil ditemukan.';
+            }
+
+            popupContainer.style.display = 'block';
+        });
+
+        closeButton.addEventListener('click', function() {
+            popupContainer.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === popupContainer) {
+                popupContainer.style.display = 'none';
+            }
+        });
     });
 </script>
 
