@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Master\Doctor;
+use App\Models\Dokter;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Doctor::factory(100)->create();
+        Dokter::factory(100)->create();
 
         $this->call([
             ProvincesSeeder::class,

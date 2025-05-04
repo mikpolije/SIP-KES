@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Master;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Doctor extends Model
+class Dokter extends Model
 {
     use SoftDeletes, HasFactory;
 

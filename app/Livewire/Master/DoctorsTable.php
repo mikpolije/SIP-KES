@@ -2,15 +2,15 @@
 
 namespace App\Livewire\Master;
 
+use App\Models\Dokter;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Master\Doctor;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class DoctorsTable extends DataTableComponent
 {
-    protected $model = Doctor::class;
+    protected $model = Dokter::class;
 
     public function configure(): void
     {
