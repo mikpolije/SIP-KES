@@ -869,12 +869,7 @@
                                             </button>
                                     </div>
 
-                                    <div id="popup-container" class="popup-container">
-                                        <div id="popup-content" class="popup-content">
-
-                                        </div>
-                                    </div>
-
+                                   
                                     <div id="popup-container" class="popup-container">
                                         <div id="popup-content" class="popup-content">
                                             <span class="close-button">&times;</span>
@@ -885,113 +880,124 @@
                                     </div>
 
 <style>
-    <style>
     .popup-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        overflow: auto;
-    }
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: auto; /* Tambahkan overflow untuk seluruh pop-up jika terlalu tinggi */
+}
 
-    .popup-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        width: 90%;
-        max-width: 700px;
-        padding: 20px;
-    }
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px; /* Tambahkan border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan shadow */
+    width: 90%; /* Sesuaikan lebar */
+    max-width: 700px; /* Tambahkan max-width */
+    padding: 20px;
+}
 
-    .popup-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 15px;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 10px;
-    }
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee; /* Garis bawah header */
+    padding-bottom: 10px;
+}
 
-    .popup-title {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #333;
-    }
+.popup-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
 
-    .close-button {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #aaa;
-        cursor: pointer;
-        border: none;
-        background: none;
-        padding: 0;
-    }
+.close-button {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
 
-    .close-button:hover {
-        color: #333;
-    }
+.close-button:hover {
+    color: #333;
+}
 
-    .popup-filter-container {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        gap: 10px;
-    }
+.hasil-pencarian-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
 
-    .popup-filter-select, .popup-filter-input {
-        padding: 6px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
+.hasil-pencarian-table th, .hasil-pencarian-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Garis pemisah baris */
+}
 
-    .popup-filter-input {
-        flex-grow: 1;
-    }
+.hasil-pencarian-table th {
+    background-color: #f8f9fa; /* Warna latar belakang header */
+    font-weight: bold;
+    color: #555;
+}
 
-    .hasil-pencarian-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
+.hasil-pencarian-table tbody tr:hover {
+    background-color: #f5f5f5; /* Efek hover pada baris */
+}
 
-    .hasil-pencarian-table th, .hasil-pencarian-table td {
-        padding: 10px;
-        text-align: left;
-        border-bottom: 1px solid #eee;
-    }
+.pilih-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
 
-    .hasil-pencarian-table th {
-        background-color: #f8f9fa;
-        font-weight: bold;
-        color: #555;
-    }
+.pilih-button:hover {
+    background-color: #0056b3;
+}
 
-    .hasil-pencarian-table tbody tr:hover {
-        background-color: #f5f5f5;
-    }
+/* Styling tambahan untuk input dan search (jika ada di pop-up) */
+.popup-search-container {
+    margin-bottom: 15px;
+}
 
-    .pilih-button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 0.9em;
-    }
+.popup-search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.popup-filter-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
 
-    .pilih-button:hover {
-        background-color: #0056b3;
-    }
+.popup-filter-select, .popup-filter-input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.popup-filter-input {
+    flex-grow: 1;
+}
 </style>
 
 <script>
