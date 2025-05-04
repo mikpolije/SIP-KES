@@ -864,9 +864,7 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd9Search"
                                             placeholder="Ketik Kode atau Tindakan">
-                                            <button class="btn btn-outline-secondary" type="button" id="cari-icd9">
-                                                <i class="bi bi-search"></i> 
-                                            </button>
+                                            <button onclick="openPopup()">Show ICD 9 Data</button>
                                     </div>
                                     <style>
         .popup-container {
