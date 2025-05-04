@@ -800,14 +800,13 @@
                         </div>
 
                         <!-- Modal ICD 9 -->
-<div class="modal fade" id="modalICD9" tabindex="-1" aria-labelledby="modalICD9Label" aria-hidden="true">
+  <div class="modal fade" id="modalICD9" tabindex="-1" aria-labelledby="modalICD9Label" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content shadow rounded-4">
       <div class="modal-header">
         <h5 class="modal-title fw-semibold" id="modalICD9Label">Data ICD 9</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalICD9">Cari ICD-9</button>
       <div class="modal-body">
         <table id="tableICD9" class="table table-bordered table-hover" width="100%">
           <thead class="table-light">
@@ -835,6 +834,7 @@
     </div>
   </div>
 </div>
+
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
