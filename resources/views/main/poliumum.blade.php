@@ -765,9 +765,83 @@
                             </div>
 
                             <head>
-  <meta charset="UTF-8">
-  <title>Pop-up ICD-9 Sederhana</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                            <head>
+<title>ICD 9 Data</title>
+<style>
+  .popup-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close-button:hover,
+  .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .action-button {
+    background-color: #007bff; /* Example button color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .search-container {
+    margin-bottom: 10px;
+    text-align: right;
+  }
+
+  .search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+</style>
 </head>
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
@@ -800,38 +874,75 @@
                         </div>
 
                         <!-- Modal ICD 9 -->
-  <div class="modal fade" id="modalICD9" tabindex="-1" aria-labelledby="modalICD9Label" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content shadow rounded-4">
-      <div class="modal-header">
-        <h5 class="modal-title fw-semibold" id="modalICD9Label">Data ICD 9</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <table id="tableICD9" class="table table-bordered table-hover" width="100%">
-          <thead class="table-light">
-            <tr>
-              <th style="width:10%">Pilih</th>
-              <th style="width:15%">Kode</th>
-              <th>Nama</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><button class="btn btn-sm btn-primary btn-pilih" data-kode="0001" data-nama="Therapeutic ultrasound of vessels of head and neck">Pilih</button></td>
-              <td>0001</td>
-              <td>Therapeutic ultrasound of vessels of head and neck</td>
-            </tr>
-            <tr>
-              <td><button class="btn btn-sm btn-primary btn-pilih" data-kode="0002" data-nama="Therapeutic ultrasound of hearth">Pilih</button></td>
-              <td>0002</td>
-              <td>Therapeutic ultrasound of hearth</td>
-            </tr>
-            <!-- Tambahkan data lain di sini -->
-          </tbody>
-        </table>
-      </div>
+                        <button onclick="openPopup()">Tampilkan Data ICD 9</button>
+
+<div id="icd9Popup" class="popup-container">
+  <div class="popup-content">
+    <span class="close-button" onclick="closePopup()">&times;</span>
+    <h2>Data ICD 9</h2>
+    <div class="search-container">
+      Cari: <input type="text" class="search-input">
     </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Kode</th>
+          <th>Nama</th>
+          <th></th> </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0001</td>
+          <td>Therapeutic ultrasound of vessels of head and neck</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0002</td>
+          <td>Therapeutic ultrasound of heart</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0003</td>
+          <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0009</td>
+          <td>Other therapeutic ultrasound</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0010</td>
+          <td>Implantation of chemotherapeutic agent</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0011</td>
+          <td>Infusion of drotrecogin alfa (activated)</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0012</td>
+          <td>Administration of inhaled nitric oxide</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0013</td>
+          <td>Injection or infusion of nesiritide</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0014</td>
+          <td>Injection or infusion of oxazolidinone class of antibiotics</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        <tr>
+          <td>0015</td>
+          <td>High-dose infusion interleukin-2 [il-2]</td>
+          <td><button class="action-button">Pilih</button></td>
+        </tr>
+        </tbody>
+    </table>
   </div>
 </div>
 
@@ -2145,29 +2256,32 @@ $('#search-results').hide();
 </script>
 
 <script>
-    const icdData = [
-      { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
-      { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
-      { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
-      { kode: '0009', nama: 'Other therapeutic ultrasound' }
-    ];
+// Get the popup
+var popup = document.getElementById("icd9Popup");
 
-    const tbody = document.getElementById("icd9Body");
-    icdData.forEach(item => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td><button class="btn btn-primary btn-sm" onclick="pilihICD('${item.kode}', '${item.nama}')">Pilih</button></td>
-        <td>${item.kode}</td>
-        <td>${item.nama}</td>
-      `;
-      tbody.appendChild(row);
-    });
+// Get the button that opens the popup
+var btn = document.querySelector("button");
 
-    function pilihICD(kode, nama) {
-      alert("Anda memilih ICD: " + kode + " - " + nama);
-      // Anda bisa ganti alert dengan logika menyimpan ke form, dll
-    }
-  </script>
+// Get the <span> element that closes the popup
+var span = document.querySelector(".close-button");
+
+// When the user clicks the button, open the popup
+function openPopup() {
+  popup.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the popup
+function closePopup() {
+  popup.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the popup, close it
+window.onclick = function(event) {
+  if (event.target == popup) {
+    popup.style.display = "none";
+  }
+}
+</script>
 
 <script>
         document.addEventListener("DOMContentLoaded", function() {
