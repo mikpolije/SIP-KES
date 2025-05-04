@@ -772,12 +772,11 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd9Search"
-                                            placeholder="Ketik Kode atau Tindakan">
-                                            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#icd9Modal">
-                                                <i class="bi bi-search"></i>
-                                            </button>
+                                    <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="icd9Search" placeholder="Ketik kode atau tindakan">
+                                        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#icd9Modal">
+                                         <i class="bi bi-search"></i> Cari
+                                         </button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
