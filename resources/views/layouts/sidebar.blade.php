@@ -320,7 +320,7 @@
         </ul>
     </li>
     <li class="sidebar-item">
-        <a class="sidebar-link has-arrow {{ request()->is('dokter') ? 'active' : '' }}" href="javascript:void(0)"
+        <a class="sidebar-link has-arrow {{ request()->is('dokter') || request()->is('layanan') ? 'active' : '' }}" href="javascript:void(0)"
             aria-expanded="false">
             <span class="d-flex">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -331,7 +331,7 @@
             </span>
             <span class="hide-menu">Master Data</span>
         </a>
-        <ul class="first-level {{ request()->is('dokter') ? 'in' : '' }} collapse" aria-expanded="false">
+        <ul class="first-level {{ request()->is('dokter') || request()->is('layanan') ? 'in' : '' }} collapse" aria-expanded="false">
             <li class="sidebar-item">
                 <a class="sidebar-link {{ request()->is('main/stokopname') ? 'active' : '' }}" href="/main/stokopname"
                     aria-expanded="false">
@@ -351,7 +351,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/blog-detail">
+                <a class="sidebar-link {{ request()->is('layanan') ? 'active' : '' }}" href="{{ route('layanan.index') }}">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                     </div>
