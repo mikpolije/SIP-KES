@@ -859,145 +859,152 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <h5 class="fw-bold">ICD 9 - CM</h5>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd9Search"
-                                            placeholder="Ketik Kode atau Tindakan">
-                                            <button class="btn btn-outline-secondary" type="button" id="cari-icd9">
-                                                <i class="bi bi-search"></i> 
-                                            </button>
-                                    </div>
+    <div class="card p-3 h-100">
+        <h5 class="fw-bold">ICD 9 - CM</h5>
+        <div class="input-group mb-2">
+            <input type="text" class="form-control" id="icd9Search"
+                   placeholder="Ketik Kode atau Tindakan">
+            <button class="btn btn-outline-secondary" type="button" id="cari-icd9">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
 
                                    
-                                    <div id="popup-container" class="popup-container">
-                                        <div id="popup-content" class="popup-content">
-                                            <span class="close-button">&times;</span>
-                                            <h2>Data ICD 9</h2>
-                                            <div id="hasil-pencarian">
-                                            </div>
-                                        </div>
-                                    </div>
+<div id="popup-container" class="popup-container">
+    <div id="popup-content" class="popup-content">
+        <div class="popup-header">
+            <h2 class="popup-title">Data ICD 9</h2>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="popup-filter-container">
+            <div class="filter-left">
+                <label>Tampilkan <select class="popup-filter-select">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select> entri</label>
+            </div>
+            <div class="filter-right">
+                <label>Cari: <input type="text" class="popup-filter-input" placeholder="Cari..."></label>
+            </div>
+        </div>
+        <div id="hasil-pencarian">
+        </div>
+    </div>
+</div>
 
 <style>
     .popup-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    overflow: auto; /* Tambahkan overflow untuk seluruh pop-up jika terlalu tinggi */
-}
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        overflow: auto;
+    }
 
-.popup-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 8px; /* Tambahkan border-radius */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan shadow */
-    width: 90%; /* Sesuaikan lebar */
-    max-width: 700px; /* Tambahkan max-width */
-    padding: 20px;
-}
+    .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 700px;
+        padding: 20px;
+    }
 
-.popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee; /* Garis bawah header */
-    padding-bottom: 10px;
-}
+    .popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
 
-.popup-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-}
+    .popup-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #333;
+    }
 
-.close-button {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #aaa;
-    cursor: pointer;
-    border: none;
-    background: none;
-    padding: 0;
-}
+    .close-button {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #aaa;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0;
+    }
 
-.close-button:hover {
-    color: #333;
-}
+    .close-button:hover {
+        color: #333;
+    }
 
-.hasil-pencarian-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
+    .popup-filter-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
 
-.hasil-pencarian-table th, .hasil-pencarian-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #eee; /* Garis pemisah baris */
-}
+    .filter-left, .filter-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-.hasil-pencarian-table th {
-    background-color: #f8f9fa; /* Warna latar belakang header */
-    font-weight: bold;
-    color: #555;
-}
+    .popup-filter-select, .popup-filter-input {
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
 
-.hasil-pencarian-table tbody tr:hover {
-    background-color: #f5f5f5; /* Efek hover pada baris */
-}
+    .hasil-pencarian-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
 
-.pilih-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-}
+    .hasil-pencarian-table th, .hasil-pencarian-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
 
-.pilih-button:hover {
-    background-color: #0056b3;
-}
+    .hasil-pencarian-table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: #555;
+    }
 
-/* Styling tambahan untuk input dan search (jika ada di pop-up) */
-.popup-search-container {
-    margin-bottom: 15px;
-}
+    .hasil-pencarian-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
 
-.popup-search-input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    box-sizing: border-box;
-}
-.popup-filter-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 10px;
-}
+    .pilih-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9em;
+    }
 
-.popup-filter-select, .popup-filter-input {
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.popup-filter-input {
-    flex-grow: 1;
-}
+    .pilih-button:hover {
+        background-color: #0056b3;
+    }
 </style>
 
 <script>
@@ -1005,160 +1012,106 @@
         const cariIcd9Button = document.getElementById('cari-icd9');
         const popupContainer = document.getElementById('popup-container');
         const popupContent = document.getElementById('popup-content');
+        const hasilPencarianDiv = document.getElementById('hasil-pencarian');
         const icd9SearchInput = document.getElementById('icd9Search');
+        const dataIcd9 = [
+            { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
+            { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
+            { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
+            { kode: '0009', nama: 'Other therapeutic ultrasound' },
+            { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
+            { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
+            { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
+            { kode: '0013', nama: 'Injection or infusion of nesiritide' },
+            { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
+            { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
+            { kode: '0016', nama: 'Some other procedure 1' },
+            { kode: '0017', nama: 'Another procedure 2' },
+            { kode: '0018', nama: 'Yet another procedure 3' },
+            { kode: '0019', nama: 'Final procedure example 4' },
+            // ... tambahkan data ICD 9 lengkap Anda di sini
+        ];
 
         function showPopup(results) {
-            popupContent.innerHTML = '';
+            popupContent.innerHTML = `
+                <div class="popup-header">
+                    <h2 class="popup-title">Data ICD 9</h2>
+                    <button class="close-button">&times;</button>
+                </div>
+                <div class="popup-filter-container">
+                    <div class="filter-left">
+                        <label>Tampilkan <select class="popup-filter-select">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> entri</label>
+                    </div>
+                    <div class="filter-right">
+                        <label>Cari: <input type="text" class="popup-filter-input" placeholder="Cari..."></label>
+                    </div>
+                </div>
+                <table class="hasil-pencarian-table">
+                    <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Nama</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${results.map(item => `
+                            <tr>
+                                <td>${item.kode}</td>
+                                <td>${item.nama}</td>
+                                <td><button class="pilih-button" data-kode="${item.kode}">Pilih</button></td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                ${results.length === 0 ? '<p>Tidak ada hasil ditemukan.</p>' : ''}
+            `;
 
-            // Header Pop-up
-            const popupHeader = document.createElement('div');
-            popupHeader.classList.add('popup-header');
-            const popupTitle = document.createElement('h2');
-            popupTitle.classList.add('popup-title');
-            popupTitle.textContent = 'Data ICD 9';
-            const closeButton = document.createElement('button');
-            closeButton.classList.add('close-button');
-            closeButton.innerHTML = '&times;';
-            closeButton.addEventListener('click', () => {
-                popupContainer.style.display = 'none';
-            });
-            popupHeader.appendChild(popupTitle);
-            popupHeader.appendChild(closeButton);
-            popupContent.appendChild(popupHeader);
+            const closeBtn = popupContent.querySelector('.close-button');
+            closeBtn.addEventListener('click', () => popupContainer.style.display = 'none');
 
-            // Filter Container
-            const filterContainer = document.createElement('div');
-            filterContainer.classList.add('popup-filter-container');
-            const tampilkanLabel = document.createElement('label');
-            tampilkanLabel.textContent = 'Tampilkan ';
-            const tampilkanSelect = document.createElement('select');
-            tampilkanSelect.classList.add('popup-filter-select');
-            const options = [10, 25, 50, 100];
-            options.forEach(value => {
-                const option = document.createElement('option');
-                option.value = value;
-                option.textContent = value;
-                tampilkanSelect.appendChild(option);
-            });
-            const entriLabel = document.createElement('label');
-            entriLabel.textContent = ' entri';
-            const cariLabel = document.createElement('label');
-            cariLabel.textContent = 'Cari: ';
-            const cariInput = document.createElement('input');
-            cariInput.type = 'text';
-            cariInput.classList.add('popup-filter-input');
-            cariInput.placeholder = 'Cari...';
-            cariInput.addEventListener('input', function() {
-                filterTable(this.value.toLowerCase());
-            });
-            filterContainer.appendChild(tampilkanLabel);
-            filterContainer.appendChild(tampilkanSelect);
-            filterContainer.appendChild(entriLabel);
-            filterContainer.appendChild(cariLabel);
-            filterContainer.appendChild(cariInput);
-            popupContent.appendChild(filterContainer);
-
-            if (results.length > 0) {
-                const table = document.createElement('table');
-                table.classList.add('hasil-pencarian-table');
-                const thead = document.createElement('thead');
-                const headerRow = document.createElement('tr');
-                const kodeHeader = document.createElement('th');
-                kodeHeader.textContent = 'Kode';
-                const namaHeader = document.createElement('th');
-                namaHeader.textContent = 'Nama';
-                const aksiHeader = document.createElement('th');
-                aksiHeader.textContent = 'Aksi';
-                headerRow.appendChild(kodeHeader);
-                headerRow.appendChild(namaHeader);
-                headerRow.appendChild(aksiHeader);
-                thead.appendChild(headerRow);
-                table.appendChild(thead);
-                const tbody = document.createElement('tbody');
-                results.forEach(item => {
-                    const row = document.createElement('tr');
-                    const kodeCell = document.createElement('td');
-                    kodeCell.textContent = item.kode;
-                    const namaCell = document.createElement('td');
-                    namaCell.textContent = item.nama;
-                    const aksiCell = document.createElement('td');
-                    const pilihButton = document.createElement('button');
-                    pilihButton.classList.add('pilih-button');
-                    pilihButton.textContent = 'Pilih';
-                    pilihButton.addEventListener('click', function() {
-                        const kodeIcd9Input = document.getElementById('kode_icd9'); // Ganti dengan ID input ICD 9 Anda
-                        if (kodeIcd9Input) {
-                            kodeIcd9Input.value = item.kode;
-                        }
-                        popupContainer.style.display = 'none';
-                    });
-                    aksiCell.appendChild(pilihButton);
-                    row.appendChild(kodeCell);
-                    row.appendChild(namaCell);
-                    row.appendChild(aksiCell);
-                    tbody.appendChild(row);
+            const pilihButtons = popupContent.querySelectorAll('.pilih-button');
+            pilihButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const kode = this.dataset.kode;
+                    const kodeIcd9Input = document.getElementById('kode_icd9'); // Ganti dengan ID input ICD 9 Anda
+                    if (kodeIcd9Input) {
+                        kodeIcd9Input.value = kode;
+                    }
+                    popupContainer.style.display = 'none';
                 });
-                table.appendChild(tbody);
-                popupContent.appendChild(table);
-                attachTableFiltering(table);
-            } else {
-                const noResults = document.createElement('p');
-                noResults.textContent = 'Tidak ada hasil ditemukan.';
-                popupContent.appendChild(noResults);
-            }
+            });
 
-            popupContainer.style.display = 'block';
-        }
-
-        function attachTableFiltering(table) {
-            const cariInput = document.querySelector('.popup-filter-input');
-            const rows = table.querySelector('tbody').querySelectorAll('tr');
-            const tampilkanSelect = document.querySelector('.popup-filter-select');
+            const cariInput = popupContent.querySelector('.popup-filter-input');
+            const tampilkanSelect = popupContent.querySelector('.popup-filter-select');
+            const tableRows = popupContent.querySelectorAll('.hasil-pencarian-table tbody tr');
 
             cariInput.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
-                rows.forEach(row => {
+                tableRows.forEach(row => {
                     const kode = row.cells[0].textContent.toLowerCase();
                     const nama = row.cells[1].textContent.toLowerCase();
-                    if (kode.includes(searchTerm) || nama.includes(searchTerm)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
+                    row.style.display = kode.includes(searchTerm) || nama.includes(searchTerm) ? '' : 'none';
                 });
             });
 
             tampilkanSelect.addEventListener('change', function() {
                 const rowsToShow = parseInt(this.value);
-                rows.forEach((row, index) => {
-                    if (index < rowsToShow) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
+                tableRows.forEach((row, index) => {
+                    row.style.display = index < rowsToShow ? '' : 'none';
                 });
             });
+
+            popupContainer.style.display = 'block';
         }
 
         cariIcd9Button.addEventListener('click', function() {
             const kodeAtauTindakan = icd9SearchInput.value.trim();
-            const dataIcd9 = [
-                { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
-                { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
-                { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
-                { kode: '0009', nama: 'Other therapeutic ultrasound' },
-                { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
-                { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
-                { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
-                { kode: '0013', nama: 'Injection or infusion of nesiritide' },
-                { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
-                { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
-                { kode: '0016', nama: 'Some other procedure 1' },
-                { kode: '0017', nama: 'Another procedure 2' },
-                { kode: '0018', nama: 'Yet another procedure 3' },
-                { kode: '0019', nama: 'Final procedure example 4' },
-                // ... tambahkan data ICD 9 lengkap Anda di sini
-            ];
             const hasilPencarianFilter = dataIcd9.filter(item =>
                 item.kode.toLowerCase().includes(kodeAtauTindakan.toLowerCase()) ||
                 item.nama.toLowerCase().includes(kodeAtauTindakan.toLowerCase())
@@ -1166,7 +1119,7 @@
             showPopup(hasilPencarianFilter);
         });
 
-        window.addEventListener('click', function(event) {
+        popupContainer.addEventListener('click', function(event) {
             if (event.target === popupContainer) {
                 popupContainer.style.display = 'none';
             }
