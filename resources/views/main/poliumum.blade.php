@@ -770,9 +770,9 @@
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd9Search"
                                             placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#icd9Modal">
+                                                <i class="bi bi-search"></i> Lihat Data ICD 9
+                                            </button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
@@ -793,6 +793,55 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Modal ICD-9 -->
+<div class="modal fade" id="icd9Modal" tabindex="-1" aria-labelledby="icd9ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Data ICD 9</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Tabel ICD -->
+        <table id="icd9Table" class="display table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Pilih</th>
+              <th>Kode</th>
+              <th>Nama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+              <td>0001</td>
+              <td>Therapeutic ultrasound of vessels of head and neck</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+              <td>0002</td>
+              <td>Therapeutic ultrasound of hearth</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+              <td>0003</td>
+              <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+              <td>0009</td>
+              <td>Other therapeutic ultrasound</td>
+            </tr>
+            <!-- Tambah data lainnya sesuai kebutuhan -->
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -2098,6 +2147,18 @@ $('#search-results').hide();
             alert("Harap isi keterangan terlebih dahulu.");
         }
     }
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#icd9Table').DataTable({
+      "lengthMenu": [5, 10, 20],
+      "language": {
+        "search": "Cari:",
+        "lengthMenu": "Tampilkan _MENU_ entri"
+      }
+    });
+  });
 </script>
 
 <script>
