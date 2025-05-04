@@ -868,211 +868,239 @@
                                                 <i class="bi bi-search"></i> 
                                             </button>
                                     </div>
-                                    <style>
-        .popup-container {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
 
-        .popup-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .popup-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .popup-title {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .data-table th, .data-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .data-table th {
-            background-color: #f2f2f2;
-        }
-
-        .action-button {
-            background-color: #007bff; /* Example button color */
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .filter-controls {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .filter-controls label {
-            margin-right: 10px;
-        }
-
-        .filter-controls select, .filter-controls input[type="text"] {
-            padding: 6px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-    </style>
-
-<div id="popup-container" class="popup-container">
+                                    <div id="popup-container" class="popup-container">
                                         <div id="popup-content" class="popup-content">
                                             <span class="close-button">&times;</span>
                                             <h2>Data ICD 9</h2>
                                             <div id="hasil-pencarian">
                                             </div>
                                         </div>
-                                    </div
-                                    
-                                    class="filter-controls">
-            <label for="tampilkan">Tampilkan</label>
-            <select id="tampilkan">
-                <option value="10">10</option>
-                </select>
-            <span>entri</span>
-            <div style="flex-grow: 1; text-align: right;">
-                <label for="cari">Cari:</label>
-                <input type="text" id="cari">
-            </div>
-        </div>
+                                    </div>
 
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Pilih</th>
-                    <th>Kode</th>
-                    <th>Nama</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0001</td>
-                    <td>Therapeutic ultrasound of vessels of head and neck</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0002</td>
-                    <td>Therapeutic ultrasound of hearth</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0003</td>
-                    <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0009</td>
-                    <td>Other therapeutic ultrasound</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0010</td>
-                    <td>Implantation of chemotherapeutic agent</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0011</td>
-                    <td>Infusion of drotrecogin alfa (activated)</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0012</td>
-                    <td>Administration of inhaled nitric oxide</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0013</td>
-                    <td>Injection or infusion of nesiritide</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0014</td>
-                    <td>Injection or infusion of oxazolidinone class of antibiotics</td>
-                </tr>
-                <tr>
-                    <td><button class="action-button">Pilih</button></td>
-                    <td>0015</td>
-                    <td>High-dose infusion interleukin-2 [IL-2]</td>
-                </tr>
-                </tbody>
-        </table>
-    </div>
-</div>
-                                    
+<style>
+    .popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: auto; /* Tambahkan overflow untuk seluruh pop-up jika terlalu tinggi */
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px; /* Tambahkan border-radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan shadow */
+    width: 90%; /* Sesuaikan lebar */
+    max-width: 700px; /* Tambahkan max-width */
+    padding: 20px;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee; /* Garis bawah header */
+    padding-bottom: 10px;
+}
+
+.popup-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.close-button {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+.hasil-pencarian-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.hasil-pencarian-table th, .hasil-pencarian-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Garis pemisah baris */
+}
+
+.hasil-pencarian-table th {
+    background-color: #f8f9fa; /* Warna latar belakang header */
+    font-weight: bold;
+    color: #555;
+}
+
+.hasil-pencarian-table tbody tr:hover {
+    background-color: #f5f5f5; /* Efek hover pada baris */
+}
+
+.pilih-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.pilih-button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling tambahan untuk input dan search (jika ada di pop-up) */
+.popup-search-container {
+    margin-bottom: 15px;
+}
+
+.popup-search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+</style>
 
 <script>
-   // Get the pop-up container element
-   var popup = document.getElementById("icd9Popup");
+    document.addEventListener('DOMContentLoaded', function() {
+    const cariIcd9Button = document.getElementById('cari-icd9');
+    const popupContainer = document.getElementById('popup-container');
+    const hasilPencarianDiv = document.getElementById('hasil-pencarian');
+    const icd9SearchInput = document.getElementById('icd9Search');
 
-// Function to open the pop-up
-function openPopup() {
-    popup.style.display = "block";
-}
+    // Fungsi untuk menampilkan pop-up
+    function showPopup(results) {
+        hasilPencarianDiv.innerHTML = ''; // Bersihkan hasil sebelumnya
 
-// Function to close the pop-up
-function closePopup() {
-    popup.style.display = "none";
-}
+        // Buat header pop-up
+        const popupHeader = document.createElement('div');
+        popupHeader.classList.add('popup-header');
 
-// Close the pop-up if the user clicks outside of it
-window.onclick = function(event) {
-    if (event.target == popup) {
-        popup.style.display = "none";
+        const popupTitle = document.createElement('h2');
+        popupTitle.classList.add('popup-title');
+        popupTitle.textContent = 'Data ICD 9';
+
+        const closeButton = document.createElement('button');
+        closeButton.classList.add('close-button');
+        closeButton.innerHTML = '&times;';
+        closeButton.addEventListener('click', () => {
+            popupContainer.style.display = 'none';
+        });
+
+        popupHeader.appendChild(popupTitle);
+        popupHeader.appendChild(closeButton);
+        hasilPencarianDiv.appendChild(popupHeader);
+
+        if (results.length > 0) {
+            const table = document.createElement('table');
+            table.classList.add('hasil-pencarian-table');
+
+            // Header tabel
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            const kodeHeader = document.createElement('th');
+            kodeHeader.textContent = 'Kode';
+            const namaHeader = document.createElement('th');
+            namaHeader.textContent = 'Nama';
+            const aksiHeader = document.createElement('th');
+            aksiHeader.textContent = 'Aksi';
+            headerRow.appendChild(kodeHeader);
+            headerRow.appendChild(namaHeader);
+            headerRow.appendChild(aksiHeader);
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Body tabel
+            const tbody = document.createElement('tbody');
+            results.forEach(item => {
+                const row = document.createElement('tr');
+                const kodeCell = document.createElement('td');
+                kodeCell.textContent = item.kode;
+                const namaCell = document.createElement('td');
+                namaCell.textContent = item.nama;
+                const aksiCell = document.createElement('td');
+                const pilihButton = document.createElement('button');
+                pilihButton.classList.add('pilih-button');
+                pilihButton.textContent = 'Pilih';
+                pilihButton.addEventListener('click', function() {
+                    const kodeIcd9Input = document.getElementById('kode_icd9'); // Ganti dengan ID input ICD 9 Anda
+                    if (kodeIcd9Input) {
+                        kodeIcd9Input.value = item.kode;
+                    }
+                    popupContainer.style.display = 'none';
+                });
+                aksiCell.appendChild(pilihButton);
+                row.appendChild(kodeCell);
+                row.appendChild(namaCell);
+                row.appendChild(aksiCell);
+                tbody.appendChild(row);
+            });
+            table.appendChild(tbody);
+            hasilPencarianDiv.appendChild(table);
+        } else {
+            const noResults = document.createElement('p');
+            noResults.textContent = 'Tidak ada hasil ditemukan.';
+            hasilPencarianDiv.appendChild(noResults);
+        }
+
+        popupContainer.style.display = 'block';
     }
-}
-</script>
 
+    cariIcd9Button.addEventListener('click', function() {
+        const kodeAtauTindakan = icd9SearchInput.value.trim();
+
+        // **Simulasi Data ICD 9 (Ganti dengan data atau API Anda)**
+        const dataIcd9 = [
+            { kode: '0001', nama: 'Therapeutic ultrasound of vessels of head and neck' },
+            { kode: '0002', nama: 'Therapeutic ultrasound of hearth' },
+            { kode: '0003', nama: 'Therapeutic ultrasound of peripheral vascular vessels' },
+            { kode: '0009', nama: 'Other therapeutic ultrasound' },
+            { kode: '0010', nama: 'Implantation of chemotherapeutic agent' },
+            { kode: '0011', nama: 'Infusion of drotrecogin alfa (activated)' },
+            { kode: '0012', nama: 'Administration of inhaled nitric oxide' },
+            { kode: '0013', nama: 'Injection or infusion of nesiritide' },
+            { kode: '0014', nama: 'Injection or infusion of oxazolidinone class of antibiotics' },
+            { kode: '0015', nama: 'High-dose infusion interleukin-2 [il-2]' },
+            // ... tambahkan data ICD 9 lengkap Anda di sini
+        ];
+
+        // Filter data berdasarkan input
+        const hasilPencarianFilter = dataIcd9.filter(item =>
+            item.kode.toLowerCase().includes(kodeAtauTindakan.toLowerCase()) ||
+            item.nama.toLowerCase().includes(kodeAtauTindakan.toLowerCase())
+        );
+
+        showPopup(hasilPencarianFilter);
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === popupContainer) {
+            popupContainer.style.display = 'none';
+        }
+    });
+});
 </script>
 
                                     <div class="table-responsive">
