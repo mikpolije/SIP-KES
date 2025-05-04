@@ -800,49 +800,41 @@
                         </div>
 
                         <!-- Modal ICD 9 -->
-  <div class="modal fade" id="icd9Modal" tabindex="-1" aria-labelledby="icd9ModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Data ICD 9</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-        </div>
-        <div class="modal-body">
-          <table id="icd9Table" class="display table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Pilih</th>
-                <th>Kode</th>
-                <th>Nama</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0001</td>
-                <td>Therapeutic ultrasound of vessels of head and neck</td>
-              </tr>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0002</td>
-                <td>Therapeutic ultrasound of hearth</td>
-              </tr>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0003</td>
-                <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-              </tr>
-              <tr>
-                <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                <td>0009</td>
-                <td>Other therapeutic ultrasound</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<div class="modal fade" id="modalICD9" tabindex="-1" aria-labelledby="modalICD9Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content shadow rounded-4">
+      <div class="modal-header">
+        <h5 class="modal-title fw-semibold" id="modalICD9Label">Data ICD 9</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalICD9">Cari ICD-9</button>
+      <div class="modal-body">
+        <table id="tableICD9" class="table table-bordered table-hover" width="100%">
+          <thead class="table-light">
+            <tr>
+              <th style="width:10%">Pilih</th>
+              <th style="width:15%">Kode</th>
+              <th>Nama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><button class="btn btn-sm btn-primary btn-pilih" data-kode="0001" data-nama="Therapeutic ultrasound of vessels of head and neck">Pilih</button></td>
+              <td>0001</td>
+              <td>Therapeutic ultrasound of vessels of head and neck</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-sm btn-primary btn-pilih" data-kode="0002" data-nama="Therapeutic ultrasound of hearth">Pilih</button></td>
+              <td>0002</td>
+              <td>Therapeutic ultrasound of hearth</td>
+            </tr>
+            <!-- Tambahkan data lain di sini -->
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
