@@ -49,7 +49,8 @@
                         <div class="row mb-4 align-items-end">
                             <div class="col-md-10">
                                 <label for="searchNoRM" class="form-label">Cari Data Pasien</label>
-                                <input class="form-control" list="noRMList" id="searchNoRM" placeholder="Cari Data Pasien">
+                                <input class="form-control" list="noRMList" id="searchNoRM"
+                                    placeholder="No. RM - Nama - Alamat">
                                 <datalist id="noRMList">
                                     <option value="RM001 - Budi">
                                     <option value="RM002 - Siti">
