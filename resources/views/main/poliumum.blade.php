@@ -888,44 +888,7 @@
                             </div>
                         </div>
 
-                         <!-- Popup ICD 9 -->
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">&times;</span>
-      <h2>Data ICD 9</h2>
-      <label>Tampilkan
-        <select>
-          <option>10</option>
-          <option>25</option>
-          <option>50</option>
-        </select> entri
-      </label>
-      <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari ICD 9...">
-
-      <table id="icdTable">
-        <thead>
-          <tr>
-            <th>Aksi</th>
-            <th>Kode</th>
-            <th>Nama</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><button class="btn">Pilih</button></td>
-            <td>0001</td>
-            <td>Therapeutic ultrasound of vessels of head and neck</td>
-          </tr>
-          <tr>
-            <td><button class="btn">Pilih</button></td>
-            <td>0002</td>
-            <td>Therapeutic ultrasound of hearth</td>
-          </tr>
-          <!-- Tambahkan baris lainnya -->
-        </tbody>
-      </table>
-    </div>
-  </div>
+                        
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -1806,41 +1769,6 @@
         }
     </style>
 
- <style>
-/* Popup Styles */
-.popup {
-    display: none;
-    position: fixed;
-    z-index: 1050;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    overflow: auto;
-}
-
-.popup-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 10px;
-    position: relative;
-}
-
-.popup .close {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-</style>
-
-
 @endsection
 
 
@@ -2397,34 +2325,5 @@ $('#search-results').hide();
       
       
 </script>
-
-<script>
-    function openPopup() {
-        document.getElementById("popup").style.display = "block";
-    }
-
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
-    }
-
-    function filterTable() {
-        let input = document.getElementById("searchInput").value.toLowerCase();
-        let rows = document.querySelectorAll("#icdTable tr");
-
-        rows.forEach(row => {
-            let kode = row.cells[1]?.textContent.toLowerCase();
-            let nama = row.cells[2]?.textContent.toLowerCase();
-            row.style.display = kode.includes(input) || nama.includes(input) ? "" : "none";
-        });
-    }
-
-    function selectICD9(kode, nama) {
-        document.getElementById("icd9Input").value = kode + ' - ' + nama;
-        closePopup();
-    }
-</script>
-
-
-
 
 @endsection
