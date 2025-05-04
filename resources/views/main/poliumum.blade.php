@@ -861,12 +861,12 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd9Search"
-                                            placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                    <div class="icd9-section">
+    <label>ICD 9 - CM</label><br>
+    <input type="text" placeholder="Ketik Kode Tindakan">
+    <button onclick="openPopup()">🔍</button>
+  </div>
+
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
@@ -887,6 +887,45 @@
                                 </div>
                             </div>
                         </div>
+
+                         <!-- Popup ICD 9 -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h2>Data ICD 9</h2>
+      <label>Tampilkan
+        <select>
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select> entri
+      </label>
+      <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari ICD 9...">
+
+      <table id="icdTable">
+        <thead>
+          <tr>
+            <th>Aksi</th>
+            <th>Kode</th>
+            <th>Nama</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><button class="btn">Pilih</button></td>
+            <td>0001</td>
+            <td>Therapeutic ultrasound of vessels of head and neck</td>
+          </tr>
+          <tr>
+            <td><button class="btn">Pilih</button></td>
+            <td>0002</td>
+            <td>Therapeutic ultrasound of hearth</td>
+          </tr>
+          <!-- Tambahkan baris lainnya -->
+        </tbody>
+      </table>
+    </div>
+  </div>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -926,7 +965,7 @@
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button data-bs-toggle="modal" data-bs-target="#layananModal" class="btn btn-outline-secondary" type="button"><i
+                                        <button class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
@@ -945,88 +984,6 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table
-                                        id="layananTable"
-                                        class="display"
-                                      >
-                                        <thead>
-                                          <tr>
-                                            <th></th>
-                                            <th>Nama Layanan</th>
-                                            <th>Tarif</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Jasa Perawat</td>
-                                            <td>Rp 10.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Jasa Pasang Infus</td>
-                                            <td>Rp 30.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Bekam</td>
-                                            <td>Rp 50.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Perawatan Luka Ringan</td>
-                                            <td>Rp 30.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Perawatan Luka Infeksi</td>
-                                            <td>Rp 70.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Administrasi</td>
-                                            <td>Rp 5.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Injeksi Vitamin</td>
-                                            <td>Rp 50.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Nebulizer</td>
-                                            <td>Rp 25.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Tensi</td>
-                                            <td>Rp 10.000,-</td>
-                                          </tr>
-                                          <tr>
-                                            <td><button class="btn-pilih">Pilih</button></td>
-                                            <td>Cek Gula Darah</td>
-                                            <td>Rp 10.000,-</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-  
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
@@ -1849,6 +1806,41 @@
         }
     </style>
 
+ <style>
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.popup-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.popup .close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+
+
 @endsection
 
 
@@ -2403,15 +2395,36 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
     });
       
-});
-        const table = new DataTable('#layananTable', {
-            responsive: true,
-            paging: true,
-            searching: true,
-            info: true,
-            pageLength: 10, // Default: tampilkan 10 entri
-            lengthMenu: [5, 10, 25, 50, 100]
-    });
+      
 </script>
+
+<script>
+    function openPopup() {
+        document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+
+    function filterTable() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let rows = document.querySelectorAll("#icdTable tr");
+
+        rows.forEach(row => {
+            let kode = row.cells[1]?.textContent.toLowerCase();
+            let nama = row.cells[2]?.textContent.toLowerCase();
+            row.style.display = kode.includes(input) || nama.includes(input) ? "" : "none";
+        });
+    }
+
+    function selectICD9(kode, nama) {
+        document.getElementById("icd9Input").value = kode + ' - ' + nama;
+        closePopup();
+    }
+</script>
+
+
+
 
 @endsection
