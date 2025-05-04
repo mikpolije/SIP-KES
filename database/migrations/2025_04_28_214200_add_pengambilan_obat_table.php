@@ -14,7 +14,7 @@ return new class extends Migration
         // Tabel pengambilan_obat
         Schema::create('pengambilan_obat', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran');
             $table->string('no_antrian');
             $table->date('tanggal_penyerahan');
             $table->text('catatan')->nullable();

@@ -17,7 +17,7 @@ return new class extends Migration
         // Buat ulang tabel
         Schema::create('transaksi_p_kehamilan', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran');
 
             $table->string('pendampingan')->nullable();
             $table->text('keluhan_utama')->nullable();

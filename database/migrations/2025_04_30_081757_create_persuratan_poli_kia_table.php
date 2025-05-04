@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('surat_kontrol', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran');
             $table->string('nomor');
             $table->date('tanggal');
             $table->string('kepada');
@@ -27,7 +27,7 @@ return new class extends Migration
 
         Schema::create('surat_kematian', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran');
             $table->string('nomor');
             $table->date('tanggal_masuk_rs')->nullable();
             $table->time('waktu_masuk_rs')->nullable();

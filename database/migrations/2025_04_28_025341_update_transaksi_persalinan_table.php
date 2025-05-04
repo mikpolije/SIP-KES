@@ -12,7 +12,7 @@ return new class extends Migration
 
         Schema::create('transaksi_persalinan', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran');
             $table->integer('id_bidan');
             $table->string('tempat_persalinan')->nullable();
             $table->text('alamat_persalinan')->nullable();

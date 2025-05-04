@@ -15,7 +15,7 @@ return new class extends Migration
 
         Schema::create('transaksi_program_kb', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran');
 
             $table->string('nama')->nullable();
             $table->integer('umur')->nullable();

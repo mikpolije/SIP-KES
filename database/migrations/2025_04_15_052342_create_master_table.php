@@ -35,9 +35,8 @@ return new class extends Migration
             $table->string('unit', 100);
         });
 
-        Schema::create('pasien', function (Blueprint $table) {
-            $table->id();
-            $table->string('no_rm', 50);
+        Schema::create('data_pasien', function (Blueprint $table) {
+            $table->string('no_rm', 6)->unique()->primary();
             $table->string('nik', 100)->unique();
             $table->string('nama_lengkap');
             $table->enum('jenis_kelamin', ['L', 'P']);
@@ -81,11 +80,17 @@ return new class extends Migration
 
         Schema::create('wali_pasien', function (Blueprint $table) {
             $table->id();
-            $table->string('no_rm', 50);
+            $table->string('no_rm', 6);
             $table->string('no_telepon', 100);
             $table->string('hubungan', 100)
                 ->comment('1. Diri Sendiri;   2. Orang Tua;  3. Anak;  4. Suami/Istri;  5. Kerabat/Saudara;  6. Lain-lain (free text)');
             $table->enum('jenis_kelamin', ['L', 'P']);
+
+            $table->foreign('no_rm')
+                ->references('no_rm')
+                ->on('data_pasien')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
 
         Schema::create('anak', function (Blueprint $table) {
@@ -101,6 +106,29 @@ return new class extends Migration
             $table->string('jadwal', 100);
             $table->string('asal', 100);
         });
+
+        Schema::create('pendaftaran', function (Blueprint $table) {
+            $table->id('id_pendaftaran');
+            $table->string('no_rm', 6);
+            $table->unsignedBigInteger('id_dokter');
+            $table->unsignedBigInteger('id_wali_pasien');
+
+            $table->foreign('no_rm')
+                ->references('no_rm')
+                ->on('data_pasien')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreign('id_dokter')
+                ->references('id')
+                ->on('dokter')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreign('id_wali_pasien')
+                ->references('id')
+                ->on('wali_pasien')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+        });
     }
 
     /**
@@ -114,5 +142,6 @@ return new class extends Migration
         Schema::dropIfExists('wali_pasien');
         Schema::dropIfExists('anak');
         Schema::dropIfExists('bidan');
+        Schema::dropIfExists('pendaftaran');
     }
 };
