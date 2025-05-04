@@ -764,6 +764,11 @@
                                 </div>
                             </div>
 
+                            <head>
+  <meta charset="UTF-8">
+  <title>Pop-up ICD-9 Sederhana</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
