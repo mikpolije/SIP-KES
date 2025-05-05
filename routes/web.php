@@ -30,7 +30,7 @@ Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
 Route::resource('/triase', TriageController::class);
 
-// Route::get('/get-layanan-by-ajax', [LayananController::class, 'getByAjax'])->name('get-layanan-by-ajax');
+Route::get('/get-layanan-by-ajax', [LayananController::class, 'getByAjax'])->name('get-layanan-by-ajax');
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
 

@@ -23,7 +23,7 @@ class TriageController extends Controller
     public function create()
     {
         $data['title'] = $this->title . 'Tambah Triase';
-        // $data['listLayanan'] = Layanan::get();
+        $data['listLayanan'] = Layanan::get();
         return view('triase.add', compact('data'));
     }
 

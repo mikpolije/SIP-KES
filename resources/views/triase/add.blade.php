@@ -26,6 +26,8 @@
         </div>
         </div>
     @endif
+    @include('triase.modal.search-pasien')
+    @include('triase.modal.adl')
     <div class="row">
         <div class="col-md-12 d-flex align-items-stretch">
             <div class="card w-100">
@@ -35,8 +37,16 @@
                             <div class="card-title">Triase</div>
                             <div class="card-subtitle">Triase / Tambah</div>
                         </div>
+                        <div class="mb-3 mb-sm-0">
+                            <div class="form-group">
+                                <button type="button" id="btnCariPasien" class="btn btn-primary hidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="ti ti-search"></i>
+                                    Cari Pasien
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <form action="#" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('layanan.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div id="step-1" class="step-1 row" data-step="1">
                             <div class="card col-md-12">
@@ -92,7 +102,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Sarana Transportasi Kedatangan:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Sarana Transportasi Kedatangan</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ambulans</option>
                                                     <option value="">Brankar</option>
                                                     <option value="">Kursi Roda</option>
@@ -109,7 +119,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Kondisi Pasien Tiba:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Kondisi Pasien Tiba</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Emergency</option>
                                                     <option value="">Brankar</option>
                                                     <option value="">Kursi Roda</option>
@@ -141,7 +151,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Riwayat Alergi:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Riwayat Alergi</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Udara</option>
                                                     <option value="">Obat</option>
                                                     <option value="">Makanan</option>
@@ -221,75 +231,99 @@
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
-                                                <input type="text" class="form-control" placeholder="Kepala" name="nama" value="{{ old('nama') }}">
                                                 <label for="">Kepala:</label>
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">-- Pilih --</option>
+                                                    <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Mata:</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Mata</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">THT:</label>
-                                                <input type="text" class="form-control" placeholder="THT" name="nama" value="{{ old('nama') }}">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">-- Pilih --</option>
+                                                    <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Leher:</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Leher</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Thorax:</label>
-                                                <input type="text" class="form-control" placeholder="Thorax" name="nama" value="{{ old('nama') }}">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">-- Pilih --</option>
+                                                    <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Abdomen:</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Leher</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Extemitas:</label>
-                                                <input type="text" class="form-control" placeholder="Extemitas" name="nama" value="{{ old('nama') }}">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">-- Pilih --</option>
+                                                    <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Genetalia:</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Genetalia</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">ECG:</label>
-                                                <input type="text" class="form-control" placeholder="ECG" name="nama" value="{{ old('nama') }}">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">-- Pilih --</option>
+                                                    <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Ronsen:</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Ronsen</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -298,14 +332,18 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Terapi:</label>
-                                                <input type="text" class="form-control" placeholder="Terapi" name="nama" value="{{ old('nama') }}">
+                                                <select name="" id="" class="form-control">
+                                                    <option value="">-- Pilih --</option>
+                                                    <option value="">Normal</option>
+                                                    <option value="">Tidak Normal</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label for="">Kie:</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Kie</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -315,7 +353,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Pemeriksaan Penunjang:</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Pemeriksaan Penunjang</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -334,7 +372,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Jalur Nafas:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Jalur Nafas</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Bebas</option>
                                                     <option value="">Tidak Bebas</option>
                                                     <option value="">Total</option>
@@ -346,7 +384,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Pola Nafas:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Pola Nafas</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Normal</option>
                                                     <option value="">Apnea</option>
                                                     <option value="">Bradipnea</option>
@@ -358,7 +396,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Gerakan Dada:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Gerakan Dada</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Simetris</option>
                                                     <option value="">Tidak Simetris</option>
                                                 </select>
@@ -375,7 +413,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Kulit:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Kulit</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Normal</option>
                                                     <option value="">Jaundice</option>
                                                     <option value="">Sianosis</option>
@@ -388,7 +426,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Turgor:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Turgor</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Normal</option>
                                                     <option value="">Tidak Ada</option>
                                                 </select>
@@ -398,7 +436,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Akral:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Akral</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Hangat</option>
                                                     <option value="">Dingin</option>
                                                 </select>
@@ -448,7 +486,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Kondisi Umum:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Kondisi Umum</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Baik</option>
                                                     <option value="">Tidak Baik</option>
                                                 </select>
@@ -458,7 +496,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Laborat:</label>
                                                 <select name="" id="" class="form-select">
-                                                    <option value="">Laborat</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -715,7 +753,10 @@
                                         <div class="col-md-12">
                                             <div class="input-group mb-3">
                                                 <select name="" id="selectLayanan" class="form-select">
-                                                    <option value="-">-</option>
+                                                    <option value="">-- Pilih --</option>
+                                                    @foreach ($data['listLayanan'] as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->nama_layanan }}</option>
+                                                    @endforeach
                                                 </select>
                                                 <button class="btn btn-outline-secondary" id="btnAddLayanan" type="button">Tambah</button>
                                             </div>
@@ -747,6 +788,182 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Faktor Risiko</th>
+                                                            <th>Skala</th>
+                                                            <th>Poin</th>
+                                                            <th>Ket</th>
+                                                            <th>Skor</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Riwayat Jatuh</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Ya</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                25
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="riwayat_jatuh" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark skor_riwayat_jatuh"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark"></td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Tidak</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                0
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="riwayat_jatuh" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark"></td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td>Diagnosa sekunder (> 2 diagnosa medis)</td>
+                                                            <td>Ya</td>
+                                                            <td>
+                                                                15
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="diagnosa_sekunder" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td class="skor_diagnosa_sekunder"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Tidak</td>
+                                                            <td>
+                                                                0
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="diagnosa_sekunder" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Alat bantu</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Berpegangan pada perabot</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                30
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="alat_bantu" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark skor_alat_bantu"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark"></td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Tongkat/alat penopang</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                15
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="alat_bantu" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark skor_alat_bantu"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark"></td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Tidak ada/kursi roda/perawat/tirah baring</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                0
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="alat_bantu" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark skor_alat_bantu"></td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td>Terpasang infuse</td>
+                                                            <td>Ya</td>
+                                                            <td>
+                                                                20
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="terpasang_infuse" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td class="skor_terpasang_infuse"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Tidak</td>
+                                                            <td>
+                                                                0
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="terpasang_infuse" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Gaya berjalan</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Terganggu</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                20
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="gaya_berjalan" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark skor_gaya_berjalan"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark"></td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Lemah</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                10
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="gaya_berjalan" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark skor_gaya_berjalan"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="background-color: #E7EEFF" class="text-dark"></td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">Normal/tirah baring/mobilisasi</td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                0
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark">
+                                                                <input type="radio" name="gaya_berjalan" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td style="background-color: #E7EEFF" class="text-dark skor_gaya_berjalan"></td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td>Status mental</td>
+                                                            <td>Sering lupa akan keterbatasan yang dimiliki</td>
+                                                            <td>
+                                                                15
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="status_mental" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td class="skor_status_mental"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Sadarkan kemampuan diri sendiri</td>
+                                                            <td>
+                                                                0
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="status_mental" id="" class="form-check-input border-dark">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -763,7 +980,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Alat Bantu</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Alat Bantu</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -773,7 +990,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Protesa</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Protesa</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -783,7 +1000,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Cacat Tubuh</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Cacat Tubuh</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -793,7 +1010,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Mandiri</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Mandiri</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -803,7 +1020,7 @@
                                             <div class="form-group mb-3">
                                                 <label for="">Dibantu</label>
                                                 <select name="" id="" class="form-control">
-                                                    <option value="">Dibantu</option>
+                                                    <option value="">-- Pilih --</option>
                                                     <option value="">Ya</option>
                                                     <option value="">Tidak</option>
                                                 </select>
@@ -812,11 +1029,15 @@
                                         <div class="col-md-4">
                                             <div class="form-group mb-3">
                                                 <label for="">ADL</label>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">ADL</option>
-                                                    <option value="">Ya</option>
-                                                    <option value="">Tidak</option>
+                                                <select name="adl" id="" class="form-control mb-2">
+                                                    <option value="">-- Pilih --</option>
+                                                    <option value="ya">Ya</option>
+                                                    <option value="tidak">Tidak</option>
                                                 </select>
+                                                <button type="button" class="btn btn-secondary hidden" id="btnADL" class="" data-bs-toggle="modal" data-bs-target="#exampleModalADL">
+                                                    <i class="ti ti-plus"></i>
+                                                    Tambah ADL
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -843,7 +1064,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group mb-3">
                                                             <select name="" id="" class="form-control">
-                                                                <option value="">KU dan Kesadaran</option>
+                                                                <option value="">-- Pilih --</option>
                                                                 <option value="">Sadar Baik</option>
                                                                 <option value="">Berespon Dengan Kata-kata</option>
                                                                 <option value="">Hanya berespon jika dirangsang nyeri / pain</option>
@@ -928,8 +1149,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
+                                                    <div class="col-md-12 mb-3">
+                                                        <img class='img-fluid w-100' src="{{ asset('assets/images/status-lokalis.jpg') }}" alt="">
+                                                    </div>
                                                     <div class="col-md-12">
-
+                                                        <div class="form-group mb-3">
+                                                            <label for="">Keterangan:</label>
+                                                            <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1170,7 +1397,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <select name="" id="" class="form-control">
-                                                            <option value="-">--</option>
+                                                            <option value="">-- Pilih --</option>
                                                             <option value="">Sembuh</option>
                                                             <option value="">Belum Sembuh</option>
                                                             <option value="">Membaik</option>
@@ -1290,14 +1517,20 @@
                 $("#btnNext").removeClass("hidden")
                 $("#btnPrev").addClass("hidden")
                 $("#btnSubmit").addClass("hidden")
+
+                $("#btnCariPasien").addClass("hidden")
             } else if (nextStep == 2) {
                 $("#btnNext").removeClass("hidden")
                 $("#btnPrev").removeClass("hidden")
                 $("#btnSubmit").addClass("hidden")
+
+                $("#btnCariPasien").removeClass("hidden")
             } else if (nextStep == 3) {
                 $("#btnNext").addClass("hidden")
                 $("#btnPrev").removeClass("hidden")
                 $("#btnSubmit").removeClass("hidden")
+
+                $("#btnCariPasien").addClass("hidden")
             }
         }
 
@@ -1340,7 +1573,7 @@
                 let id = $("#selectLayanan").val()
                 $.ajax({
                     type: "get",
-                    url: `#?id=${id}`,
+                    url: `{{ route('get-layanan-by-ajax') }}?id=${id}`,
                     success: function(res) {
                         $("#tbodyLayanan").append(`
                             <tr>
@@ -1351,6 +1584,16 @@
                         `)
                     }
                 })
+            }
+        })
+
+        $("select[name='adl']").on('change', function(e) {
+            let val = $(this).val()
+
+            if (val === 'ya') {
+                $("#btnADL").removeClass('hidden')
+            } else {
+                $("#btnADL").addClass('hidden')
             }
         })
     })
