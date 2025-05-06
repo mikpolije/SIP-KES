@@ -618,7 +618,9 @@
                                                     <option>25</option>
                                                     <option>50</option>
                                                 </select> entri
-                                            </label>
+                                            </label> Cari
+                                            <input type="text" placeholder="Cari..." style="float: right;">
+                                            <table>
                                                 <thead>
                                                   <tr>
                                                     <th></th>
