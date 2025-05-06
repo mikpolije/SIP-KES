@@ -1257,7 +1257,7 @@
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Data Layanan</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -1265,6 +1265,13 @@
                                         id="layananTable"
                                         class="display"
                                       >
+                                      <label>Tampilkan
+                                        <select>
+                                            <option>10</option>
+                                            <option>25</option>
+                                            <option>50</option>
+                                        </select> entri
+                                    </label>
                                         <thead>
                                           <tr>
                                             <th></th>
@@ -2708,7 +2715,7 @@ $('#search-results').hide();
             info: true,
             pageLength: 10, // Default: tampilkan 10 entri
             lengthMenu: [5, 10, 25, 50, 100]
-        const table = new DataTable('#icdTable', {
+        const table = new DataTable('#layananTable', {
             responsive: true,
             paging: true,
             searching: true,
