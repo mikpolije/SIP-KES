@@ -1430,7 +1430,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button onclick="tambahObat" class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button type="button" onclick="tambahObat" class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
