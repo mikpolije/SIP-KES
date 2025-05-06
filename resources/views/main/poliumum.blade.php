@@ -618,8 +618,9 @@
                                                     <option>25</option>
                                                     <option>50</option>
                                                 </select> entri
-                                            </label> Cari
-                                            <input type="text" placeholder="Cari..." style="float: right;">
+                                            </label>
+                                            <label for="searchInput">Cari:</label>
+                                            <input id="searchInput" type="text" placeholder="Cari..." style="padding: 5px;">
                                             <table>
                                                 <thead>
                                                   <tr>
