@@ -619,11 +619,8 @@
                                                     <option>50</option>
                                                 </select> entri
                                             </label>
-                                            <div style="display: flex; align-items: center;">
-                                                <label for="searchInput" style="margin-right: 5px;">Cari:</label>
-                                                <input id="searchInput" type="text" placeholder="Cari..." style="padding: 5px;">
-                                            </div>
-                                        </div>
+                                            <input type="text" placeholder="Cari..." style="float: right;">
+                                            <table>
                                                 <thead>
                                                   <tr>
                                                     <th></th>
