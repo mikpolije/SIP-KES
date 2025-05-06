@@ -1465,7 +1465,7 @@
                                         </tbody>
                                     </table>
                                     <script>
-                                            function tambahObat(Nama Obat, Harga Obat) {
+                                            function tambahObat(nama, harga) {
                                                 const tbody = document.getElementById("rincian-body");
                                                 
                                                 // Hapus baris "Tidak Ada Data" jika ada
@@ -1479,7 +1479,7 @@
                                                     jumlahCell.innerText = 1;
 
                                                     const namaCell = document.createElement("td");
-                                                    namaCell.innerText = Nama Obat;
+                                                    namaCell.innerText = nama;
 
                                                     const hargaCell = document.createElement("td");
                                                     hargaCell.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
