@@ -612,6 +612,13 @@
                                                 id="icdTable"
                                                 class="display"
                                               >
+                                              <label>Tampilkan
+                                                <select>
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                </select> entri
+                                            </label>
                                                 <thead>
                                                   <tr>
                                                     <th></th>
