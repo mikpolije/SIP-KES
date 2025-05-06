@@ -1398,10 +1398,10 @@
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <button data-bs-toggle="modal" data-bs-target="#cariObat" class="btn btn-outline-secondary " type="button">
                                         <i class="bi bi-search"></i>
                                     </div>
-                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                    <div class="modal fade" id="cariObat" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header d-flex align-items-center">
