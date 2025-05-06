@@ -1420,7 +1420,7 @@
                                                             </select> entri
                                                         </label>
                                                         <input type="text" placeholder="Cari..." style="float: right;">
-                                                        <table>
+                                                        <table id="data-obat">
                                                         <thead>
                                                             <tr>
                                                             <th>Nama Obat</th>
@@ -1430,7 +1430,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button onclick="tambahObat" class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
@@ -1450,7 +1450,7 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table class="table table-bordered text-center">
+                                    <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
                                                 <th>Jumlah</th>
@@ -1458,12 +1458,40 @@
                                                 <th>Harga Obat</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="rincian-body">
                                             <tr>
                                                 <td colspan="3">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <script>
+                                        <script>
+                                            function tambahObat(Nama Obat, Harga Obat) {
+                                                const tbody = document.getElementById("rincian-body");
+                                                
+                                                // Hapus baris "Tidak Ada Data" jika ada
+                                                if (tbody.children.length === 1 && tbody.children[0].textContent.includes("Tidak Ada Data")) {
+                                                tbody.innerHTML = "";
+                                                }
+                                                // Tambahkan data baru
+                                                    const row = document.createElement("tr");
+
+                                                    const jumlahCell = document.createElement("td");
+                                                    jumlahCell.innerText = 1;
+
+                                                    const namaCell = document.createElement("td");
+                                                    namaCell.innerText = Nama Obat;
+
+                                                    const hargaCell = document.createElement("td");
+                                                    hargaCell.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
+
+                                                    row.appendChild(jumlahCell);
+                                                    row.appendChild(namaCell);
+                                                    row.appendChild(hargaCell);
+
+                                                    tbody.appendChild(row);
+                                                }
+                                    </script>
                                 </div>
                             </div>
                         </div>
