@@ -1395,6 +1395,10 @@
                                         padding: 5px 10px;
                                         cursor: pointer;
                                         }
+
+                                        button:disabled {
+                                        background-color: #aaa;
+                                        }
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
@@ -1435,15 +1439,26 @@
                                                                 <td>Rp 1.000,-</td>
                                                                 <td>64</td><td>
                                                                 <button type="button" onclick="tambahObat('Acyclovir', Rp. 1.000-,)" class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg</td></td><td>Rp 833,-</td><td>0</td><td><span class="stok-kosong">Stok Kosong</span></td></tr>
-                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr>
+                                                                <td>Acyclovir salep</td>
+                                                                <td>Rp 9.000,-</td>
+                                                                <td>3</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr>
+                                                                <td>ALLOPURINOL TAB 300 mg</td>
+                                                                </td><td>Rp 833,-</td>
+                                                                <td>0</td>
+                                                                <td><span class="stok-kosong">Stok Kosong</span></td></tr>
+                                                            <tr>
+                                                                <td>ALPARA</td>
+                                                                <td>Rp 1.776,-</td>
+                                                                <td>6</td>
+                                                                <td><button type="button" disabled class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr>
+                                                                <td>Ambroxol</td>
+                                                                <td>Rp 416,-</td>
+                                                                <td>170</td>
+                                                                <td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
                                                      </div>
