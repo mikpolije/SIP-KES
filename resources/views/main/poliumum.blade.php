@@ -1465,7 +1465,6 @@
                                         </tbody>
                                     </table>
                                     <script>
-                                        <script>
                                             function tambahObat(Nama Obat, Harga Obat) {
                                                 const tbody = document.getElementById("rincian-body");
                                                 
