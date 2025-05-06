@@ -1272,6 +1272,8 @@
                                             <option>50</option>
                                         </select> entri
                                     </label>
+                                    <input type="text" placeholder="Cari..." style="float: right;">
+                                    <table>
                                         <thead>
                                           <tr>
                                             <th></th>
