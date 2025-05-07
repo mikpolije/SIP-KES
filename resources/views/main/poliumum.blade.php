@@ -2758,6 +2758,9 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
+    </script>
+
+    <script>
         const table = new DataTable('#icdTable', {
             responsive: true,
             paging: true,
