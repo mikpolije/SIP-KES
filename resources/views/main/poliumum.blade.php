@@ -1453,7 +1453,7 @@
                                                                 <td>ALPARA</td>
                                                                 <td>Rp 1.776,-</td>
                                                                 <td>0</td>
-                                                                <td><button type="button" disabled class="btn-pilih">Pilih</button></td></tr>
+                                                                <td><button type="button">Pilih</button></td></tr>
                                                             <tr>
                                                                 <td>Ambroxol</td>
                                                                 <td>Rp 416,-</td>
