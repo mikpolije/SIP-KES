@@ -1070,15 +1070,15 @@
                                                     table.classList.add('hasil-pencarian-table');
                                                     const thead = document.createElement('thead');
                                                     const headerRow = document.createElement('tr');
-                                                    const kodeHeader = document.createElement('th');
-                                                    kodeHeader.textContent = 'Kode';
-                                                    const namaHeader = document.createElement('th');
-                                                    namaHeader.textContent = 'Nama';
-                                                    const aksiHeader = document.createElement('th');
-                                                    aksiHeader.textContent = 'Aksi';
-                                                    headerRow.appendChild(kodeHeader);
-                                                    headerRow.appendChild(namaHeader);
-                                                    headerRow.appendChild(aksiHeader);
+const aksiHeader = document.createElement('th');
+aksiHeader.textContent = '';
+const kodeHeader = document.createElement('th');
+kodeHeader.textContent = 'Kode';
+const namaHeader = document.createElement('th');
+namaHeader.textContent = 'Nama';
+headerRow.appendChild(aksiHeader);
+headerRow.appendChild(kodeHeader);
+headerRow.appendChild(namaHeader);
                                                     thead.appendChild(headerRow);
                                                     table.appendChild(thead);
                                                     const tbody = document.createElement('tbody');
@@ -1100,9 +1100,10 @@
                                                             popupContainer.style.display = 'none';
                                                         });
                                                         aksiCell.appendChild(pilihButton);
-                                                        row.appendChild(kodeCell);
-                                                        row.appendChild(namaCell);
-                                                        row.appendChild(aksiCell);
+row.appendChild(aksiCell);
+row.appendChild(kodeCell);
+row.appendChild(namaCell);
+
                                                         tbody.appendChild(row);
                                                     });
                                                     table.appendChild(tbody);
