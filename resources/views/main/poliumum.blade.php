@@ -878,11 +878,14 @@
                                             </button>
                                     </div>
                                    
-                                    <!-- Container Pop-up -->
-<div id="popup-container" class="popup-container">
-    <div id="popup-content" class="popup-content"></div>
-</div>
-
+                                    <div id="popup-container" class="popup-container">
+                                        <div id="popup-content" class="popup-content">
+                                            <span class="close-button">&times;</span>
+                                            <h2>Data ICD 9</h2>
+                                            <div id="hasil-pencarian">
+                                            </div>
+                                        </div>
+                                    </div>
 
 <style>
     .popup-container {
@@ -1333,21 +1336,14 @@
                                           </tr>
                                         </tbody>
                                       </table>
-                                      div style="margin-top: 15px;">
-                                      <div>
-                                          Menampilkan 1 sampai 10 dari 155 entri
-                                      </div>
-                                      <div style="margin-top: 10px; text-align: right;">
-                                          <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
-                                          <button style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
-                                          <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
-                                          <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
-                                          <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
-                                          <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
-                                          <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
-                                          <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
-                                      </div>
-                                  </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sebelumnya</button>
+                                    <button type="button" class="btn btn-primary">Selanjutnya</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
   
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
