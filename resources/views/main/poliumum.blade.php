@@ -1522,7 +1522,9 @@ row.appendChild(namaCell);
                                         </thead>
                                         <tbody id="rincian-body">
                                             <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
+                                                <td colspan="3" style="text-align: center; vertical-align: middle; height: 60px;">
+                                                    Tidak Ada Data
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
