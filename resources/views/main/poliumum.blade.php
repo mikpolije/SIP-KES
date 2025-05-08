@@ -1072,7 +1072,7 @@
                 const thead = document.createElement('thead');
                 const headerRow = document.createElement('tr');
                 const aksiHeader = document.createElement('th');
-                aksiHeader.textContent = 'Aksi';
+                aksiHeader.textContent = '';
                 const kodeHeader = document.createElement('th');
                 kodeHeader.textContent = 'Kode';
                 const namaHeader = document.createElement('th');
