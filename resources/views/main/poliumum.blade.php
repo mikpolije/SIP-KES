@@ -1423,7 +1423,14 @@
                                                                 <option>50</option>
                                                             </select> entri
                                                         </label>
-                                                        <input type="text" placeholder="Cari..." style="float: right;">
+                                                        <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                                <label for="searchInput" style="color: #2c2c6c; font-weight: bold;">Cari :</label>
+                                                                <input id="searchInput" type="text" placeholder=""
+                                                                    style="padding: 5px 10px; border: 1px solid #999; border-radius: 5px;
+                                                                            box-shadow: 1px 1px 4px #aaa; outline: none;">
+                                                            </div>
+                                                        </div>
                                                         <table id="data-obat">
                                                         <thead>
                                                             <tr>
