@@ -262,6 +262,16 @@
                     <span class="hide-menu">Surat Control</span>
                 </a>
             </li>
+            
+            <li class="sidebar-item">
+                <a class="sidebar-link {{ request()->is('main/general-consent') ? 'active' : '' }}" href="/main/general-consent" 
+                    aria-expanded="false">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                        <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">General Consent</span>
+                </a>
+            </li>
         </ul>
     </li>
 
