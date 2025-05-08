@@ -1461,6 +1461,16 @@
                                                                 <td><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
+                                                        <div style="margin-top: 10px;">
+                                                            Menampilkan 1 sampai 10 dari 155 entri <br>
+                                                            <button disabled>Sebelumnya</button>
+                                                            <button style="background-color: #2196F3; color: white;">1</button>
+                                                            <button>2</button>
+                                                            <button>3</button>
+                                                            <button>...</button>
+                                                            <button>16</button>
+                                                            <button>Selanjutnya</button>
+                                                        </div>
                                                      </div>
                                                  </div>
                                             </div>
