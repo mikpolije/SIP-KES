@@ -1471,7 +1471,8 @@
                                                                 <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
                                                                 <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
                                                                 <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
-                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">5</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
                                                                 <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
                                                             </div>
                                                         </div>
