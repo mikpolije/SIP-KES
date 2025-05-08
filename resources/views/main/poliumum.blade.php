@@ -1466,12 +1466,12 @@
                                                                 Menampilkan 1 sampai 10 dari 155 entri
                                                             </div>
                                                             <div style="margin-top: 10px; text-align: right;">
-                                                                <button disabled style="opacity: 0.6; cursor: not-allowed;">Sebelumnya</button>
-                                                                <button style="background-color: #2196F3; color: white;">1</button>
-                                                                <button>2</button>
-                                                                <button>3</button>
-                                                                <button>...</button>
-                                                                <button>16</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                                <button style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">5</button>
                                                                 <button>Selanjutnya</button>
                                                             </div>
                                                         </div>
