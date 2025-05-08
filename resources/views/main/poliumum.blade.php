@@ -878,11 +878,14 @@
                                             </button>
                                     </div>
                                    
-                                    <!-- Container Pop-up -->
-<div id="popup-container" class="popup-container">
-    <div id="popup-content" class="popup-content"></div>
-</div>
-
+                                    <div id="popup-container" class="popup-container">
+                                        <div id="popup-content" class="popup-content">
+                                            <span class="close-button">&times;</span>
+                                            <h2>Data ICD 9</h2>
+                                            <div id="hasil-pencarian">
+                                            </div>
+                                        </div>
+                                    </div>
 
 <style>
     .popup-container {
@@ -1068,15 +1071,15 @@
                 table.classList.add('hasil-pencarian-table');
                 const thead = document.createElement('thead');
                 const headerRow = document.createElement('tr');
+                const aksiHeader = document.createElement('th');
+                aksiHeader.textContent = '';
                 const kodeHeader = document.createElement('th');
                 kodeHeader.textContent = 'Kode';
                 const namaHeader = document.createElement('th');
                 namaHeader.textContent = 'Nama';
-                const aksiHeader = document.createElement('th');
-                aksiHeader.textContent = 'Aksi';
+                headerRow.appendChild(aksiHeader);
                 headerRow.appendChild(kodeHeader);
                 headerRow.appendChild(namaHeader);
-                headerRow.appendChild(aksiHeader);
                 thead.appendChild(headerRow);
                 table.appendChild(thead);
                 const tbody = document.createElement('tbody');
@@ -1098,9 +1101,9 @@
                         popupContainer.style.display = 'none';
                     });
                     aksiCell.appendChild(pilihButton);
+                    row.appendChild(aksiCell);
                     row.appendChild(kodeCell);
                     row.appendChild(namaCell);
-                    row.appendChild(aksiCell);
                     tbody.appendChild(row);
                 });
                 table.appendChild(tbody);
@@ -1184,8 +1187,7 @@
                                             </thead>
                                             <tbody id="selected-icds-icd9">
                                                 <tr>
-                                                    <td colspan="2" class="text-center text-muted">Belum ada Tindakan
-                                                        yang dipilih</td>
+                                                    <td colspan="2" class="text-center text-dark">Tidak Ada Data</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1392,13 +1394,17 @@
                                         padding: 5px 10px;
                                         cursor: pointer;
                                         }
+
+                                        button:disabled {
+                                        background-color: #aaa;
+                                        }
                                     </style>
                                     <div class="input-group mb-2">
                                         <input type="text" id="searchInput" class="form-control" placeholder="Cari Obat">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg">
+                                        <button data-bs-toggle="modal" data-bs-target="#cariObat" class="btn btn-outline-secondary " type="button">
                                         <i class="bi bi-search"></i>
                                     </div>
-                                    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                    <div class="modal fade" id="cariObat" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header d-flex align-items-center">
@@ -1417,28 +1423,62 @@
                                                             </select> entri
                                                         </label>
                                                         <input type="text" placeholder="Cari..." style="float: right;">
-                                                        <table>
+                                                        <table id="data-obat">
                                                         <thead>
                                                             <tr>
-                                                            <th>Nama Obat</th>
-                                                            <th>Harga Jual</th>
-                                                            <th>Stok Obat</th>
-                                                            <th></th>
-                                                            </tr>
+                                                                <th></th>
+                                                                <th>Nama Obat</th>
+                                                                <th>Harga Jual</th>
+                                                                <th>Stok Obat</th>
                                                         </thead>
                                                         <tbody>
-                                                            <tr><td>Acyclovir</td><td>Rp 1.000,-</td><td>64</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Acyclovir salep</td><td>Rp 9.000,-</td><td>3</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AKITA</td><td>Rp 441,-</td><td>2</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Alkohol SWAB</td><td>Rp 1.000,-</td><td>71</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 100 mg</td><td>Rp 442,-</td><td>197</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>ALLOPURINOL TAB 300 mg <br><span class="stok-kosong">Stok Kosong</span></td><td>Rp 833,-</td><td>0</td><td></td></tr>
-                                                            <tr><td>ALPARA</td><td>Rp 1.776,-</td><td>6</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>Ambroxol</td><td>Rp 416,-</td><td>170</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE BASILATE TAB 5 mg</td><td>Rp 245,-</td><td>105</td><td><button class="btn-pilih">Pilih</button></td></tr>
-                                                            <tr><td>AMLODIPINE TAB 10 mg</td><td>Rp 791,-</td><td>148</td><td><button class="btn-pilih">Pilih</button></td></tr>
+                                                            <tr>
+                                                                <td><button type="button" onclick="tambahObat('Acyclovir', Rp. 1.000-,)" class="btn-pilih">Pilih</button></td>
+                                                                <td>Acyclovir</td>
+                                                                <td>Rp 1.000,-</td>
+                                                                <td>64</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Acyclovir salep</td>
+                                                                <td>Rp 9.000,-</td>
+                                                                <td>3</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><span class="stok-kosong">Stok Kosong</span></td>
+                                                                <td>ALLOPURINOL TAB 300 mg</td>
+                                                                </td><td>Rp 833,-</td>
+                                                                <td>0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>ALPARA</td>
+                                                                <td>Rp 1.776,-</td>
+                                                                <td>10</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Ambroxol</td>
+                                                                <td>Rp 416,-</td>
+                                                                <td>170</td>
+                                                            </tr>
                                                         </tbody>
                                                         </table>
+                                                        <div style="margin-top: 15px;">
+                                                            <div>
+                                                                Menampilkan 1 sampai 10 dari 155 entri
+                                                            </div>
+                                                            <div style="margin-top: 10px; text-align: right;">
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                                <button style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                                            </div>
+                                                        </div>
                                                      </div>
                                                  </div>
                                             </div>
@@ -1447,7 +1487,7 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table class="table table-bordered text-center">
+                                    <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
                                                 <th>Jumlah</th>
@@ -1455,12 +1495,39 @@
                                                 <th>Harga Obat</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="rincian-body">
                                             <tr>
                                                 <td colspan="3">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <script>
+                                            function tambahObat(nama, harga) {
+                                                const tbody = document.getElementById("rincian-body");
+                                                
+                                                // Hapus baris "Tidak Ada Data" jika ada
+                                                if (tbody.children.length === 1 && tbody.children[0].textContent.includes("Tidak Ada Data")) {
+                                                tbody.innerHTML = "";
+                                                }
+                                                // Tambahkan data baru
+                                                    const row = document.createElement("tr");
+
+                                                    const jumlahCell = document.createElement("td");
+                                                    jumlahCell.innerText = 1;
+
+                                                    const namaCell = document.createElement("td");
+                                                    namaCell.innerText = nama;
+
+                                                    const hargaCell = document.createElement("td");
+                                                    hargaCell.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
+
+                                                    row.appendChild(jumlahCell);
+                                                    row.appendChild(namaCell);
+                                                    row.appendChild(hargaCell);
+
+                                                    tbody.appendChild(row);
+                                                }
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -2709,6 +2776,9 @@ $('#search-results').hide();
                 nextBtn.textContent = "Simpan";
             }
         });
+    </script>
+
+    <script>
         const table = new DataTable('#icdTable', {
             responsive: true,
             paging: true,
