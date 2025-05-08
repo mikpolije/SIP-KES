@@ -1443,28 +1443,28 @@
                                                             <tr>
                                                                 <td>Acyclovir</td>
                                                                 <td>Rp 1.000,-</td>
-                                                                <td>64</td><td>
-                                                                <button type="button" onclick="tambahObat('Acyclovir', Rp. 1.000-,)" class="btn-pilih">Pilih</button></td></tr>
+                                                                <td>64</td>
+                                                                <td class="text-start"><button type="button" onclick="tambahObat('Acyclovir', Rp. 1.000-,)" class="btn-pilih">Pilih</button></td></tr>
                                                             <tr>
                                                                 <td>Acyclovir salep</td>
                                                                 <td>Rp 9.000,-</td>
                                                                 <td>3</td>
-                                                                <td><button class="btn-pilih">Pilih</button></td></tr>
+                                                                <td class="text-start"><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr>
                                                                 <td>ALLOPURINOL TAB 300 mg</td>
                                                                 </td><td>Rp 833,-</td>
                                                                 <td>0</td>
-                                                                <td><span class="stok-kosong">Stok Kosong</span></td></tr>
+                                                                <td class="text-start"><span class="stok-kosong">Stok Kosong</span></td></tr>
                                                             <tr>
                                                                 <td>ALPARA</td>
                                                                 <td>Rp 1.776,-</td>
                                                                 <td>0</td>
-                                                                <td><button class="btn-pilih">Pilih</button></td></tr>
+                                                                <td class="text-start"><button class="btn-pilih">Pilih</button></td></tr>
                                                             <tr>
                                                                 <td>Ambroxol</td>
                                                                 <td>Rp 416,-</td>
                                                                 <td>170</td>
-                                                                <td><button class="btn-pilih">Pilih</button></td></tr>
+                                                                <td class="text-start"><button class="btn-pilih">Pilih</button></td></tr>
                                                         </tbody>
                                                         </table>
                                                         <div style="margin-top: 15px;">
