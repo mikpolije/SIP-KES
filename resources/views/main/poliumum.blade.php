@@ -1465,7 +1465,7 @@
                                                             <div>
                                                                 Menampilkan 1 sampai 10 dari 155 entri
                                                             </div>
-                                                            <div style="margin-top: 5px; text-align: right;">
+                                                            <div style="margin-top: 8px; text-align: right;">
                                                                 <button disabled style="opacity: 0.6; cursor: not-allowed;">Sebelumnya</button>
                                                                 <button style="background-color: #2196F3; color: white;">1</button>
                                                                 <button>2</button>
