@@ -37,7 +37,7 @@ new class extends Component {
                 @foreach($tabs as $tabId => $tabName)
                 <li class="nav-item">
                     <button
-                        class="nav-link rounded-0 {{ $activeTab === $tabId ? 'bg-white text-primary fw-bold' : 'bg-primary text-dark' }}"
+                        class="nav-link rounded-0 {{ $activeTab === $tabId ? 'bg-white text-primary fw-bold' : 'bg-primary text-white' }}"
                         wire:click="changeTab('{{ $tabId }}')">
                         {{ $tabName }}
                     </button>
