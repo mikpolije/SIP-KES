@@ -1433,44 +1433,43 @@
                                                         <table id="data-obat">
                                                         <thead>
                                                             <tr>
-                                                            <th>Nama Obat</th>
-                                                            <th>Harga Jual</th>
-                                                            <th>Stok Obat</th>
-                                                            <th></th>
+                                                            <th class="text-end">Nama Obat</th>
+                                                            <th class="text-end">Harga Jual</th>
+                                                            <th class="text-end">Stok Obat</th>
+                                                            <th class="text-start"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td>Acyclovir</td>
-                                                                <td>Rp 1.000,-</td>
-                                                                <td>64</td>
-                                                                <td style="text-align: left;"><button type="button" onclick="tambahObat('Acyclovir', Rp. 1.000-,)" class="btn-pilih">Pilih</button></td>
+                                                                <td class="text-end">Acyclovir</td>
+                                                                <td class="text-end">Rp 1.000,-</td>
+                                                                <td class="text-end">64</td>
+                                                                <td class="text-start"><button type="button" onclick="tambahObat('Acyclovir', Rp. 1.000-,)" class="btn-pilih">Pilih</button></td>
                                                             
                                                             </tr>
                                                             <tr>
-                                                                <td style="text-align: left;"><button class="btn-pilih">Pilih</button></td>
-                                                                <td>Acyclovir salep</td>
-                                                                <td>Rp 9.000,-</td>
-                                                                <td>3</td>
-                                                                <td style="text-align: left;"><button class="btn-pilih">Pilih</button></td>
+                                                                <td class="text-end">Acyclovir salep</td>
+                                                                <td class="text-end">Rp 9.000,-</td>
+                                                                <td class="text-end">3</td>
+                                                                <td class="text-start"><button class="btn-pilih">Pilih</button></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>ALLOPURINOL TAB 300 mg</td>
-                                                                </td><td>Rp 833,-</td>
-                                                                <td>0</td>
-                                                                <td style="text-align: left;"><span class="stok-kosong">Stok Kosong</span></td>
+                                                                <td class="text-end">ALLOPURINOL TAB 300 mg</td>
+                                                                <td class="text-end">Rp 833,-</td>
+                                                                <td class="text-end">0</td>
+                                                                <td class="text-start"><span class="stok-kosong">Stok Kosong</span></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>ALPARA</td>
-                                                                <td>Rp 1.776,-</td>
-                                                                <td>10</td>
-                                                                <td style="text-align: left;"><button class="btn-pilih">Pilih</button></td>
+                                                                <td class="text-end">ALPARA</td>
+                                                                <td class="text-end">Rp 1.776,-</td>
+                                                                <td class="text-end">10</td>
+                                                                <td class="text-start"><button class="btn-pilih">Pilih</button></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Ambroxol</td>
-                                                                <td>Rp 416,-</td>
-                                                                <td>170</td>
-                                                                <td style="text-align: left;"><button class="btn-pilih">Pilih</button></td>
+                                                                <td class="text-end">Ambroxol</td>
+                                                                <td class="text-end">Rp 416,-</td>
+                                                                <td class="text-end">170</td>
+                                                                <td class="text-start"><button class="btn-pilih">Pilih</button></td>
                                                             </tr>
                                                         </tbody>
                                                         </table>
