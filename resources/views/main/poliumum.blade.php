@@ -1374,6 +1374,23 @@
                                         border-bottom: 2px solid #ccc;
                                         }
 
+                                        h2 {
+                                        font-size: 24px;
+                                        color: #1a237e;
+                                        margin-bottom: 5px;
+                                        position: relative;
+                                        }
+
+                                        /* Garis horizontal di bawah judul */
+                                        h2::after {
+                                        content: "";
+                                        display: block;
+                                        width: 100%;
+                                        height: 2px;
+                                        background-color: #ccc;
+                                        margin-top: 8px;
+                                        }
+
                                         th, td {
                                         text-align: left;
                                         padding: 10px;
