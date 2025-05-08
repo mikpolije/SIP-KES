@@ -1375,7 +1375,7 @@ row.appendChild(namaCell);
                                         border-bottom: 2px solid #ccc;
                                         }
 
-                                        h2, label, input {
+                                        h2 {
                                         font-size: 24px;
                                         color: #1a237e;
                                         margin-bottom: 5px;
@@ -1383,7 +1383,7 @@ row.appendChild(namaCell);
                                         }
 
                                         /* Garis horizontal di bawah judul */
-                                        h2, label, input::after {
+                                        h2::after {
                                         content: "";
                                         display: block;
                                         width: 100%;
