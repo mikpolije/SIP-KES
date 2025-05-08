@@ -1369,6 +1369,11 @@
                                         font-family: sans-serif;
                                         }
 
+                                        thead {
+                                        background-color: #f3f3f3;
+                                        border-bottom: 2px solid #ccc;
+                                        }
+
                                         th, td {
                                         text-align: left;
                                         padding: 10px;
