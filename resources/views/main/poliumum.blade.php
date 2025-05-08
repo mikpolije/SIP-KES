@@ -1065,6 +1065,7 @@
                                                 filterContainer.appendChild(cariInput);
                                                 popupContent.appendChild(filterContainer);
 
+<<<<<<< HEAD
                                                 if (results.length > 0) {
                                                     const table = document.createElement('table');
                                                     table.classList.add('hasil-pencarian-table');
@@ -1113,6 +1114,56 @@
                                                     noResults.textContent = 'Tidak ada hasil ditemukan.';
                                                     popupContent.appendChild(noResults);
                                                 }
+=======
+            if (results.length > 0) {
+                const table = document.createElement('table');
+                table.classList.add('hasil-pencarian-table');
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                const aksiHeader = document.createElement('th');
+                aksiHeader.textContent = '';
+                const kodeHeader = document.createElement('th');
+                kodeHeader.textContent = 'Kode';
+                const namaHeader = document.createElement('th');
+                namaHeader.textContent = 'Nama';
+                headerRow.appendChild(aksiHeader);
+                headerRow.appendChild(kodeHeader);
+                headerRow.appendChild(namaHeader);
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+                const tbody = document.createElement('tbody');
+                results.forEach(item => {
+                    const row = document.createElement('tr');
+                    const kodeCell = document.createElement('td');
+                    kodeCell.textContent = item.kode;
+                    const namaCell = document.createElement('td');
+                    namaCell.textContent = item.nama;
+                    const aksiCell = document.createElement('td');
+                    const pilihButton = document.createElement('button');
+                    pilihButton.classList.add('pilih-button');
+                    pilihButton.textContent = 'Pilih';
+                    pilihButton.addEventListener('click', function() {
+                        const kodeIcd9Input = document.getElementById('kode_icd9'); // Ganti dengan ID input ICD 9 Anda
+                        if (kodeIcd9Input) {
+                            kodeIcd9Input.value = item.kode;
+                        }
+                        popupContainer.style.display = 'none';
+                    });
+                    aksiCell.appendChild(pilihButton);
+                    row.appendChild(aksiCell);
+                    row.appendChild(kodeCell);
+                    row.appendChild(namaCell);
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
+                popupContent.appendChild(table);
+                attachTableFiltering(table);
+            } else {
+                const noResults = document.createElement('p');
+                noResults.textContent = 'Tidak ada hasil ditemukan.';
+                popupContent.appendChild(noResults);
+            }
+>>>>>>> a2a3c32345453374b9341caead53b3b6ae7b9857
 
                                                 popupContainer.style.display = 'block';
                                             }
