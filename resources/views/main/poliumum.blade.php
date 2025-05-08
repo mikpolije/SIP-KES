@@ -1187,7 +1187,7 @@
                                             </thead>
                                             <tbody id="selected-icds-icd9">
                                                 <tr>
-                                                    <td colspan="2" class="text-center text-muted">Tidak Ada Data</td>
+                                                    <td colspan="2" class="text-center text-dark">Tidak Ada Data</td>
                                                 </tr>
                                             </tbody>
                                         </table>
