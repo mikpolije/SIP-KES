@@ -1451,7 +1451,7 @@
                                                                 <td>0</td>
                                                             </tr>
                                                             <tr>
-                                                                <td><button class="btn-pilih">Pilih</button></td></tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
                                                                 <td>ALPARA</td>
                                                                 <td>Rp 1.776,-</td>
                                                                 <td>10</td>
