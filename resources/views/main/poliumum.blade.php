@@ -1380,6 +1380,10 @@
                                         border-bottom: 1px solid #ccc;
                                         }
 
+                                        tr:nth-child(even) {
+                                        background-color: #f0f4ff; /* biru muda */
+                                        }
+
                                         th {
                                         background-color: #f4f4f4;
                                         }
