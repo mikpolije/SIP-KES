@@ -1472,7 +1472,7 @@
                                                                 <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
                                                                 <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
                                                                 <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">5</button>
-                                                                <button>Selanjutnya</button>
+                                                                <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
                                                             </div>
                                                         </div>
                                                      </div>
