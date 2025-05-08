@@ -125,7 +125,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="mb-3">
-                                <label class="form-label" for="notelp"> No. Telpon : <span class="danger">*</span>
+                                <label class="form-label" for="notelp"> No. Telepon : <span class="danger">*</span>
                                 </label>
                                 <input type="text" class="form-control required" id="notelp" name="notelp" placeholder="Masukan No. Telpon" />
                             </div>
@@ -151,7 +151,7 @@
                     <p class="mb-2">Persetujuan perawatan dan pengobatan</p>
                     <div class="d-flex mb-3 gap-2 align-items-start">
                         <input type="checkbox" class="mt-1" id="kondisi" name="kondisi" autocomplete="off">
-                        <label for="kondisi">Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya mengizinkan dokter dan profesional kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis seperti yang diperlukan dalam penilaian profesional mereka meliputi; Pemerikasaan fisik yang dilakukan oleh perawat dan dokter, Pemasangan alat kesehatan (kecuali yang membutuhkan persetujuan khusus), Asuhan keperawatan, Pemeriksaan laboratorium, Pemeriksaan Radiologii.</label>
+                        <label for="kondisi">Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya mengizinkan dokter dan profesional kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis seperti yang diperlukan dalam penilaian profesional mereka meliputi; Pemerikasaan fisik yang dilakukan oleh perawat dan dokter, Pemasangan alat kesehatan (kecuali yang membutuhkan persetujuan khusus), Asuhan keperawatan, Pemeriksaan laboratorium, Pemeriksaan Radiologi.</label>
                     </div>
                     <p class="mb-2">Persetujuan pelepasan informasi</p>
                     <div class="d-flex mb-3 gap-2 align-items-start">
