@@ -3,26 +3,23 @@ use Livewire\Volt\Component;
 
 new class extends Component {
     public $patientId;
-    public $currentStep = 1;
-    public $totalSteps;
+    public $activeTab = 'cppt'; // Default active tab
+
+    // Available tabs
+    public $tabs = [
+        'cppt' => 'CPPT',
+        'asuhan' => 'Asuhan Keperawatan',
+        'layanan' => 'Layanan',
+        'resume' => 'Resume Medis'
+    ];
 
     public function mount($patientId = null) {
         $this->patientId = $patientId;
-        $this->totalSteps = 4;
     }
 
-    public function nextStep()
+    public function changeTab($tab)
     {
-        if ($this->currentStep < $this->totalSteps) {
-            $this->currentStep++;
-        }
-    }
-
-    public function prevStep()
-    {
-        if ($this->currentStep > 1) {
-            $this->currentStep--;
-        }
+        $this->activeTab = $tab;
     }
 
     public function submit()
@@ -32,71 +29,47 @@ new class extends Component {
 };
 ?>
 
-<div class="w-100">
-    <!-- stepper -->
-    <div class="stepper-container p-4">
-        <div class="stepper" id="stepper">
-            <div class="step">
-                <div class="step-circle {{ $currentStep >= 1 ? 'active' : '' }}" data-step="1">1</div>
-                <div class="step-title">CPPT</div>
-            </div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body p-0">
+            <!-- Tab Navigation -->
+            <ul class="nav nav-pills nav-fill bg-primary bg-opacity-25 rounded-top">
+                @foreach($tabs as $tabId => $tabName)
+                <li class="nav-item">
+                    <button
+                        class="nav-link rounded-0 {{ $activeTab === $tabId ? 'bg-white text-primary fw-bold' : 'bg-primary text-white' }}"
+                        wire:click="changeTab('{{ $tabId }}')">
+                        {{ $tabName }}
+                    </button>
+                </li>
+                @endforeach
+            </ul>
 
-            <div class="step-connector {{ $currentStep >= 2 ? 'active' : '' }}" data-connector="1-2"></div>
+            <!-- Tab Content Area -->
+            <div class="p-4">
+                <!-- CPPT Tab -->
+                <div class="{{ $activeTab !== 'cppt' ? 'd-none' : '' }}" id="cppt">
+                    @livewire('rawat-inap.layanan.cppt', ['patientId' => $patientId], key('cppt-'.$patientId))
+                </div>
 
-            <div class="step">
-                <div class="step-circle {{ $currentStep >= 2 ? 'active' : '' }}" data-step="2">2</div>
-                <div class="step-title">Asuhan Keperawatan</div>
-            </div>
+                <!-- Asuhan Keperawatan Tab -->
+                <div class="{{ $activeTab !== 'asuhan' ? 'd-none' : '' }}" id="asuhan">
+                    @livewire('rawat-inap.layanan.asuhan-keperawatan', ['patientId' => $patientId],
+                    key('asuhan-'.$patientId))
+                </div>
 
-            <div class="step-connector {{ $currentStep >= 3 ? 'active' : '' }}" data-connector="2-3"></div>
+                <!-- Layanan Tab -->
+                <div class="{{ $activeTab !== 'layanan' ? 'd-none' : '' }}" id="layanan">
+                    @livewire('rawat-inap.layanan.layanan', ['patientId' => $patientId], key('layanan-'.$patientId))
+                </div>
 
-            <div class="step">
-                <div class="step-circle {{ $currentStep >= 3 ? 'active' : '' }}" data-step="3">3</div>
-                <div class="step-title">Layanan</div>
-            </div>
-
-            <div class="step-connector {{ $currentStep >= 4 ? 'active' : '' }}" data-connector="3-4"></div>
-
-            <div class="step">
-                <div class="step-circle {{ $currentStep >= 4 ? 'active' : '' }}" data-step="4">4</div>
-                <div class="step-title">Resume Medis</div>
+                <!-- Resume Medis Tab -->
+                <div class="{{ $activeTab !== 'resume' ? 'd-none' : '' }}" id="resume">
+                    @livewire('rawat-inap.layanan.resume-medis', ['patientId' => $patientId],
+                    key('resume-medis-'.$patientId))
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- step 1 cppt -->
-    <div class="step-content {{ $currentStep === 1 ? 'active' : '' }}" data-step-content="1">
-        @livewire('rawat-inap.layanan.cppt', ['patientId' => $patientId], key('cppt-'.$patientId))
-    </div>
-
-    <!-- step 2 asuhan keperawatan -->
-    <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
-        <div class="container py-4">
-            @livewire('rawat-inap.layanan.asuhan-keperawatan', ['patientId' => $patientId],
-            key('asuhan-'.$patientId))
-        </div>
-    </div>
-
-    <!-- step 3 layanan -->
-    <div class="step-content {{ $currentStep === 3 ? 'active' : '' }}" data-step-content="3">
-        @livewire('rawat-inap.layanan.layanan', ['patientId' => $patientId], key('layanan-'.$patientId))
-    </div>
-
-    <!-- step 4 resume medis -->
-    <div class="step-content {{ $currentStep === 4 ? 'active' : '' }}" data-step-content="4">
-        @livewire('rawat-inap.layanan.resume-medis', ['patientId' => $patientId], key('resume-medis-'.$patientId))
-    </div>
-
-    <!-- navigation -->
-    <div class="navigation-buttons mt-4 p-4">
-        <button class="btn btn-secondary" wire:click="prevStep" {{ $currentStep===1 ? 'disabled' : '' }}>
-            Previous
-        </button>
-
-        @if($currentStep < $totalSteps) <button class="btn btn-primary" wire:click="nextStep">Next</button>
-            @else
-            <button class="btn btn-success" wire:click="submit">Submit</button>
-            @endif
     </div>
 
     @if (session()->has('message'))
