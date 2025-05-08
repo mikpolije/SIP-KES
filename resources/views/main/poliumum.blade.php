@@ -1187,8 +1187,7 @@
                                             </thead>
                                             <tbody id="selected-icds-icd9">
                                                 <tr>
-                                                    <td colspan="2" class="text-center text-muted">Belum ada Tindakan
-                                                        yang dipilih</td>
+                                                    <td colspan="2" class="text-center text-muted">Tidak Ada Data</td>
                                                 </tr>
                                             </tbody>
                                         </table>
