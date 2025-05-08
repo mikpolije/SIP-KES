@@ -1440,20 +1440,20 @@ row.appendChild(namaCell);
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
                                                         <h2>Data Obat</h2>
-                                                        <label>Tampilkan
-                                                            <select>
+                                                        <label style="color: #2c2c6c; font-weight: bold;">
+                                                            Tampilkan
+                                                            <select style="margin: 0 5px; padding: 3px 6px; border-radius: 4px; border: 1px solid #ccc;">
                                                                 <option>10</option>
                                                                 <option>25</option>
                                                                 <option>50</option>
-                                                            </select> entri
+                                                            </select>
+                                                            entri
                                                         </label>
-                                                        <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-                                                            <div style="display: flex; align-items: center; gap: 8px;">
-                                                                <label for="searchInput" style="color: #2c2c6c; font-weight: bold;">Cari :</label>
-                                                                <input id="searchInput" type="text" placeholder=""
-                                                                    style="padding: 5px 10px; border: 1px solid #999; border-radius: 5px;
-                                                                            box-shadow: 1px 1px 4px #aaa; outline: none;">
-                                                            </div>
+                                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                                            <label for="searchInput" style="color: #2c2c6c; font-weight: bold;">Cari :</label>
+                                                            <input id="searchInput" type="text" placeholder=""
+                                                                style="padding: 5px 10px; border: 1px solid #999; border-radius: 5px;
+                                                                    box-shadow: 1px 1px 4px #aaa; outline: none;">
                                                         </div>
                                                         <table id="data-obat">
                                                         <thead>
