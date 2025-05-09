@@ -625,78 +625,57 @@
                                                                 <tr>
                                                                     <th></th>
                                                                     <th>Kode</th>
-                                                                    <th>Subkode</th>
                                                                     <th>Nama</th>
-                                                                    <th>Termin</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00</td>
-                                                                    <td>0</td>
-                                                                    <td>Kolera</td>
                                                                     <td>Cholera</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00</td>
-                                                                    <td>1</td>
-                                                                    <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
                                                                     <td>Cholera due to Vibrio cholerae 01</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00</td>
-                                                                    <td>9</td>
-                                                                    <td>Kolera, tidak terspesifikasi</td>
                                                                     <td>Cholera, unspecified</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>0</td>
-                                                                    <td>Demam tifoid dan paratifoid</td>
                                                                     <td>Typhoid and paratyphoid</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>1</td>
-                                                                    <td>Demam tifoid</td>
                                                                     <td>Typhoid fever</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>2</td>
-                                                                    <td>Demam paratifoid A</td>
                                                                     <td>Paratyphoid fever A</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>3</td>
-                                                                    <td>Demam paratifoid B</td>
                                                                     <td>Paratyphoid fever B</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>4</td>
-                                                                    <td>Demam paratifoid C</td>
                                                                     <td>Paratyphoid fever C</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>-</td>
-                                                                    <td>Demam paratifoid, tidak terspesifikasi</td>
                                                                     <td>Paratyphoid fever, unspecified</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-
                                                 </div>
                                             </div>
                                         </div>
