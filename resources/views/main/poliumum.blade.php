@@ -1070,15 +1070,15 @@
                                                     table.classList.add('hasil-pencarian-table');
                                                     const thead = document.createElement('thead');
                                                     const headerRow = document.createElement('tr');
-const aksiHeader = document.createElement('th');
-aksiHeader.textContent = '';
-const kodeHeader = document.createElement('th');
-kodeHeader.textContent = 'Kode';
-const namaHeader = document.createElement('th');
-namaHeader.textContent = 'Nama';
-headerRow.appendChild(aksiHeader);
-headerRow.appendChild(kodeHeader);
-headerRow.appendChild(namaHeader);
+                                                    const kodeHeader = document.createElement('th');
+                                                    kodeHeader.textContent = 'Kode';
+                                                    const namaHeader = document.createElement('th');
+                                                    namaHeader.textContent = 'Nama';
+                                                    const aksiHeader = document.createElement('th');
+                                                    aksiHeader.textContent = 'Aksi';
+                                                    headerRow.appendChild(kodeHeader);
+                                                    headerRow.appendChild(namaHeader);
+                                                    headerRow.appendChild(aksiHeader);
                                                     thead.appendChild(headerRow);
                                                     table.appendChild(thead);
                                                     const tbody = document.createElement('tbody');
@@ -1100,10 +1100,9 @@ headerRow.appendChild(namaHeader);
                                                             popupContainer.style.display = 'none';
                                                         });
                                                         aksiCell.appendChild(pilihButton);
-row.appendChild(aksiCell);
-row.appendChild(kodeCell);
-row.appendChild(namaCell);
-
+                                                        row.appendChild(kodeCell);
+                                                        row.appendChild(namaCell);
+                                                        row.appendChild(aksiCell);
                                                         tbody.appendChild(row);
                                                     });
                                                     table.appendChild(tbody);
@@ -1334,21 +1333,13 @@ row.appendChild(namaCell);
                                           </tr>
                                         </tbody>
                                       </table>
-                                    <div style="margin-top: 15px;">
-                                    <div>
-                                    Menampilkan 1 sampai 10 dari 155 entri
                                     </div>
-                                      <div style="margin-top: 10px; text-align: right;">
-                                      <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
-                                            <button style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
-                                            <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
-                                            <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
-                                            <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
-                                            <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
-                                            <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
-                                            <button style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
-                                         </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sebelumnya</button>
+                                    <button type="button" class="btn btn-primary">Selanjutnya</button>
                                     </div>
+                                </div>
+                                </div>
                             </div>
   
                             <div class="col-md-6">
@@ -1383,31 +1374,10 @@ row.appendChild(namaCell);
                                         border-bottom: 2px solid #ccc;
                                         }
 
-                                        h2 {
-                                        font-size: 24px;
-                                        color: #1a237e;
-                                        margin-bottom: 5px;
-                                        position: relative;
-                                        }
-
-                                        /* Garis horizontal di bawah judul */
-                                        h2::after {
-                                        content: "";
-                                        display: block;
-                                        width: 100%;
-                                        height: 2px;
-                                        background-color: #ccc;
-                                        margin-top: 8px;
-                                        }
-
                                         th, td {
                                         text-align: left;
                                         padding: 10px;
                                         border-bottom: 1px solid #ccc;
-                                        }
-
-                                        tr:nth-child(even) {
-                                        background-color: #f0f4ff; /* biru muda */
                                         }
 
                                         th {
@@ -1448,21 +1418,14 @@ row.appendChild(namaCell);
                                                     <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
                                                     <div class="popup">
                                                         <h2>Data Obat</h2>
-                                                        <label style="color: #2c2c6c; font-weight: bold;">
-                                                            Tampilkan
-                                                            <select style="margin: 0 5px; padding: 3px 6px; border-radius: 4px; border: 1px solid #ccc;">
+                                                        <label>Tampilkan
+                                                            <select>
                                                                 <option>10</option>
                                                                 <option>25</option>
                                                                 <option>50</option>
-                                                            </select>
-                                                            entri
+                                                            </select> entri
                                                         </label>
-                                                        <div style="display: flex; justify-content: flex-end; gap: 8px;">
-                                                            <label for="searchInput" style="color: #2c2c6c; font-weight: bold;">Cari :</label>
-                                                            <input id="searchInput" type="text" placeholder=""
-                                                                style="padding: 5px 10px; border: 1px solid #999; border-radius: 5px;
-                                                                    box-shadow: 1px 1px 4px #aaa; outline: none;">
-                                                        </div>
+                                                        <input type="text" placeholder="Cari..." style="float: right;">
                                                         <table id="data-obat">
                                                         <thead>
                                                             <tr>
@@ -1537,9 +1500,7 @@ row.appendChild(namaCell);
                                         </thead>
                                         <tbody id="rincian-body">
                                             <tr>
-                                                <td colspan="3" style="text-align: center; vertical-align: middle; height: 60px;">
-                                                    Tidak Ada Data
-                                                </td>
+                                                <td colspan="3">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
