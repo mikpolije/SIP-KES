@@ -636,42 +636,47 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A00</td>
-                                                                    <td>Cholera due to Vibrio cholerae 01</td>
+                                                                    <td>A00.0</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A00</td>
+                                                                    <td>A00.1</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar eltor</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A00.9</td>
                                                                     <td>Cholera, unspecified</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>Typhoid and paratyphoid</td>
+                                                                    <td>Typhoid and paratyphoid fevers</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
+                                                                    <td>A01.0</td>
                                                                     <td>Typhoid fever</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Paratyphoid fever A</td>
+                                                                    <td>A01.1</td>
+                                                                    <td>Paratyphoid fever a</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Paratyphoid fever B</td>
+                                                                    <td>A01.2</td>
+                                                                    <td>Paratyphoid fever b</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Paratyphoid fever C</td>
+                                                                    <td>A01.3</td>
+                                                                    <td>Paratyphoid fever c</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
+                                                                    <td>A01.4</td>
                                                                     <td>Paratyphoid fever, unspecified</td>
                                                                 </tr>
                                                             </tbody>
