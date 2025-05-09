@@ -679,6 +679,61 @@
                                                                     <td>A01.4</td>
                                                                     <td>Paratyphoid fever, unspecified</td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02</td>
+                                                                    <td>Other salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.0</td>
+                                                                    <td>Salmonella enteritis</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.1</td>
+                                                                    <td>Salmonella septicaemia</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.2</td>
+                                                                    <td>Localized salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.8</td>
+                                                                    <td>Other specified salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.9</td>
+                                                                    <td>Salmonella infection, unspecified</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03</td>
+                                                                    <td>Shigellosis</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.0</td>
+                                                                    <td>Shigellosis due to shigella dysenteriae</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.1</td>
+                                                                    <td>Shigellosis due to shigella flexneri</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.2</td>
+                                                                    <td>Shigellosis due to shigella boydii</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.2</td>
+                                                                    <td>Shigellosis due to shigella sonnei</td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                 </div>
