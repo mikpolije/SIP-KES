@@ -48,4 +48,7 @@ Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'in
 // Route Surat Keterangan Sakit
 Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
 
-
+// Route Riwayat Medis
+use App\Http\Controllers\RiwayatMedisController;
+Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
+//Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
