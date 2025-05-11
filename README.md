@@ -1,6 +1,7 @@
 ### SIPKES
 <hr>
 Run Migration:
+
 ```php artisan migrate:fresh --seed```
 
 ### TOLONG JANGAN COMMIT .ENV KE REPO INI
