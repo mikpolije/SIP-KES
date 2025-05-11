@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id(); // Primary key
 
             // Foreign key ke tabel pasien (pastikan tabel 'pasiens' ada)
-            $table->unsignedBigInteger('pasien_id');
-            $table->foreign('pasien_id')->references('id')->on('pasiens')->onDelete('cascade');
+            $table->string('no_rm', 4);
+            $table->foreign('no_rm')->references('no_rm')->on('data_pasien')->onDelete('cascade');
 
             // Informasi medis
             $table->date('tanggal_periksa');      // Tanggal pemeriksaan
