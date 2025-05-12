@@ -349,7 +349,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="layanan">Layanan <span
+                                        <label class="form-label" for="layanan">Layanan:<span
                                                 class="danger">*</span></label>
                                         <select class="form-select required" id="layanan" name="layanan">
                                             <option value="poliumum">Poli Umum</option>
@@ -362,7 +362,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="dokter">Dokter <span
+                                        <label class="form-label" for="dokter">Dokter:<span
                                                 class="danger">*</span></label>
                                         <select class="form-select required" id="dokter" name="dokter">
                                             <option value="dr1">dr. Ida Lailatul Hasanah</option>
@@ -373,7 +373,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="bayar">Cara Pembayaran <span
+                                        <label class="form-label" for="bayar">Cara Pembayaran:<span
                                                 class="danger">*</span></label>
                                         <select class="form-select required" id="bayar" name="bayar">
                                             <option value="umum">Umum</option>
