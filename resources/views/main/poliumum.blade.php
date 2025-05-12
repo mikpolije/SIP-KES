@@ -1703,6 +1703,12 @@
                                 <button class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
                                     ♻️ Hapus Semua
                                 </button>
+
+                                <!-- Warna Coretan -->
+                                <button class="btn btn-sm btn-outline-danger" onclick="setColor('red')">🔴</button>
+                                <button class="btn btn-sm btn-outline-primary" onclick="setColor('blue')">🔵</button>
+                                <button class="btn btn-sm btn-outline-success" onclick="setColor('green')">🟢</button>
+                                <button class="btn btn-sm btn-outline-dark" onclick="setColor('black')">⚫</button>
                             </div>
 
                             <!-- Canvas -->
@@ -2749,6 +2755,7 @@ $('#search-results').hide();
         let isDrawing = false;
         let drawEnabled = false;
         let initialized = false;
+        let currentColor = 'black'; // Warna default
 
         function setDrawMode(enabled) {
             drawEnabled = enabled;
@@ -2757,6 +2764,10 @@ $('#search-results').hide();
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
+        }
+
+        function setColor(color) {
+            currentColor = color;
         }
 
         function saveCanvas() {
@@ -2769,6 +2780,9 @@ $('#search-results').hide();
         canvas.addEventListener('mousedown', (e) => {
             if (!drawEnabled) return;
             isDrawing = true;
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(e.offsetX, e.offsetY);
         });
@@ -2790,7 +2804,7 @@ $('#search-results').hide();
                 image.onload = function () {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 };
-                image.src = 'public/build/images/gambarmedis/Anatomi.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                image.src = '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
                 // setiap buka ulang, redraw image (jika dibutuhkan)
