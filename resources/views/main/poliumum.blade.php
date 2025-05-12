@@ -1049,6 +1049,17 @@
                                 background-color: #f8f9fa;
                                 border-bottom: 1px solid #dee2e6;
                             }
+
+                            /* Garis horizontal di bawah judul */
+                            h2::after {
+                                            content: "";
+                                            display: block;
+                                            width: 100%;
+                                            height: 2px;
+                                            background-color: #ccc;
+                                            margin-top: 8px;
+                            }
+
                             </style>
                             
                         <!-- Modal for Pemeriksaan Fisik Details -->
