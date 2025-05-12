@@ -803,7 +803,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                     <label class="form-label" for="objective">Objective</label>
-                                        <div class="row">
+                                        <div class="row"> 
                                             <!-- Left Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
@@ -1152,7 +1152,7 @@
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3" >
                             <div class="col-md-6" >
-                                <div class="card p-3 h-100">
+                                <div class="card p-3 mb-4 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
