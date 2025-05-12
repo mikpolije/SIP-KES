@@ -922,17 +922,13 @@
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </div>
-                                    <div id="popup-container" class="popup-container">
-                                        <div id="popup-content" class="popup-content">
-                                            <span class="close-button">&times;</span>
-                                            <h2>Data ICD 9</h2>
-                                            <div id="hasil-pencarian">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
+                                    <div class="modal fade" id="icdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content shadow-sm">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Data ICD 9</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                    </div>
-
                                     <style>
                                         .popup-container {
                                             display: none;
