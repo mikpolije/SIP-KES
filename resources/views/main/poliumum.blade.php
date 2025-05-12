@@ -1007,7 +1007,6 @@
                                             </label>
                                         </div>
 
-                                        <h2>Data ICD 9</h2>
                                             <table>
                                             <thead>
                                                 <tr>
