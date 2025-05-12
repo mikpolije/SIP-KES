@@ -147,16 +147,10 @@
                   <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly>
                 </div>
             </div>
-            <div class="mb-3">
-                <div class="col-auto">
-                    <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama </label>
-                </div>
-                <div class="col-md-1">
-                    <input type="text" class="form-control" value="4" readonly>
-                </div>
-                <div>
-                    <label>hari</label>
-                </div>
+            <div class="mb-3 d-flex align-items-center gap-2">
+                <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama</label>
+                <input type="text" class="form-control" value="4" readonly style="width: 50px;">
+                <label>hari</label>
             </div>
             <div class="mb-3">
                 <div class="col-md-2">
