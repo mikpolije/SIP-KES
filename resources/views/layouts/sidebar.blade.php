@@ -64,7 +64,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('pendaftaran') ? 'active' : '' }}" href="/main/pendaftaran"
+            <a class="sidebar-link {{ request()->is('main/pendaftaran') ? 'active' : '' }}" href="/main/pendaftaran"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-clipboard" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
