@@ -1012,11 +1012,10 @@
                                                 <tr>
                                                 <th class="text-start"></th>
                                                 <th class="text-end"></th>
-                                                <th class="text-end">Kode</th>
-                                                <th class="text-end">Nama</th>
+                                                <th class="text-center">Kode</th>
+                                                <th class="text-center">Nama</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody>
                                                 <tr>
                                                     <td><button class="btn-pilih">Pilih</button></td>
