@@ -840,7 +840,7 @@
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah +</button>
+                                            data-bs-target="#statusLokalisModal">Tambah+</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -1639,7 +1639,7 @@
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah+</button>
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
