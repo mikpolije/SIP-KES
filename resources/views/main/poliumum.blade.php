@@ -549,6 +549,7 @@
                                 </div>
                             </div>
                         </div>
+                        </section>
 
 
                         <!-- Antrian - Identitas Pasien -->
