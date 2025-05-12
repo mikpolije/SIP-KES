@@ -585,11 +585,11 @@
                                     <label class="form-label" for="nama">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="form-label" for="no.rm">No. RM</label>
                                     <input type="text" class="form-control" id="no.rm" name="no.rm">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
                                 </div>
@@ -795,10 +795,8 @@
                         <div class="row mb-3">
                             <div class="col-md-6 shadow-sm">
                                 <div class="card p-3">
-                                    <div class="card-body">
-                                        <label class="form-label" for="subjective">Subjective</label>
-                                        <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
-                                    </div>
+                                    <label class="form-label" for="subjective">Subjective</label>
+                                    <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6 shadow-sm">
