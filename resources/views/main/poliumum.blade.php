@@ -936,30 +936,59 @@
                                 </div>
                             </div>
 
-                            <!-- Modal Detail Pemeriksaan -->
-                        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content custom-modal-content">
-                                    <div class="modal-header border-0">
-                                        <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan fisik</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                    </div>
-                                    <hr class="m-0 mb-3" />
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-6 offset-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                                    <input type="text" class="form-control shadow-custom" value="kepala" disabled>
+                            <!-- Modal Rincian Pemeriksaan -->
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+   
+                            <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content rounded shadow">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Rincian Pemeriksaan Fisik</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <!-- CANVAS -->
+                                                <div class="col-md-7 text-center">
+                                                    <!-- Toolbar -->
+                                                    <div class="mb-2">
+                                                        <button class="btn btn-outline-dark btn-sm" id="vtnDrawToggle" onclick="toggleDrawMode()">
+                                                            ✏️
+                                                        </button>
+                                                        <button class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
+                                                            ❌
+                                                        </button>
+
+                                                    <!-- Warna Coretan -->
+                                                        <button class="btn btn-sm btn-outline-danger" onclick="setColor('red')">🔴</button>
+                                                        <button class="btn btn-sm btn-outline-primary" onclick="setColor('blue')">🔵</button>
+                                                        <button class="btn btn-sm btn-outline-success" onclick="setColor('green')">🟢</button>
+                                                        <button class="btn btn-sm btn-outline-dark" onclick="setColor('black')">⚫</button>
+                                                    </div>
+
+                                                    <!-- Canvas -->
+                                                    <div style="border: 1px solid #ccc; display: inline-block;">
+                                                        <canvas id="bodyCanvas" width="500" height="500"></canvas>
+                                                    </div>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-semibold">Keterangan</label>
-                                                    <textarea class="form-control shadow-custom" rows="4" disabled>Kelainan pada pembuluh darah</textarea>
+
+                                                <!-- Form Input -->
+                                                <div class="col-md-5">
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
+                                                        <input type="text" class="form-control" id="bagianDiperiksa" placeholder="Ketik di sini">Kepala
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-semibold">Keterangan</label>
+                                                        <textarea class="form-control" id="keteranganFisik" rows="5" placeholder="Ketik di sini">Kelainan pada pembuluh darah</textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="modal-footer border-0">
+                                            <button class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
+                                        </div>
                                     </div>
-                                    <hr class="mt-2 mb-0" />
                                 </div>
                             </div>
                         </div>
@@ -1732,15 +1761,18 @@
                         <div class="col-md-7 text-center">
                             <!-- Toolbar -->
                             <div class="mb-2">
-                                <button class="btn btn-outline-dark btn-sm" onclick="setDrawMode(true)">
-                                    ✏️ Gambar
-                                </button>
-                                <button class="btn btn-outline-dark btn-sm" onclick="setDrawMode(false)">
-                                    ❌ Nonaktifkan
+                                <button class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">
+                                    ✏️
                                 </button>
                                 <button class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
-                                    ♻️ Hapus Semua
+                                    ❌
                                 </button>
+
+                            <!-- Warna Coretan -->
+                                <button class="btn btn-sm btn-outline-danger" onclick="setColor('red')">🔴</button>
+                                <button class="btn btn-sm btn-outline-primary" onclick="setColor('blue')">🔵</button>
+                                <button class="btn btn-sm btn-outline-success" onclick="setColor('green')">🟢</button>
+                                <button class="btn btn-sm btn-outline-dark" onclick="setColor('black')">⚫</button>
                             </div>
 
                             <!-- Canvas -->
@@ -2787,9 +2819,33 @@ $('#search-results').hide();
         let isDrawing = false;
         let drawEnabled = false;
         let initialized = false;
+        let currentColor = 'black'; // Warna default
 
         function setDrawMode(enabled) {
             drawEnabled = enabled;
+
+            // Toggle visual state tombol
+            const btnDraw = document.getElementById('btnDraw');
+            const btnDisableDraw = document.getElementById('btnDisableDraw');
+
+            if (enabled) {
+                btnDraw.classList.add('active');
+                btnDisableDraw.classList.remove('active');
+            } else {
+                btnDraw.classList.remove('active');
+                btnDisableDraw.classList.add('active');
+            }
+        }
+
+        function setColor(color) {
+            currentColor = color;
+
+            // Hapus class 'active' dari semua tombol warna
+            const buttons = document.querySelectorAll('#colorButtons button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Tambahkan class 'active' ke tombol yang ditekan
+            button.classList.add('active');
         }
 
         function clearCanvas() {
@@ -2807,6 +2863,9 @@ $('#search-results').hide();
         canvas.addEventListener('mousedown', (e) => {
             if (!drawEnabled) return;
             isDrawing = true;
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(e.offsetX, e.offsetY);
         });
@@ -2828,7 +2887,7 @@ $('#search-results').hide();
                 image.onload = function () {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 };
-                image.src = 'public/build/images/gambarmedis/Anatomi.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                image.src = '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
                 // setiap buka ulang, redraw image (jika dibutuhkan)
