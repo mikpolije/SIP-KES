@@ -106,9 +106,13 @@
         <div class="modal-body">
           <!-- ISI MODAL -->
           <div>
-            <div class="mb-3 d-flex align-items-center">
-              <label>Nomor</label>
-              <input type="text" class="form-control" value="001/MS/I/2025" readonly>
+            <<div class="row mb-3 align-items-center">
+                <div class="col-md-2">
+                  <label class="fw-semibold">Nomor</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" value="001/MS/I/2025" readonly>
+                </div>
             </div>
             <div class="mb-3">
               <label>Nama</label>
