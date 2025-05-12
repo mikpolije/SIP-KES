@@ -30,6 +30,7 @@
     <h1 class="text-center judul-halaman" style="font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
         Surat Keterangan Sakit
     </h1>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <div class="d-flex justify-content-end my-4">
         <div class="input-group" style="width: 300px;">
@@ -81,9 +82,10 @@
                                 <button class="btn btn-warning btn-sm">
                                     <i class="fas fa-print"></i> Cetak
                                 </button>
-                                <button class="btn btn-info btn-sm">
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal">
                                     Detail
                                 </button>
+
                             </td>
                         </tr>
                         {{-- Tambahkan data dummy lainnya jika mau --}}
@@ -93,4 +95,54 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailModalLabel">Surat Keterangan Sakit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- ISI MODAL -->
+          <div>
+            <div class="mb-3">
+              <label>Nomor</label>
+              <input type="text" class="form-control" value="001/MS/I/2025" readonly>
+            </div>
+            <div class="mb-3">
+              <label>Nama</label>
+              <input type="text" class="form-control" value="Rina Sofia" readonly>
+            </div>
+            <div class="mb-3">
+              <label>Tanggal Lahir</label>
+              <input type="text" class="form-control" value="26 Oktober 2003" readonly>
+            </div>
+            <div class="mb-3">
+              <label>Jenis Kelamin</label>
+              <input type="text" class="form-control" value="Perempuan" readonly>
+            </div>
+            <div class="mb-3">
+              <label>Alamat</label>
+              <textarea class="form-control" readonly>Perumahan Taman Gading Blok 99</textarea>
+            </div>
+            <div class="mb-3">
+              <label>Perlu istirahat selama</label>
+              <input type="text" class="form-control" value="4 hari (10/02/2025 s/d 13/02/2025)" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <span>Jember, 1 Januari 2025<br>Dokter yang memeriksa: <br><br>(Nama Dokter)<br>SIP.</span>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@endpush
