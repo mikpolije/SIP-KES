@@ -30,7 +30,6 @@
     <h1 class="text-center judul-halaman" style="font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
         Surat Keterangan Sakit
     </h1>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <div class="d-flex justify-content-end my-4">
         <div class="input-group" style="width: 300px;">
@@ -142,7 +141,3 @@
   </div>
 
 @endsection
-
-@push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-@endpush
