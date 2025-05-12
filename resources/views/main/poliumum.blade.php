@@ -969,8 +969,8 @@
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
                                                 <tr>
-                                                    <th class="text-center">Nama ICD 9</th>
-                                                    <th class="text-center">Aksi</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 9</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd9">
