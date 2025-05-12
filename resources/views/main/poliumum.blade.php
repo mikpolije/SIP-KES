@@ -983,7 +983,7 @@
                                 <table class="table table-bordered table-striped" style="background-color: #f0f4ff;">
                                     <thead class="table-light">
                                         <tr>
-                                        <th class="text-center">Pilih</th>
+                                        <th class="text-center"></th>
                                         <th>Kode</th>
                                         <th>Nama</th>
                                         </tr>
