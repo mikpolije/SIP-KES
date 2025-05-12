@@ -924,23 +924,75 @@
 
                             <!-- Modal Detail Pemeriksaan -->
                             <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan Fisik</h5>
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content custom-modal-content">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan fisik</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                                         </div>
+                                        <hr class="m-0 mb-3" />
                                         <div class="modal-body">
-                                            <p><strong>Nama:</strong> Kepala</p>
-                                            <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
-                                            <!-- Tambahkan konten detail lainnya di sini jika diperlukan -->
+                                            <div class="row">
+                                                <div class="col-md-6 offset-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
+                                                        <input type="text" class="form-control shadow-custom" value="kepala" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-semibold">Keterangan</label>
+                                                        <textarea class="form-control shadow-custom" rows="4" disabled>Kelainan pada pembuluh darah</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        </div>
+                                        <hr class="mt-2 mb-0" />
                                     </div>
                                 </div>
                             </div>
+
+<!-- ✅ CUSTOM CSS -->
+<style>
+    .custom-modal-content {
+        border-radius: 10px;
+        padding: 1.5rem;
+        background-color: #fff;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .modal-header h5 {
+        color: #1c1e58; /* Warna biru gelap */
+        font-size: 1.3rem;
+    }
+
+    .shadow-custom {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.1);
+        padding: 8px 12px;
+        background-color: #fff;
+        font-size: 14px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .modal-body {
+        padding-top: 0;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #ccc;
+    }
+
+    @media (max-width: 768px) {
+        .col-md-6.offset-md-6 {
+            margin-left: 0 !important;
+        }
+    }
+</style>
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
