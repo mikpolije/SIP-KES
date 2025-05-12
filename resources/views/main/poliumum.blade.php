@@ -1512,7 +1512,7 @@
 
                         <!-- Rencana Kontrol dan Catatan -->
                         <div class="row mb-3 mt-4">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row g-2 mb-2">
@@ -1541,7 +1541,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
