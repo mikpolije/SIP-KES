@@ -796,7 +796,7 @@
                                     <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 shadow-sm">
                                 <div class="card">
                                     <div class="card-body">
                                     <label class="form-label" for="objective">Objective</label>
