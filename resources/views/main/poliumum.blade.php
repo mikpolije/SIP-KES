@@ -468,15 +468,12 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control required decimal-input" 
-                                                               id="berat-mask" pattern="[0-9.,]*" inputmode="decimal"
-                                                               required
-                                                               oninvalid="this.setCustomValidity('Harap isi berat badan')"
-                                                               oninput="this.setCustomValidity('')">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required decimal-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
+                                                        <div class="invalid-feedback">This field is required.</div>
                                                     </div>
-                                                    <div class="invalid-feedback">Berat badan harus diisi</div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
@@ -796,7 +793,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <label class="form-label" for="subjective">Subjective</label>
-                                    <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
+                                    <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
