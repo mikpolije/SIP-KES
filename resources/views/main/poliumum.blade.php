@@ -933,7 +933,162 @@
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </div>
+                            </div>
 
+                            <div class="col-md-6">
+                                <div class="card p-3 shadow-sm h-100">
+                                    <h5 class="fw-bold">ICD 9</h5>
+                                    <div class="input-group mb-2">
+                                        <input type="text" class="form-control" id="icd9Search"
+                                            placeholder="Ketik Kode atau Diagnosa">
+                                        <button data-bs-toggle="modal" data-bs-target="#icdModal9"
+                                            class="btn btn-outline-secondary " type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+
+
+                                    </div>
+                                    <div class="modal fade" id="icdModal9" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2>Data ICD 9</h2>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table id="icdTable" class="display">
+                                                        <label>Tampilkan
+                                                            <select>
+                                                                <option>10</option>
+                                                                <option>25</option>
+                                                                <option>50</option>
+                                                            </select> entri
+                                                        </label>
+                                                        <input type="text" placeholder="Cari..."
+                                                            style="float: right;">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>Kode</th>
+                                                                    <th>Nama</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A00</td>
+                                                                    <td>Cholera</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A00.0</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A00.1</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar eltor</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A00.9</td>
+                                                                    <td>Cholera, unspecified</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A01</td>
+                                                                    <td>Typhoid and paratyphoid fevers</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A01.0</td>
+                                                                    <td>Typhoid fever</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A01.1</td>
+                                                                    <td>Paratyphoid fever a</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A01.2</td>
+                                                                    <td>Paratyphoid fever b</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A01.3</td>
+                                                                    <td>Paratyphoid fever c</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A01.4</td>
+                                                                    <td>Paratyphoid fever, unspecified</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02</td>
+                                                                    <td>Other salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.0</td>
+                                                                    <td>Salmonella enteritis</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.1</td>
+                                                                    <td>Salmonella septicaemia</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.2</td>
+                                                                    <td>Localized salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.8</td>
+                                                                    <td>Other specified salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.9</td>
+                                                                    <td>Salmonella infection, unspecified</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03</td>
+                                                                    <td>Shigellosis</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.0</td>
+                                                                    <td>Shigellosis due to shigella dysenteriae</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.1</td>
+                                                                    <td>Shigellosis due to shigella flexneri</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.2</td>
+                                                                    <td>Shigellosis due to shigella boydii</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.2</td>
+                                                                    <td>Shigellosis due to shigella sonnei</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
@@ -943,112 +1098,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd9">
-                                                <tr>
-                                                    <td colspan="2" class="text-center text-dark">Tidak Ada Data</td>
+                                                <tr class="icd-item">
+                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="icd-item">
+                                                    <td>R51. Headache</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header border-bottom-0">
-                                            <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Tutup"></button>
-                                        </div>
-                                        <hr class="m-0">
-                                        <div class="modal-body">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <div>
-                                                    <label>Tampilkan 
-                                                        <select class="form-select d-inline-block w-auto mx-1">
-                                                            <option>10</option>
-                                                            <option>25</option>
-                                                            <option>50</option>
-                                                        </select>
-                                                        entri
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <label>Cari: 
-                                                        <input type="text" class="form-control d-inline-block w-auto" 
-                                                            placeholder="Cari...">
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered icd-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th width="70"></th>
-                                                            <th width="100">Kode</th>
-                                                            <th>Nama</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0001</td>
-                                                            <td>Therapeutic ultrasound of vessels of head and neck</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0002</td>
-                                                            <td>Therapeutic ultrasound of hearth</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0003</td>
-                                                            <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0009</td>
-                                                            <td>Other therapeutic ultrasound</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0010</td>
-                                                            <td>Implantation of chemotherapeutic agent</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0011</td>
-                                                            <td>Infusion of drotrecogin alfa (activated)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0012</td>
-                                                            <td>Administration of inhaled nitric oxide</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0013</td>
-                                                            <td>Injection or infusion of nesiritide</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0014</td>
-                                                            <td>Injection or infusion of oxazolidinone class of antibiotics</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0015</td>
-                                                            <td>High-dose infusion interleukin-2 [IL-2]</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
                            
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
