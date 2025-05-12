@@ -461,7 +461,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control required number-input"
+                                                        <input type="text" class="form-control required number-input"
                                                             id="sistole-mask" name="sistole" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
@@ -469,7 +469,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
-                                                        <input type="number" class="form-control required decimal-input" 
+                                                        <input type="text" class="form-control required decimal-input" 
                                                                id="berat-mask" name="berat-badan" pattern="[0-9.,]*" inputmode="decimal"
                                                                >
                                                         <span class="input-group-text">kg</span>
@@ -480,7 +480,7 @@
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            id="suhu-mask" name="suhu" pattern="[0-9.,]*" inputmode="decimal"
                                                             required>
                                                         <span class="input-group-text">°C</span>
                                                         <div class="invalid-feedback">
@@ -492,7 +492,7 @@
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            id="resprate-mask"  pattern="[0-9]*" inputmode="numeric"
                                                             required>
                                                         <span class="input-group-text">/mnt</span>
                                                         <div class="invalid-feedback">
