@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'SIP-Kes | Poli Umum')
+@section('title', 'SIP-Kes | Pendaftaran')
 <style>
     body {
         background-color: #B4AEAE;
@@ -143,13 +143,11 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <div class="col-md-1">
                                     <div class="mb-3">
                                       <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
                                       <input type="text" class="form-control required" id="rt" name="rt" oninput="validateNumeric(this, 3)" maxlength="3" required>
                                       <small class="error-message" id="rt-error">RT harus berupa angka</small>
                                     </div>
-                                </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
