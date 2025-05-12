@@ -92,7 +92,7 @@
                 </span>
                 <span class="hide-menu">Pemeriksaan</span>
             </a>
-            <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/poliumum2') || request()->is('main/rawat-inap') ? 'in' : '' }} collapse"
+            <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }} collapse"
                 aria-expanded="false">
 
                 {{-- POLI UMUM 1 --}}
