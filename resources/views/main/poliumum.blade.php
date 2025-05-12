@@ -1710,7 +1710,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="2">Tidak Ada Data</td>
+                                                 <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
