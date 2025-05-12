@@ -92,7 +92,7 @@
                 </span>
                 <span class="hide-menu">Pemeriksaan</span>
             </a>
-            <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/poliumum2') || request()->is('main/rawat-inap') ? 'in' : '' }} collapse"
+            <ul class="first-level {{ request()->is('main/polikia') || request()->is('main/poliumum') || request()->is('main/poliumum') || request()->is('main/rawat-inap') ? 'in' : '' }} collapse"
                 aria-expanded="false">
 
                 {{-- POLI UMUM 1 --}}
@@ -142,10 +142,10 @@
                         class="second-level collapse {{ request()->is('poliumum/*') ? 'show' : '' }}"
                         aria-expanded="{{ request()->is('poliumum/*') ? 'true' : 'false' }}">
 
-                        <!-- Antrian -->
+                        <!-- Antrean -->
                         <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrian') ? 'active' : '' }}"
-                                href="{{ url('/poliumum/antrian') }}">
+                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
+                                href="{{ route('antrean.poliumum') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Antrian</span>
                             </a>
@@ -153,7 +153,7 @@
 
                         <!-- Riwayat -->
                         <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayatPoliUmum') ? 'active' : '' }}"
+                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayat') ? 'active' : '' }}"
                                 href="{{ route('riwayat.poliumum') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Riwayat</span>
