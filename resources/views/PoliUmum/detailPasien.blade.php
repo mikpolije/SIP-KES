@@ -8,13 +8,13 @@
 
     .judul-riwayat {
         font-family: 'Montserrat', sans-serif;
-        color: #111754;
         font-size: 70px;
         font-weight: 700;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        color: #111754;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
     }
 
     .judul-section {
@@ -29,11 +29,12 @@
         font-size: 30px;
         color: #111754;
         cursor: pointer;
-        transition: color 0.3s;
+        transition: all 0.3s ease;
     }
 
     .close-btn:hover {
-        color: #555;
+        opacity: 0.7;
+        transform: scale(1.1);
     }
 
     .form-control {
