@@ -1681,32 +1681,56 @@
     </div>
     </div>
 
-    <!-- Modal Status Lokalis -->
-    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content rounded-4 shadow">
+   <!-- Modal Pemeriksaan Fisik dengan Canvas -->
+    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content rounded shadow">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title text-primary fw-semibold">Status Lokalis</h5>
+                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Gambar Anatomi -->
-                    <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh"
-                            class="img-fluid" style="max-height: 500px;">
-                    </div>
-                    <!-- Textarea Keterangan -->
-                    <div class="mb-3">
-                        <label for="lokalisKeterangan" class="form-label fw-medium">Keterangan</label>
-                        <textarea id="lokalisKeterangan" class="form-control rounded-3" rows="5" placeholder="Ketik di sini"></textarea>
+                    <div class="row">
+                        <!-- CANVAS -->
+                        <div class="col-md-7 text-center">
+                            <!-- Toolbar -->
+                            <div class="mb-2">
+                                <button class="btn btn-outline-dark btn-sm" onclick="setDrawMode(true)">
+                                    ✏️ Gambar
+                                </button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="setDrawMode(false)">
+                                    ❌ Nonaktifkan
+                                </button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
+                                    ♻️ Hapus Semua
+                                </button>
+                            </div>
+
+                            <!-- Canvas -->
+                            <div style="border: 1px solid #ccc; display: inline-block;">
+                                <canvas id="bodyCanvas" width="500" height="500"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Form Input -->
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
+                                <input type="text" class="form-control" id="bagianDiperiksa" placeholder="Ketik di sini">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Keterangan</label>
+                                <textarea class="form-control" id="keteranganFisik" rows="5" placeholder="Ketik di sini"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-primary rounded-pill px-4"
-                        onclick="simpanStatusLokalis()">Simpan</button>
+                    <button class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -2720,7 +2744,7 @@ $('#search-results').hide();
 </style> --}}
 
     <!-- Script untuk menggambar di canvas -->
-        <script>
+    <script>
         const canvas = document.getElementById('bodyCanvas');
         const ctx = canvas.getContext('2d');
         const image = new Image();
@@ -2768,7 +2792,7 @@ $('#search-results').hide();
                 image.onload = function () {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 };
-                image.src = 'public/assets/images/status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                image.src = 'public/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
                 // setiap buka ulang, redraw image (jika dibutuhkan)
@@ -2776,6 +2800,16 @@ $('#search-results').hide();
             }
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const previousBtn = document.querySelector('a[href="#previous"]');
+            if (previousBtn) {
+                previousBtn.textContent = "Sebelumnya";
+            }
+        });
+    </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nextBtn = document.querySelector('a[href="#next"]');
