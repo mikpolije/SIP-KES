@@ -1040,7 +1040,7 @@
                             }
 
                             .icd-table thead th {
-                                background-color: #f9f9f9;
+                                background-color: #e0e0e0;
                                 font-weight: bold;
                                 text-align: center;
                             }
