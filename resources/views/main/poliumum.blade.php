@@ -1011,8 +1011,8 @@
                                             <thead>
                                                 <tr>
                                                 <th class="text-start"></th>
-                                                <th class="text-center">Kode</th>
-                                                <th class="text-center">Nama</th>
+                                                <th class="text-start">Kode</th>
+                                                <th class="text-start">Nama</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
