@@ -908,19 +908,18 @@
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
                                                 <tr>
-                                                    <td>Kepala</td>
-                                                    <td>Kelainan pada pembuluh darah</td>
+                                                    <td class="nama">Kepala</td>
+                                                    <td class="keterangan">Kelainan pada pembuluh darah</td>
                                                     <td class="text-center">
-                                                    <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
+                                                        <button type="button" class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
+                                                <!-- Tambahkan baris lain sesuai kebutuhan -->
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
 
                             <!-- Modal Detail Pemeriksaan -->
                             <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
@@ -950,49 +949,29 @@
                                 </div>
                             </div>
 
-<!-- ✅ CUSTOM CSS -->
-<style>
-    .custom-modal-content {
-        border-radius: 10px;
-        padding: 1.5rem;
-        background-color: #fff;
-        font-family: 'Segoe UI', sans-serif;
-    }
+                            <!-- ✅ CUSTOM CSS -->
+                            <style>
+                                .modal-content {
+                                    border-radius: 12px;
+                                    border: none;
+                                }
 
-    .modal-header h5 {
-        color: #1c1e58; /* Warna biru gelap */
-        font-size: 1.3rem;
-    }
+                                .modal-header {
+                                    background-color: #f8f9fa;
+                                    border-bottom: 1px solid #dee2e6;
+                                }
 
-    .shadow-custom {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.1);
-        padding: 8px 12px;
-        background-color: #fff;
-        font-size: 14px;
-    }
+                                .modal-body p {
+                                    font-size: 16px;
+                                    margin-bottom: 10px;
+                                }
 
-    .form-label {
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
+                                .btn-close {
+                                    background: transparent;
+                                    border: none;
+                                }
+                            </style>
 
-    .modal-body {
-        padding-top: 0;
-    }
-
-    hr {
-        border: none;
-        border-top: 1px solid #ccc;
-    }
-
-    @media (max-width: 768px) {
-        .col-md-6.offset-md-6 {
-            margin-left: 0 !important;
-        }
-    }
-</style>
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
@@ -2830,5 +2809,15 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
-
+    <script>
+    document.querySelectorAll('.view-details').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const row = this.closest('tr');
+            const nama = row.querySelector('.nama').textContent;
+            const keterangan = row.querySelector('.keterangan').textContent;
+            document.getElementById('modal-nama').textContent = nama;
+            document.getElementById('modal-keterangan').textContent = keterangan;
+        });
+    });
+    </script>
 @endsection
