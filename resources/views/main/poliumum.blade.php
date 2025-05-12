@@ -626,113 +626,63 @@
                                                                     <th></th>
                                                                     <th>Kode</th>
                                                                     <th>Nama</th>
+                                                                    <th>Termin</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00</td>
+                                                                    <td>Kolera</td>
                                                                     <td>Cholera</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A00.0</td>
-                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+                                                                    <td>A00</td>
+                                                                    <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A00.1</td>
-                                                                    <td>Cholera due to Vibrio cholerae 01, biovar eltor</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A00.9</td>
+                                                                    <td>A00</td>
+                                                                    <td>Kolera, tidak terspesifikasi</td>
                                                                     <td>Cholera, unspecified</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>Typhoid and paratyphoid fevers</td>
+                                                                    <td>Demam tifoid dan paratifoid</td>
+                                                                    <td>Typhoid and paratyphoid</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01.0</td>
+                                                                    <td>A01</td>
+                                                                    <td>Demam tifoid</td>
                                                                     <td>Typhoid fever</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01.1</td>
-                                                                    <td>Paratyphoid fever a</td>
+                                                                    <td>A01</td>
+                                                                    <td>Demam paratifoid A</td>
+                                                                    <td>Paratyphoid fever A</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01.2</td>
-                                                                    <td>Paratyphoid fever b</td>
+                                                                    <td>A01</td>
+                                                                    <td>Demam paratifoid B</td>
+                                                                    <td>Paratyphoid fever B</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01.3</td>
-                                                                    <td>Paratyphoid fever c</td>
+                                                                    <td>A01</td>
+                                                                    <td>Demam paratifoid C</td>
+                                                                    <td>Paratyphoid fever C</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01.4</td>
+                                                                    <td>A01</td>
+                                                                    <td>Demam paratifoid, tidak terspesifikasi</td>
                                                                     <td>Paratyphoid fever, unspecified</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A02</td>
-                                                                    <td>Other salmonella infections</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A02.0</td>
-                                                                    <td>Salmonella enteritis</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A02.1</td>
-                                                                    <td>Salmonella septicaemia</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A02.2</td>
-                                                                    <td>Localized salmonella infections</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A02.8</td>
-                                                                    <td>Other specified salmonella infections</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A02.9</td>
-                                                                    <td>Salmonella infection, unspecified</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03</td>
-                                                                    <td>Shigellosis</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03.0</td>
-                                                                    <td>Shigellosis due to shigella dysenteriae</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03.1</td>
-                                                                    <td>Shigellosis due to shigella flexneri</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03.2</td>
-                                                                    <td>Shigellosis due to shigella boydii</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03.2</td>
-                                                                    <td>Shigellosis due to shigella sonnei</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
