@@ -935,7 +935,7 @@
                                                 <div class="col-md-6 offset-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                                        <input type="text" class="form-control shadow-custom" value="kepala" disabled>
+                                                        <textarea class="form-control shadow-custom" rows="4" disabled></textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label fw-semibold">Keterangan</label>
@@ -971,7 +971,19 @@
                                     border: none;
                                 }
                             </style>
+                            <script>
+                            document.querySelectorAll('.view-details').forEach(function (btn) {
+                                btn.addEventListener('click', function () {
+                                const row = btn.closest('tr');
+                                const nama = row.querySelector('.nama').textContent;
+                                const keterangan = row.querySelector('.keterangan').textContent;
 
+                                // Isi field modal sesuai baris
+                                document.querySelector('#detailModal input.form-control').value = nama;
+                                document.querySelector('#detailModal textarea.form-control').value = keterangan;
+                                });
+                            });
+                            </script>
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
