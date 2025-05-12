@@ -934,7 +934,7 @@
                                     <input type="text" class="form-control" id="icd9Search"
                                         placeholder="Ketik Kode atau Tindakan">
                                     <button class="btn btn-outline-secondary" type="button" id="cari-icd9"
-                                        data-bs-toggle="modal" data-bs-target="#icdModal">
+                                        data-bs-toggle="modal" data-bs-target="#icdModal9">
                                         <i class="bi bi-search"></i>
                                     </button>
                                     </div>
