@@ -798,7 +798,7 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="fw-bold">Objective</h5>
+                                    <label class="form-label" for="objective">Objective</label>
                                         <div class="row">
                                             <!-- Left Column -->
                                             <div class="col-md-6">
