@@ -34,6 +34,14 @@ Route::get('/get-layanan-by-ajax', [LayananController::class, 'getByAjax'])->nam
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
 
+// route sidebar antrian dan riwayat
+use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
+
+Route::prefix('main/poliumum2')->group(function () {
+    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean']);
+    Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
+});
+
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -53,11 +61,4 @@ use App\Http\Controllers\RiwayatMedisController;
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
 
-// route sidebar antrian dan riwayat
-use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
-
-Route::prefix('main/poliumum2')->group(function () {
-    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean'])->name('antrian.poliumum');
-    Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
-});
 
