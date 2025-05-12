@@ -1267,7 +1267,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mt-4">
+                            <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <style>
@@ -2718,25 +2718,57 @@ $('#search-results').hide();
 }
 </style> --}}
 
-    <!-- JavaScript Tambahan -->
+    <!-- Script untuk menggambar di canvas -->
     <script>
-        function simpanStatusLokalis() {
-            const keterangan = document.getElementById("lokalisKeterangan").value.trim();
-            if (keterangan) {
-                const tableBody = document.getElementById("pemeriksaanFisikTable");
-                const newRow = document.createElement("tr");
-                newRow.innerHTML = `
-                <td>Status Lokalis</td>
-                <td>${keterangan}</td>
-                <td class="text-center">
-                    <button class="btn btn-sm btn-info view-details" title="Lihat Rincian">
-                        <i class="bi bi-eye"></i>
-                    </button>
-                </td>
-            `;
-                tableBody.appendChild(newRow);
-                bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
-                document.getElementById("lokalisKeterangan").value = '';
+        const canvas = document.getElementById('bodyCanvas');
+        const ctx = canvas.getContext('2d');
+        const image = new Image();
+        let isDrawing = false;
+        let drawEnabled = false;
+        let initialized = false;
+
+        function setDrawMode(enabled) {
+            drawEnabled = enabled;
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
+        }
+
+        function saveCanvas() {
+            const imageData = canvas.toDataURL();
+            console.log("Saved image data:", imageData);
+            alert("Gambar disimpan!");
+            // Kirim imageData via AJAX atau simpan sesuai kebutuhan
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            if (!drawEnabled) return;
+            isDrawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing || !drawEnabled) return;
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            if (!drawEnabled) return;
+            isDrawing = false;
+        });
+
+        // Load gambar saat modal dibuka pertama kali
+        $('#statusLokalisModal').on('shown.bs.modal', function () {
+            if (!initialized) {
+                image.onload = function () {
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                };
+                image.src = 'public/build/images/gambarmedis/Anatomi.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                initialized = true;
             } else {
                 alert("Harap isi keterangan terlebih dahulu.");
             }
