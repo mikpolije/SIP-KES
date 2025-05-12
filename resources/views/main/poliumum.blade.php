@@ -789,7 +789,7 @@
                         </div>
 
                         <!-- Subjective dan Objective -->
-                        <div class="row mb-3">
+                        <div class="row mb-3 shadow-sm">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <label class="form-label" for="subjective">Subjective</label>
