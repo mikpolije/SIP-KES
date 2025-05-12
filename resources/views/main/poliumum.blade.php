@@ -1151,8 +1151,8 @@
 
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3 mt-4" >
-                            <div class="col-md-6 d-flex align-items-stretch" >
-                                <div class="card p-3 w-100 h-100">
+                            <div class="col-md-6 d-flex flex-column" >
+                                <div class="card p-3 flex-fill w-100 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
@@ -1268,7 +1268,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="card p-3 h-100">
+                                <div class="card p-3 card p-3 flex-fill w-100 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <style>
                                         /* Membuat backdrop modal transparan */
