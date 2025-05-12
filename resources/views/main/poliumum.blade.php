@@ -490,13 +490,16 @@
                                             </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
-                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required number-input"
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric" required>
                                                         <span class="input-group-text">/mnt</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
 
                                             <!-- Right Column -->
                                             <div class="col-md-6">
