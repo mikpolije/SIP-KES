@@ -904,9 +904,9 @@
                                         <table class="table table-bordered">
                                             <thead style="background-color: #B3B9F9;">
                                                 <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Keterangan</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rincian</th>
+                                                    <th class="text-center">Nama</th>
+                                                    <th class="text-center">Keterangan</th>
+                                                    <th class="text-center">Rincian</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
@@ -1151,7 +1151,7 @@
 
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3" >
-                            <div class="col-md-6" >
+                            <div class="col-md-6 mt-4" >
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
