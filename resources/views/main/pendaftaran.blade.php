@@ -106,8 +106,8 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
-                                    <input type="number" class="form-control required" id="nik" name="nik"
-                                        placeholder="16 digit" oninput="validateNIK(this)" maxlength="16" />
+                                    <input type="text" class="form-control required" id="nik" name="nik"
+                                        placeholder="16 digit" oninput="validateNumeric(this, 16)" maxlength="16" required>
                                     <small class="error-message" id="nik-error">NIK harus berupa 16 digit angka</small>
                                 </div>
                             </div>
@@ -140,8 +140,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="kodepos">Kode Pos: <span
                                             class="danger">*</span></label>
-                                    <input type="number" class="form-control required" id="kodepos" name="kodepos"
-                                        oninput="validateNumeric(this, 5)" maxlength="5" />
+                                    <input type="text" class="form-control required" id="kodepos" name="kodepos"
+                                        oninput="validateNumeric(this, 5)" maxlength="5" required>
                                     <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit
                                         angka</small>
                                 </div>
@@ -149,16 +149,16 @@
                             <div class="col-md-1">
                                 <div class="mb-3">
                                     <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
-                                    <input type="number" class="form-control required" id="rt" name="rt"
-                                        oninput="validateNumeric(this, 3)" maxlength="3" />
+                                    <input type="text" class="form-control required" id="rt" name="rt"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" required>
                                     <small class="error-message" id="rt-error">RT harus berupa angka</small>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
                                     <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
-                                    <input type="number" class="form-control required" id="rw" name="rw"
-                                        oninput="validateNumeric(this, 3)" maxlength="3" />
+                                    <input type="text" class="form-control required" id="rw" name="rw"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" required>
                                     <small class="error-message" id="rw-error">RW harus berupa angka</small>
                                 </div>
                             </div>
@@ -262,8 +262,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="telepon">Nomor Telepon: <span
                                             class="danger">*</span></label>
-                                    <input type="number" class="form-control required" id="telepon" name="telepon"
-                                        placeholder="08xxxxxxxxxx" oninput="validateTelepon(this)" maxlength="13"
+                                    <input type="text" class="form-control required" id="telepon" name="telepon"
+                                        placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13"
                                         required>
                                     <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
                                         angka</small>
@@ -2536,18 +2536,12 @@
 
         // Function to validate numeric inputs with specific length
         function validateNumeric(input, maxLength) {
-            // Remove non-numeric characters
             let value = input.value.replace(/\D/g, '');
-
-            // Set max length if specified
             if (maxLength && value.length > maxLength) {
                 value = value.slice(0, maxLength);
             }
-
-            // Update input value
             input.value = value;
 
-            // Show/hide error message
             const fieldId = input.id;
             const errorElement = document.getElementById(`${fieldId}-error`);
             if (errorElement) {
