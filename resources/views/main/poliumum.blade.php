@@ -817,16 +817,16 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="berat-mask" pattern="[0-9]*" inputmode="decimal">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="numeric">
                                                         <span class="input-group-text">kg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="suhu-mask" pattern="[0-9]*" inputmode="decimal">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="suhu-mask" pattern="[0-9]*.," inputmode="numeric">
                                                         <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
@@ -853,8 +853,8 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9]*" inputmode="decimal">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="numeric">
                                                         <span class="input-group-text">cm</span>
                                                     </div>
                                                 </div>
@@ -1152,7 +1152,7 @@
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3 mt-4" >
                             <div class="col-md-6" >
-                                <div class="card p-3  h-100">
+                                <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
@@ -2718,60 +2718,36 @@ $('#search-results').hide();
 }
 </style> --}}
 
-    <!-- Script untuk menggambar di canvas -->
-        <script>
-        const canvas = document.getElementById('bodyCanvas');
-        const ctx = canvas.getContext('2d');
-        const image = new Image();
-        let isDrawing = false;
-        let drawEnabled = false;
-        let initialized = false;
-
-        function setDrawMode(enabled) {
-            drawEnabled = enabled;
-        }
-
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
-        }
-
-        function saveCanvas() {
-            const imageData = canvas.toDataURL();
-            console.log("Saved image data:", imageData);
-            alert("Gambar disimpan!");
-            // Kirim imageData via AJAX atau simpan sesuai kebutuhan
-        }
-
-        canvas.addEventListener('mousedown', (e) => {
-            if (!drawEnabled) return;
-            isDrawing = true;
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
-            if (!isDrawing || !drawEnabled) return;
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            if (!drawEnabled) return;
-            isDrawing = false;
-        });
-
-        // Load gambar saat modal dibuka pertama kali
-        $('#statusLokalisModal').on('shown.bs.modal', function () {
-            if (!initialized) {
-                image.onload = function () {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                };
-                image.src = 'public/assets/images/status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
-                initialized = true;
+    <!-- JavaScript Tambahan -->
+    <script>
+        function simpanStatusLokalis() {
+            const keterangan = document.getElementById("lokalisKeterangan").value.trim();
+            if (keterangan) {
+                const tableBody = document.getElementById("pemeriksaanFisikTable");
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                <td>Status Lokalis</td>
+                <td>${keterangan}</td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-info view-details" title="Lihat Rincian">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </td>
+            `;
+                tableBody.appendChild(newRow);
+                bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
+                document.getElementById("lokalisKeterangan").value = '';
             } else {
-                // setiap buka ulang, redraw image (jika dibutuhkan)
-                clearCanvas();
+                alert("Harap isi keterangan terlebih dahulu.");
+            }
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const previousBtn = document.querySelector('a[href="#previous"]');
+            if (previousBtn) {
+                previousBtn.textContent = "Sebelumnya";
             }
         });
     </script>
