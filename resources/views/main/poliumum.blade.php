@@ -982,117 +982,99 @@
                                             </div>
                                         </div>
 
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered icd-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="70"></th>
-                                                        <th width="100">Kode</th>
-                                                        <th>Nama</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0001</td>
-                                                        <td>Therapeutic ultrasound of vessels of head and neck</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0002</td>
-                                                        <td>Therapeutic ultrasound of hearth</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0003</td>
-                                                        <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0009</td>
-                                                        <td>Other therapeutic ultrasound</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0010</td>
-                                                        <td>Implantation of chemotherapeutic agent</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0011</td>
-                                                        <td>Infusion of drotrecogin alfa (activated)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0012</td>
-                                                        <td>Administration of inhaled nitric oxide</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0013</td>
-                                                        <td>Injection or infusion of nesiritide</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0014</td>
-                                                        <td>Injection or infusion of oxazolidinone class of antibiotics</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                        <td>0015</td>
-                                                        <td>High-dose infusion interleukin-2 [IL-2]</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                        <!-- TABEL ICD -->
+<div class="table-responsive">
+    <table class="table table-bordered icd-table">
+        <thead>
+            <tr>
+                <th style="width: 80px;">Aksi</th>
+                <th style="width: 100px;">Kode</th>
+                <th>Nama</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><button class="btn-pilih">Pilih</button></td>
+                <td>A00</td>
+                <td>Cholera</td>
+            </tr>
+            <tr>
+                <td><button class="btn-pilih">Pilih</button></td>
+                <td>A00.0</td>
+                <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+            </tr>
+            <tr>
+                <td><button class="btn-pilih">Pilih</button></td>
+                <td>A00.1</td>
+                <td>Cholera due to Vibrio cholerae 01, biovar eltor</td>
+            </tr>
+            <tr>
+                <td><button class="btn-pilih">Pilih</button></td>
+                <td>A00.9</td>
+                <td>Cholera, unspecified</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
+<!-- CSS -->
+<style>
+    .icd-table thead th {
+        background-color: #f1f3f5;
+        font-weight: bold;
+        text-align: left;
+        padding: 10px;
+    }
 
-                        <!-- CSS Styling -->
-                        <style>
-                            /* Tabel ICD */
-                            .icd-table {
-                                width: 100%;
-                            }
+    .icd-table tbody td {
+        padding: 8px 12px;
+        vertical-align: middle;
+    }
 
-                            .icd-table thead th {
-                                background-color: #f1f3f5; /* abu terang */
-                                font-weight: bold;
-                                text-align: left;
-                                padding: 10px;
-                            }
+    .icd-table tbody tr.selected-row {
+        background-color: #e7f1ff;
+    }
 
-                            .icd-table tbody td {
-                                padding: 8px 12px;
-                                vertical-align: middle;
-                            }
+    .btn-pilih {
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        padding: 5px 16px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+        display: inline-block;
+    }
 
-                            .icd-table tbody tr.selected-row {
-                                background-color: #e7f1ff; /* biru muda untuk yang dipilih */
-                            }
+    .btn-pilih:hover {
+        background-color: #1976D2;
+    }
 
-                            .btn-pilih {
-                                background-color: #2196F3;
-                                color: white;
-                                border: none;
-                                padding: 6px 16px;
-                                border-radius: 4px;
-                                font-weight: bold;
-                                cursor: pointer;
-                                font-size: 14px;
-                            }
+    .icd-table tbody tr:hover {
+        background-color: #f0f4f8;
+    }
+</style>
 
-                            .btn-pilih:hover {
-                                background-color: #1976D2;
-                            }
+<!-- JS -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.btn-pilih');
+        buttons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                // Reset semua baris
+                document.querySelectorAll('.icd-table tbody tr').forEach(function (row) {
+                    row.classList.remove('selected-row');
+                });
 
-                            .icd-table tbody tr:hover {
-                                background-color: #f0f4f8;
-                            }
-                        </style>
+                // Tambahkan kelas ke baris aktif
+                const row = this.closest('tr');
+                row.classList.add('selected-row');
+            });
+        });
+    });
+</script>
+
 
                             
                         <!-- Modal for Pemeriksaan Fisik Details -->
@@ -2786,23 +2768,5 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.btn-pilih').forEach(function (button) {
-                button.addEventListener('click', function () {
-                    // Hilangkan kelas 'selected-row' dari semua baris
-                    document.querySelectorAll('.icd-table tbody tr').forEach(function (row) {
-                        row.classList.remove('selected-row');
-                    });
-
-                    // Tambahkan ke baris saat ini
-                    const row = this.closest('tr');
-                    row.classList.add('selected-row');
-                });
-            });
-        });
-    </script>
-
 
 @endsection
