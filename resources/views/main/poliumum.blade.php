@@ -942,6 +942,8 @@
                                             <span class="close-button">&times;</span>
                                             <h2>Data ICD 9</h2>
                                             <div id="hasil-pencarian">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -1271,40 +1273,18 @@
                                                 }
                                             });
                                         });
-
-                                        document.addEventListener("DOMContentLoaded", function () {
-                                            const closeBtn = document.querySelector(".close-button");
-                                            const popup = document.getElementById("popup-container");
-
-                                            closeBtn.addEventListener("click", function () {
-                                                popup.style.display = "none";
-                                            });
-                                        });
                                     </script>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #f8f9fa;">
+                                            <thead style="background-color: #B3B9F9;">
                                                 <tr>
                                                     <th class="text-center">Nama ICD 9</th>
                                                     <th class="text-center">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd9">
-                                                <tr class="icd-item">
-                                                    <td>001. Therapeutic ultrasound of vessels of head and neck</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="icd-item">
-                                                    <td>008. Injection or infusion of nesiritide</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
+                                                <tr>
+                                                    <td colspan="2" class="text-center text-dark">Tidak Ada Data</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1714,11 +1694,10 @@
                                         <div class="col-md-4">
                                             <input type="date" class="form-control">
                                         </div>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                        <div class="input-group">
+                                            <input type="text" id="alasanKontrol" placeholder="Alasan Kontrol" />
+                                            <button onclick="tambahData()">Tambah +</button>
+                                            </div>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
