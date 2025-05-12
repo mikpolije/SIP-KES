@@ -808,7 +808,7 @@
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control number-input"
-                                                        id="sistole-mask" name="sistole" pattern="[0-9]*" inputmode="numeric">
+                                                        id="sistole-mask" name="sistoled" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
@@ -816,7 +816,7 @@
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control decimal-input"
-                                                            id="berat-mask" name="berat-badan" pattern="[0-9.,]*" inputmode="decimal">
+                                                            id="berat-mask" name="berat-badand" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
                                                     </div>
                                                 </div>
