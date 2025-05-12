@@ -145,7 +145,7 @@
                         <!-- Antrean -->
                         <li class="sidebar-item">
                             <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
-                                href="{{ url('antrean.poliumum') }}">
+                                href="{{ route('antrean.poliumum') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Antrian</span>
                             </a>
