@@ -159,7 +159,7 @@
                 <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
             </div>
         </div>
-        <div class="mb-4 text-left">
+        <div class="mb-4 text-left ms-auto" style="width: fit-content;">
             <p>Jember, 1 Januari 2025</p>
 
             <p>Dokter yang memeriksa :</p>
