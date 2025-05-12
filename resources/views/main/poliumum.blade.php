@@ -1055,28 +1055,7 @@
         background-color: #f0f4f8;
     }
 </style>
-
-<!-- JS -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('.btn-pilih');
-        buttons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                // Reset semua baris
-                document.querySelectorAll('.icd-table tbody tr').forEach(function (row) {
-                    row.classList.remove('selected-row');
-                });
-
-                // Tambahkan kelas ke baris aktif
-                const row = this.closest('tr');
-                row.classList.add('selected-row');
-            });
-        });
-    });
-</script>
-
-
-                            
+            
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
