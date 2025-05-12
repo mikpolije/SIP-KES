@@ -145,7 +145,7 @@
                 <!-- Antrian Link -->
                 <li class="sidebar-item">
                     <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/antrian') ? 'active' : '' }}"
-                        href="{{ url('/main/poliumum2/antrian') }}">
+                        href="{{ route('antrian.poliumum') }}">
                         <i class="ti ti-circle"></i>
                         <span class="hide-menu">Antrian</span>
                     </a>

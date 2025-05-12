@@ -24,7 +24,6 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
 });
 
 //Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
-//Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
 
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
@@ -33,6 +32,14 @@ Route::resource('/triase', TriageController::class);
 Route::get('/get-layanan-by-ajax', [LayananController::class, 'getByAjax'])->name('get-layanan-by-ajax');
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
+
+// route sidebar antrian dan riwayat
+use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
+
+Route::prefix('main/poliumum2')->group(function () {
+    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean'])->name('antrian.poliumum');;
+    Route::get('/riwayatPoliUmum', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
+});
 
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
@@ -52,12 +59,4 @@ Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'in
 use App\Http\Controllers\RiwayatMedisController;
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
-
-// route sidebar antrian dan riwayat
-use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
-
-Route::prefix('main/poliumum2')->group(function () {
-    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean']);
-    Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
-});
 
