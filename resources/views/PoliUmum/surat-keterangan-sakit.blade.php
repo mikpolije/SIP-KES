@@ -149,9 +149,9 @@
             </div>
             <div class="mb-3">
                 <div class="col-auto">
-                    <label>Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama </label>
+                    <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama </label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-1">
                     <input type="text" class="form-control" value="4" readonly>
                 </div>
                 <div>
