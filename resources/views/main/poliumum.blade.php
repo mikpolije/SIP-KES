@@ -1047,11 +1047,16 @@
     /* Modal Header dan Body */
     .modal-body {
         padding: 1.5rem;
+        background-color: #f0f0f0; /* Ganti warna background modal body */
     }
 
     .modal-header {
-        background-color: #f8f9fa;
+        background-color: #e9ecef; /* Ganti warna background modal header */
         border-bottom: 1px solid #dee2e6;
+    }
+
+    .modal-content {
+        background-color: #ffffff; /* Ganti warna background modal content */
     }
 
     /* Garis horizontal bawah judul */
@@ -1099,6 +1104,9 @@
     }
 </style>
 
+<!-- Include Bootstrap 5 JS and CSS (if not included) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
                             
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
