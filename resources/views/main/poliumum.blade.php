@@ -1032,6 +1032,49 @@
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                            const tbody = document.getElementById("selected-icds-icd9");
+
+                            document.querySelectorAll(".btn-pilih").forEach(function (button) {
+                                button.addEventListener("click", function () {
+                                const namaICD = this.getAttribute("data-nama");
+
+                                // Hapus baris "Tidak Ada Data" jika masih ada
+                                if (tbody.querySelectorAll("tr").length === 1 &&
+                                    tbody.querySelector("td").textContent.includes("Tidak Ada Data")) {
+                                    tbody.innerHTML = "";
+                                }
+
+                                // Tambahkan baris baru
+                                const newRow = document.createElement("tr");
+                                newRow.innerHTML = `
+                                    <td>${namaICD}</td>
+                                    <td class="text-center">
+                                    <button class="btn btn-danger btn-sm btn-hapus">Hapus</button>
+                                    </td>
+                                `;
+                                tbody.appendChild(newRow);
+
+                                // Tutup modal
+                                const modal = bootstrap.Modal.getInstance(document.getElementById('icdModal'));
+                                modal.hide();
+                                });
+                            });
+
+                            // Event delegasi untuk hapus data
+                            tbody.addEventListener("click", function (e) {
+                                if (e.target.classList.contains("btn-hapus")) {
+                                e.target.closest("tr").remove();
+
+                                // Jika tidak ada baris, tampilkan info kosong lagi
+                                if (tbody.children.length === 0) {
+                                    tbody.innerHTML = `<tr><td colspan="2" class="text-center text-dark">Tidak Ada Data</td></tr>`;
+                                }
+                                }
+                            });
+                            });
+                            </script>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
