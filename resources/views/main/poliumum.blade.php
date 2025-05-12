@@ -943,17 +943,6 @@
                                 </div>
                             </div>
 
-                            <script>
-                            document.getElementById('btnOpenIcd9Modal').addEventListener('click', function (e) {
-                            // Validasi bahwa hanya #icdModal yang boleh dibuka
-                            const modal = document.getElementById('icdModal');
-                            if (modal) {
-                                const bsModal = new bootstrap.Modal(modal);
-                                bsModal.show();
-                            }
-                            });
-                            </script>
-
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #B3B9F9;">
