@@ -6,66 +6,55 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@800&family=Poppins:wght@400;600;700&display=swap');
 
-.judul-riwayat {
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+}
+
+h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     font-weight: 800;
     color: #111754;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
 }
 
-.judul-section {
-    font-family: 'Poppins', sans-serif;
+.section-title {
     font-size: 1.875rem;
     font-weight: 700;
     color: #111754;
-    margin-top: 30px;
     margin-bottom: 20px;
 }
 
-.close-btn {
-    font-size: 2rem;
-    color: #111754;
-    cursor: pointer;
-    background: none;
-    border: none;
-}
-
-.close-btn:hover {
-    opacity: 0.7;
-    transform: scale(1.1);
-}
-
-.form-control {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    height: 45px;
-    font-family: 'Poppins', sans-serif;
-}
-
 .card {
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    margin-bottom: 30px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 20px;
 }
 
-label {
-    font-family: 'Poppins', sans-serif;
+.form-label {
     font-weight: 600;
     margin-bottom: 8px;
     display: block;
 }
 
+.form-control {
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    height: 45px;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
 .table-responsive {
+    border: 1px solid #e0e0e0;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #e0e0e0;
+    margin-top: 20px;
 }
 
 table {
@@ -73,8 +62,11 @@ table {
     border-collapse: collapse;
 }
 
-thead th {
+thead {
     background-color: #F9FAFC;
+}
+
+thead th {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -84,67 +76,79 @@ thead th {
 }
 
 tbody td {
-    background-color: #FFFFFF;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 400;
     text-align: left;
     padding: 12px 16px;
     border: 1px solid #E0E0E0;
+    background-color: #ffffff;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+.close-btn {
+    font-size: 24px;
+    color: #111754;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    opacity: 0.7;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>
 
 <div class="container py-4">
-    <div class="judul-riwayat">
+    <div class="header-row">
         <h1>Detail Pasien</h1>
         <button class="close-btn" onclick="history.back()">&#10005;</button>
     </div>
 
     <div class="card">
-        <h4 class="judul-section">Identitas Pasien</h4>
+        <h2 class="section-title">Identitas Pasien</h2>
         <div class="row g-3">
             <div class="col-md-3">
-                <label>No. RM</label>
+                <label class="form-label">No. RM</label>
                 <input type="text" class="form-control" value="RM000841" readonly>
             </div>
             <div class="col-md-3">
-                <label>Nama</label>
+                <label class="form-label">Nama</label>
                 <input type="text" class="form-control" value="Oktavia" readonly>
             </div>
             <div class="col-md-3">
-                <label>NIK</label>
+                <label class="form-label">NIK</label>
                 <input type="text" class="form-control" value="3509xxxxxxxxxxx" readonly>
             </div>
             <div class="col-md-3">
-                <label>Tanggal Lahir</label>
+                <label class="form-label">Tanggal Lahir</label>
                 <input type="text" class="form-control" value="10/01/2003" readonly>
             </div>
             <div class="col-md-3">
-                <label>Jenis Kelamin</label>
+                <label class="form-label">Jenis Kelamin</label>
                 <input type="text" class="form-control" value="Perempuan" readonly>
             </div>
             <div class="col-md-3">
-                <label>Agama</label>
+                <label class="form-label">Agama</label>
                 <input type="text" class="form-control" value="Islam" readonly>
             </div>
             <div class="col-md-3">
-                <label>No. Telepon</label>
+                <label class="form-label">No. Telepon</label>
                 <input type="text" class="form-control" value="+628514453156" readonly>
             </div>
             <div class="col-md-6">
-                <label>Alamat</label>
+                <label class="form-label">Alamat</label>
                 <input type="text" class="form-control" value="Jl. Mastrip, Blok A, Jember" readonly>
             </div>
         </div>
 
-        <h4 class="judul-section">Tabel Riwayat Kunjungan</h4>
-        <div class="table-responsive mt-3">
+        <h2 class="section-title mt-5">Tabel Riwayat Kunjungan</h2>
+        <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
