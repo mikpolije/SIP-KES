@@ -37,10 +37,12 @@ Route::get('/{main}/{view}', [PageController::class, 'show']);
 // route sidebar antrian dan riwayat
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
-Route::prefix('main/poliumum2')->group(function () {
-    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean'])->name('antrian.poliumum');;
+// Routing tanpa prefix "main/poliumum2"
+Route::prefix('poliumum')->group(function () {
+    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean'])->name('antrian.poliumum');
     Route::get('/riwayatPoliUmum', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
+
 
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 

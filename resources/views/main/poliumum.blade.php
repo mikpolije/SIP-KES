@@ -953,103 +953,148 @@
                             </div>
 
                             <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header border-bottom-0">
-                                            <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Tutup"></button>
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header border-bottom-0">
+                                        <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Tutup"></button>
+                                    </div>
+                                    <hr class="m-0">
+                                    <div class="modal-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <label>Tampilkan 
+                                                    <select class="form-select d-inline-block w-auto mx-1">
+                                                        <option>10</option>
+                                                        <option>25</option>
+                                                        <option>50</option>
+                                                    </select>
+                                                    entri
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <label>Cari: 
+                                                    <input type="text" class="form-control d-inline-block w-auto" 
+                                                        placeholder="Cari...">
+                                                </label>
+                                            </div>
                                         </div>
-                                        <hr class="m-0">
-                                        <div class="modal-body">
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <div>
-                                                    <label>Tampilkan 
-                                                        <select class="form-select d-inline-block w-auto mx-1">
-                                                            <option>10</option>
-                                                            <option>25</option>
-                                                            <option>50</option>
-                                                        </select>
-                                                        entri
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <label>Cari: 
-                                                        <input type="text" class="form-control d-inline-block w-auto" 
-                                                            placeholder="Cari...">
-                                                    </label>
-                                                </div>
-                                            </div>
 
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered icd-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th width="70"></th>
-                                                            <th width="100">Kode</th>
-                                                            <th>Nama</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0001</td>
-                                                            <td>Therapeutic ultrasound of vessels of head and neck</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0002</td>
-                                                            <td>Therapeutic ultrasound of hearth</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0003</td>
-                                                            <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0009</td>
-                                                            <td>Other therapeutic ultrasound</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0010</td>
-                                                            <td>Implantation of chemotherapeutic agent</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0011</td>
-                                                            <td>Infusion of drotrecogin alfa (activated)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0012</td>
-                                                            <td>Administration of inhaled nitric oxide</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0013</td>
-                                                            <td>Injection or infusion of nesiritide</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0014</td>
-                                                            <td>Injection or infusion of oxazolidinone class of antibiotics</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center"><button class="btn-pilih">Pilih</button></td>
-                                                            <td>0015</td>
-                                                            <td>High-dose infusion interleukin-2 [IL-2]</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered icd-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="70"></th>
+                                                        <th width="100">Kode</th>
+                                                        <th>Nama</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0001</td>
+                                                        <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0002</td>
+                                                        <td>Therapeutic ultrasound of hearth</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0003</td>
+                                                        <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0009</td>
+                                                        <td>Other therapeutic ultrasound</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0010</td>
+                                                        <td>Implantation of chemotherapeutic agent</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0011</td>
+                                                        <td>Infusion of drotrecogin alfa (activated)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0012</td>
+                                                        <td>Administration of inhaled nitric oxide</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0013</td>
+                                                        <td>Injection or infusion of nesiritide</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0014</td>
+                                                        <td>Injection or infusion of oxazolidinone class of antibiotics</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0015</td>
+                                                        <td>High-dose infusion interleukin-2 [IL-2]</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           
+                        </div>
+
+
+                        <!-- CSS Styling -->
+                        <style>
+                            /* Tabel ICD */
+                            .icd-table {
+                                width: 100%;
+                            }
+
+                            .icd-table thead th {
+                                background-color: #f1f3f5; /* abu terang */
+                                font-weight: bold;
+                                text-align: left;
+                                padding: 10px;
+                            }
+
+                            .icd-table tbody td {
+                                padding: 8px 12px;
+                                vertical-align: middle;
+                            }
+
+                            .icd-table tbody tr.selected-row {
+                                background-color: #e7f1ff; /* biru muda untuk yang dipilih */
+                            }
+
+                            .btn-pilih {
+                                background-color: #2196F3;
+                                color: white;
+                                border: none;
+                                padding: 6px 16px;
+                                border-radius: 4px;
+                                font-weight: bold;
+                                cursor: pointer;
+                                font-size: 14px;
+                            }
+
+                            .btn-pilih:hover {
+                                background-color: #1976D2;
+                            }
+
+                            .icd-table tbody tr:hover {
+                                background-color: #f0f4f8;
+                            }
+                        </style>
+
+                            
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
@@ -2741,113 +2786,23 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.btn-pilih').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    // Hilangkan kelas 'selected-row' dari semua baris
+                    document.querySelectorAll('.icd-table tbody tr').forEach(function (row) {
+                        row.classList.remove('selected-row');
+                    });
 
-<title>Data ICD 9</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        
-        .modal-dialog {
-            max-width: 800px;
-        }
-        
-        .modal-header {
-            border-bottom: 1px solid #e5e5e5;
-            padding: 15px 20px;
-        }
-        
-        .modal-title {
-            color: #1a237e;
-            font-weight: 500;
-            font-size: 1.2rem;
-        }
-        
-        .modal-body {
-            padding: 15px 20px;
-        }
-        
-        .header-row {
-            background-color: #b3b3e6 !important;
-            color: #333;
-        }
-        
-        .header-row th {
-            font-weight: 600;
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .table-row-even {
-            background-color: #ffffff;
-        }
-        
-        .table-row-odd {
-            background-color: #f0f5ff;
-        }
-        
-        .btn-pilih {
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 6px 12px;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-            font-weight: 500;
-            font-size: 14px;
-        }
-        
-        .table td {
-            vertical-align: middle;
-            padding: 8px 10px;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .search-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .select-container, .search-container {
-            display: flex;
-            align-items: center;
-        }
-        
-        .select-container select {
-            margin: 0 5px;
-            width: 70px;
-            padding: 5px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-        }
-        
-        .search-container input {
-            width: 200px;
-            padding: 5px 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-        }
-        
-        .close-btn {
-            font-size: 1.5rem;
-            font-weight: 700;
-            line-height: 1;
-            color: #000;
-            opacity: 0.5;
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-        
-        .close-btn:hover {
-            opacity: 0.75;
-        }
-    </style>
+                    // Tambahkan ke baris saat ini
+                    const row = this.closest('tr');
+                    row.classList.add('selected-row');
+                });
+            });
+        });
+    </script>
+
 
 @endsection
