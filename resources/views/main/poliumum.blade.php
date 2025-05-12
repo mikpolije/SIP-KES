@@ -1555,7 +1555,7 @@
                             <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="d-flex align-items-center mb-2">
+                                    <div class="input-group mb-2">
                                          <input type="date" class="form-control">
                                          <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                          <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
