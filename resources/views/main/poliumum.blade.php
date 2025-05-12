@@ -572,21 +572,21 @@
 
                         <!-- Antrian - Identitas Pasien -->
                         <div class="card p-3 mb-3 shadow-sm">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label class="form-label" for="noantian">No Antrian</label>
+                            <div class="row g-3 align-items-center">
+                                <div class="col-md-3">
+                                    <label for="noantian" class="form-label">No Antrian</label>
                                     <input type="text" class="form-control" id="noantian" name="noantian">
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label" for="nama">Nama</label>
+                                <div class="col-md-3">
+                                    <label for="nama" class="form-label">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama">
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="form-label" for="no.rm">No. RM</label>
+                                <div class="col-md-3">
+                                    <label for="no.rm" class="form-label">No. RM</label>
                                     <input type="text" class="form-control" id="no.rm" name="no.rm">
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="form-label" for="tanggal">Tanggal</label>
+                                <div class="col-md-3">
+                                    <label for="tanggal" class="form-label">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
                                 </div>
                             </div>
