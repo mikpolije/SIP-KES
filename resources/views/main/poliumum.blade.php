@@ -478,25 +478,27 @@
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal" required>
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            required>
                                                         <span class="input-group-text">°C</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            required>
                                                         <span class="input-group-text">/mnt</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
                                             <!-- Right Column -->
                                             <div class="col-md-6">
@@ -504,24 +506,26 @@
                                                     <label class="form-label">Diastole</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            required>
                                                         <span class="input-group-text">mmHg</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal" required>
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            required>
                                                         <span class="input-group-text">cm</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
                                                     <div class="input-group has-validation">
@@ -530,6 +534,7 @@
                                                         <span class="input-group-text">%</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -538,7 +543,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </section>
 
                     <!-- Step 3 -->
@@ -584,13 +588,6 @@
                                 <div class="col-md-2">
                                     <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
-                                    <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
-                                        <option value="poliumum">Poli Umum</option>
-                                        <option value="circum">Circum</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -653,7 +650,8 @@
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00.0</td>
-                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
@@ -928,10 +926,12 @@
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="icd9Search" placeholder="Ketik Kode atau Tindakan ICD 9">
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#icdModal9">
-                                        <i class="bi bi-search"></i>
-                                    </button>
+                                        <input type="text" class="form-control" id="icd9Search"
+                                            placeholder="Ketik Kode atau Tindakan ICD 9">
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#icdModal9">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
 
                                     <div class="table-responsive">
@@ -953,64 +953,67 @@
                             </div>
                         </div>
 
-                        <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label" aria-hidden="true">
+                        <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                 <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="mb-3 d-flex justify-content-between align-items-center">
-                                    <label>
-                                        Tampilkan
-                                        <select class="form-select d-inline w-auto mx-1">
-                                        <option>10</option>
-                                        <option>25</option>
-                                        <option>50</option>
-                                        </select>
-                                        entri
-                                    </label>
-                                    <label>
-                                        Cari :
-                                        <input type="text" class="form-control d-inline w-auto" placeholder="Cari...">
-                                    </label>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Tutup"></button>
                                     </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                                            <label>
+                                                Tampilkan
+                                                <select class="form-select d-inline w-auto mx-1">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                </select>
+                                                entri
+                                            </label>
+                                            <label>
+                                                Cari :
+                                                <input type="text" class="form-control d-inline w-auto"
+                                                    placeholder="Cari...">
+                                            </label>
+                                        </div>
 
-                                    <table class="table table-bordered table-striped icd-table">
-                                    <thead class="table-light text-center">
-                                        <tr>
-                                        <th></th>
-                                        <th>Kode</th>
-                                        <th>Nama</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td><button class="btn-pilih">Pilih</button></td>
-                                        <td>0001</td>
-                                        <td>Therapeutic ultrasound of vessels of head and neck</td>
-                                        </tr>
-                                        <tr>
-                                        <td><button class="btn-pilih">Pilih</button></td>
-                                        <td>0002</td>
-                                        <td>Therapeutic ultrasound of heart</td>
-                                        </tr>
-                                        <tr>
-                                        <td><button class="btn-pilih">Pilih</button></td>
-                                        <td>0003</td>
-                                        <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-                                        </tr>
-                                        <!-- Tambahan baris lainnya -->
-                                    </tbody>
-                                    </table>
-                                </div>
+                                        <table class="table table-bordered table-striped icd-table">
+                                            <thead class="table-light text-center">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Kode</th>
+                                                    <th>Nama</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0001</td>
+                                                    <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0002</td>
+                                                    <td>Therapeutic ultrasound of heart</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0003</td>
+                                                    <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+                                                </tr>
+                                                <!-- Tambahan baris lainnya -->
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
-                            <!-- CSS Styling -->
-                            <style>
+                        <!-- CSS Styling -->
+                        <style>
                             .btn-pilih {
                                 background-color: #2196F3;
                                 color: white;
@@ -1027,11 +1030,13 @@
                             }
 
                             .icd-table tbody tr {
-                                background-color: #f0f7ff; /* Warna biru muda */
+                                background-color: #f0f7ff;
+                                /* Warna biru muda */
                             }
 
                             .icd-table tbody tr:hover {
-                                background-color: #dbeeff; /* Biru lebih gelap saat hover */
+                                background-color: #dbeeff;
+                                /* Biru lebih gelap saat hover */
                             }
 
                             .icd-table thead th {
@@ -1049,7 +1054,6 @@
                                 background-color: #f8f9fa;
                                 border-bottom: 1px solid #dee2e6;
                             }
-
                             /* Garis horizontal di bawah judul */
                             h2::after {
                                             content: "";
@@ -1114,7 +1118,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                 <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1479,7 +1483,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                 <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
