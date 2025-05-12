@@ -932,22 +932,9 @@
                                             data-bs-target="#icdModal9">
                                             <i class="bi bi-search"></i>
                                         </button>
-                                    </div>
+                                </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card p-3 shadow-sm h-100">
-                                    <h5 class="fw-bold">ICD 9</h5>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd9Search"
-                                            placeholder="Ketik Kode atau Diagnosa">
-                                        <button data-bs-toggle="modal" data-bs-target="#icdModal9"
-                                            class="btn btn-outline-secondary " type="button">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-
-
-                                    </div>
                                     <div class="modal fade" id="icdModal9" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
