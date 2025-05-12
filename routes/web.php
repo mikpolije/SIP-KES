@@ -57,7 +57,7 @@ Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riw
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 Route::prefix('main/poliumum2')->group(function () {
-    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean']);
+    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean'])->name('antrian.poliumum');
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
 
