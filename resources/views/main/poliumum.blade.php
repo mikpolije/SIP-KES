@@ -462,7 +462,7 @@
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-group">
                                                         <input type="number" class="form-control required number-input"
-                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                            id="sistole-mask" name="sistole" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
@@ -470,7 +470,7 @@
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
                                                         <input type="number" class="form-control required decimal-input" 
-                                                               id="berat-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                               id="berat-mask" name="berat-badan" pattern="[0-9.,]*" inputmode="decimal"
                                                                >
                                                         <span class="input-group-text">kg</span>
                                                     </div>
@@ -800,7 +800,7 @@
                             <div class="col-md-6 shadow-sm">
                                 <div class="card">
                                     <div class="card-body">
-                                    <label class="form-label" for="objective">Objectivesssssss</label>
+                                    <label class="form-label" for="objective">Objective</label>
                                         <div class="row"> 
                                             <!-- Left Column -->
                                             <div class="col-md-6">
