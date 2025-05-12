@@ -932,16 +932,12 @@
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
                                     <input type="text" class="form-control" id="icd9Search"
-                                            placeholder="Ketik Kode atau Tindakan ICD 9">
-                                    <button class="btn btn-outline-secondary" type="button"
-                                            id="btnOpenIcd9Modal"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#icdModal">
+                                        placeholder="Ketik Kode atau Tindakan">
+                                    <button class="btn btn-outline-secondary" type="button" id="cari-icd9"
+                                        data-bs-toggle="modal" data-bs-target="#icdModal">
                                         <i class="bi bi-search"></i>
                                     </button>
                                     </div>
-                                </div>
-                            </div>
 
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
