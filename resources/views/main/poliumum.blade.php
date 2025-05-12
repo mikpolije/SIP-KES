@@ -1161,7 +1161,7 @@
                                                 class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #f8f9fa">
+                                        <thead style="background-color: #676981; color: white;">
                                             <tr>
                                                 <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
                                                 <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
