@@ -126,34 +126,33 @@
             </ul> --}}
 
 
-            <!-- Sidebar Item for Poli Umum 2 -->
+            <!-- Sidebar Item for Poli Umum -->
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('main/poliumum2') || request()->is('main/poliumum2/*') ? 'active' : '' }}"
-                href="#" data-bs-toggle="collapse"
-                aria-expanded="{{ request()->is('main/poliumum2/*') ? 'true' : 'false' }}"
-                data-bs-target="#submenu-poliumum2">
+            <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('poliumum') || request()->is('poliumum/*') ? 'active' : '' }}"
+                href="#" data-bs-toggle="collapse" aria-expanded="{{ request()->is('poliumum/*') ? 'true' : 'false' }}"
+                data-bs-target="#submenu-poliumum">
                 <div class="d-flex align-items-center">
                     <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
                     </div>
-                    <span class="hide-menu ms-4">Poli Umum 2</span>
+                    <span class="hide-menu ms-4">Poli Umum</span>
                 </div>
             </a>
-            <ul id="submenu-poliumum2"
-                class="second-level collapse {{ request()->is('main/poliumum2/*') ? 'show' : '' }}"
-                aria-expanded="{{ request()->is('main/poliumum2/*') ? 'true' : 'false' }}">
-                <!-- Antrian Link -->
+            <ul id="submenu-poliumum" class="second-level collapse {{ request()->is('poliumum/*') ? 'show' : '' }}"
+                aria-expanded="{{ request()->is('poliumum/*') ? 'true' : 'false' }}">
+
+                <!-- Antrian -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/antrian') ? 'active' : '' }}"
-                        href="{{ route('antrian.poliumum') }}">
+                    <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrian') ? 'active' : '' }}"
+                        href="{{ url('/poliumum/antrian') }}">
                         <i class="ti ti-circle"></i>
                         <span class="hide-menu">Antrian</span>
                     </a>
                 </li>
 
-                {{-- Riwayat --}}
+                <!-- Riwayat -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/riwayat') ? 'active' : '' }}"
+                    <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayatPoliUmum') ? 'active' : '' }}"
                         href="{{ route('riwayat.poliumum') }}">
                         <i class="ti ti-circle"></i>
                         <span class="hide-menu">Riwayat</span>
@@ -161,8 +160,6 @@
                 </li>
             </ul>
         </li>
-
-
         {{-- POLI KIA --}}
         <li class="sidebar-item">
             <a class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}"
