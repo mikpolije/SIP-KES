@@ -476,9 +476,10 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
-                                                    <div class="input-group">
+                                                    <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            required>
                                                         <span class="input-group-text">°C</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
@@ -487,9 +488,10 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
-                                                    <div class="input-group">
+                                                    <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            required>
                                                         <span class="input-group-text">/mnt</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
@@ -648,12 +650,8 @@
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00.0</td>
-<<<<<<< HEAD
-                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
-=======
                                                                     <td>Cholera due to Vibrio cholerae 01, biovar cholerae
                                                                     </td>
->>>>>>> 6bb77e869d6fb95e0180a69a6902ef2940ddf631
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
@@ -752,10 +750,7 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-<<<<<<< HEAD
-=======
                                                     </table>
->>>>>>> 6bb77e869d6fb95e0180a69a6902ef2940ddf631
                                                 </div>
                                             </div>
                                         </div>
@@ -900,7 +895,7 @@
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah +</button>
+                                            data-bs-target="#statusLokalisModal">Tambah+</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -1011,15 +1006,18 @@
                                                     placeholder="Cari...">
                                             </label>
                                         </div>
+
+                                        <h2>Data ICD 9</h2>
                                             <table>
                                             <thead>
                                                 <tr>
                                                 <th class="text-start"></th>
-                                                <th class="text-center"></th>
-                                                <th class="text-center">Kode</th>
-                                                <th class="text-center">Nama</th>
+                                                <th class="text-end"></th>
+                                                <th class="text-end">Kode</th>
+                                                <th class="text-end">Nama</th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
                                                 <tr>
                                                     <td><button class="btn-pilih">Pilih</button></td>
@@ -1505,7 +1503,7 @@
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah+</button>
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
