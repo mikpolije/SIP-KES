@@ -1559,7 +1559,7 @@
                                         <div class="col-md-12 d-flex ">
                                             <input type="date" class="form-control">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                            <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
+                                            <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah+</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
