@@ -4,67 +4,66 @@
 
 @section('pageContent')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@700&family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-    .judul-riwayat {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 70px;
-        font-weight: 700;
-        color: #111754;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.judul-riwayat {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: left;
+    color: #111754;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
 
-    .judul-section {
-        font-family: 'Poppins', sans-serif;
-        font-size: 30px;
-        font-weight: 700;
-        color: #111754;
-        margin-top: 30px;
-    }
+.judul-section {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #111754;
+    margin-top: 30px;
+}
 
-    .close-btn {
-        font-size: 30px;
-        color: #111754;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+.close-btn {
+    font-size: 30px;
+    color: #111754;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-    .close-btn:hover {
-        opacity: 0.7;
-        transform: scale(1.1);
-    }
+.close-btn:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+}
 
-    .form-control {
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
+.form-control {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
 
-    .card {
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
 
-    table thead th {
-        background-color: #F9FAFC;
-        text-align: center;
-        font-family: 'Poppins', sans-serif;
-        font-size: 12px;
-        font-weight: 600;
-        vertical-align: middle;
-    }
+table thead th {
+    background-color: #F9FAFC;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+}
 
-    table tbody td {
-        background-color: #ffffff;
-        font-family: 'Inter', sans-serif;
-        font-size: 14px;
-        vertical-align: middle;
-        text-align: left;
-    }
+table tbody td {
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: left;
+}
 </style>
 
 <div class="container py-4">
