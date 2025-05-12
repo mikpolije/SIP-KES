@@ -468,12 +468,15 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-group has-validation">
-                                                        <input type="text" class="form-control required decimal-input"
-                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control required decimal-input" 
+                                                               id="berat-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                               required
+                                                               oninvalid="this.setCustomValidity('Harap isi berat badan')"
+                                                               oninput="this.setCustomValidity('')">
                                                         <span class="input-group-text">kg</span>
-                                                        <div class="invalid-feedback">This field is required.</div>
                                                     </div>
+                                                    <div class="invalid-feedback">Berat badan harus diisi</div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
@@ -582,11 +585,11 @@
                                     <label class="form-label" for="nama">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="form-label" for="no.rm">No. RM</label>
                                     <input type="text" class="form-control" id="no.rm" name="no.rm">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
                                 </div>
@@ -789,11 +792,11 @@
                         </div>
 
                         <!-- Subjective dan Objective -->
-                        <div class="row mb-3 shadow-sm">
+                        <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <label class="form-label" for="subjective">Subjective</label>
-                                    <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
+                                    <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6 shadow-sm">
