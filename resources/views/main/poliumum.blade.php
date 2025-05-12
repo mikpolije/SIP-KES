@@ -2797,7 +2797,7 @@ $('#search-results').hide();
                 image.onload = function () {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 };
-                image.src = 'public/build/images/gambarmedis/Anatomi.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                image.src = 'public/assets/images/status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
                 alert("Harap isi keterangan terlebih dahulu.");
