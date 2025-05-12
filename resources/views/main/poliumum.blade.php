@@ -939,7 +939,7 @@
 
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #f8f9fa;">
+                                            <thead style="background-color: #B3B9F9;">
                                                 <tr>
                                                     <th class="text-center">Nama ICD 9</th>
                                                     <th class="text-center">Aksi</th>
@@ -976,7 +976,7 @@
                                 </label>
                                 <label>
                                     Cari :
-                                    <input type="text" class="form-control d-inline w-auto" placeholder="Cari...">
+                                    <input type="text" class="form-control d-inline w-auto" placeholder="Ketik...">
                                 </label>
                                 </div>
                         
@@ -1114,21 +1114,16 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="mb-3 d-flex justify-content-between align-items-center">
-                                                <label>
-                                                    Tampilkan
-                                                    <select class="form-select d-inline w-auto mx-1">
-                                                    <option>10</option>
-                                                    <option>25</option>
-                                                    <option>50</option>
-                                                    </select>
-                                                    entri
+                                            <table id="layananTable" class="display">
+                                                <label>Tampilkan
+                                                    <select>
+                                                        <option>10</option>
+                                                        <option>25</option>
+                                                        <option>50</option>
+                                                    </select> entri
                                                 </label>
-                                                <label>
-                                                    Cari :
-                                                    <input type="text" class="form-control d-inline w-auto" placeholder="Ketik...">
-                                                </label>
-                                                </div>
+                                                <input type="text" placeholder="Cari..." style="float: right;">
+                                                <table>
                                                     <thead>
                                                         <tr>
                                                             <th></th>
