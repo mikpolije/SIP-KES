@@ -41,6 +41,10 @@ return new class extends Migration
                 ->constrained('informed_consent')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->foreignId('id_asuhan_keperawatan')
+                ->constrained('asuhan_keperawatan')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('ruangan')->nullable();
             $table->string('kelas')->nullable();
             $table->string('pembayaran')->nullable();
