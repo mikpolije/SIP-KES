@@ -469,10 +469,14 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control required decimal-input"
-                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <input type="text" class="form-control required decimal-input" 
+                                                               id="berat-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                               required
+                                                               oninvalid="this.setCustomValidity('Harap isi berat badan')"
+                                                               oninput="this.setCustomValidity('')">
                                                         <span class="input-group-text">kg</span>
                                                     </div>
+                                                    <div class="invalid-feedback">Berat badan harus diisi</div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>

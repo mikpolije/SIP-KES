@@ -162,7 +162,7 @@
                 <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
             </div>
         </div>
-        <div class="mb-4 text-center">
+        <div class="mb-4 text-right">
             <p>Jember, 1 Januari 2025</p>
 
             <p>Dokter yang memeriksa :</p>
@@ -178,11 +178,12 @@
 
 <style>
     .modal-title {
-            font-size: 32px;
-            font-weight: 800;
-            color: #0a0f5c;
-            /* Biru tua */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        text-align: left;
+        color: #111754;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
         }
 </style>
 
