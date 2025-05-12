@@ -443,7 +443,6 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <label class="form-label">Subjek/Keluhan</label>
-                                        <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
                                         <div class="mb-3">
                                             <textarea name="shortDescription" id="subjek" name="subjek" rows="12" class="form-control required"></textarea>
                                         </div>
@@ -469,10 +468,11 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-group">
+                                                    <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
                                                             id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
+                                                        <div class="invalid-feedback">This field is required.</div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
