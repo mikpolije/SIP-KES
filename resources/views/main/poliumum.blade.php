@@ -1007,12 +1007,14 @@
                                             </label>
                                         </div>
 
-                                        <table class="table table-bordered table-striped icd-table">
-                                            <thead class="table-light text-center">
+                                        <h2>Data ICD 9</h2>
+                                            <table>
+                                            <thead>
                                                 <tr>
-                                                    <th></th>
-                                                    <th>Kode</th>
-                                                    <th>Nama</th>
+                                                <th class="text-start"></th>
+                                                <th class="text-end"></th>
+                                                <th class="text-end">Kode</th>
+                                                <th class="text-end">Nama</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
