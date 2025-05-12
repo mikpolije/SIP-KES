@@ -105,9 +105,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                  <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
-                                  <input type="text" class="form-control required" id="nik" name="nik" placeholder="16 digit" oninput="validateNumeric(this, 16)" maxlength="16" required>
-                                  <small class="error-message" id="nik-error">NIK harus berupa 16 digit angka</small>
+                                    <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="nik" name="nik"
+                                        placeholder="16 digit" oninput="validateNumeric(this, 16)" maxlength="16" required>
+                                    <small class="error-message" id="nik-error">NIK harus berupa 16 digit angka</small>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -137,23 +138,28 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                  <label class="form-label" for="kodepos">Kode Pos: <span class="danger">*</span></label>
-                                  <input type="text" class="form-control required" id="kodepos" name="kodepos" oninput="validateNumeric(this, 5)" maxlength="5" required>
-                                  <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit angka</small>
+                                    <label class="form-label" for="kodepos">Kode Pos: <span
+                                            class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="kodepos" name="kodepos"
+                                        oninput="validateNumeric(this, 5)" maxlength="5" required>
+                                    <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                    <div class="mb-3">
-                                      <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
-                                      <input type="text" class="form-control required" id="rt" name="rt" oninput="validateNumeric(this, 3)" maxlength="3" required>
-                                      <small class="error-message" id="rt-error">RT harus berupa angka</small>
-                                    </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="rt" name="rt"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" required>
+                                    <small class="error-message" id="rt-error">RT harus berupa angka</small>
+                                </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
-                                  <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
-                                  <input type="text" class="form-control required" id="rw" name="rw" oninput="validateNumeric(this, 3)" maxlength="3" required>
-                                  <small class="error-message" id="rw-error">RW harus berupa angka</small>
+                                    <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="rw" name="rw"
+                                        oninput="validateNumeric(this, 3)" maxlength="3" required>
+                                    <small class="error-message" id="rw-error">RW harus berupa angka</small>
                                 </div>
                             </div>
                         </div>
@@ -254,9 +260,13 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                  <label class="form-label" for="telepon">Nomor Telepon: <span class="danger">*</span></label>
-                                  <input type="text" class="form-control required" id="telepon" name="telepon" placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13" required>
-                                  <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit angka</small>
+                                    <label class="form-label" for="telepon">Nomor Telepon: <span
+                                            class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="telepon" name="telepon"
+                                        placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13"
+                                        required>
+                                    <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -319,9 +329,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                  <label class="form-label" for="telepon">Nomor Telepon: <span class="danger">*</span></label>
-                                  <input type="text" class="form-control required" id="telepon" name="telepon" placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13" required>
-                                  <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit angka</small>
+                                    <label class="form-label" for="telepon">Nomor Telepon: <span
+                                            class="danger">*</span></label>
+                                    <input type="text" class="form-control required" id="telepon" name="telepon"
+                                        placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13"
+                                        required>
+                                    <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -938,551 +952,555 @@
                                 </div>
                             </div>
 
-                        <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Tutup"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                                            <label>
-                                                Tampilkan
-                                                <select class="form-select d-inline w-auto mx-1">
-                                                    <option>10</option>
-                                                    <option>25</option>
-                                                    <option>50</option>
-                                                </select>
-                                                entri
-                                            </label>
-                                            <label>
-                                                Cari :
-                                                <input type="text" class="form-control d-inline w-auto"
-                                                    placeholder="Cari...">
-                                            </label>
+                            <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Tutup"></button>
                                         </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3 d-flex justify-content-between align-items-center">
+                                                <label>
+                                                    Tampilkan
+                                                    <select class="form-select d-inline w-auto mx-1">
+                                                        <option>10</option>
+                                                        <option>25</option>
+                                                        <option>50</option>
+                                                    </select>
+                                                    entri
+                                                </label>
+                                                <label>
+                                                    Cari :
+                                                    <input type="text" class="form-control d-inline w-auto"
+                                                        placeholder="Cari...">
+                                                </label>
+                                            </div>
 
-                                        <table class="table table-bordered table-striped icd-table">
-                                            <thead class="table-light text-center">
+                                            <table class="table table-bordered table-striped icd-table">
+                                                <thead class="table-light text-center">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Kode</th>
+                                                        <th>Nama</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0001</td>
+                                                        <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0002</td>
+                                                        <td>Therapeutic ultrasound of heart</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><button class="btn-pilih">Pilih</button></td>
+                                                        <td>0003</td>
+                                                        <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+                                                    </tr>
+                                                    <!-- Tambahan baris lainnya -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CSS Styling -->
+                            <style>
+                                .btn-pilih {
+                                    background-color: #2196F3;
+                                    color: white;
+                                    border: none;
+                                    padding: 5px 12px;
+                                    border-radius: 4px;
+                                    font-weight: bold;
+                                    cursor: pointer;
+                                    transition: background-color 0.2s;
+                                }
+
+                                .btn-pilih:hover {
+                                    background-color: #1976D2;
+                                }
+
+                                .icd-table tbody tr {
+                                    background-color: #f0f7ff;
+                                    /* Warna biru muda */
+                                }
+
+                                .icd-table tbody tr:hover {
+                                    background-color: #dbeeff;
+                                    /* Biru lebih gelap saat hover */
+                                }
+
+                                .icd-table thead th {
+                                    background-color: #e0e0e0;
+                                    font-weight: bold;
+                                    text-align: center;
+                                }
+
+                                /* Tambahan padding untuk konsistensi */
+                                .modal-body {
+                                    padding: 1.5rem;
+                                }
+
+                                .modal-header {
+                                    background-color: #f8f9fa;
+                                    border-bottom: 1px solid #dee2e6;
+                                }
+
+
+                                /* Garis horizontal di bawah judul */
+                                h2::after {
+                                    content: "";
+                                    display: block;
+                                    width: 100%;
+                                    height: 2px;
+                                    background-color: #ccc;
+                                    margin-top: 8px;
+                                }
+                            </style>
+
+                            <!-- Modal for Pemeriksaan Fisik Details -->
+                            <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Rincian Pemeriksaan Fisik</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" id="physicalExamModalBody">
+                                            <div id="physicalExamDetails">
+                                                <!-- Detail content will be inserted here -->
+                                                <p><strong>Nama Pemeriksaan:</strong> Kepala</p>
+                                                <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
+                                                <p><strong>Detail:</strong></p>
+                                                <ul>
+                                                    <li>Jenis Kelainan: Varises pembuluh darah</li>
+                                                    <li>Tingkat Keparahan: Sedang</li>
+                                                    <li>Catatan Tambahan: Diperlukan pemeriksaan lanjutan dengan USG Doppler
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Layanan dan Rincian Obat -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Layanan</label>
+                                        <div class="input-group mb-2">
+                                            <input type="text" class="form-control" placeholder="Ketik Layanan">
+                                            <button data-bs-toggle="modal" data-bs-target="#layananModal"
+                                                class="btn btn-outline-secondary" type="button"><i
+                                                    class="bi bi-search"></i></button>
+                                        </div>
+                                        <table class="table table-bordered text-center">
+                                            <thead style="background-color: #676981; color: white;">
                                                 <tr>
-                                                    <th></th>
-                                                    <th>Kode</th>
-                                                    <th>Nama</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Nama Layanan</th>
+                                                    <th>Harga Layanan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>0001</td>
-                                                    <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                                    <td colspan="3" class="text-center align-middle">Tidak Ada Data
+                                                    </td>
                                                 </tr>
-                                                <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>0002</td>
-                                                    <td>Therapeutic ultrasound of heart</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                    <td>0003</td>
-                                                    <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-                                                </tr>
-                                                <!-- Tambahan baris lainnya -->
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- CSS Styling -->
-                        <style>
-                            .btn-pilih {
-                                background-color: #2196F3;
-                                color: white;
-                                border: none;
-                                padding: 5px 12px;
-                                border-radius: 4px;
-                                font-weight: bold;
-                                cursor: pointer;
-                                transition: background-color 0.2s;
-                            }
-
-                            .btn-pilih:hover {
-                                background-color: #1976D2;
-                            }
-
-                            .icd-table tbody tr {
-                                background-color: #f0f7ff;
-                                /* Warna biru muda */
-                            }
-
-                            .icd-table tbody tr:hover {
-                                background-color: #dbeeff;
-                                /* Biru lebih gelap saat hover */
-                            }
-
-                            .icd-table thead th {
-                                background-color: #e0e0e0;
-                                font-weight: bold;
-                                text-align: center;
-                            }
-
-                            /* Tambahan padding untuk konsistensi */
-                            .modal-body {
-                                padding: 1.5rem;
-                            }
-
-                            .modal-header {
-                                background-color: #f8f9fa;
-                                border-bottom: 1px solid #dee2e6;
-                            }
-
-
-                            /* Garis horizontal di bawah judul */
-                            h2::after {
-                                            content: "";
-                                            display: block;
-                                            width: 100%;
-                                            height: 2px;
-                                            background-color: #ccc;
-                                            margin-top: 8px;
-                            }
-
-                            </style>
-
-                        <!-- Modal for Pemeriksaan Fisik Details -->
-                        <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Rincian Pemeriksaan Fisik</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body" id="physicalExamModalBody">
-                                        <div id="physicalExamDetails">
-                                            <!-- Detail content will be inserted here -->
-                                            <p><strong>Nama Pemeriksaan:</strong> Kepala</p>
-                                            <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
-                                            <p><strong>Detail:</strong></p>
-                                            <ul>
-                                                <li>Jenis Kelainan: Varises pembuluh darah</li>
-                                                <li>Tingkat Keparahan: Sedang</li>
-                                                <li>Catatan Tambahan: Diperlukan pemeriksaan lanjutan dengan USG Doppler
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Tutup</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Layanan dan Rincian Obat -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Layanan</label>
-                                    <div class="input-group mb-2">
-                                        <input type="text" class="form-control" placeholder="Ketik Layanan">
-                                        <button data-bs-toggle="modal" data-bs-target="#layananModal"
-                                            class="btn btn-outline-secondary" type="button"><i
-                                                class="bi bi-search"></i></button>
-                                    </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Data Layanan</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table id="layananTable" class="display">
-                                                <label>Tampilkan
-                                                    <select>
-                                                        <option>10</option>
-                                                        <option>25</option>
-                                                        <option>50</option>
-                                                    </select> entri
-                                                </label>
-                                                <input type="text" placeholder="Cari..." style="float: right;">
-                                                <table>
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>Nama Layanan</th>
-                                                            <th>Tarif</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Jasa Perawat</td>
-                                                            <td>Rp 10.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Jasa Pasang Infus</td>
-                                                            <td>Rp 30.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Bekam</td>
-                                                            <td>Rp 50.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Perawatan Luka Ringan</td>
-                                                            <td>Rp 30.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Perawatan Luka Infeksi</td>
-                                                            <td>Rp 70.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Administrasi</td>
-                                                            <td>Rp 5.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Injeksi Vitamin</td>
-                                                            <td>Rp 50.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Nebulizer</td>
-                                                            <td>Rp 25.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Tensi</td>
-                                                            <td>Rp 10.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Cek Gula Darah</td>
-                                                            <td>Rp 10.000,-</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Sebelumnya</button>
-                                            <button type="button" class="btn btn-primary">Selanjutnya</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="layananModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Data Layanan</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table id="layananTable" class="display">
+                                                    <label>Tampilkan
+                                                        <select>
+                                                            <option>10</option>
+                                                            <option>25</option>
+                                                            <option>50</option>
+                                                        </select> entri
+                                                    </label>
+                                                    <input type="text" placeholder="Cari..." style="float: right;">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Nama Layanan</th>
+                                                                <th>Tarif</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Jasa Perawat</td>
+                                                                <td>Rp 10.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Jasa Pasang Infus</td>
+                                                                <td>Rp 30.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Bekam</td>
+                                                                <td>Rp 50.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Perawatan Luka Ringan</td>
+                                                                <td>Rp 30.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Perawatan Luka Infeksi</td>
+                                                                <td>Rp 70.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Administrasi</td>
+                                                                <td>Rp 5.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Injeksi Vitamin</td>
+                                                                <td>Rp 50.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Nebulizer</td>
+                                                                <td>Rp 25.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Tensi</td>
+                                                                <td>Rp 10.000,-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><button class="btn-pilih">Pilih</button></td>
+                                                                <td>Cek Gula Darah</td>
+                                                                <td>Rp 10.000,-</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Sebelumnya</button>
+                                                <button type="button" class="btn btn-primary">Selanjutnya</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Rincian Obat</label>
-                                    <style>
-                                        /* Membuat backdrop modal transparan */
-                                        .modal-backdrop.show {
-                                            background-color: rgba(128, 128, 128, 0.5) !important;
-                                        }
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Rincian Obat</label>
+                                        <style>
+                                            /* Membuat backdrop modal transparan */
+                                            .modal-backdrop.show {
+                                                background-color: rgba(128, 128, 128, 0.5) !important;
+                                            }
 
-                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
-                                        .modal-content {
-                                            box-shadow: none;
-                                        }
+                                            /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                            .modal-content {
+                                                box-shadow: none;
+                                            }
 
-                                        .bi bi-search {
-                                            background-color: transparent;
-                                            border: none;
-                                            color: #333;
-                                        }
+                                            .bi bi-search {
+                                                background-color: transparent;
+                                                border: none;
+                                                color: #333;
+                                            }
 
-                                        table {
-                                            width: 100%;
-                                            border-collapse: collapse;
-                                            margin-top: 20px;
-                                            font-family: sans-serif;
-                                        }
+                                            table {
+                                                width: 100%;
+                                                border-collapse: collapse;
+                                                margin-top: 20px;
+                                                font-family: sans-serif;
+                                            }
 
-                                        thead {
-                                            background-color: #f3f3f3;
-                                            border-bottom: 2px solid #ccc;
-                                        }
+                                            thead {
+                                                background-color: #f3f3f3;
+                                                border-bottom: 2px solid #ccc;
+                                            }
 
-                                        h2 {
-                                            font-size: 24px;
-                                            color: #1a237e;
-                                            margin-bottom: 5px;
-                                            position: relative;
-                                        }
+                                            h2 {
+                                                font-size: 24px;
+                                                color: #1a237e;
+                                                margin-bottom: 5px;
+                                                position: relative;
+                                            }
 
-                                        /* Garis horizontal di bawah judul */
-                                        h2::after {
-                                            content: "";
-                                            display: block;
-                                            width: 100%;
-                                            height: 2px;
-                                            background-color: #ccc;
-                                            margin-top: 8px;
-                                        }
+                                            /* Garis horizontal di bawah judul */
+                                            h2::after {
+                                                content: "";
+                                                display: block;
+                                                width: 100%;
+                                                height: 2px;
+                                                background-color: #ccc;
+                                                margin-top: 8px;
+                                            }
 
-                                        th,
-                                        td {
-                                            text-align: left;
-                                            padding: 10px;
-                                            border-bottom: 1px solid #ccc;
-                                        }
+                                            th,
+                                            td {
+                                                text-align: left;
+                                                padding: 10px;
+                                                border-bottom: 1px solid #ccc;
+                                            }
 
-                                        tr:nth-child(even) {
-                                            background-color: #f0f4ff;
-                                            /* biru muda */
-                                        }
+                                            tr:nth-child(even) {
+                                                background-color: #f0f4ff;
+                                                /* biru muda */
+                                            }
 
-                                        th {
-                                            background-color: #f4f4f4;
-                                        }
+                                            th {
+                                                background-color: #f4f4f4;
+                                            }
 
-                                        .btn-pilih {
-                                            background-color: #2196F3;
-                                            color: white;
-                                            border: none;
-                                            padding: 5px 10px;
-                                            cursor: pointer;
-                                        }
+                                            .btn-pilih {
+                                                background-color: #2196F3;
+                                                color: white;
+                                                border: none;
+                                                padding: 5px 10px;
+                                                cursor: pointer;
+                                            }
 
-                                        .stok-kosong {
-                                            color: red;
-                                            font-size: 12px;
-                                            padding: 5px 10px;
-                                            cursor: pointer;
-                                        }
+                                            .stok-kosong {
+                                                color: red;
+                                                font-size: 12px;
+                                                padding: 5px 10px;
+                                                cursor: pointer;
+                                            }
 
-                                        button:disabled {
-                                            background-color: #aaa;
-                                        }
-                                    </style>
-                                    <div class="input-group mb-2">
-                                        <input type="text" id="searchInput" class="form-control"
-                                            placeholder="Cari Obat">
-                                        <button data-bs-toggle="modal" data-bs-target="#cariObat"
-                                            class="btn btn-outline-secondary " type="button">
-                                            <i class="bi bi-search"></i>
-                                    </div>
-                                    <div class="modal fade" id="cariObat" tabindex="-1"
-                                        aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header d-flex align-items-center">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
-                                                    <div class="popup">
-                                                        <h2>Data Obat</h2>
-                                                        <label style="color: #2c2c6c; font-weight: bold;">
-                                                            Tampilkan
-                                                            <select
-                                                                style="margin: 0 5px; padding: 3px 6px; border-radius: 4px; border: 1px solid #ccc;">
-                                                                <option>10</option>
-                                                                <option>25</option>
-                                                                <option>50</option>
-                                                            </select>
-                                                            entri
-                                                        </label>
-                                                        <div style="display: flex; justify-content: flex-end; gap: 8px;">
-                                                            <label for="searchInput"
-                                                                style="color: #2c2c6c; font-weight: bold;">Cari :</label>
-                                                            <input id="searchInput" type="text" placeholder=""
-                                                                style="padding: 5px 10px; border: 1px solid #999; border-radius: 5px;
+                                            button:disabled {
+                                                background-color: #aaa;
+                                            }
+                                        </style>
+                                        <div class="input-group mb-2">
+                                            <input type="text" id="searchInput" class="form-control"
+                                                placeholder="Cari Obat">
+                                            <button data-bs-toggle="modal" data-bs-target="#cariObat"
+                                                class="btn btn-outline-secondary " type="button">
+                                                <i class="bi bi-search"></i>
+                                        </div>
+                                        <div class="modal fade" id="cariObat" tabindex="-1"
+                                            aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header d-flex align-items-center">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- Anda bisa tambahkan tabel atau elemen lainnya di sini -->
+                                                        <div class="popup">
+                                                            <h2>Data Obat</h2>
+                                                            <label style="color: #2c2c6c; font-weight: bold;">
+                                                                Tampilkan
+                                                                <select
+                                                                    style="margin: 0 5px; padding: 3px 6px; border-radius: 4px; border: 1px solid #ccc;">
+                                                                    <option>10</option>
+                                                                    <option>25</option>
+                                                                    <option>50</option>
+                                                                </select>
+                                                                entri
+                                                            </label>
+                                                            <div
+                                                                style="display: flex; justify-content: flex-end; gap: 8px;">
+                                                                <label for="searchInput"
+                                                                    style="color: #2c2c6c; font-weight: bold;">Cari
+                                                                    :</label>
+                                                                <input id="searchInput" type="text" placeholder=""
+                                                                    style="padding: 5px 10px; border: 1px solid #999; border-radius: 5px;
                                                                     box-shadow: 1px 1px 4px #aaa; outline: none;">
-                                                        </div>
-                                                        <table id="data-obat">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th></th>
-                                                                    <th>Nama Obat</th>
-                                                                    <th>Harga Jual</th>
-                                                                    <th>Stok Obat</th>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><button type="button"
-                                                                            onclick="tambahObat('Acyclovir', Rp. 1.000-,)"
-                                                                            class="btn-pilih">Pilih</button></td>
-                                                                    <td>Acyclovir</td>
-                                                                    <td>Rp 1.000,-</td>
-                                                                    <td>64</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>Acyclovir salep</td>
-                                                                    <td>Rp 9.000,-</td>
-                                                                    <td>3</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><span class="stok-kosong">Stok Kosong</span></td>
-                                                                    <td>ALLOPURINOL TAB 300 mg</td>
-                                                                    </td>
-                                                                    <td>Rp 833,-</td>
-                                                                    <td>0</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>ALPARA</td>
-                                                                    <td>Rp 1.776,-</td>
-                                                                    <td>10</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>Ambroxol</td>
-                                                                    <td>Rp 416,-</td>
-                                                                    <td>170</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <div style="margin-top: 15px;">
-                                                            <div>
-                                                                Menampilkan 1 sampai 10 dari 155 entri
                                                             </div>
-                                                            <div style="margin-top: 10px; text-align: right;">
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                                            <table id="data-obat">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th>Nama Obat</th>
+                                                                        <th>Harga Jual</th>
+                                                                        <th>Stok Obat</th>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><button type="button"
+                                                                                onclick="tambahObat('Acyclovir', Rp. 1.000-,)"
+                                                                                class="btn-pilih">Pilih</button></td>
+                                                                        <td>Acyclovir</td>
+                                                                        <td>Rp 1.000,-</td>
+                                                                        <td>64</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><button class="btn-pilih">Pilih</button></td>
+                                                                        <td>Acyclovir salep</td>
+                                                                        <td>Rp 9.000,-</td>
+                                                                        <td>3</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span class="stok-kosong">Stok Kosong</span>
+                                                                        </td>
+                                                                        <td>ALLOPURINOL TAB 300 mg</td>
+                                                                        </td>
+                                                                        <td>Rp 833,-</td>
+                                                                        <td>0</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><button class="btn-pilih">Pilih</button></td>
+                                                                        <td>ALPARA</td>
+                                                                        <td>Rp 1.776,-</td>
+                                                                        <td>10</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><button class="btn-pilih">Pilih</button></td>
+                                                                        <td>Ambroxol</td>
+                                                                        <td>Rp 416,-</td>
+                                                                        <td>170</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div style="margin-top: 15px;">
+                                                                <div>
+                                                                    Menampilkan 1 sampai 10 dari 155 entri
+                                                                </div>
+                                                                <div style="margin-top: 10px; text-align: right;">
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                                    <button
+                                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
-                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                        <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
+                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table id="rincian-obat" class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Obat</th>
-                                                <th>Harga Obat</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="rincian-body">
-                                            <tr>
-                                                <td colspan="3"
-                                                    style="text-align: center; vertical-align: middle; height: 60px;">
-                                                    Tidak Ada Data
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <script>
-                                        function tambahObat(nama, harga) {
-                                            const tbody = document.getElementById("rincian-body");
+                                        <table id="rincian-obat" class="table table-bordered text-center">
+                                            <thead style="background-color: #676981; color: white;">
+                                                <tr>
+                                                    <th>Jumlah</th>
+                                                    <th>Nama Obat</th>
+                                                    <th>Harga Obat</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="rincian-body">
+                                                <tr>
+                                                    <td colspan="3"
+                                                        style="text-align: center; vertical-align: middle; height: 60px;">
+                                                        Tidak Ada Data
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <script>
+                                            function tambahObat(nama, harga) {
+                                                const tbody = document.getElementById("rincian-body");
 
-                                            // Hapus baris "Tidak Ada Data" jika ada
-                                            if (tbody.children.length === 1 && tbody.children[0].textContent.includes("Tidak Ada Data")) {
-                                                tbody.innerHTML = "";
+                                                // Hapus baris "Tidak Ada Data" jika ada
+                                                if (tbody.children.length === 1 && tbody.children[0].textContent.includes("Tidak Ada Data")) {
+                                                    tbody.innerHTML = "";
+                                                }
+                                                // Tambahkan data baru
+                                                const row = document.createElement("tr");
+
+                                                const jumlahCell = document.createElement("td");
+                                                jumlahCell.innerText = 1;
+
+                                                const namaCell = document.createElement("td");
+                                                namaCell.innerText = nama;
+
+                                                const hargaCell = document.createElement("td");
+                                                hargaCell.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
+
+                                                row.appendChild(jumlahCell);
+                                                row.appendChild(namaCell);
+                                                row.appendChild(hargaCell);
+
+                                                tbody.appendChild(row);
                                             }
-                                            // Tambahkan data baru
-                                            const row = document.createElement("tr");
-
-                                            const jumlahCell = document.createElement("td");
-                                            jumlahCell.innerText = 1;
-
-                                            const namaCell = document.createElement("td");
-                                            namaCell.innerText = nama;
-
-                                            const hargaCell = document.createElement("td");
-                                            hargaCell.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
-
-                                            row.appendChild(jumlahCell);
-                                            row.appendChild(namaCell);
-                                            row.appendChild(hargaCell);
-
-                                            tbody.appendChild(row);
-                                        }
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="row g-2 mb-2">
-                                        <div class="col-md-4">
-                                            <input type="date" class="form-control">
-                                        </div>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
-                                        </div>
+                                        </script>
                                     </div>
-                                    <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th>Tanggal Kontrol</th>
-                                                <th>Alasan Kontrol</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Catatan</label>
-                                    <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
+
+                            <!-- Rencana Kontrol dan Catatan -->
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Rencana Kontrol</label>
+                                        <div class="row g-2 mb-2">
+                                            <div class="col-md-4">
+                                                <input type="date" class="form-control">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                            </div>
+                                        </div>
+                                        <table class="table table-bordered text-center">
+                                            <thead style="background-color: #676981; color: white;">
+                                                <tr>
+                                                    <th>Tanggal Kontrol</th>
+                                                    <th>Alasan Kontrol</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3" class="text-center align-middle">Tidak Ada Data
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold">Catatan</label>
+                                        <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </section>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
@@ -2489,6 +2507,34 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        function validateNumeric(input, maxLength) {
+            // Hapus karakter non-angka
+            let value = input.value.replace(/\D/g, '');
+
+            // Batasi panjang maksimal jika ditentukan
+            if (maxLength && value.length > maxLength) {
+                value = value.slice(0, maxLength);
+            }
+
+            // Update nilai input
+            input.value = value;
+
+            // Tampilkan atau sembunyikan pesan error
+            const fieldId = input.id;
+            const errorElement = document.getElementById($ {
+                fieldId
+            } - error);
+            if (errorElement) {
+                if (value.length > 0 && maxLength && value.length !== maxLength) {
+                    errorElement.style.display = 'block';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            }
+        }
     </script>
 
     {{-- <!-- ICD-10 Search Script -->
