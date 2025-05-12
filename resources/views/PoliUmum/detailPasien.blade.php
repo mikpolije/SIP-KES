@@ -3,11 +3,77 @@
 @section('title', 'Detail Pasien')
 
 @section('pageContent')
-<div class="container py-4">
-    <h1 class="judul-riwayat mb-4">Detail Pasien</h1>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@700&family=Poppins:wght@400;700&display=swap');
 
-    <div class="card p-4 shadow rounded">
-        <h4>Identitas Pasien</h4>
+    .judul-riwayat {
+        font-family: 'Montserrat', sans-serif;
+        color: #111754;
+        font-size: 70px;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .judul-section {
+        font-family: 'Poppins', sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: #111754;
+        margin-top: 30px;
+    }
+
+    .close-btn {
+        font-size: 30px;
+        color: #111754;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+        color: #555;
+    }
+
+    .form-control {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    table thead th {
+        background-color: #F9FAFC;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        vertical-align: middle;
+    }
+
+    table tbody td {
+        background-color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        vertical-align: middle;
+        text-align: left;
+    }
+</style>
+
+<div class="container py-4">
+    <div class="judul-riwayat mb-4">
+        <h1>Detail Pasien</h1>
+        <span class="close-btn" onclick="history.back()">&#10005;</span>
+    </div>
+
+    <div class="card">
+        <h4 class="judul-section">Identitas Pasien</h4>
         <div class="row g-3">
             <div class="col-md-3">
                 <label>No. RM</label>
@@ -43,7 +109,7 @@
             </div>
         </div>
 
-        <h4 class="mt-5">Tabel Riwayat Kunjungan</h4>
+        <h4 class="judul-section">Tabel Riwayat Kunjungan</h4>
         <div class="table-responsive mt-3">
             <table class="table table-bordered">
                 <thead>
