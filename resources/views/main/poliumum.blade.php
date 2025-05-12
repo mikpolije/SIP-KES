@@ -792,7 +792,6 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <h5 class="fw-bold">Subjective/Keluhan</h5>
-                                    <label class="form-label" for="subjective">Keluhan</label>
                                     <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
                                 </div>
                             </div>
