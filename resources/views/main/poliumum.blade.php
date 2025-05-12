@@ -873,7 +873,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
-                                    <label class="form-label" for="assesment">Assessment</label>
+                                    <h5 class="fw-bold">Assessment</h5>
                                     <textarea id="assesment" name="assesment" rows="5" class="form-control" placeholder="Ketik Assessment"></textarea>
                                 </div>
                             </div>
