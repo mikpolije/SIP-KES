@@ -1161,11 +1161,11 @@
                                                 class="bi bi-search"></i></button>
                                     </div>
                                     <table class="table table-bordered text-center">
-                                        <thead style="background-color: #676981; color: white;">
+                                        <thead style="background-color: #f8f9fa">
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
+                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
+                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1465,9 +1465,9 @@
                                     <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Obat</th>
-                                                <th>Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rincian-body">
