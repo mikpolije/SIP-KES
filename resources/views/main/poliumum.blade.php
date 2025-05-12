@@ -1698,7 +1698,7 @@
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
                                         <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                            <button class="btn-tambah" onclick="tambahData()">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
