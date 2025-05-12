@@ -572,21 +572,21 @@
 
                         <!-- Antrian - Identitas Pasien -->
                         <div class="card p-3 mb-3 shadow-sm">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-md-3">
-                                    <label for="noantian" class="form-label">No Antrian</label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="form-label" for="noantian">No Antrian</label>
                                     <input type="text" class="form-control" id="noantian" name="noantian">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="nama" class="form-label">Nama</label>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="nama">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="no.rm" class="form-label">No. RM</label>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="no.rm">No. RM</label>
                                     <input type="text" class="form-control" id="no.rm" name="no.rm">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="tanggal" class="form-label">Tanggal</label>
+                                <div class="col-md-2">
+                                    <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
                                 </div>
                             </div>
@@ -1013,100 +1013,60 @@
                         </div>
 
                         <!-- CSS Styling -->
-<style>
-    .btn-pilih {
-        background-color: #2196F3;
-        color: white;
-        border: none;
-        padding: 5px 12px;
-        border-radius: 4px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
+                        <style>
+                            .btn-pilih {
+                                background-color: #2196F3;
+                                color: white;
+                                border: none;
+                                padding: 5px 12px;
+                                border-radius: 4px;
+                                font-weight: bold;
+                                cursor: pointer;
+                                transition: background-color 0.2s;
+                            }
 
-    .btn-pilih:hover {
-        background-color: #1976D2;
-    }
+                            .btn-pilih:hover {
+                                background-color: #1976D2;
+                            }
 
-    /* Tabel */
-    .icd-table tbody tr {
-        background-color: #f8f9fa; /* sama dengan hover ICD-10 */
-    }
+                            .icd-table tbody tr {
+                                background-color: #f0f7ff;
+                                /* Warna biru muda */
+                            }
 
-    .icd-table tbody tr:hover {
-        background-color: #f0f0f0; /* warna hover ICD-10 */
-    }
+                            .icd-table tbody tr:hover {
+                                background-color: #dbeeff;
+                                /* Biru lebih gelap saat hover */
+                            }
 
-    .icd-table thead th {
-        background-color: #e0e0e0; /* abu-abu muda */
-        font-weight: bold;
-        text-align: center;
-    }
+                            .icd-table thead th {
+                                background-color: #e0e0e0;
+                                font-weight: bold;
+                                text-align: center;
+                            }
 
-    /* Modal Header dan Body */
-    .modal-body {
-        padding: 1.5rem;
-        background-color: #f0f0f0; /* Ganti warna background modal body */
-    }
+                            /* Tambahan padding untuk konsistensi */
+                            .modal-body {
+                                padding: 1.5rem;
+                            }
 
-    .modal-header {
-        background-color: #e9ecef; /* Ganti warna background modal header */
-        border-bottom: 1px solid #dee2e6;
-    }
+                            .modal-header {
+                                background-color: #f8f9fa;
+                                border-bottom: 1px solid #dee2e6;
+                            }
 
-    .modal-content {
-        background-color: #ffffff; /* Ganti warna background modal content */
-    }
 
-    /* Garis horizontal bawah judul */
-    h2::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 2px;
-        background-color: #ccc;
-        margin-top: 8px;
-    }
+                            /* Garis horizontal di bawah judul */
+                            h2::after {
+                                            content: "";
+                                            display: block;
+                                            width: 100%;
+                                            height: 2px;
+                                            background-color: #ccc;
+                                            margin-top: 8px;
+                            }
 
-    /* Efek pencarian konsisten dengan ICD-10 */
-    .search-item {
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-    .search-item:hover {
-        background-color: #f8f9fa;
-    }
-
-    .selected-icd-item {
-        background-color: #e9f7fe;
-        padding: 5px 10px;
-        border-radius: 4px;
-    }
-
-    #search-results {
-        border: 1px solid #ced4da;
-        border-radius: 0 0 5px 5px;
-    }
-
-    .hover-bg:hover {
-        background-color: #f0f0f0;
-        cursor: pointer;
-    }
-
-    .z-index-dropdown {
-        z-index: 1000;
-    }
-
-    .min-height-80 {
-        min-height: 80px;
-    }
-</style>
-
-<!-- Include Bootstrap 5 JS and CSS (if not included) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+                            </style>
                             
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
