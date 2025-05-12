@@ -923,12 +923,10 @@
                                         </button>
                                     </div>
                                     <div id="popup-container" class="popup-container">
-                                        <div id="popup-content" class="popup-content">
-                                            <span class="close-button">&times;</span>
-                                            <h2>Data ICD 9</h2>
-                                            <div id="hasil-pencarian">
-                                            </div>
-                                        </div>
+                                        <div class="popup-content">
+                                            <div class="popup-header">
+                                                <h2 class="popup-title">Data ICD 9</h2>
+                                                <button id="close-popup" class="close-button">&times;</button>
                                     </div>
 
                                     <style>
@@ -1061,6 +1059,19 @@
 
                                         .popup-filter-input {
                                             flex-grow: 1;
+                                        }
+                                        .close-button {
+                                            font-size: 1.8em;
+                                            font-weight: bold;
+                                            color: #aaa;
+                                            cursor: pointer;
+                                            border: none;
+                                            background: none;
+                                            padding: 0;
+                                        }
+                                        
+                                        .close-button:hover {
+                                            color: #333;
                                         }
                                     </style>
 
@@ -1257,14 +1268,14 @@
                                             });
                                         });
 
-                                        document.addEventListener("DOMContentLoaded", function () {
-                                            const closeBtn = document.querySelector(".close-button");
-                                            const popup = document.getElementById("popup-container");
-
-                                            closeBtn.addEventListener("click", function () {
-                                                popup.style.display = "none";
-                                            });
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                        const closeButton = document.getElementById('close-popup');
+                                        const popupContainer = document.getElementById('popup-container');
+                                        
+                                        closeButton.addEventListener('click', function() {
+                                            popupContainer.style.display = 'none';
                                         });
+                                    });
                                     </script>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
