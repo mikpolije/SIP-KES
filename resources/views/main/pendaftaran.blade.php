@@ -78,7 +78,6 @@ body {
                                     placeholder="Nama Jalan/Blok/Nomor Rumah" />
                             </div>
                         </div>
-<<<<<<< HEAD
                         <div class="row align-items-end">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -125,45 +124,6 @@ body {
                                     <input type="text" class="form-control required" id="kelurahan"
                                         name="kelurahan" />
                                 </div>
-=======
-                    </div>
-                    <div class="row align-items-end">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="nama">Nama Lengkap: <span class="danger">*</span></label>
-                                <input type="text" class="form-control required" id="nama" name="nama"
-                                    placeholder="Masukkan Nama" />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="provinsi">Provinsi: <span class="danger">*</span></label>
-                                <input type="text" class="form-control required" id="provinsi" name="provinsi" />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="kota">Kota/Kabupaten: <span
-                                        class="danger">*</span></label>
-                                <input type="text" class="form-control required" id="kota" name="kota" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
-                                <input type="number" class="form-control required" id="nik" name="nik"
-                                    placeholder="16 digit" oninput="validateNIK(this)" maxlength="16" />
-                                <small class="error-message" id="nik-error">NIK harus berupa 16 digit angka</small>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="kecamatan">Kecamatan: <span
-                                        class="danger">*</span></label>
-                                <input type="text" class="form-control required" id="kecamatan" name="kecamatan" />
->>>>>>> 568710b78ddac81565a52c8a44a505fe2414c585
                             </div>
                         </div>
                         <div class="row">
