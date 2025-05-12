@@ -1011,62 +1011,7 @@
                             </div>
                         </div>
 
-                        <!-- CSS Styling -->
-                        <style>
-                            .btn-pilih {
-                                background-color: #2196F3;
-                                color: white;
-                                border: none;
-                                padding: 5px 12px;
-                                border-radius: 4px;
-                                font-weight: bold;
-                                cursor: pointer;
-                                transition: background-color 0.2s;
-                            }
-
-                            .btn-pilih:hover {
-                                background-color: #1976D2;
-                            }
-
-                            .icd-table tbody tr {
-                                background-color: #f0f7ff;
-                                /* Warna biru muda */
-                            }
-
-                            .icd-table tbody tr:hover {
-                                background-color: #dbeeff;
-                                /* Biru lebih gelap saat hover */
-                            }
-
-                            .icd-table thead th {
-                                background-color: #e0e0e0;
-                                font-weight: bold;
-                                text-align: center;
-                            }
-
-                            /* Tambahan padding untuk konsistensi */
-                            .modal-body {
-                                padding: 1.5rem;
-                            }
-
-                            .modal-header {
-                                background-color: #f8f9fa;
-                                border-bottom: 1px solid #dee2e6;
-                            }
-
-
-                            /* Garis horizontal di bawah judul */
-                            h2::after {
-                                            content: "";
-                                            display: block;
-                                            width: 100%;
-                                            height: 2px;
-                                            background-color: #ccc;
-                                            margin-top: 8px;
-                            }
-
-                            </style>
-                            
+                        
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
@@ -2667,6 +2612,37 @@ $('#search-results').hide();
 }
 </style> --}}
 
+<style>
+    .btn-pilih {
+        background-color: #2196F3 !important;
+        color: white !important;
+        border: none;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .btn-pilih:hover {
+        background-color: #1976D2 !important;
+    }
+
+    .icd-table tbody tr {
+        background-color: #f0f7ff;
+    }
+
+    .icd-table tbody tr:hover {
+        background-color: #dbeeff;
+    }
+
+    .icd-table thead th {
+        background-color: #e0e0e0;
+        font-weight: bold;
+        text-align: center;
+    }
+  </style>
+
     <!-- JavaScript Tambahan -->
     <script>
         function simpanStatusLokalis() {
@@ -2758,5 +2734,7 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
+
+    
 
 @endsection
