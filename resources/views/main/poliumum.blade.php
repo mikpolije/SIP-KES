@@ -2792,7 +2792,7 @@ $('#search-results').hide();
                 image.onload = function () {
                     ctx.drawImage(image, 10, 10, canvas.width, canvas.height);
                 };
-                image.src = '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                image.src = 'public/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
                 // setiap buka ulang, redraw image (jika dibutuhkan)
