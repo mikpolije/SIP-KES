@@ -1515,14 +1515,14 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="row g-3 mb-3">
-                                        <div class="col-md-5">
+                                    <div class="row g-2 mb-2">
+                                        <div class="col-md-4">
                                             <input type="date" class="form-control">
                                         </div>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
                                         </div>
                                     </div>
