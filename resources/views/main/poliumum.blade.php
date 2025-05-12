@@ -800,7 +800,7 @@
                             <div class="col-md-6 shadow-sm">
                                 <div class="card">
                                     <div class="card-body">
-                                    <label class="form-label" for="objective">Objective</label>
+                                    <label class="form-label" for="objective">Objectivesssssss</label>
                                         <div class="row"> 
                                             <!-- Left Column -->
                                             <div class="col-md-6">
