@@ -524,7 +524,7 @@ body {
                             <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
                             <div class="dropdown">
                                 <button class="btn btn-info dropdown-toggle" type="button" id="suratKeteranganDropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-expanded="true">
                                     Surat Keterangan
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
