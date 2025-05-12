@@ -507,23 +507,18 @@
                                             </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
-                                                    <div class="input-group has-validation">
-                                                        <input type="text" class="form-control required decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal" required>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">cm</span>
-                                                        <div class="invalid-feedback">
-                                                            This field is required.
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
-                                                    <div class="input-group has-validation">
-                                                        <input type="text" class="form-control required number-input"
-                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">%</span>
-                                                        <div class="invalid-feedback">
-                                                            This field is required.
                                                     </div>
                                                 </div>
                                             </div>
@@ -532,7 +527,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </section>
 
                     <!-- Step 3 -->
@@ -928,13 +922,17 @@
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </div>
-                                    <div class="modal fade" id="icdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content shadow-sm">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title fw-bold">Data ICD 9</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div id="popup-container" class="popup-container">
+                                        <div id="popup-content" class="popup-content">
+                                            <span class="close-button">&times;</span>
+                                            <h2>Data ICD 9</h2>
+                                            <div id="hasil-pencarian">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
                                         </div>
+                                    </div>
+
                                     <style>
                                         .popup-container {
                                             display: none;
