@@ -796,7 +796,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <label class="form-label" for="subjective">Subjective</label>
-                                    <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
+                                    <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
