@@ -922,14 +922,13 @@
                                 </div>
                             </div>
 
-                            <!-- Modal Detail Pemeriksaan -->
                             <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan Fisik</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                            </div>
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan Fisik</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                    </div>
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
@@ -1019,7 +1018,8 @@
                                 </div>
                             </div>
                         </div>
-                      
+
+                        
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
