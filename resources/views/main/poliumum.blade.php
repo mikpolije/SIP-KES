@@ -921,6 +921,26 @@
                                 </div>
                             </div>
 
+                            <!-- Modal Detail Pemeriksaan -->
+                            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan Fisik</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>Nama:</strong> Kepala</p>
+                                            <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
+                                            <!-- Tambahkan konten detail lainnya di sini jika diperlukan -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
