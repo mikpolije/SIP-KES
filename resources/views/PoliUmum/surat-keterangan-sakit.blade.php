@@ -148,7 +148,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <div class="col-md-2">
+                <div class="col-auto">
                     <label>Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama </label>
                 </div>
                 <div class="col-md-4">
