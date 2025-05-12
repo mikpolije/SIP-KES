@@ -153,16 +153,16 @@
                 <label class="fw-semibold">hari</label>
             </div>
             <div class="mb-3">
-                <div class="col-md-2">
+                <div class="col-md-2 align-items-center gap-2">
                     <label class="fw-semibold">mulai tanggal </label>
                     <input type="text" class="form-control" value="10/02/2025   s/d   13/02/2025" readonly>
                 </div>
             </div>
-            <div class="mb-3 d-flex align-items-center gap-2">
+            <div class="mb-3">
                 <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
             </div>
         </div>
-        <div class="mb-4 text-right">
+        <div class="mb-4 text-left">
             <p>Jember, 1 Januari 2025</p>
 
             <p>Dokter yang memeriksa :</p>
