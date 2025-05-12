@@ -1031,6 +1031,26 @@
                                                     <td>0003</td>
                                                     <td>Therapeutic ultrasound of peripheral vascular vessels</td>
                                                 </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0009</td>
+                                                    <td>Other therapeutic ultrasound</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0010</td>
+                                                    <td>Implantation of chemotherapeutic agent</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0011</td>
+                                                    <td>Infusion of drotrecogin alfa (activated)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0012</td>
+                                                    <td>Administration of inhaled nitric oxide</td>
+                                                </tr>
                                                 <!-- Tambahan baris lainnya -->
                                             </tbody>
                                         </table>
