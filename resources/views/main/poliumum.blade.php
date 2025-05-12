@@ -798,7 +798,7 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="fw-bold">Objective</h5>
+                                    <label class="form-label" for="objective">Objective</label>
                                         <div class="row">
                                             <!-- Left Column -->
                                             <div class="col-md-6">
@@ -873,7 +873,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
-                                    <h5 class="fw-bold">Assessment</h5>
+                                    <label class="form-label" for="assesment">Assessment</label>
                                     <textarea id="assesment" name="assesment" rows="5" class="form-control" placeholder="Ketik Assessment"></textarea>
                                 </div>
                             </div>
