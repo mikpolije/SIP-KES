@@ -106,7 +106,7 @@
         <div class="modal-body">
           <!-- ISI MODAL -->
           <div>
-            <<div class="row mb-3 align-items-center">
+            <div class="row mb-2 align-items-center">
                 <div class="col-md-2">
                   <label class="fw-semibold">Nomor</label>
                 </div>
