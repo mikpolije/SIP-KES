@@ -752,7 +752,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03.2s</td>
+                                                                    <td>A03.2</td>
                                                                     <td>Shigellosis due to shigella sonnei</td>
                                                                 </tr>
                                                             </tbody>
@@ -1266,11 +1266,6 @@
                                                             <td><button class="btn-pilih">Pilih</button></td>
                                                             <td>Cek Gula Darah</td>
                                                             <td>Rp 10.000,-</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Injeksi Vitamin A</td>
-                                                            <td>Rp 80.000,-</td>
                                                         </tr>
                                                         <tr>
                                                             <td><button class="btn-pilih">Pilih</button></td>
