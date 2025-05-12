@@ -596,7 +596,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm h-100">
-                                    <h5 class="fw-bold">Diagnosis</h5>
+                                    <label class="form-label" for="diagnosis">Diagnosis</label>
                                     <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
                                 </div>
                             </div>
