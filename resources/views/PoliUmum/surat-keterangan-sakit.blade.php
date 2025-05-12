@@ -152,8 +152,8 @@
                 <input type="text" class="form-control" value="4" readonly style="width: 50px;">
                 <label class="fw-semibold">hari</label>
             </div>
-            <div class="mb-3">
-                <div class="col-md-2 align-items-center gap-2">
+            <div class="mb-3 align-items-center gap-2">
+                <div class="col-md-2">
                     <label class="fw-semibold">mulai tanggal </label>
                     <input type="text" class="form-control" value="10/02/2025   s/d   13/02/2025" readonly>
                 </div>
