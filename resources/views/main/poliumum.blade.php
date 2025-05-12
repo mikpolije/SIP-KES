@@ -461,7 +461,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
+                                                        <input type="text" class="form-control required number-input"
                                                             id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
