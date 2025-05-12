@@ -2847,14 +2847,6 @@ $('#search-results').hide();
             info: true,
             pageLength: 10, // Default: tampilkan 10 entri
             lengthMenu: [5, 10, 25, 50, 100]
-            const table = new DataTable('#layananTable', {
-                responsive: true,
-                paging: true,
-                searching: true,
-                info: true,
-                pageLength: 10, // Default: tampilkan 10 entri
-                lengthMenu: [5, 10, 25, 50, 100]
-            });
 
         });
         const table = new DataTable('#layananTable', {
