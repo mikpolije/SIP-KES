@@ -807,19 +807,19 @@
                                             <!-- Left Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
+                                                    <label class="form-label">Sistole</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control number-input"
+                                                        id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        <span class="input-group-text">mmHg</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control decimal-input"
                                                             id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label">Sistole</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
-                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
-                                                        <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
