@@ -114,7 +114,7 @@
                   <input type="text" class="form-control" value="001/MS/I/2025" readonly>
                 </div>
             </div>
-            <label class="form-label">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan bahwa:</label>
+            <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan bahwa:</label>
             <div class="row mb-2 align-items-center">
                 <div class="col-md-2">
                   <label class="fw-semibold">Nama</label>
