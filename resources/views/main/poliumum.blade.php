@@ -886,6 +886,25 @@
                             </div>
                         </div>
 
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Pemeriksaan Fisik</title>
+                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+                        <style>
+                            .modal-dialog-centered {
+                                display: flex;
+                                align-items: center;
+                                min-height: calc(100% - (0.5rem * 2));
+                            }
+                            @media (min-width: 576px) {
+                                .modal-dialog-centered {
+                                    min-height: calc(100% - (1.75rem * 2));
+                                }
+                            }
+                        </style>
+                    </head>
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
                             <!-- Pemeriksaan Fisik (Left Column) -->
@@ -922,20 +941,27 @@
                             </div>
 
                             <!-- Modal Detail Pemeriksaan -->
-                            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan Fisik</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p><strong>Nama:</strong> Kepala</p>
-                                            <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
-                                            <!-- Tambahkan konten detail lainnya di sini jika diperlukan -->
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Rincian Pemeriksaan fisik</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="bagianYangDiperiksa" class="form-label">Bagian yang Diperiksa</label>
+                                                    <input type="text" class="form-control" id="bagianYangDiperiksa">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="keterangan" class="form-label">Keterangan</label>
+                                                    <textarea class="form-control" id="keterangan" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="button" class="btn btn-primary" id="simpanPemeriksaan">Simpan</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -2775,6 +2801,61 @@ $('#search-results').hide();
             info: true,
             pageLength: 10, // Default: tampilkan 10 entri
             lengthMenu: [5, 10, 25, 50, 100]
+        });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const simpanPemeriksaanButton = document.getElementById('simpanPemeriksaan');
+            const bagianInput = document.getElementById('bagianYangDiperiksa');
+            const keteranganInput = document.getElementById('keterangan');
+            const pemeriksaanFisikTableBody = document.getElementById('pemeriksaanFisikTable');
+            const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+            const detailModalLabel = document.getElementById('detailModalLabel');
+            const detailModalBody = document.querySelector('#detailModal .modal-body');
+            const tambahModal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
+
+            simpanPemeriksaanButton.addEventListener('click', function() {
+                const bagian = bagianInput.value.trim();
+                const keterangan = keteranganInput.value.trim();
+
+                if (bagian && keterangan) {
+                    const newRow = pemeriksaanFisikTableBody.insertRow();
+                    const namaCell = newRow.insertCell();
+                    const keteranganCell = newRow.insertCell();
+                    const rincianCell = newRow.insertCell();
+                    rincianCell.classList.add('text-center');
+
+                    namaCell.textContent = bagian;
+                    keteranganCell.textContent = keterangan;
+                    rincianCell.innerHTML = `
+                        <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian"
+                            data-nama="${bagian}" data-keterangan="${keterangan}">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    `;
+
+                    bagianInput.value = '';
+                    keteranganInput.value = '';
+                    tambahModal.hide();
+                }
+            });
+
+            pemeriksaanFisikTableBody.addEventListener('click', function(event) {
+                if (event.target.classList.contains('bi-eye') || event.target.classList.contains('view-details')) {
+                    const button = event.target.closest('.view-details');
+                    const nama = button.getAttribute('data-nama');
+                    const keterangan = button.getAttribute('data-keterangan');
+
+                    detailModalLabel.textContent = 'Rincian Pemeriksaan Fisik';
+                    detailModalBody.innerHTML = `
+                        <p><strong>Nama:</strong> ${nama}</p>
+                        <p><strong>Keterangan:</strong> ${keterangan}</p>
+                        `;
+                    detailModal.show();
+                }
+            });
         });
     </script>
 
