@@ -4,11 +4,13 @@
 
 @section('pageContent')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@700&family=Poppins:wght@400;700&display=swap');
 
     .judul-riwayat {
         font-family: 'Montserrat', sans-serif;
         color: #111754;
+        font-size: 70px;
+        font-weight: 700;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         display: flex;
         align-items: center;
@@ -16,13 +18,15 @@
     }
 
     .judul-section {
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        font-family: 'Poppins', sans-serif;
+        font-size: 30px;
+        font-weight: 700;
         color: #111754;
+        margin-top: 30px;
     }
 
     .close-btn {
-        font-size: 24px;
+        font-size: 30px;
         color: #111754;
         cursor: pointer;
         transition: color 0.3s;
@@ -41,10 +45,24 @@
     .card {
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
     }
 
-    table th, table td {
+    table thead th {
+        background-color: #F9FAFC;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
         vertical-align: middle;
+    }
+
+    table tbody td {
+        background-color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        vertical-align: middle;
+        text-align: left;
     }
 </style>
 
@@ -54,7 +72,7 @@
         <span class="close-btn" onclick="history.back()">&#10005;</span>
     </div>
 
-    <div class="card p-4">
+    <div class="card">
         <h4 class="judul-section">Identitas Pasien</h4>
         <div class="row g-3">
             <div class="col-md-3">
@@ -91,7 +109,7 @@
             </div>
         </div>
 
-        <h4 class="judul-section mt-5">Tabel Riwayat Kunjungan</h4>
+        <h4 class="judul-section">Tabel Riwayat Kunjungan</h4>
         <div class="table-responsive mt-3">
             <table class="table table-bordered">
                 <thead>
