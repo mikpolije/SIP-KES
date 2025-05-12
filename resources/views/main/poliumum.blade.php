@@ -468,20 +468,26 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required decimal-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal" required>
                                                         <span class="input-group-text">kg</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                     </div>
                                                 </div>
+                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required decimal-input"
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal" required>
                                                         <span class="input-group-text">°C</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                     </div>
                                                 </div>
+                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group">
@@ -507,18 +513,23 @@
                                             </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal" required>
                                                         <span class="input-group-text">cm</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                     </div>
                                                 </div>
+                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
-                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric" required>
                                                         <span class="input-group-text">%</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                     </div>
                                                 </div>
                                             </div>
@@ -527,6 +538,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </section>
 
                     <!-- Step 3 -->
