@@ -793,10 +793,12 @@
 
                         <!-- Subjective dan Objective -->
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <div class="card p-3 shadow-sm">
-                                    <label class="form-label" for="subjective">Subjective</label>
-                                    <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
+                            <div class="col-md-6 shadow-sm">
+                                <div class="card p-3">
+                                    <div class="card-body">
+                                        <label class="form-label" for="subjective">Subjective</label>
+                                        <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6 shadow-sm">
