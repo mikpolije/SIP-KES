@@ -1163,9 +1163,9 @@
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
+                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
+                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1267,7 +1267,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <style>
@@ -1465,9 +1465,9 @@
                                     <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Obat</th>
-                                                <th>Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rincian-body">
@@ -1511,8 +1511,8 @@
                         </div>
 
                         <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row mb-3 mt-4">
-                            <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row g-2 mb-2">
@@ -1541,7 +1541,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
@@ -1680,29 +1680,54 @@
     </div>
     </div>
 
-    <!-- Modal Status Lokalis -->
-    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content rounded-4 shadow">
+   <!-- Modal Pemeriksaan Fisik dengan Canvas -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+   
+    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content rounded shadow">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title text-primary fw-semibold">Status Lokalis</h5>
+                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Gambar Anatomi -->
-                    <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh"
-                            class="img-fluid" style="max-height: 500px;">
-                    </div>
-                    <!-- Textarea Keterangan -->
-                    <div class="mb-3">
-                        <label for="lokalisKeterangan" class="form-label fw-medium">Keterangan</label>
-                        <textarea id="lokalisKeterangan" class="form-control rounded-3" rows="5" placeholder="Ketik di sini"></textarea>
+                    <div class="row">
+                        <!-- CANVAS -->
+                        <div class="col-md-7 text-center">
+                            <!-- Toolbar -->
+                            <div class="mb-2">
+                                <button class="btn btn-outline-dark btn-sm" onclick="setDrawMode(true)">
+                                    ✏️ Gambar
+                                </button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="setDrawMode(false)">
+                                    ❌ Nonaktifkan
+                                </button>
+                                <button class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
+                                    ♻️ Hapus Semua
+                                </button>
+                            </div>
+
+                            <!-- Canvas -->
+                            <div style="border: 1px solid #ccc; display: inline-block;">
+                                <canvas id="bodyCanvas" width="500" height="500"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Form Input -->
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
+                                <input type="text" class="form-control" id="bagianDiperiksa" placeholder="Ketik di sini">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Keterangan</label>
+                                <textarea class="form-control" id="keteranganFisik" rows="5" placeholder="Ketik di sini"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-primary rounded-pill px-4"
-                        onclick="simpanStatusLokalis()">Simpan</button>
+                    <button class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
                 </div>
             </div>
         </div>
@@ -2771,9 +2796,9 @@ $('#search-results').hide();
                 initialized = true;
             } else {
                 // setiap buka ulang, redraw image (jika dibutuhkan)
-            clearCanvas();
+                clearCanvas();
             }
-        }
+        });
     </script>
 
     <script>
@@ -2784,6 +2809,7 @@ $('#search-results').hide();
             }
         });
     </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nextBtn = document.querySelector('a[href="#next"]');
