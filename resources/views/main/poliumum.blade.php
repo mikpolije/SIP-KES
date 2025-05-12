@@ -518,10 +518,12 @@
                                             </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
-                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric" required>
                                                         <span class="input-group-text">%</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                     </div>
                                                 </div>
                                             </div>
@@ -530,6 +532,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </section>
 
                     <!-- Step 3 -->
