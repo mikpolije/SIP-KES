@@ -1214,7 +1214,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <table id="layananTable" class="display">
-                                                 <label>
+                                                <div class="mb-3 d-flex justify-content-between align-items-center">
+                                            <label>
                                                 Tampilkan
                                                 <select class="form-select d-inline w-auto mx-1">
                                                     <option>10</option>
@@ -1228,6 +1229,7 @@
                                                 <input type="text" class="form-control d-inline w-auto"
                                                     placeholder="Cari...">
                                             </label>
+                                        </div>
                                                 <table>
                                                     <thead>
                                                         <tr>
