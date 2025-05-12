@@ -1,3 +1,4 @@
+@ -1,2838 +1,2838 @@
 @extends('layouts.master')
 
 @section('title', 'SIP-Kes | Poli Umum')
@@ -1148,9 +1149,9 @@
                         </div>
 
                         <!-- Layanan dan Rincian Obat -->
-                        <div class="row mb-3" >
-                            <div class="col-md-6 mt-4" >
-                                <div class="card p-3 h-100">
+                        <div class="row mb-3 mt-4" >
+                            <div class="col-md-6" >
+                                <div class="card p-3  h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
@@ -1161,9 +1162,9 @@
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
-                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
-                                                <thstyle="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
+                                                <th>Jumlah</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Harga Layanan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1265,7 +1266,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mt-4">
+                            <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <style>
@@ -1463,9 +1464,9 @@
                                     <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
+                                                <th>Jumlah</th>
+                                                <th>Nama Obat</th>
+                                                <th>Harga Obat</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rincian-body">
@@ -1509,9 +1510,9 @@
                         </div>
 
                         <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row">
-                            <div class="col-md-6 mt-4">
-                                <div class="card p-3 h-100">
+                        <div class="row mb-3 mt-4">
+                            <div class="col-md-6 d-flex flex-column">
+                                <div class="card p-3 flex-fill h-100 w-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row g-2 mb-2">
                                         <div class="col-md-4">
@@ -1539,7 +1540,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-4">
+                            <div class="col-md-6 flex-fill h-100">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
@@ -1679,8 +1680,6 @@
     </div>
 
    <!-- Modal Pemeriksaan Fisik dengan Canvas -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-   
     <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content rounded shadow">
@@ -1729,6 +1728,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -2788,9 +2788,9 @@ $('#search-results').hide();
         $('#statusLokalisModal').on('shown.bs.modal', function () {
             if (!initialized) {
                 image.onload = function () {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(image, 10, 10, canvas.width, canvas.height);
                 };
-                image.src = 'public/build/images/gambarmedis/Anatomi.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                image.src = '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
                 // setiap buka ulang, redraw image (jika dibutuhkan)
