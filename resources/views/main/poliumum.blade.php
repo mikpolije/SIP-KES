@@ -1114,16 +1114,21 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <table id="layananTable" class="display">
-                                                <label>Tampilkan
-                                                    <select>
-                                                        <option>10</option>
-                                                        <option>25</option>
-                                                        <option>50</option>
-                                                    </select> entri
+                                            <div class="mb-3 d-flex justify-content-between align-items-center">
+                                                <label>
+                                                    Tampilkan
+                                                    <select class="form-select d-inline w-auto mx-1">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                    </select>
+                                                    entri
                                                 </label>
-                                                <input type="text" placeholder="Cari..." style="float: right;">
-                                                <table>
+                                                <label>
+                                                    Cari :
+                                                    <input type="text" class="form-control d-inline w-auto" placeholder="Ketik...">
+                                                </label>
+                                                </div>
                                                     <thead>
                                                         <tr>
                                                             <th></th>
