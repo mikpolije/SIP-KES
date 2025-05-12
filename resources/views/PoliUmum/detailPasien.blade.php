@@ -5,30 +5,38 @@
 @section('pageContent')
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 .judul-riwayat {
     font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     font-weight: 800;
-    text-align: left;
     color: #111754;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .judul-section {
     font-family: 'Poppins', sans-serif;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px */
     font-weight: 700;
     color: #111754;
     margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .close-btn {
-    font-size: 30px;
+    font-size: 2rem;
     color: #111754;
     cursor: pointer;
     transition: all 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 20px;
 }
 
 .close-btn:hover {
@@ -40,36 +48,70 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc;
     border-radius: 8px;
+    height: 45px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .card {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 table thead th {
     background-color: #F9FAFC;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     vertical-align: middle;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
 }
 
 table tbody td {
     background-color: #ffffff;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     vertical-align: middle;
     text-align: left;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+}
+
+table tbody tr:nth-child(even) td {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 </style>
 
 <div class="container py-4">
-    <div class="judul-riwayat mb-4">
+    <div class="judul-riwayat">
         <h1>Detail Pasien</h1>
-        <span class="close-btn" onclick="history.back()">&#10005;</span>
+        <button class="close-btn" onclick="history.back()">&#10005;</button>
     </div>
 
     <div class="card">
