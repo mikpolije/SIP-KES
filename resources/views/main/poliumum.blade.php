@@ -938,6 +938,144 @@
                                         <i class="bi bi-search"></i>
                                     </button>
                                     </div>
+                                    </div>
+                                    <div class="modal fade" id="icdModal9" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2>Data ICD 9</h2>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table id="icdTable" class="display">
+                                                        <label>Tampilkan
+                                                            <select>
+                                                                <option>10</option>
+                                                                <option>25</option>
+                                                                <option>50</option>
+                                                            </select> entri
+                                                        </label>
+                                                        <input type="text" placeholder="Cari..."
+                                                            style="float: right;">
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>Kode</th>
+                                                                    <th>Nama</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>001</td>
+                                                                    <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>002</td>
+                                                                    <td>Therapeutic ultrasound of hearth</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>003</td>
+                                                                    <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>004</td>
+                                                                    <td>Other therapeutic ultrasound</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>005</td>
+                                                                    <td>Implantation of chemotherapeutic agent</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>006</td>
+                                                                    <td>Infusion of drotrecogin alfa (activated)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>007</td>
+                                                                    <td>Administration of inhaled nitric oxide</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>008</td>
+                                                                    <td>Injection or infusion of nesiritide</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #B3B9F9;">
+                                                <tr>
+                                                    <th class="text-center">Nama ICD 9</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="selected-icds-icd9">
+                                                <tr>
+                                                    <td colspan="2" class="text-center text-dark">Tidak Ada Data</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                            const tbody = document.getElementById("selected-icds-icd9");
+
+                            document.querySelectorAll(".btn-pilih").forEach(function (button) {
+                                button.addEventListener("click", function () {
+                                const namaICD = this.getAttribute("data-nama");
+
+                                // Hapus baris "Tidak Ada Data" jika masih ada
+                                if (tbody.querySelectorAll("tr").length === 1 &&
+                                    tbody.querySelector("td").textContent.includes("Tidak Ada Data")) {
+                                    tbody.innerHTML = "";
+                                }
+
+                                // Tambahkan baris baru
+                                const newRow = document.createElement("tr");
+                                newRow.innerHTML = `
+                                    <td>${namaICD}</td>
+                                    <td class="text-center">
+                                    <button class="btn btn-danger btn-sm btn-hapus">Hapus</button>
+                                    </td>
+                                `;
+                                tbody.appendChild(newRow);
+
+                                // Tutup modal
+                                const modal = bootstrap.Modal.getInstance(document.getElementById('icdModal'));
+                                modal.hide();
+                                });
+                            });
+
+                            // Event delegasi untuk hapus data
+                            tbody.addEventListener("click", function (e) {
+                                if (e.target.classList.contains("btn-hapus")) {
+                                e.target.closest("tr").remove();
+
+                                // Jika tidak ada baris, tampilkan info kosong lagi
+                                if (tbody.children.length === 0) {
+                                    tbody.innerHTML = `<tr><td colspan="2" class="text-center text-dark">Tidak Ada Data</td></tr>`;
+                                }
+                                }
+                            });
+                            });
+                            </script>
 
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
