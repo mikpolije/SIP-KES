@@ -126,7 +126,7 @@
             </ul> --}}
 
 
-            {{-- POLI UMUM 2 --}}
+            <!-- Sidebar Item for Poli Umum 2 -->
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('main/poliumum2') || request()->is('main/poliumum2/*') ? 'active' : '' }}"
                 href="#" data-bs-toggle="collapse"
@@ -142,8 +142,7 @@
             <ul id="submenu-poliumum2"
                 class="second-level collapse {{ request()->is('main/poliumum2/*') ? 'show' : '' }}"
                 aria-expanded="{{ request()->is('main/poliumum2/*') ? 'true' : 'false' }}">
-
-                {{-- Antrian --}}
+                <!-- Antrian Link -->
                 <li class="sidebar-item">
                     <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/antrian') ? 'active' : '' }}"
                         href="{{ url('/main/poliumum2/antrian') }}">
