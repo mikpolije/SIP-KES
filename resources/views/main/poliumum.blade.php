@@ -1514,7 +1514,7 @@
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row mb-2">
-                                        <div class="col-md-12 flex ">
+                                        <div class="col-md-12 d-flex ">
                                             <input type="date" class="form-control">
                                             <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                             <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
@@ -2836,7 +2836,7 @@ $('#search-results').hide();
     </script>
 
     <script>
-        const table = new DataTable('#icdTable', {
+        const tableIcd = new DataTable('#icdTable', {
             responsive: true,
             paging: true,
             searching: true,
@@ -2844,7 +2844,7 @@ $('#search-results').hide();
             pageLength: 10, // Default: tampilkan 10 entri
             lengthMenu: [5, 10, 25, 50, 100]
         });
-        const table = new DataTable('#layananTable', {
+        const tableLayanan = new DataTable('#layananTable', {
             responsive: true,
             paging: true,
             searching: true,
