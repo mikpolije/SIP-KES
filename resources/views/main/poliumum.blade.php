@@ -910,10 +910,9 @@
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
                                                     <td class="text-center">
-                                                        <button class="btn btn-sm btn-info view-details"
-                                                            title="Lihat Rincian">
-                                                            <i class="bi bi-eye"></i>
-                                                        </button>
+                                                    <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
                                                     </td>
                                                 </tr>
                                             </tbody>
