@@ -922,6 +922,15 @@
                                 </div>
                             </div>
 
+                            <!-- Modal Detail Pemeriksaan -->
+                            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan Fisik</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
@@ -1011,6 +1020,83 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Data ICD 9</label>
+                                    <style>
+                                        /* Membuat backdrop modal transparan */
+                                        .modal-backdrop.show {
+                                            background-color: rgba(128, 128, 128, 0.5) !important;
+                                        }
+
+                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                        .modal-content {
+                                            box-shadow: none;
+                                        }
+
+                                        .bi bi-search {
+                                            background-color: transparent;
+                                            border: none;
+                                            color: #333;
+                                        }
+
+                                        table {
+                                            width: 100%;
+                                            border-collapse: collapse;
+                                            margin-top: 20px;
+                                            font-family: sans-serif;
+                                        }
+
+                                        thead {
+                                            background-color: #f3f3f3;
+                                            border-bottom: 2px solid #ccc;
+                                        }
+
+                                        h2 {
+                                            font-size: 24px;
+                                            color: #1a237e;
+                                            margin-bottom: 5px;
+                                            position: relative;
+                                        }
+
+                                        /* Garis horizontal di bawah judul */
+                                        h2::after {
+                                            content: "";
+                                            display: block;
+                                            width: 100%;
+                                            height: 2px;
+                                            background-color: #ccc;
+                                            margin-top: 8px;
+                                        }
+
+                                        th,
+                                        td {
+                                            text-align: left;
+                                            padding: 10px;
+                                            border-bottom: 1px solid #ccc;
+                                        }
+
+                                        tr:nth-child(even) {
+                                            background-color: #f0f4ff;
+                                            /* biru muda */
+                                        }
+
+                                        th {
+                                            background-color: #f4f4f4;
+                                        }
+
+                                        .btn-pilih {
+                                            background-color: #2196F3;
+                                            color: white;
+                                            border: none;
+                                            padding: 5px 10px;
+                                            cursor: pointer;
+                                        }
+
+                                        button:disabled {
+                                            background-color: #aaa;
+                                        }
+                                    </style>
                         
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
