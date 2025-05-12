@@ -817,16 +817,16 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="numeric">
                                                         <span class="input-group-text">kg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="suhu-mask" pattern="[0-9]*.," inputmode="numeric">
                                                         <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
@@ -853,8 +853,8 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <input type="text" class="form-control number-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="numeric">
                                                         <span class="input-group-text">cm</span>
                                                     </div>
                                                 </div>
@@ -1150,9 +1150,9 @@
                         </div>
 
                         <!-- Layanan dan Rincian Obat -->
-                        <div class="row mb-3 mt-4" >
-                            <div class="col-md-6" >
-                                <div class="card p-3  h-100">
+                        <div class="row mb-3" >
+                            <div class="col-md-6 mt-4" >
+                                <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
@@ -2770,8 +2770,16 @@ $('#search-results').hide();
                 image.src = 'public/assets/images/status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
-                // setiap buka ulang, redraw image (jika dibutuhkan)
-                clearCanvas();
+                alert("Harap isi keterangan terlebih dahulu.");
+            }
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const previousBtn = document.querySelector('a[href="#previous"]');
+            if (previousBtn) {
+                previousBtn.textContent = "Sebelumnya";
             }
         });
     </script>
