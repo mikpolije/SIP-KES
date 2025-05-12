@@ -142,9 +142,9 @@
                         class="second-level collapse {{ request()->is('poliumum/*') ? 'show' : '' }}"
                         aria-expanded="{{ request()->is('poliumum/*') ? 'true' : 'false' }}">
 
-                        <!-- Antrian -->
+                        <!-- Antrean -->
                         <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrian') ? 'active' : '' }}"
+                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
                                 href="{{ url('/poliumum/antrian') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Antrian</span>
@@ -153,7 +153,7 @@
 
                         <!-- Riwayat -->
                         <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayatPoliUmum') ? 'active' : '' }}"
+                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayat') ? 'active' : '' }}"
                                 href="{{ route('riwayat.poliumum') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Riwayat</span>
