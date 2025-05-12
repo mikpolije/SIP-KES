@@ -2770,7 +2770,8 @@ $('#search-results').hide();
                 image.src = 'public/assets/images/status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
-                alert("Harap isi keterangan terlebih dahulu.");
+                // setiap buka ulang, redraw image (jika dibutuhkan)
+            clearCanvas();
             }
         }
     </script>
