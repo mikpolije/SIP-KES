@@ -931,12 +931,14 @@
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
-                                        <input type="text" class="form-control" id="icd9Search"
-                                            placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button" id="cari-icd9">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                    <input type="text" class="form-control" id="icd9Search"
+                                        placeholder="Ketik Kode atau Tindakan">
+                                    <button class="btn btn-outline-secondary" type="button" id="cari-icd9"
+                                        data-bs-toggle="modal" data-bs-target="#icdModal">
+                                        <i class="bi bi-search"></i>
+                                    </button>
                                     </div>
+
                                     <div class="modal fade" id="icdModal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
