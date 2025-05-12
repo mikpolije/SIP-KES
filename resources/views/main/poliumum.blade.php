@@ -480,6 +480,9 @@
                                                         <input type="text" class="form-control required decimal-input"
                                                             id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">°C</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
@@ -488,6 +491,9 @@
                                                         <input type="text" class="form-control required number-input"
                                                             id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">/mnt</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -496,26 +502,37 @@
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Diastole</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
-                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required number-input"
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            required>
                                                         <span class="input-group-text">mmHg</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required decimal-input"
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            required>
                                                         <span class="input-group-text">cm</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
-                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
+                                                    <div class="input-group has-validation">
+                                                        <input type="text" class="form-control required number-input"
+                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric" required>
                                                         <span class="input-group-text">%</span>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -550,6 +567,7 @@
                             </div>
                         </div>
 
+
                         <!-- Antrian - Identitas Pasien -->
                         <div class="card p-3 mb-3 shadow-sm">
                             <div class="row">
@@ -568,13 +586,6 @@
                                 <div class="col-md-2">
                                     <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
-                                    <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
-                                        <option value="poliumum">Poli Umum</option>
-                                        <option value="circum">Circum</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -637,7 +648,12 @@
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00.0</td>
+<<<<<<< HEAD
                                                                     <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+=======
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae
+                                                                    </td>
+>>>>>>> 6bb77e869d6fb95e0180a69a6902ef2940ddf631
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
@@ -736,6 +752,10 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+<<<<<<< HEAD
+=======
+                                                    </table>
+>>>>>>> 6bb77e869d6fb95e0180a69a6902ef2940ddf631
                                                 </div>
                                             </div>
                                         </div>
@@ -871,6 +891,7 @@
                             </div>
                         </div>
 
+                        
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
                             <!-- Pemeriksaan Fisik (Left Column) -->
@@ -892,371 +913,86 @@
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
                                                 <tr>
-                                                    <td>Kepala</td>
-                                                    <td>Kelainan pada pembuluh darah</td>
+                                                    <td class="nama">Kepala</td>
+                                                    <td class="keterangan">Kelainan pada pembuluh darah</td>
                                                     <td class="text-center">
-                                                        <button class="btn btn-sm btn-info view-details"
-                                                            title="Lihat Rincian">
+                                                        <button type="button" class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
                                                             <i class="bi bi-eye"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
+                                                <!-- Tambahkan baris lain sesuai kebutuhan -->
                                             </tbody>
                                         </table>
                                     </div>
+
+                            <!-- Modal Detail Pemeriksaan -->
+                            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content custom-modal-content">
+                                        <div class="modal-header border-0">
+                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan fisik</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                        </div>
+                                        <hr class="m-0 mb-3" />
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6 offset-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
+                                                        <input type="text" class="form-control shadow-custom" value="kepala" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-semibold">Keterangan</label>
+                                                        <textarea class="form-control shadow-custom" rows="4" disabled>Kelainan pada pembuluh darah</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-2 mb-0" />
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- ✅ CUSTOM CSS -->
+                            <style>
+                                .modal-content {
+                                    border-radius: 12px;
+                                    border: none;
+                                }
+
+                                .modal-header {
+                                    background-color: #f8f9fa;
+                                    border-bottom: 1px solid #dee2e6;
+                                }
+
+                                .modal-body p {
+                                    font-size: 16px;
+                                    margin-bottom: 10px;
+                                }
+
+                                .btn-close {
+                                    background: transparent;
+                                    border: none;
+                                }
+                            </style>
+
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd9Search"
-                                            placeholder="Ketik Kode atau Tindakan">
-                                        <button class="btn btn-outline-secondary" type="button" id="cari-icd9">
+                                            placeholder="Ketik Kode atau Tindakan ICD 9">
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#icdModal9">
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </div>
-                                    <div id="popup-container" class="popup-container">
-                                        <div id="popup-content" class="popup-content">
-                                            <span class="close-button">&times;</span>
-                                            <h2>Data ICD 9</h2>
-                                            <div id="hasil-pencarian">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <style>
-                                        .popup-container {
-                                            display: none;
-                                            position: fixed;
-                                            top: 0;
-                                            left: 0;
-                                            width: 100%;
-                                            height: 100%;
-                                            background-color: rgba(0, 0, 0, 0.5);
-                                            z-index: 1000;
-                                            overflow: auto;
-                                            /* Tambahkan overflow untuk seluruh pop-up jika terlalu tinggi */
-                                        }
-
-                                        .popup-content {
-                                            position: absolute;
-                                            top: 50%;
-                                            left: 50%;
-                                            transform: translate(-50%, -50%);
-                                            background-color: white;
-                                            border-radius: 8px;
-                                            /* Tambahkan border-radius */
-                                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                                            /* Tambahkan shadow */
-                                            width: 90%;
-                                            /* Sesuaikan lebar */
-                                            max-width: 700px;
-                                            /* Tambahkan max-width */
-                                            padding: 20px;
-                                        }
-
-                                        .popup-header {
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-                                            margin-bottom: 15px;
-                                            border-bottom: 1px solid #eee;
-                                            /* Garis bawah header */
-                                            padding-bottom: 10px;
-                                        }
-
-                                        .popup-title {
-                                            font-size: 1.5em;
-                                            font-weight: bold;
-                                            color: #333;
-                                        }
-
-                                        .close-button {
-                                            font-size: 1.5em;
-                                            font-weight: bold;
-                                            color: #aaa;
-                                            cursor: pointer;
-                                            border: none;
-                                            background: none;
-                                            padding: 0;
-                                        }
-
-                                        .close-button:hover {
-                                            color: #333;
-                                        }
-
-                                        .hasil-pencarian-table {
-                                            width: 100%;
-                                            border-collapse: collapse;
-                                            margin-top: 10px;
-                                        }
-
-                                        .hasil-pencarian-table th,
-                                        .hasil-pencarian-table td {
-                                            padding: 10px;
-                                            text-align: left;
-                                            border-bottom: 1px solid #eee;
-                                            /* Garis pemisah baris */
-                                        }
-
-                                        .hasil-pencarian-table th {
-                                            background-color: #f8f9fa;
-                                            /* Warna latar belakang header */
-                                            font-weight: bold;
-                                            color: #555;
-                                        }
-
-                                        .hasil-pencarian-table tbody tr:hover {
-                                            background-color: #f5f5f5;
-                                            /* Efek hover pada baris */
-                                        }
-
-                                        .pilih-button {
-                                            background-color: #007bff;
-                                            color: white;
-                                            border: none;
-                                            padding: 8px 12px;
-                                            border-radius: 5px;
-                                            cursor: pointer;
-                                            font-size: 0.9em;
-                                        }
-
-                                        .pilih-button:hover {
-                                            background-color: #0056b3;
-                                        }
-
-                                        /* Styling tambahan untuk input dan search (jika ada di pop-up) */
-                                        .popup-search-container {
-                                            margin-bottom: 15px;
-                                        }
-
-                                        .popup-search-input {
-                                            padding: 8px;
-                                            border: 1px solid #ccc;
-                                            border-radius: 4px;
-                                            width: 100%;
-                                            box-sizing: border-box;
-                                        }
-
-                                        .popup-filter-container {
-                                            display: flex;
-                                            align-items: center;
-                                            margin-bottom: 10px;
-                                            gap: 10px;
-                                        }
-
-                                        .popup-filter-select,
-                                        .popup-filter-input {
-                                            padding: 6px;
-                                            border: 1px solid #ccc;
-                                            border-radius: 4px;
-                                        }
-
-                                        .popup-filter-input {
-                                            flex-grow: 1;
-                                        }
-                                    </style>
-
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            const cariIcd9Button = document.getElementById('cari-icd9');
-                                            const popupContainer = document.getElementById('popup-container');
-                                            const popupContent = document.getElementById('popup-content');
-                                            const icd9SearchInput = document.getElementById('icd9Search');
-
-                                            function showPopup(results) {
-                                                popupContent.innerHTML = '';
-
-                                                // Header Pop-up
-                                                const popupHeader = document.createElement('div');
-                                                popupHeader.classList.add('popup-header');
-                                                const popupTitle = document.createElement('h2');
-                                                popupTitle.classList.add('popup-title');
-                                                popupTitle.textContent = 'Data ICD 9';
-                                                const closeButton = document.createElement('button');
-                                                closeButton.classList.add('close-button');
-                                                closeButton.innerHTML = '&times;';
-                                                closeButton.addEventListener('click', () => {
-                                                    popupContainer.style.display = 'none';
-                                                });
-                                                popupHeader.appendChild(popupTitle);
-                                                popupHeader.appendChild(closeButton);
-                                                popupContent.appendChild(popupHeader);
-
-                                                // Filter Container
-                                                const filterContainer = document.createElement('div');
-                                                filterContainer.classList.add('popup-filter-container');
-                                                const tampilkanLabel = document.createElement('label');
-                                                tampilkanLabel.textContent = 'Tampilkan ';
-                                                const tampilkanSelect = document.createElement('select');
-                                                tampilkanSelect.classList.add('popup-filter-select');
-                                                const options = [10, 25, 50, 100];
-                                                options.forEach(value => {
-                                                    const option = document.createElement('option');
-                                                    option.value = value;
-                                                    option.textContent = value;
-                                                    tampilkanSelect.appendChild(option);
-                                                });
-                                                const entriLabel = document.createElement('label');
-                                                entriLabel.textContent = ' entri';
-                                                const cariLabel = document.createElement('label');
-                                                cariLabel.textContent = 'Cari: ';
-                                                const cariInput = document.createElement('input');
-                                                cariInput.type = 'text';
-                                                cariInput.classList.add('popup-filter-input');
-                                                cariInput.placeholder = 'Cari...';
-                                                cariInput.addEventListener('input', function() {
-                                                    filterTable(this.value.toLowerCase());
-                                                });
-                                                filterContainer.appendChild(tampilkanLabel);
-                                                filterContainer.appendChild(tampilkanSelect);
-                                                filterContainer.appendChild(entriLabel);
-                                                filterContainer.appendChild(cariLabel);
-                                                filterContainer.appendChild(cariInput);
-                                                popupContent.appendChild(filterContainer);
-
-                                                if (results.length > 0) {
-                                                    const table = document.createElement('table');
-                                                    table.classList.add('hasil-pencarian-table');
-                                                    const thead = document.createElement('thead');
-                                                    const headerRow = document.createElement('tr');
-                                                    const aksiHeader = document.createElement('th');
-                                                    aksiHeader.textContent = '';
-                                                    const kodeHeader = document.createElement('th');
-                                                    kodeHeader.textContent = 'Kode';
-                                                    const namaHeader = document.createElement('th');
-                                                    namaHeader.textContent = 'Nama';
-                                                    headerRow.appendChild(aksiHeader);
-                                                    headerRow.appendChild(kodeHeader);
-                                                    headerRow.appendChild(namaHeader);
-                                                    thead.appendChild(headerRow);
-                                                    table.appendChild(thead);
-                                                    const tbody = document.createElement('tbody');
-                                                    results.forEach(item => {
-                                                        const row = document.createElement('tr');
-                                                        const kodeCell = document.createElement('td');
-                                                        kodeCell.textContent = item.kode;
-                                                        const namaCell = document.createElement('td');
-                                                        namaCell.textContent = item.nama;
-                                                        const aksiCell = document.createElement('td');
-                                                        const pilihButton = document.createElement('button');
-                                                        pilihButton.classList.add('pilih-button');
-                                                        pilihButton.textContent = 'Pilih';
-                                                        pilihButton.addEventListener('click', function() {
-                                                            const kodeIcd9Input = document.getElementById(
-                                                                'kode_icd9'); // Ganti dengan ID input ICD 9 Anda
-                                                            if (kodeIcd9Input) {
-                                                                kodeIcd9Input.value = item.kode;
-                                                            }
-                                                            popupContainer.style.display = 'none';
-                                                        });
-                                                        aksiCell.appendChild(pilihButton);
-                                                        row.appendChild(aksiCell);
-                                                        row.appendChild(kodeCell);
-                                                        row.appendChild(namaCell);
-
-                                                        tbody.appendChild(row);
-                                                    });
-                                                    table.appendChild(tbody);
-                                                    popupContent.appendChild(table);
-                                                    attachTableFiltering(table);
-                                                } else {
-                                                    const noResults = document.createElement('p');
-                                                    noResults.textContent = 'Tidak ada hasil ditemukan.';
-                                                    popupContent.appendChild(noResults);
-                                                }
-
-                                                popupContainer.style.display = 'block';
-                                            }
-
-                                            function attachTableFiltering(table) {
-                                                const cariInput = document.querySelector('.popup-filter-input');
-                                                const rows = table.querySelector('tbody').querySelectorAll('tr');
-                                                const tampilkanSelect = document.querySelector('.popup-filter-select');
-
-                                                cariInput.addEventListener('input', function() {
-                                                    const searchTerm = this.value.toLowerCase();
-                                                    rows.forEach(row => {
-                                                        const kode = row.cells[0].textContent.toLowerCase();
-                                                        const nama = row.cells[1].textContent.toLowerCase();
-                                                        if (kode.includes(searchTerm) || nama.includes(searchTerm)) {
-                                                            row.style.display = '';
-                                                        } else {
-                                                            row.style.display = 'none';
-                                                        }
-                                                    });
-                                                });
-
-                                                tampilkanSelect.addEventListener('change', function() {
-                                                    const rowsToShow = parseInt(this.value);
-                                                    rows.forEach((row, index) => {
-                                                        if (index < rowsToShow) {
-                                                            row.style.display = '';
-                                                        } else {
-                                                            row.style.display = 'none';
-                                                        }
-                                                    });
-                                                });
-                                            }
-
-                                            cariIcd9Button.addEventListener('click', function() {
-                                                const kodeAtauTindakan = icd9SearchInput.value.trim();
-                                                const dataIcd9 = [{
-                                                        kode: '0001',
-                                                        nama: 'Therapeutic ultrasound of vessels of head and neck'
-                                                    },
-                                                    {
-                                                        kode: '0002',
-                                                        nama: 'Therapeutic ultrasound of hearth'
-                                                    },
-                                                    {
-                                                        kode: '0003',
-                                                        nama: 'Therapeutic ultrasound of peripheral vascular vessels'
-                                                    },
-                                                    {
-                                                        kode: '0009',
-                                                        nama: 'Other therapeutic ultrasound'
-                                                    },
-                                                    {
-                                                        kode: '0010',
-                                                        nama: 'Implantation of chemotherapeutic agent'
-                                                    },
-                                                    {
-                                                        kode: '0011',
-                                                        nama: 'Infusion of drotrecogin alfa (activated)'
-                                                    },
-                                                    {
-                                                        kode: '0012',
-                                                        nama: 'Administration of inhaled nitric oxide'
-                                                    },
-                                                    {
-                                                        kode: '0013',
-                                                        nama: 'Injection or infusion of nesiritide'
-                                                    },
-
-                                                    // ... tambahkan data ICD 9 lengkap Anda di sini
-                                                ];
-                                                const hasilPencarianFilter = dataIcd9.filter(item =>
-                                                    item.kode.toLowerCase().includes(kodeAtauTindakan.toLowerCase()) ||
-                                                    item.nama.toLowerCase().includes(kodeAtauTindakan.toLowerCase())
-                                                );
-                                                showPopup(hasilPencarianFilter);
-                                            });
-
-                                            window.addEventListener('click', function(event) {
-                                                if (event.target === popupContainer) {
-                                                    popupContainer.style.display = 'none';
-                                                }
-                                            });
-                                        });
-                                    </script>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #B3B9F9;">
+                                            <thead style="background-color: #f8f9fa;">
                                                 <tr>
                                                     <th class="text-center">Nama ICD 9</th>
                                                     <th class="text-center">Aksi</th>
@@ -1271,8 +1007,122 @@
                                     </div>
                                 </div>
                             </div>
+
+                        <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Tutup"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                                            <label>
+                                                Tampilkan
+                                                <select class="form-select d-inline w-auto mx-1">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                </select>
+                                                entri
+                                            </label>
+                                            <label>
+                                                Cari :
+                                                <input type="text" class="form-control d-inline w-auto"
+                                                    placeholder="Cari...">
+                                            </label>
+                                        </div>
+
+                                        <table class="table table-bordered table-striped icd-table">
+                                            <thead class="table-light text-center">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Kode</th>
+                                                    <th>Nama</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0001</td>
+                                                    <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0002</td>
+                                                    <td>Therapeutic ultrasound of heart</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0003</td>
+                                                    <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+                                                </tr>
+                                                <!-- Tambahan baris lainnya -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
+                        <!-- CSS Styling -->
+                        <style>
+                            .btn-pilih {
+                                background-color: #2196F3;
+                                color: white;
+                                border: none;
+                                padding: 5px 12px;
+                                border-radius: 4px;
+                                font-weight: bold;
+                                cursor: pointer;
+                                transition: background-color 0.2s;
+                            }
+
+                            .btn-pilih:hover {
+                                background-color: #1976D2;
+                            }
+
+                            .icd-table tbody tr {
+                                background-color: #f0f7ff;
+                                /* Warna biru muda */
+                            }
+
+                            .icd-table tbody tr:hover {
+                                background-color: #dbeeff;
+                                /* Biru lebih gelap saat hover */
+                            }
+
+                            .icd-table thead th {
+                                background-color: #e0e0e0;
+                                font-weight: bold;
+                                text-align: center;
+                            }
+
+                            /* Tambahan padding untuk konsistensi */
+                            .modal-body {
+                                padding: 1.5rem;
+                            }
+
+                            .modal-header {
+                                background-color: #f8f9fa;
+                                border-bottom: 1px solid #dee2e6;
+                            }
+
+
+                            /* Garis horizontal di bawah judul */
+                            h2::after {
+                                            content: "";
+                                            display: block;
+                                            width: 100%;
+                                            height: 2px;
+                                            background-color: #ccc;
+                                            margin-top: 8px;
+                            }
+
+                            </style>
+                            
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
@@ -1325,7 +1175,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
+                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1690,7 +1540,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="2">Tidak Ada Data</td>
+                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -2373,6 +2223,7 @@
 
 @section('scripts')
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
@@ -2915,6 +2766,28 @@ $('#search-results').hide();
     </script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi dropdown menggunakan Bootstrap
+            const dropdownElement = document.getElementById('suratKeteranganDropdown');
+            if (dropdownElement) {
+                const dropdown = new bootstrap.Dropdown(dropdownElement);
+            }
+
+            // Event listener untuk item dropdown
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetModal = this.getAttribute('data-bs-target');
+                    if (targetModal) {
+                        const modal = new bootstrap.Modal(document.querySelector(targetModal));
+                        modal.show();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
         const table = new DataTable('#icdTable', {
             responsive: true,
             paging: true,
@@ -2941,5 +2814,15 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
-
+    <script>
+    document.querySelectorAll('.view-details').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const row = this.closest('tr');
+            const nama = row.querySelector('.nama').textContent;
+            const keterangan = row.querySelector('.keterangan').textContent;
+            document.getElementById('modal-nama').textContent = nama;
+            document.getElementById('modal-keterangan').textContent = keterangan;
+        });
+    });
+    </script>
 @endsection
