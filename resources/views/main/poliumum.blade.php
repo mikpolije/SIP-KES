@@ -1,3 +1,6 @@
+@ -1,2838 +1,2838 @@
+@extends('layouts.master')
+
 @section('title', 'SIP-Kes | Poli Umum')
 <style>
     body {
