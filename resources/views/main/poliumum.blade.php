@@ -443,7 +443,6 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <label class="form-label">Subjek/Keluhan</label>
-                                        <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
                                         <div class="mb-3">
                                             <textarea name="shortDescription" id="subjek" name="subjek" rows="12" class="form-control required"></textarea>
                                         </div>
