@@ -1543,7 +1543,7 @@ body {
 
 @section('scripts')
 <!-- Bootstrap Bundle JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
@@ -1551,159 +1551,162 @@ body {
     <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Inisialisasi canvas ketika modal ditampilkan
-    $('#modalSehat').on('shown.bs.modal', function() {
-        initSignaturePad('signature-pad', 'clear-signature');
-    });
-    // Untuk modal surat sakit
-    $('#modalSakit').on('shown.bs.modal', function() {
-        initSignaturePad('signature-pad-sakit', 'clear-signature-sakit');
-    });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi canvas ketika modal ditampilkan
+            $('#modalSehat').on('shown.bs.modal', function() {
+                initSignaturePad('signature-pad', 'clear-signature');
+            });
+            // Untuk modal surat sakit
+            $('#modalSakit').on('shown.bs.modal', function() {
+                initSignaturePad('signature-pad-sakit','clear-signature-sakit');
+            });
 
-    function initSignaturePad(canvasId, clearButtonId) {
-        const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext('2d');
 
-        // Atur ukuran canvas yang tepat
-        function resizeCanvas() {
-            const container = canvas.parentElement;
-            canvas.width = container.offsetWidth;
-            canvas.height = container.offsetHeight;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#000000';
-        }
+            function initSignaturePad(canvasId, clearButtonId) {
+                const canvas = document.getElementById(canvasId);
+                const ctx = canvas.getContext('2d');
 
-        resizeCanvas();
+                // Atur ukuran canvas yang tepat
+                function resizeCanvas() {
+                    const container = canvas.parentElement;
+                    canvas.width = container.offsetWidth;
+                    canvas.height = container.offsetHeight;
+                    ctx.lineWidth = 2;
+                    ctx.lineCap = 'round';
+                    ctx.strokeStyle = '#000000';
+                }
 
-        // Variabel untuk tracking
-        let isDrawing = false;
-        let lastX = 0;
-        let lastY = 0;
+                resizeCanvas();
 
-        // Fungsi untuk mendapatkan posisi mouse/touch
-        function getPosition(e) {
-            let posX, posY;
-            if (e.type.includes('touch')) {
-                const touch = e.touches[0] || e.changedTouches[0];
-                const rect = canvas.getBoundingClientRect();
-                posX = touch.clientX - rect.left;
-                posY = touch.clientY - rect.top;
-            } else {
-                const rect = canvas.getBoundingClientRect();
-                posX = e.clientX - rect.left;
-                posY = e.clientY - rect.top;
+                // Variabel untuk tracking
+                let isDrawing = false;
+                let lastX = 0;
+                let lastY = 0;
+
+                // Fungsi untuk mendapatkan posisi mouse/touch
+                function getPosition(e) {
+                    let posX, posY;
+                    if (e.type.includes('touch')) {
+                        const touch = e.touches[0] || e.changedTouches[0];
+                        const rect = canvas.getBoundingClientRect();
+                        posX = touch.clientX - rect.left;
+                        posY = touch.clientY - rect.top;
+                    } else {
+                        const rect = canvas.getBoundingClientRect();
+                        posX = e.clientX - rect.left;
+                        posY = e.clientY - rect.top;
+                    }
+                    return {
+                        x: posX,
+                        y: posY
+                    };
+                }
+
+                // Event listeners untuk mouse
+                canvas.addEventListener('mousedown', (e) => {
+                    const pos = getPosition(e);
+                    isDrawing = true;
+                    [lastX, lastY] = [pos.x, pos.y];
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mousemove', (e) => {
+                    if (!isDrawing) return;
+                    const pos = getPosition(e);
+                    draw(pos.x, pos.y);
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mouseup', () => {
+                    isDrawing = false;
+                });
+
+                canvas.addEventListener('mouseout', () => {
+                    isDrawing = false;
+                });
+
+                // Event listeners untuk touch
+                canvas.addEventListener('touchstart', (e) => {
+                    const pos = getPosition(e);
+                    isDrawing = true;
+                    [lastX, lastY] = [pos.x, pos.y];
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('touchmove', (e) => {
+                    if (!isDrawing) return;
+                    const pos = getPosition(e);
+                    draw(pos.x, pos.y);
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('touchend', () => {
+                    isDrawing = false;
+                });
+
+                // Fungsi menggambar
+                function draw(x, y) {
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                    [lastX, lastY] = [x, y];
+                }
+
+                // Tombol hapus (clear canvas)
+                const clearButton = document.getElementById(clearButtonId);
+                clearButton.addEventListener('click', () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                });
+
+                // Handle resize window
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                });
             }
-            return {
-                x: posX,
-                y: posY
-            };
-        }
+        });
+    </script>
 
-        // Event listeners untuk mouse
-        canvas.addEventListener('mousedown', (e) => {
-            const pos = getPosition(e);
-            isDrawing = true;
-            [lastX, lastY] = [pos.x, pos.y];
-            e.preventDefault();
+
+        <script>
+        // Add delete functionality
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.closest('tr').remove();
+            });
         });
 
-        canvas.addEventListener('mousemove', (e) => {
-            if (!isDrawing) return;
-            const pos = getPosition(e);
-            draw(pos.x, pos.y);
-            e.preventDefault();
+        // Add search functionality (example)
+        document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
+            const searchTerm = document.getElementById('icd10Search').value;
+            // Here you would typically call an API to search ICD-10 codes
+            console.log('Searching for:', searchTerm);
         });
+        </script>
 
-        canvas.addEventListener('mouseup', () => {
-            isDrawing = false;
+        <script>
+        // Add click event for view details button
+        document.querySelector('.view-details').addEventListener('click', function() {
+            // Set modal content based on the row data
+            const modalContent = `
+                        <p><strong>Nama:</strong> Kepala</p>
+                        <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
+                        <p><strong>Detail Tambahan:</strong></p>
+                        <ul>
+                            <li>Jenis Kelainan: Varises pembuluh darah</li>
+                            <li>Tingkat Keparahan: Sedang</li>
+                            <li>Tanggal Pemeriksaan: 15-06-2023</li>
+                        </ul>
+                    `;
+
+            document.getElementById('modalBodyContent').innerHTML = modalContent;
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            modal.show();
         });
-
-        canvas.addEventListener('mouseout', () => {
-            isDrawing = false;
-        });
-
-        // Event listeners untuk touch
-        canvas.addEventListener('touchstart', (e) => {
-            const pos = getPosition(e);
-            isDrawing = true;
-            [lastX, lastY] = [pos.x, pos.y];
-            e.preventDefault();
-        });
-
-        canvas.addEventListener('touchmove', (e) => {
-            if (!isDrawing) return;
-            const pos = getPosition(e);
-            draw(pos.x, pos.y);
-            e.preventDefault();
-        });
-
-        canvas.addEventListener('touchend', () => {
-            isDrawing = false;
-        });
-
-        // Fungsi menggambar
-        function draw(x, y) {
-            ctx.beginPath();
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            [lastX, lastY] = [x, y];
-        }
-
-        // Tombol hapus
-        document.getElementById('clear-signature').addEventListener('click', () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        });
-
-        // Handle resize window
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-        });
-    }
-});
-</script>
-
-<script>
-// Add delete functionality
-document.querySelectorAll('.delete-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        this.closest('tr').remove();
-    });
-});
-
-// Add search functionality (example)
-document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
-    const searchTerm = document.getElementById('icd10Search').value;
-    // Here you would typically call an API to search ICD-10 codes
-    console.log('Searching for:', searchTerm);
-});
-</script>
-
-<script>
-// Add click event for view details button
-document.querySelector('.view-details').addEventListener('click', function() {
-    // Set modal content based on the row data
-    const modalContent = `
-                <p><strong>Nama:</strong> Kepala</p>
-                <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
-                <p><strong>Detail Tambahan:</strong></p>
-                <ul>
-                    <li>Jenis Kelainan: Varises pembuluh darah</li>
-                    <li>Tingkat Keparahan: Sedang</li>
-                    <li>Tanggal Pemeriksaan: 15-06-2023</li>
-                </ul>
-            `;
-
-    document.getElementById('modalBodyContent').innerHTML = modalContent;
-
-    // Show modal
-    const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
-    modal.show();
-});
 </script>
 
 <script>
