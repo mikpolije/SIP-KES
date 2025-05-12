@@ -2742,91 +2742,112 @@ $('#search-results').hide();
         });
     </script>
 
-    <!-- CSS Styling ICD-->
-<style>
-/* Modal styling */
-.modal-content {
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-    padding: 1rem 1.5rem;
-    background-color: white;
-}
-
-.modal-title {
-    color: #333;
-    font-size: 1.25rem;
-}
-
-.modal-body {
-    padding: 1.5rem;
-}
-
-/* Table styling */
-.icd-table {
-    margin-bottom: 0;
-    border-collapse: collapse;
-}
-
-.icd-table thead th {
-    background-color: #f8f9fa;
-    color: #333;
-    font-weight: 600;
-    text-align: center;
-    vertical-align: middle;
-    padding: 0.75rem;
-    border: 1px solid #dee2e6;
-}
-
-.icd-table tbody tr {
-    background-color: #f0f7ff;
-}
-
-.icd-table tbody tr:hover {
-    background-color: #dbeeff;
-}
-
-.icd-table tbody td {
-    padding: 0.75rem;
-    vertical-align: middle;
-    border: 1px solid #dee2e6;
-}
-
-/* Button styling */
-.btn-pilih {
-    background-color: #2196F3;
-    color: white;
-    border: none;
-    padding: 0.3rem 0.75rem;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    width: 100%;
-}
-
-.btn-pilih:hover {
-    background-color: #1976D2;
-}
-
-/* Form Controls */
-.form-select {
-    padding: 0.375rem 2rem 0.375rem 0.75rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-}
-
-/* Responsive design adjustments */
-@media (max-width: 768px) {
-    .d-flex.justify-content-between {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-</style>
+<title>Data ICD 9</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .modal-dialog {
+            max-width: 800px;
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 15px 20px;
+        }
+        
+        .modal-title {
+            color: #1a237e;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        
+        .modal-body {
+            padding: 15px 20px;
+        }
+        
+        .header-row {
+            background-color: #b3b3e6 !important;
+            color: #333;
+        }
+        
+        .header-row th {
+            font-weight: 600;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .table-row-even {
+            background-color: #ffffff;
+        }
+        
+        .table-row-odd {
+            background-color: #f0f5ff;
+        }
+        
+        .btn-pilih {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .table td {
+            vertical-align: middle;
+            padding: 8px 10px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .search-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .select-container, .search-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .select-container select {
+            margin: 0 5px;
+            width: 70px;
+            padding: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .search-container input {
+            width: 200px;
+            padding: 5px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        
+        .close-btn {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            opacity: 0.5;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+        
+        .close-btn:hover {
+            opacity: 0.75;
+        }
+    </style>
 
 @endsection
