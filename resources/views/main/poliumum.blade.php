@@ -936,63 +936,6 @@
                                 </div>
                             </div>
 
-                            <!-- Modal Rincian Pemeriksaan -->
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-   
-                            <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-xl">
-                                    <div class="modal-content rounded shadow">
-                                        <div class="modal-header border-0">
-                                            <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Rincian Pemeriksaan Fisik</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <!-- CANVAS -->
-                                                <div class="col-md-7 text-center">
-                                                    <!-- Toolbar -->
-                                                    <div class="mb-2">
-                                                        <button class="btn btn-outline-dark btn-sm" id="vtnDrawToggle" onclick="toggleDrawMode()">
-                                                            ✏️
-                                                        </button>
-                                                        <button class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
-                                                            ❌
-                                                        </button>
-
-                                                    <!-- Warna Coretan -->
-                                                        <button class="btn btn-sm btn-outline-danger" onclick="setColor('red')">🔴</button>
-                                                        <button class="btn btn-sm btn-outline-primary" onclick="setColor('blue')">🔵</button>
-                                                        <button class="btn btn-sm btn-outline-success" onclick="setColor('green')">🟢</button>
-                                                        <button class="btn btn-sm btn-outline-dark" onclick="setColor('black')">⚫</button>
-                                                    </div>
-
-                                                    <!-- Canvas -->
-                                                    <div style="border: 1px solid #ccc; display: inline-block;">
-                                                        <canvas id="bodyCanvas" width="500" height="500"></canvas>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Form Input -->
-                                                <div class="col-md-5">
-                                                    <div class="mb-3">
-                                                        <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                                        <input type="text" class="form-control" id="bagianDiperiksa" placeholder="Ketik di sini">Kepala
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label fw-semibold">Keterangan</label>
-                                                        <textarea class="form-control" id="keteranganFisik" rows="5" placeholder="Ketik di sini">Kelainan pada pembuluh darah</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer border-0">
-                                            <button class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label" for="icd9">ICD 9 - CM</label>
@@ -1743,6 +1686,21 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- Pop-up Rincian Pemeriksaan -->
+    <div id="detailModal" style="display:none; position:fixed; top:20%; left:35%; z-index:9999; background:#fff; padding:20px; border:1px solid #ccc; border-radius:10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 30%;">
+        <h5>Rincian Pemeriksaan</h5>
+        <div class="mb-2">
+            <label class="form-label">Bagian yang Diperiksa</label>
+            <input type="text" class="form-control" id="editBagian" placeholder="Ketik di sini" />Kepala
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Keterangan</label>
+            <textarea class="form-control" id="editKeterangan" rows="5" placeholder="Ketik di sini" >Kelainan pada pembuluh darah</textarea>
+        </div>
+        <button class="btn btn-sm btn-success" onclick="simpanEdit()">Simpan</button>
+        <button class="btn btn-sm btn-secondary" onclick="tutupPopup()">Tutup</button>
     </div>
 
    <!-- Modal Pemeriksaan Fisik dengan Canvas -->
@@ -2854,6 +2812,8 @@ $('#search-results').hide();
         }
 
         function saveCanvas() {
+            if (event) event.preventDefault(); // penting agar tidak reload
+
             const imageData = canvas.toDataURL();
             console.log("Saved image data:", imageData);
             alert("Gambar disimpan!");
@@ -2894,6 +2854,27 @@ $('#search-results').hide();
                 clearCanvas();
             }
         });
+    </script>
+
+    <script>
+        function editPemeriksaan(nama, keterangan) {
+            document.getElementById('editBagian').value = nama;
+            document.getElementById('editKeterangan').value = keterangan;
+            document.getElementById('popupEdit').style.display = 'block';
+        }
+
+        function tutupPopup() {
+            document.getElementById('popupEdit').style.display = 'none';
+        }
+
+        function simpanEdit() {
+            const bagian = document.getElementById('editBagian').value;
+            const keterangan = document.getElementById('editKeterangan').value;
+
+            alert(`Data diperbarui:\nBagian: ${bagian}\nKeterangan: ${keterangan}`);
+            // Simpan ke database atau lakukan update pada tabel sesuai kebutuhan
+            tutupPopup();
+        }
     </script>
 
     <script>
