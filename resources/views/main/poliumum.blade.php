@@ -1053,59 +1053,47 @@
 
                         <!-- CSS Styling -->
                         <style>
+                            /* Tabel ICD */
+                            .icd-table {
+                                width: 100%;
+                            }
+
+                            .icd-table thead th {
+                                background-color: #f1f3f5; /* abu terang */
+                                font-weight: bold;
+                                text-align: left;
+                                padding: 10px;
+                            }
+
+                            .icd-table tbody td {
+                                padding: 8px 12px;
+                                vertical-align: middle;
+                            }
+
+                            .icd-table tbody tr.selected-row {
+                                background-color: #e7f1ff; /* biru muda untuk yang dipilih */
+                            }
+
                             .btn-pilih {
                                 background-color: #2196F3;
                                 color: white;
                                 border: none;
-                                padding: 5px 12px;
+                                padding: 6px 16px;
                                 border-radius: 4px;
                                 font-weight: bold;
                                 cursor: pointer;
-                                transition: background-color 0.2s;
+                                font-size: 14px;
                             }
 
                             .btn-pilih:hover {
                                 background-color: #1976D2;
                             }
 
-                            .icd-table tbody tr {
-                                background-color: #f0f7ff;
-                                /* Warna biru muda */
-                            }
-
                             .icd-table tbody tr:hover {
-                                background-color: #dbeeff;
-                                /* Biru lebih gelap saat hover */
+                                background-color: #f0f4f8;
                             }
+                        </style>
 
-                            .icd-table thead th {
-                                background-color: #e0e0e0;
-                                font-weight: bold;
-                                text-align: center;
-                            }
-
-                            /* Tambahan padding untuk konsistensi */
-                            .modal-body {
-                                padding: 1.5rem;
-                            }
-
-                            .modal-header {
-                                background-color: #f8f9fa;
-                                border-bottom: 1px solid #dee2e6;
-                            }
-
-
-                            /* Garis horizontal di bawah judul */
-                            h2::after {
-                                            content: "";
-                                            display: block;
-                                            width: 100%;
-                                            height: 2px;
-                                            background-color: #ccc;
-                                            margin-top: 8px;
-                            }
-
-                            </style>
                             
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
@@ -2798,5 +2786,23 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.btn-pilih').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    // Hilangkan kelas 'selected-row' dari semua baris
+                    document.querySelectorAll('.icd-table tbody tr').forEach(function (row) {
+                        row.classList.remove('selected-row');
+                    });
+
+                    // Tambahkan ke baris saat ini
+                    const row = this.closest('tr');
+                    row.classList.add('selected-row');
+                });
+            });
+        });
+    </script>
+
 
 @endsection
