@@ -517,27 +517,26 @@ body {
 
                 <!-- Step 3 -->
                 <h6 class="fw-bold mt-4">Pemeriksaan</h6>
-                <section>
-                    <h4 class="section-title mb-3">Data Pemeriksaan</h4>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="d-flex align-items-center">
-                            <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
-                            <div class="dropdown">
-                                <button class="btn btn-info dropdown-toggle" type="button" id="suratKeteranganDropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="true">
-                                    Surat Keterangan
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
-                                    <li><a class="dropdown-item" href="#">General Consent</a></li>
-                                    <li><a class="dropdown-item" href="#">Informed Consent</a></li>
-                                </ul>
+                    <section>
+                        <h4 class="section-title mb-3">Data Pemeriksaan</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" type="button"
+                                        id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Surat Keterangan
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
+                                        <li><a class="dropdown-item" href="#">General Consent</a></li>
+                                        <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
                     <!-- Antrian - Identitas Pasien -->
                     <div class="card p-3 mb-3 shadow-sm">
