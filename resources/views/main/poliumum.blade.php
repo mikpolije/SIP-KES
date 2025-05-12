@@ -532,16 +532,7 @@
                         <h4 class="section-title mb-3">Data Pemeriksaan</h4>
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="d-flex align-items-center">
-
-                            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-                            <link rel="stylesheet" href="style.css">
-
-                            <style>
-                                .dropdown-menu {
-                                margin-top: 0.3rem; /* Atur jarak dropdown ke bawah */
-                                }
-                            </style>
-                                                            <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
+                                <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
                                 <div class="dropdown">
                                     <button class="btn btn-info dropdown-toggle" type="button"
                                         id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
