@@ -2790,7 +2790,7 @@ $('#search-results').hide();
         $('#statusLokalisModal').on('shown.bs.modal', function () {
             if (!initialized) {
                 image.onload = function () {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(image, 10, 10, canvas.width, canvas.height);
                 };
                 image.src = 'public/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
