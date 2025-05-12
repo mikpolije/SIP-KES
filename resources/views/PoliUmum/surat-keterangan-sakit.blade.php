@@ -66,7 +66,7 @@
                                 <button class="btn btn-warning btn-sm">
                                     <i class="fas fa-print"></i> Cetak
                                 </button>
-                                <button class="btn btn-info btn-sm">
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal">
                                     Detail
                                 </button>
                             </td>
@@ -141,3 +141,26 @@
   </div>
 
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Contoh: tombol detail akan isi modal secara dinamis
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".btn-detail").forEach(button => {
+            button.addEventListener("click", function () {
+                const nama = this.getAttribute("data-nama");
+                const rm = this.getAttribute("data-rm");
+                const periksa = this.getAttribute("data-periksa");
+                const surat = this.getAttribute("data-surat");
+
+                document.getElementById("modal-nama").textContent = nama;
+                document.getElementById("modal-rm").textContent = rm;
+                document.getElementById("modal-periksa").textContent = periksa;
+                document.getElementById("modal-surat").textContent = surat;
+            });
+        });
+    });
+</script>
+@endpush

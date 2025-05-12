@@ -42,6 +42,12 @@ Route::prefix('main/poliumum')->group(function () {
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
 
+// Route detail riwayat pasien 
+Route::get('/poli-umum/detail/{rm}', function($rm) {
+    return view('PoliUmum.detailPasien');
+})->name('poli-umum.detail');
+
+
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
