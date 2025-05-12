@@ -1151,7 +1151,7 @@
 
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3" >
-                            <div class="col-md-6">
+                            <div class="card p-3 mb-4 shadow-sm">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
