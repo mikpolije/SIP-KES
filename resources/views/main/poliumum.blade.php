@@ -2854,28 +2854,31 @@ $('#search-results').hide();
                 clearCanvas();
             }
         });
+
+        function editPemeriksaan(bagian, keterangan, imageDataUrl) {
+        // Isi input dan textarea
+        document.getElementById('bagianDiperiksa').value = bagian;
+        document.getElementById('keteranganFisik').value = keterangan;
+
+        // Buka modal
+        const modal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
+        modal.show();
+
+        // Tampilkan gambar coretan ke canvas setelah modal terbuka
+        $('#statusLokalisModal').on('shown.bs.modal', function () {
+            const canvas = document.getElementById('bodyCanvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+            img.src = imageDataUrl;
+        });
+    }
+
     </script>
 
-    <script>
-        function editPemeriksaan(nama, keterangan) {
-            document.getElementById('editBagian').value = nama;
-            document.getElementById('editKeterangan').value = keterangan;
-            document.getElementById('popupEdit').style.display = 'block';
-        }
-
-        function tutupPopup() {
-            document.getElementById('popupEdit').style.display = 'none';
-        }
-
-        function simpanEdit() {
-            const bagian = document.getElementById('editBagian').value;
-            const keterangan = document.getElementById('editKeterangan').value;
-
-            alert(`Data diperbarui:\nBagian: ${bagian}\nKeterangan: ${keterangan}`);
-            // Simpan ke database atau lakukan update pada tabel sesuai kebutuhan
-            tutupPopup();
-        }
-    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
