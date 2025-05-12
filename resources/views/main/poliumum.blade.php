@@ -582,11 +582,11 @@
                                     <label class="form-label" for="nama">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="form-label" for="no.rm">No. RM</label>
                                     <input type="text" class="form-control" id="no.rm" name="no.rm">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
                                 </div>
