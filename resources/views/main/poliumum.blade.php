@@ -1214,14 +1214,20 @@
                                         </div>
                                         <div class="modal-body">
                                             <table id="layananTable" class="display">
-                                                <label>Tampilkan
-                                                    <select>
-                                                        <option>10</option>
-                                                        <option>25</option>
-                                                        <option>50</option>
-                                                    </select> entri
-                                                </label>
-                                                <input type="text" placeholder="Cari..." style="float: right;">
+                                                 <label>
+                                                Tampilkan
+                                                <select class="form-select d-inline w-auto mx-1">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                </select>
+                                                entri
+                                            </label>
+                                            <label>
+                                                Cari :
+                                                <input type="text" class="form-control d-inline w-auto"
+                                                    placeholder="Cari...">
+                                            </label>
                                                 <table>
                                                     <thead>
                                                         <tr>
