@@ -931,10 +931,8 @@
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="icd9Search"
-                                        placeholder="Ketik Kode atau Tindakan">
-                                    <button class="btn btn-outline-secondary" type="button" id="cari-icd9"
-                                        data-bs-toggle="modal" data-bs-target="#icdModal9">
+                                    <input type="text" class="form-control" id="icd9Search" placeholder="Ketik Kode atau Tindakan ICD 9">
+                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#icdModal9">
                                         <i class="bi bi-search"></i>
                                     </button>
                                     </div>
@@ -957,8 +955,96 @@
                                 </div>
                             </div>
                         </div>
-                        
 
+                        <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3 d-flex justify-content-between align-items-center">
+                                <label>
+                                    Tampilkan
+                                    <select class="form-select d-inline w-auto mx-1">
+                                    <option>10</option>
+                                    <option>25</option>
+                                    <option>50</option>
+                                    </select>
+                                    entri
+                                </label>
+                                <label>
+                                    Cari :
+                                    <input type="text" class="form-control d-inline w-auto" placeholder="Ketik...">
+                                </label>
+                                </div>
+                        
+                                <table class="table table-bordered table-striped" style="background-color: #f0f4ff;">
+                                    <thead class="table-light">
+                                        <tr>
+                                        <th class="text-center">Pilih</th>
+                                        <th>Kode</th>
+                                        <th>Nama</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0001</td>
+                                        <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0002</td>
+                                        <td>Therapeutic ultrasound of heart</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0003</td>
+                                        <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0009</td>
+                                        <td>Other therapeutic ultrasound</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0010</td>
+                                        <td>Implantation of chemotherapeutic agent</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0011</td>
+                                        <td>Infusion of drotrecogin alfa (activated)</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0012</td>
+                                        <td>Administration of inhaled nitric oxide</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0013</td>
+                                        <td>Injection or infusion of nesiritide</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0014</td>
+                                        <td>Injection or infusion of oxazolidinone class of antibiotics</td>
+                                        </tr>
+                                        <tr>
+                                        <td><button class="btn btn-primary btn-sm">Pilih</button></td>
+                                        <td>0015</td>
+                                        <td>High-dose infusion interleukin-2 [IL-2]</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
