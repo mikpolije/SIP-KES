@@ -923,11 +923,13 @@
                                         </button>
                                     </div>
                                     <div id="popup-container" class="popup-container">
-                                        <div class="popup-content">
-                                            <div class="popup-header">
-                                                <h2 class="popup-title">Data ICD 9</h2>
-                                                <button id="close-popup" class="close-button">&times;</button>
+                                        <div id="popup-content" class="popup-content">
+                                            <span class="close-button">&times;</span>
+                                            <h2>Data ICD 9</h2>
+                                            <div id="hasil-pencarian">
                                             </div>
+                                        </div>
+                                    </div>
 
                                     <style>
                                         .popup-container {
