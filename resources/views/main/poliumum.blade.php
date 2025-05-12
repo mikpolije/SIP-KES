@@ -1694,10 +1694,11 @@
                                         <div class="col-md-4">
                                             <input type="date" class="form-control">
                                         </div>
-                                        <div class="input-group">
-                                            <input type="text" id="alasanKontrol" placeholder="Alasan Kontrol" />
-                                            <button onclick="tambahData()">Tambah +</button>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
                                         </div>
                                     </div>
                                     <table class="table table-bordered text-center">
