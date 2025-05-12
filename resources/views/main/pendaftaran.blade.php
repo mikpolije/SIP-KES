@@ -17,7 +17,7 @@ body {
             .wizard-title {
                 font-family: 'Montserrat', sans-serif;
                 font-size: 3rem;
-                font-weight: 800;
+                font-weight: bold;
                 text-align: left;
                 color: #111754;
                 margin-bottom: 20px;
