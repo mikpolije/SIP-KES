@@ -58,6 +58,6 @@ use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 Route::prefix('main/poliumum2')->group(function () {
     Route::get('/antrian', [AntrianRiwayatController::class, 'antrean']);
-    Route::get('/riwayatPoliUmum', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
+    Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
 
