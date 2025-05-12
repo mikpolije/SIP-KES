@@ -52,3 +52,12 @@ Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'in
 use App\Http\Controllers\RiwayatMedisController;
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
+
+// route sidebar antrian dan riwayat
+use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
+
+Route::prefix('main/poliumum2')->group(function () {
+    Route::get('/antrian', [AntrianRiwayatController::class, 'antrean']);
+    Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat']);
+});
+
