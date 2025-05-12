@@ -106,7 +106,7 @@
         <div class="modal-body">
           <!-- ISI MODAL -->
           <div>
-            <div class="mb-3">
+            <div class="mb-3 d-flex align-items-center">
               <label>Nomor</label>
               <input type="text" class="form-control" value="001/MS/I/2025" readonly>
             </div>
