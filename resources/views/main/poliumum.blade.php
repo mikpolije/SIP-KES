@@ -938,7 +938,6 @@
                                         <i class="bi bi-search"></i>
                                     </button>
                                     </div>
-
                                     <div class="modal fade" id="icdModal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
@@ -1086,7 +1085,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="3">Tidak Ada Data</td>
+                                                 <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1451,7 +1450,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="2">Tidak Ada Data</td>
+                                                 <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
