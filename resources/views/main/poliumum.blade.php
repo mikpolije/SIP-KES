@@ -468,36 +468,37 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-group has-validation">
+                                                    <div class="input-group">
                                                         <input type="text" class="form-control required decimal-input"
                                                             id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
-                                                        <div class="invalid-feedback">This field is required.</div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal" required>
+                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            required>
                                                         <span class="input-group-text">°C</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            required>
                                                         <span class="input-group-text">/mnt</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
                                             <!-- Right Column -->
                                             <div class="col-md-6">
@@ -505,24 +506,26 @@
                                                     <label class="form-label">Diastole</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            required>
                                                         <span class="input-group-text">mmHg</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal" required>
+                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            required>
                                                         <span class="input-group-text">cm</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
                                                     <div class="input-group has-validation">
@@ -531,6 +534,7 @@
                                                         <span class="input-group-text">%</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -539,7 +543,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </section>
 
                     <!-- Step 3 -->
@@ -585,13 +588,6 @@
                                 <div class="col-md-2">
                                     <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label" for="jenispemeriksaan">Jenis Pemeriksaan</label>
-                                    <select class="form-select" id="jenispemeriksaan" name="jenispemeriksaan">
-                                        <option value="poliumum">Poli Umum</option>
-                                        <option value="circum">Circum</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -654,7 +650,8 @@
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00.0</td>
-                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae
+                                                                    </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
@@ -925,14 +922,25 @@
                                 </div>
                             </div>
 
+                            <!-- Modal Detail Pemeriksaan -->
+                            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan Fisik</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <h5 class="fw-bold">ICD 9 - CM</h5>
                                     <div class="input-group mb-2">
-                                    <input type="text" class="form-control" id="icd9Search" placeholder="Ketik Kode atau Tindakan ICD 9">
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#icdModal9">
-                                        <i class="bi bi-search"></i>
-                                    </button>
+                                        <input type="text" class="form-control" id="icd9Search"
+                                            placeholder="Ketik Kode atau Tindakan ICD 9">
+                                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#icdModal9">
+                                            <i class="bi bi-search"></i>
+                                        </button>
                                     </div>
 
                                     <div class="table-responsive">
@@ -952,106 +960,144 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label" aria-hidden="true">
+                        <div class="modal fade" id="icdModal9" tabindex="-1" aria-labelledby="icdModal9Label"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                 <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="mb-3 d-flex justify-content-between align-items-center">
-                                    <label>
-                                        Tampilkan
-                                        <select class="form-select d-inline w-auto mx-1">
-                                        <option>10</option>
-                                        <option>25</option>
-                                        <option>50</option>
-                                        </select>
-                                        entri
-                                    </label>
-                                    <label>
-                                        Cari :
-                                        <input type="text" class="form-control d-inline w-auto" placeholder="Cari...">
-                                    </label>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold" id="icdModal9Label">Data ICD 9</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Tutup"></button>
                                     </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                                            <label>
+                                                Tampilkan
+                                                <select class="form-select d-inline w-auto mx-1">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                </select>
+                                                entri
+                                            </label>
+                                            <label>
+                                                Cari :
+                                                <input type="text" class="form-control d-inline w-auto"
+                                                    placeholder="Cari...">
+                                            </label>
+                                        </div>
 
-                                    <table class="table table-bordered table-striped icd-table">
-                                    <thead class="table-light text-center">
-                                        <tr>
-                                        <th></th>
-                                        <th>Kode</th>
-                                        <th>Nama</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td><button class="btn-pilih">Pilih</button></td>
-                                        <td>0001</td>
-                                        <td>Therapeutic ultrasound of vessels of head and neck</td>
-                                        </tr>
-                                        <tr>
-                                        <td><button class="btn-pilih">Pilih</button></td>
-                                        <td>0002</td>
-                                        <td>Therapeutic ultrasound of heart</td>
-                                        </tr>
-                                        <tr>
-                                        <td><button class="btn-pilih">Pilih</button></td>
-                                        <td>0003</td>
-                                        <td>Therapeutic ultrasound of peripheral vascular vessels</td>
-                                        </tr>
-                                        <!-- Tambahan baris lainnya -->
-                                    </tbody>
-                                    </table>
-                                </div>
+                                        <table class="table table-bordered table-striped icd-table">
+                                            <thead class="table-light text-center">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Kode</th>
+                                                    <th>Nama</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0001</td>
+                                                    <td>Therapeutic ultrasound of vessels of head and neck</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0002</td>
+                                                    <td>Therapeutic ultrasound of heart</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                    <td>0003</td>
+                                                    <td>Therapeutic ultrasound of peripheral vascular vessels</td>
+                                                </tr>
+                                                <!-- Tambahan baris lainnya -->
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
-                            <!-- CSS Styling -->
-                            <style>
-                            .btn-pilih {
-                                background-color: #2196F3;
-                                color: white;
-                                border: none;
-                                padding: 5px 12px;
-                                border-radius: 4px;
-                                font-weight: bold;
-                                cursor: pointer;
-                                transition: background-color 0.2s;
-                            }
+                        <div class="col-md-6">
+                                <div class="card p-3 h-100">
+                                    <label class="form-label fw-bold">Data ICD 9</label>
+                                    <style>
+                                        /* Membuat backdrop modal transparan */
+                                        .modal-backdrop.show {
+                                            background-color: rgba(128, 128, 128, 0.5) !important;
+                                        }
 
-                            .btn-pilih:hover {
-                                background-color: #1976D2;
-                            }
+                                        /* Opsional: ubah modal agar tidak punya bayangan hitam */
+                                        .modal-content {
+                                            box-shadow: none;
+                                        }
 
-                            .icd-table tbody tr {
-                                background-color: #f0f7ff; /* Warna biru muda */
-                            }
+                                        .bi bi-search {
+                                            background-color: transparent;
+                                            border: none;
+                                            color: #333;
+                                        }
 
-                            .icd-table tbody tr:hover {
-                                background-color: #dbeeff; /* Biru lebih gelap saat hover */
-                            }
+                                        table {
+                                            width: 100%;
+                                            border-collapse: collapse;
+                                            margin-top: 20px;
+                                            font-family: sans-serif;
+                                        }
 
-                            .icd-table thead th {
-                                background-color: #f9f9f9;
-                                font-weight: bold;
-                                text-align: center;
-                            }
+                                        thead {
+                                            background-color: #f3f3f3;
+                                            border-bottom: 2px solid #ccc;
+                                        }
 
-                            /* Tambahan padding untuk konsistensi */
-                            .modal-body {
-                                padding: 1.5rem;
-                            }
+                                        h2 {
+                                            font-size: 24px;
+                                            color: #1a237e;
+                                            margin-bottom: 5px;
+                                            position: relative;
+                                        }
 
-                            .modal-header {
-                                background-color: #f8f9fa;
-                                border-bottom: 1px solid #dee2e6;
-                            }
-                            </style>
-                            
+                                        /* Garis horizontal di bawah judul */
+                                        h2::after {
+                                            content: "";
+                                            display: block;
+                                            width: 100%;
+                                            height: 2px;
+                                            background-color: #ccc;
+                                            margin-top: 8px;
+                                        }
+
+                                        th,
+                                        td {
+                                            text-align: left;
+                                            padding: 10px;
+                                            border-bottom: 1px solid #ccc;
+                                        }
+
+                                        tr:nth-child(even) {
+                                            background-color: #f0f4ff;
+                                            /* biru muda */
+                                        }
+
+                                        th {
+                                            background-color: #f4f4f4;
+                                        }
+
+                                        .btn-pilih {
+                                            background-color: #2196F3;
+                                            color: white;
+                                            border: none;
+                                            padding: 5px 10px;
+                                            cursor: pointer;
+                                        }
+
+                                        button:disabled {
+                                            background-color: #aaa;
+                                        }
+                                    </style>
+                        
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
@@ -1104,7 +1150,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                 <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1469,7 +1515,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                 <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -2652,6 +2698,37 @@ $('#search-results').hide();
 }
 </style> --}}
 
+<style>
+    .btn-pilih {
+        background-color: #2196F3 !important;
+        color: white !important;
+        border: none;
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .btn-pilih:hover {
+        background-color: #1976D2 !important;
+    }
+
+    .icd-table tbody tr {
+        background-color: #f0f7ff;
+    }
+
+    .icd-table tbody tr:hover {
+        background-color: #dbeeff;
+    }
+
+    .icd-table thead th {
+        background-color: #e0e0e0;
+        font-weight: bold;
+        text-align: center;
+    }
+  </style>
+
     <!-- JavaScript Tambahan -->
     <script>
         function simpanStatusLokalis() {
@@ -2743,5 +2820,7 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
+
+    
 
 @endsection
