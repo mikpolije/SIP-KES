@@ -527,32 +527,28 @@
                     </section>
 
                     <!-- Step 3 -->
-                    <h6>Pemeriksaan</h6>
+                    <h6 class="fw-bold mt-4">Pemeriksaan</h6>
                     <section>
-                        <h4 class="section-title">Data Pemeriksaan</h4>
-                        <div class="row mb-3">
-                            <div class="col-md-12">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center me-3">
-                                        <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
-                                        <div class="dropdown">
-                                            <button class="btn btn-info dropdown-toggle" type="button"
-                                                id="suratKeteranganDropdown" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                                Surat Keterangan
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                                <li><a class="dropdown-item" href="#"
-                                                        value="suratketerangansehat">Surat Keterangan Sehat</a></li>
-                                                <li><a class="dropdown-item" href="#"
-                                                        value="suratketerangansakit">Surat Keterangan Sakit</a></li>
-                                                <li><a class="dropdown-item" href="#"
-                                                        value="generalconsent">General Consent</a></li>
-                                                <li><a class="dropdown-item" href="#"
-                                                        value="informedconsent">Informed Consent</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                        <h4 class="section-title mb-3">Data Pemeriksaan</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
+                                <div class="dropdown">
+                                    <button class="btn btn-info dropdown-toggle" type="button"
+                                        id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Surat Keterangan
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
+                                        <li><a class="dropdown-item" href="#">General Consent</a></li>
+                                        <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <!-- Antrian - Identitas Pasien -->
