@@ -939,7 +939,7 @@
 
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #B3B9F9;">
+                                            <thead style="background-color: #f8f9fa;">
                                                 <tr>
                                                     <th class="text-center">Nama ICD 9</th>
                                                     <th class="text-center">Aksi</th>
@@ -976,7 +976,7 @@
                                 </label>
                                 <label>
                                     Cari :
-                                    <input type="text" class="form-control d-inline w-auto" placeholder="Ketik...">
+                                    <input type="text" class="form-control d-inline w-auto" placeholder="Cari...">
                                 </label>
                                 </div>
                         
@@ -1045,6 +1045,38 @@
                                 </div>
                             </div>
                             </div>
+
+                            <style>
+                                .btn-pilih {
+                                    background-color: #2196F3;
+                                    color: white;
+                                    border: none;
+                                    padding: 5px 12px;
+                                    border-radius: 4px;
+                                    font-weight: bold;
+                                    cursor: pointer;
+                                    transition: background-color 0.2s;
+                                }
+
+                                .btn-pilih:hover {
+                                    background-color: #1976D2;
+                                }
+
+                                #icdTable tbody tr {
+                                    background-color: #f0f7ff;
+                                }
+
+                                #icdTable tbody tr:hover {
+                                    background-color: #dbeeff;
+                                }
+
+                                #icdTable thead th {
+                                    background-color: #f9f9f9;
+                                    font-weight: bold;
+                                    text-align: center;
+                                }
+                            </style>
+
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
