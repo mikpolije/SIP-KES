@@ -1512,8 +1512,8 @@
 
                         <!-- Rencana Kontrol dan Catatan -->
                         <div class="row mb-3 mt-4">
-                            <div class="col-md-6 d-flex flex-column">
-                                <div class="card p-3 flex-fill h-100 w-100">
+                            <div class="col-md-6">
+                                <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="row g-2 mb-2">
                                         <div class="col-md-4">
@@ -1541,7 +1541,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6 flex-fill h-100 w-100">
+                            <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
