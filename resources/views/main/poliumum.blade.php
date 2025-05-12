@@ -469,7 +469,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
+                                                        <input type="text" class="form-control required decimal-input"
                                                             id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
                                                     </div>
@@ -477,7 +477,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
+                                                        <input type="text" class="form-control required decimal-input"
                                                             id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">°C</span>
                                                     </div>
@@ -485,7 +485,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
+                                                        <input type="text" class="form-control required number-input"
                                                             id="resprate-mask" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">/mnt</span>
                                                     </div>
@@ -497,7 +497,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Diastole</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
+                                                        <input type="text" class="form-control required number-input"
                                                             id="diastole-mask" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
@@ -505,7 +505,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control decimal-input"
+                                                        <input type="text" class="form-control required decimal-input"
                                                             id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">cm</span>
                                                     </div>
@@ -513,7 +513,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">SpO2</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control number-input"
+                                                        <input type="text" class="form-control required number-input"
                                                             id="spo2-mask" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">%</span>
                                                     </div>
@@ -534,16 +534,21 @@
                             <div class="d-flex align-items-center">
                                 <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
                                 <div class="dropdown">
-                                <button class="btn btn-info dropdown-toggle" type="button" id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Surat Keterangan
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
-                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
-                                <li><a class="dropdown-item" href="#">General Consent</a></li>
-                                <li><a class="dropdown-item" href="#">Informed Consent</a></li>
-                                </ul>
+                                    <button class="btn btn-info dropdown-toggle" type="button"
+                                        id="suratKeteranganDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Surat Keterangan
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
+                                        <li><a class="dropdown-item" href="#">General Consent</a></li>
+                                        <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                    </ul>
+                                </div>
                             </div>
+                        </div>
 
                         <!-- Antrian - Identitas Pasien -->
                         <div class="card p-3 mb-3 shadow-sm">
@@ -621,63 +626,113 @@
                                                                     <th></th>
                                                                     <th>Kode</th>
                                                                     <th>Nama</th>
-                                                                    <th>Termin</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A00</td>
-                                                                    <td>Kolera</td>
                                                                     <td>Cholera</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A00</td>
-                                                                    <td>Kolera disebabkan oleh Vibrio cholerae 01</td>
-                                                                    <td>Cholera due to Vibrio cholerae 01</td>
+                                                                    <td>A00.0</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A00</td>
-                                                                    <td>Kolera, tidak terspesifikasi</td>
+                                                                    <td>A00.1</td>
+                                                                    <td>Cholera due to Vibrio cholerae 01, biovar eltor</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A00.9</td>
                                                                     <td>Cholera, unspecified</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
                                                                     <td>A01</td>
-                                                                    <td>Demam tifoid dan paratifoid</td>
-                                                                    <td>Typhoid and paratyphoid</td>
+                                                                    <td>Typhoid and paratyphoid fevers</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Demam tifoid</td>
+                                                                    <td>A01.0</td>
                                                                     <td>Typhoid fever</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Demam paratifoid A</td>
-                                                                    <td>Paratyphoid fever A</td>
+                                                                    <td>A01.1</td>
+                                                                    <td>Paratyphoid fever a</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Demam paratifoid B</td>
-                                                                    <td>Paratyphoid fever B</td>
+                                                                    <td>A01.2</td>
+                                                                    <td>Paratyphoid fever b</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Demam paratifoid C</td>
-                                                                    <td>Paratyphoid fever C</td>
+                                                                    <td>A01.3</td>
+                                                                    <td>Paratyphoid fever c</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A01</td>
-                                                                    <td>Demam paratifoid, tidak terspesifikasi</td>
+                                                                    <td>A01.4</td>
                                                                     <td>Paratyphoid fever, unspecified</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02</td>
+                                                                    <td>Other salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.0</td>
+                                                                    <td>Salmonella enteritis</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.1</td>
+                                                                    <td>Salmonella septicaemia</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.2</td>
+                                                                    <td>Localized salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.8</td>
+                                                                    <td>Other specified salmonella infections</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A02.9</td>
+                                                                    <td>Salmonella infection, unspecified</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03</td>
+                                                                    <td>Shigellosis</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.0</td>
+                                                                    <td>Shigellosis due to shigella dysenteriae</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.1</td>
+                                                                    <td>Shigellosis due to shigella flexneri</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.2</td>
+                                                                    <td>Shigellosis due to shigella boydii</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><button class="btn-pilih">Pilih</button></td>
+                                                                    <td>A03.2</td>
+                                                                    <td>Shigellosis due to shigella sonnei</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
