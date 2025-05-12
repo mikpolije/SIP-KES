@@ -153,10 +153,9 @@
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
-                                    <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
-                                    <input type="number" class="form-control required" id="rw" name="rw"
-                                        oninput="validateNumeric(this, 3)" maxlength="3" />
-                                    <small class="error-message" id="rw-error">RW harus berupa angka</small>
+                                  <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
+                                  <input type="text" class="form-control required" id="rw" name="rw" oninput="validateNumeric(this, 3)" maxlength="3" required>
+                                  <small class="error-message" id="rw-error">RW harus berupa angka</small>
                                 </div>
                             </div>
                         </div>
