@@ -951,7 +951,7 @@
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
-                                    <h5 class="fw-bold">ICD 9 - CM</h5>
+                                    <label class="form-label" for="icd9">ICD 9 - CM</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd9Search"
                                             placeholder="Ketik Kode atau Tindakan ICD 9">
