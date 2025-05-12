@@ -908,70 +908,47 @@
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
                                                 <tr>
-                                                    <td class="nama">Kepala</td>
-                                                    <td class="keterangan">Kelainan pada pembuluh darah</td>
+                                                    <td>Kepala</td>
+                                                    <td>Kelainan pada pembuluh darah</td>
                                                     <td class="text-center">
-                                                        <button type="button" class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
-                                                            <i class="bi bi-eye"></i>
-                                                        </button>
+                                                    <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
                                                     </td>
                                                 </tr>
-                                                <!-- Tambahkan baris lain sesuai kebutuhan -->
                                             </tbody>
                                         </table>
-                                    </div>
-
-                            <!-- Modal Detail Pemeriksaan -->
-                            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg">
-                                    <div class="modal-content custom-modal-content">
-                                        <div class="modal-header border-0">
-                                            <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan fisik</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                        </div>
-                                        <hr class="m-0 mb-3" />
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-6 offset-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                                        <input type="text" class="form-control shadow-custom" value="kepala" disabled>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label fw-semibold">Keterangan</label>
-                                                        <textarea class="form-control shadow-custom" rows="4" disabled>Kelainan pada pembuluh darah</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="mt-2 mb-0" />
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- ✅ CUSTOM CSS -->
-                            <style>
-                                .modal-content {
-                                    border-radius: 12px;
-                                    border: none;
-                                }
-
-                                .modal-header {
-                                    background-color: #f8f9fa;
-                                    border-bottom: 1px solid #dee2e6;
-                                }
-
-                                .modal-body p {
-                                    font-size: 16px;
-                                    margin-bottom: 10px;
-                                }
-
-                                .btn-close {
-                                    background: transparent;
-                                    border: none;
-                                }
-                            </style>
-
+                            <!-- Modal Detail Pemeriksaan -->
+                        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content custom-modal-content">
+                                    <div class="modal-header border-0">
+                                        <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan fisik</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                    </div>
+                                    <hr class="m-0 mb-3" />
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6 offset-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
+                                                    <input type="text" class="form-control shadow-custom" value="kepala" disabled>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold">Keterangan</label>
+                                                    <textarea class="form-control shadow-custom" rows="4" disabled>Kelainan pada pembuluh darah</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mt-2 mb-0" />
+                                </div>
+                            </div>
+                        </div>
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
@@ -1030,12 +1007,12 @@
                                             </label>
                                         </div>
 
-                                        <table class="table table-bordered table-striped icd-table">
-                                            <thead class="table-light text-center">
+                                            <table>
+                                            <thead>
                                                 <tr>
-                                                    <th></th>
-                                                    <th>Kode</th>
-                                                    <th>Nama</th>
+                                                <th class="text-start"></th>
+                                                <th class="text-start">Kode</th>
+                                                <th class="text-start">Nama</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -2809,15 +2786,5 @@ $('#search-results').hide();
             lengthMenu: [5, 10, 25, 50, 100]
         });
     </script>
-    <script>
-    document.querySelectorAll('.view-details').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            const row = this.closest('tr');
-            const nama = row.querySelector('.nama').textContent;
-            const keterangan = row.querySelector('.keterangan').textContent;
-            document.getElementById('modal-nama').textContent = nama;
-            document.getElementById('modal-keterangan').textContent = keterangan;
-        });
-    });
-    </script>
+
 @endsection
