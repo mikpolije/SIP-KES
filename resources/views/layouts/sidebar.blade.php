@@ -97,92 +97,99 @@
                 aria-expanded="false">
 
                 {{-- POLI UMUM 1 --}}
-                <span class="hide-menu">Poli Umum</span>
-                </a>
-                {{-- <ul class="second-level collapse" aria-expanded="false">
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
+                        aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Poli Umum</span>
+                    </a>
+                    {{-- <ul class="second-level collapse" aria-expanded="false">
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
-                href="/main/poliumum/antrian">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                    <i class="ti ti-circle"></i>
-                </div>
-                <span class="hide-menu">Antrian</span>
-                </a>
-        </li>
+                    href="/main/poliumum/antrian">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                        <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu">Antrian</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/poliumum/riwayat">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Riwayat</span>
+                    </a>
+                </li>
+            </ul> --}}
+
+
+            {{-- POLI UMUM 2 --}}
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/poliumum/riwayat">
+            <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('main/poliumum2') || request()->is('main/poliumum2/*') ? 'active' : '' }}"
+                href="#" data-bs-toggle="collapse"
+                aria-expanded="{{ request()->is('main/poliumum2/*') ? 'true' : 'false' }}"
+                data-bs-target="#submenu-poliumum2">
+                <div class="d-flex align-items-center">
+                    <div class="round-16 d-flex align-items-center justify-content-center">
+                        <i class="ti ti-circle"></i>
+                    </div>
+                    <span class="hide-menu ms-4">Poli Umum 2</span>
+                </div>
+            </a>
+            <ul id="submenu-poliumum2"
+                class="second-level collapse {{ request()->is('main/poliumum2/*') ? 'show' : '' }}"
+                aria-expanded="{{ request()->is('main/poliumum2/*') ? 'true' : 'false' }}">
+                <li class="sidebar-item">
+                    <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/antrian') ? 'active' : '' }}"
+                        href="/main/poliumum2/antrian">
+                        <i class="ti ti-circle"></i>
+                        <span class="hide-menu">Antrian</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/riwayat') ? 'active' : '' }}"
+                        href="/main/poliumum2/riwayat">
+                        <i class="ti ti-circle"></i>
+                        <span class="hide-menu">Riwayat</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        {{-- POLI KIA --}}
+        <li class="sidebar-item">
+            <a class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}"
+                href="/main/polikia">
                 <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-circle"></i>
                 </div>
-                <span class="hide-menu">Riwayat</span>
+                <span class="hide-menu">Poli KIA</span>
             </a>
         </li>
-    </ul> --}}
 
-
-    {{-- POLI UMUM 2 --}}
-    <li class="sidebar-item">
-        <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('main/poliumum2') || request()->is('main/poliumum2/*') ? 'active' : '' }}"
-            href="#" data-bs-toggle="collapse"
-            aria-expanded="{{ request()->is('main/poliumum2/*') ? 'true' : 'false' }}"
-            data-bs-target="#submenu-poliumum2">
-            <div class="d-flex align-items-center">
+        {{-- RAWAT INAP --}}
+        <li class="sidebar-item">
+            <a class="sidebar-link {{ request()->is('main/rawat-inap', 'main/rawat-inap/*') ? 'active' : '' }}"
+                href="/main/rawat-inap">
                 <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-circle"></i>
                 </div>
-                <span class="hide-menu ms-4">Poli Umum 2</span>
-            </div>
-        </a>
-        <ul id="submenu-poliumum2" class="second-level collapse {{ request()->is('main/poliumum2/*') ? 'show' : '' }}"
-            aria-expanded="{{ request()->is('main/poliumum2/*') ? 'true' : 'false' }}">
-            <li class="sidebar-item">
-                <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/antrian') ? 'active' : '' }}"
-                    href="/main/poliumum2/antrian">
+                <span class="hide-menu">Rawat Inap</span>
+            </a>
+        </li>
+
+        {{-- UGD --}}
+        <li class="sidebar-item">
+            <a class="sidebar-link {{ request()->is('triase') ? 'active' : '' }}" href="{{ route('triase.create') }}">
+                <div class="round-16 d-flex align-items-center justify-content-center">
                     <i class="ti ti-circle"></i>
-                    <span class="hide-menu">Antrian</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link ps-5 {{ request()->is('main/poliumum2/riwayat') ? 'active' : '' }}"
-                    href="/main/poliumum2/riwayat">
-                    <i class="ti ti-circle"></i>
-                    <span class="hide-menu">Riwayat</span>
-                </a>
-            </li>
-        </ul>
-    </li>
-
-    {{-- POLI KIA --}}
-    <li class="sidebar-item">
-        <a class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}"
-            href="/main/polikia">
-            <div class="round-16 d-flex align-items-center justify-content-center">
-                <i class="ti ti-circle"></i>
-            </div>
-            <span class="hide-menu">Poli KIA</span>
-        </a>
-    </li>
-
-    {{-- RAWAT INAP --}}
-    <li class="sidebar-item">
-        <a class="sidebar-link {{ request()->is('main/rawat-inap', 'main/rawat-inap/*') ? 'active' : '' }}"
-            href="/main/rawat-inap">
-            <div class="round-16 d-flex align-items-center justify-content-center">
-                <i class="ti ti-circle"></i>
-            </div>
-            <span class="hide-menu">Rawat Inap</span>
-        </a>
-    </li>
-
-    {{-- UGD --}}
-    <li class="sidebar-item">
-        <a class="sidebar-link {{ request()->is('triase') ? 'active' : '' }}" href="{{ route('triase.create') }}">
-            <div class="round-16 d-flex align-items-center justify-content-center">
-                <i class="ti ti-circle"></i>
-            </div>
-            <span class="hide-menu">UGD</span>
-        </a>
-    </li>
+                </div>
+                <span class="hide-menu">UGD</span>
+            </a>
+        </li>
     </ul>
     </li>
 
