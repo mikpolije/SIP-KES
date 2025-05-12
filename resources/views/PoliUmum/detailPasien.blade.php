@@ -4,8 +4,7 @@
 
 @section('pageContent')
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@800&family=Poppins:wght@400;600;700&display=swap');
 
 .judul-riwayat {
     font-family: 'Montserrat', sans-serif;
@@ -21,7 +20,7 @@
 
 .judul-section {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.875rem; /* 30px */
+    font-size: 1.875rem;
     font-weight: 700;
     color: #111754;
     margin-top: 30px;
@@ -32,11 +31,8 @@
     font-size: 2rem;
     color: #111754;
     cursor: pointer;
-    transition: all 0.3s ease;
     background: none;
     border: none;
-    padding: 0;
-    margin-left: 20px;
 }
 
 .close-btn:hover {
@@ -69,6 +65,7 @@ label {
 .table-responsive {
     border-radius: 12px;
     overflow: hidden;
+    border: 1px solid #e0e0e0;
 }
 
 table {
@@ -76,29 +73,24 @@ table {
     border-collapse: collapse;
 }
 
-table thead th {
+thead th {
     background-color: #F9FAFC;
-    text-align: center;
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    vertical-align: middle;
-    padding: 12px 15px;
-    border: 1px solid #e0e0e0;
+    text-align: center;
+    padding: 12px 16px;
+    border: 1px solid #E0E0E0;
 }
 
-table tbody td {
-    background-color: #ffffff;
-    font-family: 'Poppins', sans-serif;
+tbody td {
+    background-color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
-    vertical-align: middle;
+    font-weight: 400;
     text-align: left;
-    padding: 12px 15px;
-    border: 1px solid #e0e0e0;
-}
-
-table tbody tr:nth-child(even) td {
-    background-color: #f8f9fa;
+    padding: 12px 16px;
+    border: 1px solid #E0E0E0;
 }
 
 .container {
@@ -153,7 +145,7 @@ table tbody tr:nth-child(even) td {
 
         <h4 class="judul-section">Tabel Riwayat Kunjungan</h4>
         <div class="table-responsive mt-3">
-            <table class="table table-bordered">
+            <table>
                 <thead>
                     <tr>
                         <th>Tanggal Periksa</th>
