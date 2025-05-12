@@ -1555,12 +1555,10 @@
                             <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="row mb-2">
-                                        <div class="col-md-12 d-flex ">
-                                            <input type="date" class="form-control">
-                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                            <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah+</button>
-                                        </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                         <input type="date" class="form-control">
+                                         <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                         <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
