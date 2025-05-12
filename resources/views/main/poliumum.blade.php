@@ -1511,7 +1511,7 @@
                         </div>
 
                         <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
