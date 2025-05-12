@@ -468,15 +468,12 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
-                                                    <div class="input-group has-validation">
+                                                    <div class="input-group">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal" required>
+                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
-                                                        <div class="invalid-feedback">
-                                                            This field is required.
                                                     </div>
                                                 </div>
-                                            </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group has-validation">
