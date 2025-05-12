@@ -100,7 +100,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="detailModalLabel">Surat Keterangan Sakit</h5>
+          <h5 class="modal-title fw-bold text-primary" id="detailModalLabel">Surat Keterangan Sakit</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -147,31 +147,44 @@
                   <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly>
                 </div>
             </div>
-            <div class="mb-3">
-                <div class="col-md-2">
-                    <label>Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama </label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" value="4" readonly>
-                </div>
-                <div>
-                    <label>hari</label>
-                </div>
+            <div class="mb-3 d-flex align-items-center gap-2">
+                <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama</label>
+                <input type="text" class="form-control" value="4" readonly style="width: 50px;">
+                <label class="fw-semibold">hari</label>
             </div>
             <div class="mb-3">
                 <div class="col-md-2">
-                    <label>mulai tanggal </label>
+                    <label class="fw-semibold">mulai tanggal </label>
+                    <input type="text" class="form-control" value="10/02/2025   s/d   13/02/2025" readonly>
                 </div>
-                <input type="text" class="form-control" value="10/02/2025   s/d   13/02/2025" readonly>
+            </div>
+            <div class="mb-3 d-flex align-items-center gap-2">
+                <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
             </div>
         </div>
-        <div class="modal-footer justify-content-between">
-          <span>Jember, 1 Januari 2025<br>Dokter yang memeriksa: <br><br>(Nama Dokter)<br>SIP.</span>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-        </div>
+        <div class="mb-4 text-center">
+            <p>Jember, 1 Januari 2025</p>
+
+            <p>Dokter yang memeriksa :</p>
+
+            <div style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;"></div>
+
+            <p>(Nama Dokter)</p>
+            <p>SIP.</p>
+          </div>
       </div>
     </div>
   </div>
+
+<style>
+    .modal-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0a0f5c;
+            /* Biru tua */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+</style>
 
 @endsection
 
