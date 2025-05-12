@@ -492,7 +492,7 @@
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="resprate-mask"  pattern="[0-9]*" inputmode="numeric"
+                                                            id="resprate-mask" name="respiratory"  pattern="[0-9]*" inputmode="numeric"
                                                             required>
                                                         <span class="input-group-text">/mnt</span>
                                                         <div class="invalid-feedback">
@@ -508,7 +508,7 @@
                                                     <label class="form-label">Diastole</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            id="diastole-mask" name="diastole" pattern="[0-9]*" inputmode="numeric"
                                                             required>
                                                         <span class="input-group-text">mmHg</span>
                                                         <div class="invalid-feedback">
@@ -520,7 +520,7 @@
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            id="tinggi-mask" name="tinggi-badan" pattern="[0-9.,]*" inputmode="decimal"
                                                             required>
                                                         <span class="input-group-text">cm</span>
                                                         <div class="invalid-feedback">
@@ -532,7 +532,7 @@
                                                     <label class="form-label">SpO2</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                            id="spo2-mask" name="spo2" pattern="[0-9]*" inputmode="numeric" required>
                                                         <span class="input-group-text">%</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
