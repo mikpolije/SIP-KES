@@ -763,7 +763,7 @@
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
                                                 <tr>
-                                                    <th class="text-center">Nama ICD 10</th>
+                                                    <label class="form-label" for="nama">Nama</label>
                                                     <th class="text-center">Aksi</th>
                                                 </tr>
                                             </thead>
