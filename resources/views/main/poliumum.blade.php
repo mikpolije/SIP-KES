@@ -824,7 +824,7 @@
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                            id="suhu-mask"  name="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
