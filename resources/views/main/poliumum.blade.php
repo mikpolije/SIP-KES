@@ -2766,6 +2766,10 @@ $('#search-results').hide();
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
         }
 
+        function setColor(color) {
+            currentColor = color;
+        }
+
         function saveCanvas() {
             const imageData = canvas.toDataURL();
             console.log("Saved image data:", imageData);
