@@ -596,13 +596,13 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm h-100">
-                                    <h5 class="fw-bold">Diagnosis</h5>
+                                    <label class="form-label" for="diagnosis">Diagnosis</label>
                                     <textarea id="diagnosis" name="diagnosis" rows="5" class="form-control" placeholder="Ketik diagnosis"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm h-100">
-                                    <h5 class="fw-bold">ICD 10</h5>
+                                    <label class="form-label" for="icd10">ICD 10</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" id="icd10Search"
                                             placeholder="Ketik Kode atau Diagnosa">
@@ -791,7 +791,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
-                                    <h5 class="fw-bold">Subjective/Keluhan</h5>
+                                    <label class="form-label" for="subjective">Subjective</label>
                                     <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
                                 </div>
                             </div>
