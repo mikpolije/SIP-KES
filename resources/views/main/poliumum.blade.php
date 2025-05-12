@@ -791,7 +791,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
-                                    <h5 class="fw-bold">Subjective</h5>
+                                    <h5 class="fw-bold">Subjective/Keluhan</h5>
                                     <label class="form-label" for="subjective">Keluhan</label>
                                     <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
                                 </div>
@@ -799,7 +799,7 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <label class="form-label">Objective</label>
+                                        <h5 class="fw-bold">Objective</h5>
                                         <div class="row">
                                             <!-- Left Column -->
                                             <div class="col-md-6">
