@@ -1015,28 +1015,15 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #f8f9fa;">
+                                            <thead style="background-color: #B3B9F9;">
                                                 <tr>
                                                     <th class="text-center">Nama ICD 9</th>
                                                     <th class="text-center">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd9">
-                                                <tr class="icd-item">
-                                                    <td>001. Therapeutic ultrasound of vessels of head and neck</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="icd-item">
-                                                    <td>008. Injection or infusion of nesiritide</td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
+                                                <tr>
+                                                    <td colspan="2" class="text-center text-dark">Tidak Ada Data</td>
                                                 </tr>
                                             </tbody>
                                         </table>
