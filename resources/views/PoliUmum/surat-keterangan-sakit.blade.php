@@ -81,7 +81,7 @@
                                 <button class="btn btn-warning btn-sm">
                                     <i class="fas fa-print"></i> Cetak
                                 </button>
-                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal">
+                                <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="detailModal">
                                     Detail
                                 </button>
 
