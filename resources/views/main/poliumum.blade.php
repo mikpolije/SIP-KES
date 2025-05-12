@@ -763,8 +763,8 @@
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
                                                 <tr>
-                                                    <th style="text-align: center; font-weight: normal;">Nama ICD 10</th>
-                                                    <th style="text-align: center; font-weight: normal;">Aksi</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 10</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd10">
