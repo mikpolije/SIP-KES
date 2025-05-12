@@ -939,7 +939,7 @@
 
                                     <div class="table-responsive">
                                         <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #B3B9F9;">
+                                            <thead style="background-color: #f8f9fa;">
                                                 <tr>
                                                     <th class="text-center">Nama ICD 9</th>
                                                     <th class="text-center">Aksi</th>
@@ -976,7 +976,7 @@
                                 </label>
                                 <label>
                                     Cari :
-                                    <input type="text" class="form-control d-inline w-auto" placeholder="Ketik...">
+                                    <input type="text" class="form-control d-inline w-auto" placeholder="Cari...">
                                 </label>
                                 </div>
                         
