@@ -114,27 +114,56 @@
                   <input type="text" class="form-control" value="001/MS/I/2025" readonly>
                 </div>
             </div>
-            <div class="mb-3">
-              <label>Nama</label>
-              <input type="text" class="form-control" value="Rina Sofia" readonly>
+            <label class="form-label">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan bahwa:</label>
+            <div class="row mb-2 align-items-center">
+                <div class="col-md-2">
+                  <label class="fw-semibold">Nama</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" value="Rina Sofia" readonly>
+                </div>
+            </div>
+            <div class="row mb-2 align-items-center">
+                <div class="col-md-2">
+                  <label class="fw-semibold">Tanggal Lahir</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" value="26 Oktober 2003" readonly>
+                </div>
+            </div>
+            <div class="row mb-2 align-items-center">
+                <div class="col-md-2">
+                  <label class="fw-semibold">Jenis Kelamin</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" value="Perempuan" readonly>
+                </div>
+            </div>
+            <div class="row mb-2 align-items-center">
+                <div class="col-md-2">
+                  <label class="fw-semibold">Alamat</label>
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly>
+                </div>
             </div>
             <div class="mb-3">
-              <label>Tanggal Lahir</label>
-              <input type="text" class="form-control" value="26 Oktober 2003" readonly>
+                <div class="col-md-2">
+                    <label>Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama </label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" value="4" readonly>
+                </div>
+                <div>
+                    <label>hari</label>
+                </div>
             </div>
             <div class="mb-3">
-              <label>Jenis Kelamin</label>
-              <input type="text" class="form-control" value="Perempuan" readonly>
+                <div class="col-md-2">
+                    <label>mulai tanggal </label>
+                </div>
+                <input type="text" class="form-control" value="10/02/2025   s/d   13/02/2025" readonly>
             </div>
-            <div class="mb-3">
-              <label>Alamat</label>
-              <textarea class="form-control" readonly>Perumahan Taman Gading Blok 99</textarea>
-            </div>
-            <div class="mb-3">
-              <label>Perlu istirahat selama</label>
-              <input type="text" class="form-control" value="4 hari (10/02/2025 s/d 13/02/2025)" readonly>
-            </div>
-          </div>
         </div>
         <div class="modal-footer justify-content-between">
           <span>Jember, 1 Januari 2025<br>Dokter yang memeriksa: <br><br>(Nama Dokter)<br>SIP.</span>
