@@ -329,13 +329,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="notelpwali">Nomor Telepon Wali: <span
+                                    <label class="form-label" for="telepon">Nomor Telepon Wali: <span
                                             class="danger">*</span></label>
-                                    <input type="number" class="form-control required" id="notelpwali"
-                                        name="notelpwali" placeholder="08xxxxxxxxxx" oninput="validateTelepon(this)"
-                                        maxlength="13" required>
-                                    <small class="error-message" id="notelpwali-error">Nomor telepon wali harus berupa
-                                        10-13 digit angka</small>
+                                    <input type="text" class="form-control required" id="telepon" name="telepon"
+                                        placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13"
+                                        required>
+                                    <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
+                                        angka</small>
                                 </div>
                             </div>
                             <div class="col-md-6">
