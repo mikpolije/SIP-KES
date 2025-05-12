@@ -1151,8 +1151,8 @@
 
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3" >
-                            <div class="col-md-6 mb-4" >
-                                <div class="card p-3 mb-4 h-100">
+                            <div class="col-md-6 mt-3" >
+                                <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
