@@ -143,7 +143,7 @@
                 <div class="col-md-2">
                   <label class="fw-semibold">Alamat</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-10">
                   <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly>
                 </div>
             </div>
