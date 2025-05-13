@@ -2814,7 +2814,7 @@ $('#search-results').hide();
             document.getElementById('keteranganFisik').value = '';
             clearCanvas();
 
-            const modal = bootstrap.Modal.getInstance(document.getElementById('statusLokalisModal'));
+            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('statusLokalisModal'));
             modal.hide();
 
             // const imageData = canvas.toDataURL();
