@@ -152,7 +152,7 @@
                 <label class="fw-semibold">dengan hasil: </label>
             </div>
             <div class="col-md-12">
-                <input type="text" class="form-control" value="Dalam kondisi sehat secara umum, tekanan darah dan tanda vital dalam batas normal. Tidak ditemukan keluhan atau kelainan fisik yang mengganggu aktivitas." readonly style="height: 70px;">
+                <input type="text" class="form-control" value="Dalam kondisi sehat secara umum, tekanan darah dan tanda vital dalam batas normal. Tidak ditemukan keluhan atau kelainan fisik yang mengganggu aktivitas." readonly style="height: 70px;" overflow-y: auto;">
             </div>
             <div class="mb-3">
                 <label class="fw-semibold">Surat ini dipergunakan untuk</label>
