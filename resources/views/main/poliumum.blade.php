@@ -1708,10 +1708,10 @@
                         <div class="col-md-7 text-center">
                             <!-- Toolbar -->
                             <div class="mb-2">
-                                <button class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">
+                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">
                                     ✏️
                                 </button>
-                                <button class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
+                                <button type="button "class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
                                     ❌
                                 </button>
 
@@ -2840,28 +2840,32 @@ $('#search-results').hide();
             }
         });
 
-        function editPemeriksaan(bagian, keterangan, imageDataUrl) {
-        // Isi input dan textarea
-        document.getElementById('bagianDiperiksa').value = bagian;
-        document.getElementById('keteranganFisik').value = keterangan;
+        function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
+            document.getElementById('bagianDiperiksa').value = bagian;
+            document.getElementById('keteranganFisik').value = keterangan;
 
-        // Buka modal
-        const modal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
-        modal.show();
+            const modal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
+            modal.show();
 
-        // Tampilkan gambar coretan ke canvas setelah modal terbuka
-        $('#statusLokalisModal').on('shown.bs.modal', function () {
-            const canvas = document.getElementById('bodyCanvas');
-            const ctx = canvas.getContext('2d');
-            const img = new Image();
-            img.onload = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            };
-            img.src = '/build/images/gambarmedis/Status-lokalis.jpg';
-        });
-    }
-
+            $('#statusLokalisModal').off('shown.bs.modal').on('shown.bs.modal', function () {
+                const ctx = canvas.getContext('2d');
+                const background = new Image();
+                background.onload = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+                    
+                    if (imageDataUrl) {
+                        const overlay = new Image();
+                        overlay.onload = () => {
+                            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+                        };
+                        overlay.src = imageDataUrl;
+                    }
+                };
+                background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
+            });
+        }
+    
     </script>
 
 
