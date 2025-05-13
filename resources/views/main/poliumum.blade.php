@@ -925,7 +925,7 @@
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
                                                     <td class="text-center">
-                                                    <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
+                                                    <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#statusLokalisModal" title="Lihat Rincian">
                                                         <i class="bi bi-eye"></i>
                                                     </button>
                                                     </td>
@@ -1686,21 +1686,6 @@
             </div>
         </div>
     </div>
-    </div>
-
-    <!-- Pop-up Rincian Pemeriksaan -->
-    <div id="detailModal" style="display:none; position:fixed; top:20%; left:35%; z-index:9999; background:#fff; padding:20px; border:1px solid #ccc; border-radius:10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 30%;">
-        <h5>Rincian Pemeriksaan</h5>
-        <div class="mb-2">
-            <label class="form-label">Bagian yang Diperiksa</label>
-            <input type="text" class="form-control" id="editBagian" placeholder="Ketik di sini" />Kepala
-        </div>
-        <div class="mb-2">
-            <label class="form-label">Keterangan</label>
-            <textarea class="form-control" id="editKeterangan" rows="5" placeholder="Ketik di sini" >Kelainan pada pembuluh darah</textarea>
-        </div>
-        <button class="btn btn-sm btn-success" onclick="simpanEdit()">Simpan</button>
-        <button class="btn btn-sm btn-secondary" onclick="tutupPopup()">Tutup</button>
     </div>
 
    <!-- Modal Pemeriksaan Fisik dengan Canvas -->
@@ -2873,7 +2858,7 @@ $('#search-results').hide();
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             };
-            img.src = imageDataUrl;
+            img.src = '/build/images/gambarmedis/Status-lokalis.jpg';
         });
     }
 
