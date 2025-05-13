@@ -902,7 +902,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <label class="fw-bold" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
+                                        <label class="form-label" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
                                             data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>

@@ -21,8 +21,9 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/{dokter}', 'doctor.edit')->name('edit');
 });
 
-//Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
-//Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
+// Route General Consent
+Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
+Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
 
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
