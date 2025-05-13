@@ -1491,6 +1491,12 @@
                                                 #rincian-obat tr {
                                                     border-bottom: none !important;
                                                 }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
                                             </style>
                                             <tr>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
