@@ -2773,6 +2773,12 @@
             });
         </script>
 
+        <script>
+            .danger {
+                color: red;
+            }
+        </script>
+
         {{-- <!-- ICD-10 Search Script -->
     <script>
         $(document).ready(function() {
