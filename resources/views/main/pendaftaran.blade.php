@@ -413,8 +413,9 @@
                                                 class="danger">*</span></label>
                                         <select class="form-select required" id="layanan" name="layanan">
                                             <option value="poliumum">Poli Umum</option>
-                                            <option value="poligigi">Poli Gigi</option>
                                             <option value="kia">KIA</option>
+                                            <option value="rawatinap">Rawat Inap</option>
+                                            <option value="ugd">UGD</option>
                                             <option value="circum">Circum</option>
                                             <option value="vaksin">Vaksin Internasional</option>
                                         </select>
@@ -427,7 +428,7 @@
                                         <select class="form-select required" id="dokter" name="dokter">
                                             <option value="dr1">dr. Ida Lailatul Hasanah</option>
                                             <option value="dr2">dr. Dewi Wahyu Wulandari</option>
-                                            <option value="dr3">dr. Nina Raditya Septiana</option>
+                                            <option value="dr3">drg. Nina Raditya Septiana</option>
                                         </select>
                                     </div>
                                 </div>
