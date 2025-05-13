@@ -148,11 +148,11 @@
             </div>
             <div class="mb-3 d-flex align-items-center gap-2">
                 <label class="fw-semibold">Telah menjalani pemeriksaan kesehatan jasmani pada tanggal</label>
-                <input type="text" class="form-control" value="10/02/2025" readonly style="width: 250px;">
+                <input type="text" class="form-control" value="10/02/2025" readonly>
                 <label class="fw-semibold">dengan hasil: </label>
             </div>
             <div class="mb-3 d-flex align-items-center">
-                <input type="text" class="form-control" value="Dalam kondisi sehat secara umum, tekanan darah dan tanda vital dalam batas normal. Tidak ditemukan keluhan atau kelainan fisik yang mengganggu aktivitas." readonly style="height: 40px;">
+                <input type="text" class="form-control" value="Dalam kondisi sehat secara umum, tekanan darah dan tanda vital dalam batas normal. Tidak ditemukan keluhan atau kelainan fisik yang mengganggu aktivitas." readonly>
             </div>
             <div class="mb-3">
                 <label class="fw-semibold">Surat ini dipergunakan untuk</label>
