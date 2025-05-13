@@ -1487,11 +1487,6 @@
                                                     border: none !important;
                                                     border-collapse: collapse;
                                                 }
-
-                                                .table-obat th, 
-                                                .table-obat td {
-                                                    background-color: transparent !important;
-                                                }
                                             </style>
                                             <tr>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
