@@ -1133,8 +1133,8 @@
 
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3 mt-4" >
-                            <div class="col-md-6 mt-4" >
-                                <div class="card p-3 h-100">
+                            <div class="col-md-6" >
+                                <div class="card p-3  h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
@@ -1145,9 +1145,9 @@
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
+                                                <th>Jumlah</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Harga Layanan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1161,7 +1161,7 @@
                             <!-- Modal -->
                             <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Data Layanan</h1>
@@ -1170,22 +1170,14 @@
                                         </div>
                                         <div class="modal-body">
                                             <table id="layananTable" class="display">
-                                                <div class="mb-3 d-flex justify-content-between align-items-center">
-                                            <label>
-                                                Tampilkan
-                                                <select class="form-select d-inline w-auto mx-1">
-                                                    <option>10</option>
-                                                    <option>25</option>
-                                                    <option>50</option>
-                                                </select>
-                                                entri
-                                            </label>
-                                            <label>
-                                                Cari :
-                                                <input type="text" class="form-control d-inline w-auto"
-                                                    placeholder="Cari...">
-                                            </label>
-                                        </div>
+                                                <label>Tampilkan
+                                                    <select>
+                                                        <option>10</option>
+                                                        <option>25</option>
+                                                        <option>50</option>
+                                                    </select> entri
+                                                </label>
+                                                <input type="text" placeholder="Cari..." style="float: right;">
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -1245,42 +1237,19 @@
                                                             <td>Cek Gula Darah</td>
                                                             <td>Rp 10.000,-</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td><button class="btn-pilih">Pilih</button></td>
-                                                            <td>Injeksi Vitamin A</td>
-                                                            <td>Rp 80.000,-</td>
-                                                        </tr>
                                                     </tbody>
                                                 </table>
-                                                                                                        <div style="margin-top: 15px;">
-                                                            <div>
-                                                                Menampilkan 1 sampai 10 dari 155 entri
-                                                            </div>
-                                                            <div style="margin-top: 10px; text-align: right;">
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
-                                                                <button
-                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
-                                                            </div>
-                                                        </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Sebelumnya</button>
+                                            <button type="button" class="btn btn-primary">Selanjutnya</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mt-4">
+                            <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
                                     <style>
@@ -1478,9 +1447,9 @@
                                     <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
+                                                <th>Jumlah</th>
+                                                <th>Nama Obat</th>
+                                                <th>Harga Obat</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rincian-body">
