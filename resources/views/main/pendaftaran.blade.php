@@ -807,8 +807,7 @@
                             </div>
                             <div class="col-md-6 shadow-sm">
                                 <div class="card">
-                                    <label class="form-label" for="objective">Objective</label>
-                                    <div class="card-body">
+                                        <label class="form-label" for="objective">Objective</label>
                                         <div class="row"> 
                                             <!-- Left Column -->
                                             <div class="col-md-6">
@@ -874,7 +873,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
