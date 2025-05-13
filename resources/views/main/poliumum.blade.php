@@ -2779,10 +2779,35 @@ $('#search-results').hide();
         function saveCanvas() {
             if (event) event.preventDefault(); // penting agar tidak reload
 
-            const imageData = canvas.toDataURL();
-            console.log("Saved image data:", imageData);
-            alert("Gambar disimpan!");
+            const imageData = canvas.toDataURL();  // hasil gambar coretan
+            const bagian = document.getElementById('bagianDiperiksa').value;
+            const keterangan = document.getElementById('keteranganFisik').value;
+
+            const dummyData = {
+                bagian,
+                keterangan,
+                imageData
+            };
+
+            console.log("Data dummy:", dummyData);
+            alert("Data dummy sudah di-generate! Lihat console.");
+
+            // const imageData = canvas.toDataURL();
+            // console.log("Saved image data:", imageData);
+            // alert("Gambar disimpan!");
             // Kirim imageData via AJAX atau simpan sesuai kebutuhan
+        }
+
+        function loadDummyData(dummy) {
+            document.getElementById('bagianDiperiksa').value = dummy.bagian;
+            document.getElementById('keteranganFisik').value = dummy.keterangan;
+
+            const img = new Image();
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+            img.src = dummy.imageData;
         }
 
         canvas.addEventListener('mousedown', (e) => {
