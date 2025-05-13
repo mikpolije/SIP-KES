@@ -1716,10 +1716,10 @@
                                 </button>
 
                             <!-- Warna Coretan -->
-                                <button class="btn btn-sm btn-outline-danger" onclick="setColor('red')">🔴</button>
-                                <button class="btn btn-sm btn-outline-primary" onclick="setColor('blue')">🔵</button>
-                                <button class="btn btn-sm btn-outline-success" onclick="setColor('green')">🟢</button>
-                                <button class="btn btn-sm btn-outline-dark" onclick="setColor('black')">⚫</button>
+                            <button class="btn btn-sm btn-outline-danger color-button" onclick="setColor('red', this)">🔴</button>
+                            <button class="btn btn-sm btn-outline-primary color-button" onclick="setColor('blue', this)">🔵</button>
+                            <button class="btn btn-sm btn-outline-success color-button" onclick="setColor('green', this)">🟢</button>
+                            <button class="btn btn-sm btn-outline-dark color-button" onclick="setColor('black', this)">⚫</button>
                             </div>
 
                             <!-- Canvas -->
@@ -2780,15 +2780,15 @@ $('#search-results').hide();
             }
         }
 
-        function setColor(color) {
+        function setColor(color, buttonElement) {
             currentColor = color;
 
-            // Hapus class 'active' dari semua tombol warna
-            const buttons = document.querySelectorAll('#colorButtons button');
+            // Hapus semua indikator aktif
+            const buttons = document.querySelectorAll('.color-button');
             buttons.forEach(btn => btn.classList.remove('active'));
 
             // Tambahkan class 'active' ke tombol yang ditekan
-            button.classList.add('active');
+            buttonElement.classList.add('active');
         }
 
         function clearCanvas() {
