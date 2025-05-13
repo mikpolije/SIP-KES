@@ -1478,7 +1478,7 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table id="rincian-obat" class="table text-center" >
+                                    <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
                                                 #rincian-obat, 
