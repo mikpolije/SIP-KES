@@ -7,7 +7,67 @@
     }
 </style>
 
+<style>
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #17a2b8;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        display: none;
+        animation: slideIn 0.5s ease-out;
+    }
+
+    /* Animasi slide-in */
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+</style>
+
 @section('pageContent')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifikasi Pojok Kanan Atas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap @5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Styling untuk notifikasi */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #17a2b8;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        /* Animasi slide-in */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
     <div class="container-fluid">
         <div class="card w-100">
             <div class="card-body wizard-content">
@@ -1793,8 +1853,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer border-0">
-                        <button class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
+                    <!-- Tombol "Simpan" -->
+                    <div class="container mt-5 text-center">
+                        <button type="button" class="btn btn-primary" id="saveButton">Simpan</button>
+                    </div>
+
+                    <!-- Elemen Notifikasi -->
+                    <div class="notification" id="notification">
+                        <i class="bi bi-info-circle"></i>
+                        <strong>Data Pasien Tersimpan ke Antrian</strong>
                     </div>
                 </div>
             </div>
@@ -2683,6 +2750,29 @@
                     }
                 }
             }
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons @1.10.5/font/bootstrap-icons.min.js"></script>
+
+
+        <script>
+            // Fungsi untuk menampilkan notifikasi
+            function showNotification() {
+                const notification = document.getElementById('notification');
+                notification.style.display = 'block';
+
+                // Sembunyikan notifikasi setelah 3 detik
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+
+            // Event listener untuk tombol "Simpan"
+            document.getElementById('saveButton').addEventListener('click', () => {
+                console.log('Data pasien berhasil disimpan.');
+                showNotification();
+            });
         </script>
 
         {{-- <!-- ICD-10 Search Script -->
