@@ -148,7 +148,7 @@
             </div>
             <div class="mb-3 d-flex align-items-center gap-2">
                 <label class="fw-semibold">Telah menjalani pemeriksaan kesehatan jasmani pada tanggal</label>
-                <input type="text" class="form-control" value="10/02/2025" readonly style="width: 150px;">
+                <input type="text" class="form-control" value="10/02/2025" readonly style="width: 100px;">
                 <label class="fw-semibold">dengan hasil: </label>
             </div>
             <div class="col-md-12">
