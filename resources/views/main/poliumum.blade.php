@@ -1525,9 +1525,9 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6 flex-fill h-100">
+                            <div class="col-md-6 mt-4">
                                 <div class="card p-3 h-100">
-                                    <label cla-label fw-bold">Catatan</label>
+                                    <label class="form-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
                                 </div>
                             </div>
