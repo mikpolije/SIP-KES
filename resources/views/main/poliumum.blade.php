@@ -1496,25 +1496,22 @@
                             </div>
                         </div>
                     </div>
-
-
+ 
                         <!-- Rencana Kontrol dan Catatan -->
-                    <div class="row-container">
-                        <div class="row mb-3 mt-4">
-                            <div class="col-md-6 d-flex flex-column">
-                               <div class="card p-3 h-100">
+                        <div class="row">
+                            <div class="col-md-6 mt-4">
+                                <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="input-group mb-2">
                                          <input type="date" class="form-control">
                                          <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                          <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
                                     </div>
-                                    </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Tanggal Kontrol</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Alasan Kontrol</th>
+                                                <th>Tanggal Kontrol</th>
+                                                <th>Alasan Kontrol</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1532,7 +1529,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </section>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
