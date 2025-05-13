@@ -1136,6 +1136,7 @@
                         <div class="row mb-3 mt-4" >
                             <div class="col-md-6" >
                                 <div class="card p-3  h-100">
+                                    <div class="card-body">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
@@ -1157,6 +1158,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Modal -->
@@ -1527,7 +1529,7 @@
                             </div>
                             <div class="col-md-6 flex-fill h-100">
                                 <div class="card p-3 h-100">
-                                    <label class="form-label fw-bold">Catatan</label>
+                                    <label cla-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
                                 </div>
                             </div>
