@@ -904,7 +904,7 @@
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <label class="fw-bold" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah+</button>
+                                            data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -924,8 +924,9 @@
                                                     data-bs-target="#statusLokalisModal" data-bagian="Kepala" data-keterangan="Kelainan pada pembuluh darah"
                                                     title="Lihat Rincian">
                                                     <i class="bi bi-eye"></i>
-                                                </button>
-
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-danger" title="Hapus" onclick="hapusBaris(this)">
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                     </td>
                                                 </tr>
@@ -2735,6 +2736,12 @@ $('#search-results').hide();
         let undoStack = [];
         let redoStack = [];
         let currentColor = 'red'; // Warna default
+
+
+        function hapusBaris(button) {
+            const row = button.closest('tr'); // Ambil elemen <tr> terdekat dari tombol
+            row.remove(); // Hapus baris dari tabel
+        }
 
         function toggleDrawMode() {
             drawEnabled = !drawEnabled;
