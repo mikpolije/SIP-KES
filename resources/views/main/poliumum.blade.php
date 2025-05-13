@@ -1163,9 +1163,9 @@
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
