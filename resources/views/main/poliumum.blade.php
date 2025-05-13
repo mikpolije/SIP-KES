@@ -2768,19 +2768,15 @@ $('#search-results').hide();
         let initialized = false;
         let currentColor = 'black'; // Warna default
 
-        function setDrawMode(enabled) {
-            drawEnabled = enabled;
-
-            // Toggle visual state tombol
-            const btnDraw = document.getElementById('btnDraw');
-            const btnDisableDraw = document.getElementById('btnDisableDraw');
-
-            if (enabled) {
-                btnDraw.classList.add('active');
-                btnDisableDraw.classList.remove('active');
+        function toggleDrawMode() {
+            drawEnabled = !drawEnabled;
+            const button = document.getElementById('btnDrawToggle');
+            if (drawEnabled) {
+                button.classList.add('active');
+                button.innerHTML = '🛑'; // misalnya ganti ikon saat aktif
             } else {
-                btnDraw.classList.remove('active');
-                btnDisableDraw.classList.add('active');
+                button.classList.remove('active');
+                button.innerHTML = '✏️'; // ikon default
             }
         }
 
