@@ -1468,6 +1468,7 @@
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rincian-body">
