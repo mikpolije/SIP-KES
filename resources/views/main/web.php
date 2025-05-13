@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Pembayaran;
 use App\Http\Controllers\PembayaranController;
 use Illuminate\Support\Facades\Route;
 

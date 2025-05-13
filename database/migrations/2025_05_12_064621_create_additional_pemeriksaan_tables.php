@@ -2,7 +2,6 @@
 
 use App\Models\Layanan;
 use App\Models\Obat;
-use App\Models\Pemeriksaan;
 use App\Models\Pendaftaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

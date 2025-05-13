@@ -23,7 +23,7 @@ return new class extends Migration
                 ->on('pasiens')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-                
+
             $table->foreign('layanan_id')
                 ->references('id')
                 ->on('layanan')

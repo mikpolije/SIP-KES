@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Layanan extends Model
 {
     protected $table = 'layanan';
+
     protected $fillable = [
         'nama_layanan',
         'tarif_layanan',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 }

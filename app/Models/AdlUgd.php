@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AdlUgd extends Model
 {
     protected $table = 'adl_ugds';
+
     protected $fillable = [
         'pasien_id',
         'makan',
@@ -20,10 +21,10 @@ class AdlUgd extends Model
         'mengontrol_bab',
         'mengontrol_bak',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    public function pasien ()
+    public function pasien()
     {
         return $this->belongsTo(Pasien::class, 'pasien_id', 'id');
     }

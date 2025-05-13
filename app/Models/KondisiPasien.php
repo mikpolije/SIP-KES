@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class KondisiPasien extends Model
 {
     protected $table = 'kondisi_pasiens';
+
     protected $fillable = [
         'pasien_id',
         'tanggal_masuk',
@@ -62,7 +63,8 @@ class KondisiPasien extends Model
         'updated_at',
     ];
 
-    public function pasien () {
+    public function pasien()
+    {
         return $this->belongsTo(Pasien::class, 'pasien_id', 'id');
     }
 }

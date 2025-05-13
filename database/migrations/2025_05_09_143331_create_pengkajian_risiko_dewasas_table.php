@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('gaya_berjalan')->nullable();
             $table->integer('status_mental')->nullable();
             $table->timestamps();
-            
+
             $table->foreign('pasien_id')
                 ->references('id')
                 ->on('pasiens')

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PageController extends Controller
 {
     public function show($base, $view)
@@ -21,7 +19,7 @@ class PageController extends Controller
 
     public function showByPath($path)
     {
-        $view = 'main.' . str_replace('/', '.', $path);
+        $view = 'main.'.str_replace('/', '.', $path);
 
         if (view()->exists($view)) {
             return view($view);

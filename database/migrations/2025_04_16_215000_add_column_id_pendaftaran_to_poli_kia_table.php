@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pendaftaran');
             $table->string('no_antrian');
             $table->date('tanggal');
-            $table->enum('jenis_pemeriksaan', ['Kehamilan','Persalinan','KB','Anak']);
+            $table->enum('jenis_pemeriksaan', ['Kehamilan', 'Persalinan', 'KB', 'Anak']);
             $table->text('keluhan');
             $table->integer('sistole');
             $table->integer('diastole');

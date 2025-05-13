@@ -64,7 +64,7 @@ class Pendaftaran extends Model
 
     public function getLayananTerisiAttribute()
     {
-        if (!$this->relationLoaded('layanan_kia')) {
+        if (! $this->relationLoaded('layanan_kia')) {
             $this->load('layanan_kia');
         }
 
@@ -78,5 +78,4 @@ class Pendaftaran extends Model
             default => false,
         };
     }
-
 }

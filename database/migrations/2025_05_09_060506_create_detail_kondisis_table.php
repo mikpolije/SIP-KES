@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pasien_id');
             $table->string('keluhan')->nullable();
-            
+
             // Objective
             $table->double('sistole')->nullable();
             $table->double('diastole')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->double('spo02')->nullable();
             $table->double('respiration_rate')->nullable();
             $table->double('nadi')->nullable();
-            
+
             $table->string('plan')->nullable();
             $table->string('assesment')->nullable();
 

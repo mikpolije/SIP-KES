@@ -46,14 +46,14 @@ class DoctorsTable extends DataTableComponent
             ButtonGroupColumn::make('Aksi')
                 ->buttons([
                     LinkColumn::make('Edit')
-                        ->title(fn($row) => 'Edit')
-                        ->location(fn($row) => route('doctor.edit', $row))
+                        ->title(fn ($row) => 'Edit')
+                        ->location(fn ($row) => route('doctor.edit', $row))
                         ->attributes(function ($row) {
                             return [
                                 'class' => 'underline text-blue-500 hover:no-underline',
                             ];
                         }),
-                ])
+                ]),
         ];
     }
 }

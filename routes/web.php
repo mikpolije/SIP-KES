@@ -1,14 +1,12 @@
 <?php
 
-use App\Http\Controllers\Master\DoctorController;
-use App\Http\Controllers\PasienController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
-use Livewire\Volt\Volt;
-use App\Http\Controllers\generalConsentController;
-use App\Http\Controllers\TriageController;
-use App\Http\Controllers\LayananController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\generalConsentController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\TriageController;
+use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 Route::get('/', function () {
     return view('main.index');
@@ -48,19 +46,18 @@ Route::prefix('main/poliumum')->group(function () {
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
 
-// Route detail riwayat pasien 
-Route::get('/poli-umum/detail/{rm}', function($rm) {
+// Route detail riwayat pasien
+Route::get('/poli-umum/detail/{rm}', function ($rm) {
     return view('PoliUmum.detailPasien');
 })->name('poli-umum.detail');
-
 
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
+use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 
 // Route Surat Keterangan Sehat
 Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
@@ -70,6 +67,6 @@ Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'in
 
 // Route Riwayat Medis
 use App\Http\Controllers\RiwayatMedisController;
+
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
-

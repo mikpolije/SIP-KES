@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PengkajianRisikoDewasa extends Model
 {
     protected $table = 'pengkajian_risiko_dewasas';
+
     protected $fillable = [
         'pasien_id',
         'riwayat_jatuh',
@@ -16,6 +17,6 @@ class PengkajianRisikoDewasa extends Model
         'gaya_berjalan',
         'status_mental',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 }

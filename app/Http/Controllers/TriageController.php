@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\AdlUgd;
 use App\Models\DetailKondisi;
-use App\Models\KondisiPasien;
-use App\Models\Layanan;
-use App\Models\Pasien;
 use App\Models\ICD;
 use App\Models\IcdUgd;
+use App\Models\KondisiPasien;
+use App\Models\Layanan;
 use App\Models\LayananUGD;
 use App\Models\Obat;
 use App\Models\ObatUGD;
+use App\Models\Pasien;
 use App\Models\PengkajianRisikoDewasa;
 use App\Models\RencanaKontrolUGD;
 use Exception;
@@ -24,13 +24,14 @@ use Yajra\DataTables\DataTables;
 class TriageController extends Controller
 {
     private $title = 'UGD SipKes | ';
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data['title'] = $this->title . 'Triase';
-        // $data['data'] = 
+        $data['title'] = $this->title.'Triase';
+        // $data['data'] =
     }
 
     /**
@@ -38,8 +39,9 @@ class TriageController extends Controller
      */
     public function create()
     {
-        $data['title'] = $this->title . 'Tambah Triase';
+        $data['title'] = $this->title.'Tambah Triase';
         $data['listLayanan'] = Layanan::get();
+
         return view('triase.add', compact('data'));
     }
 
@@ -64,8 +66,8 @@ class TriageController extends Controller
 
             $fileLab = $request->file('laboratorium_farmasi');
             $filename = $fileLab->getClientOriginalName();
-            $filepath = public_path() . '/upload/laboratorium_farmasi/'  . $pasien->id;
-            if (!File::isDirectory($filepath)) {
+            $filepath = public_path().'/upload/laboratorium_farmasi/'.$pasien->id;
+            if (! File::isDirectory($filepath)) {
                 mkdir($filepath, 493, true);
             }
             $fileLab->move($filepath, $filename);
@@ -143,67 +145,70 @@ class TriageController extends Controller
             $pengkajianRisiko->created_at = now();
             $pengkajianRisiko->save();
 
-            if(!is_null($request->get('layanan_id'))) {
+            if (! is_null($request->get('layanan_id'))) {
                 $layanans = [];
                 foreach ($request->get('layanan_id') as $key => $item) {
                     array_push($layanans, [
                         'pasien_id' => $pasien->id,
                         'layanan_id' => $item,
-                        'created_at' => now()
+                        'created_at' => now(),
                     ]);
                 }
 
                 $layananUgd->insert($layanans);
             }
 
-            if(!is_null($request->get('obat_id'))) {
+            if (! is_null($request->get('obat_id'))) {
                 $obatsUgd = [];
                 foreach ($request->obat_id as $key => $item) {
                     array_push($obatsUgd, [
                         'pasien_id' => $pasien->id,
                         'obat_id' => $item,
                         'qty' => 1,
-                        'created_at' => now()
+                        'created_at' => now(),
                     ]);
                 }
-                
+
                 $obatUgd->insert($obatsUgd);
             }
 
-            if(!is_null($request->get('alasan_kontrol'))) {
+            if (! is_null($request->get('alasan_kontrol'))) {
                 $rencanaKontrols = [];
                 foreach ($request->alasan_kontrol as $key => $item) {
                     array_push($rencanaKontrols, [
                         'pasien_id' => $pasien->id,
                         'alasan' => $item,
                         'tanggal' => $request->tanggal_kontrol[$key],
-                        'created_at' => now()
+                        'created_at' => now(),
                     ]);
                 }
-                
+
                 $rencanaKontrol->insert($rencanaKontrols);
             }
 
-            if(!is_null($request->get('icd_id'))) {
+            if (! is_null($request->get('icd_id'))) {
                 $icdUgds = [];
                 foreach ($request->icd_id as $key => $item) {
                     array_push($icdUgds, [
                         'pasien_id' => $pasien->id,
                         'icd_id' => $item,
-                        'created_at' => now()
+                        'created_at' => now(),
                     ]);
                 }
-                
+
                 $icdUgd->insert($icdUgds);
             }
 
             DB::commit();
+
             return redirect()->route('triase.show', $pasien->id)->with('success', 'Berhasil menambahkan data.');
         } catch (Exception $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         } catch (QueryException $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -213,22 +218,24 @@ class TriageController extends Controller
      */
     public function show(string $id)
     {
-        $data['title'] = $this->title . 'Outcome Triase';
+        $data['title'] = $this->title.'Outcome Triase';
         $data['data'] = Pasien::where('id', $id)
             ->with('kondisi', 'detail', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'obat', 'obat.obat', 'rencanaKontrol')
             ->first();
+
         // return $data['data'];
         return view('triase.outcome', compact('data'));
     }
 
-    public function printPdf($id) 
+    public function printPdf($id)
     {
-        $data['title'] = $this->title . 'Outcome Triase';
+        $data['title'] = $this->title.'Outcome Triase';
         $data['data'] = Pasien::where('id', $id)
             ->with('kondisi', 'detail', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'obat', 'obat.obat', 'rencanaKontrol')
             ->first();
-            
-        $filenamePdf = 'Outcome Triase UGD - ' . $data['data']->nama . '.pdf';
+
+        $filenamePdf = 'Outcome Triase UGD - '.$data['data']->nama.'.pdf';
+
         // $pdf = SnappyPdf::loadview('triase.print.print', compact('data'));
         // return $pdf->download($filenamePdf);
         return view('triase.print.print', compact('data'));
@@ -258,7 +265,7 @@ class TriageController extends Controller
         //
     }
 
-    public function storePasien (Request $request) 
+    public function storePasien(Request $request)
     {
         // return $request->all();
         DB::beginTransaction();
@@ -276,7 +283,7 @@ class TriageController extends Controller
             $pasien->no_jamkes = $request->get('no_jamkes');
             $pasien->nama_penanggung_jawab = $request->get('nama_penanggung_jawab');
             $pasien->save();
-            
+
             $kondisi->pasien_id = $pasien->id;
             $kondisi->tanggal_masuk = $request->get('tanggal_masuk');
             $kondisi->sarana_transportasi_kedatangan = $request->get('sarana_transportasi_kedatangan');
@@ -333,21 +340,24 @@ class TriageController extends Controller
             $kondisi->save();
 
             DB::commit();
+
             return response()->json([
                 'id' => $pasien->id,
-                'message' => 'Berhasil menambahkan data'
+                'message' => 'Berhasil menambahkan data',
             ]);
         } catch (Exception $e) {
             DB::rollBack();
+
             return response()->json(['message' => $e->getMessage()]);
         } catch (QueryException $e) {
             DB::rollBack();
+
             return response()->json(['message' => $e->getMessage()]);
         }
     }
 
-
-    public function getPasien () {
+    public function getPasien()
+    {
         $pasien = Pasien::with('kondisi')
             ->get();
 
@@ -377,20 +387,22 @@ class TriageController extends Controller
             ->make(true);
     }
 
-    public function getListICD (Request $request)
+    public function getListICD(Request $request)
     {
         $icds = ICD::select('id', 'display', 'kode_diagnosa')
-            ->where('display', 'like', '%'. $request->term . '%')
-            ->orWhere('kode_diagnosa', 'like', '%'. $request->term . '%')
+            ->where('display', 'like', '%'.$request->term.'%')
+            ->orWhere('kode_diagnosa', 'like', '%'.$request->term.'%')
             ->get();
+
         return response()->json($icds, 200);
     }
 
-    public function getObat (Request $request) 
+    public function getObat(Request $request)
     {
         $obats = Obat::select('id', 'nama', 'harga')
-            ->where('nama', 'like', '%'. $request->term . '%')
+            ->where('nama', 'like', '%'.$request->term.'%')
             ->get();
+
         return response()->json($obats, 200);
     }
 }

@@ -60,7 +60,7 @@ return new class extends Migration
             $table->string('kondisi_umum')->nullable();
             $table->string('laborat')->nullable();
             $table->string('laboratorium_farmasi')->nullable();
-            
+
             $table->boolean('aktivitas_fisik')->nullable();
             $table->boolean('konsumsi_alkohol')->nullable();
             $table->boolean('makan_buah_sayur')->nullable();
