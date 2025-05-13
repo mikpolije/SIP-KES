@@ -807,8 +807,8 @@
                             </div>
                             <div class="col-md-6 shadow-sm">
                                 <div class="card">
-                                    <div class="card-body">
                                     <label class="form-label" for="objective">Objective</label>
+                                    <div class="card-body">
                                         <div class="row"> 
                                             <!-- Left Column -->
                                             <div class="col-md-6">
@@ -902,9 +902,9 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
+                                        <label class="fw-bold" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah+</button>
+                                            data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -916,7 +916,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
                                                     <td class="text-center">
@@ -924,11 +924,12 @@
                                                     data-bs-target="#statusLokalisModal" data-bagian="Kepala" data-keterangan="Kelainan pada pembuluh darah"
                                                     title="Lihat Rincian">
                                                     <i class="bi bi-eye"></i>
-                                                </button>
-
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-danger" title="Hapus" onclick="hapusBaris(this)">
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -1133,6 +1134,7 @@
 
 
                         <!-- Layanan dan Rincian Obat -->
+                    <div class="row-container">
                         <div class="row mb-3 mt-4" >
                             <div class="col-md-6" >
                                 <div class="card p-3  h-100">
@@ -1242,6 +1244,29 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                <div style="margin-top: 15px;">
+                                                    <div>
+                                                    Menampilkan 1 sampai 10 dari 155 entri
+                                                    </div>
+                                                    <div style="margin-top: 10px; text-align: right;">
+                                                    <button
+                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                    <button
+                                                            style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                    <button
+                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                    <button
+                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                    <button
+                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                    <button
+                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                    <button
+                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                    <button
+                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -1464,39 +1489,14 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <script>
-                                        function tambahObat(nama, harga) {
-                                            const tbody = document.getElementById("rincian-body");
-
-                                            // Hapus baris "Tidak Ada Data" jika ada
-                                            if (tbody.children.length === 1 && tbody.children[0].textContent.includes("Tidak Ada Data")) {
-                                                tbody.innerHTML = "";
-                                            }
-                                            // Tambahkan data baru
-                                            const row = document.createElement("tr");
-
-                                            const jumlahCell = document.createElement("td");
-                                            jumlahCell.innerText = 1;
-
-                                            const namaCell = document.createElement("td");
-                                            namaCell.innerText = nama;
-
-                                            const hargaCell = document.createElement("td");
-                                            hargaCell.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
-
-                                            row.appendChild(jumlahCell);
-                                            row.appendChild(namaCell);
-                                            row.appendChild(hargaCell);
-
-                                            tbody.appendChild(row);
-                                        }
-                                    </script>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
                         <!-- Rencana Kontrol dan Catatan -->
+                    <div class="row-container">
                         <div class="row mb-3 mt-4">
                             <div class="col-md-6 d-flex flex-column">
                                 <div class="card p-3 flex-fill h-100 w-100">
@@ -1534,6 +1534,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </section>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
@@ -1678,31 +1679,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <!-- CANVAS -->
+                        <!-- Kolom CANVAS -->
                         <div class="col-md-7 text-center">
                             <!-- Toolbar -->
-                            <div class="mb-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">
-                                    ✏️
-                                </button>
-                                <button type="button "class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
-                                    ❌
-                                </button>
-
-                            <!-- Warna Coretan -->
-                            <button class="btn btn-sm btn-outline-danger color-button" onclick="setColor('red', this)">🔴</button>
-                            <button class="btn btn-sm btn-outline-primary color-button" onclick="setColor('blue', this)">🔵</button>
-                            <button class="btn btn-sm btn-outline-success color-button" onclick="setColor('green', this)">🟢</button>
-                            <button class="btn btn-sm btn-outline-dark color-button" onclick="setColor('black', this)">⚫</button>
+                            <div class="mb-1">
+                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">✏️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">↩️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">↪️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">❌</button>
                             </div>
 
                             <!-- Canvas -->
                             <div style="border: 1px solid #ccc; display: inline-block;">
                                 <canvas id="bodyCanvas" width="500" height="500"></canvas>
                             </div>
-                        </div>
+                        </div> <!-- Penutup col-md-7 -->
 
-                        <!-- Form Input -->
+                        <!-- Kolom FORM -->
                         <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
@@ -2740,7 +2733,15 @@ $('#search-results').hide();
         let isDrawing = false;
         let drawEnabled = false;
         let initialized = false;
-        let currentColor = 'black'; // Warna default
+        let undoStack = [];
+        let redoStack = [];
+        let currentColor = 'red'; // Warna default
+
+
+        function hapusBaris(button) {
+            const row = button.closest('tr'); // Ambil elemen <tr> terdekat dari tombol
+            row.remove(); // Hapus baris dari tabel
+        }
 
         function toggleDrawMode() {
             drawEnabled = !drawEnabled;
@@ -2754,15 +2755,20 @@ $('#search-results').hide();
             }
         }
 
-        function setColor(color, buttonElement) {
-            currentColor = color;
+        function undoCanvas() {
+            if (undoStack.length > 0) {
+                const lastState = undoStack.pop();
+                redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke redo
+                ctx.putImageData(lastState, 0, 0);
+            }
+        }
 
-            // Hapus semua indikator aktif
-            const buttons = document.querySelectorAll('.color-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Tambahkan class 'active' ke tombol yang ditekan
-            buttonElement.classList.add('active');
+        function redoCanvas() {
+            if (redoStack.length > 0) {
+                const nextState = redoStack.pop();
+                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke undo
+                ctx.putImageData(nextState, 0, 0);
+            }
         }
 
         function clearCanvas() {
@@ -2771,17 +2777,71 @@ $('#search-results').hide();
         }
 
         function saveCanvas() {
-            if (event) event.preventDefault(); // penting agar tidak reload
+            const bagian = document.getElementById('bagianDiperiksa').value.trim();
+            const keterangan = document.getElementById('keteranganFisik').value.trim();
 
-            const imageData = canvas.toDataURL();
-            console.log("Saved image data:", imageData);
-            alert("Gambar disimpan!");
+            if (!bagian || !keterangan) {
+                alert("Harap isi semua kolom terlebih dahulu.");
+                return;
+            }
+
+            const imageData = canvas.toDataURL("image/png"); // ambil gambar dari canvas
+            const tbody = document.getElementById('pemeriksaanFisikTable');
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${bagian}</td>
+                <td>${keterangan}</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-sm btn-info view-details"
+                        data-bs-toggle="modal"
+                        data-bs-target="#statusLokalisModal"
+                        data-bagian="${bagian}"
+                        data-keterangan="${keterangan}"
+                        data-image="${imageData}"
+                        title="Lihat Rincian">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="hapusBaris(this)" title="Hapus">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(row);
+
+            // Reset form dan canvas
+            document.getElementById('bagianDiperiksa').value = '';
+            document.getElementById('keteranganFisik').value = '';
+            clearCanvas();
+
+            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('statusLokalisModal'));
+            modal.hide();
+
+            // const imageData = canvas.toDataURL();
+            // console.log("Saved image data:", imageData);
+            // alert("Gambar disimpan!");
             // Kirim imageData via AJAX atau simpan sesuai kebutuhan
+        }
+
+        function loadDummyData(dummy) {
+            document.getElementById('bagianDiperiksa').value = dummy.bagian;
+            document.getElementById('keteranganFisik').value = dummy.keterangan;
+
+            const img = new Image();
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+            img.src = dummy.imageData;
         }
 
         canvas.addEventListener('mousedown', (e) => {
             if (!drawEnabled) return;
             isDrawing = true;
+            // Simpan state sebelum menggambar
+            undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+            // Kosongkan redoStack karena ada aksi baru
+            redoStack = [];
             ctx.strokeStyle = currentColor;
             ctx.lineWidth = 2;
             ctx.lineCap = 'round';
