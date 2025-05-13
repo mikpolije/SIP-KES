@@ -211,7 +211,6 @@
                                     <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="rt" name="rt"
                                         oninput="validateNumeric(this, 3)" maxlength="3" required>
-                                    <small class="error-message" id="rt-error">RT harus berupa angka</small>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -219,7 +218,6 @@
                                     <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="rw" name="rw"
                                         oninput="validateNumeric(this, 3)" maxlength="3" required>
-                                    <small class="error-message" id="rw-error">RW harus berupa angka</small>
                                 </div>
                             </div>
                         </div>
