@@ -143,7 +143,7 @@
                   <label class="fw-semibold">Alamat</label>
                 </div>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly style="height: 50px;">
+                  <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly style="height: 100px;">
                 </div>
             </div>
             <div class="mb-3 d-flex align-items-center gap-2">
