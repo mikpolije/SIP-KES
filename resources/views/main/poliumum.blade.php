@@ -1681,7 +1681,7 @@
                         <!-- CANVAS -->
                         <div class="col-md-7 text-center">
                             <!-- Toolbar -->
-                            <div class="mb-2">
+                            <div class="mb-1">
                                 <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">
                                     ✏️
                                 </button>
