@@ -1131,6 +1131,7 @@
                             </div>
                         </div>
 
+
                         <!-- Layanan dan Rincian Obat -->
                         <div class="row mb-3 mt-4" >
                             <div class="col-md-6" >
@@ -1447,9 +1448,9 @@
                                     <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Obat</th>
-                                                <th>Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rincian-body">
@@ -1491,6 +1492,7 @@
                                 </div>
                             </div>
                         </div>
+
 
                         <!-- Rencana Kontrol dan Catatan -->
                         <div class="row mb-3 mt-4">
