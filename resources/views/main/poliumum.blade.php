@@ -1175,14 +1175,22 @@
                                         </div>
                                         <div class="modal-body">
                                             <table id="layananTable" class="display">
-                                                <label>Tampilkan
-                                                    <select>
-                                                        <option>10</option>
-                                                        <option>25</option>
-                                                        <option>50</option>
-                                                    </select> entri
-                                                </label>
-                                                <input type="text" placeholder="Cari..." style="float: right;">
+                                                <div class="mb-3 d-flex justify-content-between align-items-center">
+                                            <label>
+                                                Tampilkan
+                                                <select class="form-select d-inline w-auto mx-1">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                </select>
+                                                entri
+                                            </label>
+                                            <label>
+                                                Cari :
+                                                <input type="text" class="form-control d-inline w-auto"
+                                                    placeholder="Cari...">
+                                            </label>
+                                        </div>
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -1267,11 +1275,6 @@
                                                             style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
                                                     </div>
                                                 </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Sebelumnya</button>
-                                            <button type="button" class="btn btn-primary">Selanjutnya</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1499,18 +1502,13 @@
                     <div class="row-container">
                         <div class="row mb-3 mt-4">
                             <div class="col-md-6 d-flex flex-column">
-                                <div class="card p-3 flex-fill h-100 w-100">
+                               <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="row g-2 mb-2">
-                                        <div class="col-md-4">
-                                            <input type="date" class="form-control">
-                                        </div>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
-                                        </div>
+                                    <div class="input-group mb-2">
+                                         <input type="date" class="form-control">
+                                         <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                         <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
+                                    </div>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
