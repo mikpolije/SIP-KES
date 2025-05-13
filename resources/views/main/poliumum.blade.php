@@ -1528,10 +1528,16 @@
                             <div class="col-md-6 d-flex flex-column">
                                 <div class="card p-3 flex-fill h-100 w-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="input-group mb-2">
-                                         <input type="date" class="form-control">
-                                         <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                         <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
+                                    <div class="row g-2 mb-2">
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
+                                        </div>
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
