@@ -99,7 +99,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="detailModalLabel">Surat Keterangan Sakit</h5>
+          <h5 class="modal-title" id="detailModalLabel">Surat Keterangan Sehat</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -148,7 +148,7 @@
             </div>
             <div class="mb-3 d-flex align-items-center gap-2">
                 <label class="fw-semibold">Telah menjalani pemeriksaan kesehatan jasmani pada tanggal</label>
-                <input type="text" class="form-control" value="10/02/2025" readonly>
+                <input type="text" class="form-control" value="10/02/2025" readonly style="width: 150px;">
                 <label class="fw-semibold">dengan hasil: </label>
             </div>
             <div class="mb-3 d-flex align-items-center">
