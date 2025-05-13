@@ -902,7 +902,7 @@
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
+                                        <h6 class="fw-bold mb-0">PEMERIKSAAN FISIK</h6>
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
                                             data-bs-target="#statusLokalisModal">Tambah+</button>
                                     </div>
@@ -1673,7 +1673,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content rounded shadow">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">PEMERIKSAAN FISIK</h5>
+                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
