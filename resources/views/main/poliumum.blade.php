@@ -1673,7 +1673,7 @@
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content rounded shadow">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
+                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">PEMERIKSAAN FISIK</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
@@ -1685,16 +1685,15 @@
                                 <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">
                                     ✏️
                                 </button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">
+                                    ↩️
+                                </button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">
+                                    ↪️
+                                </button>
                                 <button type="button "class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
                                     ❌
                                 </button>
-
-                            <!-- Warna Coretan -->
-                            <button class="btn btn-sm btn-outline-danger color-button" onclick="setColor('red', this)">🔴</button>
-                            <button class="btn btn-sm btn-outline-primary color-button" onclick="setColor('blue', this)">🔵</button>
-                            <button class="btn btn-sm btn-outline-success color-button" onclick="setColor('green', this)">🟢</button>
-                            <button class="btn btn-sm btn-outline-dark color-button" onclick="setColor('black', this)">⚫</button>
-                            </div>
 
                             <!-- Canvas -->
                             <div style="border: 1px solid #ccc; display: inline-block;">
@@ -2740,7 +2739,9 @@ $('#search-results').hide();
         let isDrawing = false;
         let drawEnabled = false;
         let initialized = false;
-        let currentColor = 'black'; // Warna default
+        let undoStack = [];
+        let redoStack = [];
+        let currentColor = 'red'; // Warna default
 
         function toggleDrawMode() {
             drawEnabled = !drawEnabled;
@@ -2754,15 +2755,20 @@ $('#search-results').hide();
             }
         }
 
-        function setColor(color, buttonElement) {
-            currentColor = color;
+        function undoCanvas() {
+            if (undoStack.length > 0) {
+                const lastState = undoStack.pop();
+                redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke redo
+                ctx.putImageData(lastState, 0, 0);
+            }
+        }
 
-            // Hapus semua indikator aktif
-            const buttons = document.querySelectorAll('.color-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Tambahkan class 'active' ke tombol yang ditekan
-            buttonElement.classList.add('active');
+        function redoCanvas() {
+            if (redoStack.length > 0) {
+                const nextState = redoStack.pop();
+                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke undo
+                ctx.putImageData(nextState, 0, 0);
+            }
         }
 
         function clearCanvas() {
@@ -2782,6 +2788,10 @@ $('#search-results').hide();
         canvas.addEventListener('mousedown', (e) => {
             if (!drawEnabled) return;
             isDrawing = true;
+            // Simpan state sebelum menggambar
+            undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+            // Kosongkan redoStack karena ada aksi baru
+            redoStack = [];
             ctx.strokeStyle = currentColor;
             ctx.lineWidth = 2;
             ctx.lineCap = 'round';
