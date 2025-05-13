@@ -1480,14 +1480,7 @@
 
                                     <table id="rincian-obat" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <style>
+                                            <style>
                                             table, th, td {
                                                 border: none !important;
                                                 border-collapse: collapse;
@@ -1496,7 +1489,14 @@
                                             th, td {
                                                 border: none !important;
                                             }
-                                        </style>
+                                            </style>
+                                            <tr>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
+                                            </tr>
+                                        </thead>
                                         <tbody id="rincian-body">
                                             <tr>
                                                 <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
