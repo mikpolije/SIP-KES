@@ -1478,14 +1478,18 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table class="table-obat" id="rincian-obat" class="table table-bordered text-center" >
+                                    <table id="rincian-obat" class="table text-center" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                                .table-obat, 
-                                                .table-obat th, 
-                                                .table-obat td {
+                                                #rincian-obat, 
+                                                #rincian-obat th, 
+                                                #rincian-obat td {
                                                     border: none !important;
                                                     border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat tr {
+                                                    border-bottom: none !important;
                                                 }
                                             </style>
                                             <tr>
