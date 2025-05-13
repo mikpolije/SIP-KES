@@ -1134,21 +1134,6 @@
 
                         <!-- Layanan dan Rincian Obat -->
                     <div class="row-container">
-                        <style>
-                            .row-container {
-                            display: flex;
-                            gap: 1rem; /* jarak antar card */
-                            }
-
-                            .card {
-                            flex: 1; /* semua card sama besar */
-                            padding: 1rem;
-                            background: #fff;
-                            border: 1px solid #ccc;
-                            border-radius: 8px;
-                            min-height: 500px; /* atur sesuai kebutuhan */
-                            }
-                        </style>
                         <div class="row mb-3 mt-4" >
                             <div class="col-md-6" >
                                 <div class="card p-3  h-100">
