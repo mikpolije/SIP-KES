@@ -462,7 +462,7 @@
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                            id="sistole-mask" name="sistole" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
@@ -470,10 +470,8 @@
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control required decimal-input" 
-                                                               id="berat-mask" pattern="[0-9.,]*" inputmode="decimal"
-                                                               required
-                                                               oninvalid="this.setCustomValidity('Harap isi berat badan')"
-                                                               oninput="this.setCustomValidity('')">
+                                                               id="berat-mask" name="berat-badan" pattern="[0-9.,]*" inputmode="decimal"
+                                                               >
                                                         <span class="input-group-text">kg</span>
                                                     </div>
                                                     <div class="invalid-feedback">Berat badan harus diisi</div>
@@ -482,7 +480,7 @@
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            id="suhu-mask" name="suhu" pattern="[0-9.,]*" inputmode="decimal"
                                                             required>
                                                         <span class="input-group-text">°C</span>
                                                         <div class="invalid-feedback">
@@ -494,7 +492,7 @@
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            id="resprate-mask" name="respiratory"  pattern="[0-9]*" inputmode="numeric"
                                                             required>
                                                         <span class="input-group-text">/mnt</span>
                                                         <div class="invalid-feedback">
@@ -510,7 +508,7 @@
                                                     <label class="form-label">Diastole</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            id="diastole-mask" name="diastole" pattern="[0-9]*" inputmode="numeric"
                                                             required>
                                                         <span class="input-group-text">mmHg</span>
                                                         <div class="invalid-feedback">
@@ -522,7 +520,7 @@
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            id="tinggi-mask" name="tinggi-badan" pattern="[0-9.,]*" inputmode="decimal"
                                                             required>
                                                         <span class="input-group-text">cm</span>
                                                         <div class="invalid-feedback">
@@ -534,7 +532,7 @@
                                                     <label class="form-label">SpO2</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                            id="spo2-mask" name="spo2" pattern="[0-9]*" inputmode="numeric" required>
                                                         <span class="input-group-text">%</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
@@ -628,15 +626,22 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <table id="icdTable" class="display">
-                                                        <label>Tampilkan
-                                                            <select>
-                                                                <option>10</option>
-                                                                <option>25</option>
-                                                                <option>50</option>
-                                                            </select> entri
-                                                        </label>
-                                                        <input type="text" placeholder="Cari..."
-                                                            style="float: right;">
+                                                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                                                            <label>
+                                                                Tampilkan
+                                                                <select class="form-select d-inline w-auto mx-1">
+                                                                    <option>10</option>
+                                                                    <option>25</option>
+                                                                    <option>50</option>
+                                                                </select>
+                                                                entri
+                                                            </label>
+                                                            <label>
+                                                                Cari :
+                                                                <input type="text" class="form-control d-inline w-auto"
+                                                                    placeholder="Cari...">
+                                                            </label>
+                                                        </div>
                                                         <table>
                                                             <thead>
                                                                 <tr>
