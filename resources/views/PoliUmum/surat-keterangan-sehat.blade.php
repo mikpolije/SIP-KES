@@ -148,7 +148,7 @@
             </div>
             <div class="mb-3 d-flex align-items-center gap-2">
                 <label class="fw-semibold">Telah menjalani pemeriksaan kesehatan jasmani pada tanggal</label>
-                <textarea class="form-control" readonly rows="3" style="width: 150px" style="resize: none; white-space: pre-wrap;">10/02/2025</textarea>
+                <textarea class="form-control" readonly rows="3" style="resize: none; white-space: pre-wrap;">10/02/2025</textarea>
                 <label class="fw-semibold">dengan hasil: </label>
             </div>
             <div class="col-md-12">
