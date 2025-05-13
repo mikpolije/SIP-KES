@@ -910,9 +910,9 @@
                                         <table class="table table-bordered">
                                             <thead style="background-color: #B3B9F9;">
                                                 <tr>
-                                                    <th class="text-center">Nama</th>
-                                                    <th class="text-center">Keterangan</th>
-                                                    <th class="text-center">Rincian</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Keterangan</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rincian</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
@@ -1146,9 +1146,9 @@
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1513,8 +1513,8 @@
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <tr>
-                                                <th>Tanggal Kontrol</th>
-                                                <th>Alasan Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Tanggal Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Alasan Kontrol</th>
                                             </tr>
                                         </thead>
                                         <tbody>
