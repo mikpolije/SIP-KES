@@ -31,6 +31,12 @@ Route::resource('/layanan', LayananController::class);
 Route::resource('/triase', TriageController::class);
 
 Route::get('/get-layanan-by-ajax', [LayananController::class, 'getByAjax'])->name('get-layanan-by-ajax');
+Route::get('/get-list-layanan', [LayananController::class, 'getListLayanan'])->name('get-list-layanan');
+Route::get('/get-list-icd', [TriageController::class, 'getListICD'])->name('get-list-icd');
+Route::post('/store-pasien', [TriageController::class, 'storePasien'])->name('store-pasien');
+Route::get('/get-pasien', [TriageController::class, 'getPasien'])->name('get-pasien');
+Route::get('/get-list-obat', [TriageController::class, 'getObat'])->name('get-list-obat');
+Route::get('/print-pdf/{id}', [TriageController::class, 'printPdf'])->name('print-pdf');
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
 

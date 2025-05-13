@@ -17,7 +17,7 @@
         ],
         [
             'Aktivitas di toilet (menyemprot, mengelap)',
-            'aktivitas_di_toilet',
+            'aktiivitas_di_toilet',
             [5, 10]
         ],
         [
@@ -74,29 +74,36 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $adl = json_decode(json_encode($data['data']->adl), true);
+                            $total = 0;
+                        @endphp
                         @foreach ($activities as $key => $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item[0] }}</td>
                                 <td>
                                     <div class="form-check form-check-inline ml-3">
-                                        <input type="radio" value="{{ $item[2][0] }}" name="adl_{{ $item[1] }}" id="" class="form-check-input border-dark">
+                                        <input type="radio" value="{{ $item[2][0] }}" name="adl_{{ $item[1] }}" id="" class="form-check-input border-dark" disabled @checked($adl[$item[1]] == $item[2][0])>
                                         <label for="">{{ $item[2][0] }}</label>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-check form-check-inline ml-3">
-                                        <input type="radio" value="{{ $item[2][1] }}" name="adl_{{ $item[1] }}" id="" class="form-check-input border-dark">
+                                        <input type="radio" value="{{ $item[2][1] }}" name="adl_{{ $item[1] }}" id="" class="form-check-input border-dark" disabled @checked($adl[$item[1]] == $item[2][1])>
                                         <label for="">{{ $item[2][1] }}</label>
                                     </div>
                                 </td>
                             </tr>
+                            @php
+                                $total += $adl[$item[1]];
+                            @endphp
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="2" class="text-center">Jumlah</td>
-                            <td colspan="2" class="text-center"><b id="totalADL"></b></td>
+                            <td colspan="2" class="text-center"><b id="totalADL">{{ $total }}</b></td>
                         </tr>
                     </tfoot>
                 </table>

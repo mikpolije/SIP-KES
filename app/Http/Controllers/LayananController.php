@@ -181,4 +181,13 @@ class LayananController extends Controller
             return response()->json($response);
         }
     }
+
+    function getListLayanan (Request $request) 
+    {
+        $layanans = Layanan::select('id', 'nama_layanan')
+            ->where('nama_layanan', 'like', '%'. $request->term . '%')
+            ->orderBy('id', 'desc')
+            ->get();
+        return response()->json($layanans, 200);
+    }
 }
