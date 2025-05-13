@@ -1537,8 +1537,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </section>
-                </div>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
                     <section>
