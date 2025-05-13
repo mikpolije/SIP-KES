@@ -123,7 +123,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="norm"> No RM : <span class="danger">*</span>
+                                    <label class="form-label" for="norm"> No RM: <span class="danger">*</span>
                                     </label>
                                     <input type="text" class="form-control required" id="norm" name="norm"
                                         placeholder="Masukkan No. RM" />
@@ -131,9 +131,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="alamatlengkap"> Alamat Lengkap : <span
-                                            class="danger">*</span>
-                                    </label>
+                                    <label class="form-label" for="alamatlengkap"> Alamat Lengkap: <span
+                                            class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="alamatlengkap"
                                         name="alamatlengkap" placeholder="Nama Jalan/Blok/Nomor Rumah" />
                                 </div>
