@@ -371,7 +371,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="alamatwali">Alamat Wali <span
+                                    <label class="form-label" for="alamatwali">Alamat Wali: <span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="alamatwali"
                                         name="alamatwali" />
