@@ -152,7 +152,7 @@
                 <label class="fw-semibold">dengan hasil: </label>
             </div>
             <div class="mb-3 d-flex align-items-center">
-                <textarea class="form-control" rows="3" readonly style="resize: none;">{{ $data->keterangan }}</textarea>
+                <input type="text" class="form-control" value="Dalam kondisi sehat secara umum, tekanan darah dan tanda vital dalam batas normal. Tidak ditemukan keluhan atau kelainan fisik yang mengganggu aktivitas." readonly>
             </div>
             <div class="mb-3">
                 <label class="fw-semibold">Surat ini dipergunakan untuk</label>
