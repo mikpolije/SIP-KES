@@ -143,7 +143,7 @@
                   <label class="fw-semibold">Alamat</label>
                 </div>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly style="height: 100px;">
+                  <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly style="height: 70px;">
                 </div>
             </div>
             <div class="mb-3 d-flex align-items-center gap-2">
@@ -151,14 +151,14 @@
                 <input type="text" class="form-control" value="10/02/2025" readonly style="width: 150px;">
                 <label class="fw-semibold">dengan hasil: </label>
             </div>
-            <div class="mb-3 d-flex align-items-center">
-                <input type="text" class="form-control" value="Dalam kondisi sehat secara umum, tekanan darah dan tanda vital dalam batas normal. Tidak ditemukan keluhan atau kelainan fisik yang mengganggu aktivitas." readonly>
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="Dalam kondisi sehat secara umum, tekanan darah dan tanda vital dalam batas normal. Tidak ditemukan keluhan atau kelainan fisik yang mengganggu aktivitas." readonly style="height: 70px;">
             </div>
             <div class="mb-3">
                 <label class="fw-semibold">Surat ini dipergunakan untuk</label>
             </div>
-            <div class="mb-3 d-flex align-items-center">
-                <input type="text" class="form-control" value="Keperluan administrasi kuliah" readonly style="width: 250px;">
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="Keperluan administrasi kuliah" readonly style="height: 70px;">
             </div>
             <div class="mb-3">
                 <label class="fw-semibold">Keterangan:</label>
