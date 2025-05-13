@@ -925,7 +925,8 @@
                                                     <td>Kepala</td>
                                                     <td>Kelainan pada pembuluh darah</td>
                                                     <td class="text-center">
-                                                    <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#statusLokalisModal" title="Lihat Rincian">
+                                                    <button type="button "class="btn btn-sm btn-info view-details" data-bs-toggle="modal" 
+                                                        data-bs-target="#statusLokalisModal" title="Lihat Rincian">
                                                         <i class="bi bi-eye"></i>
                                                     </button>
                                                     </td>
