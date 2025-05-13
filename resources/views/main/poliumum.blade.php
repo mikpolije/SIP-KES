@@ -754,7 +754,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03.2</td>
+                                                                    <td>A03.3</td>
                                                                     <td>Shigellosis due to shigella sonnei</td>
                                                                 </tr>
                                                             </tbody>
