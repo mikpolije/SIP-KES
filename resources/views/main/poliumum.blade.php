@@ -2814,8 +2814,13 @@ $('#search-results').hide();
             document.getElementById('keteranganFisik').value = '';
             clearCanvas();
 
-            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('statusLokalisModal'));
-            modal.hide();
+            const modalEl = document.getElementById('statusLokalisModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            if (modalInstance) {
+                modalInstance.hide();
+            } else {
+                console.warn("Modal belum terinisialisasi dengan benar.");
+            }
 
             // const imageData = canvas.toDataURL();
             // console.log("Saved image data:", imageData);
