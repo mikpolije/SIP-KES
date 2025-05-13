@@ -1146,7 +1146,7 @@
                             background: #fff;
                             border: 1px solid #ccc;
                             border-radius: 8px;
-                            min-height: 200px; /* atur sesuai kebutuhan */
+                            min-height: 500px; /* atur sesuai kebutuhan */
                             }
                         </style>
                         <div class="row mb-3 mt-4" >
