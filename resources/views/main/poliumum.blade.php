@@ -1478,17 +1478,20 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table id="rincian-obat" class="table table-bordered text-center">
+                                    <table class="table-obat" id="rincian-obat" class="table table-bordered text-center" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                            table, th, td {
-                                                border: none !important;
-                                                border-collapse: collapse;
-                                            }
+                                                .table-obat, 
+                                                .table-obat th, 
+                                                .table-obat td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
 
-                                            th, td {
-                                                border: none !important;
-                                            }
+                                                .table-obat th, 
+                                                .table-obat td {
+                                                    background-color: transparent !important;
+                                                }
                                             </style>
                                             <tr>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
