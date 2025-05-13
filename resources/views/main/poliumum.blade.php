@@ -1133,12 +1133,11 @@
                         </div>
 
 
+                        
                         <!-- Layanan dan Rincian Obat -->
-                    <div class="row-container">
-                        <div class="row mb-3 mt-4" >
-                            <div class="col-md-6" >
-                                <div class="card p-3  h-100">
-                                    <div class="card-body">
+                        <div class="row mb-3" >
+                            <div class="col-md-6 mt-4" >
+                                <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
                                         <input type="text" class="form-control" placeholder="Ketik Layanan">
@@ -1160,13 +1159,12 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    </div>
                                 </div>
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Data Layanan</h1>
@@ -1250,36 +1248,41 @@
                                                             <td>Cek Gula Darah</td>
                                                             <td>Rp 10.000,-</td>
                                                         </tr>
+                                                        <tr>
+                                                            <td><button class="btn-pilih">Pilih</button></td>
+                                                            <td>Injeksi Vitamin A</td>
+                                                            <td>Rp 80.000,-</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
-                                                <div style="margin-top: 15px;">
-                                                    <div>
-                                                    Menampilkan 1 sampai 10 dari 155 entri
-                                                    </div>
-                                                    <div style="margin-top: 10px; text-align: right;">
-                                                    <button
-                                                        style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
-                                                    <button
-                                                            style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
-                                                    <button
-                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
-                                                    <button
-                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
-                                                    <button
-                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
-                                                    <button
-                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
-                                                    <button
-                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
-                                                    <button
-                                                            style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
-                                                    </div>
-                                                </div>
+                                                                                                        <div style="margin-top: 15px;">
+                                                            <div>
+                                                                Menampilkan 1 sampai 10 dari 155 entri
+                                                            </div>
+                                                            <div style="margin-top: 10px; text-align: right;">
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                                            </div>
+                                                        </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
