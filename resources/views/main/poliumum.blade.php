@@ -1133,9 +1133,25 @@
 
 
                         <!-- Layanan dan Rincian Obat -->
+                    <div class="row-container">
+                        <style>
+                            .row-container {
+                            display: flex;
+                            gap: 1rem; /* jarak antar card */
+                            }
+
+                            .card {
+                            flex: 1; /* semua card sama besar */
+                            padding: 1rem;
+                            background: #fff;
+                            border: 1px solid #ccc;
+                            border-radius: 8px;
+                            min-height: 200px; /* atur sesuai kebutuhan */
+                            }
+                        </style>
                         <div class="row mb-3 mt-4" >
-                            <div class="col-md-6 d-flex flex-column" >
-                                <div class="card flex-fill h-100 mb-3">
+                            <div class="col-md-6" >
+                                <div class="card p-3  h-100">
                                     <div class="card-body">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
@@ -1494,6 +1510,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
                         <!-- Rencana Kontrol dan Catatan -->
