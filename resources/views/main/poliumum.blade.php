@@ -1133,23 +1133,6 @@
 
 
                         <!-- Layanan dan Rincian Obat -->
-                        <style>
-                            .row {
-                            display: flex;
-                            gap: 1rem;
-                            }
-
-                            .col-md-6 {
-                            flex: 1;
-                            display: flex;
-                            flex-direction: column;
-                            }
-
-                            .card {
-                            flex: 1;
-                            height: 100%;
-                            }
-                        </style>
                         <div class="row mb-3 mt-4" >
                             <div class="col-md-6 d-flex flex-column" >
                                 <div class="card flex-fill h-100 mb-3">
