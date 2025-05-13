@@ -1678,30 +1678,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <!-- CANVAS -->
+                        <!-- Kolom CANVAS -->
                         <div class="col-md-7 text-center">
                             <!-- Toolbar -->
                             <div class="mb-1">
-                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">
-                                    ✏️
-                                </button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">
-                                    ↩️
-                                </button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">
-                                    ↪️
-                                </button>
-                                <button type="button "class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
-                                    ❌
-                                </button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">✏️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">↩️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">↪️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">❌</button>
+                            </div>
 
                             <!-- Canvas -->
                             <div style="border: 1px solid #ccc; display: inline-block;">
                                 <canvas id="bodyCanvas" width="500" height="500"></canvas>
                             </div>
-                        </div>
+                        </div> <!-- Penutup col-md-7 -->
 
-                        <!-- Form Input -->
+                        <!-- Kolom FORM -->
                         <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
