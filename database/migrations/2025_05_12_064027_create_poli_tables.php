@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Pemeriksaan;
+use App\Models\Pendaftaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,19 +14,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('poli_umum', function (Blueprint $table) {
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->primary()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
         Schema::create('poli_kia', function (Blueprint $table) {
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->primary()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
         Schema::create('poli_rawat_inap', function (Blueprint $table) {
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->primary()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
@@ -51,7 +52,7 @@ return new class extends Migration
         });
 
         Schema::create('ugd', function (Blueprint $table) {
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->primary()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
