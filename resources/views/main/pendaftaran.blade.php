@@ -97,7 +97,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="norm"> No RM: <span class="danger">*</span>
+                                    <label class="form-label" for="norm"> No RM<span class="danger">*</span>
                                     </label>
                                     <input type="text" class="form-control required" id="norm" name="norm"
                                         placeholder="Masukkan No. RM" />
@@ -105,7 +105,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="alamatlengkap"> Alamat Lengkap: <span
+                                    <label class="form-label" for="alamatlengkap"> Alamat Lengkap<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="alamatlengkap"
                                         name="alamatlengkap" placeholder="Nama Jalan/Blok/Nomor Rumah" />
@@ -115,7 +115,7 @@
                         <div class="row align-items-end">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="nama">Nama Lengkap: <span
+                                    <label class="form-label" for="nama">Nama Lengkap<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="nama" name="nama"
                                         placeholder="Masukkan Nama" />
@@ -123,13 +123,13 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="provinsi">Provinsi: <span class="danger">*</span></label>
+                                    <label class="form-label" for="provinsi">Provinsi<span class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="provinsi" name="provinsi" />
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="kota">Kota/Kabupaten: <span
+                                    <label class="form-label" for="kota">Kota/Kabupaten<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="kota" name="kota" />
                                 </div>
@@ -138,7 +138,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
+                                    <label class="form-label" for="nik">NIK<span class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="nik" name="nik"
                                         placeholder="16 digit" oninput="validateNumeric(this, 16)" maxlength="16" required>
                                     <small class="error-message" id="nik-error">NIK harus berupa 16 digit angka</small>
@@ -146,14 +146,13 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="kecamatan">Kecamatan: <span
-                                            class="danger">*</span></label>
+                                    <label class="form-label" for="kecamatan">Kecamatan<span class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="kecamatan" name="kecamatan" />
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="kelurahan">Kelurahan/Desa: <span
+                                    <label class="form-label" for="kelurahan">Kelurahan/Desa<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="kelurahan"
                                         name="kelurahan" />
@@ -163,7 +162,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="tempatlahir">Tempat Lahir: <span
+                                    <label class="form-label" for="tempatlahir">Tempat Lahir<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="tempatlahir"
                                         name="tempatlahir" />
@@ -171,7 +170,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="kodepos">Kode Pos: <span
+                                    <label class="form-label" for="kodepos">Kode Pos<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="kodepos" name="kodepos"
                                         oninput="validateNumeric(this, 5)" maxlength="5" required>
@@ -181,14 +180,14 @@
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
-                                    <label class="form-label" for="rt">RT: <span class="danger">*</span></label>
+                                    <label class="form-label" for="rt">RT<span class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="rt" name="rt"
                                         oninput="validateNumeric(this, 3)" maxlength="3" required>
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="mb-3">
-                                    <label class="form-label" for="rw">RW: <span class="danger">*</span></label>
+                                    <label class="form-label" for="rw">RW<span class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="rw" name="rw"
                                         oninput="validateNumeric(this, 3)" maxlength="3" required>
                                 </div>
@@ -197,7 +196,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="tanggallahir">Tanggal Lahir: <span
+                                    <label class="form-label" for="tanggallahir">Tanggal Lahir<span
                                             class="danger">*</span></label>
                                     <input type="date" class="form-control required" id="tanggallahir"
                                         name="tanggallahir" />
@@ -205,7 +204,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="jeniskelamin">Jenis Kelamin: <span
+                                    <label class="form-label" for="jeniskelamin">Jenis Kelamin<span
                                             class="danger">*</span>
                                     </label>
                                     <select class="form-select required" id="jeniskelamin" name="jeniskelamin">
@@ -219,7 +218,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="agama">Agama: <span class="danger">*</span></label>
+                                    <label class="form-label" for="agama">Agama<span class="danger">*</span></label>
                                     <select class="form-select required" id="agama" name="agama">
                                         <option value="islam">Islam</option>
                                         <option value="kristen">Kristen (Protestan)</option>
@@ -236,7 +235,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="perkawinan">Status Perkawinan: <span
+                                    <label class="form-label" for="perkawinan">Status Perkawinan<span
                                             class="danger">*</span></label>
                                     <select class="form-select required" id="perkawinan" name="perkawinan">
                                         <option value="belumkawin">Belum Kawin</option>
@@ -248,7 +247,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="pendidikan">Pendidikan: <span
+                                    <label class="form-label" for="pendidikan">Pendidikan<span
                                             class="danger">*</span></label>
                                     <select class="form-select required" id="pendidikan" name="pendidikan">
                                         <option value="tidaksekolah">Tidak Sekolah</option>
@@ -265,7 +264,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="pekerjaan">Pekerjaan: <span
+                                    <label class="form-label" for="pekerjaan">Pekerjaan<span
                                             class="danger">*</span></label>
                                     <select class="form-select required" id="pekerjaan" name="pekerjaan">
                                         <option value="tidakbekerja">Tidak bekerja</option>
@@ -281,7 +280,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="kewarganegaraan">Kewarganegaraan: <span
+                                    <label class="form-label" for="kewarganegaraan">Kewarganegaraan<span
                                             class="danger">*</span></label>
                                     <select class="form-select required" id="kewarganegaraan" name="kewarganegaraan">
                                         <option value="wni">WNI</option>
@@ -291,7 +290,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="telepon">Nomor Telepon: <span
+                                    <label class="form-label" for="telepon">Nomor Telepon<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="telepon" name="telepon"
                                         placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13"
@@ -302,7 +301,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="ibukandung">Nama Ibu Kandung: <span
+                                    <label class="form-label" for="ibukandung">Nama Ibu Kandung<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="ibukandung"
                                         name="ibukandung" />
@@ -312,7 +311,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="goldar">Golongan Darah: <span
+                                    <label class="form-label" for="goldar">Golongan Darah<span
                                             class="danger">*</span></label>
                                     <select class="form-select required" id="goldar" name="goldar">
                                         <option value="a">A</option>
@@ -329,7 +328,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="hubungan">Hubungan dengan Pasien: <span
+                                    <label class="form-label" for="hubungan">Hubungan dengan Pasien<span
                                             class="danger">*</span></label>
                                     <select class="form-select required" id="hubungan" name="hubungan">
                                         <option value="dirisendiri">Diri Sendiri</option>
@@ -343,7 +342,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="namawali">Nama Wali: <span
+                                    <label class="form-label" for="namawali">Nama Wali<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="namawali"
                                         name="namawali" />
@@ -351,7 +350,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="tlwali">Tanggal Lahir Wali: <span
+                                    <label class="form-label" for="tlwali">Tanggal Lahir Wali<span
                                             class="danger">*</span></label>
                                     <input type="date" class="form-control required" id="tlwali" name="tlwali" />
                                 </div>
@@ -360,7 +359,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="telepon">Nomor Telepon Wali: <span
+                                    <label class="form-label" for="telepon">Nomor Telepon Wali<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="telepon" name="telepon"
                                         placeholder="08xxxxxxxxxx" oninput="validateNumeric(this, 13)" maxlength="13"
@@ -371,7 +370,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="alamatwali">Alamat Wali: <span
+                                    <label class="form-label" for="alamatwali">Alamat Wali<span
                                             class="danger">*</span></label>
                                     <input type="text" class="form-control required" id="alamatwali"
                                         name="alamatwali" />
