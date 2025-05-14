@@ -1568,6 +1568,7 @@
                             </div>
                         </div>
                     </section>
+                    </div>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
                     <section>
@@ -1629,7 +1630,6 @@
                             </div>
                         </div>
                     </section>
-                    </div>
 
                     <!-- Step 5 -->
                     <h6>Pembayaran</h6>
