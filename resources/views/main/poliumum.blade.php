@@ -766,7 +766,7 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive">
-                                        <table id="rincian-icd10" class="table text-center shadow-table"">
+                                        <table id="rincian-icd10" class="table text-center shadow-table">
                                             <thead style="background-color: #f8f9fa;">
                                                 <style>
                                                 #rincian-icd10, 
@@ -776,7 +776,7 @@
                                                     border-collapse: collapse;
                                                 }
 
-                                                #rincian-obat tr {
+                                                #rincian-icd10 tr {
                                                     border-bottom: none !important;
                                                 }
 
