@@ -77,9 +77,18 @@ new class extends Component {
     public function submit()
     {
         $this->validate();
+
+        $data = [
+            'kelasPerawatan' => $this->kelasPerawatan,
+            'ruangInap' => $this->ruangInap,
+            'pembayaran' => $this->pembayaran
+        ];
+        dd($data);
+
         session()->flash('message', 'Form submitted successfully!');
         $this->dispatch('patient-registered', pendaftaranId: $this->pendaftaranId);
         $this->dispatch('switch-tab', tab: 'pemeriksaan');
+
     }
 }; ?>
 
