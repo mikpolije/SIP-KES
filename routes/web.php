@@ -38,6 +38,7 @@ Route::get('/get-list-obat', [TriageController::class, 'getObat'])->name('get-li
 Route::get('/print-pdf/{id}', [TriageController::class, 'printPdf'])->name('print-pdf');
 
 Route::get('/{main}/{view}', [PageController::class, 'show']);
+Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 // route sidebar antrian dan riwayat
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;

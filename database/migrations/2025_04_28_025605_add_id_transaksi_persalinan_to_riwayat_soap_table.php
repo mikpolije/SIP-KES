@@ -18,12 +18,12 @@ return new class extends Migration
         Schema::create('riwayat_soap', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_transaksi_persalinan')->constrained('transaksi_persalinan')->onDelete('cascade');
-            $table->integer('jam_ke')->nullable(); // jam-ke diubah jadi jam_ke
+            $table->integer('jam_ke')->nullable();
             $table->integer('tekanan_darah')->nullable();
-            $table->integer('tinggi_fundus')->nullable(); // tinggi_fundus_uteri diganti jadi tinggi_fundus
+            $table->integer('tinggi_fundus')->nullable();
             $table->string('kandung_kemih')->nullable();
             $table->time('waktu')->nullable();
-            $table->integer('nadi_kala_iv')->nullable(); // nadi diubah jadi nadi_kala_iv
+            $table->integer('nadi_kala_iv')->nullable();
             $table->string('kontraksi_uterus')->nullable();
             $table->string('pendarahan')->nullable();
             $table->timestamps();

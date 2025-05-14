@@ -121,8 +121,8 @@
         // 'Informed Consent',
         // 'Surat Sehat',
         // 'Surat Sakit',
-        'Surat Kontrol' => url("main/polikia/persuratan/kontrol"),
-        'Surat Kematian' => url("main/polikia/persuratan/kematian"),
+        'Surat Kontrol' => url("main/to/polikia/persuratan/kontrol"),
+        'Surat Kematian' => url("main/to/polikia/persuratan/kematian"),
     ];
 @endphp
 
