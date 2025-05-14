@@ -1148,15 +1148,51 @@
                                     </div>
                                     <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
+                                            <style>
+                                                #rincian-obat, 
+                                                #rincian-obat th, 
+                                                #rincian-obat td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                             <tr>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Perawat</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.10.000,-</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
