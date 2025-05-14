@@ -1135,8 +1135,9 @@
 
                         
                         <!-- Layanan dan Rincian Obat -->
-                        <div class="row mb-3" >
-                            <div class="col-md-6 mt-4" >
+                    <div class="row-container">
+                        <div class="row mb-3 mt-4" >
+                            <div class="col-md-6" >
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
@@ -1145,17 +1146,53 @@
                                             class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
-                                    <table class="table table-bordered text-center">
+                                    <table id="rincian-layanan" class="table text-center shadow-table">
                                         <thead style="background-color: #676981; color: white;">
+                                            <style>
+                                                #rincian-layanan, 
+                                                #rincian-layanan th, 
+                                                #rincian-layanan td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                             <tr>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Perawat</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.10.000,-</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1534,37 +1571,64 @@
                     </div>
  
                         <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row">
-                            <div class="col-md-6 mt-4">
-                                <div class="card p-3 h-100">
+                    <div class="row-container">
+                        <div class="row mb-3 mt-4">
+                            <div class="col-md-6 d-flex flex-column">
+                                <div class="card p-3 flex-fill h-100 w-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
                                     <div class="input-group mb-2">
                                          <input type="date" class="form-control">
                                          <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                          <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
                                     </div>
-                                    <table class="table table-bordered text-center">
+                                    <table id="rencana-kontrol" class="table text-center shadow-table">
                                         <thead style="background-color: #676981; color: white;">
+                                            <style>
+                                                #rencana-kontrol, 
+                                                #rencana-kontrol th, 
+                                                #rencana-kontrol td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rencana-kontrol tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                             <tr>
-                                                <th>Tanggal Kontrol</th>
-                                                <th>Alasan Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Tanggal Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Alasan Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">05/08/2025</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Pemantauan Lebih Lanjut</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-4">
+                            <div class="col-md-6 flex-fill h-100">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </section>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>

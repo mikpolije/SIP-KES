@@ -238,6 +238,15 @@
                         <span class="hide-menu">Data Resep</span>
                     </a>
                 </li>
+                        <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/stokopname') ? 'active' : '' }}"
+                        href="/main/stokopname" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Data Pengguna</span>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -391,15 +400,6 @@
             </a>
             <ul class="first-level {{ request()->is('dokter') || request()->is('layanan') ? 'in' : '' }} collapse"
                 aria-expanded="false">
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/stokopname') ? 'active' : '' }}"
-                        href="/main/stokopname" aria-expanded="false">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu">Data Pengguna</span>
-                    </a>
-                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('dokter') ? 'active' : '' }}"
                         href="{{ route('doctor.index') }}" aria-expanded="false">
