@@ -1535,6 +1535,7 @@
                     </div>
  
                         <!-- Rencana Kontrol dan Catatan -->
+                    <div class="row-container">
                         <div class="row mb-3 mt-4">
                             <div class="col-md-6 d-flex flex-column">
                                 <div class="card p-3 flex-fill h-100 w-100">
@@ -1628,6 +1629,7 @@
                             </div>
                         </div>
                     </section>
+                    </div>
 
                     <!-- Step 5 -->
                     <h6>Pembayaran</h6>
