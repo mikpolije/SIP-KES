@@ -171,6 +171,7 @@ return new class extends Migration
                 ->on('wali_pasien')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->timestamps();
         });
 
         Schema::create('icd10', function (Blueprint $table) {

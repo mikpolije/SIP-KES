@@ -13,7 +13,7 @@ class WaliPasienFactory extends Factory
     public function definition()
     {
         // Ensure we have a DataPasien to reference
-        $dataPasien = DataPasien::inRandomOrder()->first() ?? DataPasien::factory()->create();
+        $dataPasien = DataPasien::inRandomOrder()->first();
 
         $hubunganOptions = [
             '1. Diri Sendiri',
