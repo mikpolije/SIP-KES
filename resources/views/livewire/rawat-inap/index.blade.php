@@ -26,8 +26,9 @@ new class extends Component {
         $this->showPatientDetails = true;
 
         $patient = Pendaftaran::where('id_pendaftaran', $id)->first();
-        $this->patientIsRegistered = (bool)($patient['is_registered'] ?? 0);
-        $this->patientIsExamined = (bool)($patient['is_examined'] ?? 0);
+
+        $this->patientIsRegistered = (bool)(isset($patient->poli_rawat_inap) ?? 0);
+        $this->patientIsExamined = (bool)((isset($patient->poli_rawat_inap->id_asessmen_awal) && isset($patient->poli_rawat_inap->id_informed_consent)) ?? 0);
 
         if (!$this->patientIsRegistered) {
             $this->activeTab = 'pendaftaran';
@@ -96,13 +97,10 @@ new class extends Component {
     #[On('patient-registered')]
     public function handlePatientRegistered($pendaftaranId)
     {
-        $patient = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
-        if ($patient) {
-            $patient->is_registered = 1;
-            $patient->save();
+        $register = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
+        if(isset($register->poli_rawat_inap)) {
+            $this->patientIsRegistered = true;
         }
-
-        $this->patientIsRegistered = true;
     }
 
 
