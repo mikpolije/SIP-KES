@@ -162,7 +162,7 @@ new class extends Component {
                                                     <td class="text-truncate" data-bs-toggle="tooltip"
                                                         title="{{ $patient->data_pasien->alamat_lengkap }}">{{ $patient->data_pasien->alamat_lengkap }}</td>
                                                     <td class="text-truncate" data-bs-toggle="tooltip"
-                                                        title="{{ $patient->note ?? '' }}">Rujuk {{ $patient->data_pasien->alamat_lengkap }}</td>
+                                                        title="{{ $patient->note ?? '' }}">Rujuk {{ $patient->layanan }}</td>
                                                     <td class="text-center p-1">
                                                         <button
                                                             wire:click.stop="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
