@@ -766,46 +766,28 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive">
-                                        <table id="rincian-icd10" class="table text-center shadow-table">
-                                            <thead style="background-color: #676981; color: white;">
-                                                <style>
-                                                #rincian-icd10, 
-                                                #rincian-icd10 th, 
-                                                #rincian-icd10 td {
-                                                    border: none !important;
-                                                    border-collapse: collapse;
-                                                }
-
-                                                #rincian-icd10 tr {
-                                                    border-bottom: none !important;
-                                                }
-
-                                                .shadow-table {
-                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                                                    border-radius: 8px;
-                                                    overflow: hidden;
-                                                }
-                                            </style>
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #f8f9fa;">
                                                 <tr>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 10</th>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd10">
-                                                <tr>
-                                                    <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">H49.4 Progressive external ophthalmoplegia</td>
+                                                <tr class="icd-item">
+                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
                                                     <td class="text-center">
-                                                            <button class="btn btn-sm btn-danger delete-btn">
-                                                                <i class="bi bi-trash"></i>
-                                                            </button>
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">R51. Headache</td>
+                                                <tr class="icd-item">
+                                                    <td>R51. Headache</td>
                                                     <td class="text-center">
-                                                            <button class="btn btn-sm btn-danger delete-btn">
-                                                                <i class="bi bi-trash"></i>
-                                                            </button>
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -1599,26 +1581,8 @@
                                          <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                          <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
                                     </div>
-                                    <table id="rencana-kontrol" class="table text-center shadow-table">
+                                    <table class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
-                                            <style>
-                                                #rencana-kontrol, 
-                                                #rencana-kontrol th, 
-                                                #rencana-kontrol td {
-                                                    border: none !important;
-                                                    border-collapse: collapse;
-                                                }
-
-                                                #rincian-obat tr {
-                                                    border-bottom: none !important;
-                                                }
-
-                                                .shadow-table {
-                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                                                    border-radius: 8px;
-                                                    overflow: hidden;
-                                                }
-                                            </style>
                                             <tr>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Tanggal Kontrol</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Alasan Kontrol</th>
