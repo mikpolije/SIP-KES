@@ -154,6 +154,7 @@ return new class extends Migration
 
         Schema::create('pendaftaran', function (Blueprint $table) {
             $table->id('id_pendaftaran');
+            $table->enum('layanan', ['Poli Umum', 'KIA', 'UGD', 'Rawat Inap', 'Circum', 'Vaksin Internasional']);
             $table->string('no_rm', 6);
 
             $table->foreign('no_rm')

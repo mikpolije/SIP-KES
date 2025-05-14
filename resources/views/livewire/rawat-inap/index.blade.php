@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\DataPasien;
 use Livewire\Volt\Component;
 use Livewire\Attributes\On;
+use Ramsey\Collection\Collection;
 
 new class extends Component {
     public $activeTab = 'pendaftaran';
@@ -12,32 +14,11 @@ new class extends Component {
     public $patientIsExamined = false;
     public $search = '';
 
-    public $patients = [
-        [
-            'id' => '002001',
-            'name' => 'Aditya Attadewa',
-            'nik' => '3350168808650001',
-            'birth_date' => '12-09-1999',
-            'admission_date' => '27-02-2025',
-            'address' => 'SUMBERSARI',
-            'room' => '',
-            'note' => 'RUJUK INTERNAL IGD',
-            'is_registered' => 0,
-            'is_examined' => 0
-        ],
-        [
-            'id' => '17171717',
-            'name' => 'Raihan Sigma',
-            'nik' => '3350168808651717',
-            'birth_date' => '12-09-2002',
-            'admission_date' => '27-02-2017',
-            'address' => 'SUMBERSARI',
-            'room' => '',
-            'note' => 'RUJUK INTERNAL IGD',
-            'is_registered' => 1,
-            'is_examined' => 1
-        ],
-    ];
+    public $patients;
+
+    public function mount() {
+        $this->patients = DataPasien::all();
+    }
 
     public function selectPatient($id, $name)
     {
