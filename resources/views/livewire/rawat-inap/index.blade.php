@@ -37,7 +37,7 @@ new class extends Component {
             $this->activeTab = 'layanan';
         }
 
-        $this->dispatch('patient-selected', patientId: $id);
+        $this->dispatch('patient-selected', pendaftaranId: $id);
     }
 
     public function backToList()
@@ -49,7 +49,7 @@ new class extends Component {
     {
         $this->activeTab = $tab;
         if ($this->selectedPatient) {
-            $this->dispatch('patient-selected', patientId: $this->selectedPatient);
+            $this->dispatch('patient-selected', pendaftaranId: $this->selectedPatient);
         }
     }
 
@@ -88,7 +88,7 @@ new class extends Component {
             $this->activeTab = $tab;
 
             if ($this->selectedPatient) {
-                $this->dispatch('patient-selected', patientId: $this->selectedPatient);
+                $this->dispatch('patient-selected', pendaftaranId: $this->selectedPatient);
             }
         }
     }
@@ -198,7 +198,7 @@ new class extends Component {
                                 </button>
                                 <div>
                                     <span class="fw-bold">Pasien:</span>
-                                    <span class="ms-2">{{ $selectedPatientName }} ({{ $selectedPatient }})</span>
+                                    <span class="ms-2">{{ $selectedPatientName }} (No Pendaftaran: {{ $selectedPatient }})</span>
                                 </div>
                             </div>
 
@@ -231,25 +231,25 @@ new class extends Component {
                             <!-- Tab content -->
                             <div>
                                 @if(!$patientIsRegistered)
-                                @livewire('rawat-inap.pendaftaran.index', ['patientId' => $selectedPatient],
+                                @livewire('rawat-inap.pendaftaran.index', ['pendaftaranId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient))
                                 @else
                                 @switch($activeTab)
                                 @case('pendaftaran')
                                 @livewire('rawat-inap.pendaftaran.index',
-                                ['patientId' => $selectedPatient],
+                                ['pendaftaranId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient)
                                 )
                                 @break
                                 @case('pemeriksaan')
                                 @livewire('rawat-inap.pemeriksaan.index',
-                                ['patientId' => $selectedPatient],
+                                ['pendaftaranId' => $selectedPatient],
                                 key('pemeriksaan-'.$selectedPatient)
                                 )
                                 @break
                                 @case('layanan')
                                 @livewire('rawat-inap.layanan.index',
-                                ['patientId' => $selectedPatient],
+                                ['pendaftaranId' => $selectedPatient],
                                 key('layanan-'.$selectedPatient)
                                 )
                                 @break

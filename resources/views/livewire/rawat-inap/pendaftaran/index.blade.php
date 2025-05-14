@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pendaftaran;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
@@ -47,12 +48,12 @@ new class extends Component {
     public $ruangInap = '';
     #[Validate('required')]
     public $pembayaran = 'umum';
-    public $patientId;
+    public $pendaftaranId;
 
-    public function mount($patientId)
+    public function mount($pendaftaranId)
     {
-        $this->nomorRM = $patientId;
-        $this->$patientId = $patientId;
+        $this->nomorRM = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->data_pasien->nomor_rm;
+        $this->$pendaftaranId = $pendaftaranId;
     }
 
     public function calculateAge($birthDate)
@@ -66,7 +67,7 @@ new class extends Component {
     public function submit()
     {
         session()->flash('message', 'Form submitted successfully!');
-        $this->dispatch('patient-registered', patientId: $this->patientId);
+        $this->dispatch('patient-registered', pendaftaranId: $this->pendaftaranId);
         $this->dispatch('switch-tab', tab: 'pemeriksaan');
     }
 }; ?>
