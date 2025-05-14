@@ -24,7 +24,6 @@ new class extends Component {
     public $noHP = '';
     public $pendidikan = '';
     public $pekerjaan = '';
-    public $bahasa = '';
     public $kodePos = '';
     public $kec = '';
     public $prov = '';
@@ -73,17 +72,6 @@ new class extends Component {
         $this->kecDomisili = $this->currentPatient->id_kecamatan;
         $this->provDomisili = $this->currentPatient->id_provinsi;
 
-        // Bahasa tidak tersedia di data, jadi kosongkan
-        $this->bahasa = '';
-
-    }
-
-    public function calculateAge($birthDate)
-    {
-        $birthDate = new DateTime($birthDate);
-        $today = new DateTime();
-        $age = $today->diff($birthDate);
-        return $age->y;
     }
 
     public function submit()

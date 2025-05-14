@@ -93,6 +93,19 @@ new class extends Component {
         }
     }
 
+    #[On('patient-registered')]
+    public function handlePatientRegistered($patientId)
+    {
+        $patient = Pendaftaran::where('id_pendaftaran', $patientId)->first();
+        if ($patient) {
+            $patient->is_registered = 1;
+            $patient->save();
+        }
+
+        $this->patientIsRegistered = true;
+    }
+
+
     public function shouldShowTab($tab)
     {
         if ($tab === 'pendaftaran') {
