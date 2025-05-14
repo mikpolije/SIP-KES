@@ -14,4 +14,9 @@ class WaliPasien extends Model
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
+
+    public function pasien()
+    {
+        return $this->hasOne(Pasien::class, 'no_rm', 'no_rm');
+    }
 }

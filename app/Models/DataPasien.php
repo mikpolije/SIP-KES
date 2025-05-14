@@ -17,6 +17,11 @@ class DataPasien extends Model
 
     public function waliPasien()
     {
-        return $this->hasMany(WaliPasien::class, 'no_rm', 'no_rm');
+        return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm');
+    }
+
+    public function pendaftaran()
+    {
+        return $this->hasMany(Pendaftaran::class, 'no_rm', 'no_rm');
     }
 }

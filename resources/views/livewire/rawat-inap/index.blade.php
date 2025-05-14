@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\DataPasien;
+use App\Models\Pendaftaran;
 use Livewire\Volt\Component;
 use Livewire\Attributes\On;
-use Ramsey\Collection\Collection;
 
 new class extends Component {
     public $activeTab = 'pendaftaran';
@@ -17,7 +16,7 @@ new class extends Component {
     public $patients;
 
     public function mount() {
-        $this->patients = DataPasien::all();
+        $this->patients = Pendaftaran::where('layanan', 'Rawat Inap')->get();
     }
 
     public function selectPatient($id, $name)
@@ -54,8 +53,6 @@ new class extends Component {
         }
     }
 
-    // buat filter pasien
-    // nama sama id aje
     public function getFilteredPatientsProperty()
     {
         return collect($this->patients)
@@ -71,8 +68,6 @@ new class extends Component {
     #[On('switch-tab')]
     public function handleTabSwitch($tab)
     {
-        // ini ganti sesuai tab ea
-        // kali ini, seperti yang didesign kan ada 3 buat "klik"-annya
         $validTabs = ['pendaftaran', 'pemeriksaan', 'layanan'];
 
         if (in_array($tab, $validTabs)) {
@@ -97,8 +92,6 @@ new class extends Component {
         $this->patientIsRegistered = true;
     }
 
-    // buat cek pasien ini pake tabs tidak
-    // cek di selectPatient()
     public function shouldShowTab($tab)
     {
         if ($tab === 'pendaftaran') {
@@ -139,7 +132,6 @@ new class extends Component {
                                             <th style="width: 8%">TGL LAHIR</th>
                                             <th style="width: 8%">TGL MASUK</th>
                                             <th style="width: 15%">ALAMAT</th>
-                                            <th style="width: 8%">RUANGAN</th>
                                             <th style="width: 15%">KET</th>
                                             <th class="text-center" style="width: 6%">AKSI</th>
                                         </tr>
@@ -148,20 +140,19 @@ new class extends Component {
                                         @foreach($this->filteredPatients as $index => $patient)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-nowrap">{{ $patient['id'] }}</td>
+                                            <td class="text-nowrap">{{ $patient->data_pasien->no_rm }}</td>
                                             <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient['name'] }}">{{ $patient['name'] }}</td>
-                                            <td class="text-nowrap">{{ $patient['nik'] }}</td>
-                                            <td class="text-nowrap">{{ $patient['birth_date'] }}</td>
-                                            <td class="text-nowrap">{{ $patient['admission_date'] }}</td>
+                                                title="{{ $patient->data_pasien->nama }}">{{ $patient->data_pasien->nama }}</td>
+                                            <td class="text-nowrap">{{ $patient->data_pasien->nik }}</td>
+                                            <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir }}</td>
+                                            <td class="text-nowrap">{{ $patient->created_at }}</td>
                                             <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient['address'] }}">{{ $patient['address'] }}</td>
-                                            <td>{{ $patient['room'] }}</td>
+                                                title="{{ $patient->data_pasien->alamat_lengkap }}">{{ $patient->data_pasien->alamat_lengkap }}</td>
                                             <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient['note'] }}">{{ $patient['note'] }}</td>
+                                                title="{{ $patient['note'] }}">Rujuk {{ $patient->data_pasien->alamat_lengkap }}</td>
                                             <td class="text-center p-1">
                                                 <button
-                                                    wire:click="selectPatient('{{ $patient['id'] }}', '{{ $patient['name'] }}')"
+                                                    wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama }}')"
                                                     class="btn btn-primary btn-sm p-0 px-1" title="Detail">
                                                     <i class="ti ti-eye"></i>
                                                 </button>

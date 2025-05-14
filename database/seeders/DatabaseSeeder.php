@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         DataPasien::factory(50)->create();
         WaliPasien::factory(50)->create();
-        Pendaftaran::factory(50)->create();
+        Pendaftaran::factory(30)->create();
 
         User::factory()->create([
             'name' => 'Test User',
