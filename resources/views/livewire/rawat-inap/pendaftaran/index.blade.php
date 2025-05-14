@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Pendaftaran;
+use App\Models\PoliRawatInap;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
@@ -64,7 +65,6 @@ new class extends Component {
         $this->pendidikan = $this->currentPatient->pendidikan;
         $this->pekerjaan = $this->currentPatient->pekerjaan;
 
-        // Jika alamatDomisili dan lainnya ingin disamakan:
         $this->alamatDomisili = $this->currentPatient->alamat_lengkap;
         $this->rtDomisili = $this->currentPatient->rt;
         $this->rwDomisili = $this->currentPatient->rw;
@@ -78,12 +78,12 @@ new class extends Component {
     {
         $this->validate();
 
-        $data = [
-            'kelasPerawatan' => $this->kelasPerawatan,
-            'ruangInap' => $this->ruangInap,
-            'pembayaran' => $this->pembayaran
-        ];
-        dd($data);
+        PoliRawatInap::create([
+            'id_pendaftaran' => $this->pendaftaranId,
+            'kelas_perawatan' => $this->kelasPerawatan,
+            'ruang_inap' => $this->ruangInap,
+            'pembayaran' => $this->pembayaran,
+        ]);
 
         session()->flash('message', 'Form submitted successfully!');
         $this->dispatch('patient-registered', pendaftaranId: $this->pendaftaranId);

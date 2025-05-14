@@ -94,9 +94,9 @@ new class extends Component {
     }
 
     #[On('patient-registered')]
-    public function handlePatientRegistered($patientId)
+    public function handlePatientRegistered($pendaftaranId)
     {
-        $patient = Pendaftaran::where('id_pendaftaran', $patientId)->first();
+        $patient = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
         if ($patient) {
             $patient->is_registered = 1;
             $patient->save();

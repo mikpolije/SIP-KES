@@ -2,10 +2,10 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public $patientId;
+    public $pendaftaranId;
 
-    public function mount($patientId = null) {
-        $this->patientId = $patientId;
+    public function mount($pendaftaranId = null) {
+        $this->pendaftaranId = $pendaftaranId;
     }
 
     public function openCpptModal()
@@ -103,5 +103,5 @@ new class extends Component {
         </button>
     </div>
 
-    @livewire('rawat-inap.layanan.cppt-modal', ['patientId' => $patientId], key('cppt-modal-'.$patientId))
+    @livewire('rawat-inap.layanan.cppt-modal', ['pendaftaranId' => $pendaftaranId], key('cppt-modal-'.$pendaftaranId))
 </div>

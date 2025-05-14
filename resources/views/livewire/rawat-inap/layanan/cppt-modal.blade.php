@@ -5,7 +5,7 @@ use Livewire\Volt\Component;
 new class extends Component {
     protected $listeners = ['open-cppt-modal' => 'openModal'];
 
-    public $patientId;
+    public $pendaftaranId;
     public $showModal = false;
     public $currentTime;
     public $formData = [
@@ -24,8 +24,8 @@ new class extends Component {
         'kelasPerawatan' => ''
     ];
 
-    public function mount($patientId = null) {
-        $this->patientId = $patientId;
+    public function mount($pendaftaranId = null) {
+        $this->pendaftaranId = $pendaftaranId;
         $this->currentTime = now()->format('H:i:s');
     }
 

@@ -2,7 +2,7 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public $patientId;
+    public $pendaftaranId;
     public $activeTab = 'cppt'; // Default active tab
 
     // Available tabs
@@ -13,8 +13,8 @@ new class extends Component {
         'resume' => 'Resume Medis'
     ];
 
-    public function mount($patientId = null) {
-        $this->patientId = $patientId;
+    public function mount($pendaftaranId = null) {
+        $this->pendaftaranId = $pendaftaranId;
     }
 
     public function changeTab($tab)
@@ -49,24 +49,24 @@ new class extends Component {
             <div class="p-4">
                 <!-- CPPT Tab -->
                 <div class="{{ $activeTab !== 'cppt' ? 'd-none' : '' }}" id="cppt">
-                    @livewire('rawat-inap.layanan.cppt', ['patientId' => $patientId], key('cppt-'.$patientId))
+                    @livewire('rawat-inap.layanan.cppt', ['pendaftaranId' => $pendaftaranId], key('cppt-'.$pendaftaranId))
                 </div>
 
                 <!-- Asuhan Keperawatan Tab -->
                 <div class="{{ $activeTab !== 'asuhan' ? 'd-none' : '' }}" id="asuhan">
-                    @livewire('rawat-inap.layanan.asuhan-keperawatan', ['patientId' => $patientId],
-                    key('asuhan-'.$patientId))
+                    @livewire('rawat-inap.layanan.asuhan-keperawatan', ['pendaftaranId' => $pendaftaranId],
+                    key('asuhan-'.$pendaftaranId))
                 </div>
 
                 <!-- Layanan Tab -->
                 <div class="{{ $activeTab !== 'layanan' ? 'd-none' : '' }}" id="layanan">
-                    @livewire('rawat-inap.layanan.layanan', ['patientId' => $patientId], key('layanan-'.$patientId))
+                    @livewire('rawat-inap.layanan.layanan', ['pendaftaranId' => $pendaftaranId], key('layanan-'.$pendaftaranId))
                 </div>
 
                 <!-- Resume Medis Tab -->
                 <div class="{{ $activeTab !== 'resume' ? 'd-none' : '' }}" id="resume">
-                    @livewire('rawat-inap.layanan.resume-medis', ['patientId' => $patientId],
-                    key('resume-medis-'.$patientId))
+                    @livewire('rawat-inap.layanan.resume-medis', ['pendaftaranId' => $pendaftaranId],
+                    key('resume-medis-'.$pendaftaranId))
                 </div>
             </div>
         </div>

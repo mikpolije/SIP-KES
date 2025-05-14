@@ -4,13 +4,13 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
 new class extends Component {
-    public $patientId;
+    public $pendaftaranId;
     public $currentStep = 1;
     public $totalSteps = 2;
 
-    public function mount($patientId = null)
+    public function mount($pendaftaranId = null)
     {
-        $this->patientId = $patientId;
+        $this->pendaftaranId = $pendaftaranId;
         $this->totalSteps = 2;
     }
 
@@ -57,12 +57,12 @@ new class extends Component {
 
     <!-- Step 1 content - Asessmen Awal -->
     <div class="step-content {{ $currentStep === 1 ? 'active' : '' }}" data-step-content="1">
-        <livewire:rawat-inap.pemeriksaan.asessmen-awal :patientId="$patientId" />
+        <livewire:rawat-inap.pemeriksaan.asessmen-awal :pendaftaranId="$pendaftaranId" />
     </div>
 
     <!-- Step 2 content - Informed Consent -->
     <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
-        <livewire:rawat-inap.pemeriksaan.informed-consent :patientId="$patientId" />
+        <livewire:rawat-inap.pemeriksaan.informed-consent :pendaftaranId="$pendaftaranId" />
     </div>
 
     <div class="navigation-buttons mt-4">

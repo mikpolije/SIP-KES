@@ -3,11 +3,11 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public $patientId;
+    public $pendaftaranId;
     public $msg = "lol";
 
-    public function mount($patientId = null) {
-        $this->patientId = $patientId;
+    public function mount($pendaftaranId = null) {
+        $this->pendaftaranId = $pendaftaranId;
     }
 }; ?>
 
