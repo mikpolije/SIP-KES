@@ -142,7 +142,7 @@ new class extends Component {
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td class="text-nowrap">{{ $patient->data_pasien->no_rm }}</td>
                                             <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient->data_pasien->nama }}">{{ $patient->data_pasien->nama }}</td>
+                                                title="{{ $patient->data_pasien->nama }}">{{ $patient->data_pasien->nama_lengkap }}</td>
                                             <td class="text-nowrap">{{ $patient->data_pasien->nik }}</td>
                                             <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir }}</td>
                                             <td class="text-nowrap">{{ $patient->created_at }}</td>
@@ -152,7 +152,7 @@ new class extends Component {
                                                 title="{{ $patient['note'] }}">Rujuk {{ $patient->data_pasien->alamat_lengkap }}</td>
                                             <td class="text-center p-1">
                                                 <button
-                                                    wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama }}')"
+                                                    wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
                                                     class="btn btn-primary btn-sm p-0 px-1" title="Detail">
                                                     <i class="ti ti-eye"></i>
                                                 </button>
