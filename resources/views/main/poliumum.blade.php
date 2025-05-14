@@ -766,8 +766,26 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered mt-2">
+                                        <table id="rincian-icd10" class="table text-center shadow-table"">
                                             <thead style="background-color: #f8f9fa;">
+                                                <style>
+                                                #rincian-icd10, 
+                                                #rincian-icd10 th, 
+                                                #rincian-icd10 td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                                 <tr>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 10</th>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
