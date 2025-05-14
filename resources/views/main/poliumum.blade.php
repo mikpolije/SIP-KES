@@ -767,7 +767,7 @@
                                     </div>
                                     <div class="table-responsive">
                                         <table id="rincian-icd10" class="table text-center shadow-table">
-                                            <thead style="background-color: #f8f9fa;">
+                                            <thead style="background-color: #676981; color: white;">
                                                 <style>
                                                 #rincian-icd10, 
                                                 #rincian-icd10 th, 
@@ -792,20 +792,20 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd10">
-                                                <tr class="icd-item">
-                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
+                                                <tr>
+                                                    <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">H49.4 Progressive external ophthalmoplegia</td>
                                                     <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
+                                                            <button class="btn btn-sm btn-danger delete-btn">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
                                                     </td>
                                                 </tr>
-                                                <tr class="icd-item">
-                                                    <td>R51. Headache</td>
+                                                <tr>
+                                                    <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">R51. Headache</td>
                                                     <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
+                                                            <button class="btn btn-sm btn-danger delete-btn">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
                                                     </td>
                                                 </tr>
                                             </tbody>
