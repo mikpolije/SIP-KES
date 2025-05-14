@@ -1135,6 +1135,7 @@
 
                         
                         <!-- Layanan dan Rincian Obat -->
+                    <div class="row-container">
                         <div class="row mb-3 mt-4" >
                             <div class="col-md-6" >
                                 <div class="card p-3 h-100">
