@@ -1146,12 +1146,12 @@
                                             class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
-                                    <table class="table table-bordered text-center">
+                                    <table id="rincian-layanan" class="table table-bordered text-center">
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                                #rincian-obat, 
-                                                #rincian-obat th, 
-                                                #rincian-obat td {
+                                                #rincian-layanan, 
+                                                #rincian-layanan th, 
+                                                #rincian-layanan td {
                                                     border: none !important;
                                                     border-collapse: collapse;
                                                 }
