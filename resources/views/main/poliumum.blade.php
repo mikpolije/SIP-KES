@@ -1689,15 +1689,6 @@
                                                         background: #888;
                                                     }
 
-                                                    .table-header th,
-                                                    .table-body-scroll td {
-                                                        text-align: center;
-                                                        font-weight: normal;
-                                                        font-size: 0.9rem;
-                                                        padding: 8px;
-                                                        background-color: white;
-                                                    }
-
                                                 </style>
                                             </head>
                                             <div class="table-header">
@@ -1713,9 +1704,9 @@
                                     <div class="table-body-scroll">
                                         <table>
                                             <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: left; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Acyclorovil</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.1000,-</td>
+                                                <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.1000,-</td>
                                                 <td class="text-center">
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
