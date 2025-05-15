@@ -469,7 +469,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control required decimal-input" 
+                                                        <input type="text" class="form-control required decimal-input"
                                                                id="berat-mask" name="berat-badan" pattern="[0-9.,]*" inputmode="decimal"
                                                                >
                                                         <span class="input-group-text">kg</span>
@@ -565,7 +565,7 @@
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
-                                        <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                        <li><a class="dropdown-item" href="/main/general-consent">Informed Consent</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -830,7 +830,7 @@
                                 <div class="card">
                                     <label class="form-label" for="objective">Objective</label>
                                     <div class="card-body">
-                                        <div class="row"> 
+                                        <div class="row">
                                             <!-- Left Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
@@ -916,7 +916,7 @@
                             </div>
                         </div>
 
-                        
+
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
                             <!-- Pemeriksaan Fisik (Left Column) -->
@@ -962,7 +962,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
@@ -980,8 +980,8 @@
                                         <table id="rincian-icd9" class="table text-center shadow-table">
                                             <thead style="background-color: #676981; color: white;">
                                                 <style>
-                                                #rincian-icd9, 
-                                                #rincian-icd9 th, 
+                                                #rincian-icd9,
+                                                #rincian-icd9 th,
                                                 #rincian-icd9 td {
                                                     border: none !important;
                                                     border-collapse: collapse;
@@ -1181,7 +1181,7 @@
                             }
 
                             </style>
-                            
+
                         <!-- Modal for Pemeriksaan Fisik Details -->
                         <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
@@ -1214,7 +1214,7 @@
                         </div>
 
 
-                        
+
                         <!-- Layanan dan Rincian Obat -->
                     <div class="row-container">
                         <div class="row mb-3 mt-4" >
@@ -1230,8 +1230,8 @@
                                     <table id="rincian-layanan" class="table text-center shadow-table">
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                                #rincian-layanan, 
-                                                #rincian-layanan th, 
+                                                #rincian-layanan,
+                                                #rincian-layanan th,
                                                 #rincian-layanan td {
                                                     border: none !important;
                                                     border-collapse: collapse;
@@ -1400,7 +1400,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
@@ -1599,8 +1599,8 @@
                                     <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                                #rincian-obat, 
-                                                #rincian-obat th, 
+                                                #rincian-obat,
+                                                #rincian-obat th,
                                                 #rincian-obat td {
                                                     border: none !important;
                                                     border-collapse: collapse;
@@ -1650,7 +1650,7 @@
                             </div>
                         </div>
                     </div>
- 
+
                         <!-- Rencana Kontrol dan Catatan -->
                     <div class="row-container">
                         <div class="row mb-3 mt-4">
@@ -1665,8 +1665,8 @@
                                     <table id="rencana-kontrol" class="table text-center shadow-table">
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                                #rencana-kontrol, 
-                                                #rencana-kontrol th, 
+                                                #rencana-kontrol,
+                                                #rencana-kontrol th,
                                                 #rencana-kontrol td {
                                                     border: none !important;
                                                     border-collapse: collapse;
@@ -1844,7 +1844,7 @@
 
    <!-- Modal Pemeriksaan Fisik dengan Canvas -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-   
+
     <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content rounded shadow">
