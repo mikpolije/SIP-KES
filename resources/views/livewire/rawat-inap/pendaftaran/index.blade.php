@@ -243,6 +243,7 @@ new class extends Component {
                 </div>
 
                 <!-- pendidikan -->
+                    {{--
                 <div class="mb-3">
                     <label for="pendidikan" class="form-label">Pendidikan</label>
                     <select wire:model="pendidikan" class="form-select @error('pendidikan') is-invalid @enderror"
@@ -259,8 +260,10 @@ new class extends Component {
                     </select>
                     @error('pendidikan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
+                    --}}
 
                 <!-- pekerjaan -->
+                    {{--
                 <div class="mb-3">
                     <label for="pekerjaan" class="form-label">Pekerjaan</label>
                     <select wire:model="pekerjaan" class="form-select @error('pekerjaan') is-invalid @enderror"
@@ -271,10 +274,11 @@ new class extends Component {
                         <option>TNI/POLRI</option>
                         <option>BUMN</option>
                         <option>Pegawai Swasta/Wirausaha</option>
-                        <option>Lain-lain</option>
+                        <option>Lain-lain (free text)</option>
                     </select>
                     @error('pekerjaan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
+                    --}}
 
             </div>
 
