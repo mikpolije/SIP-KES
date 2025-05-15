@@ -26,9 +26,16 @@ return new class extends Migration
             $table->text('keluhan_utama')->nullable();
             $table->text('riwayat_penyakit')->nullable();
             $table->text('riwayat_pengobatan')->nullable();
-            $table->string('status_psikologi', 255)->nullable();
-            
-            $table->json('metadata')->nullable();
+
+            $table->enum('alergi', ['tidak', 'ya'])->default('tidak');
+            $table->string('jenis_alergi', 255)->nullable();
+
+            $table->enum('status_psikologi', ['tenang', 'cemas', 'takut', 'marah', ''])->nullable();
+            $table->boolean('bunuh_diri')->default(false);
+            $table->string('bunuh_diri_laporan', 255)->nullable();
+            $table->boolean('lain_lain')->default(false);
+            $table->text('lain_lain_text')->nullable();
+
             $table->timestamps();
         });
     }
