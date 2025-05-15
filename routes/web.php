@@ -76,10 +76,3 @@ use Illuminate\Support\Facades\Schema;
 
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
-
-Route::get('/reset-db', function () {
-    Schema::dropAllTables();
-    Artisan::call('migrate:fresh --seed');
-
-    return 'Database reset and seeded!';
-});
