@@ -899,6 +899,23 @@
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
                             <!-- Pemeriksaan Fisik (Left Column) -->
+                            <style>
+                                .custom-table {
+                                    border-radius: 10px;
+                                    overflow: hidden;
+                                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                                }
+
+                                .custom-table th,
+                                .custom-table td {
+                                    padding: 10px 14px;
+                                    vertical-align: middle;
+                                }
+
+                                .custom-table .text-center {
+                                    text-align: center;
+                                }
+                            </style>
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -909,27 +926,10 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead style="background-color: #B3B9F9;">
-                                            <style>
-                                            .custom-table {
-                                                border-radius: 10px;
-                                                overflow: hidden;
-                                                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-                                            }
-
-                                            .custom-table th,
-                                            .custom-table td {
-                                                padding: 10px 14px;
-                                                vertical-align: middle;
-                                            }
-
-                                            .custom-table .text-center {
-                                                text-align: center;
-                                            }
-                                            </style>
                                                 <tr>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama</th>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Keterangan</th>
-                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rincian</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
@@ -941,6 +941,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
@@ -1978,6 +1979,24 @@
             white-space: nowrap;
             font-size: 0.95rem;
             color: #666;
+        }
+    </style>
+
+    <style>
+        .custom-table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 10px 14px;
+            vertical-align: middle;
+        }
+
+        .custom-table .text-center {
+            text-align: center;
         }
     </style>
 
