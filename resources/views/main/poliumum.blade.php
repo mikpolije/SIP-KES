@@ -1613,21 +1613,34 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                <div class="table-wrapper">
+                                <div class="table-responsive-custom">
                                     <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                                .table-wrapper {
+                                                .table-responsive-custom {
                                                     max-height: 250px;
                                                     overflow-y: auto;
                                                     border-radius: 8px;
                                                 }
 
-                                                #rincian-obat, 
-                                                #rincian-obat th, 
-                                                #rincian-obat td {
-                                                    border: none !important;
+                                                #rincian-obat {
+                                                    width: 100%;
                                                     border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat th, #rincian-obat td {
+                                                    border: none !important;
+                                                    padding: 8px;
+                                                    font-size: 0.9rem;
+                                                    text-align: center;
+                                                }
+
+                                                #rincian-obat thead th {
+                                                    position: sticky;
+                                                    top: 0;
+                                                    background-color: #676981;
+                                                    color: white;
+                                                    z-index: 2;
                                                 }
 
                                                 #rincian-obat tr {
