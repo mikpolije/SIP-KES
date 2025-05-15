@@ -108,7 +108,7 @@ return new class extends Migration
                 2. TNI/POLRI;
                 3. BUMN;
                 4. Pegawai Swasta/Wirausaha;
-                5. Lain-lain (free text)
+                5. Lain-lain
                 '
             );
             $table->unsignedInteger('status_perkawinan')->comment(
