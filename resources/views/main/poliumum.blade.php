@@ -1665,6 +1665,11 @@
                                                         padding: 8px;
                                                     }
 
+                                                    /* Hilangkan pewarnaan selang-seling jika ada */
+                                                    .table-body-scroll tr {
+                                                        background-color: white !important;
+                                                    }
+
                                                     /* Scrollbar kustom untuk peningkatan UX */
                                                     .table-body-scroll::-webkit-scrollbar {
                                                         width: 8px;
