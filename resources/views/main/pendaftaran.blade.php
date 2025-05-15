@@ -487,6 +487,12 @@
                                 return obj;
                             });
 
+                            data = [{
+                                code_provinsi: "",
+                                nama_provinsi: "- Pilih Provinsi -",
+                                text: "- Pilih Provinsi -"
+                            }].concat(res);
+
                             // Implement data to select provinsi
                             $("#select2-provinsi").select2({
                                 dropdownAutoWidth: true,
@@ -516,6 +522,12 @@
                                         obj.text = obj.nama;
                                         return obj;
                                     });
+
+                                    data = [{
+                                        code_kabupaten: "",
+                                        nama_kabupaten: "- Pilih Kabupaten -",
+                                        text: "- Pilih Kabupaten -"
+                                    }].concat(res);
 
                                     // Implement data to select kabupaten
                                     $("#select2-kabupaten").select2({
@@ -548,6 +560,12 @@
                                         return obj;
                                     });
 
+                                    data = [{
+                                        code_kecamatan: "",
+                                        nama_kecamatan: "- Pilih Kecamatan -",
+                                        text: "- Pilih Kecamatan -"
+                                    }].concat(res);
+
                                     // Implement data to select kecamatan
                                     $("#select2-kecamatan").select2({
                                         dropdownAutoWidth: true,
@@ -577,6 +595,12 @@
                                         obj.text = obj.nama;
                                         return obj;
                                     });
+
+                                    data = [{
+                                        code_desa: "",
+                                        nama_desa: "- Pilih Kelurahan -",
+                                        text: "- Pilih Kelurahan -"
+                                    }].concat(res);
 
                                     // Implement data to select kelurahan
                                     $("#select2-kelurahan").select2({
@@ -621,7 +645,7 @@
                         name = "noantrian" / >
                             <
                             /div> < /
-                            div > <
+                        div > <
                             div class = "col-md-3" >
                             <
                             div class = "mb-3" >
@@ -634,7 +658,7 @@
                         name = "norm" / >
                             <
                             /div> < /
-                            div > <
+                        div > <
                             div class = "col-md-6" >
                             <
                             div class = "mb-3" >
@@ -647,7 +671,7 @@
                         name = "nama" / >
                             <
                             /div> < /
-                            div > <
+                        div > <
                             div class = "col-md-6" >
                             <
                             div class = "mb-3" >
@@ -660,7 +684,7 @@
                         name = "tanggalperiksa" / >
                             <
                             /div> < /
-                            div > <
+                        div > <
                             div class = "col-md-6" >
                             <
                             div class = "mb-3" >
@@ -673,11 +697,11 @@
                             <
                             option value = "Tidak" > Tidak < /option> <
                         option value = "Ya" > Ya < /option> < /
-                            select > <
+                        select > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div>
 
                             <
@@ -701,7 +725,7 @@
                         class = "form-control required" > < /textarea> < /
                         div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div>
 
                             <
@@ -733,7 +757,7 @@
                         inputmode = "numeric" >
                             <
                             span class = "input-group-text" > mmHg < /span> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -748,9 +772,9 @@
                         inputmode = "decimal" >
                             <
                             span class = "input-group-text" > kg < /span> < /
-                            div > <
+                        div > <
                             div class = "invalid-feedback" > Berat badan harus diisi < /div> < /
-                            div > <
+                        div > <
                             div class = "mb-3" >
                             <
                             label class = "form-label" > Suhu < /label> <
@@ -768,7 +792,7 @@
                         div class = "invalid-feedback" >
                         This field is required. <
                             /div> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -788,9 +812,9 @@
                             div class = "invalid-feedback" >
                             This field is required. <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div >
+                        div >
 
                             <
                             !--Right Column-- >
@@ -814,7 +838,7 @@
                         div class = "invalid-feedback" >
                         This field is required. <
                             /div> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -833,7 +857,7 @@
                         div class = "invalid-feedback" >
                         This field is required. <
                             /div> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -852,15 +876,15 @@
                         div class = "invalid-feedback" >
                         This field is required. <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            section >
+                        section >
 
                             <
                             !--Step 3-- >
@@ -903,9 +927,9 @@
                         href = "#" > Informed Consent < /a></li >
                             <
                             /ul> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div >
+                        div >
 
 
                             <
@@ -955,7 +979,7 @@
                         name = "tanggal" >
                             <
                             /div> < /
-                            div > <
+                        div > <
                             /div>
 
                             <
@@ -974,7 +998,7 @@
                         rows = "5"
                         class = "form-control"
                         placeholder = "Ketik diagnosis" > < /textarea> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "col-md-6" >
                         <
@@ -995,7 +1019,7 @@
                         type = "button" >
                             <
                             i class = "bi bi-search" > < /i> < /
-                            button >
+                        button >
 
 
                             <
@@ -1017,7 +1041,7 @@
                         class = "btn-close"
                         data - bs - dismiss = "modal"
                         aria - label = "Close" > < /button> < /
-                            div > <
+                        div > <
                             div class = "modal-body" >
                             <
                             table id = "icdTable"
@@ -1033,7 +1057,7 @@
                             option > 10 < /option> <
                         option > 25 < /option> <
                         option > 50 < /option> < /
-                            select >
+                        select >
                             entri <
                             /label> <
                         label >
@@ -1044,7 +1068,7 @@
                         placeholder = "Cari..." >
                             <
                             /label> < /
-                            div > <
+                        div > <
                             table >
                             <
                             thead >
@@ -1054,7 +1078,7 @@
                             th > < /th> <
                         th > Kode < /th> <
                         th > Nama < /th> < /
-                            tr > <
+                        tr > <
                             /thead> <
                         tbody >
                             <
@@ -1064,7 +1088,7 @@
                             <
                             td > A00 < /td> <
                         td > Cholera < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
@@ -1072,148 +1096,148 @@
                             td > A00 .0 < /td> <
                         td > Cholera due to Vibrio cholerae 01, biovar cholerae <
                             /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A00 .1 < /td> <
                         td > Cholera due to Vibrio cholerae 01, biovar eltor < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A00 .9 < /td> <
                         td > Cholera, unspecified < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A01 < /td> <
                         td > Typhoid and paratyphoid fevers < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A01 .0 < /td> <
                         td > Typhoid fever < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A01 .1 < /td> <
                         td > Paratyphoid fever a < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A01 .2 < /td> <
                         td > Paratyphoid fever b < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A01 .3 < /td> <
                         td > Paratyphoid fever c < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A01 .4 < /td> <
                         td > Paratyphoid fever, unspecified < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A02 < /td> <
                         td > Other salmonella infections < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A02 .0 < /td> <
                         td > Salmonella enteritis < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A02 .1 < /td> <
                         td > Salmonella septicaemia < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A02 .2 < /td> <
                         td > Localized salmonella infections < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A02 .8 < /td> <
                         td > Other specified salmonella infections < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A02 .9 < /td> <
                         td > Salmonella infection, unspecified < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A03 < /td> <
                         td > Shigellosis < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A03 .0 < /td> <
                         td > Shigellosis due to shigella dysenteriae < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A03 .1 < /td> <
                         td > Shigellosis due to shigella flexneri < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A03 .2 < /td> <
                         td > Shigellosis due to shigella boydii < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > A03 .3 < /td> <
                         td > Shigellosis due to shigella sonnei < /td> < /
-                            tr > <
+                        tr > <
                             /tbody> < /
-                            table >
+                        table >
 
                             <
                             /table> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "table-responsive" >
                         <
@@ -1229,7 +1253,7 @@
                         th
                         style = "text-align: center; font-weight: normal; font-size: 0.9rem;" >
                             Aksi < /th> < /
-                            tr > <
+                        tr > <
                             /thead> <
                         tbody id = "selected-icds-icd10" >
                             <
@@ -1243,7 +1267,7 @@
                         i class = "bi bi-trash" > < /i> < /
                         button > <
                             /td> < /
-                            tr > <
+                        tr > <
                             tr class = "icd-item" >
                             <
                             td > R51.Headache < /td> <
@@ -1254,13 +1278,13 @@
                         i class = "bi bi-trash" > < /i> < /
                         button > <
                             /td> < /
-                            tr > <
+                        tr > <
                             /tbody> < /
-                            table > <
+                        table > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div >
+                        div >
 
                             <
                             !--Subjective dan Objective-- >
@@ -1278,7 +1302,7 @@
                         rows = "5"
                         class = "form-control"
                         placeholder = "Ketik Subjective" > < /textarea> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "col-md-6 shadow-sm" >
                         <
@@ -1305,7 +1329,7 @@
                         inputmode = "numeric" >
                             <
                             span class = "input-group-text" > mmHg < /span> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -1320,7 +1344,7 @@
                         inputmode = "decimal" >
                             <
                             span class = "input-group-text" > kg < /span> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -1335,7 +1359,7 @@
                         inputmode = "decimal" >
                             <
                             span class = "input-group-text" > °C < /span> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -1351,7 +1375,7 @@
                             span class = "input-group-text" > /mnt</span >
                             <
                             /div> < /
-                            div > <
+                        div > <
                             /div>
 
                             <
@@ -1371,7 +1395,7 @@
                         inputmode = "numeric" >
                             <
                             span class = "input-group-text" > mmHg < /span> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -1385,7 +1409,7 @@
                         inputmode = "decimal" >
                             <
                             span class = "input-group-text" > cm < /span> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "mb-3" >
                         <
@@ -1399,13 +1423,13 @@
                         inputmode = "numeric" >
                             <
                             span class = "input-group-text" > % < /span> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div >
+                        div >
 
                             <
                             !--Assessment dan Plan-- >
@@ -1423,7 +1447,7 @@
                         rows = "5"
                         class = "form-control"
                         placeholder = "Ketik Assessment" > < /textarea> < /
-                            div > <
+                        div > <
                             /div> <
                         div class = "col-md-6" >
                         <
@@ -1436,9 +1460,9 @@
                         rows = "5"
                         class = "form-control"
                         placeholder = "Ketik Plan" > < /textarea> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div >
+                        div >
 
 
                             <
@@ -1460,7 +1484,7 @@
                         class = "btn btn-sm btn-secondary"
                         data - bs - toggle = "modal"
                         data - bs - target = "#statusLokalisModal" > Tambah + < /button> < /
-                            div > <
+                        div > <
                             div class = "table-responsive" >
                             <
                             table class = "table table-bordered" >
@@ -1478,7 +1502,7 @@
                         th
                         style = "text-align: center; font-weight: normal; font-size: 0.9rem;" >
                             Rincian < /th> < /
-                            tr > <
+                        tr > <
                             /thead> <
                         tbody id = "pemeriksaanFisikTable" >
                             <
@@ -1497,17 +1521,17 @@
                         title = "Lihat Rincian" >
                             <
                             i class = "bi bi-eye" > < /i> < /
-                            button >
+                        button >
 
                             <
                             /button> < /
-                            td > <
+                        td > <
                             /tr> < /
-                            tbody > <
+                        tbody > <
                             /table> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div >
+                        div >
 
                             <
                             div class = "col-md-6" >
@@ -1529,7 +1553,7 @@
                         data - bs - target = "#icdModal9" >
                             <
                             i class = "bi bi-search" > < /i> < /
-                            button > <
+                        button > <
                             /div>
 
                             <
@@ -1547,7 +1571,7 @@
                         th
                         style = "text-align: center; font-weight: normal; font-size: 0.9rem;" >
                             Aksi < /th> < /
-                            tr > <
+                        tr > <
                             /thead> <
                         tbody id = "selected-icds-icd9" >
                             <
@@ -1555,11 +1579,11 @@
                             <
                             td colspan = "2"
                         class = "text-center text-dark" > Tidak Ada Data < /td> < /
-                            tr > <
+                        tr > <
                             /tbody> < /
-                            table > <
+                        table > <
                             /div> < /
-                            div > <
+                        div > <
                             /div>
 
                             <
@@ -1581,7 +1605,7 @@
                         class = "btn-close"
                         data - bs - dismiss = "modal"
                         aria - label = "Tutup" > < /button> < /
-                            div > <
+                        div > <
                             div class = "modal-body" >
                             <
                             div class = "mb-3 d-flex justify-content-between align-items-center" >
@@ -1593,7 +1617,7 @@
                             option > 10 < /option> <
                         option > 25 < /option> <
                         option > 50 < /option> < /
-                            select >
+                        select >
                             entri <
                             /label> <
                         label >
@@ -1604,7 +1628,7 @@
                         placeholder = "Cari..." >
                             <
                             /label> < /
-                            div >
+                        div >
 
                             <
                             table >
@@ -1616,7 +1640,7 @@
                             th class = "text-start" > < /th> <
                         th class = "text-start" > Kode < /th> <
                         th class = "text-start" > Nama < /th> < /
-                            tr > <
+                        tr > <
                             /thead> <
                         tbody >
                             <
@@ -1626,75 +1650,76 @@
                             <
                             td > 0001 < /td> <
                         td > Therapeutic ultrasound of vessels of head and neck < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > 0002 < /td> <
                         td > Therapeutic ultrasound of heart < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > 0003 < /td> <
                         td > Therapeutic ultrasound of peripheral vascular vessels < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > 0009 < /td> <
                         td > Other therapeutic ultrasound < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > 0010 < /td> <
                         td > Implantation of chemotherapeutic agent < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > 0011 < /td> <
                         td > Infusion of drotrecogin alfa(activated) < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > 0012 < /td> <
                         td > Administration of inhaled nitric oxide < /td> < /
-                            tr > <
+                        tr > <
                             !--Tambahan baris lainnya-- >
                             <
                             /tbody> < /
-                            table > <
+                        table > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div >
+                        div >
 
                             <
                             !--CSS Styling-- >
                             <
                             style >
                             .btn - pilih {
-                                background - color: #2196F3;
-                                                                            color: white;
-                                                                            border: none;
-                                                                            padding: 5px 12px;
-                                                                            border-radius: 4px;
-                                                                            font-weight: bold;
-                                                                            cursor: pointer;
-                                                                            transition: background-color 0.2s;
-                                                                        }
+                                background - color:
+                                    #2196F3;
+                                                                                                                                                                                color: white;
+                                                                                                                                                                                border: none;
+                                                                                                                                                                                padding: 5px 12px;
+                                                                                                                                                                                border-radius: 4px;
+                                                                                                                                                                                font-weight: bold;
+                                                                                                                                                                                cursor: pointer;
+                                                                                                                                                                                transition: background-color 0.2s;
+                                                                                                                                                                            }
 
-                                                                        .btn-pilih:hover {
-                                                                            background-color: # 1976 D2;
+                                                                                                                                                                            .btn-pilih:hover {
+                                                                                                                                                                                background-color: # 1976 D2;
                             }
 
                             .icd - table tbody tr {
@@ -1755,7 +1780,7 @@
                         class = "btn-close"
                         data - bs - dismiss = "modal"
                         aria - label = "Close" > < /button> < /
-                            div > <
+                        div > <
                             div class = "modal-body"
                         id = "physicalExamModalBody" >
                             <
@@ -1775,17 +1800,17 @@
                         li > Tingkat Keparahan: Sedang < /li> <
                         li > Catatan Tambahan: Diperlukan pemeriksaan lanjutan dengan USG Doppler <
                             /li> < /
-                            ul > <
+                        ul > <
                             /div> < /
-                            div > <
+                        div > <
                             div class = "modal-footer" >
                             <
                             button type = "button"
                         class = "btn btn-secondary"
                         data - bs - dismiss = "modal" > Tutup < /button> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div>
 
 
@@ -1831,7 +1856,7 @@
                         th
                         style = "text-align: center; font-weight: normal; font-size: 0.9rem;" >
                             Harga Layanan < /th> < /
-                            tr > <
+                        tr > <
                             /thead> <
                         tbody >
                             <
@@ -1840,14 +1865,13 @@
                             td colspan = "3"
                         class = "text-center align-middle" > Tidak Ada
                         Data < /td> < /
-                            tr > <
+                        tr > <
                             /tbody> < /
-                            table > <
+                        table > <
                             /div> < /
-                            div > <
-                            /div> <!--Modal-- >
-                            <
-                            div class = "modal fade"
+                        div > <
+                            /div> <!--Modal-- > <
+                        div class = "modal fade"
                         id = "layananModal"
                         tabindex = "-1"
                         aria - labelledby = "exampleModalLabel"
@@ -1865,7 +1889,7 @@
                         class = "btn-close"
                         data - bs - dismiss = "modal"
                         aria - label = "Close" > < /button> < /
-                            div > <
+                        div > <
                             div class = "modal-body" >
                             <
                             table id = "layananTable"
@@ -1877,7 +1901,7 @@
                             option > 10 < /option> <
                         option > 25 < /option> <
                         option > 50 < /option> < /
-                            select > entri <
+                        select > entri <
                             /label> <
                         input type = "text"
                         placeholder = "Cari..."
@@ -1892,7 +1916,7 @@
                             th > < /th> <
                         th > Nama Layanan < /th> <
                         th > Tarif < /th> < /
-                            tr > <
+                        tr > <
                             /thead> <
                         tbody >
                             <
@@ -1902,72 +1926,72 @@
                             <
                             td > Jasa Perawat < /td> <
                         td > Rp 10.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Jasa Pasang Infus < /td> <
                         td > Rp 30.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Bekam < /td> <
                         td > Rp 50.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Perawatan Luka Ringan < /td> <
                         td > Rp 30.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Perawatan Luka Infeksi < /td> <
                         td > Rp 70.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Administrasi < /td> <
                         td > Rp 5.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Injeksi Vitamin < /td> <
                         td > Rp 50.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Nebulizer < /td> <
                         td > Rp 25.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Tensi < /td> <
                         td > Rp 10.000, - < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button></td >
                             <
                             td > Cek Gula Darah < /td> <
                         td > Rp 10.000, - < /td> < /
-                            tr > <
+                        tr > <
                             /tbody> < /
-                            table > <
+                        table > <
                             div style = "margin-top: 15px;" >
                             <
                             div >
@@ -1991,9 +2015,9 @@
                         style = "border: 1px solid #ccc; background-color: white; padding: 6px 12px;" > 10 < /button> <
                         button
                         style = "border: 1px solid #ccc; background-color: white; padding: 6px 12px;" > Selanjutnya < /button> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             div class = "modal-footer" >
                             <
                             button type = "button"
@@ -2001,9 +2025,9 @@
                         data - bs - dismiss = "modal" > Sebelumnya < /button> <
                         button type = "button"
                         class = "btn btn-primary" > Selanjutnya < /button> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div>
 
                             <
@@ -2026,35 +2050,37 @@
                             .bi bi - search {
                                 background - color: transparent;
                                 border: none;
-                                color: #333;
-                                                                                        }
+                                color:
+                                    #333;
+                                                                                                                                                                                            }
 
-                                                                                        table {
-                                                                                            width: 100%;
-                                                                                            border-collapse: collapse;
-                                                                                            margin-top: 20px;
-                                                                                            font-family: sans-serif;
-                                                                                        }
+                                                                                                                                                                                            table {
+                                                                                                                                                                                                width: 100%;
+                                                                                                                                                                                                border-collapse: collapse;
+                                                                                                                                                                                                margin-top: 20px;
+                                                                                                                                                                                                font-family: sans-serif;
+                                                                                                                                                                                            }
 
-                                                                                        thead {
-                                                                                            background-color: # f3f3f3;
+                                                                                                                                                                                            thead {
+                                                                                                                                                                                                background-color: # f3f3f3;
                                 border - bottom: 2 px solid #ccc;
                             }
 
                         h2 {
                             font - size: 24 px;
-                            color: #1a237e;
-                                                                                            margin-bottom: 5px;
-                                                                                            position: relative;
-                                                                                        }
+                            color:
+                                #1a237e;
+                                                                                                                                                                                                margin-bottom: 5px;
+                                                                                                                                                                                                position: relative;
+                                                                                                                                                                                            }
 
-                                                                                        /* Garis horizontal di bawah judul */
-                                                                                        h2::after {
-                                                                                            content: "";
-                                                                                            display: block;
-                                                                                            width: 100%;
-                                                                                            height: 2px;
-                                                                                            background-color: # ccc;
+                                                                                                                                                                                            /* Garis horizontal di bawah judul */
+                                                                                                                                                                                            h2::after {
+                                                                                                                                                                                                content: "";
+                                                                                                                                                                                                display: block;
+                                                                                                                                                                                                width: 100%;
+                                                                                                                                                                                                height: 2px;
+                                                                                                                                                                                                background-color: # ccc;
                             margin - top: 8 px;
                         }
 
@@ -2075,22 +2101,23 @@
                         }
 
                         .btn - pilih {
-                                background - color: #2196F3;
-                                                                                            color: white;
-                                                                                            border: none;
-                                                                                            padding: 5px 10px;
-                                                                                            cursor: pointer;
-                                                                                        }
+                                background - color:
+                                    #2196F3;
+                                                                                                                                                                                                color: white;
+                                                                                                                                                                                                border: none;
+                                                                                                                                                                                                padding: 5px 10px;
+                                                                                                                                                                                                cursor: pointer;
+                                                                                                                                                                                            }
 
-                                                                                        .stok-kosong {
-                                                                                            color: red;
-                                                                                            font-size: 12px;
-                                                                                            padding: 5px 10px;
-                                                                                            cursor: pointer;
-                                                                                        }
+                                                                                                                                                                                            .stok-kosong {
+                                                                                                                                                                                                color: red;
+                                                                                                                                                                                                font-size: 12px;
+                                                                                                                                                                                                padding: 5px 10px;
+                                                                                                                                                                                                cursor: pointer;
+                                                                                                                                                                                            }
 
-                                                                                        button:disabled {
-                                                                                            background-color: # aaa;
+                                                                                                                                                                                            button:disabled {
+                                                                                                                                                                                                background-color: # aaa;
                             } <
                             /style> <
                         div class = "input-group mb-2" >
@@ -2106,7 +2133,7 @@
                         type = "button" >
                             <
                             i class = "bi bi-search" > < /i> < /
-                            div > <
+                        div > <
                             div class = "modal fade"
                         id = "cariObat"
                         tabindex = "-1"
@@ -2123,7 +2150,7 @@
                         class = "btn-close"
                         data - bs - dismiss = "modal"
                         aria - label = "Close" > < /button> < /
-                            div > <
+                        div > <
                             div class = "modal-body" >
                             <
                             !--Anda bisa tambahkan tabel atau elemen lainnya di sini-- >
@@ -2139,7 +2166,7 @@
                             option > 10 < /option> <
                         option > 25 < /option> <
                         option > 50 < /option> < /
-                            select >
+                        select >
                             entri <
                             /label> <
                         div
@@ -2166,7 +2193,7 @@
                         th > Nama Obat < /th> <
                         th > Harga Jual < /th> <
                         th > Stok Obat < /th> < /
-                            thead > <
+                        thead > <
                             tbody >
                             <
                             tr >
@@ -2178,43 +2205,43 @@
                             td > Acyclovir < /td> <
                         td > Rp 1.000, - < /td> <
                         td > 64 < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button> < /
-                            td > <
+                        td > <
                             td > Acyclovir salep < /td> <
                         td > Rp 9.000, - < /td> <
                         td > 3 < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < span class = "stok-kosong" > Stok
                         Kosong < /span></td >
                             <
                             td > ALLOPURINOL TAB 300 mg < /td> < /
-                            td > <
+                        td > <
                             td > Rp 833, - < /td> <
                         td > 0 < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button> < /
-                            td > <
+                        td > <
                             td > ALPARA < /td> <
                         td > Rp 1.776, - < /td> <
                         td > 10 < /td> < /
-                            tr > <
+                        tr > <
                             tr >
                             <
                             td > < button class = "btn-pilih" > Pilih < /button> < /
-                            td > <
+                        td > <
                             td > Ambroxol < /td> <
                         td > Rp 416, - < /td> <
                         td > 170 < /td> < /
-                            tr > <
+                        tr > <
                             /tbody> < /
-                            table > <
+                        table > <
                             div style = "margin-top: 15px;" >
                             <
                             div >
@@ -2238,13 +2265,13 @@
                         style = "border: 1px solid #ccc; background-color: white; padding: 6px 12px;" > 10 < /button> <
                         button
                         style = "border: 1px solid #ccc; background-color: white; padding: 6px 12px;" > Selanjutnya < /button> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             /div> < /
-                            div > <
+                        div > <
                             !--Bootstrap JS Bundle(wajib agar modal bisa jalan) -- >
                             <
                             script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" >
