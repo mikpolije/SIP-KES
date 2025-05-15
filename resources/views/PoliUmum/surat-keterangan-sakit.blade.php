@@ -1,5 +1,3 @@
-<!-- resources/views/surat-keterangan-sakit.blade.php -->
-
 @extends('layouts.master')
 
 @section('title', 'SIP-Kes')
@@ -8,6 +6,7 @@
 {{-- Include Montserrat font dari Google Fonts --}}
 @push('styles')
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 <style>
@@ -24,6 +23,62 @@
         vertical-align: middle;
         text-align: center;
     }
+    .pagination-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+    .pagination-info {
+        font-size: 14px;
+        color: #6c757d;
+        display: flex;
+        align-items: center;
+    }
+    .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .pagination li {
+        margin: 0 5px;
+    }
+    .pagination li a {
+        display: block;
+        padding: 5px 12px;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        color: #007bff;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    .pagination li a:hover {
+        background-color: #e9ecef;
+    }
+    .pagination li.active a {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+    .pagination li.disabled a {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+    }
+    .select-entries {
+        margin-left: 10px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+    }
+    .select2-container {
+        width: 300px !important;
+    }
 </style>
 
 <div class="container py-4">
@@ -32,12 +87,12 @@
     </h1>
 
     <div class="d-flex justify-content-end my-4">
-        <div class="input-group" style="width: 300px;">
-            <input type="text" class="form-control" placeholder="Data Pasien">
-            <button class="btn btn-primary" type="button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
+        <select class="form-control me-2" id="searchPasien" style="width: 300px;">
+            <option value="">Cari Data Pasien...</option>
+        </select>
+        <button class="btn btn-primary" type="button" id="btnCariPasien">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
 
     <div class="card shadow-sm">
@@ -84,12 +139,32 @@
                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal">
                                     Detail
                                 </button>
-
                             </td>
                         </tr>
                         {{-- Tambahkan data dummy lainnya jika mau --}}
                     </tbody>
                 </table>
+            </div>
+            
+            {{-- Pagination --}}
+            <div class="pagination-wrapper px-3 py-2">
+                <div class="pagination-info">
+                    Tampilan 
+                    <select class="select-entries" id="perPage">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    entri
+                </div>
+                <ul class="pagination">
+                    <li class="disabled"><a href="#">Sebelumnya</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">Selanjutnya</a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -188,8 +263,63 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    $(document).ready(function() {
+        // Inisialisasi Select2 untuk pencarian pasien
+        $('#searchPasien').select2({
+            placeholder: 'Cari Data Pasien...',
+            allowClear: true,
+            ajax: {
+                url: '{{ route("surat-keterangan-sakit.search-pasien") }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            }
+        });
+
+        // Fungsi pencarian pasien
+        $('#btnCariPasien').on('click', function(e) {
+            e.preventDefault();
+            const noRM = $('#searchPasien').val();
+            if (noRM) {
+                // Lakukan pencarian atau filter data
+                alert('Akan mencari pasien dengan RM: ' + noRM);
+                // Implementasi sebenarnya: filter tabel atau reload halaman dengan parameter
+            } else {
+                alert('Silakan pilih data pasien terlebih dahulu.');
+            }
+        });
+
+        // Fungsi untuk mengubah jumlah entri per halaman
+        $('#perPage').on('change', function() {
+            const perPage = $(this).val();
+            // Simpan preferensi ke cookie atau local storage
+            localStorage.setItem('perPage', perPage);
+            
+            // Reload halaman dengan parameter per_page
+            const url = new URL(window.location.href);
+            url.searchParams.set('per_page', perPage);
+            window.location.href = url.toString();
+        });
+
+        // Set nilai default dari cookie/local storage
+        const savedPerPage = localStorage.getItem('perPage') || '10';
+        $('#perPage').val(savedPerPage);
+    });
+
     // Contoh: tombol detail akan isi modal secara dinamis
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".btn-detail").forEach(button => {
