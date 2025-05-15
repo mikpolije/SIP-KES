@@ -52,8 +52,8 @@ new class extends Component {
                 $this->alamatPasien = $pendaftaran->data_pasien->alamat_lengkap;
 
                 $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_lengkap ?? '';
-                $this->tanggalLahirPerwakilan
-                $this->alamatPerwakilan
+                $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir ?? '';
+                $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_lengkap ?? '';
 
                 $informedConsent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
                 if ($informedConsent) {
@@ -276,17 +276,17 @@ new class extends Component {
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="namaPasien" class="form-label">Nama</label>
-                            <input type="text" wire:model="namaPasien" class="form-control" id="namaPasien" required>
+                            <input type="text" wire:model="namaPasien" class="form-control" id="namaPasien" disabled>
                         </div>
                         <div class="col-12">
                             <label for="tanggalLahirPasien" class="form-label">Tanggal Lahir</label>
                             <input type="text" wire:model="tanggalLahirPasien" class="form-control"
-                                id="tanggalLahirPasien">
+                                id="tanggalLahirPasien" disabled>
                         </div>
                         <div class="col-12">
                             <label for="alamatPasien" class="form-label">Alamat</label>
                             <textarea class="form-control" wire:model="alamatPasien" id="alamatPasien"
-                                rows="3"></textarea>
+                                rows="3" disabled></textarea>
                         </div>
                         <div class="col-12">
                             <div class="d-flex align-items-center">
@@ -305,17 +305,17 @@ new class extends Component {
                         </div>
                         <div class="col-12">
                             <label for="namaPerwakilan" class="form-label">Nama</label>
-                            <input type="text" wire:model="namaPerwakilan" class="form-control" id="namaPerwakilan">
+                            <input type="text" wire:model="namaPerwakilan" class="form-control" id="namaPerwakilan" disabled>
                         </div>
                         <div class="col-12">
                             <label for="tanggalLahirPerwakilan" class="form-label">Tanggal Lahir</label>
                             <input type="text" wire:model="tanggalLahirPerwakilan" class="form-control"
-                                id="tanggalLahirPerwakilan">
+                                id="tanggalLahirPerwakilan" disabled>
                         </div>
                         <div class="col-12">
                             <label for="alamatPerwakilan" class="form-label">Alamat</label>
                             <textarea class="form-control" wire:model="alamatPerwakilan" id="alamatPerwakilan"
-                                rows="3"></textarea>
+                                rows="3" disabled></textarea>
                         </div>
                     </div>
                     <div class="mt-3">
