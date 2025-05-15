@@ -1,6 +1,8 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\InformedConsent;
+use App\Models\Pendaftaran;
 
 new class extends Component {
     public $noRM = '';
@@ -31,36 +33,124 @@ new class extends Component {
     public $namaPerwakilan = '';
     public $tanggalLahirPerwakilan = '';
     public $alamatPerwakilan = '';
+    public $pendaftaranId;
 
     public function mount($pendaftaranId = null)
     {
         $this->pendaftaranId = $pendaftaranId;
+
+        if ($pendaftaranId) {
+            $pendaftaran = Pendaftaran::with('data_pasien')->find($pendaftaranId);
+
+            if ($pendaftaran) {
+                $this->noRM = $pendaftaran->data_pasien->no_rm;
+                $this->nama = $pendaftaran->data_pasien->nama_lengkap;
+                $this->tanggalLahir = $pendaftaran->data_pasien->tanggal_lahir;
+                $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin;
+                $this->namaPasien = $pendaftaran->data_pasien->nama_lengkap;
+                $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir;
+                $this->alamatPasien = $pendaftaran->data_pasien->alamat;
+
+                // Load existing informed consent data if available
+                $informedConsent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
+                if ($informedConsent) {
+                    $this->dokterPelaksana = $informedConsent->id_dokter;
+                    $this->pemberianInformasi = $informedConsent->pemberian_informasi;
+                    $this->penerimaInformasi = $informedConsent->penerima_informasi;
+                    $this->diagnosis = $informedConsent->diagnosis;
+                    $this->tindakanKedokteran = $informedConsent->tindakan_kedokteran;
+                    $this->indikasi = $informedConsent->indikasi_tindakan;
+                    $this->tataCara = $informedConsent->tata_cara;
+                    $this->risiko = $informedConsent->risiko;
+                    $this->komplikasi = $informedConsent->komplikasi;
+                    $this->prognosis = $informedConsent->prognosis;
+                    $this->alternatif = $informedConsent->alternatif_risiko;
+                    $this->pengambilanSampel = $informedConsent->pengambilan_sampel_darah;
+                    $this->lainLainConsent = $informedConsent->lain_lain;
+                }
+            }
+        }
+    }
+
+    public function save()
+    {
+        $validated = $this->validate([
+            'noRM' => 'required',
+            'nama' => 'required',
+            'dokterPelaksana' => 'required',
+            'pemberianInformasi' => 'required',
+            'penerimaInformasi' => 'required',
+            'diagnosis' => 'required',
+            'tindakanKedokteran' => 'required',
+            'indikasi' => 'required',
+            'tataCara' => 'required',
+            'risiko' => 'required',
+            'komplikasi' => 'required',
+            'prognosis' => 'required',
+            'namaPasien' => 'required',
+            'persetujuan' => 'required',
+        ]);
+
+        $data = [
+            'id_pendaftaran' => $this->pendaftaranId,
+            'id_dokter' => $this->dokterPelaksana,
+            'pemberian_informasi' => $this->pemberianInformasi,
+            'penerima_informasi' => $this->penerimaInformasi,
+            'diagnosis' => $this->diagnosis,
+            'tindakan_kedokteran' => $this->tindakanKedokteran,
+            'indikasi_tindakan' => $this->indikasi,
+            'tata_cara' => $this->tataCara,
+            'risiko' => $this->risiko,
+            'komplikasi' => $this->komplikasi,
+            'prognosis' => $this->prognosis,
+            'alternatif_risiko' => $this->alternatif,
+            'pengambilan_sampel_darah' => $this->pengambilanSampel,
+            'lain_lain' => $this->lainLainConsent,
+            'pernyataan1' => $this->pernyataan1,
+            'pernyataan2' => $this->pernyataan2,
+            'nama_pasien' => $this->namaPasien,
+            'tanggal_lahir_pasien' => $this->tanggalLahirPasien,
+            'alamat_pasien' => $this->alamatPasien,
+            'persetujuan' => $this->persetujuan,
+            'tindakan_persetujuan' => $this->tindakanPersetujuan,
+            'nama_perwakilan' => $this->namaPerwakilan,
+            'tanggal_lahir_perwakilan' => $this->tanggalLahirPerwakilan,
+            'alamat_perwakilan' => $this->alamatPerwakilan,
+        ];
+
+        // Update or create informed consent record
+        InformedConsent::updateOrCreate(
+            ['id_pendaftaran' => $this->pendaftaranId],
+            $data
+        );
+
+        session()->flash('message', 'Informed consent saved successfully.');
     }
 }; ?>
 
 <div>
     <div>
         <div class="container py-4">
-            <form>
+            <form wire:submit.prevent="save">
                 <!-- DATA PASIEN -->
                 <div class="mb-4">
                     <h5>DATA PASIEN</h5>
                     <div class="row g-3">
                         <div class="col-md-3">
                             <label for="noRM" class="form-label">No RM</label>
-                            <input type="text" wire:model="noRM" class="form-control" id="noRM" placeholder="010101">
+                            <input type="text" wire:model="noRM" class="form-control" id="noRM" placeholder="010101" readonly>
                         </div>
                         <div class="col-md-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" wire:model="nama" class="form-control" id="nama">
+                            <input type="text" wire:model="nama" class="form-control" id="nama" readonly>
                         </div>
                         <div class="col-md-3">
                             <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
-                            <input type="text" wire:model="tanggalLahir" class="form-control" id="tanggalLahir">
+                            <input type="text" wire:model="tanggalLahir" class="form-control" id="tanggalLahir" readonly>
                         </div>
                         <div class="col-md-3">
                             <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
-                            <input type="text" wire:model="jenisKelamin" class="form-control" id="jenisKelamin">
+                            <input type="text" wire:model="jenisKelamin" class="form-control" id="jenisKelamin" readonly>
                         </div>
                     </div>
                 </div>
@@ -71,47 +161,47 @@ new class extends Component {
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="dokterPelaksana" class="form-label">Dokter Pelaksana</label>
-                            <input type="text" wire:model="dokterPelaksana" class="form-control" id="dokterPelaksana">
+                            <input type="text" wire:model="dokterPelaksana" class="form-control" id="dokterPelaksana" required>
                         </div>
                         <div class="col-md-6">
                             <label for="pemberianInformasi" class="form-label">Pemberian Informasi</label>
                             <input type="text" wire:model="pemberianInformasi" class="form-control"
-                                id="pemberianInformasi">
+                                id="pemberianInformasi" required>
                         </div>
                         <div class="col-md-6">
                             <label for="penerimaInformasi" class="form-label">Penerima Informasi / Pemberi
                                 Persetujuan</label>
                             <input type="text" wire:model="penerimaInformasi" class="form-control"
-                                id="penerimaInformasi">
+                                id="penerimaInformasi" required>
                         </div>
                         <div class="col-md-6">
                             <label for="diagnosis" class="form-label">Diagnosis</label>
-                            <input type="text" wire:model="diagnosis" class="form-control" id="diagnosis">
+                            <input type="text" wire:model="diagnosis" class="form-control" id="diagnosis" required>
                         </div>
                         <div class="col-md-6">
                             <label for="tindakanKedokteran" class="form-label">Tindakan Kedokteran</label>
                             <input type="text" wire:model="tindakanKedokteran" class="form-control"
-                                id="tindakanKedokteran">
+                                id="tindakanKedokteran" required>
                         </div>
                         <div class="col-md-6">
                             <label for="indikasi" class="form-label">Indikasi Tindakan</label>
-                            <input type="text" wire:model="indikasi" class="form-control" id="indikasi">
+                            <input type="text" wire:model="indikasi" class="form-control" id="indikasi" required>
                         </div>
                         <div class="col-md-6">
                             <label for="tataCara" class="form-label">Tata Cara</label>
-                            <input type="text" wire:model="tataCara" class="form-control" id="tataCara">
+                            <input type="text" wire:model="tataCara" class="form-control" id="tataCara" required>
                         </div>
                         <div class="col-md-6">
                             <label for="risiko" class="form-label">Risiko</label>
-                            <input type="text" wire:model="risiko" class="form-control" id="risiko">
+                            <input type="text" wire:model="risiko" class="form-control" id="risiko" required>
                         </div>
                         <div class="col-md-6">
                             <label for="komplikasi" class="form-label">Komplikasi</label>
-                            <input type="text" wire:model="komplikasi" class="form-control" id="komplikasi">
+                            <input type="text" wire:model="komplikasi" class="form-control" id="komplikasi" required>
                         </div>
                         <div class="col-md-6">
                             <label for="prognosis" class="form-label">Prognosis</label>
-                            <input type="text" wire:model="prognosis" class="form-control" id="prognosis">
+                            <input type="text" wire:model="prognosis" class="form-control" id="prognosis" required>
                         </div>
                         <div class="col-md-6">
                             <label for="alternatif" class="form-label">Alternatif & Risiko</label>
@@ -194,7 +284,7 @@ new class extends Component {
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="namaPasien" class="form-label">Nama</label>
-                            <input type="text" wire:model="namaPasien" class="form-control" id="namaPasien">
+                            <input type="text" wire:model="namaPasien" class="form-control" id="namaPasien" required>
                         </div>
                         <div class="col-12">
                             <label for="tanggalLahirPasien" class="form-label">Tanggal Lahir</label>
@@ -271,6 +361,10 @@ new class extends Component {
                         <p>Yang Menyatakan</p>
                         <p class="small">(Nama)</p>
                     </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
