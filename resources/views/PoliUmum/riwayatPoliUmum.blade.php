@@ -3,7 +3,9 @@
 @section('title', 'SIP-Kes')
 
 @section('pageContent')
+{{-- Select2 CSS --}}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -140,12 +142,11 @@ td {
             }
         });
 
-        // Redirect ke detail jika klik tombol
         $('#btnCariPasien').on('click', function (e) {
             e.preventDefault();
             const noRM = $('#searchPasien').val();
             if (noRM) {
-                window.location.href = `/poli-umum/riwayat/${noRM}`;
+                window.location.href = `/poli-umum/detail/${noRM}`;
             } else {
                 alert('Silakan pilih data pasien terlebih dahulu.');
             }
