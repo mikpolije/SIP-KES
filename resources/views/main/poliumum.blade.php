@@ -759,8 +759,29 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                                                                            
-                                                    </table>
+                                                        <div style="margin-top: 15px;">
+                                                            <div>
+                                                                Menampilkan 1 sampai 10 dari 155 entri
+                                                            </div>
+                                                            <div style="margin-top: 10px; text-align: right;">
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -955,9 +976,27 @@
                                         </button>
                                     </div>
 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered mt-2">
-                                            <thead style="background-color: #f8f9fa;">
+                                    <!-- <div class="table-responsive">  -->
+                                        <table id="rincian-icd9" class="table text-center shadow-table">
+                                            <thead style="background-color: #676981; color: white;">
+                                                <style>
+                                                #rincian-icd9, 
+                                                #rincian-icd9 th, 
+                                                #rincian-icd9 td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rincian-icd9 tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                                 <tr>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 9</th>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
@@ -965,11 +1004,23 @@
                                             </thead>
                                             <tbody id="selected-icds-icd9">
                                                 <tr>
-                                                    <td colspan="2" class="text-center text-dark">Tidak Ada Data</td>
-                                                </tr>
+                                                <td style="text-align: left; font-weight: normal; font-size: 0.9rem;">16.99 other operations on eyeball</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
+                                                <tr>
+                                                <td style="text-align: left; font-weight: normal; font-size: 0.9rem;">90.5 microscopic examinations of blood</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                             </div>
 
@@ -1047,6 +1098,29 @@
                                                 <!-- Tambahan baris lainnya -->
                                             </tbody>
                                         </table>
+                                        <div style="margin-top: 15px;">
+                                            <div>
+                                                Menampilkan 1 sampai 10 dari 155 entri
+                                            </div>
+                                            <div style="margin-top: 10px; text-align: right;">
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
