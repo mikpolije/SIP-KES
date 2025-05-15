@@ -1390,7 +1390,7 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                                                                        <div style="margin-top: 15px;">
+                                                        <div style="margin-top: 15px;">
                                                             <div>
                                                                 Menampilkan 1 sampai 10 dari 155 entri
                                                             </div>
@@ -1612,54 +1612,95 @@
                                     </div>
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+                            
                                 <div class="table-container">
                                     <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
-                                            <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
-                                            </tr>
-                                            <style>
-                                                .table-container {
-                                                    max-height: 300px;
-                                                    overflow-y: auto;
-                                                    margin-bottom: 20px;
-                                                    border: 1px solid #ddd;
-                                                }
+                                            <head>
+                                                <style>
+                                                    /* Container tabel */
+                                                    .table-container {
+                                                        border-radius: 8px;
+                                                        overflow: hidden;
+                                                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    }
+                                                    
+                                                    /* Header yang tetap/tidak bergerak */
+                                                    .table-header {
+                                                        background-color: #676981;
+                                                        color: white;
+                                                        border-top-left-radius: 8px;
+                                                        border-top-right-radius: 8px;
+                                                    }
+                                                    
+                                                    .table-header table {
+                                                        width: 100%;
+                                                        margin-bottom: 0;
+                                                    }
+                                                    
+                                                    /* Bagian tbody yang dapat di-scroll */
+                                                    .table-body-scroll {
+                                                        max-height: 215px; /* Sesuaikan dengan kebutuhan */
+                                                        overflow-y: auto; 
+                                                        border-bottom-left-radius: 8px;
+                                                        border-bottom-right-radius: 8px;
+                                                    }
+                                                    
+                                                    /* Style umum untuk semua tabel */
+                                                    .table-header table,
+                                                    .table-body-scroll table {
+                                                        border-collapse: separate;
+                                                        width: 100%;
+                                                        margin: 0;
+                                                    }
+                                                    
+                                                    /* Menghapus border pada tabel */
+                                                    .table-header th,
+                                                    .table-body-scroll td {
+                                                        border: none !important;
+                                                        text-align: center;
+                                                        font-weight: normal;
+                                                        font-size: 0.9rem;
+                                                        padding: 8px;
+                                                    }
 
-                                                table {
-                                                    width: 100%;
-                                                    border-collapse: collapse;
-                                                }
+                                                    /* Warna latar untuk baris selang-seling */
+                                                    .table-body-scroll tr:nth-child(odd) {
+                                                        background-color: #f9f9f9;
+                                                    }
 
-                                                #rincian-obat thead {
-                                                    position: sticky;
-                                                    top: o;
-                                                    z-index: 2;
-                                                }
+                                                    /* Scrollbar kustom untuk peningkatan UX */
+                                                    .table-body-scroll::-webkit-scrollbar {
+                                                        width: 8px;
+                                                    }
 
-                                                #rincian-obat, 
-                                                #rincian-obat th, 
-                                                #rincian-obat td {
-                                                    border: none !important;
-                                                    border-collapse: collapse;
-                                                }
+                                                    .table-body-scroll::-webkit-scrollbar-track {
+                                                        background: #f1f1f1;
+                                                        border-radius: 4px;
+                                                    }
 
-                                                #rincian-obat tr {
-                                                    border-bottom: none !important;
-                                                }
+                                                    .table-body-scroll::-webkit-scrollbar-thumb {
+                                                        background: #aaa;
+                                                        border-radius: 4px;
+                                                    }
 
-                                                .shadow-table {
-                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                                                    border-radius: 8px;
-                                                    overflow: hidden;
-                                                }
-                                            </style>
-                                        </thead>
-                                        <tbody id="rincian-body">
+                                                    .table-body-scroll::-webkit-scrollbar-thumb:hover {
+                                                        background: #888;
+                                                    }
+                                                </style>
+                                            </head>
+                                            <div class="table-header">
+                                                <tabel>
+                                                    <tr>
+                                                        <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                        <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
+                                                        <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
+                                                        <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                    <div class="table-body-scroll">
+                                        <table>
                                             <tr>
                                                 <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Acyclorovil</td>
@@ -1730,7 +1771,10 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                         </table>
+                                        <!-- </tbody> -->
+                                        </thead>
+                                    </div>
                                     </table>
                                 </div>
                             </div>
