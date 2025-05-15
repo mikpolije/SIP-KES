@@ -565,7 +565,7 @@
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
-                                        <li><a class="dropdown-item" href="/main/general-consent">Informed Consent</a></li>
+                                        <li><a class="dropdown-item" href="#">Informed Consent</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -786,51 +786,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="table-responsive"> -->
-                                        <table id="rincian-icd10" class="table text-center shadow-table">
-                                            <thead style="background-color: #676981; color: white;">
-                                                <style>
-                                                #rincian-icd10, 
-                                                #rincian-icd10 th, 
-                                                #rincian-icd10 td {
-                                                    border: none !important;
-                                                    border-collapse: collapse;
-                                                }
-
-                                                #rincian-icd10 tr {
-                                                    border-bottom: none !important;
-                                                }
-
-                                                .shadow-table {
-                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                                                    border-radius: 8px;
-                                                    overflow: hidden;
-                                                }
-                                            </style>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mt-2">
+                                            <thead style="background-color: #f8f9fa;">
                                                 <tr>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 10</th>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd10">
-                                                <tr>
-                                                <td style="text-align: left; font-weight: normal; font-size: 0.9rem;">H49.4 Progressive external ophthalmoplegia</td>
-                                                <td class="text-center">
+                                                <tr class="icd-item">
+                                                    <td>H49.4 Progressive external ophthalmoplegia</td>
+                                                    <td class="text-center">
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
-                                                </td>
-                                                <tr>
-                                                <td style="text-align: left; font-weight: normal; font-size: 0.9rem;">R51. Headache</td>
-                                                <td class="text-center">
+                                                    </td>
+                                                </tr>
+                                                <tr class="icd-item">
+                                                    <td>R51. Headache</td>
+                                                    <td class="text-center">
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
-                                    <!-- </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1613,23 +1596,11 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                <div class="table-wrapper">
                                     <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-<<<<<<< HEAD
                                                 #rincian-obat,
                                                 #rincian-obat th,
-=======
-                                                .table-wrapper {
-                                                    max-height: 250px;
-                                                    overflow-y: auto;
-                                                    border-radius: 8px;
-                                                }
-
-                                                #rincian-obat, 
-                                                #rincian-obat th, 
->>>>>>> 5ef202786673b46c986707c5d39356a05db4e589
                                                 #rincian-obat td {
                                                     border: none !important;
                                                     border-collapse: collapse;
@@ -1661,56 +1632,6 @@
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>

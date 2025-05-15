@@ -264,7 +264,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('surat-control*') || request()->is('main/general-consent*') ? 'active' : '' }}"
+            <a class="sidebar-link has-arrow {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('surat-control*') || request()->is('general-consent*') ? 'active' : '' }}"
                 href="#">
                 <span class="d-flex">
                     <svg class="bi bi-envelope-paper" xmlns="http://www.w3.org/2000/svg" width="16"
@@ -276,7 +276,7 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('main/general-consent*') ? 'show' : '' }}" aria-expanded="true">
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('general-consent*') ? 'show' : '' }}" aria-expanded="true">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/"
                         aria-expanded="false">
