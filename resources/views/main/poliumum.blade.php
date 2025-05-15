@@ -1663,6 +1663,7 @@
                                                         font-weight: normal;
                                                         font-size: 0.9rem;
                                                         padding: 8px;
+                                                        border: none;
                                                     }
 
                                                     /* Hilangkan pewarnaan selang-seling jika ada */
@@ -1707,7 +1708,7 @@
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Acyclorovil</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.1000,-</td>
-                                                <td class="text-center">
+                                                <td class="text-right">
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
@@ -1717,7 +1718,7 @@
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
+                                                <td class="text-right">
                                                     <button class="btn btn-sm btn-danger delete-btn">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
@@ -1727,7 +1728,7 @@
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
+                                                <td class="text-right">
                                                     <button class="btn btn-sm btn-danger delete-btn">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
@@ -1737,7 +1738,7 @@
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
+                                                <td class="text-right">
                                                     <button class="btn btn-sm btn-danger delete-btn">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
@@ -1747,7 +1748,7 @@
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
+                                                <td class="text-right">
                                                     <button class="btn btn-sm btn-danger delete-btn">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
@@ -1757,7 +1758,7 @@
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
+                                                <td class="text-right">
                                                     <button class="btn btn-sm btn-danger delete-btn">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
@@ -1767,7 +1768,7 @@
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
+                                                <td class="text-right">
                                                     <button class="btn btn-sm btn-danger delete-btn">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
