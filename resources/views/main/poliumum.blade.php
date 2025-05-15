@@ -1636,6 +1636,7 @@
                                                     .table-header table {
                                                         width: 100%;
                                                         margin-bottom: 0;
+                                                        border-collapse: collapse; /* Hindari celah antar sel */
                                                     }
                                                     
                                                     /* Bagian tbody yang dapat di-scroll */
@@ -1664,6 +1665,7 @@
                                                         font-size: 0.9rem;
                                                         padding: 8px;
                                                         border: none;
+                                                        background-color: #676981; /* Samakan background */
                                                     }
 
                                                     /* Hilangkan pewarnaan selang-seling jika ada */
