@@ -289,16 +289,10 @@ new class extends Component {
                             <div class="d-flex align-items-center">
                                 <span>Dengan ini menyatakan</span>
                                 <div class="dropdown mx-2">
-                                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="persetujuan"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ $persetujuan }}
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="persetujuan">
-                                        <li><a class="dropdown-item" href="#"
-                                                wire:click.prevent="$set('persetujuan', 'Setuju')">Setuju</a></li>
-                                        <li><a class="dropdown-item" href="#"
-                                                wire:click.prevent="$set('persetujuan', 'Menolak')">Menolak</a></li>
-                                    </ul>
+                                    <select class="form-select" wire:model="persetujuan" id="persetujuan">
+                                        <option value="telah">telah</option>
+                                        <option value="belum">belum</option>
+                                    </select>
                                 </div>
                                 <span>untuk dilakukannya tindakan</span>
                                 <input type="text" wire:model="tindakanPersetujuan" class="form-control mx-2"
