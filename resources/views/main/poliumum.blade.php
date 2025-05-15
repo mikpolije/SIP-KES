@@ -1764,47 +1764,28 @@
    <!-- Modal Pemeriksaan Fisik dengan Canvas -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
    
-    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content rounded shadow">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="statusLokalisLabel">Status Lokalis</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <canvas id="bodyCanvas" width="600" height="400" style="border:1px solid #ccc;"></canvas>
+                <div class="mt-3">
+                <input type="text" id="bagianDiperiksa" placeholder="Bagian diperiksa" class="form-control mb-2">
+                <input type="text" id="keteranganFisik" placeholder="Keterangan fisik" class="form-control mb-2">
+                <button onclick="toggleDrawMode()" id="btnDrawToggle" class="btn btn-warning">✏️</button>
+                <button onclick="undoCanvas()" class="btn btn-secondary">Undo</button>
+                <button onclick="redoCanvas()" class="btn btn-secondary">Redo</button>
+                <button onclick="clearCanvas()" class="btn btn-danger">Clear</button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <!-- Kolom CANVAS -->
-                        <div class="col-md-7 text-center">
-                            <!-- Toolbar -->
-                            <div class="mb-1">
-                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">✏️</button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">↩️</button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">↪️</button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">❌</button>
-                            </div>
-
-                            <!-- Canvas -->
-                            <div style="border: 1px solid #ccc; display: inline-block;">
-                                <canvas id="bodyCanvas" width="500" height="500"></canvas>
-                            </div>
-                        </div> <!-- Penutup col-md-7 -->
-
-                        <!-- Kolom FORM -->
-                        <div class="col-md-5">
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                <input type="text" class="form-control" id="bagianDiperiksa" placeholder="Ketik di sini">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Keterangan</label>
-                                <textarea class="form-control" id="keteranganFisik" rows="5" placeholder="Ketik di sini"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0">
-                    <button class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
+            </div>
             </div>
         </div>
     </div>
@@ -2821,184 +2802,142 @@ $('#search-results').hide();
 
     <!-- Script untuk menggambar di canvas -->
     <script>
-        const canvas = document.getElementById('bodyCanvas');
-        const ctx = canvas.getContext('2d');
-        const image = new Image();
-        let isDrawing = false;
-        let drawEnabled = false;
-        let initialized = false;
-        let undoStack = [];
-        let redoStack = [];
-        let currentColor = 'red'; // Warna default
+    const canvas = document.getElementById('bodyCanvas');
+    const ctx = canvas.getContext('2d');
+    const image = new Image();
+    let isDrawing = false;
+    let drawEnabled = false;
+    let undoStack = [];
+    let redoStack = [];
+    let currentColor = 'red';
 
+    function hapusBaris(button) {
+    const row = button.closest('tr');
+    row.remove();
+    }
 
-        function hapusBaris(button) {
-            const row = button.closest('tr'); // Ambil elemen <tr> terdekat dari tombol
-            row.remove(); // Hapus baris dari tabel
-        }
+    function toggleDrawMode() {
+    drawEnabled = !drawEnabled;
+    const button = document.getElementById('btnDrawToggle');
+    button.classList.toggle('active');
+    button.innerHTML = drawEnabled ? '🛑' : '✏️';
+    }
 
-        function toggleDrawMode() {
-            drawEnabled = !drawEnabled;
-            const button = document.getElementById('btnDrawToggle');
-            if (drawEnabled) {
-                button.classList.add('active');
-                button.innerHTML = '🛑'; // misalnya ganti ikon saat aktif
-            } else {
-                button.classList.remove('active');
-                button.innerHTML = '✏️'; // ikon default
-            }
-        }
+    function undoCanvas() {
+    if (undoStack.length > 0) {
+        const lastState = undoStack.pop();
+        redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+        ctx.putImageData(lastState, 0, 0);
+    }
+    }
 
-        function undoCanvas() {
-            if (undoStack.length > 0) {
-                const lastState = undoStack.pop();
-                redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke redo
-                ctx.putImageData(lastState, 0, 0);
-            }
-        }
+    function redoCanvas() {
+    if (redoStack.length > 0) {
+        const nextState = redoStack.pop();
+        undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+        ctx.putImageData(nextState, 0, 0);
+    }
+    }
 
-        function redoCanvas() {
-            if (redoStack.length > 0) {
-                const nextState = redoStack.pop();
-                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke undo
-                ctx.putImageData(nextState, 0, 0);
-            }
-        }
+    function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    }
 
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
-        }
+    function saveCanvas() {
+    const bagian = document.getElementById('bagianDiperiksa').value.trim();
+    const keterangan = document.getElementById('keteranganFisik').value.trim();
 
-        function saveCanvas() {
-            const bagian = document.getElementById('bagianDiperiksa').value.trim();
-            const keterangan = document.getElementById('keteranganFisik').value.trim();
+    if (!bagian || !keterangan) {
+        alert("Harap isi semua kolom terlebih dahulu.");
+        return;
+    }
 
-            if (!bagian || !keterangan) {
-                alert("Harap isi semua kolom terlebih dahulu.");
-                return;
-            }
+    const imageData = canvas.toDataURL("image/png");
+    const tbody = document.getElementById('pemeriksaanFisikTable');
 
-            const imageData = canvas.toDataURL("image/png"); // ambil gambar dari canvas
-            const tbody = document.getElementById('pemeriksaanFisikTable');
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${bagian}</td>
+        <td>${keterangan}</td>
+        <td class="text-center">
+        <button type="button" class="btn btn-sm btn-info" onclick="editPemeriksaan('${bagian}', '${keterangan}', '${imageData}')">
+            <i class="bi bi-eye"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-danger" onclick="hapusBaris(this)">
+            <i class="bi bi-trash"></i>
+        </button>
+        </td>
+    `;
+    tbody.appendChild(row);
 
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${bagian}</td>
-                <td>${keterangan}</td>
-                <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-info view-details"
-                        data-bs-toggle="modal"
-                        data-bs-target="#statusLokalisModal"
-                        data-bagian="${bagian}"
-                        data-keterangan="${keterangan}"
-                        data-image="${imageData}"
-                        title="Lihat Rincian">
-                        <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="hapusBaris(this)" title="Hapus">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </td>
-            `;
-            tbody.appendChild(row);
+    document.getElementById('bagianDiperiksa').value = '';
+    document.getElementById('keteranganFisik').value = '';
+    clearCanvas();
 
-            // Reset form dan canvas
-            document.getElementById('bagianDiperiksa').value = '';
-            document.getElementById('keteranganFisik').value = '';
-            clearCanvas();
+    const modalEl = document.getElementById('statusLokalisModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+    modalInstance.hide();
+    }
 
-            const modalEl = document.getElementById('statusLokalisModal');
-            const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
-            modalInstance.hide();
+    canvas.addEventListener('mousedown', (e) => {
+    if (!drawEnabled) return;
+    isDrawing = true;
+    undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+    redoStack = [];
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+    });
 
-            // const imageData = canvas.toDataURL();
-            // console.log("Saved image data:", imageData);
-            // alert("Gambar disimpan!");
-            // Kirim imageData via AJAX atau simpan sesuai kebutuhan
-        }
+    canvas.addEventListener('mousemove', (e) => {
+    if (!isDrawing || !drawEnabled) return;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    });
 
-        function loadDummyData(dummy) {
-            document.getElementById('bagianDiperiksa').value = dummy.bagian;
-            document.getElementById('keteranganFisik').value = dummy.keterangan;
+    canvas.addEventListener('mouseup', () => {
+    if (!drawEnabled) return;
+    isDrawing = false;
+    });
 
-            const img = new Image();
-            img.onload = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const modalEl = document.getElementById('statusLokalisModal');
+    modalEl.addEventListener('shown.bs.modal', () => {
+    const img = new Image();
+    img.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    img.src = '/build/images/gambarmedis/Status-lokalis.jpg';
+    });
+
+    function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
+    document.getElementById('bagianDiperiksa').value = bagian;
+    document.getElementById('keteranganFisik').value = keterangan;
+
+    const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+    modalInstance.show();
+
+    modalEl.addEventListener('shown.bs.modal', function handler() {
+        modalEl.removeEventListener('shown.bs.modal', handler);
+
+        const background = new Image();
+        background.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+        if (imageDataUrl) {
+            const overlay = new Image();
+            overlay.onload = () => {
+            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
             };
-            img.src = dummy.imageData;
+            overlay.src = imageDataUrl;
         }
-
-        canvas.addEventListener('mousedown', (e) => {
-            if (!drawEnabled) return;
-            isDrawing = true;
-            // Simpan state sebelum menggambar
-            undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-            // Kosongkan redoStack karena ada aksi baru
-            redoStack = [];
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
-            if (!isDrawing || !drawEnabled) return;
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            if (!drawEnabled) return;
-            isDrawing = false;
-        });
-
-        // Load gambar saat modal dibuka pertama kali
-        $('#statusLokalisModal').on('shown.bs.modal', function () {
-            if (!initialized) {
-                image.onload = function () {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                };
-                image.src = '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
-                initialized = true;
-            } else {
-                // setiap buka ulang, redraw image (jika dibutuhkan)
-                clearCanvas();
-            }
-        });
-
-        function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
-        document.getElementById('bagianDiperiksa').value = bagian;
-        document.getElementById('keteranganFisik').value = keterangan;
-
-        const modalEl = document.getElementById('statusLokalisModal');
-        let modalInstance = bootstrap.Modal.getInstance(modalEl);
-        if (!modalInstance) modalInstance = new bootstrap.Modal(modalEl);
-        modalInstance.show();
-
-        // Hindari multiple binding: ganti dengan sekali binding tetap
-        modalEl.addEventListener('shown.bs.modal', function handleShown() {
-            // Gunakan once = true agar hanya jalan sekali
-            modalEl.removeEventListener('shown.bs.modal', handleShown);
-
-            const ctx = canvas.getContext('2d');
-            const background = new Image();
-            background.onload = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-                if (imageDataUrl) {
-                    const overlay = new Image();
-                    overlay.onload = () => {
-                        ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
-                    };
-                    overlay.src = imageDataUrl;
-                }
-            };
-            background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
-        });
+        };
+        background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
+    });
     }
     </script>
 
