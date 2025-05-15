@@ -1636,6 +1636,7 @@
                                                     .table-header table {
                                                         width: 100%;
                                                         margin-bottom: 0;
+                                                        border-collapse: collapse; /* Hindari celah antar sel */
                                                     }
                                                     
                                                     /* Bagian tbody yang dapat di-scroll */
@@ -1705,7 +1706,7 @@
                                     <div class="table-body-scroll">
                                         <table>
                                             <tr>
-                                                <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: right; padding-right: 14px;" font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Acyclorovil</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.1000,-</td>
                                                 <td class="text-right">
