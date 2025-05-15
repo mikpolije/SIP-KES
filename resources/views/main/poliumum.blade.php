@@ -1644,7 +1644,7 @@
                                                         overflow-y: auto; 
                                                         border-bottom-left-radius: 8px;
                                                         border-bottom-right-radius: 8px;
-                                                    }
+                                                        background-color: white;                                                    }
                                                     
                                                     /* Style umum untuk semua tabel */
                                                     .table-header table,
@@ -1652,6 +1652,7 @@
                                                         border-collapse: separate;
                                                         width: 100%;
                                                         margin: 0;
+                                                        background-color: white;
                                                     }
                                                     
                                                     /* Menghapus border pada tabel */
