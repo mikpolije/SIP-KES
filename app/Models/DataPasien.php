@@ -15,7 +15,7 @@ class DataPasien extends Model
 
     protected $guarded = ['no_rm'];
 
-    public function waliPasien()
+    public function wali_pasien()
     {
         return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm');
     }

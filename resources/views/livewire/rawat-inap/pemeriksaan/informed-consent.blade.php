@@ -51,6 +51,10 @@ new class extends Component {
                 $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir;
                 $this->alamatPasien = $pendaftaran->data_pasien->alamat_lengkap;
 
+                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_lengkap ?? '';
+                $this->tanggalLahirPerwakilan
+                $this->alamatPerwakilan
+
                 $informedConsent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
                 if ($informedConsent) {
                     $this->dokterPelaksana = $informedConsent->id_dokter;
