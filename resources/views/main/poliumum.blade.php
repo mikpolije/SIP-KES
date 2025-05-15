@@ -1618,29 +1618,16 @@
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
                                                 .table-responsive-custom {
-                                                    max-height: 250px;
-                                                    overflow-y: auto;
+                                                    max-height: 250px; /* Atur tinggi maksimum */
+                                                    overflow-y: auto;  /* Scroll vertikal */
                                                     border-radius: 8px;
                                                 }
 
-                                                #rincian-obat {
-                                                    width: 100%;
-                                                    border-collapse: collapse;
-                                                }
-
-                                                #rincian-obat th, #rincian-obat td {
+                                                #rincian-obat, 
+                                                #rincian-obat th, 
+                                                #rincian-obat td {
                                                     border: none !important;
-                                                    padding: 8px;
-                                                    font-size: 0.9rem;
-                                                    text-align: center;
-                                                }
-
-                                                #rincian-obat thead th {
-                                                    position: sticky;
-                                                    top: 0;
-                                                    background-color: #676981;
-                                                    color: white;
-                                                    z-index: 2;
+                                                    border-collapse: collapse;
                                                 }
 
                                                 #rincian-obat tr {
