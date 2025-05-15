@@ -78,7 +78,21 @@
                                 font-size: 0.8rem;
                                 display: none;
                             }
+
+                            /* Select2 styling */
+                            .select2-container {
+                                width: 100% !important;
+                            }
+
+                            .select2-selection {
+                                height: 38px !important;
+                                padding-top: 4px !important;
+                            }
                         </style>
+
+                        <!-- Add Select2 CSS -->
+                        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+                            rel="stylesheet" />
 
                         <div class="row mb-4 align-items-end">
                             <div class="col-md-10">
@@ -124,14 +138,16 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="provinsi">Provinsi<span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="provinsi" name="provinsi" />
+                                    <select class="form-control select2-data-array required" id="select2-provinsi"
+                                        name="provinsi"></select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="kota">Kota/Kabupaten<span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kota" name="kota" />
+                                    <select class="form-control select2-data-array required" id="select2-kabupaten"
+                                        name="kota"></select>
                                 </div>
                             </div>
                         </div>
@@ -147,15 +163,16 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="kecamatan">Kecamatan<span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kecamatan" name="kecamatan" />
+                                    <select class="form-control select2-data-array required" id="select2-kecamatan"
+                                        name="kecamatan"></select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="kelurahan">Kelurahan/Desa<span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kelurahan"
-                                        name="kelurahan" />
+                                    <select class="form-control select2-data-array required" id="select2-kelurahan"
+                                        name="kelurahan"></select>
                                 </div>
                             </div>
                         </div>
@@ -414,6 +431,184 @@
                                 </div>
                             </div>
                     </section>
+
+                    <!-- Add jQuery and Select2 JS -->
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+                    <script>
+                        var urlProvinsi = "https://ibnux.github.io/data-indonesia/provinsi.json";
+                        var urlKabupaten = "https://ibnux.github.io/data-indonesia/kabupaten/";
+                        var urlKecamatan = "https://ibnux.github.io/data-indonesia/kecamatan/";
+                        var urlKelurahan = "https://ibnux.github.io/data-indonesia/kelurahan/";
+
+                        function clearOptions(id) {
+                            console.log("on clearOptions :" + id);
+                            $('#' + id).empty().trigger('change');
+                            // Add default empty option
+                            $('#' + id).append(new Option("- Pilih -", "", true, true));
+                        }
+
+                        console.log('Load Provinsi...');
+                        $.getJSON(urlProvinsi, function(res) {
+                            res = $.map(res, function(obj) {
+                                obj.text = obj.nama;
+                                return obj;
+                            });
+
+                            data = [{
+                                id: "",
+                                nama: "- Pilih Provinsi -",
+                                text: "- Pilih Provinsi -"
+                            }].concat(res);
+
+                            // Implement data to select provinsi
+                            $("#select2-provinsi").select2({
+                                dropdownAutoWidth: true,
+                                width: '100%',
+                                data: data
+                            });
+                        });
+
+                        var selectProv = $('#select2-provinsi');
+                        $(selectProv).change(function() {
+                            var value = $(selectProv).val();
+                            clearOptions('select2-kabupaten');
+                            clearOptions('select2-kecamatan');
+                            clearOptions('select2-kelurahan');
+
+                            if (value) {
+                                console.log("on change selectProv");
+
+                                var text = $('#select2-provinsi :selected').text();
+                                console.log("value = " + value + " / " + "text = " + text);
+
+                                console.log('Load Kabupaten di ' + text + '...')
+                                $.getJSON(urlKabupaten + value + ".json", function(res) {
+                                    res = $.map(res, function(obj) {
+                                        obj.text = obj.nama;
+                                        return obj;
+                                    });
+
+                                    data = [{
+                                        id: "",
+                                        nama: "- Pilih Kabupaten -",
+                                        text: "- Pilih Kabupaten -"
+                                    }].concat(res);
+
+                                    // Implement data to select kabupaten
+                                    $("#select2-kabupaten").select2({
+                                        dropdownAutoWidth: true,
+                                        width: '100%',
+                                        data: data
+                                    });
+                                });
+                            }
+                        });
+
+                        var selectKab = $('#select2-kabupaten');
+                        $(selectKab).change(function() {
+                            var value = $(selectKab).val();
+                            clearOptions('select2-kecamatan');
+                            clearOptions('select2-kelurahan');
+
+                            if (value) {
+                                console.log("on change selectKab");
+
+                                var text = $('#select2-kabupaten :selected').text();
+                                console.log("value = " + value + " / " + "text = " + text);
+
+                                console.log('Load Kecamatan di ' + text + '...')
+                                $.getJSON(urlKecamatan + value + ".json", function(res) {
+                                    res = $.map(res, function(obj) {
+                                        obj.text = obj.nama;
+                                        return obj;
+                                    });
+
+                                    data = [{
+                                        id: "",
+                                        nama: "- Pilih Kecamatan -",
+                                        text: "- Pilih Kecamatan -"
+                                    }].concat(res);
+
+                                    // Implement data to select kecamatan
+                                    $("#select2-kecamatan").select2({
+                                        dropdownAutoWidth: true,
+                                        width: '100%',
+                                        data: data
+                                    });
+                                });
+                            }
+                        });
+
+                        var selectKec = $('#select2-kecamatan');
+                        $(selectKec).change(function() {
+                            var value = $(selectKec).val();
+                            clearOptions('select2-kelurahan');
+
+                            if (value) {
+                                console.log("on change selectKec");
+
+                                var text = $('#select2-kecamatan :selected').text();
+                                console.log("value = " + value + " / " + "text = " + text);
+
+                                console.log('Load Kelurahan di ' + text + '...')
+                                $.getJSON(urlKelurahan + value + ".json", function(res) {
+                                    res = $.map(res, function(obj) {
+                                        obj.text = obj.nama;
+                                        return obj;
+                                    });
+
+                                    data = [{
+                                        id: "",
+                                        nama: "- Pilih Kelurahan -",
+                                        text: "- Pilih Kelurahan -"
+                                    }].concat(res);
+
+                                    // Implement data to select kelurahan
+                                    $("#select2-kelurahan").select2({
+                                        dropdownAutoWidth: true,
+                                        width: '100%',
+                                        data: data
+                                    });
+                                });
+                            }
+                        });
+
+                        var selectKel = $('#select2-kelurahan');
+                        $(selectKel).change(function() {
+                            var value = $(selectKel).val();
+
+                            if (value) {
+                                console.log("on change selectKel");
+                                var text = $('#select2-kelurahan :selected').text();
+                                console.log("value = " + value + " / " + "text = " + text);
+                            }
+                        });
+
+                        // Function to validate numeric input
+                        function validateNumeric(input, maxLength) {
+                            // Remove non-numeric characters
+                            input.value = input.value.replace(/\D/g, '');
+
+                            // Check if length exceeds maxLength
+                            if (input.value.length > maxLength) {
+                                input.value = input.value.slice(0, maxLength);
+                            }
+
+                            // Show error message if length is not correct
+                            const errorId = input.id + '-error';
+                            const errorElement = document.getElementById(errorId);
+                            if (errorElement) {
+                                if (input.value.length < maxLength) {
+                                    errorElement.style.display = 'block';
+                                } else {
+                                    errorElement.style.display = 'none';
+                                }
+                            }
+                        }
+                    </script>
 
                     <!-- Step 2 -->
                     <h1 class="card-title"></h1>
