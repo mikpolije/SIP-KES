@@ -229,42 +229,32 @@ new class extends Component {
                 <!-- PERNYATAAN -->
                 <div class="mb-4">
                     <div class="row g-3">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="d-flex align-items-center">
                                 <span>Dengan ini menyatakan bahwa saya</span>
-                                <div class="dropdown mx-2">
-                                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="pernyataan1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ $pernyataan1 }}
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="pernyataan1">
-                                        <li><a class="dropdown-item" href="#"
-                                                wire:click.prevent="$set('pernyataan1', 'telah')">telah</a></li>
-                                        <li><a class="dropdown-item" href="#"
-                                                wire:click.prevent="$set('pernyataan1', 'belum')">belum</a></li>
-                                    </ul>
-                                </div>
+                                    <div class="mx-2">
+                                        <select class="form-select" wire:model="pernyataan1" id="pernyataan1">
+                                            <option value="telah">telah</option>
+                                            <option value="belum">belum</option>
+                                        </select>
+                                    </div>
                                 <span>menerangkan hal-hal di atas secara benar dan jelas</span>
                             </div>
                             <div class="mt-2">
                                 <span>dan memberikan kesempatan untuk bertanya dan berdiskusi</span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-12">
                             <div class="d-flex align-items-center">
                                 <span>Dengan ini menyatakan bahwa saya</span>
-                                <div class="dropdown mx-2">
-                                    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="pernyataan2"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ $pernyataan2 }}
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="pernyataan2">
-                                        <li><a class="dropdown-item" href="#"
-                                                wire:click.prevent="$set('pernyataan2', 'telah')">telah</a></li>
-                                        <li><a class="dropdown-item" href="#"
-                                                wire:click.prevent="$set('pernyataan2', 'belum')">belum</a></li>
-                                    </ul>
-                                </div>
+                                    <div class="mx-2">
+                                        <select class="form-select" wire:model="pernyataan2" id="pernyataan2">
+                                            <option value="telah">telah</option>
+                                            <option value="belum">belum</option>
+                                        </select>
+                                    </div>
                                 <span>menerima informasi sebagaimana di atas yang saya</span>
                             </div>
                             <div class="mt-2">
