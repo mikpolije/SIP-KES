@@ -130,6 +130,8 @@ return new class extends Migration
             $table->string('hubungan', 100)
                 ->comment('1. Diri Sendiri;   2. Orang Tua;  3. Anak;  4. Suami/Istri;  5. Kerabat/Saudara;  6. Lain-lain (free text)');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->date('tanggal_lahir');
+            $table->text('alamat_lengkap');
             $table->timestamps();
 
             $table->foreign('no_rm')
