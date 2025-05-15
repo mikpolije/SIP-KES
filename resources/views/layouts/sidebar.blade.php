@@ -418,6 +418,15 @@
                         <span class="hide-menu">Layanan</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
+                        href="{{ }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">poli</span>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>
