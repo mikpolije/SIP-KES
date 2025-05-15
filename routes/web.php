@@ -72,15 +72,14 @@ Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'in
 // Route Riwayat Medis
 use App\Http\Controllers\RiwayatMedisController;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
 
 Route::get('/reset-db', function () {
-    Artisan::call('migrate:fresh', [
-        '--seed' => true,
-        '--force' => true,
-    ]);
+    Schema::dropAllTables();
+    Artisan::call('migrate:fresh --seed');
 
     return 'Database reset and seeded!';
 });
