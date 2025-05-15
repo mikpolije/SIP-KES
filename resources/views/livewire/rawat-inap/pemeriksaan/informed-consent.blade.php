@@ -118,7 +118,6 @@ new class extends Component {
             'alamat_perwakilan' => $this->alamatPerwakilan,
         ];
 
-        // Update or create informed consent record
         InformedConsent::updateOrCreate(
             ['id_pendaftaran' => $this->pendaftaranId],
             $data
