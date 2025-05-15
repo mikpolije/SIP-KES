@@ -1678,6 +1678,46 @@
                                                     </button>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
