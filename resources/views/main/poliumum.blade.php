@@ -1705,7 +1705,7 @@
                                     <div class="table-body-scroll">
                                         <table>
                                             <tr>
-                                                <td style="text-align: right; padding-right: 14px; width: 80px;" font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: right; padding-right: 11px; width: 80px;" font-weight: normal; font-size: 0.9rem;">1</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Acyclorovil</td>
                                                 <td style="text-align: right; font-weight: normal; font-size: 0.9rem;">Rp.1000,-</td>
                                                 <td class="text-right">
