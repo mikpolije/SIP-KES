@@ -3,6 +3,7 @@
 @section('title', 'SIP-Kes')
 
 @section('pageContent')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -67,10 +68,12 @@ td {
 <div class="container-fluid py-4">
     <h1 class="judul-riwayat mb-4">Riwayat Pemeriksaan</h1>
 
-    {{-- Search Bar --}}
+    {{-- Search Bar dengan Select2 --}}
     <div class="mb-3 d-flex justify-content-end">
-        <input type="text" class="form-control w-25 me-2" placeholder="Data Pasien">
-        <button class="btn btn-primary"><i class="ti ti-search"></i></button>
+        <select class="form-control w-25 me-2" id="searchPasien" style="width: 100%;">
+            <option value="">Cari Data Pasien...</option>
+        </select>
+        <a href="#" id="btnCariPasien" class="btn btn-primary"><i class="ti ti-search"></i></a>
     </div>
 
     {{-- Table --}}
@@ -104,11 +107,49 @@ td {
                     <td>
                         <a href="{{ route('poli-umum.detail', ['rm' => $row[0]]) }}" class="btn-detail">Detail</a>
                     </td>
-
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+
+{{-- Script --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#searchPasien').select2({
+            placeholder: 'Cari Data Pasien...',
+            allowClear: true,
+            ajax: {
+                url: '{{ route("poli-umum.search-pasien") }}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            }
+        });
+
+        // Redirect ke detail jika klik tombol
+        $('#btnCariPasien').on('click', function (e) {
+            e.preventDefault();
+            const noRM = $('#searchPasien').val();
+            if (noRM) {
+                window.location.href = `/poli-umum/riwayat/${noRM}`;
+            } else {
+                alert('Silakan pilih data pasien terlebih dahulu.');
+            }
+        });
+    });
+</script>
 @endsection
