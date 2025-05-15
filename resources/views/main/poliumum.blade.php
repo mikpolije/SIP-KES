@@ -2908,8 +2908,9 @@ $('#search-results').hide();
             document.getElementById('keteranganFisik').value = '';
             clearCanvas();
 
-            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('statusLokalisModal'));
-            modal.hide();
+            const modalEl = document.getElementById('statusLokalisModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+            modalInstance.hide();
 
             // const imageData = canvas.toDataURL();
             // console.log("Saved image data:", imageData);
@@ -2969,31 +2970,36 @@ $('#search-results').hide();
         });
 
         function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
-            document.getElementById('bagianDiperiksa').value = bagian;
-            document.getElementById('keteranganFisik').value = keterangan;
+        document.getElementById('bagianDiperiksa').value = bagian;
+        document.getElementById('keteranganFisik').value = keterangan;
 
-            const modal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
-            modal.show();
+        const modalEl = document.getElementById('statusLokalisModal');
+        let modalInstance = bootstrap.Modal.getInstance(modalEl);
+        if (!modalInstance) modalInstance = new bootstrap.Modal(modalEl);
+        modalInstance.show();
 
-            $('#statusLokalisModal').off('shown.bs.modal').on('shown.bs.modal', function () {
-                const ctx = canvas.getContext('2d');
-                const background = new Image();
-                background.onload = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-                    
-                    if (imageDataUrl) {
-                        const overlay = new Image();
-                        overlay.onload = () => {
-                            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
-                        };
-                        overlay.src = imageDataUrl;
-                    }
-                };
-                background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
-            });
-        }
-    
+        // Hindari multiple binding: ganti dengan sekali binding tetap
+        modalEl.addEventListener('shown.bs.modal', function handleShown() {
+            // Gunakan once = true agar hanya jalan sekali
+            modalEl.removeEventListener('shown.bs.modal', handleShown);
+
+            const ctx = canvas.getContext('2d');
+            const background = new Image();
+            background.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+                if (imageDataUrl) {
+                    const overlay = new Image();
+                    overlay.onload = () => {
+                        ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+                    };
+                    overlay.src = imageDataUrl;
+                }
+            };
+            background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
+        });
+    }
     </script>
 
 
