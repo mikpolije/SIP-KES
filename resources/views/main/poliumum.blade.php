@@ -1622,7 +1622,7 @@
                                                     .table-container {
                                                         border-radius: 8px;
                                                         overflow: hidden;
-                                                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                        box-shadow: 0 4px 12px rgba(253, 249, 249, 0.15);
                                                     }
                                                     
                                                     /* Header yang tetap/tidak bergerak */
