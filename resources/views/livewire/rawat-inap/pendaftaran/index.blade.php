@@ -96,6 +96,7 @@ new class extends Component {
                 'pembayaran' => $this->pembayaran,
             ]);
             session()->flash('message', 'Form updated successfully!');
+            $this->dispatch('switch-tab', tab: 'pemeriksaan');
             return;
         }
 
