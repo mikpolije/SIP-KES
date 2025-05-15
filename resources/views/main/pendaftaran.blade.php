@@ -139,14 +139,16 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="select2-provinsi">Provinsi<span
                                             class="danger">*</span></label>
-                                    <select class="select2-data-array browser-default" id="select2-provinsi"></select>
+                                    <select class="form-control select2-data-array required" id="select2-provinsi"
+                                        name="provinsi"></select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="select2-kota">Kota/Kabupaten<span
                                             class="danger">*</span></label>
-                                    <select class="select2-data-array browser-default" id="select2-kabupaten"></select>
+                                    <select class="form-control select2-data-array required" id="select2-kabupaten"
+                                        name="kota"></select>
                                 </div>
                             </div>
                         </div>
@@ -163,14 +165,16 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="select2-kecamatan">Kecamatan<span
                                             class="danger">*</span></label>
-                                    <select class="select2-data-array browser-default" id="select2-kecamatan"></select>
+                                    <select class="form-control select2-data-array required" id="select2-kecamatan"
+                                        name="kecamatan"></select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="select2-kelurahan">Kelurahan/Desa<span
                                             class="danger">*</span></label>
-                                    <select class="select2-data-array browser-default" id="select2-kelurahan"></select>
+                                    <select class="form-control select2-data-array required" id="select2-kelurahan"
+                                        name="kelurahan"></select>
                                 </div>
                             </div>
                         </div>
