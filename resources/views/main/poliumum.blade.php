@@ -3015,11 +3015,10 @@ $('#search-results').hide();
         let undoStack = [];
         let redoStack = [];
         let currentColor = 'red'; // Warna default
+        let handleShown = null;
 
-        // ✅ Inisialisasi modal sebagai instance global
         const statusLokalisModal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
 
-        // 🗑 Hapus baris dari tabel
         function hapusBaris(button) {
             const row = button.closest('tr');
             row.remove();
@@ -3097,12 +3096,9 @@ $('#search-results').hide();
             `;
             tbody.appendChild(row);
 
-            // Reset
             document.getElementById('bagianDiperiksa').value = '';
             document.getElementById('keteranganFisik').value = '';
             clearCanvas();
-
-            // ✅ Tutup modal dengan modal instance global
             statusLokalisModal.hide();
         }
 
@@ -3118,7 +3114,7 @@ $('#search-results').hide();
             img.src = dummy.imageData;
         }
 
-        // 🎨 Event gambar
+        // Gambar manual
         canvas.addEventListener('mousedown', (e) => {
             if (!drawEnabled) return;
             isDrawing = true;
@@ -3142,7 +3138,7 @@ $('#search-results').hide();
             isDrawing = false;
         });
 
-        // 📌 Modal pertama kali dibuka
+        // Saat modal dibuka pertama kali
         document.getElementById('statusLokalisModal').addEventListener('shown.bs.modal', () => {
             if (!initialized) {
                 image.onload = () => {
@@ -3155,15 +3151,28 @@ $('#search-results').hide();
             }
         });
 
-        // 🛠️ Fitur edit
+        // Reset modal saat ditutup
+        document.getElementById('statusLokalisModal').addEventListener('hidden.bs.modal', () => {
+            document.getElementById('bagianDiperiksa').value = '';
+            document.getElementById('keteranganFisik').value = '';
+            clearCanvas();
+            undoStack = [];
+            redoStack = [];
+            drawEnabled = false;
+            isDrawing = false;
+        });
+
+        // Fungsi edit aman
         function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
-            document.getElementById('bagianDiperiksa').value = bagian;
-            document.getElementById('keteranganFisik').value = keterangan;
-
-            statusLokalisModal.show();
-
             const modalEl = document.getElementById('statusLokalisModal');
-            modalEl.addEventListener('shown.bs.modal', function handleShown() {
+
+            // Hapus handler lama jika ada
+            if (handleShown) {
+                modalEl.removeEventListener('shown.bs.modal', handleShown);
+            }
+
+            // Buat handler baru
+            handleShown = function () {
                 modalEl.removeEventListener('shown.bs.modal', handleShown);
 
                 const background = new Image();
@@ -3180,7 +3189,16 @@ $('#search-results').hide();
                     }
                 };
                 background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
-            });
+            };
+
+            modalEl.addEventListener('shown.bs.modal', handleShown);
+
+            // Set form
+            document.getElementById('bagianDiperiksa').value = bagian;
+            document.getElementById('keteranganFisik').value = keterangan;
+
+            // Tampilkan modal
+            statusLokalisModal.show();
         }
     </script>
     <!-- Script untuk menggambar di canvas -->
