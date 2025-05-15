@@ -53,6 +53,8 @@ Route::get('/poli-umum/detail/{rm}', function ($rm) {
     return view('PoliUmum.detailPasien');
 })->name('poli-umum.detail');
 
+Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiwayatController::class, 'searchPasien'])->name('poli-umum.search-pasien');
+
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
