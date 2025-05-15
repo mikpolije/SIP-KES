@@ -1665,7 +1665,6 @@
                                                         font-size: 0.9rem;
                                                         padding: 8px;
                                                         border: none;
-                                                        background-color: #676981; /* Samakan background */
                                                     }
 
                                                     /* Hilangkan pewarnaan selang-seling jika ada */
