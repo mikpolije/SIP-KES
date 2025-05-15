@@ -1613,9 +1613,16 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+                                <div class="table-responsive-custom">
                                     <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
+                                                .table-responsive-custom {
+                                                    max-height: 250px; /* Atur tinggi maksimum */
+                                                    overflow-y: auto;  /* Scroll vertikal */
+                                                    border-radius: 8px;
+                                                }
+
                                                 #rincian-obat, 
                                                 #rincian-obat th, 
                                                 #rincian-obat td {
