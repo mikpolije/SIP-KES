@@ -1623,11 +1623,28 @@
                                                     border-radius: 8px;
                                                 }
 
-                                                #rincian-obat, 
-                                                #rincian-obat th, 
-                                                #rincian-obat td {
-                                                    border: none !important;
+                                                #rincian-obat {
+                                                    width: 100%;
                                                     border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat th {
+                                                    position: sticky;
+                                                    top: 0;
+                                                    background-color: #676981;
+                                                    color: white;
+                                                    z-index: 2;
+                                                    text-align: center;
+                                                    font-weight: normal;
+                                                    font-size: 0.9rem;
+                                                    padding: 10px;
+                                                }
+
+                                                #rincian-obat td {
+                                                    text-align: center;
+                                                    font-weight: normal;
+                                                    font-size: 0.9rem;
+                                                    padding: 10px;
                                                 }
 
                                                 #rincian-obat tr {
@@ -1638,6 +1655,15 @@
                                                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                                                     border-radius: 8px;
                                                     overflow: hidden;
+                                                }
+
+                                                .btn-danger {
+                                                    background-color: #f56565;
+                                                    border: none;
+                                                }
+
+                                                .btn-danger:hover {
+                                                    background-color: #e53e3e;
                                                 }
                                             </style>
                                             <tr>
