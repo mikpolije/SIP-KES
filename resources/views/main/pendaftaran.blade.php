@@ -460,6 +460,7 @@
                             data = [{
                                 code_provinsi: "",
                                 nama_provinsi: "- Pilih Provinsi -",
+                                text: "- Pilih Provinsi -"
                             }].concat(res);
 
                             // Implement data to select provinsi
