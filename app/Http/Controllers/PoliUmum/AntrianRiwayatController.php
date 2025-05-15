@@ -13,6 +13,6 @@ class AntrianRiwayatController extends Controller
 
     public function riwayat()
     {
-        return view('PoliUmum.riwayatPoliUmum'); //isii disini yaa mii
+        return view('PoliUmum.riwayatPoliUmum'); 
     }
 }
