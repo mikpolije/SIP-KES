@@ -1098,6 +1098,29 @@
                                                 <!-- Tambahan baris lainnya -->
                                             </tbody>
                                         </table>
+                                        <div style="margin-top: 15px;">
+                                            <div>
+                                                Menampilkan 1 sampai 10 dari 155 entri
+                                            </div>
+                                            <div style="margin-top: 10px; text-align: right;">
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                <button
+                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
