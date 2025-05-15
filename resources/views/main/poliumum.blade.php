@@ -1613,38 +1613,21 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                <div class="table-responsive-custom">
+                                <div class="table-wrapper">
                                     <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
                                             <style>
-                                                .table-responsive-custom {
-                                                    max-height: 250px; /* Atur tinggi maksimum */
-                                                    overflow-y: auto;  /* Scroll vertikal */
+                                                .table-wrapper {
+                                                    max-height: 250px;
+                                                    overflow-y: auto;
                                                     border-radius: 8px;
                                                 }
 
-                                                #rincian-obat {
-                                                    width: 100%;
-                                                    border-collapse: collapse;
-                                                }
-
-                                                #rincian-obat th {
-                                                    position: sticky;
-                                                    top: 0;
-                                                    background-color: #676981;
-                                                    color: white;
-                                                    z-index: 2;
-                                                    text-align: center;
-                                                    font-weight: normal;
-                                                    font-size: 0.9rem;
-                                                    padding: 10px;
-                                                }
-
+                                                #rincian-obat, 
+                                                #rincian-obat th, 
                                                 #rincian-obat td {
-                                                    text-align: center;
-                                                    font-weight: normal;
-                                                    font-size: 0.9rem;
-                                                    padding: 10px;
+                                                    border: none !important;
+                                                    border-collapse: collapse;
                                                 }
 
                                                 #rincian-obat tr {
@@ -1655,15 +1638,6 @@
                                                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
                                                     border-radius: 8px;
                                                     overflow: hidden;
-                                                }
-
-                                                .btn-danger {
-                                                    background-color: #f56565;
-                                                    border: none;
-                                                }
-
-                                                .btn-danger:hover {
-                                                    background-color: #e53e3e;
                                                 }
                                             </style>
                                             <tr>
@@ -1682,46 +1656,6 @@
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-sm btn-danger delete-btn">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
