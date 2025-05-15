@@ -1623,6 +1623,12 @@
                                                     border-radius: 8px;
                                                 }
 
+                                                #rincian-obat thead {
+                                                    position: sticky;
+                                                    top: o;
+                                                    z-index: 2;
+                                                }
+
                                                 #rincian-obat, 
                                                 #rincian-obat th, 
                                                 #rincian-obat td {
