@@ -138,8 +138,8 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <label class="form-label" for="provinsi">Provinsi<span class="danger">*</span></label>
-                                    {{-- <select class="form-control select2-data-array required" id="select2-provinsi"
-                                        name="provinsi"></select> --}}
+                                    <select class="form-control select2-data-array required" id="select2-provinsi"
+                                        name="provinsi"></select>
                                 </div>
                             </div>
                             <div class="col-md-3">
