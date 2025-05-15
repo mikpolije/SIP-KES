@@ -976,7 +976,7 @@
                                         </button>
                                     </div>
 
-                                    <div class="table-responsive">
+                                    <!-- <div class="table-responsive">  -->
                                         <table id="rincian-icd9" class="table text-center shadow-table">
                                             <thead style="background-color: #676981; color: white;">
                                                 <style>
@@ -1020,7 +1020,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                             </div>
 
