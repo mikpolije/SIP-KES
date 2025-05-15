@@ -468,7 +468,7 @@
                             //implemen data ke select provinsi
                             $("#select2-provinsi").select2({
                                 dropdownAutoWidth: true,
-                                width: '100%',
+                                width: '50%',
                                 data: data
                             })
                         });
