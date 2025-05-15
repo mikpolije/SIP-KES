@@ -264,7 +264,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('surat-control*') || request()->is('general-consent*') ? 'active' : '' }}" href="javascript:void(0)" aria-expanded="true">
+            <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-envelope-paper" xmlns="http://www.w3.org/2000/svg" width="16"
