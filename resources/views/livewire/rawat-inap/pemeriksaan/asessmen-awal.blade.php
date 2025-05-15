@@ -1,7 +1,9 @@
 <?php
 
+
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 use App\Models\AsessmenAwal;
 use Illuminate\Validation\Rule;
@@ -97,6 +99,7 @@ new class extends Component {
         ];
     }
 
+    #[On('submit-step1')]
     public function submit()
     {
         $this->validate();
@@ -127,6 +130,7 @@ new class extends Component {
         );
 
         session()->flash('message', 'Asesmen awal berhasil disimpan');
+        $this->dispatch('go-next-step');
     }
 }; ?>
 
@@ -287,8 +291,7 @@ new class extends Component {
                             <label class="form-check-label" for="bunuh-diri">
                                 Kecenderungan bunuh diri, dilapor ke
                                 <input type="text" wire:model="bunuhDiriLaporan"
-                                    class="form-control form-control-sm d-inline-block" style="width: 150px;"
-                                    @if (!$bunuhDiri) disabled @endif>
+                                    class="form-control form-control-sm d-inline-block" style="width: 150px;">
                             </label>
                         </div>
 
@@ -305,14 +308,6 @@ new class extends Component {
                     </div>
                 </div>
             </div>
-
-                <div class="row mt-4">
-                    <div class="col-md-12 text-end">
-                        <button type="button" wire:click="submit" class="btn btn-primary">
-                            Simpan Asesmen
-                        </button>
-                    </div>
-                </div>
 
         </form>
 
