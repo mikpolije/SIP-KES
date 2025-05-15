@@ -17,27 +17,17 @@ return new class extends Migration
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-
             $table->string('denyut_jantung', 20)->nullable();
             $table->string('pernafasan', 20)->nullable();
             $table->string('suhu_tubuh', 20)->nullable();
             $table->string('tekanan_darah_sistole', 10)->nullable();
             $table->string('tekanan_darah_diastole', 10)->nullable();
             $table->string('skala_nyeri', 20)->nullable();
-
             $table->text('keluhan_utama')->nullable();
             $table->text('riwayat_penyakit')->nullable();
             $table->text('riwayat_pengobatan')->nullable();
-
-            $table->enum('alergi', ['tidak', 'ya'])->default('tidak');
-            $table->string('jenis_alergi', 255)->nullable();
-
-            $table->enum('status_psikologi', ['tenang', 'cemas', 'takut', 'marah', ''])->nullable();
-            $table->boolean('bunuh_diri')->default(false);
-            $table->string('bunuh_diri_laporan', 255)->nullable();
-            $table->boolean('lain_lain')->default(false);
-            $table->text('lain_lain_text')->nullable();
-
+            $table->string('status_psikologi', 255)->nullable();
+            
             $table->json('metadata')->nullable();
             $table->timestamps();
         });
