@@ -458,8 +458,8 @@
                             });
 
                             data = [{
-                                id: "",
-                                nama: "- Pilih Provinsi -",
+                                code_provinsi: "",
+                                nama_provinsi: "- Pilih Provinsi -",
                                 text: "- Pilih Provinsi -"
                             }].concat(res);
 
@@ -492,8 +492,8 @@
                                     });
 
                                     data = [{
-                                        id: "",
-                                        nama: "- Pilih Kabupaten -",
+                                        code_kabupaten: "",
+                                        nama_kabupaten: "- Pilih Kabupaten -",
                                         text: "- Pilih Kabupaten -"
                                     }].concat(res);
 
@@ -527,8 +527,8 @@
                                     });
 
                                     data = [{
-                                        id: "",
-                                        nama: "- Pilih Kecamatan -",
+                                        code_kecamatan: "",
+                                        nama_kecamatan: "- Pilih Kecamatan -",
                                         text: "- Pilih Kecamatan -"
                                     }].concat(res);
 
@@ -561,8 +561,8 @@
                                     });
 
                                     data = [{
-                                        id: "",
-                                        nama: "- Pilih Kelurahan -",
+                                        code_desa: "",
+                                        nama_desa: "- Pilih Kelurahan -",
                                         text: "- Pilih Kelurahan -"
                                     }].concat(res);
 
