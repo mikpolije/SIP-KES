@@ -60,9 +60,9 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->string('ruangan')->nullable();
-            $table->string('kelas')->nullable();
-            $table->string('pembayaran')->nullable();
+            $table->enum('ruangan', ['a', 'b', 'c'])->nullable();
+            $table->enum('kelas', ['1', '2', '3'])->nullable();
+            $table->enum('pembayaran', ['umum', 'bpjs', 'asuransi'])->nullable();
             $table->timestamps();
         });
 
