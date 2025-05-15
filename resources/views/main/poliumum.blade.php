@@ -976,7 +976,7 @@
                                         </button>
                                     </div>
 
-                                    <div class="table-responsive">
+                                    <!-- <div class="table-responsive">  -->
                                         <table id="rincian-icd9" class="table text-center shadow-table">
                                             <thead style="background-color: #676981; color: white;">
                                                 <style>
@@ -1004,14 +1004,14 @@
                                             </thead>
                                             <tbody id="selected-icds-icd9">
                                                 <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">16.99 other operations on eyeball</td>
+                                                <td style="text-align: left; font-weight: normal; font-size: 0.9rem;">16.99 other operations on eyeball</td>
                                                 <td class="text-center">
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
                                                 </td>
                                                 <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">90.5 microscopic examinations of blood</td>
+                                                <td style="text-align: left; font-weight: normal; font-size: 0.9rem;">90.5 microscopic examinations of blood</td>
                                                 <td class="text-center">
                                                         <button class="btn btn-sm btn-danger delete-btn">
                                                             <i class="bi bi-trash"></i>
@@ -1020,7 +1020,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                             </div>
 
