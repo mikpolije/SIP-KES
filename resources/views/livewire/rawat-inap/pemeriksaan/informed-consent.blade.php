@@ -49,7 +49,7 @@ new class extends Component {
                 $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin;
                 $this->namaPasien = $pendaftaran->data_pasien->nama_lengkap;
                 $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir;
-                $this->alamatPasien = $pendaftaran->data_pasien->alamat;
+                $this->alamatPasien = $pendaftaran->data_pasien->alamat_lengkap;
 
                 // Load existing informed consent data if available
                 $informedConsent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
