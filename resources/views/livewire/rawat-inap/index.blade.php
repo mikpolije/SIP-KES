@@ -1,9 +1,15 @@
 <?php
 
+use App\Models\Pendaftaran;
 use Livewire\Volt\Component;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 new class extends Component {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $activeTab = 'pendaftaran';
     public $showPatientDetails = false;
     public $selectedPatient = null;
@@ -11,33 +17,7 @@ new class extends Component {
     public $patientIsRegistered = false;
     public $patientIsExamined = false;
     public $search = '';
-
-    public $patients = [
-        [
-            'id' => '002001',
-            'name' => 'Aditya Attadewa',
-            'nik' => '3350168808650001',
-            'birth_date' => '12-09-1999',
-            'admission_date' => '27-02-2025',
-            'address' => 'SUMBERSARI',
-            'room' => '',
-            'note' => 'RUJUK INTERNAL IGD',
-            'is_registered' => 0,
-            'is_examined' => 0
-        ],
-        [
-            'id' => '17171717',
-            'name' => 'Raihan Sigma',
-            'nik' => '3350168808651717',
-            'birth_date' => '12-09-2002',
-            'admission_date' => '27-02-2017',
-            'address' => 'SUMBERSARI',
-            'room' => '',
-            'note' => 'RUJUK INTERNAL IGD',
-            'is_registered' => 1,
-            'is_examined' => 1
-        ],
-    ];
+    public $perPage = 10;
 
     public function selectPatient($id, $name)
     {
@@ -45,9 +25,10 @@ new class extends Component {
         $this->selectedPatientName = $name;
         $this->showPatientDetails = true;
 
-        $patient = collect($this->patients)->firstWhere('id', $id);
-        $this->patientIsRegistered = (bool)($patient['is_registered'] ?? 0);
-        $this->patientIsExamined = (bool)($patient['is_examined'] ?? 0);
+        $patient = Pendaftaran::where('id_pendaftaran', $id)->first();
+
+        $this->patientIsRegistered = (bool)(isset($patient->poli_rawat_inap) ?? 0);
+        $this->patientIsExamined = (bool)((isset($patient->poli_rawat_inap->id_asessmen_awal) && isset($patient->poli_rawat_inap->id_informed_consent)) ?? 0);
 
         if (!$this->patientIsRegistered) {
             $this->activeTab = 'pendaftaran';
@@ -57,7 +38,7 @@ new class extends Component {
             $this->activeTab = 'layanan';
         }
 
-        $this->dispatch('patient-selected', patientId: $id);
+        $this->dispatch('patient-selected', pendaftaranId: $id);
     }
 
     public function backToList()
@@ -69,55 +50,60 @@ new class extends Component {
     {
         $this->activeTab = $tab;
         if ($this->selectedPatient) {
-            $this->dispatch('patient-selected', patientId: $this->selectedPatient);
+            $this->dispatch('patient-selected', pendaftaranId: $this->selectedPatient);
         }
     }
 
-    // buat filter pasien
-    // nama sama id aje
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function setPerPage($value)
+    {
+        $this->perPage = $value;
+        $this->resetPage();
+    }
+
     public function getFilteredPatientsProperty()
     {
-        return collect($this->patients)
-            ->when($this->search, function ($collection) {
-                return $collection->filter(function ($patient) {
-                    return str_contains(strtolower($patient['name']), strtolower($this->search)) ||
-                           str_contains(strtolower($patient['id']), strtolower($this->search));
-                });
+        return Pendaftaran::where('layanan', 'Rawat Inap')
+            ->when($this->search, function ($query) {
+                $query->whereHas('data_pasien', function ($subquery) {
+                    $subquery->where('nama_lengkap', 'like', '%' . $this->search . '%')
+                            ->orWhere('no_rm', 'like', '%' . $this->search . '%')
+                            ->orWhere('nik', 'like', '%' . $this->search . '%');
+                })
+                ->orWhere('id_pendaftaran', 'like', '%' . $this->search . '%');
             })
-            ->all();
+            ->with('data_pasien')
+            ->paginate($this->perPage);
     }
 
     #[On('switch-tab')]
     public function handleTabSwitch($tab)
     {
-        // ini ganti sesuai tab ea
-        // kali ini, seperti yang didesign kan ada 3 buat "klik"-annya
         $validTabs = ['pendaftaran', 'pemeriksaan', 'layanan'];
 
         if (in_array($tab, $validTabs)) {
             $this->activeTab = $tab;
 
             if ($this->selectedPatient) {
-                $this->dispatch('patient-selected', patientId: $this->selectedPatient);
+                $this->dispatch('patient-selected', pendaftaranId: $this->selectedPatient);
             }
         }
     }
 
     #[On('patient-registered')]
-    public function handlePatientRegistered($patientId)
+    public function handlePatientRegistered($pendaftaranId)
     {
-        $this->patients = collect($this->patients)->map(function ($patient) use ($patientId) {
-            if ($patient['id'] == $patientId) {
-                $patient['is_registered'] = 1;
-            }
-            return $patient;
-        })->all();
-
-        $this->patientIsRegistered = true;
+        $register = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
+        if(isset($register->poli_rawat_inap)) {
+            $this->patientIsRegistered = true;
+        }
     }
 
-    // buat cek pasien ini pake tabs tidak
-    // cek di selectPatient()
+
     public function shouldShowTab($tab)
     {
         if ($tab === 'pendaftaran') {
@@ -137,7 +123,16 @@ new class extends Component {
 
                         @if(!$showPatientDetails)
                         <div class="mb-4">
-                            <div class="d-flex justify-content-end align-items-center mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <select wire:model.live="perPage" class="form-select form-select-sm me-2" style="width: 80px;">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                    <span class="small text-muted">entri per halaman</span>
+                                </div>
                                 <div class="input-group" style="width: 300px;">
                                     <input type="text" class="form-control" placeholder="Cari pasien..."
                                         wire:model.live.debounce.300ms="search">
@@ -158,39 +153,53 @@ new class extends Component {
                                             <th style="width: 8%">TGL LAHIR</th>
                                             <th style="width: 8%">TGL MASUK</th>
                                             <th style="width: 15%">ALAMAT</th>
-                                            <th style="width: 8%">RUANGAN</th>
                                             <th style="width: 15%">KET</th>
                                             <th class="text-center" style="width: 6%">AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody class="small">
-                                        @foreach($this->filteredPatients as $index => $patient)
-                                        <tr>
-                                            <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-nowrap">{{ $patient['id'] }}</td>
-                                            <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient['name'] }}">{{ $patient['name'] }}</td>
-                                            <td class="text-nowrap">{{ $patient['nik'] }}</td>
-                                            <td class="text-nowrap">{{ $patient['birth_date'] }}</td>
-                                            <td class="text-nowrap">{{ $patient['admission_date'] }}</td>
-                                            <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient['address'] }}">{{ $patient['address'] }}</td>
-                                            <td>{{ $patient['room'] }}</td>
-                                            <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient['note'] }}">{{ $patient['note'] }}</td>
-                                            <td class="text-center p-1">
-                                                <button
-                                                    wire:click="selectPatient('{{ $patient['id'] }}', '{{ $patient['name'] }}')"
-                                                    class="btn btn-primary btn-sm p-0 px-1" title="Detail">
-                                                    <i class="ti ti-eye"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                        @if(count($this->filteredPatients) > 0)
+                                            @foreach($this->filteredPatients as $index => $patient)
+                                                <tr wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
+                                                    style="cursor: pointer;"
+                                                    class="hover-effect-row">
+                                                    <td class="text-center">{{ ($this->filteredPatients->currentPage() - 1) * $this->perPage + $index + 1 }}</td>
+                                                    <td class="text-nowrap">{{ $patient->data_pasien->no_rm }}</td>
+                                                    <td class="text-truncate" data-bs-toggle="tooltip"
+                                                        title="{{ $patient->data_pasien->nama_lengkap }}">{{ $patient->data_pasien->nama_lengkap }}</td>
+                                                    <td class="text-nowrap">{{ $patient->data_pasien->nik }}</td>
+                                                    <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir }}</td>
+                                                    <td class="text-nowrap">{{ $patient->created_at }}</td>
+                                                    <td class="text-truncate" data-bs-toggle="tooltip"
+                                                        title="{{ $patient->data_pasien->alamat_lengkap }}">{{ $patient->data_pasien->alamat_lengkap }}</td>
+                                                    <td class="text-truncate" data-bs-toggle="tooltip"
+                                                        title="{{ $patient->note ?? '' }}">Rujuk {{ $patient->layanan }}</td>
+                                                    <td class="text-center p-1">
+                                                        <button
+                                                            wire:click.stop="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
+                                                            class="btn btn-primary btn-sm p-0 px-1" title="Detail">
+                                                            <i class="ti ti-eye"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="9" class="text-center py-3">Tidak ada data pasien yang ditemukan</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
 
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="small text-muted">
+                                    Menampilkan {{ $this->filteredPatients->firstItem() ?? 0 }} hingga {{ $this->filteredPatients->lastItem() ?? 0 }} dari {{ $this->filteredPatients->total() ?? 0 }} data
+                                </div>
+                                <div>
+                                    {{ $this->filteredPatients->links() }}
+                                </div>
+                            </div>
                         </div>
                         @else
                         <div>
@@ -200,7 +209,7 @@ new class extends Component {
                                 </button>
                                 <div>
                                     <span class="fw-bold">Pasien:</span>
-                                    <span class="ms-2">{{ $selectedPatientName }} ({{ $selectedPatient }})</span>
+                                    <span class="ms-2">{{ $selectedPatientName }} (No Pendaftaran: {{ $selectedPatient }})</span>
                                 </div>
                             </div>
 
@@ -233,25 +242,25 @@ new class extends Component {
                             <!-- Tab content -->
                             <div>
                                 @if(!$patientIsRegistered)
-                                @livewire('rawat-inap.pendaftaran.index', ['patientId' => $selectedPatient],
+                                @livewire('rawat-inap.pendaftaran.index', ['pendaftaranId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient))
                                 @else
                                 @switch($activeTab)
                                 @case('pendaftaran')
                                 @livewire('rawat-inap.pendaftaran.index',
-                                ['patientId' => $selectedPatient],
+                                ['pendaftaranId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient)
                                 )
                                 @break
                                 @case('pemeriksaan')
                                 @livewire('rawat-inap.pemeriksaan.index',
-                                ['patientId' => $selectedPatient],
+                                ['pendaftaranId' => $selectedPatient],
                                 key('pemeriksaan-'.$selectedPatient)
                                 )
                                 @break
                                 @case('layanan')
                                 @livewire('rawat-inap.layanan.index',
-                                ['patientId' => $selectedPatient],
+                                ['pendaftaranId' => $selectedPatient],
                                 key('layanan-'.$selectedPatient)
                                 )
                                 @break

@@ -32,9 +32,9 @@ new class extends Component {
     public $tanggalLahirPerwakilan = '';
     public $alamatPerwakilan = '';
 
-    public function mount($patientId = null)
+    public function mount($pendaftaranId = null)
     {
-        $this->patientId = $patientId;
+        $this->pendaftaranId = $pendaftaranId;
     }
 }; ?>
 

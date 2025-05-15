@@ -1,73 +1,94 @@
 <?php
 
+use App\Models\Pendaftaran;
+use App\Models\PoliRawatInap;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
 new class extends Component {
-    #[Validate('required')]
     public $nama = '';
     public $nomorRM = '';
-    #[Validate('required')]
     public $nik = '';
-    #[Validate('required')]
     public $tempatLahir = '';
-    #[Validate('required')]
     public $tanggalLahir = '';
-    #[Validate('required')]
     public $jenisKelamin = '';
-    #[Validate('required')]
     public $agama = '';
-    #[Validate('required')]
     public $statusPerkawinan = '';
-    #[Validate('required')]
     public $alamatLengkap = '';
     public $rt = '';
     public $rw = '';
-    #[Validate('required')]
     public $kab = '';
     public $alamatDomisili = '';
     public $rtDomisili = '';
     public $rwDomisili = '';
     public $kabDomisili = '';
-    #[Validate('required')]
     public $noHP = '';
-    #[Validate('required')]
     public $pendidikan = '';
-    #[Validate('required')]
     public $pekerjaan = '';
-    public $bahasa = '';
     public $kodePos = '';
     public $kec = '';
     public $prov = '';
     public $kecDomisili = '';
     public $provDomisili = '';
+
     #[Validate('required')]
     public $kelasPerawatan = 'kelas1';
     #[Validate('required')]
     public $ruangInap = '';
     #[Validate('required')]
     public $pembayaran = 'umum';
-    public $patientId;
 
-    public function mount($patientId)
-    {
-        $this->nomorRM = $patientId;
-        $this->$patientId = $patientId;
-    }
+    public $pendaftaranId;
 
-    public function calculateAge($birthDate)
+    public function mount($pendaftaranId)
     {
-        $birthDate = new DateTime($birthDate);
-        $today = new DateTime();
-        $age = $today->diff($birthDate);
-        return $age->y;
+        $this->nomorRM = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->data_pasien->nomor_rm;
+        $this->currentPatient = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->data_pasien;
+        $this->$pendaftaranId = $pendaftaranId;
+
+        $this->nama = $this->currentPatient->nama_lengkap;
+        $this->alamatLengkap = $this->currentPatient->alamat_lengkap;
+        $this->nomorRM = $this->currentPatient->no_rm;
+        $this->nik = $this->currentPatient->nik;
+        $this->tempatLahir = $this->currentPatient->tempat_lahir;
+        $this->tanggalLahir = $this->currentPatient->tanggal_lahir;
+        $this->jenisKelamin = $this->currentPatient->jenis_kelamin;
+        $this->agama = $this->currentPatient->agama;
+        $this->statusPerkawinan = $this->currentPatient->status_perkawinan;
+        $this->rt = $this->currentPatient->rt;
+        $this->rw = $this->currentPatient->rw;
+        $this->prov = $this->currentPatient->id_provinsi;
+        $this->kab = $this->currentPatient->id_kota;
+        $this->kec = $this->currentPatient->id_kecamatan;
+        $this->kodePos = $this->currentPatient->kode_pos;
+        $this->noHP = $this->currentPatient->nomor_telepon;
+        $this->pendidikan = $this->currentPatient->pendidikan;
+        $this->pekerjaan = $this->currentPatient->pekerjaan;
+
+        $this->alamatDomisili = $this->currentPatient->alamat_lengkap;
+        $this->rtDomisili = $this->currentPatient->rt;
+        $this->rwDomisili = $this->currentPatient->rw;
+        $this->kabDomisili = $this->currentPatient->id_kota;
+        $this->kecDomisili = $this->currentPatient->id_kecamatan;
+        $this->provDomisili = $this->currentPatient->id_provinsi;
+
     }
 
     public function submit()
     {
+        $this->validate();
+
+        PoliRawatInap::create([
+            'id_pendaftaran' => $this->pendaftaranId,
+            'kelas_perawatan' => $this->kelasPerawatan,
+            'ruang_inap' => $this->ruangInap,
+            'pembayaran' => $this->pembayaran,
+        ]);
+
         session()->flash('message', 'Form submitted successfully!');
-        $this->dispatch('patient-registered', patientId: $this->patientId);
+        $this->dispatch('patient-registered', pendaftaranId: $this->pendaftaranId);
         $this->dispatch('switch-tab', tab: 'pemeriksaan');
+
     }
 }; ?>
 
@@ -80,7 +101,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" wire:model="nama" class="form-control @error('nama') is-invalid @enderror"
-                        id="nama">
+                        id="nama" readonly>
                     @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -94,7 +115,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="nik" class="form-label">NIK</label>
                     <input type="text" wire:model="nik" class="form-control @error('nik') is-invalid @enderror"
-                        id="nik">
+                        id="nik" readonly>
                     @error('nik') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -102,7 +123,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="tempatLahir" class="form-label">Tempat Lahir</label>
                     <input type="text" wire:model="tempatLahir"
-                        class="form-control @error('tempatLahir') is-invalid @enderror" id="tempatLahir">
+                        class="form-control @error('tempatLahir') is-invalid @enderror" id="tempatLahir" readonly>
                     @error('tempatLahir') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -110,7 +131,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
                     <input type="date" wire:model="tanggalLahir"
-                        class="form-control @error('tanggalLahir') is-invalid @enderror" id="tanggalLahir">
+                        class="form-control @error('tanggalLahir') is-invalid @enderror" id="tanggalLahir" readonly>
                     @error('tanggalLahir') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -162,7 +183,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="alamatLengkap" class="form-label">Alamat Lengkap</label>
                     <input type="text" wire:model="alamatLengkap"
-                        class="form-control @error('alamatLengkap') is-invalid @enderror" id="alamatLengkap">
+                        class="form-control @error('alamatLengkap') is-invalid @enderror" id="alamatLengkap" readonly>
                     @error('alamatLengkap') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -170,11 +191,11 @@ new class extends Component {
                 <div class="row mb-3">
                     <div class="col-auto">
                         <label for="rt" class="form-label">RT:</label>
-                        <input type="text" wire:model="rt" class="form-control w-75" id="rt">
+                        <input type="text" wire:model="rt" class="form-control w-75" id="rt" readonly>
                     </div>
                     <div class="col-auto">
                         <label for="rw" class="form-label">RW:</label>
-                        <input type="text" wire:model="rw" class="form-control w-75" id="rw">
+                        <input type="text" wire:model="rw" class="form-control w-75" id="rw" readonly>
                     </div>
                 </div>
 
@@ -182,32 +203,32 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="kab" class="form-label">Kab:</label>
                     <input type="text" wire:model="kab" class="form-control @error('kab') is-invalid @enderror"
-                        id="kab">
+                        id="kab" readonly>
                     @error('kab') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <!-- alamat domisili -->
                 <div class="mb-3">
                     <label for="alamatDomisili" class="form-label">Alamat Domisili</label>
-                    <input type="text" wire:model="alamatDomisili" class="form-control" id="alamatDomisili">
+                    <input type="text" wire:model="alamatDomisili" class="form-control" id="alamatDomisili" readonly>
                 </div>
 
                 <!-- rt/rw domisili -->
                 <div class="row mb-3">
                     <div class="col-auto">
                         <label for="rtDomisili" class="form-label">RT:</label>
-                        <input type="text" wire:model="rtDomisili" class="form-control w-75" id="rtDomisili">
+                        <input type="text" wire:model="rtDomisili" class="form-control w-75" id="rtDomisili" readonly>
                     </div>
                     <div class="col-auto">
                         <label for="rwDomisili" class="form-label">RW:</label>
-                        <input type="text" wire:model="rwDomisili" class="form-control w-75" id="rwDomisili">
+                        <input type="text" wire:model="rwDomisili" class="form-control w-75" id="rwDomisili" readonly>
                     </div>
                 </div>
 
                 <!-- kab domisili -->
                 <div class="mb-3">
                     <label for="kabDomisili" class="form-label">Kab:</label>
-                    <input type="text" wire:model="kabDomisili" class="form-control" id="kabDomisili">
+                    <input type="text" wire:model="kabDomisili" class="form-control" id="kabDomisili" readonly>
                 </div>
 
                 <!-- no.hp -->
@@ -216,7 +237,7 @@ new class extends Component {
                     <div class="input-group">
                         <span class="input-group-text">+62</span>
                         <input type="text" wire:model="noHP" class="form-control @error('noHP') is-invalid @enderror"
-                            id="noHP">
+                            id="noHP" readonly>
                     </div>
                     @error('noHP') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
@@ -225,7 +246,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="pendidikan" class="form-label">Pendidikan</label>
                     <select wire:model="pendidikan" class="form-select @error('pendidikan') is-invalid @enderror"
-                        id="pendidikan">
+                        id="pendidikan" readonly>
                         <option value="" selected disabled>Pilih Pendidikan</option>
                         <option>SD</option>
                         <option>SMP</option>
@@ -253,18 +274,6 @@ new class extends Component {
                     @error('pekerjaan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
-                <!-- bahasa yang dikuasai -->
-                <div class="mb-3">
-                    <label for="bahasa" class="form-label">Bahasa yang dikuasai</label>
-                    <select wire:model="bahasa" class="form-select" id="bahasa">
-                        <option value="" selected disabled>Pilih Bahasa</option>
-                        <option>Indonesia</option>
-                        <option>Inggris</option>
-                        <option>Mandarin</option>
-                        <option>Jawa</option>
-                        <option>Sunda</option>
-                    </select>
-                </div>
             </div>
 
             <!-- right column -->
@@ -272,27 +281,27 @@ new class extends Component {
                 <!-- kode pos -->
                 <div class="mb-3">
                     <label for="kodePos" class="form-label">Kode Pos:</label>
-                    <input type="text" wire:model="kodePos" class="form-control" id="kodePos">
+                    <input type="text" wire:model="kodePos" class="form-control" id="kodePos" readonly>
                 </div>
 
                 <!-- kec & prov -->
                 <div class="mb-3">
                     <label for="kec" class="form-label">Kec:</label>
-                    <input type="text" wire:model="kec" class="form-control" id="kec">
+                    <input type="text" wire:model="kec" class="form-control" id="kec" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="prov" class="form-label">Prov:</label>
-                    <input type="text" wire:model="prov" class="form-control" id="prov">
+                    <input type="text" wire:model="prov" class="form-control" id="prov" readonly>
                 </div>
 
                 <!-- kec & prov domisili -->
                 <div class="mb-3">
                     <label for="kecDomisili" class="form-label">Kec:</label>
-                    <input type="text" wire:model="kecDomisili" class="form-control" id="kecDomisili">
+                    <input type="text" wire:model="kecDomisili" class="form-control" id="kecDomisili" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="provDomisili" class="form-label">Prov:</label>
-                    <input type="text" wire:model="provDomisili" class="form-control" id="provDomisili">
+                    <input type="text" wire:model="provDomisili" class="form-control" id="provDomisili" readonly>
                 </div>
 
                 <!-- kelas perawatan -->

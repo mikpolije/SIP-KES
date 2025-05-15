@@ -7,22 +7,22 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use stdClass;
 
 class LayananController extends Controller
 {
     private $title = 'UGD Sipkes | ';
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         try {
-            $data['title'] = $this->title . 'Master Layanan';
-            
+            $data['title'] = $this->title.'Master Layanan';
+
             $data['list'] = Layanan::orderBy('id', 'desc')
                 ->get();
-            
+
             return view('master.layanan.index', compact('data'));
         } catch (Exception $e) {
             return $e;
@@ -36,7 +36,8 @@ class LayananController extends Controller
      */
     public function create()
     {
-        $data['title'] = $this->title . 'Add Layanan';
+        $data['title'] = $this->title.'Add Layanan';
+
         return view('master.layanan.add', compact('data'));
     }
 
@@ -49,26 +50,30 @@ class LayananController extends Controller
         try {
             $request->validate([
                 'nama' => 'required',
-                'tarif' => 'required'
+                'tarif' => 'required',
             ], [
                 'nama.required' => 'Nama harus diisi.',
-                'tarif.required' => 'Tarif harus diisi.'
+                'tarif.required' => 'Tarif harus diisi.',
             ]);
 
             Layanan::create([
-                    'nama_layanan' => $request->nama,
-                    'tarif_layanan' => $request->tarif
-                ]);
+                'nama_layanan' => $request->nama,
+                'tarif_layanan' => $request->tarif,
+            ]);
             DB::commit();
 
             return redirect()->route('layanan.index')->with('success', 'Berhasil menambahkan data layanan baru.');
         } catch (Exception $e) {
             DB::rollBack();
+
             return $e->getMessage();
+
             return redirect()->back()->with('error', $e->getMessage());
         } catch (QueryException $e) {
             DB::rollBack();
+
             return $e->getMessage();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -86,11 +91,11 @@ class LayananController extends Controller
      */
     public function edit(string $id)
     {
-        $data['title'] = $this->title . ' | Edit Layanan';
+        $data['title'] = $this->title.' | Edit Layanan';
         $data['layanan'] = DB::table('layanan')
             ->where('id_layanan', $id)
             ->first();
-        if (!$data['layanan']) {
+        if (! $data['layanan']) {
             return redirect()->back()->with('error', 'Data tidak ditemukan.');
         }
 
@@ -106,27 +111,31 @@ class LayananController extends Controller
         try {
             $request->validate([
                 'nama' => 'required',
-                'tarif' => 'required'
+                'tarif' => 'required',
             ], [
                 'nama.required' => 'Nama harus diisi.',
-                'tarif.required' => 'Tarif harus diisi.'
+                'tarif.required' => 'Tarif harus diisi.',
             ]);
 
             Layanan::where('id', $id)
                 ->update([
                     'nama_layanan' => $request->nama,
-                    'tarif_layanan' => $request->tarif
+                    'tarif_layanan' => $request->tarif,
                 ]);
             DB::commit();
 
             return redirect()->route('layanan.index')->with('success', 'Berhasil mengubah data layanan.');
         } catch (Exception $e) {
             DB::rollBack();
+
             return $e->getMessage();
+
             return redirect()->back()->with('error', $e->getMessage());
         } catch (QueryException $e) {
             DB::rollBack();
+
             return $e->getMessage();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -145,9 +154,11 @@ class LayananController extends Controller
             return redirect()->route('layanan.index')->with('success', 'Berhasil menghapus data layanan.');
         } catch (Exception $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         } catch (QueryException $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -159,7 +170,7 @@ class LayananController extends Controller
             $layanan = Layanan::findOrFail($id);
             $response = [
                 'message' => $layanan ? 'Data ditemukan.' : 'Data tidak ditemukan',
-                'layanan' => $layanan
+                'layanan' => $layanan,
             ];
 
             return response()->json($response);
@@ -167,7 +178,7 @@ class LayananController extends Controller
             $message = $e->getMessage();
             $response = [
                 'message' => $message,
-                'layanan' => null
+                'layanan' => null,
             ];
 
             return response()->json($response);
@@ -175,10 +186,20 @@ class LayananController extends Controller
             $message = $e->getMessage();
             $response = [
                 'message' => $message,
-                'layanan' => null
+                'layanan' => null,
             ];
 
             return response()->json($response);
         }
+    }
+
+    public function getListLayanan(Request $request)
+    {
+        $layanans = Layanan::select('id', 'nama_layanan')
+            ->where('nama_layanan', 'like', '%'.$request->term.'%')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return response()->json($layanans, 200);
     }
 }

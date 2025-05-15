@@ -22,6 +22,11 @@ class Pendaftaran extends Model
         return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 
+    public function poli_rawat_inap()
+    {
+        return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
     public function layanan_kia()
     {
         return $this->hasOne(LayananKia::class, 'id_pendaftaran', 'id_pendaftaran');
@@ -64,7 +69,7 @@ class Pendaftaran extends Model
 
     public function getLayananTerisiAttribute()
     {
-        if (!$this->relationLoaded('layanan_kia')) {
+        if (! $this->relationLoaded('layanan_kia')) {
             $this->load('layanan_kia');
         }
 
@@ -78,5 +83,4 @@ class Pendaftaran extends Model
             default => false,
         };
     }
-
 }

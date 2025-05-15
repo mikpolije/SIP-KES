@@ -3,7 +3,7 @@
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public $patientId;
+    public $pendaftaranId;
     public $keluhan = '';
     public $riwayatPenyakit = '';
     public $alergi = 'tidak';
@@ -21,9 +21,9 @@ new class extends Component {
     public $lainLain = false;
     public $lainLainText = '';
 
-    public function mount($patientId = null)
+    public function mount($pendaftaranId = null)
     {
-        $this->patientId = $patientId;
+        $this->pendaftaranId = $pendaftaranId;
     }
 }; ?>
 

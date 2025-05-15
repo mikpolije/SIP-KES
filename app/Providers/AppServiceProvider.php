@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
                 $index = $matches[2];
                 $label = Lang::get("validation.attributes.{$field}.*");
 
-                $position = (int)$index + 1;
+                $position = (int) $index + 1;
+
                 return str_replace([':attribute', ':position'], [$label, $position], $message);
             }
 

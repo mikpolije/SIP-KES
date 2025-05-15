@@ -14,4 +14,14 @@ class DataPasien extends Model
     protected $primaryKey = 'no_rm';
 
     protected $guarded = ['no_rm'];
+
+    public function waliPasien()
+    {
+        return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm');
+    }
+
+    public function pendaftaran()
+    {
+        return $this->hasMany(Pendaftaran::class, 'no_rm', 'no_rm');
+    }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('keterangan');
             $table->integer('stok')->default(0);
             $table->string('bentuk_obat')->comment('gr, ml, dll');
-            $table->decimal('harga', 16,2);
+            $table->decimal('harga', 16, 2);
             $table->timestamps();
         });
 

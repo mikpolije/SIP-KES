@@ -27,7 +27,7 @@ class DokterFactory extends Factory
             'Senin, Rabu, Jumat: 09.00-15.00',
             'Selasa, Kamis: 13.00-20.00',
             'Senin-Sabtu: 08.00-12.00',
-            'Senin, Kamis, Sabtu: 15.00-21.00'
+            'Senin, Kamis, Sabtu: 15.00-21.00',
         ];
 
         return [
@@ -35,8 +35,8 @@ class DokterFactory extends Factory
             'nama' => fake()->name(),
             'no_telepon' => fake()->numerify('08##########'),
             'alamat' => fake()->address(),
-            'no_sip' => fake()->unique()->numerify('SIP/###/###/' . date('Y')),
-            'nip' => fake()->unique()->numerify('19########' . fake()->numberBetween(1, 4) . '###'),
+            'no_sip' => fake()->unique()->numerify('SIP/###/###/'.date('Y')),
+            'nip' => fake()->unique()->numerify('19########'.fake()->numberBetween(1, 4).'###'),
             'gelar_depan' => $gelarDepan,
             'gelar_belakang' => $gelarBelakang,
             'jadwal_layanan' => fake()->randomElement($scheduleOptions),

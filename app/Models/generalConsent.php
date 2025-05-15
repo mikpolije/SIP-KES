@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class generalConsent extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'general_consent';
 
     protected $fillable = [
@@ -29,7 +29,7 @@ class generalConsent extends Model
         'penanggungJawab3',
         'penanggungJawab4',
         'namaPenanggungJawab',
-        'namaPemberiInformasi'
+        'namaPemberiInformasi',
     ];
 
     protected $casts = [
@@ -38,5 +38,4 @@ class generalConsent extends Model
         'nik' => 'string',
         'notelp' => 'string',
     ];
-
 }

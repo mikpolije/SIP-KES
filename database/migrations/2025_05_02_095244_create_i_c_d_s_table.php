@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pemeriksaan', function (Blueprint $table) {
+        Schema::create('icd_10s', function (Blueprint $table) {
             $table->id();
-            $table->string('no_rm', 6);
-            $table->foreign('no_rm')
-                ->references('no_rm')
-                ->on('data_pasien')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+            $table->string('kode_diagnosa', 25)->nullable();
+            $table->string('display')->nullable();
+            $table->string('version')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pemeriksaan');
+        Schema::dropIfExists('icd_10s');
     }
 };

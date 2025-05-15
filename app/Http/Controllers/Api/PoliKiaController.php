@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Models\FormulirAnak;
 use App\Models\FormulirKb;
+use App\Models\FormulirKehamilan;
+use App\Models\FormulirPersalinan;
 use App\Models\LayananKia;
 use App\Models\Pendaftaran;
 use App\Models\RiwayatSoap;
-use Illuminate\Support\Arr;
-use App\Models\FormulirAnak;
+use App\Models\SuratKematian;
 use App\Models\SuratKontrol;
 use Illuminate\Http\Request;
-use App\Models\FormulirKehamilan;
-use App\Models\FormulirPersalinan;
-use App\Http\Controllers\Controller;
-use App\Models\SuratKematian;
 use Illuminate\Support\Facades\Validator;
 
 class PoliKiaController extends Controller
@@ -21,52 +20,52 @@ class PoliKiaController extends Controller
     public function show($idPendaftaran)
     {
         $data = Pendaftaran::with([
-                'data_pasien',
-                'layanan_kia',
-                'formulirKb',
-                'formulirKehamilan',
-                'formulirPersalinan',
-                'formulirAnak',
-                'pengambilan_obat.detail_pengambilan_obat.detail_pembelian_obat.obat',
-                'pengambilan_obat.racikan.detail_pembelian_obat.obat',
-                'surat_kontrol',
-                'surat_kematian',
-            ])
+            'data_pasien',
+            'layanan_kia',
+            'formulirKb',
+            'formulirKehamilan',
+            'formulirPersalinan',
+            'formulirAnak',
+            'pengambilan_obat.detail_pengambilan_obat.detail_pembelian_obat.obat',
+            'pengambilan_obat.racikan.detail_pembelian_obat.obat',
+            'surat_kontrol',
+            'surat_kematian',
+        ])
             ->where('id_pendaftaran', $idPendaftaran)
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
             ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Data Tidak Ditemukan',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
         return response()->json([
             'message' => 'Data Berhasil Ditemukan',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
     public function store(Request $request)
     {
         $data = Pendaftaran::with('data_pasien', 'layanan_kia')
-            ->where('id_pendaftaran', $request->id_pendaftaran??'null')
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
             ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Pendaftaran Tidak Ditemukan',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
         if ($data->layanan_kia) {
             return response()->json([
-                'message' => 'Proses layanan KIA telah dilakukan pada tanggal ' . $data->layanan_kia->tanggal . '. Hubungi bidan untuk melanjutkan.',
-                'data' => $data
+                'message' => 'Proses layanan KIA telah dilakukan pada tanggal '.$data->layanan_kia->tanggal.'. Hubungi bidan untuk melanjutkan.',
+                'data' => $data,
             ], 422);
         }
 
@@ -87,7 +86,7 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -108,38 +107,38 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Data Berhasil Disimpan',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
     public function pemeriksaanKehamilan(Request $request)
     {
         $data = Pendaftaran::with([
-                'data_pasien',
-                'layanan_kia',
-                'formulirKb',
-                'formulirKehamilan',
-                'formulirPersalinan',
-                'formulirAnak',
-            ])
-            ->where('id_pendaftaran', $request->id_pendaftaran??'null')
+            'data_pasien',
+            'layanan_kia',
+            'formulirKb',
+            'formulirKehamilan',
+            'formulirPersalinan',
+            'formulirAnak',
+        ])
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Kehamilan');
             })
             ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Pendaftaran Tidak Ditemukan atau Jenis Pemeriksaan Tidak Cocok.',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
         if ($data->layanan_terisi) {
             return response()->json([
                 'message' => 'Pemeriksaan Sudah Pernah Dilakukan.',
-                'data' => $data
+                'data' => $data,
             ], 422);
         }
 
@@ -203,7 +202,7 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -211,38 +210,38 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Data Berhasil Disimpan',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
     public function pemeriksaanPersalinan(Request $request)
     {
         $data = Pendaftaran::with([
-                'data_pasien',
-                'layanan_kia',
-                'formulirKb',
-                'formulirKehamilan',
-                'formulirPersalinan',
-                'formulirAnak',
-            ])
-            ->where('id_pendaftaran', $request->id_pendaftaran??'null')
+            'data_pasien',
+            'layanan_kia',
+            'formulirKb',
+            'formulirKehamilan',
+            'formulirPersalinan',
+            'formulirAnak',
+        ])
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Persalinan');
             })
             ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Pendaftaran Tidak Ditemukan atau Jenis Pemeriksaan Tidak Cocok.',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
         if ($data->layanan_terisi) {
             return response()->json([
                 'message' => 'Pemeriksaan Sudah Pernah Dilakukan.',
-                'data' => $data
+                'data' => $data,
             ], 422);
         }
 
@@ -340,90 +339,90 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
         $data = FormulirPersalinan::create([
             'id_pendaftaran' => $request->id_pendaftaran,
-            "id_bidan" => $request->id_bidan,
-            "tempat_persalinan" => $request->tempat_persalinan,
-            "alamat_persalinan" => $request->alamat_persalinan,
-            "catatan_rujukan" => $request->catatan_rujukan,
-            "alasan_merujuk" => $request->alasan_merujuk,
-            "tempat_merujuk" => $request->tempat_merujuk,
-            "pendamping" => $request->pendamping,
-            "partogram" => $request->partogram,
-            "masalah_lain_kala_i" => $request->masalah_lain_kala_i,
-            "penatalaksana" => $request->penatalaksana,
-            "hasil" => $request->hasil,
-            "eposotormy" => $request->eposotormy,
-            "tindakan_eposotormy" => $request->tindakan_eposotormy,
-            "gawat_janin" => $request->gawat_janin,
-            "tindakan_gawat_janin" => $request->tindakan_gawat_janin,
-            "destosia" => $request->destosia,
-            "tindakan_destosia" => $request->tindakan_destosia,
-            "waktu_kala_iii" => $request->waktu_kala_iii,
-            "waktu_oksitosin" => $request->waktu_oksitosin,
-            "tindakan_waktu_oksitosin" => $request->tindakan_waktu_oksitosin,
-            "waktu_ulang_oksitosin" => $request->waktu_ulang_oksitosin,
-            "tindakan_waktu_ulang_oksitosin" => $request->tindakan_waktu_ulang_oksitosin,
-            "penegangan_tali" => $request->penegangan_tali,
-            "tindakan_penegangan_tali" => $request->tindakan_penegangan_tali,
-            "uteri" => $request->uteri,
-            "tindakan_uteri" => $request->tindakan_uteri,
-            "atoni_uteri" => $request->atoni_uteri,
-            "tindakan_atoni_uteri" => $request->tindakan_atoni_uteri,
-            "plasenta_lahir" => $request->plasenta_lahir,
-            "tindakan_plasenta_lahir" => $request->tindakan_plasenta_lahir,
-            "plasenta_tidak_lahir" => $request->plasenta_tidak_lahir,
-            "tindakan_plasenta_tidak_lahir" => $request->tindakan_plasenta_tidak_lahir,
-            "laserasi" => $request->laserasi,
-            "tindakan_laserasi" => $request->tindakan_laserasi,
-            "laserasi_perineum" => $request->laserasi_perineum,
-            "penjahitan" => $request->penjahitan,
-            "alasan_penjahitan" => $request->alasan_penjahitan,
-            "jumlah_pendarahan" => $request->jumlah_pendarahan,
-            "masalah_lain_kala_iii" => $request->masalah_lain_kala_iii,
-            "penatalaksanaan_masalah" => $request->penatalaksanaan_masalah,
-            "hasil_kala_iii" => $request->hasil_kala_iii,
-            "ku" => $request->ku,
-            "td" => $request->td,
-            "nadi" => $request->nadi,
-            "napas" => $request->napas,
-            "masalah_kala_iv" => $request->masalah_kala_iv,
-            "normal" => $request->normal,
-            "cacat_bawaan" => $request->cacat_bawaan,
-            "masalah_lain_bayi" => $request->masalah_lain_bayi,
-            "tindakan_masalah_lain_bayi" => $request->tindakan_masalah_lain_bayi,
-            "cek_asfiksia" => $request->cek_asfiksia,
-            "asfiksia" => $request->asfiksia,
-            "cek_pemberian_asi" => $request->cek_pemberian_asi,
-            "pemberian_asi" => $request->pemberian_asi,
-            "jam_pemberian_asi" => $request->jam_pemberian_asi,
-            "cek_penatalaksanaan" => $request->cek_penatalaksanaan,
-            "penatalaksanaan" => $request->penatalaksanaan,
-            "hpht" => $request->hpht,
-            "his" => $request->his,
-            "lendir" => $request->lendir,
-            "darah" => $request->darah,
-            "ketuban" => $request->ketuban,
-            "keluhan" => $request->keluhan,
-            "riwayat_persalinan_lalu" => $request->riwayat_persalinan_lalu,
-            "riwayat_alergi" => $request->riwayat_alergi,
-            "tekanan_darah_o" => $request->tekanan_darah_o,
-            "suhu" => $request->suhu,
-            "nadi_o" => $request->nadi_o,
-            "odema" => $request->odema,
-            "palpasi" => $request->palpasi,
-            "teraba" => $request->teraba,
-            "djj" => $request->djj,
-            "kontraksi" => $request->kontraksi,
-            "pemeriksaan_dalam" => $request->pemeriksaan_dalam,
-            "oleh" => $request->oleh,
-            "hasil_v1" => $request->hasil_v1,
-            "a" => $request->a,
-            "observasi_kala_i" => $request->observasi_kala_i,
+            'id_bidan' => $request->id_bidan,
+            'tempat_persalinan' => $request->tempat_persalinan,
+            'alamat_persalinan' => $request->alamat_persalinan,
+            'catatan_rujukan' => $request->catatan_rujukan,
+            'alasan_merujuk' => $request->alasan_merujuk,
+            'tempat_merujuk' => $request->tempat_merujuk,
+            'pendamping' => $request->pendamping,
+            'partogram' => $request->partogram,
+            'masalah_lain_kala_i' => $request->masalah_lain_kala_i,
+            'penatalaksana' => $request->penatalaksana,
+            'hasil' => $request->hasil,
+            'eposotormy' => $request->eposotormy,
+            'tindakan_eposotormy' => $request->tindakan_eposotormy,
+            'gawat_janin' => $request->gawat_janin,
+            'tindakan_gawat_janin' => $request->tindakan_gawat_janin,
+            'destosia' => $request->destosia,
+            'tindakan_destosia' => $request->tindakan_destosia,
+            'waktu_kala_iii' => $request->waktu_kala_iii,
+            'waktu_oksitosin' => $request->waktu_oksitosin,
+            'tindakan_waktu_oksitosin' => $request->tindakan_waktu_oksitosin,
+            'waktu_ulang_oksitosin' => $request->waktu_ulang_oksitosin,
+            'tindakan_waktu_ulang_oksitosin' => $request->tindakan_waktu_ulang_oksitosin,
+            'penegangan_tali' => $request->penegangan_tali,
+            'tindakan_penegangan_tali' => $request->tindakan_penegangan_tali,
+            'uteri' => $request->uteri,
+            'tindakan_uteri' => $request->tindakan_uteri,
+            'atoni_uteri' => $request->atoni_uteri,
+            'tindakan_atoni_uteri' => $request->tindakan_atoni_uteri,
+            'plasenta_lahir' => $request->plasenta_lahir,
+            'tindakan_plasenta_lahir' => $request->tindakan_plasenta_lahir,
+            'plasenta_tidak_lahir' => $request->plasenta_tidak_lahir,
+            'tindakan_plasenta_tidak_lahir' => $request->tindakan_plasenta_tidak_lahir,
+            'laserasi' => $request->laserasi,
+            'tindakan_laserasi' => $request->tindakan_laserasi,
+            'laserasi_perineum' => $request->laserasi_perineum,
+            'penjahitan' => $request->penjahitan,
+            'alasan_penjahitan' => $request->alasan_penjahitan,
+            'jumlah_pendarahan' => $request->jumlah_pendarahan,
+            'masalah_lain_kala_iii' => $request->masalah_lain_kala_iii,
+            'penatalaksanaan_masalah' => $request->penatalaksanaan_masalah,
+            'hasil_kala_iii' => $request->hasil_kala_iii,
+            'ku' => $request->ku,
+            'td' => $request->td,
+            'nadi' => $request->nadi,
+            'napas' => $request->napas,
+            'masalah_kala_iv' => $request->masalah_kala_iv,
+            'normal' => $request->normal,
+            'cacat_bawaan' => $request->cacat_bawaan,
+            'masalah_lain_bayi' => $request->masalah_lain_bayi,
+            'tindakan_masalah_lain_bayi' => $request->tindakan_masalah_lain_bayi,
+            'cek_asfiksia' => $request->cek_asfiksia,
+            'asfiksia' => $request->asfiksia,
+            'cek_pemberian_asi' => $request->cek_pemberian_asi,
+            'pemberian_asi' => $request->pemberian_asi,
+            'jam_pemberian_asi' => $request->jam_pemberian_asi,
+            'cek_penatalaksanaan' => $request->cek_penatalaksanaan,
+            'penatalaksanaan' => $request->penatalaksanaan,
+            'hpht' => $request->hpht,
+            'his' => $request->his,
+            'lendir' => $request->lendir,
+            'darah' => $request->darah,
+            'ketuban' => $request->ketuban,
+            'keluhan' => $request->keluhan,
+            'riwayat_persalinan_lalu' => $request->riwayat_persalinan_lalu,
+            'riwayat_alergi' => $request->riwayat_alergi,
+            'tekanan_darah_o' => $request->tekanan_darah_o,
+            'suhu' => $request->suhu,
+            'nadi_o' => $request->nadi_o,
+            'odema' => $request->odema,
+            'palpasi' => $request->palpasi,
+            'teraba' => $request->teraba,
+            'djj' => $request->djj,
+            'kontraksi' => $request->kontraksi,
+            'pemeriksaan_dalam' => $request->pemeriksaan_dalam,
+            'oleh' => $request->oleh,
+            'hasil_v1' => $request->hasil_v1,
+            'a' => $request->a,
+            'observasi_kala_i' => $request->observasi_kala_i,
         ]);
 
         $detail = [];
@@ -445,38 +444,38 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Data Berhasil Disimpan',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
     public function pemeriksaanKb(Request $request)
     {
         $data = Pendaftaran::with([
-                'data_pasien',
-                'layanan_kia',
-                'formulirKb',
-                'formulirKehamilan',
-                'formulirPersalinan',
-                'formulirAnak',
-            ])
-            ->where('id_pendaftaran', $request->id_pendaftaran??'null')
+            'data_pasien',
+            'layanan_kia',
+            'formulirKb',
+            'formulirKehamilan',
+            'formulirPersalinan',
+            'formulirAnak',
+        ])
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'KB');
             })
             ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Pendaftaran Tidak Ditemukan atau Jenis Pemeriksaan Tidak Cocok.',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
         if ($data->layanan_terisi) {
             return response()->json([
                 'message' => 'Pemeriksaan Sudah Pernah Dilakukan.',
-                'data' => $data
+                'data' => $data,
             ], 422);
         }
 
@@ -522,7 +521,7 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -530,38 +529,38 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Data Berhasil Disimpan',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
     public function pemeriksaanAnak(Request $request)
     {
         $data = Pendaftaran::with([
-                'data_pasien',
-                'layanan_kia',
-                'formulirKb',
-                'formulirKehamilan',
-                'formulirPersalinan',
-                'formulirAnak',
-            ])
-            ->where('id_pendaftaran', $request->id_pendaftaran??'null')
+            'data_pasien',
+            'layanan_kia',
+            'formulirKb',
+            'formulirKehamilan',
+            'formulirPersalinan',
+            'formulirAnak',
+        ])
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Anak');
             })
             ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Pendaftaran Tidak Ditemukan atau Jenis Pemeriksaan Tidak Cocok.',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
         if ($data->layanan_terisi) {
             return response()->json([
                 'message' => 'Pemeriksaan Sudah Pernah Dilakukan.',
-                'data' => $data
+                'data' => $data,
             ], 422);
         }
 
@@ -610,7 +609,7 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -618,7 +617,7 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Data Berhasil Disimpan',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
@@ -633,7 +632,7 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -655,7 +654,7 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Berhasil mengambil data',
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
@@ -669,14 +668,14 @@ class PoliKiaController extends Controller
             'formulirPersalinan',
             'formulirAnak',
         ])
-        ->where('id_pendaftaran', $request->id_pendaftaran??'null')
-        ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
-        ->first();
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
+            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Pendaftaran Tidak Ditemukan.',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
@@ -694,7 +693,7 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -705,7 +704,7 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Data Berhasil Disimpan',
-            'data' => null
+            'data' => null,
         ]);
     }
 
@@ -719,14 +718,14 @@ class PoliKiaController extends Controller
             'formulirPersalinan',
             'formulirAnak',
         ])
-        ->where('id_pendaftaran', $request->id_pendaftaran??'null')
-        ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
-        ->first();
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
+            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Pendaftaran Tidak Ditemukan.',
-                'data' => []
+                'data' => [],
             ], 404);
         }
 
@@ -746,7 +745,7 @@ class PoliKiaController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Data Tidak Valid. Silahkan Periksa Kembali',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -757,7 +756,7 @@ class PoliKiaController extends Controller
 
         return response()->json([
             'message' => 'Data Berhasil Disimpan',
-            'data' => null
+            'data' => null,
         ]);
     }
 }

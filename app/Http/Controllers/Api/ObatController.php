@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use Carbon\Carbon;
-use App\Models\Obat;
-use Illuminate\Http\Request;
-use App\Models\PembelianObat;
-use App\Models\RiwayatStokObat;
-use Illuminate\Support\Facades\DB;
-use App\Models\DetailPembelianObat;
 use App\Http\Controllers\Controller;
+use App\Models\DetailPembelianObat;
 use App\Models\DetailPengambilanObat;
+use App\Models\Obat;
+use App\Models\PembelianObat;
 use App\Models\Pendaftaran;
 use App\Models\PengambilanObat;
 use App\Models\Racikan;
+use App\Models\RiwayatStokObat;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ObatController extends Controller
@@ -22,12 +22,12 @@ class ObatController extends Controller
     {
         $data = Obat::select(
             'obat.*',
-            DB::raw("(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_opname"),
-            DB::raw("(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_gudang"),
+            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_opname'),
+            DB::raw('(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_gudang'),
         );
 
         $search = $request->input('search.value', '');
-        if (!empty($search)) {
+        if (! empty($search)) {
             $data->where(function ($query) use ($search) {
                 $query->where('nama', 'LIKE', "%$search%")
                     ->orWhere('keterangan', 'LIKE', "%$search%");
@@ -38,8 +38,8 @@ class ObatController extends Controller
         $length = intval($request->input('length', 0));
         $start = intval($request->input('start', 0));
 
-        $data = $data->orderBy("id", "desc");
-        if (!$length && !$start) {
+        $data = $data->orderBy('id', 'desc');
+        if (! $length && ! $start) {
             $data = $data->get();
         } else {
             $data = $data->skip($start)->take($length)->get();
@@ -63,7 +63,7 @@ class ObatController extends Controller
         $data = Obat::select(
             'obat.*',
             DB::raw("(CASE WHEN (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN '-' ELSE (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as kadaluarsa"),
-            DB::raw("(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok")
+            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok')
         );
 
         if ($search) {
@@ -71,7 +71,7 @@ class ObatController extends Controller
                 ->orWhere('keterangan', 'LIKE', "%$search%");
         }
 
-        $data = $data->orderBy('id','desc')->paginate($length, ['*'], 'page', $page);
+        $data = $data->orderBy('id', 'desc')->paginate($length, ['*'], 'page', $page);
 
         return response()->json([
             'data' => $data->items(),
@@ -83,7 +83,7 @@ class ObatController extends Controller
                 'last_page' => $data->lastPage(),
                 'from' => $data->firstItem(),
                 'to' => $data->lastItem(),
-            ]
+            ],
         ], 200);
     }
 
@@ -92,7 +92,7 @@ class ObatController extends Controller
         $query = DetailPembelianObat::with(['obat', 'pembelian_obat']);
 
         $search = $request->input('search.value', '');
-        if (!empty($search)) {
+        if (! empty($search)) {
             $query->whereHas('obat', function ($q) use ($search) {
                 $q->where('nama', 'LIKE', "%$search%");
             });
@@ -147,12 +147,12 @@ class ObatController extends Controller
         $query = DetailPembelianObat::with(['obat', 'pembelian_obat']);
 
         $search = $request->input('search', '');
-        if (!empty($search)) {
+        if (! empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->whereHas('obat', function ($q2) use ($search) {
                     $q2->where('nama', 'LIKE', "%$search%");
                 })
-                ->orWhereRaw("CONCAT('Exp ', tanggal_kadaluarsa, ' ~ Stok ', stok_opname) LIKE ?", ["%$search%"]);
+                    ->orWhereRaw("CONCAT('Exp ', tanggal_kadaluarsa, ' ~ Stok ', stok_opname) LIKE ?", ["%$search%"]);
             });
         }
 
@@ -178,10 +178,10 @@ class ObatController extends Controller
     {
         $data = DetailPembelianObat::find($id);
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Data tidak ditemukan.',
-                'data' => null
+                'data' => null,
             ], 422);
         }
 
@@ -194,9 +194,9 @@ class ObatController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => "Terjadi Kesalahan",
+                'message' => 'Terjadi Kesalahan',
                 'data' => null,
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -233,7 +233,7 @@ class ObatController extends Controller
 
         return response()->json([
             'message' => 'Berhasil melakukan koreksi obat.',
-            'data' => $data
+            'data' => $data,
         ], 200);
     }
 
@@ -243,7 +243,7 @@ class ObatController extends Controller
             ->whereBetween('tanggal_kadaluarsa', [Carbon::now(), Carbon::now()->addDays(7)]);
 
         $search = $request->input('search.value', '');
-        if (!empty($search)) {
+        if (! empty($search)) {
             $query->whereHas('obat', function ($q) use ($search) {
                 $q->where('nama', 'LIKE', "%$search%");
             });
@@ -273,7 +273,7 @@ class ObatController extends Controller
             ->where('tanggal_kadaluarsa', '<', Carbon::now());
 
         $search = $request->input('search.value', '');
-        if (!empty($search)) {
+        if (! empty($search)) {
             $query->whereHas('obat', function ($q) use ($search) {
                 $q->where('nama', 'LIKE', "%$search%");
             });
@@ -301,10 +301,10 @@ class ObatController extends Controller
     {
         $data = DetailPembelianObat::find($id);
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Data tidak ditemukan.',
-                'data' => null
+                'data' => null,
             ], 422);
         }
 
@@ -312,7 +312,7 @@ class ObatController extends Controller
 
         return response()->json([
             'message' => 'Data berhasil dihapus.',
-            'data' => null
+            'data' => null,
         ], 200);
     }
 
@@ -327,9 +327,9 @@ class ObatController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => "Terjadi Kesalahan",
+                'message' => 'Terjadi Kesalahan',
                 'data' => null,
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -342,7 +342,7 @@ class ObatController extends Controller
 
         return response()->json([
             'message' => 'Data berhasil ditambahkan.',
-            'data' => $data
+            'data' => $data,
         ], 200);
     }
 
@@ -350,10 +350,10 @@ class ObatController extends Controller
     {
         $data = Obat::find($id);
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Data tidak ditemukan.',
-                'data' => null
+                'data' => null,
             ], 422);
         }
 
@@ -366,9 +366,9 @@ class ObatController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'message' => "Terjadi Kesalahan",
+                'message' => 'Terjadi Kesalahan',
                 'data' => null,
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
@@ -381,7 +381,7 @@ class ObatController extends Controller
 
         return response()->json([
             'message' => 'Data berhasil diubah.',
-            'data' => null
+            'data' => null,
         ], 200);
     }
 
@@ -389,10 +389,10 @@ class ObatController extends Controller
     {
         $data = Obat::find($id);
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Data tidak ditemukan.',
-                'data' => null
+                'data' => null,
             ], 422);
         }
 
@@ -400,7 +400,7 @@ class ObatController extends Controller
 
         return response()->json([
             'message' => 'Data berhasil dihapus.',
-            'data' => null
+            'data' => null,
         ], 200);
     }
 
@@ -468,10 +468,10 @@ class ObatController extends Controller
     {
         $data = Pendaftaran::with('pengambilan_obat.detail_pengambilan_obat.detail_pembelian_obat.obat')->where('id_pendaftaran', $id)->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Data tidak ditemukan atau tidak valid.',
-                'data' => null
+                'data' => null,
             ], 422);
         }
 
@@ -548,10 +548,10 @@ class ObatController extends Controller
     {
         $data = Pendaftaran::with('pengambilan_obat.racikan')->where('id_pendaftaran', $id)->first();
 
-        if (!$data) {
+        if (! $data) {
             return response()->json([
                 'message' => 'Data tidak ditemukan atau tidak valid.',
-                'data' => null
+                'data' => null,
             ], 422);
         }
 

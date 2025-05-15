@@ -2,7 +2,7 @@
 
 use App\Models\Layanan;
 use App\Models\Obat;
-use App\Models\Pemeriksaan;
+use App\Models\Pendaftaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,9 +14,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('layanan_pemeriksaan', function (Blueprint $table) {
+        Schema::create('layanan_pendaftaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignIdFor(Layanan::class, 'id_layanan')
@@ -24,9 +24,9 @@ return new class extends Migration
                 ->cascadeOnUpdate();
         });
 
-        Schema::create('obat_pemeriksaan', function (Blueprint $table) {
+        Schema::create('obat_pendaftaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignIdFor(Obat::class, 'id_obat')
@@ -34,16 +34,16 @@ return new class extends Migration
                 ->cascadeOnUpdate();
         });
 
-        Schema::create('laboratorium_pemeriksaan', function (Blueprint $table) {
+        Schema::create('laboratorium_pendaftaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });
 
-        Schema::create('radiologi_pemeriksaan', function (Blueprint $table) {
+        Schema::create('radiologi_pendaftaran', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Pemeriksaan::class, 'id_pemeriksaan')
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
         });

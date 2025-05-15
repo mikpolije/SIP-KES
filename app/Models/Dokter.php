@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dokter extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
 
     public $timestamps = false;
+
     protected $guarded = ['id'];
+
     protected $table = 'dokter';
 }

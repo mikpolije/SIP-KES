@@ -3,21 +3,29 @@
 namespace App\Livewire\Forms\Doctor;
 
 use App\Models\Master\Doctor;
-use Exception;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
 
 class DoctorForm extends Form
 {
     public Doctor $doctor;
+
     public $email;
+
     public $nama;
+
     public $no_telepon;
+
     public $alamat;
+
     public $no_sip;
+
     public $nip;
+
     public $gelar_depan;
+
     public $gelar_belakang;
+
     public $jadwal_layanan;
 
     protected function rules()
@@ -62,7 +70,7 @@ class DoctorForm extends Form
     {
         $this->validate();
         $this->doctor->update([
-            $this->all()
+            $this->all(),
         ]);
     }
 

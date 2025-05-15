@@ -129,6 +129,7 @@ return new class extends Migration
             $table->string('hubungan', 100)
                 ->comment('1. Diri Sendiri;   2. Orang Tua;  3. Anak;  4. Suami/Istri;  5. Kerabat/Saudara;  6. Lain-lain (free text)');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->timestamps();
 
             $table->foreign('no_rm')
                 ->references('no_rm')
@@ -153,6 +154,7 @@ return new class extends Migration
 
         Schema::create('pendaftaran', function (Blueprint $table) {
             $table->id('id_pendaftaran');
+            $table->enum('layanan', ['Poli Umum', 'KIA', 'UGD', 'Rawat Inap', 'Circum', 'Vaksin Internasional']);
             $table->string('no_rm', 6);
 
             $table->foreign('no_rm')
@@ -170,6 +172,7 @@ return new class extends Migration
                 ->on('wali_pasien')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->timestamps();
         });
 
         Schema::create('icd10', function (Blueprint $table) {

@@ -22,9 +22,9 @@ return new class extends Migration
             // foreign key ke icd10 table
             $table->unsignedBigInteger('id_icd')->nullable();
             $table->foreign('id_icd')
-                  ->references('id')
-                  ->on('icd10')
-                  ->onDelete('set null');
+                ->references('id')
+                ->on('icd10')
+                ->onDelete('set null');
 
             // tindakan
             $table->text('tindakan')->nullable();
@@ -32,9 +32,9 @@ return new class extends Migration
             // foreign key ke obat table
             $table->unsignedBigInteger('id_obat')->nullable();
             $table->foreign('id_obat')
-                  ->references('id')
-                  ->on('obat')
-                  ->onDelete('set null');
+                ->references('id')
+                ->on('obat')
+                ->onDelete('set null');
 
             // pemeriksaan (seharusnya milih laboratorium, radiologi, etc idk)
             $table->text('pemeriksaan')->nullable();

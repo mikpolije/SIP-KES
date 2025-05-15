@@ -462,23 +462,25 @@
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                            id="sistole-mask" name="sistole" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control required decimal-input"
-                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                        <input type="text" class="form-control required decimal-input" 
+                                                               id="berat-mask" name="berat-badan" pattern="[0-9.,]*" inputmode="decimal"
+                                                               >
                                                         <span class="input-group-text">kg</span>
                                                     </div>
+                                                    <div class="invalid-feedback">Berat badan harus diisi</div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            id="suhu-mask" name="suhu" pattern="[0-9.,]*" inputmode="decimal"
                                                             required>
                                                         <span class="input-group-text">°C</span>
                                                         <div class="invalid-feedback">
@@ -490,7 +492,7 @@
                                                     <label class="form-label">Respiratory Rate</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="resprate-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            id="resprate-mask" name="respiratory"  pattern="[0-9]*" inputmode="numeric"
                                                             required>
                                                         <span class="input-group-text">/mnt</span>
                                                         <div class="invalid-feedback">
@@ -506,7 +508,7 @@
                                                     <label class="form-label">Diastole</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="diastole-mask" pattern="[0-9]*" inputmode="numeric"
+                                                            id="diastole-mask" name="diastole" pattern="[0-9]*" inputmode="numeric"
                                                             required>
                                                         <span class="input-group-text">mmHg</span>
                                                         <div class="invalid-feedback">
@@ -518,7 +520,7 @@
                                                     <label class="form-label">Tinggi Badan</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required decimal-input"
-                                                            id="tinggi-mask" pattern="[0-9.,]*" inputmode="decimal"
+                                                            id="tinggi-mask" name="tinggi-badan" pattern="[0-9.,]*" inputmode="decimal"
                                                             required>
                                                         <span class="input-group-text">cm</span>
                                                         <div class="invalid-feedback">
@@ -530,7 +532,7 @@
                                                     <label class="form-label">SpO2</label>
                                                     <div class="input-group has-validation">
                                                         <input type="text" class="form-control required number-input"
-                                                            id="spo2-mask" pattern="[0-9]*" inputmode="numeric" required>
+                                                            id="spo2-mask" name="spo2" pattern="[0-9]*" inputmode="numeric" required>
                                                         <span class="input-group-text">%</span>
                                                         <div class="invalid-feedback">
                                                             This field is required.
@@ -581,11 +583,11 @@
                                     <label class="form-label" for="nama">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="form-label" for="no.rm">No. RM</label>
                                     <input type="text" class="form-control" id="no.rm" name="no.rm">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="form-label" for="tanggal">Tanggal</label>
                                     <input type="date" class="form-control" id="tanggal" name="tanggal">
                                 </div>
@@ -624,15 +626,22 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <table id="icdTable" class="display">
-                                                        <label>Tampilkan
-                                                            <select>
-                                                                <option>10</option>
-                                                                <option>25</option>
-                                                                <option>50</option>
-                                                            </select> entri
-                                                        </label>
-                                                        <input type="text" placeholder="Cari..."
-                                                            style="float: right;">
+                                                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                                                            <label>
+                                                                Tampilkan
+                                                                <select class="form-select d-inline w-auto mx-1">
+                                                                    <option>10</option>
+                                                                    <option>25</option>
+                                                                    <option>50</option>
+                                                                </select>
+                                                                entri
+                                                            </label>
+                                                            <label>
+                                                                Cari :
+                                                                <input type="text" class="form-control d-inline w-auto"
+                                                                    placeholder="Cari...">
+                                                            </label>
+                                                        </div>
                                                         <table>
                                                             <thead>
                                                                 <tr>
@@ -745,11 +754,12 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td><button class="btn-pilih">Pilih</button></td>
-                                                                    <td>A03.2</td>
+                                                                    <td>A03.3</td>
                                                                     <td>Shigellosis due to shigella sonnei</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+                                                                                                            
                                                     </table>
                                                 </div>
                                             </div>
@@ -759,8 +769,8 @@
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
                                                 <tr>
-                                                    <th class="text-center">Nama ICD 10</th>
-                                                    <th class="text-center">Aksi</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 10</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd10">
@@ -792,21 +802,21 @@
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm">
                                     <label class="form-label" for="subjective">Subjective</label>
-                                    <textarea id="subjective" name="subjective" rows="5" class="form-control"></textarea>
+                                    <textarea id="subjective" name="subjective" rows="5" class="form-control" placeholder="Ketik Subjective"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 shadow-sm">
                                 <div class="card">
-                                    <div class="card-body">
                                     <label class="form-label" for="objective">Objective</label>
-                                        <div class="row">
+                                    <div class="card-body">
+                                        <div class="row"> 
                                             <!-- Left Column -->
                                             <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Sistole</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control number-input"
-                                                            id="sistole-mask" pattern="[0-9]*" inputmode="numeric">
+                                                        id="sistole-mask" name="sistoled" pattern="[0-9]*" inputmode="numeric">
                                                         <span class="input-group-text">mmHg</span>
                                                     </div>
                                                 </div>
@@ -814,7 +824,7 @@
                                                     <label class="form-label">Berat Badan</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control decimal-input"
-                                                            id="berat-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                            id="berat-mask" name="berat-badand" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">kg</span>
                                                     </div>
                                                 </div>
@@ -822,7 +832,7 @@
                                                     <label class="form-label">Suhu</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control decimal-input"
-                                                            id="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
+                                                            id="suhu-mask"  name="suhu-mask" pattern="[0-9.,]*" inputmode="decimal">
                                                         <span class="input-group-text">°C</span>
                                                     </div>
                                                 </div>
@@ -889,65 +899,49 @@
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
                             <!-- Pemeriksaan Fisik (Left Column) -->
+                            <style>
+                                .custom-table {
+                                    border-radius: 10px;
+                                    overflow: hidden;
+                                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                                }
+
+                                .custom-table th,
+                                .custom-table td {
+                                    padding: 10px 14px;
+                                    vertical-align: middle;
+                                }
+
+                                .custom-table .text-center {
+                                    text-align: center;
+                                }
+                            </style>
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <h6 class="fw-bold mb-0">Pemeriksaan Fisik</h6>
+                                        <label class="form-label" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
                                         <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah+</button>
+                                            data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table custom-table">
                                             <thead style="background-color: #B3B9F9;">
                                                 <tr>
-                                                    <th class="text-center">Nama</th>
-                                                    <th class="text-center">Keterangan</th>
-                                                    <th class="text-center">Rincian</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Keterangan</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
-                                                <tr>
-                                                    <td>Kepala</td>
-                                                    <td>Kelainan pada pembuluh darah</td>
-                                                    <td class="text-center">
-                                                    <button class="btn btn-sm btn-info view-details" data-bs-toggle="modal" data-bs-target="#detailModal" title="Lihat Rincian">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
-                                                    </td>
-                                                </tr>
+                                            <tr class="no-data">
+                                                <td colspan="3" class="text-center text-muted fst-italic">Tidak ada data</td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Modal Detail Pemeriksaan -->
-                        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content custom-modal-content">
-                                    <div class="modal-header border-0">
-                                        <h5 class="modal-title fw-bold" id="detailModalLabel">Rincian Pemeriksaan fisik</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                                    </div>
-                                    <hr class="m-0 mb-3" />
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-6 offset-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                                    <input type="text" class="form-control shadow-custom" value="kepala" disabled>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-semibold">Keterangan</label>
-                                                    <textarea class="form-control shadow-custom" rows="4" disabled>Kelainan pada pembuluh darah</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr class="mt-2 mb-0" />
-                                </div>
-                            </div>
-                        </div>
+                            
 
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
@@ -965,8 +959,8 @@
                                         <table class="table table-bordered mt-2">
                                             <thead style="background-color: #f8f9fa;">
                                                 <tr>
-                                                    <th class="text-center">Nama ICD 9</th>
-                                                    <th class="text-center">Aksi</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama ICD 9</th>
+                                                    <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selected-icds-icd9">
@@ -1145,9 +1139,12 @@
                             </div>
                         </div>
 
+
+                        
                         <!-- Layanan dan Rincian Obat -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
+                    <div class="row-container">
+                        <div class="row mb-3 mt-4" >
+                            <div class="col-md-6" >
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Layanan</label>
                                     <div class="input-group mb-2">
@@ -1156,17 +1153,53 @@
                                             class="btn btn-outline-secondary" type="button"><i
                                                 class="bi bi-search"></i></button>
                                     </div>
-                                    <table class="table table-bordered text-center">
+                                    <table id="rincian-layanan" class="table text-center shadow-table">
                                         <thead style="background-color: #676981; color: white;">
+                                            <style>
+                                                #rincian-layanan, 
+                                                #rincian-layanan th, 
+                                                #rincian-layanan td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Harga Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Layanan</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Perawat</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.10.000,-</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1175,7 +1208,7 @@
                             <!-- Modal -->
                             <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Data Layanan</h1>
@@ -1184,14 +1217,22 @@
                                         </div>
                                         <div class="modal-body">
                                             <table id="layananTable" class="display">
-                                                <label>Tampilkan
-                                                    <select>
-                                                        <option>10</option>
-                                                        <option>25</option>
-                                                        <option>50</option>
-                                                    </select> entri
-                                                </label>
-                                                <input type="text" placeholder="Cari..." style="float: right;">
+                                                <div class="mb-3 d-flex justify-content-between align-items-center">
+                                            <label>
+                                                Tampilkan
+                                                <select class="form-select d-inline w-auto mx-1">
+                                                    <option>10</option>
+                                                    <option>25</option>
+                                                    <option>50</option>
+                                                </select>
+                                                entri
+                                            </label>
+                                            <label>
+                                                Cari :
+                                                <input type="text" class="form-control d-inline w-auto"
+                                                    placeholder="Cari...">
+                                            </label>
+                                        </div>
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -1251,18 +1292,41 @@
                                                             <td>Cek Gula Darah</td>
                                                             <td>Rp 10.000,-</td>
                                                         </tr>
+                                                        <tr>
+                                                            <td><button class="btn-pilih">Pilih</button></td>
+                                                            <td>Injeksi Vitamin A</td>
+                                                            <td>Rp 80.000,-</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Sebelumnya</button>
-                                            <button type="button" class="btn btn-primary">Selanjutnya</button>
+                                                                                                        <div style="margin-top: 15px;">
+                                                            <div>
+                                                                Menampilkan 1 sampai 10 dari 155 entri
+                                                            </div>
+                                                            <div style="margin-top: 10px; text-align: right;">
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Sebelumnya</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: #0d6efd; color: white; padding: 6px 12px;">1</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">2</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">3</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">4</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">...</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">10</button>
+                                                                <button
+                                                                    style="border: 1px solid #ccc; background-color: white; padding: 6px 12px;">Selanjutnya</button>
+                                                            </div>
+                                                        </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="col-md-6">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Rincian Obat</label>
@@ -1458,92 +1522,120 @@
                                     <!-- Bootstrap JS Bundle (wajib agar modal bisa jalan) -->
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-                                    <table id="rincian-obat" class="table table-bordered text-center">
+                                    <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
+                                            <style>
+                                                #rincian-obat, 
+                                                #rincian-obat th, 
+                                                #rincian-obat td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rincian-obat tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                             <tr>
-                                                <th>Jumlah</th>
-                                                <th>Nama Obat</th>
-                                                <th>Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody id="rincian-body">
                                             <tr>
-                                                <td colspan="3"
-                                                    style="text-align: center; vertical-align: middle; height: 60px;">
-                                                    Tidak Ada Data
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Acyclorovil</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.1000,-</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Ambroxol</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.416,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <script>
-                                        function tambahObat(nama, harga) {
-                                            const tbody = document.getElementById("rincian-body");
-
-                                            // Hapus baris "Tidak Ada Data" jika ada
-                                            if (tbody.children.length === 1 && tbody.children[0].textContent.includes("Tidak Ada Data")) {
-                                                tbody.innerHTML = "";
-                                            }
-                                            // Tambahkan data baru
-                                            const row = document.createElement("tr");
-
-                                            const jumlahCell = document.createElement("td");
-                                            jumlahCell.innerText = 1;
-
-                                            const namaCell = document.createElement("td");
-                                            namaCell.innerText = nama;
-
-                                            const hargaCell = document.createElement("td");
-                                            hargaCell.innerText = `Rp ${harga.toLocaleString("id-ID")}`;
-
-                                            row.appendChild(jumlahCell);
-                                            row.appendChild(namaCell);
-                                            row.appendChild(hargaCell);
-
-                                            tbody.appendChild(row);
-                                        }
-                                    </script>
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+ 
                         <!-- Rencana Kontrol dan Catatan -->
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <div class="card p-3 h-100">
+                    <div class="row-container">
+                        <div class="row mb-3 mt-4">
+                            <div class="col-md-6 d-flex flex-column">
+                                <div class="card p-3 flex-fill h-100 w-100">
                                     <label class="form-label fw-bold">Rencana Kontrol</label>
-                                    <div class="row g-2 mb-2">
-                                        <div class="col-md-4">
-                                            <input type="date" class="form-control">
-                                        </div>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" placeholder="Alasan Kontrol">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button type="button" class="btn btn-sm btn-secondary">Tambah +</button>
-                                        </div>
+                                    <div class="input-group mb-2">
+                                         <input type="date" class="form-control">
+                                         <input type="text" class="form-control" placeholder="Alasan Kontrol">
+                                         <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
                                     </div>
-                                    <table class="table table-bordered text-center">
+                                    <table id="rencana-kontrol" class="table text-center shadow-table">
                                         <thead style="background-color: #676981; color: white;">
+                                            <style>
+                                                #rencana-kontrol, 
+                                                #rencana-kontrol th, 
+                                                #rencana-kontrol td {
+                                                    border: none !important;
+                                                    border-collapse: collapse;
+                                                }
+
+                                                #rencana-kontrol tr {
+                                                    border-bottom: none !important;
+                                                }
+
+                                                .shadow-table {
+                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                    border-radius: 8px;
+                                                    overflow: hidden;
+                                                }
+                                            </style>
                                             <tr>
-                                                <th>Tanggal Kontrol</th>
-                                                <th>Alasan Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Tanggal Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Alasan Kontrol</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td colspan="3" class="text-center align-middle">Tidak Ada Data</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">05/08/2025</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Pemantauan Lebih Lanjut</td>
+                                                <td class="text-center">
+                                                        <button class="btn btn-sm btn-danger delete-btn">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-4">
+                            <div class="col-md-6 flex-fill h-100">
                                 <div class="card p-3 h-100">
                                     <label class="form-label fw-bold">Catatan</label>
                                     <textarea class="form-control" rows="5" placeholder="Tambah catatan di sini"></textarea>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </section>
                     <!-- Step 4 -->
                     <h6>Farmasi</h6>
@@ -1676,29 +1768,49 @@
     </div>
     </div>
 
-    <!-- Modal Status Lokalis -->
-    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content rounded-4 shadow">
+   <!-- Modal Pemeriksaan Fisik dengan Canvas -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+   
+    <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content rounded shadow">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title text-primary fw-semibold">Status Lokalis</h5>
+                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Gambar Anatomi -->
-                    <div class="text-center mb-4">
-                        <img src="{{ asset('public/build/images/gambarmedis/Anatomi.jpg') }}" alt="Anatomi Tubuh"
-                            class="img-fluid" style="max-height: 500px;">
-                    </div>
-                    <!-- Textarea Keterangan -->
-                    <div class="mb-3">
-                        <label for="lokalisKeterangan" class="form-label fw-medium">Keterangan</label>
-                        <textarea id="lokalisKeterangan" class="form-control rounded-3" rows="5" placeholder="Ketik di sini"></textarea>
+                    <div class="row">
+                        <!-- Kolom CANVAS -->
+                        <div class="col-md-7 text-center">
+                            <!-- Toolbar -->
+                            <div class="mb-1">
+                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">✏️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">↩️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">↪️</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">❌</button>
+                            </div>
+
+                            <!-- Canvas -->
+                            <div style="border: 1px solid #ccc; display: inline-block;">
+                                <canvas id="bodyCanvas" width="500" height="500"></canvas>
+                            </div>
+                        </div> <!-- Penutup col-md-7 -->
+
+                        <!-- Kolom FORM -->
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
+                                <input type="text" class="form-control" id="bagianDiperiksa" placeholder="Ketik di sini">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Keterangan</label>
+                                <textarea class="form-control" id="keteranganFisik" rows="5" placeholder="Ketik di sini"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-primary rounded-pill px-4"
-                        onclick="simpanStatusLokalis()">Simpan</button>
+                    <button class="btn btn-primary" onclick="saveCanvas()">Simpan</button>
                 </div>
             </div>
         </div>
@@ -1867,6 +1979,24 @@
             white-space: nowrap;
             font-size: 0.95rem;
             color: #666;
+        }
+    </style>
+
+    <style>
+        .custom-table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 10px 14px;
+            vertical-align: middle;
+        }
+
+        .custom-table .text-center {
+            text-align: center;
         }
     </style>
 
@@ -2714,30 +2844,208 @@ $('#search-results').hide();
 }
 </style> --}}
 
-    <!-- JavaScript Tambahan -->
+    <!-- Script untuk menggambar di canvas -->
     <script>
-        function simpanStatusLokalis() {
-            const keterangan = document.getElementById("lokalisKeterangan").value.trim();
-            if (keterangan) {
-                const tableBody = document.getElementById("pemeriksaanFisikTable");
-                const newRow = document.createElement("tr");
-                newRow.innerHTML = `
-                <td>Status Lokalis</td>
+        const canvas = document.getElementById('bodyCanvas');
+        const ctx = canvas.getContext('2d');
+        const image = new Image();
+        let isDrawing = false;
+        let drawEnabled = false;
+        let initialized = false;
+        let undoStack = [];
+        let redoStack = [];
+        let currentColor = 'red'; // Warna default
+
+
+        function hapusBaris(button) {
+            const row = button.closest('tr'); // Ambil elemen <tr> terdekat dari tombol
+            row.remove(); // Hapus baris dari tabel
+        }
+
+        function toggleDrawMode() {
+            drawEnabled = !drawEnabled;
+            const button = document.getElementById('btnDrawToggle');
+            if (drawEnabled) {
+                button.classList.add('active');
+                button.innerHTML = '🛑'; // misalnya ganti ikon saat aktif
+            } else {
+                button.classList.remove('active');
+                button.innerHTML = '✏️'; // ikon default
+            }
+        }
+
+        function undoCanvas() {
+            if (undoStack.length > 0) {
+                const lastState = undoStack.pop();
+                redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke redo
+                ctx.putImageData(lastState, 0, 0);
+            }
+        }
+
+        function redoCanvas() {
+            if (redoStack.length > 0) {
+                const nextState = redoStack.pop();
+                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke undo
+                ctx.putImageData(nextState, 0, 0);
+            }
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
+        }
+
+        function saveCanvas() {
+            const bagian = document.getElementById('bagianDiperiksa').value.trim();
+            const keterangan = document.getElementById('keteranganFisik').value.trim();
+
+            if (!bagian || !keterangan) {
+                alert("Harap isi semua kolom terlebih dahulu.");
+                return;
+            }
+
+            const imageData = canvas.toDataURL("image/png"); // ambil gambar dari canvas
+            const tbody = document.getElementById('pemeriksaanFisikTable');
+
+             // Hapus baris "Tidak ada data" jika ada
+            const noDataRow = tbody.querySelector(".no-data");
+            if (noDataRow) noDataRow.remove();
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${bagian}</td>
                 <td>${keterangan}</td>
                 <td class="text-center">
-                    <button class="btn btn-sm btn-info view-details" title="Lihat Rincian">
+                    <button type="button" class="btn btn-sm btn-info view-details"
+                        data-bs-toggle="modal"
+                        data-bs-target="#statusLokalisModal"
+                        data-bagian="${bagian}"
+                        data-keterangan="${keterangan}"
+                        data-image="${imageData}"
+                        title="Lihat Rincian">
                         <i class="bi bi-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="hapusBaris(this)" title="Hapus">
+                        <i class="bi bi-trash"></i>
                     </button>
                 </td>
             `;
-                tableBody.appendChild(newRow);
-                bootstrap.Modal.getInstance(document.getElementById("statusLokalisModal")).hide();
-                document.getElementById("lokalisKeterangan").value = '';
-            } else {
-                alert("Harap isi keterangan terlebih dahulu.");
+            tbody.appendChild(row);
+
+            // Reset form dan canvas
+            document.getElementById('bagianDiperiksa').value = '';
+            document.getElementById('keteranganFisik').value = '';
+            clearCanvas();
+
+            const modalEl = document.getElementById('statusLokalisModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+            modalInstance.hide();
+
+            function hapusBaris(button) {
+            const row = button.closest('tr');
+            row.remove();
+
+            const tbody = document.getElementById('pemeriksaanFisikTable');
+            if (tbody.children.length === 0) {
+                const emptyRow = document.createElement('tr');
+                emptyRow.classList.add('no-data');
+                emptyRow.innerHTML = `
+                    <td colspan="3" class="text-center text-muted fst-italic">Tidak ada data</td>
+                `;
+                tbody.appendChild(emptyRow);
             }
         }
+
+            // const imageData = canvas.toDataURL();
+            // console.log("Saved image data:", imageData);
+            // alert("Gambar disimpan!");
+            // Kirim imageData via AJAX atau simpan sesuai kebutuhan
+    }
+
+        function loadDummyData(dummy) {
+            document.getElementById('bagianDiperiksa').value = dummy.bagian;
+            document.getElementById('keteranganFisik').value = dummy.keterangan;
+
+            const img = new Image();
+            img.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
+            img.src = dummy.imageData;
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            if (!drawEnabled) return;
+            isDrawing = true;
+            // Simpan state sebelum menggambar
+            undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+            // Kosongkan redoStack karena ada aksi baru
+            redoStack = [];
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing || !drawEnabled) return;
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            if (!drawEnabled) return;
+            isDrawing = false;
+        });
+
+        // Load gambar saat modal dibuka pertama kali
+        $('#statusLokalisModal').on('shown.bs.modal', function () {
+            if (!initialized) {
+                image.onload = function () {
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                };
+                image.src = '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                initialized = true;
+            } else {
+                // setiap buka ulang, redraw image (jika dibutuhkan)
+                clearCanvas();
+            }
+        });
+
+        function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
+        document.getElementById('bagianDiperiksa').value = bagian;
+        document.getElementById('keteranganFisik').value = keterangan;
+
+        const modalEl = document.getElementById('statusLokalisModal');
+        let modalInstance = bootstrap.Modal.getInstance(modalEl);
+        if (!modalInstance) modalInstance = new bootstrap.Modal(modalEl);
+        modalInstance.show();
+
+        // Hindari multiple binding: ganti dengan sekali binding tetap
+        modalEl.addEventListener('shown.bs.modal', function handleShown() {
+            // Gunakan once = true agar hanya jalan sekali
+            modalEl.removeEventListener('shown.bs.modal', handleShown);
+
+            const ctx = canvas.getContext('2d');
+            const background = new Image();
+            background.onload = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+                if (imageDataUrl) {
+                    const overlay = new Image();
+                    overlay.onload = () => {
+                        ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+                    };
+                    overlay.src = imageDataUrl;
+                }
+            };
+            background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
+        });
+    }
     </script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -2747,6 +3055,7 @@ $('#search-results').hide();
             }
         });
     </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const nextBtn = document.querySelector('a[href="#next"]');
@@ -2779,24 +3088,15 @@ $('#search-results').hide();
     </script>
 
     <script>
-        const table = new DataTable('#icdTable', {
+        const tableIcd = new DataTable('#icdTable', {
             responsive: true,
             paging: true,
             searching: true,
             info: true,
             pageLength: 10, // Default: tampilkan 10 entri
             lengthMenu: [5, 10, 25, 50, 100]
-            const table = new DataTable('#layananTable', {
-                responsive: true,
-                paging: true,
-                searching: true,
-                info: true,
-                pageLength: 10, // Default: tampilkan 10 entri
-                lengthMenu: [5, 10, 25, 50, 100]
-            });
-
         });
-        const table = new DataTable('#layananTable', {
+        const tableLayanan = new DataTable('#layananTable', {
             responsive: true,
             paging: true,
             searching: true,

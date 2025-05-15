@@ -4,14 +4,16 @@ namespace Database\Seeders;
 
 use App\Models\DataPasien;
 use App\Models\Dokter;
+use App\Models\Pendaftaran;
 use App\Models\User;
+use App\Models\WaliPasien;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Laravolt\Indonesia\Seeds\CitiesSeeder;
-use Laravolt\Indonesia\Seeds\VillagesSeeder;
 use Laravolt\Indonesia\Seeds\DistrictsSeeder;
 use Laravolt\Indonesia\Seeds\ProvincesSeeder;
+use Laravolt\Indonesia\Seeds\VillagesSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,11 +22,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Dokter::factory(100)->create();
         try {
-            //code...
             DB::unprepared(file_get_contents(database_path('icd10.sql')));
         } catch (\Throwable $th) {
             throw $th;
@@ -38,10 +38,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DataPasien::factory(50)->create();
+        WaliPasien::factory(50)->create();
+        Pendaftaran::factory(30)->create();
 
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
