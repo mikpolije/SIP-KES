@@ -1688,6 +1688,16 @@
                                                     .table-body-scroll::-webkit-scrollbar-thumb:hover {
                                                         background: #888;
                                                     }
+
+                                                    .table-header th,
+                                                    .table-body-scroll td {
+                                                        text-align: center;
+                                                        font-weight: normal;
+                                                        font-size: 0.9rem;
+                                                        padding: 8px;
+                                                        background-color: white;
+                                                    }
+
                                                 </style>
                                             </head>
                                             <div class="table-header">
