@@ -1663,6 +1663,7 @@
                                                         font-weight: normal;
                                                         font-size: 0.9rem;
                                                         padding: 8px;
+                                                        border: none;
                                                     }
 
                                                     /* Hilangkan pewarnaan selang-seling jika ada */
