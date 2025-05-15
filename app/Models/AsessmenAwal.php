@@ -22,7 +22,7 @@ class AsessmenAwal extends Model
      * @var array
      */
     protected $fillable = [
-        'pendaftaran_id',
+        'id_pendaftaran',
         'denyut_jantung',
         'pernafasan',
         'suhu_tubuh',
@@ -33,53 +33,10 @@ class AsessmenAwal extends Model
         'riwayat_penyakit',
         'riwayat_pengobatan',
         'status_psikologi',
-        'metadata',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'metadata' => 'json',
-    ];
-
-    /**
-     * Get the pendaftaran record associated with the asessmen awal.
-     */
     public function pendaftaran()
     {
-        return $this->belongsTo(Pendaftaran::class, 'pendaftaran_id');
-    }
-
-    /**
-     * Get the alergi status from metadata.
-     */
-    public function getAlergiAttribute()
-    {
-        $metadata = json_decode($this->metadata, true) ?? [];
-        return $metadata['alergi'] ?? 'tidak';
-    }
-
-    /**
-     * Get the jenis alergi from metadata.
-     */
-    public function getJenisAlergiAttribute()
-    {
-        $metadata = json_decode($this->metadata, true) ?? [];
-        return $metadata['jenis_alergi'] ?? '';
-    }
-
-    /**
-     * Get formatted status psikologi as an array.
-     */
-    public function getStatusPsikologiArrayAttribute()
-    {
-        if (empty($this->status_psikologi)) {
-            return [];
-        }
-
-        return explode(',', $this->status_psikologi);
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
     }
 }

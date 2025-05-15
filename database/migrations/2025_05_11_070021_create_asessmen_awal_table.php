@@ -17,14 +17,12 @@ return new class extends Migration
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-
             $table->string('denyut_jantung', 20)->nullable();
             $table->string('pernafasan', 20)->nullable();
             $table->string('suhu_tubuh', 20)->nullable();
             $table->string('tekanan_darah_sistole', 10)->nullable();
             $table->string('tekanan_darah_diastole', 10)->nullable();
             $table->string('skala_nyeri', 20)->nullable();
-
             $table->text('keluhan_utama')->nullable();
             $table->text('riwayat_penyakit')->nullable();
             $table->text('riwayat_pengobatan')->nullable();
@@ -38,7 +36,6 @@ return new class extends Migration
             $table->boolean('lain_lain')->default(false);
             $table->text('lain_lain_text')->nullable();
 
-            $table->json('metadata')->nullable();
             $table->timestamps();
         });
     }

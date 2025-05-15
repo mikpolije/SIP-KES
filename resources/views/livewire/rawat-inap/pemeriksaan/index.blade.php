@@ -1,7 +1,7 @@
 <?php
 
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
-use Livewire\Attributes\Validate;
 
 new class extends Component {
     public $pendaftaranId;
@@ -17,9 +17,17 @@ new class extends Component {
     public function nextStep()
     {
         if ($this->currentStep === 1) {
-            // Add any validation for step 1 if needed
+            $this->dispatch('submit-step1');
         }
 
+        if ($this->currentStep === 2) {
+            $this->dispatch('submit-step2');
+        }
+    }
+
+    #[On('go-next-step')]
+    public function goNextStep()
+    {
         if ($this->currentStep < $this->totalSteps) {
             $this->currentStep++;
             $this->dispatch('scroll-to-top');
