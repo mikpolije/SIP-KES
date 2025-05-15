@@ -1664,11 +1664,6 @@
                                                         padding: 8px;
                                                     }
 
-                                                    /* Warna latar untuk baris selang-seling */
-                                                    .table-body-scroll tr:nth-child(odd) {
-                                                        background-color: #f9f9f9;
-                                                    }
-
                                                     /* Scrollbar kustom untuk peningkatan UX */
                                                     .table-body-scroll::-webkit-scrollbar {
                                                         width: 8px;
