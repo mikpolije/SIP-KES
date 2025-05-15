@@ -52,18 +52,15 @@ new class extends Component {
                         </div>
                         <div class="col-md-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" wire:model="nama" class="form-control" id="nama"
-                                placeholder="Adin Rizqha">
+                            <input type="text" wire:model="nama" class="form-control" id="nama">
                         </div>
                         <div class="col-md-3">
                             <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
-                            <input type="text" wire:model="tanggalLahir" class="form-control" id="tanggalLahir"
-                                placeholder="01/12/2022">
+                            <input type="text" wire:model="tanggalLahir" class="form-control" id="tanggalLahir">
                         </div>
                         <div class="col-md-3">
                             <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
-                            <input type="text" wire:model="jenisKelamin" class="form-control" id="jenisKelamin"
-                                placeholder="Perempuan">
+                            <input type="text" wire:model="jenisKelamin" class="form-control" id="jenisKelamin">
                         </div>
                     </div>
                 </div>

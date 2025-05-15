@@ -71,6 +71,8 @@ Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'in
 
 // Route Riwayat Medis
 use App\Http\Controllers\RiwayatMedisController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
 
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
