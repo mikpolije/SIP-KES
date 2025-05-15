@@ -909,6 +909,23 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead style="background-color: #B3B9F9;">
+                                            <style>
+                                            .custom-table {
+                                                border-radius: 10px;
+                                                overflow: hidden;
+                                                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                                            }
+
+                                            .custom-table th,
+                                            .custom-table td {
+                                                padding: 10px 14px;
+                                                vertical-align: middle;
+                                            }
+
+                                            .custom-table .text-center {
+                                                text-align: center;
+                                            }
+                                            </style>
                                                 <tr>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama</th>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Keterangan</th>
@@ -916,20 +933,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="pemeriksaanFisikTable">
-                                                <!-- <tr>
-                                                    <td>Kepala</td>
-                                                    <td>Kelainan pada pembuluh darah</td>
-                                                    <td class="text-center">
-                                                    <button type="button" class="btn btn-sm btn-info view-details" data-bs-toggle="modal" 
-                                                    data-bs-target="#statusLokalisModal" data-bagian="Kepala" data-keterangan="Kelainan pada pembuluh darah"
-                                                    title="Lihat Rincian">
-                                                    <i class="bi bi-eye"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-sm btn-danger" title="Hapus" onclick="hapusBaris(this)">
-                                                        <i class="bi bi-trash"></i>
-                                                    </button>
-                                                    </td>
-                                                </tr> -->
+                                            <tr class="no-data">
+                                                <td colspan="3" class="text-center text-muted fst-italic">Tidak ada data</td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -2882,6 +2888,10 @@ $('#search-results').hide();
             const imageData = canvas.toDataURL("image/png"); // ambil gambar dari canvas
             const tbody = document.getElementById('pemeriksaanFisikTable');
 
+             // Hapus baris "Tidak ada data" jika ada
+            const noDataRow = tbody.querySelector(".no-data");
+            if (noDataRow) noDataRow.remove();
+
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${bagian}</td>
@@ -2912,11 +2922,26 @@ $('#search-results').hide();
             const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
             modalInstance.hide();
 
+            function hapusBaris(button) {
+            const row = button.closest('tr');
+            row.remove();
+
+            const tbody = document.getElementById('pemeriksaanFisikTable');
+            if (tbody.children.length === 0) {
+                const emptyRow = document.createElement('tr');
+                emptyRow.classList.add('no-data');
+                emptyRow.innerHTML = `
+                    <td colspan="3" class="text-center text-muted fst-italic">Tidak ada data</td>
+                `;
+                tbody.appendChild(emptyRow);
+            }
+        }
+
             // const imageData = canvas.toDataURL();
             // console.log("Saved image data:", imageData);
             // alert("Gambar disimpan!");
             // Kirim imageData via AJAX atau simpan sesuai kebutuhan
-        }
+    }
 
         function loadDummyData(dummy) {
             document.getElementById('bagianDiperiksa').value = dummy.bagian;
