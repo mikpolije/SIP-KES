@@ -248,10 +248,11 @@ new class extends Component {
                     <select wire:model="pendidikan" class="form-select @error('pendidikan') is-invalid @enderror"
                         id="pendidikan" readonly>
                         <option value="" selected disabled>Pilih Pendidikan</option>
+                        <option>Tidak Sekolah</option>
                         <option>SD</option>
-                        <option>SMP</option>
-                        <option>SMA/SMK</option>
-                        <option>D3</option>
+                        <option>SLTP sederajat</option>
+                        <option>SLTA sederajat</option>
+                        <option>D4</option>
                         <option>S1</option>
                         <option>S2</option>
                         <option>S3</option>
@@ -265,11 +266,12 @@ new class extends Component {
                     <select wire:model="pekerjaan" class="form-select @error('pekerjaan') is-invalid @enderror"
                         id="pekerjaan">
                         <option value="" selected disabled>Pilih Pekerjaan</option>
+                        <option>Tidak bekerja</option>
                         <option>PNS</option>
-                        <option>Swasta</option>
-                        <option>Wiraswasta</option>
-                        <option>Pelajar/Mahasiswa</option>
-                        <option>Tidak Bekerja</option>
+                        <option>TNI/POLRI</option>
+                        <option>BUMN</option>
+                        <option>Pegawai Swasta/Wirausaha</option>
+                        <option>Lain-lain</option>
                     </select>
                     @error('pekerjaan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
