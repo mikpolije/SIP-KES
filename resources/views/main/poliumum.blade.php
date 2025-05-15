@@ -1616,6 +1616,12 @@
                                 <div class="table-container">
                                     <table id="rincian-obat" class="table text-center shadow-table" >
                                         <thead style="background-color: #676981; color: white;">
+                                            <tr>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
+                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
+                                            </tr>
                                             <style>
                                                 .table-container {
                                                     max-height: 300px;
@@ -1652,12 +1658,6 @@
                                                     overflow: hidden;
                                                 }
                                             </style>
-                                            <tr>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jumlah</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Harga Obat</th>
-                                                <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
-                                            </tr>
                                         </thead>
                                         <tbody id="rincian-body">
                                             <tr>
