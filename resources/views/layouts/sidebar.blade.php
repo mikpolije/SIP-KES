@@ -276,7 +276,7 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse" aria-expanded="false">
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('general-consent*') ? 'show' : '' }}" aria-expanded="true">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/"
                         aria-expanded="false">
