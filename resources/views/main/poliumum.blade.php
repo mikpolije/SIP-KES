@@ -565,7 +565,7 @@
                                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                                 data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
                                         <li><a class="dropdown-item" href="#">General Consent</a></li>
-                                        <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                        <li><a class="dropdown-item" href="/main/general-consent">Informed Consent</a></li>
                                     </ul>
                                 </div>
                             </div>
