@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pendaftaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,20 +14,20 @@ return new class extends Migration
     {
         Schema::create('asessmen_awal', function (Blueprint $table) {
             $table->id();
-
-            $table->string('keluhan_utama', 255)->nullable();
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('denyut_jantung', 20)->nullable();
             $table->string('pernafasan', 20)->nullable();
             $table->string('suhu_tubuh', 20)->nullable();
             $table->string('tekanan_darah_sistole', 10)->nullable();
             $table->string('tekanan_darah_diastole', 10)->nullable();
             $table->string('skala_nyeri', 20)->nullable();
-
+            $table->text('keluhan_utama')->nullable();
             $table->text('riwayat_penyakit')->nullable();
             $table->text('riwayat_pengobatan')->nullable();
-
-            $table->string('status_psikologi', 50)->nullable();
-
+            $table->string('status_psikologi', 255)->nullable();
+            $table->json('metadata')->nullable();
             $table->timestamps();
         });
     }

@@ -39,12 +39,17 @@ new class extends Component {
     public $pembayaran = 'umum';
 
     public $pendaftaranId;
+    public $existingRawatInap;
 
     public function mount($pendaftaranId)
     {
-        $this->nomorRM = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->data_pasien->nomor_rm;
-        $this->currentPatient = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->data_pasien;
-        $this->$pendaftaranId = $pendaftaranId;
+        $this->pendaftaranId = $pendaftaranId;
+
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+        $this->currentPatient = $pendaftaran->data_pasien;
+        $this->nomorRM = $this->currentPatient->nomor_rm;
+
+        $this->existingRawatInap = PoliRawatInap::where('id_pendaftaran', $pendaftaranId)->first();
 
         $this->nama = $this->currentPatient->nama_lengkap;
         $this->alamatLengkap = $this->currentPatient->alamat_lengkap;
@@ -72,16 +77,34 @@ new class extends Component {
         $this->kecDomisili = $this->currentPatient->id_kecamatan;
         $this->provDomisili = $this->currentPatient->id_provinsi;
 
+        if($this->existingRawatInap) {
+            $this->kelasPerawatan = $this->existingRawatInap->kelas;
+            $this->ruangInap = $this->existingRawatInap->ruangan;
+            $this->pembayaran = $this->existingRawatInap->pembayaran;
+        }
     }
 
     public function submit()
     {
+
         $this->validate();
+
+        if ($this->existingRawatInap) {
+            $this->existingRawatInap->update([
+                'kelas' => $this->kelasPerawatan,
+                'ruangan' => $this->ruangInap,
+                'pembayaran' => $this->pembayaran,
+            ]);
+            session()->flash('message', 'Form updated successfully!');
+            $this->dispatch('switch-tab', tab: 'pemeriksaan');
+            return;
+        }
+
 
         PoliRawatInap::create([
             'id_pendaftaran' => $this->pendaftaranId,
-            'kelas_perawatan' => $this->kelasPerawatan,
-            'ruang_inap' => $this->ruangInap,
+            'kelas' => $this->kelasPerawatan,
+            'ruangan' => $this->ruangInap,
             'pembayaran' => $this->pembayaran,
         ]);
 
@@ -315,33 +338,29 @@ new class extends Component {
                     <label for="kelasPerawatan" class="form-label">Kelas Perawatan</label>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="kelasPerawatan" value="kelas1"
-                                id="kelas1">
-                            <label class="form-check-label" for="kelas1">Kelas 1</label>
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1">
+                            <label class="form-check-label" for="1">Kelas 1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="kelasPerawatan" value="kelas2"
-                                id="kelas2">
-                            <label class="form-check-label" for="kelas2">Kelas 2</label>
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2">
+                            <label class="form-check-label" for="2">Kelas 2</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="kelasPerawatan" value="kelas3"
-                                id="kelas3">
-                            <label class="form-check-label" for="kelas3">Kelas 3</label>
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3">
+                            <label class="form-check-label" for="3">Kelas 3</label>
                         </div>
                     </div>
-                    @error('kelasPerawatan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    @error('kelasPerawatan') <div class="text-danger">{{ $message }}</div> @enderror
                 </div>
 
                 <!-- ruang inap -->
                 <div class="mb-3">
                     <label for="ruangInap" class="form-label">Ruang Inap</label>
-                    <select wire:model="ruangInap" class="form-select @error('ruangInap') is-invalid @enderror"
-                        id="ruangInap">
+                    <select wire:model.live="ruangInap" class="form-select @error('ruangInap') is-invalid @enderror" id="ruangInap">
                         <option value="" selected disabled>Pilih ruang Inap</option>
-                        <option>Ruang A</option>
-                        <option>Ruang B</option>
-                        <option>Ruang C</option>
+                        <option value="a">Ruang A</option>
+                        <option value="b">Ruang B</option>
+                        <option value="c">Ruang C</option>
                     </select>
                     @error('ruangInap') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
@@ -351,21 +370,21 @@ new class extends Component {
                     <label for="pembayaran" class="form-label">Pembayaran</label>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="pembayaran" value="umum" id="umum">
+                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="umum" id="umum">
                             <label class="form-check-label" for="umum">Umum</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="pembayaran" value="bpjs" id="bpjs">
+                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="bpjs" id="bpjs">
                             <label class="form-check-label" for="bpjs">BPJS</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="pembayaran" value="asuransi"
-                                id="asuransi">
+                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="asuransi" id="asuransi">
                             <label class="form-check-label" for="asuransi">Asuransi</label>
                         </div>
                     </div>
                     @error('pembayaran') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
+
             </div>
         </div>
     </form>
