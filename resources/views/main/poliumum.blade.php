@@ -924,7 +924,7 @@
                                             data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table custom-table">
                                             <thead style="background-color: #B3B9F9;">
                                                 <tr>
                                                     <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Nama</th>
