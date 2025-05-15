@@ -1615,7 +1615,7 @@
                             
                                 <div class="table-container">
                                     <table id="rincian-obat" class="table text-center shadow-table" >
-                                        <thead style="background-color: #676981; color: white;">
+                                        <thead style="background-color:rgb(252, 252, 254); color: white;">
                                             <head>
                                                 <style>
                                                     /* Container tabel */
