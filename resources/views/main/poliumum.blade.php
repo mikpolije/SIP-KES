@@ -1636,7 +1636,6 @@
                                                     .table-header table {
                                                         width: 100%;
                                                         margin-bottom: 0;
-                                                        border-collapse: collapse; /* Hindari celah antar sel */
                                                     }
                                                     
                                                     /* Bagian tbody yang dapat di-scroll */
