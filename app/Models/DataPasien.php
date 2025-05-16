@@ -24,4 +24,19 @@ class DataPasien extends Model
     {
         return $this->hasMany(Pendaftaran::class, 'no_rm', 'no_rm');
     }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(\Laravolt\Indonesia\Models\Province::class, 'id_provinsi');
+    }
+
+    public function kota()
+    {
+        return $this->belongsTo(\Laravolt\Indonesia\Models\City::class, 'id_kota');
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(\Laravolt\Indonesia\Models\District::class, 'id_kecamatan');
+    }
 }

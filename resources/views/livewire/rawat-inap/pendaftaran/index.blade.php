@@ -62,20 +62,21 @@ new class extends Component {
         $this->statusPerkawinan = $this->currentPatient->status_perkawinan;
         $this->rt = $this->currentPatient->rt;
         $this->rw = $this->currentPatient->rw;
-        $this->prov = $this->currentPatient->id_provinsi;
-        $this->kab = $this->currentPatient->id_kota;
-        $this->kec = $this->currentPatient->id_kecamatan;
+
+        $this->prov = $this->currentPatient->provinsi->name ?? null;
+        $this->kab = $this->currentPatient->kota->name ?? null;
+        $this->kec = $this->currentPatient->kecamatan->name ?? null;
+
         $this->kodePos = $this->currentPatient->kode_pos;
         $this->noHP = $this->currentPatient->nomor_telepon;
         $this->pendidikan = $this->currentPatient->pendidikan;
         $this->pekerjaan = $this->currentPatient->pekerjaan;
 
         $this->alamatDomisili = $this->currentPatient->alamat_lengkap;
+
         $this->rtDomisili = $this->currentPatient->rt;
         $this->rwDomisili = $this->currentPatient->rw;
-        $this->kabDomisili = $this->currentPatient->id_kota;
-        $this->kecDomisili = $this->currentPatient->id_kecamatan;
-        $this->provDomisili = $this->currentPatient->id_provinsi;
+
 
         if($this->existingRawatInap) {
             $this->kelasPerawatan = $this->existingRawatInap->kelas;
@@ -248,12 +249,6 @@ new class extends Component {
                     </div>
                 </div>
 
-                <!-- kab domisili -->
-                <div class="mb-3">
-                    <label for="kabDomisili" class="form-label">Kab:</label>
-                    <input type="text" wire:model="kabDomisili" class="form-control" id="kabDomisili" readonly>
-                </div>
-
                 <!-- no.hp -->
                 <div class="mb-3">
                     <label for="noHP" class="form-label">No.HP</label>
@@ -321,16 +316,6 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="prov" class="form-label">Prov:</label>
                     <input type="text" wire:model="prov" class="form-control" id="prov" readonly>
-                </div>
-
-                <!-- kec & prov domisili -->
-                <div class="mb-3">
-                    <label for="kecDomisili" class="form-label">Kec:</label>
-                    <input type="text" wire:model="kecDomisili" class="form-control" id="kecDomisili" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="provDomisili" class="form-label">Prov:</label>
-                    <input type="text" wire:model="provDomisili" class="form-control" id="provDomisili" readonly>
                 </div>
 
                 <!-- kelas perawatan -->
