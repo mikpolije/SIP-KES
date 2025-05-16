@@ -42,6 +42,13 @@ return new class extends Migration
             $table->text('pengambilan_sampel_darah')->nullable();
             $table->text('lain_lain')->nullable();
 
+            $table->boolean('is_diterangkan')->nullable();
+            $table->boolean('is_diterima')->nullable();
+            $table->boolean('is_menyatakan')->nullable();
+
+            $table->text('tindakan')->nullable();
+
+
             $table->timestamps();
         });
     }
