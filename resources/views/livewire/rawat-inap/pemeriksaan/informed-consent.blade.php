@@ -4,6 +4,7 @@ use App\Models\Dokter;
 use Livewire\Volt\Component;
 use App\Models\InformedConsent;
 use App\Models\Pendaftaran;
+use App\Models\PoliRawatInap;
 use Livewire\Attributes\On;
 
 new class extends Component {
@@ -144,10 +145,13 @@ new class extends Component {
             'anestesi' => $this->anestesi,
         ];
 
-        InformedConsent::updateOrCreate(
+        $informedConsent = InformedConsent::updateOrCreate(
             ['id_pendaftaran' => $this->pendaftaranId],
             $data
         );
+
+        PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
+            ->update(['id_informed_consent' => $informedConsent->id]);
 
         session()->flash('message', 'Informed consent saved successfully.');
         $this->dispatch('submit-finally', success: true);
