@@ -140,19 +140,19 @@ new class extends Component {
                     <div class="row g-3">
                         <div class="col-md-3">
                             <label for="noRM" class="form-label">No RM</label>
-                            <input type="text" wire:model="noRM" class="form-control" id="noRM" placeholder="010101" readonly>
+                            <input type="text" wire:model="noRM" class="form-control" id="noRM" placeholder="010101" disabled>
                         </div>
                         <div class="col-md-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" wire:model="nama" class="form-control" id="nama" readonly>
+                            <input type="text" wire:model="nama" class="form-control" id="nama" disabled>
                         </div>
                         <div class="col-md-3">
                             <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
-                            <input type="text" wire:model="tanggalLahir" class="form-control" id="tanggalLahir" readonly>
+                            <input type="text" wire:model="tanggalLahir" class="form-control" id="tanggalLahir" disabled>
                         </div>
                         <div class="col-md-3">
                             <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
-                            <input type="text" wire:model="jenisKelamin" class="form-control" id="jenisKelamin" readonly>
+                            <input type="text" wire:model="jenisKelamin" class="form-control" id="jenisKelamin" disabled>
                         </div>
                     </div>
                 </div>
