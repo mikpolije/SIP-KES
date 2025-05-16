@@ -40,6 +40,8 @@ new class extends Component {
     public $pendaftaranId;
     public $doctors;
 
+    public $timestamp;
+
     public function mount($pendaftaranId = null)
     {
         $this->pendaftaranId = $pendaftaranId;
@@ -60,6 +62,8 @@ new class extends Component {
                 $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_lengkap ?? '';
                 $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir ?? '';
                 $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_lengkap ?? '';
+
+                $this->timestamp = now();
 
                 $informedConsent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
                 if ($informedConsent) {
@@ -84,6 +88,7 @@ new class extends Component {
 
                     $this->tindakan = $informedConsent->tindakan;
 
+                    $this->timestamp = $informedConsent->created_at;
                 }
             }
         }
@@ -364,9 +369,11 @@ new class extends Component {
                             keberhasilan tindakan kedokteran bukanlah keniscayaan, melainkan sangat tergantung
                             kepada izin Tuhan Yang Maha Esa</p>
                     </div>
-                    <div class="text-end mt-3">
-                        <p>Jember, ........./........./20...... jam........WIB</p>
-                    </div>
+                        <div class="text-end mt-3">
+                            <p>
+                                Jember, {{ $timestamp->translatedFormat('j F Y') }} jam {{ $timestamp->translatedFormat('H:i') }} WIB
+                            </p>
+                        </div>
                 </div>
 
                 <!-- TANDA TANGAN -->
