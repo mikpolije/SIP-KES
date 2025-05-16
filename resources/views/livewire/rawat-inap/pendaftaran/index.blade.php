@@ -125,21 +125,21 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" wire:model="nama" class="form-control @error('nama') is-invalid @enderror"
-                        id="nama" readonly>
+                        id="nama" disabled>
                     @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <!-- nomor rm -->
                 <div class="mb-3">
                     <label for="nomorRM" class="form-label">Nomor RM</label>
-                    <input type="text" wire:model="nomorRM" class="form-control" id="nomorRM" readonly>
+                    <input type="text" wire:model="nomorRM" class="form-control" id="nomorRM" disabled>
                 </div>
 
                 <!-- nik -->
                 <div class="mb-3">
                     <label for="nik" class="form-label">NIK</label>
                     <input type="text" wire:model="nik" class="form-control @error('nik') is-invalid @enderror"
-                        id="nik" readonly>
+                        id="nik" disabled>
                     @error('nik') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -147,7 +147,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="tempatLahir" class="form-label">Tempat Lahir</label>
                     <input type="text" wire:model="tempatLahir"
-                        class="form-control @error('tempatLahir') is-invalid @enderror" id="tempatLahir" readonly>
+                        class="form-control @error('tempatLahir') is-invalid @enderror" id="tempatLahir" disabled>
                     @error('tempatLahir') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -155,7 +155,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
                     <input type="date" wire:model="tanggalLahir"
-                        class="form-control @error('tanggalLahir') is-invalid @enderror" id="tanggalLahir" readonly>
+                        class="form-control @error('tanggalLahir') is-invalid @enderror" id="tanggalLahir" disabled>
                     @error('tanggalLahir') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -163,7 +163,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
                     <select wire:model="jenisKelamin" class="form-select @error('jenisKelamin') is-invalid @enderror"
-                        id="jenisKelamin">
+                        id="jenisKelamin" disabled>
                         <option value="" selected disabled>Pilih Jenis Kelamin</option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
@@ -174,7 +174,7 @@ new class extends Component {
                 <!-- agama -->
                 <div class="mb-3">
                     <label for="agama" class="form-label">Agama</label>
-                    <select wire:model="agama" class="form-select @error('agama') is-invalid @enderror" id="agama">
+                    <select wire:model="agama" class="form-select @error('agama') is-invalid @enderror" id="agama" disabled>
                         <option value="" selected disabled>Pilih Agama</option>
                         <option>Islam</option>
                         <option>Kristen</option>
@@ -190,7 +190,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="statusPerkawinan" class="form-label">Status Perkawinan</label>
                     <select wire:model="statusPerkawinan"
-                        class="form-select @error('statusPerkawinan') is-invalid @enderror" id="statusPerkawinan">
+                        class="form-select @error('statusPerkawinan') is-invalid @enderror" id="statusPerkawinan" disabled>
                         <option value="" selected disabled>Pilih Status</option>
                         <option>Belum Kawin</option>
                         <option>Kawin</option>
@@ -207,7 +207,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="alamatLengkap" class="form-label">Alamat Lengkap</label>
                     <input type="text" wire:model="alamatLengkap"
-                        class="form-control @error('alamatLengkap') is-invalid @enderror" id="alamatLengkap" readonly>
+                        class="form-control @error('alamatLengkap') is-invalid @enderror" id="alamatLengkap" disabled>
                     @error('alamatLengkap') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -215,11 +215,11 @@ new class extends Component {
                 <div class="row mb-3">
                     <div class="col-auto">
                         <label for="rt" class="form-label">RT:</label>
-                        <input type="text" wire:model="rt" class="form-control w-75" id="rt" readonly>
+                        <input type="text" wire:model="rt" class="form-control w-75" id="rt" disabled>
                     </div>
                     <div class="col-auto">
                         <label for="rw" class="form-label">RW:</label>
-                        <input type="text" wire:model="rw" class="form-control w-75" id="rw" readonly>
+                        <input type="text" wire:model="rw" class="form-control w-75" id="rw" disabled>
                     </div>
                 </div>
 
@@ -227,25 +227,25 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="kab" class="form-label">Kab:</label>
                     <input type="text" wire:model="kab" class="form-control @error('kab') is-invalid @enderror"
-                        id="kab" readonly>
+                        id="kab" disabled>
                     @error('kab') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <!-- alamat domisili -->
                 <div class="mb-3">
                     <label for="alamatDomisili" class="form-label">Alamat Domisili</label>
-                    <input type="text" wire:model="alamatDomisili" class="form-control" id="alamatDomisili" readonly>
+                    <input type="text" wire:model="alamatDomisili" class="form-control" id="alamatDomisili" disabled>
                 </div>
 
                 <!-- rt/rw domisili -->
                 <div class="row mb-3">
                     <div class="col-auto">
                         <label for="rtDomisili" class="form-label">RT:</label>
-                        <input type="text" wire:model="rtDomisili" class="form-control w-75" id="rtDomisili" readonly>
+                        <input type="text" wire:model="rtDomisili" class="form-control w-75" id="rtDomisili" disabled>
                     </div>
                     <div class="col-auto">
                         <label for="rwDomisili" class="form-label">RW:</label>
-                        <input type="text" wire:model="rwDomisili" class="form-control w-75" id="rwDomisili" readonly>
+                        <input type="text" wire:model="rwDomisili" class="form-control w-75" id="rwDomisili" disabled>
                     </div>
                 </div>
 
@@ -255,7 +255,7 @@ new class extends Component {
                     <div class="input-group">
                         <span class="input-group-text">+62</span>
                         <input type="text" wire:model="noHP" class="form-control @error('noHP') is-invalid @enderror"
-                            id="noHP" readonly>
+                            id="noHP" disabled>
                     </div>
                     @error('noHP') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
@@ -265,7 +265,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="pendidikan" class="form-label">Pendidikan</label>
                     <select wire:model="pendidikan" class="form-select @error('pendidikan') is-invalid @enderror"
-                        id="pendidikan" readonly>
+                        id="pendidikan" disabled>
                         <option value="" selected disabled>Pilih Pendidikan</option>
                         <option>Tidak Sekolah</option>
                         <option>SD</option>
@@ -305,17 +305,17 @@ new class extends Component {
                 <!-- kode pos -->
                 <div class="mb-3">
                     <label for="kodePos" class="form-label">Kode Pos:</label>
-                    <input type="text" wire:model="kodePos" class="form-control" id="kodePos" readonly>
+                    <input type="text" wire:model="kodePos" class="form-control" id="kodePos" disabled>
                 </div>
 
                 <!-- kec & prov -->
                 <div class="mb-3">
                     <label for="kec" class="form-label">Kec:</label>
-                    <input type="text" wire:model="kec" class="form-control" id="kec" readonly>
+                    <input type="text" wire:model="kec" class="form-control" id="kec" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="prov" class="form-label">Prov:</label>
-                    <input type="text" wire:model="prov" class="form-control" id="prov" readonly>
+                    <input type="text" wire:model="prov" class="form-control" id="prov" disabled>
                 </div>
 
                 <!-- kelas perawatan -->
