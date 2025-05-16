@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Dokter;
 use Livewire\Volt\Component;
 use App\Models\InformedConsent;
 use App\Models\Pendaftaran;
@@ -34,10 +35,12 @@ new class extends Component {
     public $tanggalLahirPerwakilan = '';
     public $alamatPerwakilan = '';
     public $pendaftaranId;
+    public $doctors;
 
     public function mount($pendaftaranId = null)
     {
         $this->pendaftaranId = $pendaftaranId;
+        $this->doctors = Dokter::all();
 
         if ($pendaftaranId) {
             $pendaftaran = Pendaftaran::with('data_pasien')->find($pendaftaranId);
@@ -76,7 +79,7 @@ new class extends Component {
         }
     }
 
-    public function save()
+    public function submit()
     {
         $validated = $this->validate([
             'noRM' => 'required',
@@ -164,7 +167,15 @@ new class extends Component {
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="dokterPelaksana" class="form-label">Dokter Pelaksana</label>
-                            <input type="text" wire:model="dokterPelaksana" class="form-control" id="dokterPelaksana" required>
+                            <select wire:model="dokterPelaksana" class="form-select" id="dokterPelaksana" required>
+                                <option value="">Pilih Dokter</option>
+                                @foreach($doctors as $doctor)
+                                    <option value="{{ $doctor->id }}">
+                                        {{ $doctor->gelar_depan }} {{ $doctor->nama }} {{ $doctor->gelar_belakang }} ({{ $doctor->no_sip }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('dokterPelaksana') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="pemberiInformasi" class="form-label">Pemberi Informasi</label>
@@ -348,10 +359,6 @@ new class extends Component {
                         <p>Yang Menyatakan</p>
                         <p class="small">(Nama)</p>
                     </div>
-                </div>
-
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
