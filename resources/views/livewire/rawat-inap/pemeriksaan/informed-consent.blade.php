@@ -4,6 +4,7 @@ use App\Models\Dokter;
 use Livewire\Volt\Component;
 use App\Models\InformedConsent;
 use App\Models\Pendaftaran;
+use Livewire\Attributes\On;
 
 new class extends Component {
     public $noRM = '';
@@ -79,9 +80,10 @@ new class extends Component {
         }
     }
 
+    #[On('submit-step2')]
     public function submit()
     {
-        $validated = $this->validate([
+        $this->validate([
             'noRM' => 'required',
             'nama' => 'required',
             'dokterPelaksana' => 'required',
@@ -101,7 +103,7 @@ new class extends Component {
         $data = [
             'id_pendaftaran' => $this->pendaftaranId,
             'id_dokter' => $this->dokterPelaksana,
-            'pemberian_informasi' => $this->pemberiInformasi,
+            'pemberi_informasi' => $this->pemberiInformasi,
             'penerima_informasi' => $this->penerimaInformasi,
             'diagnosis' => $this->diagnosis,
             'tindakan_kedokteran' => $this->tindakanKedokteran,
@@ -123,6 +125,7 @@ new class extends Component {
             'nama_perwakilan' => $this->namaPerwakilan,
             'tanggal_lahir_perwakilan' => $this->tanggalLahirPerwakilan,
             'alamat_perwakilan' => $this->alamatPerwakilan,
+            'anestesi' => $this->anestesi,
         ];
 
         InformedConsent::updateOrCreate(
@@ -131,6 +134,7 @@ new class extends Component {
         );
 
         session()->flash('message', 'Informed consent saved successfully.');
+        $this->dispatch('submit-finally', success: true);
     }
 }; ?>
 
