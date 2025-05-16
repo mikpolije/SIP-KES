@@ -25,6 +25,14 @@ new class extends Component {
         }
     }
 
+    public function goToStep($step)
+    {
+        if ($step >= 1 && $step <= $this->totalSteps) {
+            $this->currentStep = $step;
+            $this->dispatch('scroll-to-top');
+        }
+    }
+
     #[On('go-next-step')]
     public function goNextStep()
     {
@@ -42,22 +50,31 @@ new class extends Component {
         }
     }
 
+    #[On('submit-finally')]
+    public function saveAndGo($success)
+    {
+        if($success) {
+            session()->flash('message', 'Asesmen awal dan informed consent berhasil disimpan!');
+            $this->dispatch('switch-tab', tab: 'layanan');
+        } else {
+            session()->flash('message', 'Gagal menyimpan asesmen awal dan informed consent!');
+        }
+    }
+
     public function submit()
     {
-        // Save data logic here
-        session()->flash('message', 'Asesmen awal dan informed consent berhasil disimpan!');
-        $this->dispatch('switch-tab', tab: 'layanan');
+        $this->dispatch('submit-step2');
     }
 }; ?>
 
 <div class="container stepper-container p-4">
     <div class="stepper" id="stepper">
-        <div class="step">
+        <div class="step" wire:click="goToStep(1)" style="cursor: pointer;">
             <div class="step-circle {{ $currentStep >= 1 ? 'active' : '' }}" data-step="1">1</div>
             <div class="step-title">Asessmen Awal</div>
         </div>
         <div class="step-connector {{ $currentStep >= 2 ? 'active' : '' }}" data-connector="1-2"></div>
-        <div class="step">
+        <div class="step" wire:click="goToStep(2)" style="cursor: pointer;">
             <div class="step-circle {{ $currentStep >= 2 ? 'active' : '' }}" data-step="2">2</div>
             <div class="step-title">Informed Consent</div>
         </div>

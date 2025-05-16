@@ -15,7 +15,7 @@ class DataPasien extends Model
 
     protected $guarded = ['no_rm'];
 
-    public function waliPasien()
+    public function wali_pasien()
     {
         return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm');
     }
@@ -23,5 +23,20 @@ class DataPasien extends Model
     public function pendaftaran()
     {
         return $this->hasMany(Pendaftaran::class, 'no_rm', 'no_rm');
+    }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(\Laravolt\Indonesia\Models\Province::class, 'id_provinsi');
+    }
+
+    public function kota()
+    {
+        return $this->belongsTo(\Laravolt\Indonesia\Models\City::class, 'id_kota');
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(\Laravolt\Indonesia\Models\District::class, 'id_kecamatan');
     }
 }

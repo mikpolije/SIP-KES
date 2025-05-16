@@ -22,6 +22,11 @@ class Pendaftaran extends Model
         return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 
+    public function wali_pasien()
+    {
+        return $this->belongsTo(WaliPasien::class, 'id_wali_pasien', 'id');
+    }
+
     public function poli_rawat_inap()
     {
         return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');

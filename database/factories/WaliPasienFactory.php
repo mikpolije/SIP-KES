@@ -26,9 +26,12 @@ class WaliPasienFactory extends Factory
 
         return [
             'no_rm' => $dataPasien->no_rm,
+            'nama_lengkap' => $this->faker->name,
             'no_telepon' => $this->faker->phoneNumber,
             'hubungan' => $this->faker->randomElement($hubunganOptions),
             'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
+            'alamat_lengkap' => $this->faker->address(),
+            'tanggal_lahir' => $this->faker->date(),
         ];
     }
 }
