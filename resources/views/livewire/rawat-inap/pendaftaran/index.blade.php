@@ -357,7 +357,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="ruangInap" class="form-label">Ruang Inap</label>
                     <select wire:model.live="ruangInap" class="form-select @error('ruangInap') is-invalid @enderror" id="ruangInap">
-                        <option value="" selected disabled>Pilih ruang Inap</option>
+                        <option value="" selected disabled>Pilih Ruang Inap</option>
                         <option value="a">Ruang A</option>
                         <option value="b">Ruang B</option>
                         <option value="c">Ruang C</option>
