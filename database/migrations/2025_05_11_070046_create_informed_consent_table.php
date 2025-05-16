@@ -26,7 +26,7 @@ return new class extends Migration
                 ->on('dokter')
                 ->onDelete('restrict');
 
-            $table->string('pemberian_informasi', 100)->nullable();
+            $table->string('pemberi_informasi', 100)->nullable();
             $table->string('penerima_informasi', 100)->nullable();
 
             $table->text('diagnosis')->nullable();

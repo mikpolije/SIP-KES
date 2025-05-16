@@ -10,7 +10,7 @@ new class extends Component {
     public $tanggalLahir = '';
     public $jenisKelamin = '';
     public $dokterPelaksana = '';
-    public $pemberianInformasi = '';
+    public $pemberiInformasi = '';
     public $penerimaInformasi = '';
     public $diagnosis = '';
     public $tindakanKedokteran = '';
@@ -58,7 +58,7 @@ new class extends Component {
                 $informedConsent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
                 if ($informedConsent) {
                     $this->dokterPelaksana = $informedConsent->id_dokter;
-                    $this->pemberianInformasi = $informedConsent->pemberian_informasi;
+                    $this->pemberiInformasi = $informedConsent->pemberi_informasi;
                     $this->penerimaInformasi = $informedConsent->penerima_informasi;
                     $this->diagnosis = $informedConsent->diagnosis;
                     $this->tindakanKedokteran = $informedConsent->tindakan_kedokteran;
@@ -81,7 +81,7 @@ new class extends Component {
             'noRM' => 'required',
             'nama' => 'required',
             'dokterPelaksana' => 'required',
-            'pemberianInformasi' => 'required',
+            'pemberiInformasi' => 'required',
             'penerimaInformasi' => 'required',
             'diagnosis' => 'required',
             'tindakanKedokteran' => 'required',
@@ -97,7 +97,7 @@ new class extends Component {
         $data = [
             'id_pendaftaran' => $this->pendaftaranId,
             'id_dokter' => $this->dokterPelaksana,
-            'pemberian_informasi' => $this->pemberianInformasi,
+            'pemberian_informasi' => $this->pemberiInformasi,
             'penerima_informasi' => $this->penerimaInformasi,
             'diagnosis' => $this->diagnosis,
             'tindakan_kedokteran' => $this->tindakanKedokteran,
@@ -166,9 +166,9 @@ new class extends Component {
                             <input type="text" wire:model="dokterPelaksana" class="form-control" id="dokterPelaksana" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="pemberianInformasi" class="form-label">Pemberian Informasi</label>
-                            <input type="text" wire:model="pemberianInformasi" class="form-control"
-                                id="pemberianInformasi" required>
+                            <label for="pemberiInformasi" class="form-label">Pemberian Informasi</label>
+                            <input type="text" wire:model="pemberiInformasi" class="form-control"
+                                id="pemberiInformasi" required>
                         </div>
                         <div class="col-md-6">
                             <label for="penerimaInformasi" class="form-label">Penerima Informasi / Pemberi
