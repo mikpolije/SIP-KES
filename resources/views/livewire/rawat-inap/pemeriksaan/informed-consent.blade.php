@@ -25,13 +25,15 @@ new class extends Component {
     public $anestesi = '';
     public $pengambilanSampel = '';
     public $lainLainConsent = '';
-    public $pernyataan1 = 'telah';
-    public $pernyataan2 = 'telah';
+
+    public $is_diterangkan = 0;
+    public $is_diterima = 0;
+    public $is_menyatakan = 0;
+    public $tindakan = '';
+
     public $namaPasien = '';
     public $tanggalLahirPasien = '';
     public $alamatPasien = '';
-    public $persetujuan = 'Setuju';
-    public $tindakanPersetujuan = '';
     public $namaPerwakilan = '';
     public $tanggalLahirPerwakilan = '';
     public $alamatPerwakilan = '';
@@ -75,6 +77,13 @@ new class extends Component {
                     $this->anestesi = $informedConsent->anestesi;
                     $this->pengambilanSampel = $informedConsent->pengambilan_sampel_darah;
                     $this->lainLainConsent = $informedConsent->lain_lain;
+
+                    $this->is_dipahami = $informedConsent->is_dipahami;
+                    $this->is_diterima = $informedConsent->is_diterima;
+                    $this->is_menyatakan = $informedConsent->is_menyatakan;
+
+                    $this->tindakan = $informedConsent->tindakan;
+
                 }
             }
         }
@@ -97,7 +106,7 @@ new class extends Component {
             'komplikasi' => 'required',
             'prognosis' => 'required',
             'namaPasien' => 'required',
-            'persetujuan' => 'required',
+            'is_menyatakan' => 'required',
         ]);
 
         $data = [
@@ -115,13 +124,15 @@ new class extends Component {
             'alternatif_risiko' => $this->alternatif,
             'pengambilan_sampel_darah' => $this->pengambilanSampel,
             'lain_lain' => $this->lainLainConsent,
-            'pernyataan1' => $this->pernyataan1,
-            'pernyataan2' => $this->pernyataan2,
             'nama_pasien' => $this->namaPasien,
             'tanggal_lahir_pasien' => $this->tanggalLahirPasien,
             'alamat_pasien' => $this->alamatPasien,
-            'persetujuan' => $this->persetujuan,
-            'tindakan_persetujuan' => $this->tindakanPersetujuan,
+
+            'is_diterangkan' => $this->is_diterangkan,
+            'is_diterima' => $this->is_diterima,
+            'is_menyatakan' => $this->is_menyatakan,
+            'tindakan' => $this->tindakan,
+
             'nama_perwakilan' => $this->namaPerwakilan,
             'tanggal_lahir_perwakilan' => $this->tanggalLahirPerwakilan,
             'alamat_perwakilan' => $this->alamatPerwakilan,
@@ -188,59 +199,67 @@ new class extends Component {
                         </div>
                         <div class="col-md-6">
                             <label for="penerimaInformasi" class="form-label">Penerima Informasi / Pemberi
-                                Persetujuan</label>
+                                is_menyatakan</label>
                             <input type="text" wire:model="penerimaInformasi" class="form-control"
                                 id="penerimaInformasi" required>
+                            @error('penerimaInformasi') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="diagnosis" class="form-label">Diagnosis</label>
                             <input type="text" wire:model="diagnosis" class="form-control" id="diagnosis" required>
+                            @error('diagnosis') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="tindakanKedokteran" class="form-label">Tindakan Kedokteran</label>
                             <input type="text" wire:model="tindakanKedokteran" class="form-control"
                                 id="tindakanKedokteran" required>
+                            @error('tindakanKedokteran') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="indikasi" class="form-label">Indikasi Tindakan</label>
                             <input type="text" wire:model="indikasi" class="form-control" id="indikasi" required>
+                            @error('indikasi') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="tataCara" class="form-label">Tata Cara</label>
                             <input type="text" wire:model="tataCara" class="form-control" id="tataCara" required>
+                            @error('tataCara') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="risiko" class="form-label">Risiko</label>
                             <input type="text" wire:model="risiko" class="form-control" id="risiko" required>
+                            @error('risiko') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="komplikasi" class="form-label">Komplikasi</label>
                             <input type="text" wire:model="komplikasi" class="form-control" id="komplikasi" required>
+                            @error('komplikasi') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="prognosis" class="form-label">Prognosis</label>
                             <input type="text" wire:model="prognosis" class="form-control" id="prognosis" required>
+                            @error('prognosis') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
-                            <label for="alternatif" class="form-label">Alternatif & Risiko</label>
-                            <select class="form-select" wire:model="alternatif" id="alternatif">
-                                <option value="" selected></option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                            </select>
+                            <label for="alternatif" class="form-label">Alternatif & Resiko</label>
+                            <input type="text" wire:model="alternatif" class="form-control" id="alternatif" required>
+                            @error('alternatif') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="anestesi" class="form-label">Anestesi Lokal</label>
                             <input type="text" wire:model="anestesi" class="form-control" id="anestesi">
+                            @error('anestesi') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="pengambilanSampel" class="form-label">Pengambilan Sampel Darah</label>
                             <input type="text" wire:model="pengambilanSampel" class="form-control"
                                 id="pengambilanSampel">
+                            @error('pengambilanSampel') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-12">
                             <label for="lainLainConsent" class="form-label">Lain-Lain</label>
                             <input type="text" wire:model="lainLainConsent" class="form-control" id="lainLainConsent">
+                            @error('lainLainConsent') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
                 </div>
@@ -252,10 +271,11 @@ new class extends Component {
                             <div class="d-flex align-items-center">
                                 <span>Dengan ini menyatakan bahwa saya</span>
                                     <div class="mx-2">
-                                        <select class="form-select" wire:model="pernyataan1" id="pernyataan1">
-                                            <option value="telah">telah</option>
-                                            <option value="belum">belum</option>
+                                        <select class="form-select" wire:model="is_diterangkan" id="is_diterangkan">
+                                            <option value="1">telah</option>
+                                            <option value="0">belum</option>
                                         </select>
+                                        @error('is_diterangkan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 <span>menerangkan hal-hal di atas secara benar dan jelas</span>
                             </div>
@@ -269,10 +289,11 @@ new class extends Component {
                             <div class="d-flex align-items-center">
                                 <span>Dengan ini menyatakan bahwa saya</span>
                                     <div class="mx-2">
-                                        <select class="form-select" wire:model="pernyataan2" id="pernyataan2">
-                                            <option value="telah">telah</option>
-                                            <option value="belum">belum</option>
+                                        <select class="form-select" wire:model="is_diterima" id="is_diterima">
+                                            <option value="1">telah</option>
+                                            <option value="0">belum</option>
                                         </select>
+                                        @error('is_diterima') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 <span>menerima informasi sebagaimana di atas yang saya</span>
                             </div>
@@ -283,9 +304,9 @@ new class extends Component {
                     </div>
                 </div>
 
-                <!-- PERSETUJUAN / PENOLAKAN TINDAKAN KEDOKTERAN -->
+                <!-- is_menyatakan / PENOLAKAN TINDAKAN KEDOKTERAN -->
                 <div class="mb-4">
-                    <h5>PERSETUJUAN / PENOLAKAN TINDAKAN KEDOKTERAN</h5>
+                    <h5>is_menyatakan / PENOLAKAN TINDAKAN KEDOKTERAN</h5>
                     <div class="mb-3">
                         <p>Yang bertandatangan dibawah ini, saya</p>
                     </div>
@@ -308,14 +329,16 @@ new class extends Component {
                             <div class="d-flex align-items-center">
                                 <span>Dengan ini menyatakan</span>
                                 <div class="dropdown mx-2">
-                                    <select class="form-select" wire:model="persetujuan" id="persetujuan">
-                                        <option value="telah">telah</option>
-                                        <option value="belum">belum</option>
+                                    <select class="form-select" wire:model="is_menyatakan" id="is_menyatakan">
+                                        <option value="1">telah</option>
+                                        <option value="0">belum</option>
                                     </select>
+                                    @error('is_menyatakan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                                 <span>untuk dilakukannya tindakan</span>
-                                <input type="text" wire:model="tindakanPersetujuan" class="form-control mx-2"
+                                <input type="text" wire:model="tindakan" class="form-control mx-2"
                                     style="width: 200px;">
+                                @error('tindakan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 <span>dengan</span>
                             </div>
                         </div>
