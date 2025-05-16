@@ -37,6 +37,7 @@ return new class extends Migration
             $table->text('komplikasi')->nullable();
             $table->text('prognosis')->nullable();
             $table->text('alternatif_risiko')->nullable();
+            $table->text('anestesi')->nullable();
 
             $table->text('pengambilan_sampel_darah')->nullable();
             $table->text('lain_lain')->nullable();

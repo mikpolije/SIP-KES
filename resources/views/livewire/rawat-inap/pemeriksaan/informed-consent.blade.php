@@ -68,6 +68,7 @@ new class extends Component {
                     $this->komplikasi = $informedConsent->komplikasi;
                     $this->prognosis = $informedConsent->prognosis;
                     $this->alternatif = $informedConsent->alternatif_risiko;
+                    $this->anestesi = $informedConsent->anestesi;
                     $this->pengambilanSampel = $informedConsent->pengambilan_sampel_darah;
                     $this->lainLainConsent = $informedConsent->lain_lain;
                 }
