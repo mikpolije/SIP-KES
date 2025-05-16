@@ -6,6 +6,8 @@ namespace App\Livewire;
 use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 use App\Models\AsessmenAwal;
+use App\Models\Poli;
+use App\Models\PoliRawatInap;
 use Illuminate\Validation\Rule;
 
 new class extends Component {
@@ -124,10 +126,13 @@ new class extends Component {
             'lain_lain_text' => $this->lainLain ? $this->lainLainText : null,
         ];
 
-        AsessmenAwal::updateOrCreate(
+        $asesmenAwal = AsessmenAwal::updateOrCreate(
             ['id_pendaftaran' => $this->pendaftaranId],
             $data
         );
+
+        PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
+            ->update(['id_asessmen_awal' => $asesmenAwal->id]);
 
         session()->flash('message', 'Asesmen awal berhasil disimpan');
         $this->dispatch('go-next-step');
