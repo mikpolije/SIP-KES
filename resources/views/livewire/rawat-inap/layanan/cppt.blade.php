@@ -14,6 +14,10 @@ new class extends Component {
     public $dokters;
     public $showFilters = false;
 
+    public $confirmingDuplicate = false;
+    public $cpptToDuplicate;
+
+
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::find($pendaftaranId);
@@ -59,6 +63,27 @@ new class extends Component {
 
     public function onCpptSaved() {
         $this->loadCppts();
+    }
+
+    public function confirmDuplicate($cpptId) {
+        $this->cpptToDuplicate = $cpptId;
+        $this->confirmingDuplicate = true;
+    }
+
+    public function duplicateCppt() {
+        $original = CPPT::find($this->cpptToDuplicate);
+
+        if ($original) {
+            $duplicate = $original->replicate();
+            $duplicate->created_at = now();
+            $duplicate->save();
+
+            $this->loadCppts();
+            $this->dispatch('notify', type: 'success', message: 'CPPT berhasil diduplikasi');
+        }
+
+        $this->confirmingDuplicate = false;
+        $this->cpptToDuplicate = null;
     }
 };
 ?>
@@ -146,7 +171,7 @@ new class extends Component {
                                         wire:click="$emit('showCpptDetail', '{{ $cppt->created_at->format('Y-m-d') }}')">
                                         <i class="bi bi-file-text"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary rounded-circle">
+                                    <button class="btn btn-sm btn-primary rounded-circle" wire:click="confirmDuplicate('{{ $cppt->id }}')">
                                         <i class="bi bi-arrow-repeat"></i>
                                     </button>
                                 </div>
@@ -171,4 +196,25 @@ new class extends Component {
     @livewire('rawat-inap.layanan.cppt-modal', [
         'pendaftaranId' => $pendaftaranId
     ], key('cppt-modal-'.$pendaftaranId))
+
+    <!-- Confirmation Modal -->
+    @if($confirmingDuplicate)
+    <div class="modal fade show" style="display: block; background: rgba(0,0,0,0.5);" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Konfirmasi Duplikasi</h5>
+                    <button type="button" class="btn-close" wire:click="$set('confirmingDuplicate', false)"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menduplikasi CPPT ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" wire:click="$set('confirmingDuplicate', false)">Batal</button>
+                    <button type="button" class="btn btn-primary" wire:click="duplicateCppt">Duplikasi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
