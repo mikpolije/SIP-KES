@@ -88,7 +88,7 @@ new class extends Component {
                             <tr>
                                 <td>{{ $item->layanan->id ?? '' }}</td>
                                 <td>{{ $item->layanan->nama_layanan ?? '' }}</td>
-                                <td>{{ $item->layanan->tarif_layanan ?? '' }}</td>
+                                <td>Rp {{ number_format($item->layanan->tarif_layanan, 0, ',', '.') }},-</td>
                             </tr>
                         @endforeach
                     @else
