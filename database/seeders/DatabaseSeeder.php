@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\DataPasien;
 use App\Models\Dokter;
+use App\Models\Obat;
 use App\Models\Pendaftaran;
 use App\Models\User;
 use App\Models\WaliPasien;
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Dokter::factory(100)->create();
         try {
+            // ICD SEEDER DI SINI
             DB::unprepared(file_get_contents(database_path('icd10.sql')));
             DB::unprepared(file_get_contents(database_path('icd9.sql')));
         } catch (\Throwable $th) {
@@ -41,6 +43,7 @@ class DatabaseSeeder extends Seeder
         DataPasien::factory(50)->create();
         WaliPasien::factory(50)->create();
         Pendaftaran::factory(30)->create();
+        Obat::factory()->count(50)->create();
 
         User::factory()->create([
             'name' => 'Test User',
