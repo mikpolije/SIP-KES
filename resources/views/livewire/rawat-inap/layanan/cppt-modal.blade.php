@@ -62,16 +62,6 @@ new class extends Component {
         $this->dispatch('cpptAdded');
     }
 
-    public function addPemeriksaan($type) {
-        if (!in_array($type, $this->formData['pemeriksaanPenunjang'])) {
-            $this->formData['pemeriksaanPenunjang'][] = $type;
-        }
-    }
-
-    public function removePemeriksaan($index) {
-        unset($this->formData['pemeriksaanPenunjang'][$index]);
-        $this->formData['pemeriksaanPenunjang'] = array_values($this->formData['pemeriksaanPenunjang']);
-    }
 } ?>
 
 <div>
@@ -127,90 +117,42 @@ new class extends Component {
                             <div class="mb-4">
                                 <h5>Diagnosa Pasien</h5>
                                 <div class="row g-2">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <select class="form-select" wire:model="formData.diagnosa">
                                             <option value="">Pilih Diagnosa</option>
                                             <option value="Diabetes Mellitus">Diabetes Mellitus</option>
                                             <option value="Hipertensi">Hipertensi</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-primary w-100">Cari</button>
-                                    </div>
                                 </div>
-                                @if($formData['diagnosa'])
-                                <div class="mt-2">
-                                    <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                        <strong>{{ $formData['diagnosa'] }}</strong> - Kode ICD-10:
-                                        @if($formData['diagnosa'] == 'Diabetes Mellitus')
-                                        E11
-                                        @elseif($formData['diagnosa'] == 'Hipertensi')
-                                        I10
-                                        @endif
-                                    </div>
-                                </div>
-                                @endif
                             </div>
 
                             <!-- Procedure Section -->
                             <div class="mb-4">
                                 <h5>Tindakan</h5>
                                 <div class="row g-2">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <select class="form-select" wire:model="formData.tindakan">
                                             <option value="">Pilih Tindakan</option>
                                             <option value="Pemeriksaan Fisik">Pemeriksaan Fisik</option>
                                             <option value="Konsultasi">Konsultasi</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-primary w-100">Cari</button>
-                                    </div>
                                 </div>
-                                @if($formData['tindakan'])
-                                <div class="mt-2">
-                                    <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                        <strong>{{ $formData['tindakan'] }}</strong> - Kode ICD 9 CM:
-                                        @if($formData['tindakan'] == 'Pemeriksaan Fisik')
-                                        89.7
-                                        @elseif($formData['tindakan'] == 'Konsultasi')
-                                        89.05
-                                        @endif
-                                    </div>
-                                </div>
-                                @endif
                             </div>
 
                             <!-- Medicine Section -->
                             <div class="mb-4">
                                 <h5>Obat</h5>
                                 <div class="row g-2">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <select class="form-select" wire:model="formData.obat">
                                             <option value="">Jenis Obat</option>
-                                            <option value="Paracetamol">Paracetamol</option>
-                                            <option value="Amoxicillin">Amoxicillin</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-primary w-100">Cari</button>
-                                    </div>
                                 </div>
-                                @if($formData['obat'])
-                                <div class="mt-2">
-                                    <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                        <strong>{{ $formData['obat'] }}</strong>
-                                        @if($formData['obat'] == 'Paracetamol')
-                                        - 500mg
-                                        @elseif($formData['obat'] == 'Amoxicillin')
-                                        - 250mg
-                                        @endif
-                                    </div>
-                                </div>
-                                @endif
                             </div>
 
-                            <!-- Additional Examinations and Care Class -->
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <h5>Pemeriksaan Penunjang</h5>
@@ -219,18 +161,6 @@ new class extends Component {
                                         <option value="Laboratorium">Laboratorium</option>
                                         <option value="Radiologi">Radiologi</option>
                                     </select>
-                                    @if(count($formData['pemeriksaanPenunjang']) > 0)
-                                    <div class="mt-2">
-                                        @foreach($formData['pemeriksaanPenunjang'] as $index => $pemeriksaan)
-                                        <div
-                                            class="bg-primary bg-opacity-10 p-2 rounded mb-2 d-flex justify-content-between align-items-center">
-                                            <span>{{ $pemeriksaan }}</span>
-                                            <button type="button" class="btn btn-sm btn-close"
-                                                wire:click="removePemeriksaan({{ $index }})"></button>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                    @endif
                                 </div>
 
                                 <div class="col-md-6">
@@ -241,33 +171,6 @@ new class extends Component {
                                         <option value="Kelas 2">Kelas 2</option>
                                         <option value="Kelas 3">Kelas 3</option>
                                     </select>
-                                    @if($formData['kelasPerawatan'])
-                                    <div class="mt-2">
-                                        <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kelas" id="kelas1"
-                                                    value="Kelas 1" wire:model="formData.kelasPerawatan">
-                                                <label class="form-check-label" for="kelas1">
-                                                    Kelas 1
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kelas" id="kelas2"
-                                                    value="Kelas 2" wire:model="formData.kelasPerawatan">
-                                                <label class="form-check-label" for="kelas2">
-                                                    Kelas 2
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kelas" id="kelas3"
-                                                    value="Kelas 3" wire:model="formData.kelasPerawatan">
-                                                <label class="form-check-label" for="kelas3">
-                                                    Kelas 3
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>

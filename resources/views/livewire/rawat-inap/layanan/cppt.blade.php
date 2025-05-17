@@ -1,22 +1,32 @@
 <?php
+use App\Models\CPPT;
 use App\Models\Pendaftaran;
-
-
 use Livewire\Volt\Component;
 
 new class extends Component {
     public $pendaftaranId;
     public $pendaftaran;
+    public $cppts;
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::find($pendaftaranId);
-        dd($this->pendaftaran->poli_rawat_inap);
+        $this->loadCppts();
     }
 
-    public function openCpptModal()
-    {
-        $this->dispatch('open-cppt-modal');
+    public function loadCppts() {
+        $this->cppts = CPPT::where('id_pendaftaran', $this->pendaftaranId)
+            ->with(['icd10', 'icd9', 'obat'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function openCpptModal($cpptId = null) {
+        $this->dispatch('open-cppt-modal', cpptId: $cpptId);
+    }
+
+    public function onCpptSaved() {
+        $this->loadCppts();
     }
 };
 ?>
@@ -39,21 +49,37 @@ new class extends Component {
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td>dr.Jeno Sp.J</td>
-                            <td>RUJUK LAB</td>
-                            <td>dr.Jeno Sp.J</td>
-                            <td>
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-sm btn-primary rounded-circle me-1">
-                                        <i class="bi bi-file-text"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        @forelse($cppts as $index => $cppt)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $cppt->created_at->format('d/m/Y H:i') }}</td>
+                                <td>{{ $cppt->pendaftaran->dokter->nama ?? '-' }}</td>
+                                <td>
+                                    @if($cppt->icd10)
+                                        Diagnosis: {{ $cppt->icd10->kode }} - {{ $cppt->icd10->nama_penyakit }}<br>
+                                    @endif
+                                    @if($cppt->icd9)
+                                        Tindakan: {{ $cppt->icd9->kode }} - {{ $cppt->icd9->deskripsi }}<br>
+                                    @endif
+                                    @if($cppt->pemeriksaan)
+                                        Pemeriksaan: {{ $cppt->pemeriksaan }}<br>
+                                    @endif
+                                </td>
+                                <td>{{ auth()->user()->name }}</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-sm btn-primary rounded-circle me-1"
+                                            wire:click="openCpptModal({{ $cppt->id }})">
+                                            <i class="bi bi-file-text"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Tidak ada data CPPT</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -66,5 +92,7 @@ new class extends Component {
         </button>
     </div>
 
-    @livewire('rawat-inap.layanan.cppt-modal', ['pendaftaranId' => $pendaftaranId], key('cppt-modal-'.$pendaftaranId))
+    @livewire('rawat-inap.layanan.cppt-modal', [
+        'pendaftaranId' => $pendaftaranId
+    ], key('cppt-modal-'.$pendaftaranId))
 </div>
