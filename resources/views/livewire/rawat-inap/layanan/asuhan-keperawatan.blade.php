@@ -1358,19 +1358,22 @@ new class extends Component {
                             </div>
                         </div>
 
-                        <!-- Footer -->
-                        <div class="row mt-4 mb-5">
-                            <div class="col-md-8 offset-md-2 text-center">
-                                <p>Jember, ................................20......</p>
-                                <p>Petugas yang mengisi,</p>
-                                <div class="border rounded mx-auto my-3" style="width: 150px; height: 100px;"></div>
+                        <div class="d-flex justify-content-end">
+                            <div class="row mt-4 mb-5" style="width: fit-content;">
+                                <div class="col text-center">
+                                    <p>Jember, ................................20......</p>
+                                    <p>Petugas yang mengisi,</p>
+                                    <div class="border rounded mx-auto my-3" style="width: 150px; height: 100px;"></div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Submit Button -->
-                        <div class="d-grid gap-2 col-md-4 mx-auto mb-5">
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                        <div class="d-flex justify-content-end mb-5">
+                            <div class="d-grid gap-2" style="width: 150px;">
+                                <button class="btn btn-primary" type="submit">Simpan</button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
