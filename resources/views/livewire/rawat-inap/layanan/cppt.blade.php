@@ -70,9 +70,11 @@ new class extends Component {
                                 <td>{{ $pendaftaran->poli_rawat_inap->informed_consent->dokter->nama }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn btn-sm btn-primary rounded-circle me-1"
-                                            wire:click="openCpptModal({{ $cppt->id }})">
+                                        <button class="btn btn-sm btn-primary rounded-circle me-1">
                                             <i class="bi bi-file-text"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-primary rounded-circle">
+                                            <i class="bi bi-arrow-repeat"></i>
                                         </button>
                                     </div>
                                 </td>
