@@ -1,6 +1,9 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\Diagnosa;
+use App\Models\Tindakan;
+use App\Models\Obat;
 
 new class extends Component {
     protected $listeners = ['open-cppt-modal' => 'openModal'];
@@ -20,13 +23,138 @@ new class extends Component {
         'tindakan' => '',
         'tindakanCode' => '',
         'obat' => '',
-        'pemeriksaanPenunjang' => [],
+        'pemeriksaanPenunjang' => '', // Single value
         'kelasPerawatan' => ''
     ];
+
+    // Search terms for dropdowns
+    public $diagnosaSearch = '';
+    public $tindakanSearch = '';
+    public $obatSearch = '';
+
+    // Dropdown states
+    public $showDiagnosaDropdown = false;
+    public $showTindakanDropdown = false;
+    public $showObatDropdown = false;
+
+    // Selected display values
+    public $selectedDiagnosaLabel = '';
+    public $selectedTindakanLabel = '';
+    public $selectedObatLabel = '';
+
+    // Lists for dropdown options
+    public $diagnosaList = [];
+    public $tindakanList = [];
+    public $obatList = [];
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->currentTime = now()->format('H:i:s');
+    }
+
+    public function loadDiagnosaOptions() {
+        $this->diagnosaList = Diagnosa::when($this->diagnosaSearch, function($query) {
+                return $query->where('display', 'like', '%' . $this->diagnosaSearch . '%')
+                            ->orWhere('code', 'like', '%' . $this->diagnosaSearch . '%');
+            })
+            ->limit(20)
+            ->select('code', 'display')
+            ->get()
+            ->map(function($item) {
+                return [
+                    'value' => $item->code,
+                    'label' => $item->display . ' (' . $item->code . ')'
+                ];
+            })
+            ->toArray();
+    }
+
+    public function loadTindakanOptions() {
+        $this->tindakanList = Tindakan::when($this->tindakanSearch, function($query) {
+                return $query->where('display', 'like', '%' . $this->tindakanSearch . '%')
+                            ->orWhere('code', 'like', '%' . $this->tindakanSearch . '%');
+            })
+            ->limit(20)
+            ->select('code', 'display')
+            ->get()
+            ->map(function($item) {
+                return [
+                    'value' => $item->code,
+                    'label' => $item->display . ' (' . $item->code . ')'
+                ];
+            })
+            ->toArray();
+    }
+
+    public function loadObatOptions() {
+        $this->obatList = Obat::when($this->obatSearch, function($query) {
+                return $query->where('nama', 'like', '%' . $this->obatSearch . '%');
+            })
+            ->limit(20)
+            ->select('id', 'nama')
+            ->get()
+            ->map(function($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->nama
+                ];
+            })
+            ->toArray();
+    }
+
+    public function updatedDiagnosaSearch() {
+        $this->loadDiagnosaOptions();
+        $this->showDiagnosaDropdown = true;
+    }
+
+    public function updatedTindakanSearch() {
+        $this->loadTindakanOptions();
+        $this->showTindakanDropdown = true;
+    }
+
+    public function updatedObatSearch() {
+        $this->loadObatOptions();
+        $this->showObatDropdown = true;
+    }
+
+    public function selectDiagnosa($value, $label) {
+        $this->formData['diagnosa'] = $value;
+        $this->formData['diagnosaCode'] = $value;
+        $this->selectedDiagnosaLabel = $label;
+        $this->diagnosaSearch = '';
+        $this->showDiagnosaDropdown = false;
+    }
+
+    public function selectTindakan($value, $label) {
+        $this->formData['tindakan'] = $value;
+        $this->formData['tindakanCode'] = $value;
+        $this->selectedTindakanLabel = $label;
+        $this->tindakanSearch = '';
+        $this->showTindakanDropdown = false;
+    }
+
+    public function selectObat($value, $label) {
+        $this->formData['obat'] = $value;
+        $this->selectedObatLabel = $label;
+        $this->obatSearch = '';
+        $this->showObatDropdown = false;
+    }
+
+    public function clearDiagnosa() {
+        $this->formData['diagnosa'] = '';
+        $this->formData['diagnosaCode'] = '';
+        $this->selectedDiagnosaLabel = '';
+    }
+
+    public function clearTindakan() {
+        $this->formData['tindakan'] = '';
+        $this->formData['tindakanCode'] = '';
+        $this->selectedTindakanLabel = '';
+    }
+
+    public function clearObat() {
+        $this->formData['obat'] = '';
+        $this->selectedObatLabel = '';
     }
 
     public function openModal() {
@@ -51,9 +179,18 @@ new class extends Component {
             'tindakan' => '',
             'tindakanCode' => '',
             'obat' => '',
-            'pemeriksaanPenunjang' => [],
+            'pemeriksaanPenunjang' => '',
             'kelasPerawatan' => ''
         ];
+        $this->diagnosaSearch = '';
+        $this->tindakanSearch = '';
+        $this->obatSearch = '';
+        $this->selectedDiagnosaLabel = '';
+        $this->selectedTindakanLabel = '';
+        $this->selectedObatLabel = '';
+        $this->showDiagnosaDropdown = false;
+        $this->showTindakanDropdown = false;
+        $this->showObatDropdown = false;
     }
 
     public function saveCppt() {
@@ -116,47 +253,121 @@ new class extends Component {
                             <!-- Diagnosis Section -->
                             <div class="mb-4">
                                 <h5>Diagnosa Pasien</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-12">
-                                        <select class="form-select" wire:model="formData.diagnosa">
-                                            <option value="">Pilih Diagnosa</option>
-                                            <option value="Diabetes Mellitus">Diabetes Mellitus</option>
-                                            <option value="Hipertensi">Hipertensi</option>
-                                        </select>
+                                <div class="position-relative">
+                                    @if($selectedDiagnosaLabel)
+                                    <div class="form-control d-flex justify-content-between align-items-center">
+                                        <span>{{ $selectedDiagnosaLabel }}</span>
+                                        <button type="button" class="btn-close" wire:click="clearDiagnosa"></button>
                                     </div>
+                                    @else
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Cari diagnosa..."
+                                            wire:model.debounce.300ms="diagnosaSearch"
+                                            wire:click="$set('showDiagnosaDropdown', true)"
+                                            wire:keydown.escape="$set('showDiagnosaDropdown', false)"
+                                        >
+                                    </div>
+                                    @endif
+
+                                    @if($showDiagnosaDropdown && !$selectedDiagnosaLabel && count($diagnosaList) > 0)
+                                    <div class="position-absolute w-100 mt-1 shadow bg-white rounded-2 z-index-dropdown" style="max-height: 200px; overflow-y: auto; z-index: 1000;">
+                                        @if(count($diagnosaList) > 0)
+                                            @foreach($diagnosaList as $diagnosa)
+                                            <div class="px-3 py-2 cursor-pointer hover-bg-light border-bottom" wire:click="selectDiagnosa('{{ $diagnosa['value'] }}', '{{ $diagnosa['label'] }}')">
+                                                {{ $diagnosa['label'] }}
+                                            </div>
+                                            @endforeach
+                                        @else
+                                            <div class="px-3 py-2 text-muted">No results found</div>
+                                        @endif
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
 
                             <!-- Procedure Section -->
                             <div class="mb-4">
                                 <h5>Tindakan</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-12">
-                                        <select class="form-select" wire:model="formData.tindakan">
-                                            <option value="">Pilih Tindakan</option>
-                                            <option value="Pemeriksaan Fisik">Pemeriksaan Fisik</option>
-                                            <option value="Konsultasi">Konsultasi</option>
-                                        </select>
+                                <div class="position-relative">
+                                    @if($selectedTindakanLabel)
+                                    <div class="form-control d-flex justify-content-between align-items-center">
+                                        <span>{{ $selectedTindakanLabel }}</span>
+                                        <button type="button" class="btn-close" wire:click="clearTindakan"></button>
                                     </div>
+                                    @else
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Cari tindakan..."
+                                            wire:model.debounce.300ms="tindakanSearch"
+                                            wire:click="$set('showTindakanDropdown', true)"
+                                            wire:keydown.escape="$set('showTindakanDropdown', false)"
+                                        >
+                                    </div>
+                                    @endif
+
+                                    @if($showTindakanDropdown && !$selectedTindakanLabel && count($tindakanList) > 0)
+                                    <div class="position-absolute w-100 mt-1 shadow bg-white rounded-2" style="max-height: 200px; overflow-y: auto; z-index: 1000;">
+                                        @if(count($tindakanList) > 0)
+                                            @foreach($tindakanList as $tindakan)
+                                            <div class="px-3 py-2 cursor-pointer hover-bg-light border-bottom" wire:click="selectTindakan('{{ $tindakan['value'] }}', '{{ $tindakan['label'] }}')">
+                                                {{ $tindakan['label'] }}
+                                            </div>
+                                            @endforeach
+                                        @else
+                                            <div class="px-3 py-2 text-muted">No results found</div>
+                                        @endif
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
 
                             <!-- Medicine Section -->
                             <div class="mb-4">
                                 <h5>Obat</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-12">
-                                        <select class="form-select" wire:model="formData.obat">
-                                            <option value="">Jenis Obat</option>
-                                        </select>
+                                <div class="position-relative">
+                                    @if($selectedObatLabel)
+                                    <div class="form-control d-flex justify-content-between align-items-center">
+                                        <span>{{ $selectedObatLabel }}</span>
+                                        <button type="button" class="btn-close" wire:click="clearObat"></button>
                                     </div>
+                                    @else
+                                    <div class="input-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Cari obat..."
+                                            wire:model.debounce.300ms="obatSearch"
+                                            wire:click="$set('showObatDropdown', true)"
+                                            wire:keydown.escape="$set('showObatDropdown', false)"
+                                        >
+                                    </div>
+                                    @endif
+
+                                    @if($showObatDropdown && !$selectedObatLabel && count($obatList) > 0)
+                                    <div class="position-absolute w-100 mt-1 shadow bg-white rounded-2" style="max-height: 200px; overflow-y: auto; z-index: 1000;">
+                                        @if(count($obatList) > 0)
+                                            @foreach($obatList as $obat)
+                                            <div class="px-3 py-2 cursor-pointer hover-bg-light border-bottom" wire:click="selectObat('{{ $obat['value'] }}', '{{ $obat['label'] }}')">
+                                                {{ $obat['label'] }}
+                                            </div>
+                                            @endforeach
+                                        @else
+                                            <div class="px-3 py-2 text-muted">No results found</div>
+                                        @endif
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <h5>Pemeriksaan Penunjang</h5>
-                                    <select class="form-select mb-2" wire:change="addPemeriksaan($event.target.value)">
+                                    <select class="form-select mb-2" wire:model="formData.pemeriksaanPenunjang">
                                         <option value="">Pilih Pemeriksaan</option>
                                         <option value="Laboratorium">Laboratorium</option>
                                         <option value="Radiologi">Radiologi</option>
@@ -184,4 +395,16 @@ new class extends Component {
         </div>
     </div>
     @endif
+
+    <style>
+    .cursor-pointer {
+        cursor: pointer;
+    }
+    .hover-bg-light:hover {
+        background-color: #f8f9fa;
+    }
+    .z-index-dropdown {
+        z-index: 1050;
+    }
+    </style>
 </div>
