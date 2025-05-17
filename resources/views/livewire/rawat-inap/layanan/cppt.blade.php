@@ -27,6 +27,19 @@ new class extends Component {
         $this->dispatch('open-cppt-modal', cpptId: $cpptId);
     }
 
+    public function duplicateCppt($cpptId) {
+        $original = CPPT::find($cpptId);
+
+        if ($original) {
+            $duplicate = $original->replicate();
+            $duplicate->created_at = now();
+            $duplicate->save();
+
+            $this->loadCppts();
+            $this->dispatch('notify', type: 'success', message: 'CPPT berhasil diduplikasi');
+        }
+    }
+
     public function onCpptSaved() {
         $this->loadCppts();
     }
@@ -75,7 +88,10 @@ new class extends Component {
                                             wire:click="$emit('showCpptDetail', '{{ $cppt->created_at->format('Y-m-d') }}')">
                                             <i class="bi bi-file-text"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-primary rounded-circle">
+                                        <button
+                                            class="btn btn-sm btn-primary rounded-circle"
+                                            wire:click="duplicateCppt('{{ $cppt->id }}')"
+                                            wire:confirm="Apakah Anda yakin ingin menduplikasi CPPT ini?">
                                             <i class="bi bi-arrow-repeat"></i>
                                         </button>
                                     </div>
