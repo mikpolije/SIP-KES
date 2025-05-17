@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         Dokter::factory(100)->create();
         try {
             DB::unprepared(file_get_contents(database_path('icd10.sql')));
+            DB::unprepared(file_get_contents(database_path('icd9.sql')));
         } catch (\Throwable $th) {
             throw $th;
         }
