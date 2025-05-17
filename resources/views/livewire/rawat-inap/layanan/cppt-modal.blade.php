@@ -395,16 +395,4 @@ new class extends Component {
         </div>
     </div>
     @endif
-
-    <style>
-    .cursor-pointer {
-        cursor: pointer;
-    }
-    .hover-bg-light:hover {
-        background-color: #f8f9fa;
-    }
-    .z-index-dropdown {
-        z-index: 1050;
-    }
-    </style>
 </div>
