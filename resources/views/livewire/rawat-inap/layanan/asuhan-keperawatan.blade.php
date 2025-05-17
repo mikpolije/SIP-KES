@@ -1,12 +1,31 @@
 <?php
 
+use App\Models\Pendaftaran;
 use Livewire\Volt\Component;
 
 new class extends Component {
     public $pendaftaranId;
+    public $pendaftaran;
+
+    public $nama;
+    public $noRM;
+    public $lahirTahun;
+    public $lahirBulan;
+    public $lahirHari;
+    public $tglDaftar;
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
+        $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
+
+        if ($this->pendaftaran) {
+            $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
+            $this->noRM = $this->pendaftaran->data_pasien->no_rm;
+            $this->lahirTahun = $this->pendaftaran->data_pasien->tahun_lahir;
+            $this->lahirBulan = $this->pendaftaran->data_pasien->bulan_lahir;
+            $this->lahirHari = $this->pendaftaran->data_pasien->hari_lahir;
+            $this->tglDaftar = $this->pendaftaran->created_at->format('Y-m-d');
+        }
     }
 }; ?>
 
@@ -21,7 +40,7 @@ new class extends Component {
                                 <div class="row">
                                     <label class="col-2 col-form-label">Nama</label>
                                     <div class="col-10">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" wire:model="nama" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -29,7 +48,7 @@ new class extends Component {
                                 <div class="row">
                                     <label class="col-2 col-form-label">No. RM</label>
                                     <div class="col-10">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" wire:model="noRM" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -43,19 +62,19 @@ new class extends Component {
                                     <div class="col-10">
                                         <div class="row">
                                             <div class="col-3">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" wire:model="lahirTahun" disabled>
                                             </div>
                                             <div class="col-3">
                                                 <span class="form-text">Tahun</span>
                                             </div>
                                             <div class="col-3">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" wire:model="lahirBulan" disabled>
                                             </div>
                                             <div class="col-3">
                                                 <span class="form-text">Bulan</span>
                                             </div>
                                             <div class="col-3">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" wire:model="lahirHari" disabled>
                                             </div>
                                             <div class="col-3">
                                                 <span class="form-text">Hari</span>
@@ -68,7 +87,7 @@ new class extends Component {
                                 <div class="row">
                                     <label class="col-2 col-form-label">Tanggal</label>
                                     <div class="col-10">
-                                        <input type="date" class="form-control">
+                                        <input type="date" class="form-control" wire:model="tglDaftar" disabled>
                                     </div>
                                 </div>
                             </div>
