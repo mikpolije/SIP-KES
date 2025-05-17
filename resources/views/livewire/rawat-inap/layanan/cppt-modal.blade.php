@@ -320,12 +320,21 @@ new class extends Component {
 
                                 <div class="col-md-6">
                                     <h5>Kelas Perawatan</h5>
-                                    <select class="form-select mb-2" wire:model="formData.kelasPerawatan">
-                                        <option value="">Pilih Kelas</option>
-                                        <option value="Kelas 1">Kelas 1</option>
-                                        <option value="Kelas 2">Kelas 2</option>
-                                        <option value="Kelas 3">Kelas 3</option>
-                                    </select>
+                    <div class="border rounded p-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1">
+                            <label class="form-check-label" for="1">Kelas 1</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2">
+                            <label class="form-check-label" for="2">Kelas 2</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3">
+                            <label class="form-check-label" for="3">Kelas 3</label>
+                        </div>
+                    </div>
+                    @error('kelasPerawatan') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
