@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LayananPendaftaran extends Model
 {
@@ -12,13 +11,13 @@ class LayananPendaftaran extends Model
 
     protected $guarded = ['id'];
 
-    public function layanan(): HasMany
+    public function layanan(): BelongsTo
     {
-        return $this->hasMany(Layanan::class, 'id_layanan');
+        return $this->belongsTo(Layanan::class, 'id_layanan', 'id');
     }
 
     public function pendaftaran(): BelongsTo
     {
-        return $this->belongsTo(Pendaftaran::class, 'id_layanan');
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 }

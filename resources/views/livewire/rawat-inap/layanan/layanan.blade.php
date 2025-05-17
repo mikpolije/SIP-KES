@@ -1,43 +1,59 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\LayananPendaftaran;
 use App\Models\Layanan;
+use Livewire\WithPagination;
 
 new class extends Component {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $pendaftaranId;
-    public $tanggal;
+    public $layananList = [];
     public $search = '';
     public $perPage = 10;
-    public $selectedLayanan = [];
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
-        $this->tanggal = now()->format('Y-m-d');
+        $this->loadLayananPendaftaran();
     }
 
-    public function pilihLayanan($layananId)
-    {
-        $this->selectedLayanan[] = $layananId;
+    public function loadLayananPendaftaran() {
+        if ($this->pendaftaranId) {
+            $this->layananList = LayananPendaftaran::with('layanan')
+                ->where('id_pendaftaran', $this->pendaftaranId)
+                ->get();
+        }
     }
 
-    public function hapusLayanan($index)
-    {
-        unset($this->selectedLayanan[$index]);
-        $this->selectedLayanan = array_values($this->selectedLayanan);
+    public function getLayananModalDataProperty() {
+        $query = Layanan::query();
+
+        if ($this->search) {
+            $query->where('nama_layanan', 'like', '%'.$this->search.'%');
+        }
+
+        return $query->paginate($this->perPage);
     }
 
-    public function simpan()
-    {
-        session()->flash('message', 'Layanan berhasil disimpan');
+    public function selectLayanan($layananId) {
+        LayananPendaftaran::create([
+            'id_pendaftaran' => $this->pendaftaranId,
+            'id_layanan' => $layananId
+        ]);
+
+        $this->loadLayananPendaftaran();
+        $this->dispatch('hide-modal', modal: 'layananModal');
     }
 
-    public function getLayananProperty()
-    {
-        return Layanan::when($this->search, function($query) {
-            $query->where('nama_layanan', 'like', '%'.$this->search.'%')
-                  ->orWhere('id', 'like', '%'.$this->search.'%');
-        })
-        ->paginate($this->perPage);
+    public function updatedSearch() {
+        $this->resetPage();
+    }
+
+    public function updatedPerPage() {
+        $this->resetPage();
     }
 }; ?>
 
@@ -47,7 +63,7 @@ new class extends Component {
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal" wire:model="tanggal">
+                    <input type="date" class="form-control" id="tanggal">
                 </div>
             </div>
             <div class="col-md-6 d-flex justify-content-end align-items-end">
@@ -63,36 +79,25 @@ new class extends Component {
                     <tr>
                         <th>ID Layanan</th>
                         <th>Nama Layanan</th>
-                        <th>Tarif</th>
-                        <th>Action</th>
+                        <th>Harga Layanan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($selectedLayanan as $index => $layananId)
-                        @php
-                            $layanan = App\Models\Layanan::find($layananId);
-                        @endphp
+                    @if(count($layananList) > 0)
+                        @foreach($layananList as $item)
+                            <tr>
+                                <td>{{ $item->layanan->id ?? '' }}</td>
+                                <td>{{ $item->layanan->nama_layanan ?? '' }}</td>
+                                <td>{{ $item->layanan->tarif_layanan ?? '' }}</td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{ $layanan->id }}</td>
-                            <td>{{ $layanan->nama_layanan }}</td>
-                            <td>Rp {{ number_format($layanan->tarif_layanan, 0, ',', '.') }},-</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm" wire:click="hapusLayanan({{ $index }})">
-                                    Hapus
-                                </button>
-                            </td>
+                            <td colspan="3" class="text-center">Tidak Ada Data</td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="text-center">Tidak Ada Data</td>
-                        </tr>
-                    @endforelse
+                    @endif
                 </tbody>
             </table>
-        </div>
-
-        <div class="d-flex justify-content-end mt-4">
-            <button class="btn btn-primary" wire:click="simpan">Simpan</button>
         </div>
     </div>
 
@@ -108,7 +113,7 @@ new class extends Component {
                         <div class="col-md-6">
                             <div class="d-flex align-items-center">
                                 <label class="me-2">Tampilkan</label>
-                                <select class="form-select form-select-sm" style="width: 70px;" wire:model="perPage">
+                                <select class="form-select form-select-sm" style="width: 70px;" wire:model.live="perPage">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -120,7 +125,7 @@ new class extends Component {
                         <div class="col-md-6 text-end">
                             <div class="d-flex justify-content-end">
                                 <label class="me-2 align-self-center">Cari:</label>
-                                <input type="search" class="form-control form-control-sm" style="width: 200px;" wire:model="search">
+                                <input type="search" class="form-control form-control-sm" style="width: 200px;" wire:model.live.debounce.300ms="search">
                             </div>
                         </div>
                     </div>
@@ -129,26 +134,24 @@ new class extends Component {
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID Layanan</th>
+                                    <th>ID</th>
                                     <th>Nama Layanan</th>
                                     <th>Tarif</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($this->layanan as $item)
-                                <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nama_layanan }}</td>
-                                    <td>Rp {{ number_format($item->tarif_layanan, 0, ',', '.') }},-</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm"
-                                                wire:click="pilihLayanan('{{ $item->id }}')"
-                                                @if(in_array($item->id, $selectedLayanan)) disabled @endif>
-                                            Pilih
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach($this->layananModalData as $layanan)
+                                    <tr>
+                                        <td>{{ $layanan->id }}</td>
+                                        <td>{{ $layanan->nama_layanan }}</td>
+                                        <td>Rp {{ number_format($layanan->tarif_layanan, 0, ',', '.') }},-</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" wire:click="selectLayanan({{ $layanan->id }})">
+                                                Pilih
+                                            </button>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -156,10 +159,12 @@ new class extends Component {
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Menampilkan {{ $this->layanan->firstItem() }} sampai {{ $this->layanan->lastItem() }} dari {{ $this->layanan->total() }} entri</p>
+                            <p>Menampilkan {{ $this->layananModalData->firstItem() ?? 0 }} hingga {{ $this->layananModalData->lastItem() ?? 0 }} dari {{ $this->layananModalData->total() }} entri</p>
                         </div>
                         <div class="col-md-6">
-                            {{ $this->layanan->links('livewire::simple-bootstrap') }}
+                            <div class="pagination-container">
+                                {{ $this->layananModalData->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
