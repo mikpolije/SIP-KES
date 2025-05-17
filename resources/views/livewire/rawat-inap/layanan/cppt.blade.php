@@ -58,13 +58,13 @@ new class extends Component {
                                 <td>{{ $pendaftaran->poli_rawat_inap->informed_consent->dokter->nama }}</td>
                                 <td>
                                     @if($cppt->icd10)
-                                        Diagnosis: {{ $cppt->icd10->kode }} - {{ $cppt->icd10->nama_penyakit }}<br>
+                                        Diagnosis: {{ $cppt->icd10->code }} - {{ $cppt->icd10->display }}<br>
                                     @endif
                                     @if($cppt->icd9)
-                                        Tindakan: {{ $cppt->icd9->kode }} - {{ $cppt->icd9->deskripsi }}<br>
+                                        Tindakan: {{ $cppt->icd9->code }} - {{ $cppt->icd9->display }}<br>
                                     @endif
                                     @if($cppt->pemeriksaan)
-                                        Pemeriksaan: {{ $cppt->pemeriksaan }}<br>
+                                        {{ $cppt->pemeriksaan }}<br>
                                     @endif
                                 </td>
                                 <td>{{ $pendaftaran->poli_rawat_inap->informed_consent->dokter->nama }}</td>
