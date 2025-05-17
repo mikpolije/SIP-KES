@@ -137,6 +137,16 @@ new class extends Component {
             $this->berat_badan_naik = $this->existingAskep->berat_badan_naik;
             $this->minum = $this->existingAskep->minum;
             $this->kebutuhan_cairan_lain = $this->existingAskep->kebutuhan_cairan_lain;
+
+            $this->frekuensi_bab = $this->existingAskep->frekuensi_bab;
+            $this->frekuensi_bab_bau = $this->existingAskep->frekuensi_bab_bau;
+            $this->frekuensi_bab_konsistensi = $this->existingAskep->frekuensi_bab_konsistensi;
+            $this->frekuensi_bab_terakhir = $this->existingAskep->frekuensi_bab_terakhir;
+            $this->frekuensi_bab_warna = $this->existingAskep->frekuensi_bab_warna;
+
+            $this->frekuensi_bak = $this->existingAskep->frekuensi_bak;
+            $this->frekuensi_bak_jumlah = $this->existingAskep->frekuensi_bak_jumlah;
+            $this->frekuensi_bak_lain = $this->existingAskep->frekuensi_bak_lain;
         }
     }
 }; ?>
@@ -594,7 +604,7 @@ new class extends Component {
                                                                 <span class="form-text">x / hari : jumlah</span>
                                                             </div>
                                                             <div class="col-3">
-                                                                <input type="text" class="form-control form-control-sm" wire:model="jumlah_bak">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="frekuensi_bak_jumlah">
                                                             </div>
                                                             <div class="col-2">
                                                                 <span class="form-text">cc</span>
@@ -610,7 +620,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-5">Lain-lain</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="frekuensi_bak_lain">
                                                     </div>
                                                 </div>
                                             </div>
@@ -623,13 +633,13 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="frekuensi_bab">
                                                             </div>
                                                             <div class="col-3">
                                                                 <span class="form-text">x / hari : Warna</span>
                                                             </div>
                                                             <div class="col-6">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="frekuensi_bab_warna">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -642,7 +652,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-5">Bau</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="frekuensi_bab_bau">
                                                     </div>
                                                 </div>
                                             </div>
@@ -653,7 +663,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-5">Konsistensi</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="frekuensi_bab_konsistensi">
                                                     </div>
                                                 </div>
                                             </div>
@@ -664,7 +674,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-5">Tgl. Terakhir BAB</div>
                                                     <div class="col-8">
-                                                        <input type="date" class="form-control form-control-sm">
+                                                        <input type="date" class="form-control form-control-sm" wire:model="frekuensi_bab_terakhir">
                                                     </div>
                                                 </div>
                                             </div>
