@@ -19,26 +19,21 @@ new class extends Component {
             'a' => '',
             'p' => ''
         ],
-        'diagnosa' => '',
-        'diagnosaCode' => '',
-        'tindakan' => '',
-        'tindakanCode' => '',
-        'obat' => '',
+        'id_icd10' => null,  // Changed from diagnosaCode
+        'id_icd9' => null,   // Changed from tindakanCode
+        'id_obat' => null,
         'pemeriksaanPenunjang' => '',
         'kelasPerawatan' => ''
     ];
 
-    // Lists for dropdown options
     public $diagnosaList = [];
     public $tindakanList = [];
     public $obatList = [];
 
-    // Search terms for dropdowns
     public $diagnosaSearch = '';
     public $tindakanSearch = '';
     public $obatSearch = '';
 
-    // Loading states
     public $loadingDiagnosa = false;
     public $loadingTindakan = false;
     public $loadingObat = false;
@@ -47,7 +42,6 @@ new class extends Component {
         $this->pendaftaranId = $pendaftaranId;
         $this->currentTime = now()->format('H:i:s');
 
-        // Load initial options
         $this->loadDiagnosaOptions();
         $this->loadTindakanOptions();
         $this->loadObatOptions();
@@ -60,7 +54,6 @@ new class extends Component {
                             ->orWhere('code', 'like', '%' . $this->diagnosaSearch . '%');
             })
             ->limit(20)
-            ->select('code', 'display')
             ->get()
             ->map(function($item) {
                 return [
@@ -79,7 +72,6 @@ new class extends Component {
                             ->orWhere('code', 'like', '%' . $this->tindakanSearch . '%');
             })
             ->limit(20)
-            ->select('code', 'display')
             ->get()
             ->map(function($item) {
                 return [
@@ -97,7 +89,6 @@ new class extends Component {
                 return $query->where('nama', 'like', '%' . $this->obatSearch . '%');
             })
             ->limit(20)
-            ->select('id', 'nama')
             ->get()
             ->map(function($item) {
                 return [
@@ -138,11 +129,9 @@ new class extends Component {
                 'a' => '',
                 'p' => ''
             ],
-            'diagnosa' => '',
-            'diagnosaCode' => '',
-            'tindakan' => '',
-            'tindakanCode' => '',
-            'obat' => '',
+            'id_icd10' => null,
+            'id_icd9' => null,
+            'id_obat' => null,
             'pemeriksaanPenunjang' => '',
             'kelasPerawatan' => ''
         ];
@@ -157,15 +146,25 @@ new class extends Component {
     }
 
     public function saveCppt() {
+        $this->validate([
+            'formData.soap.s' => 'required',
+            'formData.soap.o' => 'required',
+            'formData.soap.a' => 'required',
+            'formData.soap.p' => 'required',
+            'formData.id_icd10' => 'nullable|exists:icd10,id',
+            'formData.id_icd9' => 'nullable|exists:icd9,id',
+            'formData.id_obat' => 'nullable|exists:obat,id',
+        ]);
+
         CPPT::create([
             'id_pendaftaran' => $this->pendaftaranId,
             's' => $this->formData['soap']['s'],
             'o' => $this->formData['soap']['o'],
             'a' => $this->formData['soap']['a'],
             'p' => $this->formData['soap']['p'],
-            'id_icd10' => $this->formData['diagnosaCode'] ?: null,
-            'id_icd9' => $this->formData['tindakanCode'] ?: null,
-            'id_obat' => $this->formData['obat'] ?: null,
+            'id_icd10' => $this->formData['id_icd10'],
+            'id_icd9' => $this->formData['id_icd9'],
+            'id_obat' => $this->formData['id_obat'],
             'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
             'kelas_perawatan' => $this->formData['kelasPerawatan'],
         ]);
@@ -174,31 +173,7 @@ new class extends Component {
         $this->dispatch('cppt-added');
         $this->dispatch('alert', type: 'success', message: 'CPPT berhasil disimpan!');
     }
-
-    public function updatedFormDataDiagnosa($value) {
-        if ($value) {
-            $diagnosa = Diagnosa::where('code', $value)->first();
-            if ($diagnosa) {
-                $this->formData['diagnosaCode'] = $diagnosa->id;
-            }
-        } else {
-            $this->formData['diagnosaCode'] = '';
-        }
-    }
-
-    public function updatedFormDataTindakan($value) {
-        if ($value) {
-            $tindakan = Tindakan::where('code', $value)->first();
-            if ($tindakan) {
-                $this->formData['tindakanCode'] = $tindakan->id;
-            }
-        } else {
-            $this->formData['tindakanCode'] = '';
-        }
-    }
-
 } ?>
-
 <div>
     <!-- CPPT Form Modal -->
     @if($showModal)
@@ -254,7 +229,7 @@ new class extends Component {
                         <div class="col-md-7">
                             <!-- Diagnosis Section -->
                             <div class="mb-4">
-                                <h5>Diagnosa Pasien</h5>
+                                <h5>Diagnosa Pasien (ICD-10)</h5>
                                 <div class="input-group mb-2">
                                     <input
                                         type="text"
@@ -262,24 +237,26 @@ new class extends Component {
                                         placeholder="Cari diagnosa..."
                                         wire:model.live.debounce.500ms="diagnosaSearch"
                                     >
-                                    @if($loadingDiagnosa)
                                     <span class="input-group-text">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @if($loadingDiagnosa)
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @else
+                                            <i class="fas fa-search"></i>
+                                        @endif
                                     </span>
-                                    @endif
                                 </div>
-                                <select class="form-select" wire:model="formData.diagnosa">
+                                <select class="form-select" wire:model="formData.id_icd10">
                                     <option value="">Pilih Diagnosa</option>
                                     @foreach($diagnosaList as $diagnosa)
                                     <option value="{{ $diagnosa['value'] }}">{{ $diagnosa['label'] }}</option>
                                     @endforeach
                                 </select>
-                                @error('formData.diagnosa') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                @error('formData.id_icd10') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Procedure Section -->
                             <div class="mb-4">
-                                <h5>Tindakan</h5>
+                                <h5>Tindakan (ICD-9)</h5>
                                 <div class="input-group mb-2">
                                     <input
                                         type="text"
@@ -287,18 +264,21 @@ new class extends Component {
                                         placeholder="Cari tindakan..."
                                         wire:model.live.debounce.500ms="tindakanSearch"
                                     >
-                                    @if($loadingTindakan)
                                     <span class="input-group-text">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @if($loadingTindakan)
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @else
+                                            <i class="fas fa-search"></i>
+                                        @endif
                                     </span>
-                                    @endif
                                 </div>
-                                <select class="form-select" wire:model="formData.tindakan">
+                                <select class="form-select" wire:model="formData.id_icd9">
                                     <option value="">Pilih Tindakan</option>
                                     @foreach($tindakanList as $tindakan)
                                     <option value="{{ $tindakan['value'] }}">{{ $tindakan['label'] }}</option>
                                     @endforeach
                                 </select>
+                                @error('formData.id_icd9') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Medicine Section -->
@@ -311,18 +291,21 @@ new class extends Component {
                                         placeholder="Cari obat..."
                                         wire:model.live.debounce.500ms="obatSearch"
                                     >
-                                    @if($loadingObat)
                                     <span class="input-group-text">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @if($loadingObat)
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @else
+                                            <i class="fas fa-search"></i>
+                                        @endif
                                     </span>
-                                    @endif
                                 </div>
-                                <select class="form-select" wire:model="formData.obat">
+                                <select class="form-select" wire:model="formData.id_obat">
                                     <option value="">Pilih Obat</option>
                                     @foreach($obatList as $obat)
                                     <option value="{{ $obat['value'] }}">{{ $obat['label'] }}</option>
                                     @endforeach
                                 </select>
+                                @error('formData.id_obat') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="row g-3">
