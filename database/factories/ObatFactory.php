@@ -17,13 +17,25 @@ class ObatFactory extends Factory
     public function definition(): array
     {
         $bentukObat = ['gr', 'ml', 'tablet', 'kapsul', 'botol', 'tube'];
+        $kategoriObat = [
+            'Pusing' => [3000, 15000],
+            'Demam' => [5000, 25000],
+            'Batuk' => [8000, 30000],
+            'Flu' => [10000, 40000],
+            'Asam Lambung' => [15000, 50000],
+            'Vitamin' => [5000, 100000],
+            'Antibiotik' => [20000, 150000],
+        ];
+
+        $kategori = $this->faker->randomElement(array_keys($kategoriObat));
+        $hargaRange = $kategoriObat[$kategori];
 
         return [
-            'nama' => $this->faker->unique()->word(),
-            'keterangan' => $this->faker->sentence(),
-            'stok' => $this->faker->numberBetween(0, 1000),
+            'nama' => $kategori . ' ' . $this->faker->unique()->word(),
+            'keterangan' => 'Obat untuk mengatasi ' . strtolower($kategori),
+            'stok' => $this->faker->numberBetween(10, 500),
             'bentuk_obat' => $this->faker->randomElement($bentukObat),
-            'harga' => $this->faker->randomFloat(2, 1000, 1000000),
+            'harga' => $this->faker->numberBetween($hargaRange[0], $hargaRange[1]),
         ];
     }
 }
