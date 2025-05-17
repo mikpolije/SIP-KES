@@ -40,8 +40,8 @@ new class extends Component {
                 <table class="table table-hover align-middle mb-0">
                     <thead class="bg-light">
                         <tr>
-                            <th scope="col">NO <span class="text-primary">*</span></th>
-                            <th scope="col">TANGGAL VISIT</th>
+                            <th scope="col">NO</th>
+                            <th scope="col">TGL VISIT</th>
                             <th scope="col">DPJP</th>
                             <th scope="col">KETERANGAN</th>
                             <th scope="col">OLEH</th>
@@ -70,7 +70,9 @@ new class extends Component {
                                 <td>{{ $pendaftaran->poli_rawat_inap->informed_consent->dokter->nama }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn btn-sm btn-primary rounded-circle me-1">
+                                        <button
+                                            class="btn btn-sm btn-primary rounded-circle me-1"
+                                            wire:click="$emit('showCpptDetail', '{{ $cppt->created_at->format('Y-m-d') }}')">
                                             <i class="bi bi-file-text"></i>
                                         </button>
                                         <button class="btn btn-sm btn-primary rounded-circle">
