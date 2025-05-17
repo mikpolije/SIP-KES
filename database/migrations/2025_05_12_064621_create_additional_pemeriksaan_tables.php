@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignIdFor(Layanan::class, 'id_layanan')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
+            $table->timestamps();
         });
 
         Schema::create('obat_pendaftaran', function (Blueprint $table) {
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->foreignIdFor(Obat::class, 'id_obat')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
+            $table->timestamps();
         });
 
         Schema::create('laboratorium_pendaftaran', function (Blueprint $table) {
@@ -39,6 +41,7 @@ return new class extends Migration
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->timestamps();
         });
 
         Schema::create('radiologi_pendaftaran', function (Blueprint $table) {
@@ -46,6 +49,7 @@ return new class extends Migration
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+            $table->timestamps();
         });
     }
 
