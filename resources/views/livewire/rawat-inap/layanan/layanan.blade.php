@@ -28,8 +28,6 @@ new class extends Component {
 
     public function simpan()
     {
-        // Logic to save the selected services
-        // You would typically save to a pivot table here
         session()->flash('message', 'Layanan berhasil disimpan');
     }
 
