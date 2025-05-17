@@ -14,4 +14,5 @@ class PoliRawatInap extends Model
     protected $primaryKey = 'id_pendaftaran';
 
     protected $guarded = ['created_at'];
+
 }
