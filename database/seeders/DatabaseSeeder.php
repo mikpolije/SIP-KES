@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\DataPasien;
 use App\Models\Dokter;
+use App\Models\Layanan;
 use App\Models\Obat;
 use App\Models\Pendaftaran;
 use App\Models\User;
@@ -44,6 +45,7 @@ class DatabaseSeeder extends Seeder
         WaliPasien::factory(50)->create();
         Pendaftaran::factory(30)->create();
         Obat::factory()->count(50)->create();
+        Layanan::factory()->count(50)->create();
 
         User::factory()->create([
             'name' => 'Test User',
