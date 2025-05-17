@@ -19,4 +19,9 @@ class PoliRawatInap extends Model
     {
         return $this->belongsTo(InformedConsent::class, 'id_informed_consent', 'id');
     }
+
+    public function asessmen_awal()
+    {
+        return $this->belongsTo(AsessmenAwal::class, 'id_asessmen_awal', 'id');
+    }
 }

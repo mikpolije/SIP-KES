@@ -5,6 +5,7 @@ use App\Models\Diagnosa;
 use App\Models\Tindakan;
 use App\Models\Obat;
 use App\Models\CPPT;
+use App\Models\Pendaftaran;
 
 new class extends Component {
     protected $listeners = ['open-cppt-modal' => 'openModal'];
@@ -37,10 +38,16 @@ new class extends Component {
     public $loadingDiagnosa = false;
     public $loadingTindakan = false;
     public $loadingObat = false;
+    public $kelasPerawatan = '';
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->currentTime = now()->format('H:i:s');
+
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->poli_rawat_inap->kelas;
+        if($pendaftaran){
+            $this->kelasPerawatan = $pendaftaran;
+        }
 
         $this->loadDiagnosaOptions();
         $this->loadTindakanOptions();
@@ -322,15 +329,15 @@ new class extends Component {
                                     <h5>Kelas Perawatan</h5>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1" disabled>
                             <label class="form-check-label" for="1">Kelas 1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2" disabled>
                             <label class="form-check-label" for="2">Kelas 2</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3" disabled>
                             <label class="form-check-label" for="3">Kelas 3</label>
                         </div>
                     </div>
