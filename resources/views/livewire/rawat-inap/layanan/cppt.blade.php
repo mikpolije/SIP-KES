@@ -1,11 +1,17 @@
 <?php
+use App\Models\Pendaftaran;
+
+
 use Livewire\Volt\Component;
 
 new class extends Component {
     public $pendaftaranId;
+    public $pendaftaran;
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
+        $this->pendaftaran = Pendaftaran::find($pendaftaranId);
+        dd($this->pendaftaran->poli_rawat_inap);
     }
 
     public function openCpptModal()
@@ -25,7 +31,6 @@ new class extends Component {
                             <th scope="col">NO <span class="text-primary">*</span></th>
                             <th scope="col">TANGGAL VISIT</th>
                             <th scope="col">DPJP</th>
-                            <th scope="col">PERAWAT</th>
                             <th scope="col">KETERANGAN</th>
                             <th scope="col">OLEH</th>
                             <th scope="col" class="text-center">
@@ -39,7 +44,6 @@ new class extends Component {
                             <td>1</td>
                             <td></td>
                             <td>dr.Jeno Sp.J</td>
-                            <td>Jaemin S.Kep.Ns</td>
                             <td>RUJUK LAB</td>
                             <td>dr.Jeno Sp.J</td>
                             <td>
