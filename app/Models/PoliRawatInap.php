@@ -15,4 +15,8 @@ class PoliRawatInap extends Model
 
     protected $guarded = ['created_at'];
 
+    public function informed_consent()
+    {
+        return $this->belongsTo(InformedConsent::class, 'id_informed_consent', 'id');
+    }
 }
