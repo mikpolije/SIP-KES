@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\AsuhanKeperawatan;
 use App\Models\Pendaftaran;
 use Livewire\Volt\Component;
 
 new class extends Component {
     public $pendaftaranId;
     public $pendaftaran;
+    public $existingAskep;
 
     public $nama;
     public $noRM;
@@ -14,9 +16,100 @@ new class extends Component {
     public $lahirHari;
     public $tglDaftar;
 
+    public $alasanMasuk;
+    public $diagnosaMedis;
+    public $riwayatPenyakit;
+    public $sistole;
+    public $distole;
+    public $suhu;
+    public $nadi = '';
+    public $pernapasan = '';
+    public $pernapasan_lain = '';
+    public $berat_badan = '';
+    public $tinggi_badan = '';
+    public $lila = '';
+    public $bentuk_makanan = '';
+    public $minum = '';
+    public $kebutuhan_cairan_lain = '';
+    public $frekuensi_bak = '';
+    public $frekuensi_bak_jumlah = '';
+    public $frekuensi_bak_lain = '';
+    public $frekuensi_bab = '';
+    public $frekuensi_bab_warna = '';
+    public $frekuensi_bab_bau = '';
+    public $frekuensi_bab_konsistensi = '';
+    public $frekuensi_bab_terakhir = '';
+    public $gaya_berjalan_lain = '';
+    public $jumlah_tidur = '';
+    public $is_obat_tidur_note = '';
+    public $is_obat_tidur_dosis = '';
+    public $kebutuhan_aktifitas_lain = '';
+    public $kebutuhan_emosional_lain = '';
+    public $kebutuhan_penyuluhan_lain = '';
+    public $is_berbicara_note = '';
+    public $is_pembicaraan = '';
+    public $is_disorientasi_note = '';
+    public $kebutuhan_komunikasi_lain = '';
+    public $kegiatan_sehari_hari = '';
+    public $kegiatan_rumah_sakit = '';
+    public $pekerjaan = '';
+    public $resiko_jatuh_note = '';
+    public $tingkat_ketergantungan_note = '';
+    public $rontgen = '';
+    public $lab = '';
+    public $lain_lain = '';
+    public $berat_badan_naik = '';
+
+    public $is_sianosis = false;
+    public $is_nyeri_dada = false;
+    public $is_haus = false;
+    public $is_mukosa_mulut = false;
+    public $is_edema = false;
+    public $is_biasa_olahraga = false;
+    public $is_biasa_rom = false;
+    public $is_obat_tidur = false;
+    public $is_nyeri = false;
+    public $is_karaganda_turun = false;
+    public $is_pakai_alat_bantu = false;
+    public $is_wajah_tegang = false;
+    public $is_kontak_mata = false;
+    public $is_bingung = false;
+    public $is_perasaan_tidak_mampu = false;
+    public $is_perasaan_tidak_berharga = false;
+    public $is_kritik_diri = false;
+    public $is_pengetahuan_penyakit = false;
+    public $is_pengetahuan_makanan = false;
+    public $is_pengetahuan_obat = false;
+    public $is_penglihatan = false;
+    public $is_pendengaran = false;
+    public $is_penciuman = false;
+    public $is_pengecapan = false;
+    public $is_perabaan = false;
+    public $is_berbicara = false;
+    public $is_disorientasi = false;
+    public $is_menarik_diri = false;
+    public $is_apatis = false;
+    public $is_punya_asuransi_kesehatan = false;
+
+    public $can_mandi = false;
+    public $can_mandi_dibantu = '';
+    public $can_berpakaian = false;
+    public $can_berpakaian_dibantu = '';
+    public $can_makan = false;
+    public $can_makan_dibantu = '';
+    public $can_bab_bak = false;
+    public $can_bab_bak_dibantu = '';
+    public $can_transfering = false;
+    public $can_transfering_dibantu = '';
+
+    public $nafsu_makan = '';
+    public $turgor = '';
+    public $gaya_berjalan = '';
+
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
+        $this->existingAskep = AsuhanKeperawatan::where('id_pendaftaran', $pendaftaranId)->first();
 
         if ($this->pendaftaran) {
             $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
@@ -25,6 +118,25 @@ new class extends Component {
             $this->lahirBulan = $this->pendaftaran->data_pasien->bulan_lahir;
             $this->lahirHari = $this->pendaftaran->data_pasien->hari_lahir;
             $this->tglDaftar = $this->pendaftaran->created_at->format('Y-m-d');
+        }
+
+        if($this->existingAskep) {
+            $this->alasanMasuk = $this->existingAskep->alasan_masuk;
+            $this->diagnosaMedis = $this->existingAskep->diagnosa_medis;
+            $this->riwayatPenyakit = $this->existingAskep->riwayat_penyakit;
+            $this->sistole = $this->existingAskep->sistole;
+            $this->distole = $this->existingAskep->distole;
+            $this->suhu = $this->existingAskep->suhu;
+            $this->nadi = $this->existingAskep->nadi;
+            $this->pernapasan = $this->existingAskep->pernapasan;
+            $this->pernapasan_lain = $this->existingAskep->pernapasan_lain;
+            $this->berat_badan = $this->existingAskep->berat_badan;
+            $this->tinggi_badan = $this->existingAskep->tinggi_badan;
+            $this->lila = $this->existingAskep->lila;
+            $this->bentuk_makanan = $this->existingAskep->bentuk_makanan;
+            $this->berat_badan_naik = $this->existingAskep->berat_badan_naik;
+            $this->minum = $this->existingAskep->minum;
+            $this->kebutuhan_cairan_lain = $this->existingAskep->kebutuhan_cairan_lain;
         }
     }
 }; ?>
@@ -103,19 +215,19 @@ new class extends Component {
                                     <div class="row mb-2">
                                         <label class="col-3 col-form-label">Alasan Masuk</label>
                                         <div class="col-9">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" wire:model="alasanMasuk">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <label class="col-3 col-form-label">Diagnosa Medis</label>
                                         <div class="col-9">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" wire:model="diagnosaMedis">
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                         <label class="col-3 col-form-label">Riwayat Penyakit</label>
                                         <div class="col-9">
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" wire:model="riwayatPenyakit">
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +250,7 @@ new class extends Component {
                                                                 <span class="form-text">Sistole</span>
                                                             </div>
                                                             <div class="col-3">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="sistole">
                                                             </div>
                                                             <div class="col-2">
                                                                 <span class="form-text">mmHg</span>
@@ -149,7 +261,7 @@ new class extends Component {
                                                                 <span class="form-text">Distole</span>
                                                             </div>
                                                             <div class="col-3">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="sistole">
                                                             </div>
                                                             <div class="col-2">
                                                                 <span class="form-text">mmHg</span>
@@ -165,7 +277,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-4">2. Suhu</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="suhu">
                                                     </div>
                                                 </div>
                                             </div>
@@ -176,7 +288,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-4">3. Nadi</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="nadi">
                                                     </div>
                                                 </div>
                                             </div>
@@ -187,7 +299,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-4">4. Pernapasan</div>
                                                     <div class="col-4">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="pernapasan">
                                                     </div>
                                                     <div class="col-4">
                                                         <span class="form-text">x/mnt</span>
@@ -203,12 +315,12 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="sianosis"
-                                                                id="sianosis-ada">
+                                                                id="sianosis-ada" wire:model.live="is_sianosis">
                                                             <label class="form-check-label" for="sianosis-ada">Ada</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="sianosis"
-                                                                id="sianosis-tidak-ada">
+                                                                id="sianosis-tidak-ada" wire:model.live="is_sianosis">
                                                             <label class="form-check-label" for="sianosis-tidak-ada">Tidak
                                                                 Ada</label>
                                                         </div>
@@ -222,7 +334,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-5">Lain-lain</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="pernapasan_lain">
                                                     </div>
                                                 </div>
                                             </div>
@@ -235,12 +347,12 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="nyeri-dada"
-                                                                id="nyeri-dada-ada">
+                                                                id="nyeri-dada-ada" wire:model.live="is_nyeri_dada">
                                                             <label class="form-check-label" for="nyeri-dada-ada">Ada</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="nyeri-dada"
-                                                                id="nyeri-dada-tidak">
+                                                                id="nyeri-dada-tidak" wire:model.live="is_nyeri_dada">
                                                             <label class="form-check-label" for="nyeri-dada-tidak">Tidak</label>
                                                         </div>
                                                     </div>
@@ -260,7 +372,7 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="row">
                                                             <div class="col-2">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="berat_badan">
                                                             </div>
                                                             <div class="col-1">
                                                                 <span class="form-text">Kg</span>
@@ -269,7 +381,7 @@ new class extends Component {
                                                                 <span class="form-text">TB</span>
                                                             </div>
                                                             <div class="col-2">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="tinggi_badan">
                                                             </div>
                                                             <div class="col-1">
                                                                 <span class="form-text">Cm</span>
@@ -278,7 +390,7 @@ new class extends Component {
                                                                 <span class="form-text">LILA</span>
                                                             </div>
                                                             <div class="col-2">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="lila">
                                                             </div>
                                                             <div class="col-1">
                                                                 <span class="form-text">Cm</span>
@@ -294,7 +406,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-4">2. Bentuk Makanan</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="bentuk_makanan">
                                                     </div>
                                                 </div>
                                             </div>
@@ -307,17 +419,17 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="nafsu-makan"
-                                                                id="nafsu-makan-baik">
+                                                                id="nafsu-makan-baik" wire:model.live="nafsu_makan">
                                                             <label class="form-check-label" for="nafsu-makan-baik">Baik</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="nafsu-makan"
-                                                                id="nafsu-makan-kurang">
+                                                                id="nafsu-makan-kurang" wire:model.live="nafsu_makan">
                                                             <label class="form-check-label" for="nafsu-makan-kurang">Kurang</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="nafsu-makan"
-                                                                id="nafsu-makan-tidak-ada">
+                                                                id="nafsu-makan-tidak-ada" wire:model.live="nafsu_makan">
                                                             <label class="form-check-label" for="nafsu-makan-tidak-ada">Tidak Ada</label>
                                                         </div>
                                                     </div>
@@ -332,16 +444,16 @@ new class extends Component {
                                                     <div class="col-6">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="berat-badan"
-                                                                id="berat-badan-ya">
+                                                                id="berat-badan-ya" wire:model.live="berat_badan_naik">
                                                             <label class="form-check-label" for="berat-badan-ya">Ya</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input type="text" class="form-control form-control-sm" style="width: 60px;">
+                                                            <input type="text" class="form-control form-control-sm" style="width: 60px;" wire:model="berat_badan">
                                                             <span class="form-text ms-1">Kg</span>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="berat-badan"
-                                                                id="berat-badan-tidak">
+                                                                id="berat-badan-tidak" wire:model.live="berat_badan_naik">
                                                             <label class="form-check-label" for="berat-badan-tidak">Tidak</label>
                                                         </div>
                                                     </div>
@@ -359,7 +471,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-4">1. Minum</div>
                                                     <div class="col-4">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="minum">
                                                     </div>
                                                     <div class="col-4">
                                                         <span class="form-text">cc/ hari</span>
@@ -375,12 +487,12 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="perasaan-haus"
-                                                                id="perasaan-haus-iya">
+                                                                id="perasaan-haus-iya" wire:model.live="is_haus">
                                                             <label class="form-check-label" for="perasaan-haus-iya">Iya</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="perasaan-haus"
-                                                                id="perasaan-haus-tidak">
+                                                                id="perasaan-haus-tidak" wire:model.live="is_haus">
                                                             <label class="form-check-label" for="perasaan-haus-tidak">Tidak</label>
                                                         </div>
                                                     </div>
@@ -395,12 +507,12 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="mukosa-mulut"
-                                                                id="mukosa-mulut-kering">
+                                                                id="mukosa-mulut-kering" wire:model.live="is_mukosa_mulut">
                                                             <label class="form-check-label" for="mukosa-mulut-kering">Kering</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="mukosa-mulut"
-                                                                id="mukosa-mulut-kurang">
+                                                                id="mukosa-mulut-kurang" wire:model.live="is_mukosa_mulut">
                                                             <label class="form-check-label" for="mukosa-mulut-kurang">Kurang</label>
                                                         </div>
                                                     </div>
@@ -415,17 +527,17 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="turgor"
-                                                                id="turgor-baik">
+                                                                id="turgor-baik" wire:model.live="turgor">
                                                             <label class="form-check-label" for="turgor-baik">Baik</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="turgor"
-                                                                id="turgor-sedang">
+                                                                id="turgor-sedang" wire:model.live="turgor">
                                                             <label class="form-check-label" for="turgor-sedang">Sedang</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="turgor"
-                                                                id="turgor-kurang">
+                                                                id="turgor-kurang" wire:model.live="turgor">
                                                             <label class="form-check-label" for="turgor-kurang">Kurang</label>
                                                         </div>
                                                     </div>
@@ -440,12 +552,12 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="edema"
-                                                                id="edema-iya">
+                                                                id="edema-iya" wire:model.live="is_edema">
                                                             <label class="form-check-label" for="edema-iya">Iya</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="edema"
-                                                                id="edema-tidak">
+                                                                id="edema-tidak" wire:model.live="is_edema">
                                                             <label class="form-check-label" for="edema-tidak">Tidak</label>
                                                         </div>
                                                     </div>
@@ -458,7 +570,7 @@ new class extends Component {
                                                 <div class="row">
                                                     <div class="col-4 ps-4">6. Lain-lain</div>
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control form-control-sm">
+                                                        <input type="text" class="form-control form-control-sm" wire:model="kebutuhan_cairan_lain">
                                                     </div>
                                                 </div>
                                             </div>
@@ -476,13 +588,13 @@ new class extends Component {
                                                     <div class="col-8">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="frekuensi_bak">
                                                             </div>
                                                             <div class="col-4">
                                                                 <span class="form-text">x / hari : jumlah</span>
                                                             </div>
                                                             <div class="col-3">
-                                                                <input type="text" class="form-control form-control-sm">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="jumlah_bak">
                                                             </div>
                                                             <div class="col-2">
                                                                 <span class="form-text">cc</span>
