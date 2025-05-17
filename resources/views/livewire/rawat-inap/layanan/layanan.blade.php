@@ -14,6 +14,7 @@ new class extends Component {
     public $layananList = [];
     public $search = '';
     public $perPage = 10;
+    public $notification = null; // Added notification property
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
@@ -39,13 +40,30 @@ new class extends Component {
     }
 
     public function selectLayanan($layananId) {
+        // Get the layanan name for the notification message
+        $layanan = Layanan::find($layananId);
+
+        // Create the layanan pendaftaran record
         LayananPendaftaran::create([
             'id_pendaftaran' => $this->pendaftaranId,
             'id_layanan' => $layananId
         ]);
 
+        // Set notification message
+        $this->notification = [
+            'type' => 'success',
+            'message' => 'Layanan "' . $layanan->nama_layanan . '" berhasil ditambahkan!'
+        ];
+
+        // Reload the layanan list
         $this->loadLayananPendaftaran();
-        $this->dispatch('hide-modal', modal: 'layananModal');
+
+        // Close the modal
+        $this->dispatch('close-modal');
+    }
+
+    public function dismissNotification() {
+        $this->notification = null;
     }
 
     public function updatedSearch() {
@@ -107,8 +125,18 @@ new class extends Component {
                 <div class="modal-header">
                     <h5 class="modal-title" id="layananModalLabel">Data Layanan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
                 <div class="modal-body">
+
+                    <!-- flash notification -->
+                    @if($notification)
+                        <div class="alert alert-{{ $notification['type'] }} alert-dismissible fade show" role="alert">
+                            {{ $notification['message'] }}
+                            <button type="button" class="btn-close" wire:click="dismissNotification" aria-label="Close"></button>
+                        </div>
+                    @endif
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="d-flex align-items-center">
@@ -172,3 +200,15 @@ new class extends Component {
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:initialized', () => {
+        // Listen for the custom event to close the modal
+        Livewire.on('close-modal', () => {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('layananModal'));
+            if (modal) {
+                modal.hide();
+            }
+        });
+    });
+</script>
