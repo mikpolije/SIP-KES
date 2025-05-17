@@ -1,6 +1,7 @@
 <?php
 use App\Models\CPPT;
 use App\Models\Pendaftaran;
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -14,6 +15,7 @@ new class extends Component {
         $this->loadCppts();
     }
 
+    #[On('cppt-added')]
     public function loadCppts() {
         $this->cppts = CPPT::where('id_pendaftaran', $this->pendaftaranId)
             ->with(['icd10', 'icd9', 'obat'])
@@ -53,7 +55,7 @@ new class extends Component {
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $cppt->created_at->format('d/m/Y H:i') }}</td>
-                                <td>{{ $cppt->pendaftaran->dokter->nama ?? '-' }}</td>
+                                <td>{{ $pendaftaran->poli_rawat_inap->informed_consent->dokter->nama }}</td>
                                 <td>
                                     @if($cppt->icd10)
                                         Diagnosis: {{ $cppt->icd10->kode }} - {{ $cppt->icd10->nama_penyakit }}<br>
@@ -65,7 +67,7 @@ new class extends Component {
                                         Pemeriksaan: {{ $cppt->pemeriksaan }}<br>
                                     @endif
                                 </td>
-                                <td>{{ auth()->user()->name }}</td>
+                                <td>{{ $pendaftaran->poli_rawat_inap->informed_consent->dokter->nama }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <button class="btn btn-sm btn-primary rounded-circle me-1"

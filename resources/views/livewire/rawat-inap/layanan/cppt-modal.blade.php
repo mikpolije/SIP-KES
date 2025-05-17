@@ -4,6 +4,7 @@ use Livewire\Volt\Component;
 use App\Models\Diagnosa;
 use App\Models\Tindakan;
 use App\Models\Obat;
+use App\Models\CPPT;
 
 new class extends Component {
     protected $listeners = ['open-cppt-modal' => 'openModal'];
@@ -63,7 +64,7 @@ new class extends Component {
             ->get()
             ->map(function($item) {
                 return [
-                    'value' => $item->code,
+                    'value' => $item->id,
                     'label' => $item->display . ' (' . $item->code . ')'
                 ];
             })
@@ -82,7 +83,7 @@ new class extends Component {
             ->get()
             ->map(function($item) {
                 return [
-                    'value' => $item->code,
+                    'value' => $item->id,
                     'label' => $item->display . ' (' . $item->code . ')'
                 ];
             })
@@ -118,34 +119,6 @@ new class extends Component {
 
     public function updatedObatSearch() {
         $this->loadObatOptions();
-    }
-
-    public function updatedFormDataDiagnosa($value) {
-        if ($value) {
-            // Find the selected diagnosa from the list to set the code
-            foreach ($this->diagnosaList as $diagnosa) {
-                if ($diagnosa['value'] == $value) {
-                    $this->formData['diagnosaCode'] = $value;
-                    break;
-                }
-            }
-        } else {
-            $this->formData['diagnosaCode'] = '';
-        }
-    }
-
-    public function updatedFormDataTindakan($value) {
-        if ($value) {
-            // Find the selected tindakan from the list to set the code
-            foreach ($this->tindakanList as $tindakan) {
-                if ($tindakan['value'] == $value) {
-                    $this->formData['tindakanCode'] = $value;
-                    break;
-                }
-            }
-        } else {
-            $this->formData['tindakanCode'] = '';
-        }
     }
 
     public function openModal() {
@@ -184,8 +157,44 @@ new class extends Component {
     }
 
     public function saveCppt() {
+        CPPT::create([
+            'id_pendaftaran' => $this->pendaftaranId,
+            's' => $this->formData['soap']['s'],
+            'o' => $this->formData['soap']['o'],
+            'a' => $this->formData['soap']['a'],
+            'p' => $this->formData['soap']['p'],
+            'id_icd10' => $this->formData['diagnosaCode'] ?: null,
+            'id_icd9' => $this->formData['tindakanCode'] ?: null,
+            'id_obat' => $this->formData['obat'] ?: null,
+            'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
+            'kelas_perawatan' => $this->formData['kelasPerawatan'],
+        ]);
+
         $this->closeModal();
-        $this->dispatch('cpptAdded');
+        $this->dispatch('cppt-added');
+        $this->dispatch('alert', type: 'success', message: 'CPPT berhasil disimpan!');
+    }
+
+    public function updatedFormDataDiagnosa($value) {
+        if ($value) {
+            $diagnosa = Diagnosa::where('code', $value)->first();
+            if ($diagnosa) {
+                $this->formData['diagnosaCode'] = $diagnosa->id;
+            }
+        } else {
+            $this->formData['diagnosaCode'] = '';
+        }
+    }
+
+    public function updatedFormDataTindakan($value) {
+        if ($value) {
+            $tindakan = Tindakan::where('code', $value)->first();
+            if ($tindakan) {
+                $this->formData['tindakanCode'] = $tindakan->id;
+            }
+        } else {
+            $this->formData['tindakanCode'] = '';
+        }
     }
 
 } ?>
@@ -219,21 +228,25 @@ new class extends Component {
                             <div class="mb-3">
                                 <label class="form-label">S</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.s"></textarea>
+                                @error('formData.soap.s') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">O</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.o"></textarea>
+                                @error('formData.soap.o') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">A</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.a"></textarea>
+                                @error('formData.soap.a') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">P</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.p"></textarea>
+                                @error('formData.soap.p') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
 
@@ -261,6 +274,7 @@ new class extends Component {
                                     <option value="{{ $diagnosa['value'] }}">{{ $diagnosa['label'] }}</option>
                                     @endforeach
                                 </select>
+                                @error('formData.diagnosa') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Procedure Section -->
