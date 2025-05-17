@@ -168,7 +168,7 @@ new class extends Component {
                                 <div class="d-flex justify-content-center">
                                     <button
                                         class="btn btn-sm btn-primary rounded-circle me-1"
-                                        wire:click="$emit('showCpptDetail', '{{ $cppt->created_at->format('Y-m-d') }}')">
+                                        >
                                         <i class="bi bi-file-text"></i>
                                     </button>
                                     <button class="btn btn-sm btn-primary rounded-circle" wire:click="confirmDuplicate('{{ $cppt->id }}')">
