@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pendaftaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,9 @@ return new class extends Migration
     {
         Schema::create('asuhan_keperawatan', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
 
             // strings
             $table->string('alasan_masuk')->nullable();
