@@ -13,7 +13,7 @@ new class extends Component {
     public $pendaftaranId;
     public $layananList = [];
     public $search = '';
-    public $perPage = 10;
+    public $perPage = 7;
     public $notification = null; // Added notification property
 
     public function mount($pendaftaranId = null) {
@@ -142,8 +142,8 @@ new class extends Component {
                             <div class="d-flex align-items-center">
                                 <label class="me-2">Tampilkan</label>
                                 <select class="form-select form-select-sm" style="width: 70px;" wire:model.live="perPage">
+                                    <option value="5">5</option>
                                     <option value="10">10</option>
-                                    <option value="25">25</option>
                                     <option value="50">50</option>
                                     <option value="100">100</option>
                                 </select>
@@ -189,6 +189,8 @@ new class extends Component {
                         <div class="col-md-6">
                             <p>Menampilkan {{ $this->layananModalData->firstItem() ?? 0 }} hingga {{ $this->layananModalData->lastItem() ?? 0 }} dari {{ $this->layananModalData->total() }} entri</p>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="pagination-container">
                                 {{ $this->layananModalData->links() }}
