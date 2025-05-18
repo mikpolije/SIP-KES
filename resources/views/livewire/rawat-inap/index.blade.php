@@ -219,6 +219,7 @@ new class extends Component {
                                     <button wire:click="changeTab('pendaftaran')"
                                         class="nav-link {{ $activeTab === 'pendaftaran' ? 'active' : '' }}"
                                         type="button">
+                                        {{-- <i class="bi bi-file--check"></i> --}}
                                         Pendaftaran
                                     </button>
                                 </li>

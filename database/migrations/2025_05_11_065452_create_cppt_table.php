@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pendaftaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,21 +14,28 @@ return new class extends Migration
     {
         Schema::create('cppt', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
 
             $table->text('s')->nullable(); // Subjective
             $table->text('o')->nullable(); // Objective
             $table->text('a')->nullable(); // Assessment
             $table->text('p')->nullable(); // Plan
 
-            // foreign key ke icd10 table
-            $table->unsignedBigInteger('id_icd')->nullable();
-            $table->foreign('id_icd')
+            // diagnosis
+            $table->unsignedBigInteger('id_icd10')->nullable();
+            $table->foreign('id_icd10')
                 ->references('id')
                 ->on('icd10')
                 ->onDelete('set null');
 
             // tindakan
-            $table->text('tindakan')->nullable();
+            $table->unsignedBigInteger('id_icd9')->nullable();
+            $table->foreign('id_icd9')
+                ->references('id')
+                ->on('icd9')
+                ->onDelete('set null');
 
             // foreign key ke obat table
             $table->unsignedBigInteger('id_obat')->nullable();

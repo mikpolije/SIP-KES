@@ -184,6 +184,13 @@ return new class extends Migration
             $table->string('display');
             $table->string('version', 10);
         });
+
+        Schema::create('icd9', function (Blueprint $table) {
+            $table->id();
+            $table->string('code', 6)->unique();
+            $table->string('display');
+            $table->string('version');
+        });
     }
 
     /**

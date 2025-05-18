@@ -27,4 +27,9 @@ class InformedConsent extends Model
     {
         return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
     }
+
+    public function dokter()
+    {
+        return $this->hasOne(Dokter::class, 'id', 'id_dokter');
+    }
 }

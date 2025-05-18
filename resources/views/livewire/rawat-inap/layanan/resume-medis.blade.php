@@ -32,7 +32,15 @@ new class extends Component {
                             <div class="card-body">
                                 <div class="row mb-2">
                                     <div class="col-md-4">
-                                        <label class="form-label">Nama / No. RM</label>
+                                        <label class="form-label">Nama</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <label class="form-label">No. RM</label>
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control form-control-sm">
