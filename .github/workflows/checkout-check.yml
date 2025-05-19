@@ -8,6 +8,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Delete .env files
         run: |
-          git rm --cached .env
-          git commit -m "Automatically removed .env files" || echo "No .env files found"
-          git push
+          if git ls-files | grep -q '^\.env$'; then
+            echo "Found .env file - removing..."
+            git rm --cached .env
+            git commit -m "Automatically removed .env file"
+            git push
+          else
+            echo "✅ No exact .env file found - nothing to remove"
+          fi
