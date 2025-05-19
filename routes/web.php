@@ -26,6 +26,9 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
 // Route General Consent
 Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
 Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
+Route::get('/sign-request/{token}', [generalConsentController::class, 'showForm']);
+Route::post('/sign-request/{token}', [generalConsentController::class, 'submitForm']);
+
 
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);

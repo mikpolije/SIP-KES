@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\generalConsent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class generalConsentController extends Controller
 {
@@ -65,4 +66,59 @@ class generalConsentController extends Controller
         $data = generalConsent::findOrFail($id);
         return view('main/cetak-general-consent', compact('data'));
     }
+    public function showForm($token)
+    {
+        return view('signature.form', compact('token'));
+    }
+
+    public function submitForm(Request $request, $token)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'ttd_image' => 'required|string' // base64 PNG dari canvas
+        ]);
+
+        $nama = $request->nama;
+        $ttdBase64 = $request->ttd_image;
+
+        // Hapus prefix "data:image/png;base64,"
+        $ttdBase64 = preg_replace('/^data:image\/png;base64,/', '', $ttdBase64);
+
+        // Simpan ke storage/app/public/signatures/{token}.png
+        \Storage::disk('public')->put("signatures/{$token}.png", base64_decode($ttdBase64));
+
+        // Simpan nama ke cache
+        \Cache::put("signed_{$token}", [
+            'nama' => $nama,
+            'token' => $token
+        ], now()->addMinutes(5));
+
+        return response()->json(['message' => 'Tanda tangan berhasil disimpan']);
+    }
+
+
+    public function checkStatus($token)
+    {
+        $data = \Cache::get("signed_{$token}");
+
+        if (!$data) {
+            return response()->json(['signed' => false]);
+        }
+
+        $path = "signatures/{$token}.png";
+        if (!\Storage::disk('public')->exists($path)) {
+            return response()->json(['signed' => false]);
+        }
+
+        $image = \Storage::disk('public')->get($path);
+        $base64 = base64_encode($image);
+        $imageDataUrl = 'data:image/png;base64,' . $base64;
+
+        return response()->json([
+            'signed' => true,
+            'nama' => $data['nama'],
+            'ttd_base64' => $imageDataUrl
+        ]);
+    }
+
 }
