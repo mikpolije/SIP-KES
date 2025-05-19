@@ -8,6 +8,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Delete .env files
         run: |
+          git config --global user.email "Robot@sipkes"
+          git config --global user.name "Robot"
           if git ls-files | grep -q '^\.env$'; then
             echo "Found .env file - removing..."
             git rm --cached .env
