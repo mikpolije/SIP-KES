@@ -1,0 +1,13 @@
+name: Remove .env Files
+on: [push]
+
+jobs:
+  remove-env:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete .env files
+        run: |
+          git rm --cached .env
+          git commit -m "Automatically removed .env files" || echo "No .env files found"
+          git push
