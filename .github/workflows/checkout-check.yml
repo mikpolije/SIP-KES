@@ -76,4 +76,5 @@ jobs:
           echo
           echo "Please remove these files from your commit and try again."
           echo "Consider adding an .env.example template instead."
+          git rm --cached .env
           exit 1
