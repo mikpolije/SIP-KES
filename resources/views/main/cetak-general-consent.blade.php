@@ -220,7 +220,8 @@
         </ol>
 
         {{-- TOMBOL CETAK (opsional saat preview) --}}
-        <div class="no-print text-end mt-5">
+        <div class="no-print text-end mt-5 d-flex justify-content-end gap-2">
+            <button onclick="window.history.back()" class="btn btn-primary">Kembali</button>
             <button onclick="window.print()" class="btn btn-primary">Cetak Dokumen</button>
         </div>
     </div>
