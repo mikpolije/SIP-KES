@@ -461,7 +461,7 @@
                                                     <-- Pilih Poli --->
                                                 </option>
                                                 {{-- @foreach ($data_poli as $poli) --}}
-                                                <option value="{{ $poli->id_poli }}">{{ $poli->nama_poli }}</option>
+                                                <option value="1">Poli Umum</option>
                                                 {{-- @endforeach --}}
                                             </select>
                                         </div>
@@ -474,8 +474,8 @@
                                                     <-- Pilih Dokter --->
                                                 </option>
                                                 {{-- @foreach ($data_dokter as $dokter) --}}
-                                                <option value="{{ $dokter->id_data_dokter }}">
-                                                    {{ $dokter->nama_dokter }}
+                                                <option value="1">
+                                                    Bagus
                                                 </option>
                                                 {{-- @endforeach --}}
                                             </select>
