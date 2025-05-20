@@ -1334,7 +1334,7 @@
                                                 </tr>
                                              </table>
                                         </div>
-                                        <div class="table-body-scroll">
+                                    <div class="table-body-scroll">
                                         <table>
                                             <tr>
                                                 <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
@@ -1457,8 +1457,8 @@
                                                 </td>
                                             </tr>
                                         </table>
+                                    </div>
                                         </thead>
-                                        </div>
                                     </table>
                                 </div>
                                 </div>
