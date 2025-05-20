@@ -81,12 +81,12 @@
                                     <input class="form-control" list="noRMList" id="searchNoRM"
                                         placeholder="Ketik atau pilih No. RM">
                                     <datalist id="noRMList">
-                                        @foreach ($data_pasien as $pasien)
+                                        {{-- @foreach ($data_pasien as $pasien)
                                             <option value="{{ $pasien->no_rm }} - {{ $pasien->nama_pasien }}">
                                                 {{ $pasien->no_rm }} - {{ $pasien->nama_pasien }}
                                             </option>
                                             <!-- Bisa diisi via JavaScript juga -->
-                                        @endforeach
+                                        @endforeach --}}
                                     </datalist>
                                     <script>
                                         $(document).ready(function() {
