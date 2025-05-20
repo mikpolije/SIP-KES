@@ -57,7 +57,7 @@
                         margin-bottom: 20px;
                     }
                 </style>
-                <form action="{{ route('pendaftaran.store') }}" method="POST" class="validation-wizard wizard-circle mt-5">
+                <form action="#" method="POST" class="validation-wizard wizard-circle mt-5">
                     @csrf
                     <!-- Step 1 -->
                     <h6>Pendaftaran</h6>
