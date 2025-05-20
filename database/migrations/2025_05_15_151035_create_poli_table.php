@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('polis', function (Blueprint $table) {
-            $table->bigIncrements('id_layanan'); // ID layanan sebagai primary key
-            $table->string('nama_layanan', 100); // Nama layanan (misalnya: Poli Umum, Poli Gigi, dll)
+        Schema::create('poli', function (Blueprint $table) {
+            $table->bigIncrements('id_poli'); // ID layanan sebagai primary key
+            $table->string('nama_poli', 100); // Nama layanan (misalnya: Poli Umum, Poli Gigi, dll)
             $table->timestamps(); // created_at dan updated_at
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('polis');
+        Schema::dropIfExists('poli');
     }
 };
