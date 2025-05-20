@@ -460,9 +460,9 @@
                                                 <option value="">
                                                     <-- Pilih Poli --->
                                                 </option>
-                                                @foreach ($data_poli as $poli)
-                                                    <option value="{{ $poli->id_poli }}">{{ $poli->nama_poli }}</option>
-                                                @endforeach
+                                                {{-- @foreach ($data_poli as $poli) --}}
+                                                <option value="{{ $poli->id_poli }}">{{ $poli->nama_poli }}</option>
+                                                {{-- @endforeach --}}
                                             </select>
                                         </div>
                                     </div>
@@ -473,11 +473,11 @@
                                                 <option value="">
                                                     <-- Pilih Dokter --->
                                                 </option>
-                                                @foreach ($data_dokter as $dokter)
-                                                    <option value="{{ $dokter->id_data_dokter }}">
-                                                        {{ $dokter->nama_dokter }}
-                                                    </option>
-                                                @endforeach
+                                                {{-- @foreach ($data_dokter as $dokter) --}}
+                                                <option value="{{ $dokter->id_data_dokter }}">
+                                                    {{ $dokter->nama_dokter }}
+                                                </option>
+                                                {{-- @endforeach --}}
                                             </select>
                                         </div>
                                     </div>
