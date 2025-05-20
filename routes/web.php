@@ -50,7 +50,7 @@ use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 Route::prefix('main/poliumum')->group(function () {
     Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
-    // Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
+    Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
     Route::get('/antrean', [AntrianRiwayatController::class, 'antrean'])->name('antrean.poliumum');
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });

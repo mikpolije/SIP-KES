@@ -8,7 +8,11 @@ class PendafataranController extends Controller
 {
     public function index()
     {
-        return view('main.pendaftaran');
+        return view('main.pendaftaran', [
+            'data_pasien' => DataPasien::all(),
+            'data_dokter' => dokter::all(),
+            'data_poli' => poli::all()
+        ]);
     }
 
     public function storePendafataran(Request $request)
@@ -130,19 +134,20 @@ class PendafataranController extends Controller
         }
     }
 
-//     public function getDataPasien($no_rm)
-//     {
-//         $no_rm = trim($no_rm);
+    public function getDataPasien($no_rm)
+    {
+        $no_rm = trim($no_rm);
 
-//         Log::info('NO_RM diterima:', ['no_rm' => $no_rm]);
+        Log::info('NO_RM diterima:', ['no_rm' => $no_rm]);
 
-//         $pasien = DataPasien::with('wali')->where('no_rm', $no_rm)->first();
+        $pasien = DataPasien::with('wali')->where('no_rm', $no_rm)->first();
 
-//         if (!$pasien) {
-//             return response()->json(['error' => 'Pasien tidak ditemukan'], 404);
-//         }
+        if (!$pasien) {
+            return response()->json(['error' => 'Pasien tidak ditemukan'], 404);
+        }
 
-//         Log::info('Pasien ditemukan:', ['pasien' => $pasien]);
-//         return response()->json($pasien);
-//     }
+        Log::info('Pasien ditemukan:', ['pasien' => $pasien]);
+        return response()->json($pasien);
+    }
+
 }
