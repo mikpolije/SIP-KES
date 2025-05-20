@@ -1962,33 +1962,96 @@
                                          <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                          <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
                                     </div>
+                                <div class="table-container">
                                     <table id="rencana-kontrol" class="table text-center shadow-table">
-                                        <thead style="background-color: #676981; color: white;">
+                                        <thead style="background-color:rgb(252, 252, 254); color: white;">
+                                        <head>
                                             <style>
-                                                #rencana-kontrol, 
-                                                #rencana-kontrol th, 
-                                                #rencana-kontrol td {
-                                                    border: none !important;
-                                                    border-collapse: collapse;
-                                                }
-
-                                                #rencana-kontrol tr {
-                                                    border-bottom: none !important;
-                                                }
-
-                                                .shadow-table {
-                                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                                                /* Container tabel */
+                                                .table-container {
                                                     border-radius: 8px;
                                                     overflow: hidden;
+                                                    box-shadow: 0 4px 12px rgba(253, 249, 249, 0.15);
+                                                }
+                                                    
+                                                /* Header yang tetap/tidak bergerak */
+                                                .table-header {
+                                                    background-color: #676981;
+                                                    color: white;
+                                                    border-top-left-radius: 8px;
+                                                    border-top-right-radius: 8px;
+                                                }
+                                                    
+                                                .table-header table {
+                                                    width: 100%;
+                                                    margin-bottom: 0;
+                                                }
+                                            
+                                                /* Bagian tbody yang dapat di-scroll */
+                                                .table-body-scroll {
+                                                    max-height: 215px; /* Sesuaikan dengan kebutuhan */
+                                                    overflow-y: auto; 
+                                                    border-bottom-left-radius: 8px;
+                                                    border-bottom-right-radius: 8px;
+                                                        background-color: white;
+                                                }
+                                                    
+                                                /* Style umum untuk semua tabel */
+                                                    .table-header table,
+                                                    .table-body-scroll table {
+                                                    border-collapse: separate;
+                                                    width: 100%;
+                                                    margin: 0;
+                                                    background-color: white;
+                                                }
+                                                    
+                                              /* Menghapus border pada tabel */
+                                                .table-header th,
+                                                .table-body-scroll td {
+                                                    border: none !important;
+                                                    text-align: center;
+                                                    font-weight: normal;
+                                                    font-size: 0.9rem;
+                                                    padding: 8px;                                                        
+                                                    border: none;
+                                                }
+                                                
+                                            /* Hilangkan pewarnaan selang-seling jika ada */
+                                                .table-body-scroll tr {
+                                                    background-color: white !important;
+                                                }
+
+                                            /* Scrollbar kustom untuk peningkatan UX */
+                                                .table-body-scroll::-webkit-scrollbar {
+                                                    width: 8px;
+                                                }
+
+                                                .table-body-scroll::-webkit-scrollbar-track {
+                                                    background: #f1f1f1;
+                                                    border-radius: 4px;                                                    
+                                                }
+
+                                                .table-body-scroll::-webkit-scrollbar-thumb {
+                                                    background: #aaa;
+                                                    border-radius: 4px;
+                                                }
+
+                                                .table-body-scroll::-webkit-scrollbar-thumb:hover {
+                                                    background: #888;
                                                 }
                                             </style>
+                                        </head>
+                                        <div class="table-header">
+                                            <table>
                                             <tr>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Tanggal Kontrol</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Alasan Kontrol</th>
                                                 <th style="text-align: center; font-weight: normal; font-size: 0.9rem;">Aksi</th>
                                             </tr>
-                                        </thead>
-                                        <tbody>
+                                            </table>
+                                        </div>
+                                    <div class="table-body-scroll">
+                                        <table>
                                             <tr>
                                                 <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">05/08/2025</td>
                                                 <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Pemantauan Lebih Lanjut</td>
@@ -1998,8 +2061,11 @@
                                                         </button>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                            </table>
+                                            </thead>
+                                        </div>
                                     </table>
+                                </div>
                                 </div>
                             </div>
                             <div class="col-md-6 flex-fill h-100">
