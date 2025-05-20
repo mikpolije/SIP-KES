@@ -58,7 +58,7 @@
 </style>
 
 <div class="container py-4">
-    <h1 class="judul-antrean mb-4">Antrean Poli Umum</h1>
+    <h1 class="judul-antrean mb-4">Antrean Poli Umum BY BEE</h1>
 
     {{-- Search Bar --}}
     <div class="mb-3 d-flex justify-content-end">
