@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\PoliUmum;
+use App\Models\DataPasien;
+use App\Models\dokter;
+use App\Models\pokter;
 
 use App\Http\Controllers\Controller;
 

@@ -81,12 +81,12 @@
                                     <input class="form-control" list="noRMList" id="searchNoRM"
                                         placeholder="Ketik atau pilih No. RM">
                                     <datalist id="noRMList">
-                                        {{-- @foreach ($data_pasien as $pasien)
-                                            <option value="{{ $pasien->no_rm }} - {{ $pasien->nama_pasien }}">
-                                                {{ $pasien->no_rm }} - {{ $pasien->nama_pasien }}
+                                        @foreach ($data_pasien as $pasien)
+                                            <option value="{{ $pasien->no_rm }} - {{ $pasien->nama_lengkap }}">
+                                                {{ $pasien->no_rm }} - {{ $pasien->nama_lengkap }}
                                             </option>
                                             <!-- Bisa diisi via JavaScript juga -->
-                                        @endforeach --}}
+                                        @endforeach
                                     </datalist>
                                     <script>
                                         $(document).ready(function() {
@@ -460,9 +460,9 @@
                                                 <option value="">
                                                     <-- Pilih Poli --->
                                                 </option>
-                                                {{-- @foreach ($data_poli as $poli) --}}
-                                                <option value="1">Poli Umum</option>
-                                                {{-- @endforeach --}}
+                                                @foreach ($data_poli as $poli)
+                                                    <option value="{{ $poli->id_poli }}">{{ $poli->nama_poli }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -473,11 +473,11 @@
                                                 <option value="">
                                                     <-- Pilih Dokter --->
                                                 </option>
-                                                {{-- @foreach ($data_dokter as $dokter) --}}
-                                                <option value="1">
-                                                    Bagus
+                                                @foreach ($data_dokter as $dokter)
+                                                <option value="{{ $dokter->id }}">
+                                                    {{ $dokter->nama }}
                                                 </option>
-                                                {{-- @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
