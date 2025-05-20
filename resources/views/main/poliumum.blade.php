@@ -1356,6 +1356,106 @@
                                                     </button>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">1</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Jasa Pasang Infus</td>
+                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Rp.60.000,-</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger delete-btn">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         </table>
                                         </thead>
                                         </div>
