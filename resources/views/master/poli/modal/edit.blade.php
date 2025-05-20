@@ -5,7 +5,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalEditLabel">Tambah Layanan</h1>
+                        <h1 class="modal-title fs-5" id="modalEditLabel">Tambah Poli</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -14,7 +14,7 @@
                             @method('PUT')
                             <div class="col-md-12">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" placeholder="Nama Layanan" name="nama_poli" value="{{ old('nama_poli', $item->nama_poli) }}">
+                                    <input type="text" class="form-control" placeholder="Nama Poli" name="nama_poli" value="{{ old('nama_poli', $item->nama_poli) }}">
                                     <label for="">Nama Poli:</label>
                                 </div>
                             </div>
