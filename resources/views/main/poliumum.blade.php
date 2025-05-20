@@ -1962,10 +1962,11 @@
                                          <input type="text" class="form-control" placeholder="Alasan Kontrol">
                                          <button type="button" class="btn btn-sm btn-secondary d-flex align-items-center">Tambah +</button>
                                     </div>
+
                                 <div class="table-container">
                                     <table id="rencana-kontrol" class="table text-center shadow-table">
                                         <thead style="background-color:rgb(252, 252, 254); color: white;">
-                                        <head>
+                                        <!-- <head> -->
                                             <style>
                                                 /* Container tabel */
                                                 .table-container {
@@ -2040,7 +2041,7 @@
                                                     background: #888;
                                                 }
                                             </style>
-                                        </head>
+                                        <!-- </head> -->
                                         <div class="table-header">
                                             <table>
                                             <tr>
@@ -2052,17 +2053,19 @@
                                         </div>
                                     <div class="table-body-scroll">
                                         <table>
-                                            <tr>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">05/08/2025</td>
-                                                <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Pemantauan Lebih Lanjut</td>
-                                                <td class="text-center">
-                                                        <button class="btn btn-sm btn-danger delete-btn">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                </td>
-                                            </tr>
-                                            </table>
-                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">05/08/2025</td>
+                                                    <td style="text-align: center; font-weight: normal; font-size: 0.9rem;">Pemantauan Lebih Lanjut</td>
+                                                    <td class="text-center">
+                                                            <button class="btn btn-sm btn-danger delete-btn">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                </thead>
                                         </div>
                                     </table>
                                 </div>
