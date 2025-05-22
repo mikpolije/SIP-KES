@@ -43,6 +43,11 @@ class Pendaftaran extends Model
         return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 
+    public function asessmen_awal()
+    {
+        return $this->hasOne(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
     public function cppt()
     {
         return $this->hasMany(CPPT::class, 'id_pendaftaran', 'id_pendaftaran');

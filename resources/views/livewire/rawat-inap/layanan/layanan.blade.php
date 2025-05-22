@@ -3,6 +3,7 @@
 use Livewire\Volt\Component;
 use App\Models\LayananPendaftaran;
 use App\Models\Layanan;
+use App\Models\Pendaftaran;
 use Livewire\WithPagination;
 
 new class extends Component {
@@ -19,6 +20,12 @@ new class extends Component {
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->loadLayananPendaftaran();
+
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+        if(!$pendaftaran->asessmen_awal) {
+            flash()->warning('Isi Asessmen Awal terlebih dahulu!');
+            $this->dispatch('switch-tab', tab: 'pemeriksaan');
+        }
     }
 
     public function loadLayananPendaftaran() {
