@@ -40,26 +40,20 @@ new class extends Component {
     }
 
     public function selectLayanan($layananId) {
-        // Get the layanan name for the notification message
         $layanan = Layanan::find($layananId);
 
-        // Create the layanan pendaftaran record
         LayananPendaftaran::create([
             'id_pendaftaran' => $this->pendaftaranId,
             'id_layanan' => $layananId
         ]);
 
-        // Set notification message
         $this->notification = [
             'type' => 'success',
             'message' => 'Layanan "' . $layanan->nama_layanan . '" berhasil ditambahkan!'
         ];
 
-        // Reload the layanan list
         $this->loadLayananPendaftaran();
-
-        // Close the modal
-        $this->dispatch('close-modal');
+        flash()->success('Layanan berhasil ditambahkan!');
     }
 
     public function dismissNotification() {
@@ -202,15 +196,3 @@ new class extends Component {
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('livewire:initialized', () => {
-        // Listen for the custom event to close the modal
-        Livewire.on('close-modal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('layananModal'));
-            if (modal) {
-                modal.hide();
-            }
-        });
-    });
-</script>
