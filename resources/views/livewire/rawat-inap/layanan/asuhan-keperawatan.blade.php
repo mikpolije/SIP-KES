@@ -239,9 +239,9 @@ new class extends Component {
     public function submit()
     {
         $data = [
-            'alasanMasuk' => $this->alasanMasuk,
-            'diagnosaMedis' => $this->diagnosaMedis,
-            'riwayatPenyakit' => $this->riwayatPenyakit,
+            'alasan_masuk' => $this->alasanMasuk,
+            'diagnosa_medis' => $this->diagnosaMedis,
+            'riwayat_penyakit' => $this->riwayatPenyakit,
             'sistole' => $this->sistole,
             'distole' => $this->distole,
             'suhu' => $this->suhu,
