@@ -381,32 +381,39 @@ new class extends Component {
                                                     <div class="col-4 ps-4">1. BB</div>
                                                     <div class="col-8">
                                                         <div class="row">
-                                                            <div class="col-2">
+                                                            <div class="col-3">
                                                                 <input type="text" class="form-control form-control-sm" wire:model="berat_badan">
                                                             </div>
-                                                            <div class="col-1">
+                                                            <div class="col-2">
                                                                 <span class="form-text">Kg</span>
                                                             </div>
-                                                            <div class="col-1">
+                                                            <div class="col-2">
                                                                 <span class="form-text">TB</span>
                                                             </div>
-                                                            <div class="col-2">
+                                                            <div class="col-3">
                                                                 <input type="text" class="form-control form-control-sm" wire:model="tinggi_badan">
                                                             </div>
-                                                            <div class="col-1">
-                                                                <span class="form-text">Cm</span>
-                                                            </div>
-                                                            <div class="col-1">
-                                                                <span class="form-text">LILA</span>
-                                                            </div>
                                                             <div class="col-2">
-                                                                <input type="text" class="form-control form-control-sm" wire:model="lila">
-                                                            </div>
-                                                            <div class="col-1">
                                                                 <span class="form-text">Cm</span>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-4 ps-4">LILA</div>
+                                                    <div class="col-8">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <input type="text" class="form-control form-control-sm" wire:model="lila">
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <span class="form-text">Cm</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
