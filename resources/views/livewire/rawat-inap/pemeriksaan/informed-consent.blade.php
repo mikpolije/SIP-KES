@@ -339,8 +339,8 @@ new class extends Component {
                                 <span>Dengan ini menyatakan</span>
                                 <div class="dropdown mx-2">
                                     <select class="form-select" wire:model="is_menyatakan" id="is_menyatakan">
-                                        <option value="1">telah</option>
-                                        <option value="0">belum</option>
+                                        <option value="1">setuju</option>
+                                        <option value="0">tidak</option>
                                     </select>
                                     @error('is_menyatakan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
