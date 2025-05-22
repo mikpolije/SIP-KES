@@ -273,6 +273,14 @@ new class extends Component {
                                     <input type="date" wire:model="tanggalNota" class="form-control form-control-sm">
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <div class="col-5">Status</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <!-- status disini ntar -->
+                                    <span class="badge bg-success">Rawat Inap</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row mb-2">
