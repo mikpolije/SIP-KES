@@ -6,9 +6,8 @@
 @unless ($hideLogo ?? false)
     <div class="brand-logo d-flex align-items-center justify-content-between">
         <a class="logo-img d-flex align-items-center text-nowrap" href="/main/index">
-            <img class="dark-logo logo-size" src="{{ URL::asset('build/images/logos/logopengembang.png') }}" alt="Logo-Dark" />
-            <img class="light-logo logo-size" src="{{ URL::asset('build/images/logos/logopengembang.png') }}"
-                alt="Logo-light" />
+            <img class="dark-logo logo-size" src="{{ URL::asset('build/images/logos/logosipkes.png') }}" alt="Logo-Dark" />
+            <img class="light-logo logo-size" src="{{ URL::asset('build/images/logos/logosipkes.png') }}" alt="Logo-light" />
         </a>
         <a class="sidebartoggler text-decoration-none fs-5 d-block d-xl-none ms-auto" href="javascript:void(0)">
             <i class="ti ti-x"></i>
@@ -369,7 +368,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}" href="/main/laporankunjungan">
+                    <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
+                        href="/main/laporankunjungan">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -388,7 +388,7 @@
             </ul>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow 
+            <a class="sidebar-link has-arrow
         {{ request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'active' : '' }}"
                 href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
