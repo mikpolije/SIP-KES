@@ -120,7 +120,7 @@ new class extends Component {
 }; ?>
 
 <div>
-    <form>
+    <form wire:submit.prevent="submit">
         <div class="row">
             <!-- left column -->
             <div class="col-md-4">
@@ -378,7 +378,7 @@ new class extends Component {
     </form>
 
     <div class="navigation-buttons mt-4 d-flex justify-content-end">
-        <button class="btn btn-primary" wire:click="submit">Submit</button>
+        <div class="btn btn-primary" wire:click="submit">Submit</div>
     </div>
     @if (session()->has('message'))
     <div class="alert alert-success mt-3">
