@@ -96,7 +96,9 @@ new class extends Component {
                 'ruangan' => $this->ruangInap,
                 'pembayaran' => $this->pembayaran,
             ]);
-            session()->flash('message', 'Form updated successfully!');
+
+            flash()->success('Form berhasil diupdate!');
+
             $this->dispatch('switch-tab', tab: 'pemeriksaan');
             return;
         }
@@ -109,7 +111,8 @@ new class extends Component {
             'pembayaran' => $this->pembayaran,
         ]);
 
-        session()->flash('message', 'Form submitted successfully!');
+        flash()->success('Form berhasil diisi!');
+
         $this->dispatch('patient-registered', pendaftaranId: $this->pendaftaranId);
         $this->dispatch('switch-tab', tab: 'pemeriksaan');
 
