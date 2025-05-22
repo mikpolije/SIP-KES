@@ -591,21 +591,6 @@ new class extends Component {
                             </button>
                         </div>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="paymentMethod" id="tunai"
-                                value="tunai" checked>
-                            <label class="form-check-label" for="tunai">
-                                Tunai
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="paymentMethod" id="transfer"
-                                value="transfer">
-                            <label class="form-check-label" for="transfer">
-                                Transfer
-                            </label>
-                        </div>
-
                         <div class="table-responsive mt-3">
                             <table class="table table-bordered">
                                 <thead class="bg-secondary text-white">
