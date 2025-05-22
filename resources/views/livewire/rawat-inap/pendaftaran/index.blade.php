@@ -373,6 +373,7 @@ new class extends Component {
             </div>
         </div>
     </form>
+
     <div class="navigation-buttons mt-4 d-flex justify-content-end">
         <button class="btn btn-primary" wire:click="submit">Submit</button>
     </div>
