@@ -123,16 +123,16 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="select2-provinsi">Provinsi<span
+                                    <label class="form-label" for="select2-kelurahan">Kelurahan/Desa<span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="provinsi" name="provinsi" />
+                                    <input type="text" class="form-control required" id="kelurahan" name="kelurahan" />
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="select2-kota">Kota/Kabupaten<span
+                                    <label class="form-label" for="select2-kecamatan">Kecamatan<span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kota" name="kota" />
+                                    <input type="text" class="form-control required" id="kecamatan" name="kecamatan" />
                                 </div>
                             </div>
                         </div>
@@ -147,17 +147,17 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="select2-kecamatan">Kecamatan<span
+                                    <label class="form-label" for="select2-kota">Kota/Kabupaten<span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kecamatan" name="kecamatan" />
+                                    <input type="text" class="form-control required" id="kota" name="kota" />
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="mb-3">
-                                    <label class="form-label" for="select2-kelurahan">Kelurahan/Desa<span
+                                    <label class="form-label" for="select2-provinsi">Provinsi<span
                                             class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="kelurahan"
-                                        name="kelurahan" />
+                                    <input type="text" class="form-control required" id="provinsi"
+                                        name="provinsi" />
                                 </div>
                             </div>
                         </div>

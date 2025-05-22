@@ -3,13 +3,13 @@ use Livewire\Volt\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use App\Livewire\Forms\Doctor\DoctorForm;
-use App\Models\Master\Doctor;
+use App\Models\Dokter;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 new class extends Component {
     public DoctorForm $form;
 
-    public Doctor $dokter;
+    public Dokter $dokter;
 
     public function mount()
     {
@@ -20,7 +20,7 @@ new class extends Component {
     {
         try {
             $this->form->update();
-            session()->flash('success','Berhasil mengubah data dokter');
+            session()->flash('success', 'Berhasil mengubah data dokter');
             $this->redirect(route('doctor.index'));
         } catch (Exception $e) {
             session()->flash('error', 'Gagal mengubah data dokter');
@@ -142,6 +142,8 @@ new class extends Component {
           </div>
         </div>
       </div>
+      <x-signature-pad wire:model.defer="form.ttd" />
+
 
       <div class="d-flex justify-content-end gap-2">
         <button class="btn btn-primary" type="submit">Simpan</button>

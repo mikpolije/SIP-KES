@@ -2,13 +2,15 @@
 
 namespace App\Livewire\Forms\Doctor;
 
-use App\Models\Master\Doctor;
+use App\Models\Dokter;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
+use Illuminate\Support\Str;
 
 class DoctorForm extends Form
 {
-    public Doctor $doctor;
+    public Dokter $doctor;
 
     public $email;
 
@@ -27,6 +29,8 @@ class DoctorForm extends Form
     public $gelar_belakang;
 
     public $jadwal_layanan;
+
+    public $ttd;
 
     protected function rules()
     {
@@ -49,10 +53,11 @@ class DoctorForm extends Form
             'gelar_depan' => 'required|max:20',
             'gelar_belakang' => 'required|max:20',
             'jadwal_layanan' => 'required|max:100',
+            'ttd' => 'required',
         ];
     }
 
-    public function setDoctor(Doctor $doctor)
+    public function setDoctor(Dokter $doctor)
     {
         $this->doctor = $doctor;
         $this->email = $doctor->email;
@@ -64,19 +69,26 @@ class DoctorForm extends Form
         $this->gelar_depan = $doctor->gelar_depan;
         $this->gelar_belakang = $doctor->gelar_belakang;
         $this->jadwal_layanan = $doctor->jadwal_layanan;
+        $this->ttd = $doctor->ttd;
     }
 
     public function update()
     {
-        $this->validate();
-        $this->doctor->update([
-            $this->all(),
-        ]);
+        // $this->validate();
+        try {
+            Storage::put('public/signatures/signature-' . $this->doctor->id . '.png', base64_decode(Str::of($this->ttd)->after(',')));
+            $this->ttd = Storage::url('public/signatures/signature-' . $this->doctor->id . '.png');
+            $this->doctor->update(
+                $this->all()
+            );
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
     public function store()
     {
         $this->validate();
-        Doctor::create($this->all());
+        Dokter::create($this->all());
     }
 }

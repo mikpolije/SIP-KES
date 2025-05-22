@@ -96,7 +96,9 @@ new class extends Component {
                 'ruangan' => $this->ruangInap,
                 'pembayaran' => $this->pembayaran,
             ]);
-            session()->flash('message', 'Form updated successfully!');
+
+            flash()->success('Form berhasil diupdate!');
+
             $this->dispatch('switch-tab', tab: 'pemeriksaan');
             return;
         }
@@ -109,7 +111,8 @@ new class extends Component {
             'pembayaran' => $this->pembayaran,
         ]);
 
-        session()->flash('message', 'Form submitted successfully!');
+        flash()->success('Form berhasil diisi!');
+
         $this->dispatch('patient-registered', pendaftaranId: $this->pendaftaranId);
         $this->dispatch('switch-tab', tab: 'pemeriksaan');
 
@@ -117,7 +120,7 @@ new class extends Component {
 }; ?>
 
 <div>
-    <form>
+    <form wire:submit.prevent="submit">
         <div class="row">
             <!-- left column -->
             <div class="col-md-4">
@@ -323,16 +326,16 @@ new class extends Component {
                     <label for="kelasPerawatan" class="form-label">Kelas Perawatan</label>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1">
-                            <label class="form-check-label" for="1">Kelas 1</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1">
+                            <label class="form-check-label border-4" for="1">Kelas 1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2">
-                            <label class="form-check-label" for="2">Kelas 2</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2">
+                            <label class="form-check-label border-4" for="2">Kelas 2</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3">
-                            <label class="form-check-label" for="3">Kelas 3</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3">
+                            <label class="form-check-label border-4" for="3">Kelas 3</label>
                         </div>
                     </div>
                     @error('kelasPerawatan') <div class="text-danger">{{ $message }}</div> @enderror
@@ -355,16 +358,16 @@ new class extends Component {
                     <label for="pembayaran" class="form-label">Pembayaran</label>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="umum" id="umum">
-                            <label class="form-check-label" for="umum">Umum</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="pembayaran" value="umum" id="umum">
+                            <label class="form-check-label border-4" for="umum">Umum</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="bpjs" id="bpjs">
-                            <label class="form-check-label" for="bpjs">BPJS</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="pembayaran" value="bpjs" id="bpjs">
+                            <label class="form-check-label border-4" for="bpjs">BPJS</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="asuransi" id="asuransi">
-                            <label class="form-check-label" for="asuransi">Asuransi</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="pembayaran" value="asuransi" id="asuransi">
+                            <label class="form-check-label border-4" for="asuransi">Asuransi</label>
                         </div>
                     </div>
                     @error('pembayaran') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -373,8 +376,9 @@ new class extends Component {
             </div>
         </div>
     </form>
+
     <div class="navigation-buttons mt-4 d-flex justify-content-end">
-        <button class="btn btn-primary" wire:click="submit">Submit</button>
+        <div class="btn btn-primary" wire:click="submit">Submit</div>
     </div>
     @if (session()->has('message'))
     <div class="alert alert-success mt-3">

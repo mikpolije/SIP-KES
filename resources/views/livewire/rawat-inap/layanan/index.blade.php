@@ -1,11 +1,10 @@
 <?php
 use Livewire\Volt\Component;
-
 new class extends Component {
     public $pendaftaranId;
-    public $activeTab = 'cppt'; // Default active tab
+    public $activeTab = 'cppt';
+    public $loadedTabs = ['cppt'];
 
-    // Available tabs
     public $tabs = [
         'cppt' => 'CPPT',
         'asuhan' => 'Asuhan Keperawatan',
@@ -20,6 +19,10 @@ new class extends Component {
     public function changeTab($tab)
     {
         $this->activeTab = $tab;
+
+        if (!in_array($tab, $this->loadedTabs)) {
+            $this->loadedTabs[] = $tab;
+        }
     }
 
     public function submit()
@@ -38,8 +41,11 @@ new class extends Component {
                 <li class="nav-item">
                     <button
                         class="nav-link rounded-0 {{ $activeTab === $tabId ? 'bg-white text-primary fw-bold' : 'bg-primary text-white' }}"
-                        wire:click="changeTab('{{ $tabId }}')">
-                        {{ $tabName }}
+                        wire:click="changeTab('{{ $tabId }}')"
+                        wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="changeTab('{{ $tabId }}')">
+                            {{ $tabName }}
+                        </span>
                     </button>
                 </li>
                 @endforeach
@@ -47,26 +53,41 @@ new class extends Component {
 
             <!-- Tab Content Area -->
             <div class="p-4">
-                <!-- CPPT Tab -->
-                <div class="{{ $activeTab !== 'cppt' ? 'd-none' : '' }}" id="cppt">
-                    @livewire('rawat-inap.layanan.cppt', ['pendaftaranId' => $pendaftaranId], key('cppt-'.$pendaftaranId))
+                <!-- Loading indicator for tab content -->
+                <div wire:loading wire:target="changeTab" class="text-center p-4">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
 
-                <!-- Asuhan Keperawatan Tab -->
+                <!-- CPPT Tab -->
+                <div class="{{ $activeTab !== 'cppt' ? 'd-none' : '' }}" id="cppt">
+                    @if(in_array('cppt', $loadedTabs))
+                        @livewire('rawat-inap.layanan.cppt', ['pendaftaranId' => $pendaftaranId], key('cppt-'.$pendaftaranId))
+                    @endif
+                </div>
+
+                <!-- Asuhan Keperawatan Tab - Only load when needed -->
                 <div class="{{ $activeTab !== 'asuhan' ? 'd-none' : '' }}" id="asuhan">
-                    @livewire('rawat-inap.layanan.asuhan-keperawatan', ['pendaftaranId' => $pendaftaranId],
-                    key('asuhan-'.$pendaftaranId))
+                    @if(in_array('asuhan', $loadedTabs))
+                        <div wire:loading.remove wire:target="changeTab">
+                            @livewire('rawat-inap.layanan.asuhan-keperawatan', ['pendaftaranId' => $pendaftaranId], key('asuhan-'.$pendaftaranId))
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Layanan Tab -->
                 <div class="{{ $activeTab !== 'layanan' ? 'd-none' : '' }}" id="layanan">
-                    @livewire('rawat-inap.layanan.layanan', ['pendaftaranId' => $pendaftaranId], key('layanan-'.$pendaftaranId))
+                    @if(in_array('layanan', $loadedTabs))
+                        @livewire('rawat-inap.layanan.layanan', ['pendaftaranId' => $pendaftaranId], key('layanan-'.$pendaftaranId))
+                    @endif
                 </div>
 
                 <!-- Resume Medis Tab -->
                 <div class="{{ $activeTab !== 'resume' ? 'd-none' : '' }}" id="resume">
-                    @livewire('rawat-inap.layanan.resume-medis', ['pendaftaranId' => $pendaftaranId],
-                    key('resume-medis-'.$pendaftaranId))
+                    @if(in_array('resume', $loadedTabs))
+                        @livewire('rawat-inap.layanan.resume-medis', ['pendaftaranId' => $pendaftaranId], key('resume-medis-'.$pendaftaranId))
+                    @endif
                 </div>
             </div>
         </div>

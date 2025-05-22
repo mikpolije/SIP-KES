@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\generalConsentController;
+use App\Http\Controllers\KunjunganController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PoliController;
 use App\Http\Controllers\TriageController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -24,6 +26,9 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
 // Route General Consent
 Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
 Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
+Route::get('/sign-request/{token}', [generalConsentController::class, 'showForm']);
+Route::post('/sign-request/{token}', [generalConsentController::class, 'submitForm']);
+
 
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
@@ -44,6 +49,8 @@ Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('pat
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 Route::prefix('main/poliumum')->group(function () {
+    Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
+    Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
     Route::get('/antrean', [AntrianRiwayatController::class, 'antrean'])->name('antrean.poliumum');
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
@@ -55,7 +62,6 @@ Route::get('/poli-umum/detail/{rm}', function ($rm) {
 
 Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiwayatController::class, 'searchPasien'])->name('poli-umum.search-pasien');
 
-Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -76,3 +82,14 @@ use Illuminate\Support\Facades\Schema;
 
 Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
+
+// Poli
+Route::resource('/poli', PoliController::class);
+
+// Laporan Kunjungan
+Route::get('/laporan/kunjungan', [KunjunganController::class, 'index']);
+Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.poli-kia.report');
+
+
+
+Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
