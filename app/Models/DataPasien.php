@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,20 +39,5 @@ class DataPasien extends Model
     public function kecamatan()
     {
         return $this->belongsTo(\Laravolt\Indonesia\Models\District::class, 'id_kecamatan');
-    }
-
-    public function getTahunLahirAttribute()
-    {
-        return \Carbon\Carbon::parse($this->tanggal_lahir)->year;
-    }
-
-    public function getBulanLahirAttribute()
-    {
-        return \Carbon\Carbon::parse($this->tanggal_lahir)->month;
-    }
-
-    public function getHariLahirAttribute()
-    {
-        return \Carbon\Carbon::parse($this->tanggal_lahir)->day;
     }
 }

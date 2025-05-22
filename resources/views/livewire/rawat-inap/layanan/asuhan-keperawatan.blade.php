@@ -2,6 +2,7 @@
 
 use App\Models\AsuhanKeperawatan;
 use App\Models\Pendaftaran;
+use Carbon\Carbon;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -15,6 +16,8 @@ new class extends Component {
     public $lahirBulan;
     public $lahirHari;
     public $tglDaftar;
+
+    public $tanggal_lahir;
 
     public $alasanMasuk;
     public $diagnosaMedis;
@@ -116,10 +119,10 @@ new class extends Component {
         if ($this->pendaftaran) {
             $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
             $this->noRM = $this->pendaftaran->data_pasien->no_rm;
-            $this->lahirTahun = $this->pendaftaran->data_pasien->tahun_lahir;
-            $this->lahirBulan = $this->pendaftaran->data_pasien->bulan_lahir;
-            $this->lahirHari = $this->pendaftaran->data_pasien->hari_lahir;
             $this->tglDaftar = $this->pendaftaran->created_at->format('Y-m-d');
+            $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir;
+            $this->calculateAge();
+
         }
 
         if($this->existingAskep) {
@@ -217,6 +220,19 @@ new class extends Component {
             $this->gaya_berjalan = $this->existingAskep->gaya_berjalan;
 
             $this->agama = $this->existingAskep->agama;
+        }
+    }
+
+    public function calculateAge()
+    {
+        if ($this->tanggal_lahir) {
+            $birthday = Carbon::parse($this->tanggal_lahir);
+            $now = Carbon::now();
+            $diff = $now->diff($birthday);
+
+            $this->lahirTahun = $diff->y; // Tahun
+            $this->lahirBulan = $diff->m; // Bulan
+            $this->lahirHari = $diff->d;  // Hari
         }
     }
 
