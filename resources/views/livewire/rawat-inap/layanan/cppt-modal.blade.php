@@ -176,9 +176,7 @@ new class extends Component {
             'kelas_perawatan' => $this->formData['kelasPerawatan'],
         ]);
 
-        flash()
-            ->target('modal')
-            ->success('CPPT berhasil ditambahkan!');
+        flash()->success('CPPT berhasil ditambahkan!');
         $this->closeModal();
         $this->dispatch('cppt-added');
     }
