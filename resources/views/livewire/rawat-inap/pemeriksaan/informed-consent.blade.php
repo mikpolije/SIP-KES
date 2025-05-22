@@ -153,7 +153,7 @@ new class extends Component {
         PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
             ->update(['id_informed_consent' => $informedConsent->id]);
 
-        session()->flash('message', 'Informed consent saved successfully.');
+        flash()->success('Informed consent berhasil disimpan');
         $this->dispatch('submit-finally', success: true);
     }
 }; ?>

@@ -134,7 +134,7 @@ new class extends Component {
         PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
             ->update(['id_asessmen_awal' => $asesmenAwal->id]);
 
-        session()->flash('message', 'Asesmen awal berhasil disimpan');
+        flash()->success('Asesmen awal berhasil disimpan');
         $this->dispatch('go-next-step');
     }
 }; ?>

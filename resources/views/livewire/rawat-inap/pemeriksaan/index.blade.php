@@ -54,10 +54,10 @@ new class extends Component {
     public function saveAndGo($success)
     {
         if($success) {
-            session()->flash('message', 'Asesmen awal dan informed consent berhasil disimpan!');
+            flash()->success('Asesmen awal dan informed consent berhasil disimpan!');
             $this->dispatch('switch-tab', tab: 'layanan');
         } else {
-            session()->flash('message', 'Gagal menyimpan asesmen awal dan informed consent!');
+            flash()->success('Gagal menyimpan asesmen awal dan informed consent!');
         }
     }
 
