@@ -884,37 +884,33 @@ new class extends Component {
                                         <h6 class="ms-3">E. KEBUTUHAN AKTIFITAS DAN ISTIRAHAT</h6>
 
                                         <div class="row mb-2">
-                                            <div class="col-12">
-                                                <div class="col-4 ps-4">1. Kebiasaan olahraga</div>
-                                                <div class="col-8">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="kebiasaan-olahraga"
-                                                            id="kebiasaan-olahraga-ya" wire:model.live="is_biasa_olahraga" value="1">
-                                                        <label class="form-check-label" for="kebiasaan-olahraga-ya">Ya</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="kebiasaan-olahraga"
-                                                            id="kebiasaan-olahraga-tidak" wire:model.live="is_biasa_olahraga" value="0">
-                                                        <label class="form-check-label" for="kebiasaan-olahraga-tidak">Tidak</label>
-                                                    </div>
+                                            <div class="col-4 ps-4">1. Kebiasaan olahraga</div>
+                                            <div class="col-8">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="kebiasaan-olahraga"
+                                                        id="kebiasaan-olahraga-ya" wire:model.live="is_biasa_olahraga" value="1">
+                                                    <label class="form-check-label" for="kebiasaan-olahraga-ya">Ya</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="kebiasaan-olahraga"
+                                                        id="kebiasaan-olahraga-tidak" wire:model.live="is_biasa_olahraga" value="0">
+                                                    <label class="form-check-label" for="kebiasaan-olahraga-tidak">Tidak</label>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row mb-2">
-                                            <div class="col-12">
-                                                <div class="col-4 ps-4">2. Kebiasaan ROM</div>
-                                                <div class="col-8">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="kebiasaan-rom"
-                                                            id="kebiasaan-rom-ya" wire:model.live="is_biasa_rom" value="1">
-                                                        <label class="form-check-label" for="kebiasaan-rom-ya">Ya</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="kebiasaan-rom"
-                                                            id="kebiasaan-rom-tidak" wire:model.live="is_biasa_rom" value="0">
-                                                        <label class="form-check-label" for="kebiasaan-rom-tidak">Tidak</label>
-                                                    </div>
+                                            <div class="col-4 ps-4">2. Kebiasaan ROM</div>
+                                            <div class="col-8">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="kebiasaan-rom"
+                                                        id="kebiasaan-rom-ya" wire:model.live="is_biasa_rom" value="1">
+                                                    <label class="form-check-label" for="kebiasaan-rom-ya">Ya</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="kebiasaan-rom"
+                                                        id="kebiasaan-rom-tidak" wire:model.live="is_biasa_rom" value="0">
+                                                    <label class="form-check-label" for="kebiasaan-rom-tidak">Tidak</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1017,18 +1013,24 @@ new class extends Component {
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-4 ps-4">6. Mandi</div>
-                                                    <div class="col-8">
-                                                        <div class="form-check form-check-inline">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="ps-5 form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="mandi"
                                                                 id="mandi-mampu" wire:model.live="can_mandi" value="1">
                                                             <label class="form-check-label" for="mandi-mampu">Mampu</label>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-3">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="mandi"
                                                                 id="mandi-dibantu" wire:model.live="can_mandi" value="0">
                                                             <label class="form-check-label" for="mandi-dibantu">Dibantu</label>
-                                                            <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_mandi_dibantu">
                                                         </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_mandi_dibantu">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1038,18 +1040,24 @@ new class extends Component {
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-4 ps-4">7. Berpakaian</div>
-                                                    <div class="col-8">
-                                                        <div class="form-check form-check-inline">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="ps-5 form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="berpakaian"
                                                                 id="berpakaian-mampu" wire:model.live="can_berpakaian" value="1">
                                                             <label class="form-check-label" for="berpakaian-mampu">Mampu</label>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-3">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="berpakaian"
                                                                 id="berpakaian-dibantu" wire:model.live="can_berpakaian" value="0">
                                                             <label class="form-check-label" for="berpakaian-dibantu">Dibantu</label>
-                                                            <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_berpakaian_dibantu">
                                                         </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_berpakaian_dibantu">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1059,18 +1067,24 @@ new class extends Component {
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-4 ps-4">8. Makan</div>
-                                                    <div class="col-8">
-                                                        <div class="form-check form-check-inline">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="ps-5 form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="makan"
                                                                 id="makan-mampu" wire:model.live="can_makan" value="1">
                                                             <label class="form-check-label" for="makan-mampu">Mampu</label>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-3">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="makan"
                                                                 id="makan-dibantu" wire:model.live="can_makan" value="0">
                                                             <label class="form-check-label" for="makan-dibantu">Dibantu</label>
-                                                            <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_makan_dibantu">
                                                         </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_makan_dibantu">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1080,18 +1094,24 @@ new class extends Component {
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-4 ps-4">9. BAB/BAK</div>
-                                                    <div class="col-8">
-                                                        <div class="form-check form-check-inline">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="ps-5 form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="babbak"
                                                                 id="babbak-mampu" wire:model.live="can_bab_bak" value="1">
                                                             <label class="form-check-label" for="babbak-mampu">Mampu</label>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-3">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="babbak"
                                                                 id="babbak-dibantu" wire:model.live="can_bab_bak" value="0">
                                                             <label class="form-check-label" for="babbak-dibantu">Dibantu</label>
-                                                            <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_bab_bak_dibantu">
                                                         </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_bab_bak_dibantu">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1101,18 +1121,24 @@ new class extends Component {
                                             <div class="col-12">
                                                 <div class="row">
                                                     <div class="col-4 ps-4">10. Transfering</div>
-                                                    <div class="col-8">
-                                                        <div class="form-check form-check-inline">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="ps-5 form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="transfering"
                                                                 id="transfering-mampu" wire:model.live="can_transfering" value="1">
                                                             <label class="form-check-label" for="transfering-mampu">Mampu</label>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-3">
                                                         <div class="form-check form-check-inline">
                                                             <input class="form-check-input" type="radio" name="transfering"
                                                                 id="transfering-dibantu" wire:model.live="can_transfering" value="0">
                                                             <label class="form-check-label" for="transfering-dibantu">Dibantu</label>
-                                                            <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_transfering_dibantu">
                                                         </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control form-control-sm ms-2" style="width: 120px;" wire:model.live="can_transfering_dibantu">
                                                     </div>
                                                 </div>
                                             </div>
