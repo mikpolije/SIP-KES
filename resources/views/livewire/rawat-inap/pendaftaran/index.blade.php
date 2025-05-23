@@ -62,20 +62,21 @@ new class extends Component {
         $this->statusPerkawinan = $this->currentPatient->status_perkawinan;
         $this->rt = $this->currentPatient->rt;
         $this->rw = $this->currentPatient->rw;
-        $this->prov = $this->currentPatient->id_provinsi;
-        $this->kab = $this->currentPatient->id_kota;
-        $this->kec = $this->currentPatient->id_kecamatan;
+
+        $this->prov = $this->currentPatient->provinsi->name ?? null;
+        $this->kab = $this->currentPatient->kota->name ?? null;
+        $this->kec = $this->currentPatient->kecamatan->name ?? null;
+
         $this->kodePos = $this->currentPatient->kode_pos;
         $this->noHP = $this->currentPatient->nomor_telepon;
         $this->pendidikan = $this->currentPatient->pendidikan;
         $this->pekerjaan = $this->currentPatient->pekerjaan;
 
         $this->alamatDomisili = $this->currentPatient->alamat_lengkap;
+
         $this->rtDomisili = $this->currentPatient->rt;
         $this->rwDomisili = $this->currentPatient->rw;
-        $this->kabDomisili = $this->currentPatient->id_kota;
-        $this->kecDomisili = $this->currentPatient->id_kecamatan;
-        $this->provDomisili = $this->currentPatient->id_provinsi;
+
 
         if($this->existingRawatInap) {
             $this->kelasPerawatan = $this->existingRawatInap->kelas;
@@ -95,7 +96,9 @@ new class extends Component {
                 'ruangan' => $this->ruangInap,
                 'pembayaran' => $this->pembayaran,
             ]);
-            session()->flash('message', 'Form updated successfully!');
+
+            flash()->success('Form berhasil diupdate!');
+
             $this->dispatch('switch-tab', tab: 'pemeriksaan');
             return;
         }
@@ -108,7 +111,8 @@ new class extends Component {
             'pembayaran' => $this->pembayaran,
         ]);
 
-        session()->flash('message', 'Form submitted successfully!');
+        flash()->success('Form berhasil diisi!');
+
         $this->dispatch('patient-registered', pendaftaranId: $this->pendaftaranId);
         $this->dispatch('switch-tab', tab: 'pemeriksaan');
 
@@ -116,7 +120,7 @@ new class extends Component {
 }; ?>
 
 <div>
-    <form>
+    <form wire:submit.prevent="submit">
         <div class="row">
             <!-- left column -->
             <div class="col-md-4">
@@ -124,21 +128,21 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input type="text" wire:model="nama" class="form-control @error('nama') is-invalid @enderror"
-                        id="nama" readonly>
+                        id="nama" disabled>
                     @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <!-- nomor rm -->
                 <div class="mb-3">
                     <label for="nomorRM" class="form-label">Nomor RM</label>
-                    <input type="text" wire:model="nomorRM" class="form-control" id="nomorRM" readonly>
+                    <input type="text" wire:model="nomorRM" class="form-control" id="nomorRM" disabled>
                 </div>
 
                 <!-- nik -->
                 <div class="mb-3">
                     <label for="nik" class="form-label">NIK</label>
                     <input type="text" wire:model="nik" class="form-control @error('nik') is-invalid @enderror"
-                        id="nik" readonly>
+                        id="nik" disabled>
                     @error('nik') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -146,7 +150,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="tempatLahir" class="form-label">Tempat Lahir</label>
                     <input type="text" wire:model="tempatLahir"
-                        class="form-control @error('tempatLahir') is-invalid @enderror" id="tempatLahir" readonly>
+                        class="form-control @error('tempatLahir') is-invalid @enderror" id="tempatLahir" disabled>
                     @error('tempatLahir') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -154,7 +158,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
                     <input type="date" wire:model="tanggalLahir"
-                        class="form-control @error('tanggalLahir') is-invalid @enderror" id="tanggalLahir" readonly>
+                        class="form-control @error('tanggalLahir') is-invalid @enderror" id="tanggalLahir" disabled>
                     @error('tanggalLahir') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -162,7 +166,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
                     <select wire:model="jenisKelamin" class="form-select @error('jenisKelamin') is-invalid @enderror"
-                        id="jenisKelamin">
+                        id="jenisKelamin" disabled>
                         <option value="" selected disabled>Pilih Jenis Kelamin</option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
@@ -173,7 +177,7 @@ new class extends Component {
                 <!-- agama -->
                 <div class="mb-3">
                     <label for="agama" class="form-label">Agama</label>
-                    <select wire:model="agama" class="form-select @error('agama') is-invalid @enderror" id="agama">
+                    <select wire:model="agama" class="form-select @error('agama') is-invalid @enderror" id="agama" disabled>
                         <option value="" selected disabled>Pilih Agama</option>
                         <option>Islam</option>
                         <option>Kristen</option>
@@ -189,7 +193,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="statusPerkawinan" class="form-label">Status Perkawinan</label>
                     <select wire:model="statusPerkawinan"
-                        class="form-select @error('statusPerkawinan') is-invalid @enderror" id="statusPerkawinan">
+                        class="form-select @error('statusPerkawinan') is-invalid @enderror" id="statusPerkawinan" disabled>
                         <option value="" selected disabled>Pilih Status</option>
                         <option>Belum Kawin</option>
                         <option>Kawin</option>
@@ -206,7 +210,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="alamatLengkap" class="form-label">Alamat Lengkap</label>
                     <input type="text" wire:model="alamatLengkap"
-                        class="form-control @error('alamatLengkap') is-invalid @enderror" id="alamatLengkap" readonly>
+                        class="form-control @error('alamatLengkap') is-invalid @enderror" id="alamatLengkap" disabled>
                     @error('alamatLengkap') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
@@ -214,11 +218,11 @@ new class extends Component {
                 <div class="row mb-3">
                     <div class="col-auto">
                         <label for="rt" class="form-label">RT:</label>
-                        <input type="text" wire:model="rt" class="form-control w-75" id="rt" readonly>
+                        <input type="text" wire:model="rt" class="form-control w-75" id="rt" disabled>
                     </div>
                     <div class="col-auto">
                         <label for="rw" class="form-label">RW:</label>
-                        <input type="text" wire:model="rw" class="form-control w-75" id="rw" readonly>
+                        <input type="text" wire:model="rw" class="form-control w-75" id="rw" disabled>
                     </div>
                 </div>
 
@@ -226,32 +230,26 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="kab" class="form-label">Kab:</label>
                     <input type="text" wire:model="kab" class="form-control @error('kab') is-invalid @enderror"
-                        id="kab" readonly>
+                        id="kab" disabled>
                     @error('kab') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
                 <!-- alamat domisili -->
                 <div class="mb-3">
                     <label for="alamatDomisili" class="form-label">Alamat Domisili</label>
-                    <input type="text" wire:model="alamatDomisili" class="form-control" id="alamatDomisili" readonly>
+                    <input type="text" wire:model="alamatDomisili" class="form-control" id="alamatDomisili" disabled>
                 </div>
 
                 <!-- rt/rw domisili -->
                 <div class="row mb-3">
                     <div class="col-auto">
                         <label for="rtDomisili" class="form-label">RT:</label>
-                        <input type="text" wire:model="rtDomisili" class="form-control w-75" id="rtDomisili" readonly>
+                        <input type="text" wire:model="rtDomisili" class="form-control w-75" id="rtDomisili" disabled>
                     </div>
                     <div class="col-auto">
                         <label for="rwDomisili" class="form-label">RW:</label>
-                        <input type="text" wire:model="rwDomisili" class="form-control w-75" id="rwDomisili" readonly>
+                        <input type="text" wire:model="rwDomisili" class="form-control w-75" id="rwDomisili" disabled>
                     </div>
-                </div>
-
-                <!-- kab domisili -->
-                <div class="mb-3">
-                    <label for="kabDomisili" class="form-label">Kab:</label>
-                    <input type="text" wire:model="kabDomisili" class="form-control" id="kabDomisili" readonly>
                 </div>
 
                 <!-- no.hp -->
@@ -260,7 +258,7 @@ new class extends Component {
                     <div class="input-group">
                         <span class="input-group-text">+62</span>
                         <input type="text" wire:model="noHP" class="form-control @error('noHP') is-invalid @enderror"
-                            id="noHP" readonly>
+                            id="noHP" disabled>
                     </div>
                     @error('noHP') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
@@ -270,7 +268,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="pendidikan" class="form-label">Pendidikan</label>
                     <select wire:model="pendidikan" class="form-select @error('pendidikan') is-invalid @enderror"
-                        id="pendidikan" readonly>
+                        id="pendidikan" disabled>
                         <option value="" selected disabled>Pilih Pendidikan</option>
                         <option>Tidak Sekolah</option>
                         <option>SD</option>
@@ -310,27 +308,17 @@ new class extends Component {
                 <!-- kode pos -->
                 <div class="mb-3">
                     <label for="kodePos" class="form-label">Kode Pos:</label>
-                    <input type="text" wire:model="kodePos" class="form-control" id="kodePos" readonly>
+                    <input type="text" wire:model="kodePos" class="form-control" id="kodePos" disabled>
                 </div>
 
                 <!-- kec & prov -->
                 <div class="mb-3">
                     <label for="kec" class="form-label">Kec:</label>
-                    <input type="text" wire:model="kec" class="form-control" id="kec" readonly>
+                    <input type="text" wire:model="kec" class="form-control" id="kec" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="prov" class="form-label">Prov:</label>
-                    <input type="text" wire:model="prov" class="form-control" id="prov" readonly>
-                </div>
-
-                <!-- kec & prov domisili -->
-                <div class="mb-3">
-                    <label for="kecDomisili" class="form-label">Kec:</label>
-                    <input type="text" wire:model="kecDomisili" class="form-control" id="kecDomisili" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="provDomisili" class="form-label">Prov:</label>
-                    <input type="text" wire:model="provDomisili" class="form-control" id="provDomisili" readonly>
+                    <input type="text" wire:model="prov" class="form-control" id="prov" disabled>
                 </div>
 
                 <!-- kelas perawatan -->
@@ -338,16 +326,16 @@ new class extends Component {
                     <label for="kelasPerawatan" class="form-label">Kelas Perawatan</label>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1">
-                            <label class="form-check-label" for="1">Kelas 1</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1">
+                            <label class="form-check-label border-4" for="1">Kelas 1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2">
-                            <label class="form-check-label" for="2">Kelas 2</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2">
+                            <label class="form-check-label border-4" for="2">Kelas 2</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3">
-                            <label class="form-check-label" for="3">Kelas 3</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3">
+                            <label class="form-check-label border-4" for="3">Kelas 3</label>
                         </div>
                     </div>
                     @error('kelasPerawatan') <div class="text-danger">{{ $message }}</div> @enderror
@@ -357,7 +345,7 @@ new class extends Component {
                 <div class="mb-3">
                     <label for="ruangInap" class="form-label">Ruang Inap</label>
                     <select wire:model.live="ruangInap" class="form-select @error('ruangInap') is-invalid @enderror" id="ruangInap">
-                        <option value="" selected disabled>Pilih ruang Inap</option>
+                        <option value="" selected disabled>Pilih Ruang Inap</option>
                         <option value="a">Ruang A</option>
                         <option value="b">Ruang B</option>
                         <option value="c">Ruang C</option>
@@ -370,16 +358,16 @@ new class extends Component {
                     <label for="pembayaran" class="form-label">Pembayaran</label>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="umum" id="umum">
-                            <label class="form-check-label" for="umum">Umum</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="pembayaran" value="umum" id="umum">
+                            <label class="form-check-label border-4" for="umum">Umum</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="bpjs" id="bpjs">
-                            <label class="form-check-label" for="bpjs">BPJS</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="pembayaran" value="bpjs" id="bpjs">
+                            <label class="form-check-label border-4" for="bpjs">BPJS</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="pembayaran" value="asuransi" id="asuransi">
-                            <label class="form-check-label" for="asuransi">Asuransi</label>
+                            <input class="form-check-input border-4" type="radio" wire:model.live="pembayaran" value="asuransi" id="asuransi">
+                            <label class="form-check-label border-4" for="asuransi">Asuransi</label>
                         </div>
                     </div>
                     @error('pembayaran') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -388,8 +376,9 @@ new class extends Component {
             </div>
         </div>
     </form>
+
     <div class="navigation-buttons mt-4 d-flex justify-content-end">
-        <button class="btn btn-primary" wire:click="submit">Submit</button>
+        <div class="btn btn-primary" wire:click="submit">Submit</div>
     </div>
     @if (session()->has('message'))
     <div class="alert alert-success mt-3">

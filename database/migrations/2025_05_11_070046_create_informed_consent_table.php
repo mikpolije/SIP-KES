@@ -26,7 +26,7 @@ return new class extends Migration
                 ->on('dokter')
                 ->onDelete('restrict');
 
-            $table->string('pemberian_informasi', 100)->nullable();
+            $table->string('pemberi_informasi', 100)->nullable();
             $table->string('penerima_informasi', 100)->nullable();
 
             $table->text('diagnosis')->nullable();
@@ -37,9 +37,17 @@ return new class extends Migration
             $table->text('komplikasi')->nullable();
             $table->text('prognosis')->nullable();
             $table->text('alternatif_risiko')->nullable();
+            $table->text('anestesi')->nullable();
 
             $table->text('pengambilan_sampel_darah')->nullable();
             $table->text('lain_lain')->nullable();
+
+            $table->boolean('is_diterangkan')->nullable();
+            $table->boolean('is_diterima')->nullable();
+            $table->boolean('is_menyatakan')->nullable();
+
+            $table->text('tindakan')->nullable();
+
 
             $table->timestamps();
         });

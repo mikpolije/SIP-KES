@@ -1,13 +1,78 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\LayananPendaftaran;
+use App\Models\Layanan;
+use App\Models\Pendaftaran;
+use Livewire\WithPagination;
 
 new class extends Component {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $pendaftaranId;
-    public $msg = "lol";
+    public $layananList = [];
+    public $search = '';
+    public $perPage = 7;
+    public $notification = null;
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
+        $this->loadLayananPendaftaran();
+
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+        if(!$pendaftaran->asessmen_awal) {
+            flash()->warning('Isi Asessmen Awal terlebih dahulu!');
+            $this->dispatch('switch-tab', tab: 'pemeriksaan');
+        }
+    }
+
+    public function loadLayananPendaftaran() {
+        if ($this->pendaftaranId) {
+            $this->layananList = LayananPendaftaran::with('layanan')
+                ->where('id_pendaftaran', $this->pendaftaranId)
+                ->get();
+        }
+    }
+
+    public function getLayananModalDataProperty() {
+        $query = Layanan::query();
+
+        if ($this->search) {
+            $query->where('nama_layanan', 'like', '%'.$this->search.'%');
+        }
+
+        return $query->paginate($this->perPage);
+    }
+
+    public function selectLayanan($layananId) {
+        $layanan = Layanan::find($layananId);
+
+        LayananPendaftaran::create([
+            'id_pendaftaran' => $this->pendaftaranId,
+            'id_layanan' => $layananId
+        ]);
+
+        $this->notification = [
+            'type' => 'success',
+            'message' => 'Layanan "' . $layanan->nama_layanan . '" berhasil ditambahkan!'
+        ];
+
+        $this->loadLayananPendaftaran();
+        flash()->success('Layanan berhasil ditambahkan!');
+    }
+
+    public function dismissNotification() {
+        $this->notification = null;
+    }
+
+    public function updatedSearch() {
+        $this->resetPage();
+    }
+
+    public function updatedPerPage() {
+        $this->resetPage();
     }
 }; ?>
 
@@ -33,39 +98,55 @@ new class extends Component {
                     <tr>
                         <th>ID Layanan</th>
                         <th>Nama Layanan</th>
-                        <th>Petugas</th>
+                        <th>Harga Layanan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td colspan="3" class="text-center">Tidak Ada Data</td>
-                    </tr>
+                    @if(count($layananList) > 0)
+                        @foreach($layananList as $item)
+                            <tr>
+                                <td>{{ $item->layanan->id ?? '' }}</td>
+                                <td>{{ $item->layanan->nama_layanan ?? '' }}</td>
+                                <td>Rp {{ number_format($item->layanan->tarif_layanan, 0, ',', '.') }},-</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="3" class="text-center">Tidak Ada Data</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
-
-        <div class="d-flex justify-content-end mt-4">
-            <button class="btn btn-primary">Simpan</button>
-        </div>
     </div>
 
-    <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="layananModalLabel" aria-hidden="true">
+    <div class="modal fade" id="layananModal" tabindex="-1" aria-labelledby="layananModalLabel" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="layananModalLabel">Data Layanan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
                 <div class="modal-body">
+
+                    <!-- flash notification -->
+                    @if($notification)
+                        <div class="alert alert-{{ $notification['type'] }} alert-dismissible fade show" role="alert">
+                            {{ $notification['message'] }}
+                            <button type="button" class="btn-close" wire:click="dismissNotification" aria-label="Close"></button>
+                        </div>
+                    @endif
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="d-flex align-items-center">
                                 <label class="me-2">Tampilkan</label>
-                                <select class="form-select form-select-sm" style="width: 70px;">
-                                    <option selected>10</option>
-                                    <option>25</option>
-                                    <option>50</option>
-                                    <option>100</option>
+                                <select class="form-select form-select-sm" style="width: 70px;" wire:model.live="perPage">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
                                 </select>
                                 <span class="ms-2">entri</span>
                             </div>
@@ -73,7 +154,7 @@ new class extends Component {
                         <div class="col-md-6 text-end">
                             <div class="d-flex justify-content-end">
                                 <label class="me-2 align-self-center">Cari:</label>
-                                <input type="search" class="form-control form-control-sm" style="width: 200px;">
+                                <input type="search" class="form-control form-control-sm" style="width: 200px;" wire:model.live.debounce.300ms="search">
                             </div>
                         </div>
                     </div>
@@ -82,69 +163,39 @@ new class extends Component {
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID Layanan</th>
+                                    <th>ID</th>
                                     <th>Nama Layanan</th>
                                     <th>Tarif</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-light">
-                                    <td>L001</td>
-                                    <td>Jasa Perawat</td>
-                                    <td>Rp 10.000,-</td>
-                                    <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                                </tr>
-                                <tr>
-                                    <td>L002</td>
-                                    <td>Jasa Pasang Infus</td>
-                                    <td>Rp 50.000,-</td>
-                                    <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                                </tr>
-                                <tr class="table-light">
-                                    <td>L003</td>
-                                    <td>Bekam</td>
-                                    <td>Rp 50.000,-</td>
-                                    <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                                </tr>
-                                <tr>
-                                    <td>L004</td>
-                                    <td>Perawatan Luka Ringan</td>
-                                    <td>Rp 30.000,-</td>
-                                    <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                                </tr>
-                                <tr>
-                                    <td>L010</td>
-                                    <td>Cek Gula Darah</td>
-                                    <td>Rp 10.000,-</td>
-                                    <td><button class="btn btn-primary btn-sm">Pilih</button></td>
-                                </tr>
+                                @foreach($this->layananModalData as $layanan)
+                                    <tr>
+                                        <td>{{ $layanan->id }}</td>
+                                        <td>{{ $layanan->nama_layanan }}</td>
+                                        <td>Rp {{ number_format($layanan->tarif_layanan, 0, ',', '.') }},-</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" wire:click="selectLayanan({{ $layanan->id }})">
+                                                Pilih
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p>Menampilkan 1 sampai 10 dari x entri (misal)</p>
+                            <p>Menampilkan {{ $this->layananModalData->firstItem() ?? 0 }} hingga {{ $this->layananModalData->lastItem() ?? 0 }} dari {{ $this->layananModalData->total() }} entri</p>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-end">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Sebelumnya</a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Selanjutnya</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <div class="pagination-container">
+                                {{ $this->layananModalData->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

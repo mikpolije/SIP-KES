@@ -14,4 +14,14 @@ class PoliRawatInap extends Model
     protected $primaryKey = 'id_pendaftaran';
 
     protected $guarded = ['created_at'];
+
+    public function informed_consent()
+    {
+        return $this->belongsTo(InformedConsent::class, 'id_informed_consent', 'id');
+    }
+
+    public function asessmen_awal()
+    {
+        return $this->belongsTo(AsessmenAwal::class, 'id_asessmen_awal', 'id');
+    }
 }

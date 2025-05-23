@@ -273,6 +273,14 @@ new class extends Component {
                                     <input type="date" wire:model="tanggalNota" class="form-control form-control-sm">
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <div class="col-5">Status</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <!-- status disini ntar -->
+                                    <span class="badge bg-success">Rawat Inap</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row mb-2">
@@ -589,21 +597,6 @@ new class extends Component {
                                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                 </svg>
                             </button>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="paymentMethod" id="tunai"
-                                value="tunai" checked>
-                            <label class="form-check-label" for="tunai">
-                                Tunai
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model="paymentMethod" id="transfer"
-                                value="transfer">
-                            <label class="form-check-label" for="transfer">
-                                Transfer
-                            </label>
                         </div>
 
                         <div class="table-responsive mt-3">

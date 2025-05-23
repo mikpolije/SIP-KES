@@ -1,6 +1,11 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\Diagnosa;
+use App\Models\Tindakan;
+use App\Models\Obat;
+use App\Models\CPPT;
+use App\Models\Pendaftaran;
 
 new class extends Component {
     protected $listeners = ['open-cppt-modal' => 'openModal'];
@@ -15,18 +20,103 @@ new class extends Component {
             'a' => '',
             'p' => ''
         ],
-        'diagnosa' => '',
-        'diagnosaCode' => '',
-        'tindakan' => '',
-        'tindakanCode' => '',
-        'obat' => '',
-        'pemeriksaanPenunjang' => [],
+        'id_icd10' => null,  // Changed from diagnosaCode
+        'id_icd9' => null,   // Changed from tindakanCode
+        'id_obat' => null,
+        'pemeriksaanPenunjang' => '',
         'kelasPerawatan' => ''
     ];
+
+    public $diagnosaList = [];
+    public $tindakanList = [];
+    public $obatList = [];
+
+    public $diagnosaSearch = '';
+    public $tindakanSearch = '';
+    public $obatSearch = '';
+
+    public $loadingDiagnosa = false;
+    public $loadingTindakan = false;
+    public $loadingObat = false;
+    public $kelasPerawatan = '';
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->currentTime = now()->format('H:i:s');
+
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->poli_rawat_inap->kelas;
+        if($pendaftaran){
+            $this->kelasPerawatan = $pendaftaran;
+        }
+
+        $this->loadDiagnosaOptions();
+        $this->loadTindakanOptions();
+        $this->loadObatOptions();
+    }
+
+    public function loadDiagnosaOptions() {
+        $this->loadingDiagnosa = true;
+        $this->diagnosaList = Diagnosa::when($this->diagnosaSearch, function($query) {
+                return $query->where('display', 'like', '%' . $this->diagnosaSearch . '%')
+                            ->orWhere('code', 'like', '%' . $this->diagnosaSearch . '%');
+            })
+            ->limit(20)
+            ->get()
+            ->map(function($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->display . ' (' . $item->code . ')'
+                ];
+            })
+            ->toArray();
+        $this->loadingDiagnosa = false;
+    }
+
+    public function loadTindakanOptions() {
+        $this->loadingTindakan = true;
+        $this->tindakanList = Tindakan::when($this->tindakanSearch, function($query) {
+                return $query->where('display', 'like', '%' . $this->tindakanSearch . '%')
+                            ->orWhere('code', 'like', '%' . $this->tindakanSearch . '%');
+            })
+            ->limit(20)
+            ->get()
+            ->map(function($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->display . ' (' . $item->code . ')'
+                ];
+            })
+            ->toArray();
+        $this->loadingTindakan = false;
+    }
+
+    public function loadObatOptions() {
+        $this->loadingObat = true;
+        $this->obatList = Obat::when($this->obatSearch, function($query) {
+                return $query->where('nama', 'like', '%' . $this->obatSearch . '%');
+            })
+            ->limit(20)
+            ->get()
+            ->map(function($item) {
+                return [
+                    'value' => $item->id,
+                    'label' => $item->nama
+                ];
+            })
+            ->toArray();
+        $this->loadingObat = false;
+    }
+
+    public function updatedDiagnosaSearch() {
+        $this->loadDiagnosaOptions();
+    }
+
+    public function updatedTindakanSearch() {
+        $this->loadTindakanOptions();
+    }
+
+    public function updatedObatSearch() {
+        $this->loadObatOptions();
     }
 
     public function openModal() {
@@ -46,34 +136,51 @@ new class extends Component {
                 'a' => '',
                 'p' => ''
             ],
-            'diagnosa' => '',
-            'diagnosaCode' => '',
-            'tindakan' => '',
-            'tindakanCode' => '',
-            'obat' => '',
-            'pemeriksaanPenunjang' => [],
+            'id_icd10' => null,
+            'id_icd9' => null,
+            'id_obat' => null,
+            'pemeriksaanPenunjang' => '',
             'kelasPerawatan' => ''
         ];
+        $this->diagnosaSearch = '';
+        $this->tindakanSearch = '';
+        $this->obatSearch = '';
+
+        // Reload the options
+        $this->loadDiagnosaOptions();
+        $this->loadTindakanOptions();
+        $this->loadObatOptions();
     }
 
     public function saveCppt() {
-        // Logic to save CPPT data would go here
+        $this->validate([
+            'formData.soap.s' => 'required',
+            'formData.soap.o' => 'required',
+            'formData.soap.a' => 'required',
+            'formData.soap.p' => 'required',
+            'formData.id_icd10' => 'nullable|exists:icd10,id',
+            'formData.id_icd9' => 'nullable|exists:icd9,id',
+            'formData.id_obat' => 'nullable|exists:obat,id',
+        ]);
+
+        CPPT::create([
+            'id_pendaftaran' => $this->pendaftaranId,
+            's' => $this->formData['soap']['s'],
+            'o' => $this->formData['soap']['o'],
+            'a' => $this->formData['soap']['a'],
+            'p' => $this->formData['soap']['p'],
+            'id_icd10' => $this->formData['id_icd10'],
+            'id_icd9' => $this->formData['id_icd9'],
+            'id_obat' => $this->formData['id_obat'],
+            'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
+            'kelas_perawatan' => $this->formData['kelasPerawatan'],
+        ]);
+
+        flash()->success('CPPT berhasil ditambahkan!');
         $this->closeModal();
-        $this->dispatch('cpptAdded');
-    }
-
-    public function addPemeriksaan($type) {
-        if (!in_array($type, $this->formData['pemeriksaanPenunjang'])) {
-            $this->formData['pemeriksaanPenunjang'][] = $type;
-        }
-    }
-
-    public function removePemeriksaan($index) {
-        unset($this->formData['pemeriksaanPenunjang'][$index]);
-        $this->formData['pemeriksaanPenunjang'] = array_values($this->formData['pemeriksaanPenunjang']);
+        $this->dispatch('cppt-added');
     }
 } ?>
-
 <div>
     <!-- CPPT Form Modal -->
     @if($showModal)
@@ -103,21 +210,25 @@ new class extends Component {
                             <div class="mb-3">
                                 <label class="form-label">S</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.s"></textarea>
+                                @error('formData.soap.s') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">O</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.o"></textarea>
+                                @error('formData.soap.o') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">A</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.a"></textarea>
+                                @error('formData.soap.a') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">P</label>
                                 <textarea class="form-control" rows="3" wire:model="formData.soap.p"></textarea>
+                                @error('formData.soap.p') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
 
@@ -125,149 +236,112 @@ new class extends Component {
                         <div class="col-md-7">
                             <!-- Diagnosis Section -->
                             <div class="mb-4">
-                                <h5>Diagnosa Pasien</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-8">
-                                        <select class="form-select" wire:model="formData.diagnosa">
-                                            <option value="">Pilih Diagnosa</option>
-                                            <option value="Diabetes Mellitus">Diabetes Mellitus</option>
-                                            <option value="Hipertensi">Hipertensi</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-primary w-100">Cari</button>
-                                    </div>
-                                </div>
-                                @if($formData['diagnosa'])
-                                <div class="mt-2">
-                                    <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                        <strong>{{ $formData['diagnosa'] }}</strong> - Kode ICD-10:
-                                        @if($formData['diagnosa'] == 'Diabetes Mellitus')
-                                        E11
-                                        @elseif($formData['diagnosa'] == 'Hipertensi')
-                                        I10
+                                <h5>Diagnosa Pasien (ICD-10)</h5>
+                                <div class="input-group mb-2">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Cari diagnosa..."
+                                        wire:model.live.debounce.500ms="diagnosaSearch"
+                                    >
+                                    <span class="input-group-text">
+                                        @if($loadingDiagnosa)
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @else
+                                            <i class="fas fa-search"></i>
                                         @endif
-                                    </div>
+                                    </span>
                                 </div>
-                                @endif
+                                <select class="form-select" wire:model="formData.id_icd10">
+                                    <option value="">Pilih Diagnosa</option>
+                                    @foreach($diagnosaList as $diagnosa)
+                                    <option value="{{ $diagnosa['value'] }}">{{ $diagnosa['label'] }}</option>
+                                    @endforeach
+                                </select>
+                                @error('formData.id_icd10') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Procedure Section -->
                             <div class="mb-4">
-                                <h5>Tindakan</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-8">
-                                        <select class="form-select" wire:model="formData.tindakan">
-                                            <option value="">Pilih Tindakan</option>
-                                            <option value="Pemeriksaan Fisik">Pemeriksaan Fisik</option>
-                                            <option value="Konsultasi">Konsultasi</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-primary w-100">Cari</button>
-                                    </div>
-                                </div>
-                                @if($formData['tindakan'])
-                                <div class="mt-2">
-                                    <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                        <strong>{{ $formData['tindakan'] }}</strong> - Kode ICD 9 CM:
-                                        @if($formData['tindakan'] == 'Pemeriksaan Fisik')
-                                        89.7
-                                        @elseif($formData['tindakan'] == 'Konsultasi')
-                                        89.05
+                                <h5>Tindakan (ICD-9)</h5>
+                                <div class="input-group mb-2">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Cari tindakan..."
+                                        wire:model.live.debounce.500ms="tindakanSearch"
+                                    >
+                                    <span class="input-group-text">
+                                        @if($loadingTindakan)
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @else
+                                            <i class="fas fa-search"></i>
                                         @endif
-                                    </div>
+                                    </span>
                                 </div>
-                                @endif
+                                <select class="form-select" wire:model="formData.id_icd9">
+                                    <option value="">Pilih Tindakan</option>
+                                    @foreach($tindakanList as $tindakan)
+                                    <option value="{{ $tindakan['value'] }}">{{ $tindakan['label'] }}</option>
+                                    @endforeach
+                                </select>
+                                @error('formData.id_icd9') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Medicine Section -->
                             <div class="mb-4">
                                 <h5>Obat</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-8">
-                                        <select class="form-select" wire:model="formData.obat">
-                                            <option value="">Jenis Obat</option>
-                                            <option value="Paracetamol">Paracetamol</option>
-                                            <option value="Amoxicillin">Amoxicillin</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-primary w-100">Cari</button>
-                                    </div>
-                                </div>
-                                @if($formData['obat'])
-                                <div class="mt-2">
-                                    <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                        <strong>{{ $formData['obat'] }}</strong>
-                                        @if($formData['obat'] == 'Paracetamol')
-                                        - 500mg
-                                        @elseif($formData['obat'] == 'Amoxicillin')
-                                        - 250mg
+                                <div class="input-group mb-2">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Cari obat..."
+                                        wire:model.live.debounce.500ms="obatSearch"
+                                    >
+                                    <span class="input-group-text">
+                                        @if($loadingObat)
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        @else
+                                            <i class="fas fa-search"></i>
                                         @endif
-                                    </div>
+                                    </span>
                                 </div>
-                                @endif
+                                <select class="form-select" wire:model="formData.id_obat">
+                                    <option value="">Pilih Obat</option>
+                                    @foreach($obatList as $obat)
+                                    <option value="{{ $obat['value'] }}">{{ $obat['label'] }}</option>
+                                    @endforeach
+                                </select>
+                                @error('formData.id_obat') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
-                            <!-- Additional Examinations and Care Class -->
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <h5>Pemeriksaan Penunjang</h5>
-                                    <select class="form-select mb-2" wire:change="addPemeriksaan($event.target.value)">
+                                    <select class="form-select mb-2" wire:model="formData.pemeriksaanPenunjang">
                                         <option value="">Pilih Pemeriksaan</option>
                                         <option value="Laboratorium">Laboratorium</option>
                                         <option value="Radiologi">Radiologi</option>
                                     </select>
-                                    @if(count($formData['pemeriksaanPenunjang']) > 0)
-                                    <div class="mt-2">
-                                        @foreach($formData['pemeriksaanPenunjang'] as $index => $pemeriksaan)
-                                        <div
-                                            class="bg-primary bg-opacity-10 p-2 rounded mb-2 d-flex justify-content-between align-items-center">
-                                            <span>{{ $pemeriksaan }}</span>
-                                            <button type="button" class="btn btn-sm btn-close"
-                                                wire:click="removePemeriksaan({{ $index }})"></button>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                    @endif
                                 </div>
 
                                 <div class="col-md-6">
                                     <h5>Kelas Perawatan</h5>
-                                    <select class="form-select mb-2" wire:model="formData.kelasPerawatan">
-                                        <option value="">Pilih Kelas</option>
-                                        <option value="Kelas 1">Kelas 1</option>
-                                        <option value="Kelas 2">Kelas 2</option>
-                                        <option value="Kelas 3">Kelas 3</option>
-                                    </select>
-                                    @if($formData['kelasPerawatan'])
-                                    <div class="mt-2">
-                                        <div class="bg-primary bg-opacity-10 p-2 rounded">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kelas" id="kelas1"
-                                                    value="Kelas 1" wire:model="formData.kelasPerawatan">
-                                                <label class="form-check-label" for="kelas1">
-                                                    Kelas 1
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kelas" id="kelas2"
-                                                    value="Kelas 2" wire:model="formData.kelasPerawatan">
-                                                <label class="form-check-label" for="kelas2">
-                                                    Kelas 2
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="kelas" id="kelas3"
-                                                    value="Kelas 3" wire:model="formData.kelasPerawatan">
-                                                <label class="form-check-label" for="kelas3">
-                                                    Kelas 3
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
+                    <div class="border rounded p-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1" disabled>
+                            <label class="form-check-label" for="1">Kelas 1</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2" disabled>
+                            <label class="form-check-label" for="2">Kelas 2</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3" disabled>
+                            <label class="form-check-label" for="3">Kelas 3</label>
+                        </div>
+                    </div>
+                    @error('kelasPerawatan') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>

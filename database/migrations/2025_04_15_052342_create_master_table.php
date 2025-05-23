@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('gelar_depan', 50);
             $table->string('gelar_belakang', 50);
             $table->string('jadwal_layanan', 50);
+            $table->string('ttd')->nullable();
             $table->softDeletes();
         });
 
@@ -183,6 +184,13 @@ return new class extends Migration
             $table->string('code', 6)->unique();
             $table->string('display');
             $table->string('version', 10);
+        });
+
+        Schema::create('icd9', function (Blueprint $table) {
+            $table->id();
+            $table->string('code', 6)->unique();
+            $table->string('display');
+            $table->string('version');
         });
     }
 

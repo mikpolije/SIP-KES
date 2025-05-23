@@ -1,4 +1,4 @@
-@extends('layouts.main')
+    @extends('layouts.main')
 
 @section('content')
 <h2>Data Poli</h2>

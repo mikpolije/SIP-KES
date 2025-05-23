@@ -39,13 +39,6 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->foreignId('id_cppt')
-                ->nullable()
-                ->default(null)
-                ->constrained('cppt')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-
             $table->foreignId('id_informed_consent')
                 ->nullable()
                 ->default(null)

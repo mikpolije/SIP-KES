@@ -17,6 +17,17 @@ class Pendaftaran extends Model
 
     protected $appends = ['layanan_terisi'];
 
+    protected $fillable = [
+        'id_pendaftaran',
+        'id_poli',
+        'no_rm',
+        'id_jenis_pembayaran',
+        'id_dokter',
+        'id_wali',
+        'created_at',
+        'updated_at',
+    ];
+
     public function data_pasien()
     {
         return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
@@ -30,6 +41,16 @@ class Pendaftaran extends Model
     public function poli_rawat_inap()
     {
         return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
+    public function asessmen_awal()
+    {
+        return $this->hasOne(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
+    public function cppt()
+    {
+        return $this->hasMany(CPPT::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 
     public function layanan_kia()
@@ -74,7 +95,7 @@ class Pendaftaran extends Model
 
     public function getLayananTerisiAttribute()
     {
-        if (! $this->relationLoaded('layanan_kia')) {
+        if (!$this->relationLoaded('layanan_kia')) {
             $this->load('layanan_kia');
         }
 

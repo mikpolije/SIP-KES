@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AdlUgd;
 use App\Models\DetailKondisi;
 use App\Models\ICD;
+use App\Models\Icd9Ugd;
 use App\Models\IcdUgd;
 use App\Models\KondisiPasien;
 use App\Models\Layanan;
@@ -61,6 +62,7 @@ class TriageController extends Controller
             $pengkajianRisiko = new PengkajianRisikoDewasa();
             $adlUgd = new AdlUgd();
             $icdUgd = new IcdUgd();
+            $icd9Ugd = new Icd9Ugd();
             $obatUgd = new ObatUGD();
             $rencanaKontrol = new RencanaKontrolUGD();
 
@@ -197,6 +199,19 @@ class TriageController extends Controller
                 }
 
                 $icdUgd->insert($icdUgds);
+            }
+
+            if (! is_null($request->get('icd9_id'))) {
+                $icd9Ugds = [];
+                foreach ($request->icd9_id as $key => $item) {
+                    array_push($icd9Ugds, [
+                        'pasien_id' => $pasien->id,
+                        'icd9_id' => $item,
+                        'created_at' => now(),
+                    ]);
+                }
+
+                $icd9Ugd->insert($icd9Ugds);
             }
 
             DB::commit();
@@ -389,10 +404,19 @@ class TriageController extends Controller
 
     public function getListICD(Request $request)
     {
-        $icds = ICD::select('id', 'display', 'kode_diagnosa')
-            ->where('display', 'like', '%'.$request->term.'%')
-            ->orWhere('kode_diagnosa', 'like', '%'.$request->term.'%')
-            ->get();
+        $type = $request->get('type');
+        if ($type == '10') {
+            $icds = ICD::select('id', 'display', 'code')
+                ->where('display', 'like', '%'.$request->term.'%')
+                ->orWhere('code', 'like', '%'.$request->term.'%')
+                ->get();
+        } else if ($type == '9') {
+            $icds = DB::table('icd9')
+                ->select('id', 'display', 'code')
+                ->where('display', 'like', '%'.$request->term.'%')
+                ->orWhere('code', 'like', '%'.$request->term.'%')
+                ->get();
+        }
 
         return response()->json($icds, 200);
     }
