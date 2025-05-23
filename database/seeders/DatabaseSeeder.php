@@ -48,8 +48,8 @@ class DatabaseSeeder extends Seeder
         Layanan::factory()->count(50)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'nama' => 'Test User',
+            'email' => 'admin@project.com',
         ]);
 
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
