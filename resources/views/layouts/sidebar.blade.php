@@ -400,8 +400,17 @@
                 </span>
                 <span class="hide-menu">Master Data</span>
             </a>
-            <ul class="first-level {{ request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'in' : '' }} collapse"
+            <ul class="first-level {{ request()->is('user') || request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'in' : '' }} collapse"
                 aria-expanded="false">
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('user') ? 'active' : '' }}"
+                        href="{{ route('user.index') }}" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Pengguna</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('dokter') ? 'active' : '' }}"
                         href="{{ route('doctor.index') }}" aria-expanded="false">

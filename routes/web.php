@@ -7,11 +7,12 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\TriageController;
+use App\Http\Controllers\Master\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
-    return view('main.index');
+    return view('login');
 });
 Route::get('/login', function () {
     return view('login');
@@ -93,3 +94,9 @@ Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'
 
 
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
+
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.user');
+
+
+Route::resource('user', \App\Http\Controllers\UserController::class);

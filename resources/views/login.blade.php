@@ -28,7 +28,7 @@
     <div class="w-full max-w-4xl flex bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Left Section: Logo -->
         <div class="w-1/2 bg-gray-100 flex flex-col items-center justify-center p-10">
-            <img src="{{ URL::asset('build/images/logos/logopengembang.png') }}" alt="SIP-Kes Logo" class="img-fluid w-75">
+            <img src="{{ URL::asset('build/images/logos/logosipkes.png') }}" alt="SIP-Kes Logo" class="img-fluid w-75">
         </div>
 
         <!-- Right Section: Login Form -->
@@ -45,9 +45,9 @@
             <form action="{{ route('login') }}" method="POST">
     @csrf
     <div class="mb-4">
-        <label class="block text-gray-700 text-sm mb-2 font-poppins" for="username">Username (Email)</label>
-        <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
-        @error('username')
+        <label class="block text-gray-700 text-sm mb-2 font-poppins" for="name">Username</label>
+        <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+        @error('name')
             <span class="text-red-500 text-sm">{{ $message }}</span>
         @enderror
     </div>

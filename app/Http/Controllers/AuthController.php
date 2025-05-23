@@ -17,13 +17,13 @@ class AuthController extends Controller
     {
         // Validate input
         $request->validate([
-            'username' => 'required|string',
+            'name' => 'required|string',
             'password' => 'required|string',
         ]);
 
         // Prepare credentials for authentication
         $credentials = [
-            'email' => $request->username,
+            'name' => $request->name,
             'password' => $request->password,
         ];
 
@@ -33,7 +33,7 @@ class AuthController extends Controller
         // Attempt to authenticate the user
         if (Auth::attempt($credentials, $remember)) {
             // Redirect to the intended page (default: dashboard)
-            return redirect()->intended('layanan');
+            return redirect()->intended('main/index');
         }
 
         // If authentication fails, return back with errors
