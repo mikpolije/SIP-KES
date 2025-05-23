@@ -95,8 +95,6 @@ Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'
 
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
-Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.user');
 
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
