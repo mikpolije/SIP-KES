@@ -13,7 +13,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('resume_medis', function (Blueprint $table) {
-            $table->id();
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->primary()
                 ->cascadeOnDelete()
