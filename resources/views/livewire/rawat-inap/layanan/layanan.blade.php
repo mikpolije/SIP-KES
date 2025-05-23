@@ -15,7 +15,7 @@ new class extends Component {
     public $layananList = [];
     public $search = '';
     public $perPage = 7;
-    public $notification = null; // Added notification property
+    public $notification = null;
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;

@@ -56,4 +56,9 @@ class Pasien extends Model
     {
         return $this->hasMany(RencanaKontrolUGD::class, 'pasien_id', 'id');
     }
+
+    public function icd9 ()
+    {
+        return $this->hasMany(Icd9Ugd::class, 'pasien_id', 'id');
+    }
 }
