@@ -121,8 +121,9 @@ new class extends Component {
             $this->noRM = $this->pendaftaran->data_pasien->no_rm;
             $this->tglDaftar = $this->pendaftaran->created_at->format('Y-m-d');
             $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir;
-            $this->calculateAge();
+            $this->agama = $this->pendaftaran->data_pasien->agama;
 
+            $this->calculateAge();
         }
 
         if($this->existingAskep) {
@@ -218,8 +219,6 @@ new class extends Component {
             $this->nafsu_makan = $this->existingAskep->nafsu_makan;
             $this->turgor = $this->existingAskep->turgor;
             $this->gaya_berjalan = $this->existingAskep->gaya_berjalan;
-
-            $this->agama = $this->existingAskep->agama;
         }
     }
 
@@ -1625,6 +1624,16 @@ new class extends Component {
                                             <input class="form-check-input" type="radio" name="agama"
                                                 id="agama-konghucu" value="Konghucu" wire:model.lazy="agama">
                                             <label class="form-check-label" for="agama-konghucu">Konghucu</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="agama"
+                                                id="agama-penghayat" value="Penghayat" wire:model.lazy="agama">
+                                            <label class="form-check-label" for="agama-penghayat">Penghayat</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="agama"
+                                                id="agama-lain" value="Lain-lain" wire:model.lazy="agama">
+                                            <label class="form-check-label" for="agama-lain">Lain-lain</label>
                                         </div>
                                     </div>
                                 </div>
