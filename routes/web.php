@@ -30,6 +30,9 @@ Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class,
 Route::get('/sign-request/{token}', [generalConsentController::class, 'showForm']);
 Route::post('/sign-request/{token}', [generalConsentController::class, 'submitForm']);
 
+Route::prefix('/main/persuratan')->group(function () {
+    Volt::route('/kontrol-print', 'persuratan.kontrol-print');
+});
 
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
