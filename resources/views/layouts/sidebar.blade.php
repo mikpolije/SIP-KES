@@ -275,17 +275,8 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('general-consent*') ? 'show' : '' }}"
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') ||  request()->is('main/persuratan/pulang-paksa') || request()->is('main/persuratan/sakit') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
                 aria-expanded="true">
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/"
-                        aria-expanded="false">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu">Surat Kematian</span>
-                    </a>
-                </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('surat-keterangan-sehat*') ? 'active' : '' }}"
@@ -298,8 +289,28 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('surat-keterangan-sakit*') ? 'active' : '' }}"
-                        href="{{ route('surat.sakit') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('main/persuratan/kematian') ? 'active' : '' }}"
+                        href="/main/persuratan/kematian" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Surat Kematian</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/persuratan/pulang-paksa') ? 'active' : '' }}"
+                        href="/main/persuratan/pulang-paksa" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Surat Pulang Paksa</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/persuratan/sakit') ? 'active' : '' }}"
+                        href="/main/persuratan/sakit" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -308,8 +319,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/blog-detail') ? 'active' : '' }}"
-                        href="/main/blog-detail" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('main/persuratan/kontrol') ? 'active' : '' }}"
+                        href="/main/persuratan/kontrol" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
