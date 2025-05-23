@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\generalConsentController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('api')->name('api.')->group(function () {
@@ -36,3 +37,6 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::post('/obat/{id}/delete', [ObatController::class, 'delete'])->name('obat.delete');
 
 });
+
+Route::get('/signature-status/{token}', [generalConsentController::class, 'checkStatus']);
+

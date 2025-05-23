@@ -1,9 +1,61 @@
 <?php
 
+use App\Models\AsessmenAwal;
+use App\Models\CPPT;
+use App\Models\Pendaftaran;
+use App\Models\ResumeMedis;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    //
+
+    public $nama;
+    public $noRM;
+    public $tglMasuk;
+    public $tglKeluar;
+    public $tglLahir;
+    public $jenisKelamin;
+    public $pembayaran;
+    public $nik;
+    public $dokterPenanggungJawab;
+    public $ruangPerawatan;
+    public $diagnosaMasuk;
+
+    public function mount($pendaftaranId = null) {
+        $this->pendaftaranId = $pendaftaranId;
+        $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
+        // $this->existingResMed = ResumeMedis::where('id_pendaftaran', $pendaftaranId)->first();
+        $cppt = CPPT::where('id_pendaftaran', $pendaftaranId)
+                  ->orderBy('created_at', 'asc')->first();
+        $aswal = AsessmenAwal::where('id_pendaftaran', $pendaftaranId)->first();
+
+        if ($this->pendaftaran) {
+            $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
+            $this->noRM = $this->pendaftaran->data_pasien->no_rm;
+            $this->nik = $this->pendaftaran->data_pasien->nik;
+            $this->tglMasuk = $this->pendaftaran->poli_rawat_inap->created_at->format('Y-m-d');
+            $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir;
+            $this->ruangPerawatan = $this->pendaftaran->poli_rawat_inap->kelas;
+            $this->dokterPenanggungJawab = $this->pendaftaran->poli_rawat_inap->informed_consent->dokter->nama;
+            $this->pembayaran = $this->pendaftaran->poli_rawat_inap->pembayaran;
+            $this->tglLahir = $this->pendaftaran->data_pasien->tanggal_lahir . ' / ' . $this->jenis_kelamin($this->pendaftaran->data_pasien->jenis_kelamin);
+        }
+
+        if ($aswal) {
+            // $this->diagnosaMasuk = $cppt->diagnosa_masuk;
+        }
+
+        if ($cppt) {
+            $this->diagnosaMasuk = $cppt->icd10->display;
+        }
+    }
+
+    public function jenis_kelamin(bool $kelamin) {
+        if ($kelamin) {
+            return 'Laki-laki';
+        } else {
+            return 'Perempuan';
+        }
+    }
 }; ?>
 
 <div>
@@ -35,7 +87,7 @@ new class extends Component {
                                         <label class="form-label">Nama</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="nama" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -43,7 +95,7 @@ new class extends Component {
                                         <label class="form-label">No. RM</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="noRM" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -51,7 +103,7 @@ new class extends Component {
                                         <label class="form-label">Tgl. Masuk dan Tgl. Keluar</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="tglMasuk" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -59,7 +111,7 @@ new class extends Component {
                                         <label class="form-label">Tgl. Lahir / Jenis Kelamin</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="tglLahir" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -67,7 +119,7 @@ new class extends Component {
                                         <label class="form-label">Pembayaran</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="pembayaran" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -75,7 +127,7 @@ new class extends Component {
                                         <label class="form-label">No.SEP / NIK</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="nik" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -83,7 +135,7 @@ new class extends Component {
                                         <label class="form-label">Dokter Penanggung Jawab</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="dokterPenanggungJawab" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -91,7 +143,7 @@ new class extends Component {
                                         <label class="form-label">Ruang Perawatan</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="ruangPerawatan" disabled>
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -99,7 +151,7 @@ new class extends Component {
                                         <label class="form-label">Diagnosa Masuk</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-sm">
+                                        <input type="text" class="form-control form-control-sm" wire:model="diagnosaMasuk" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -227,10 +279,10 @@ new class extends Component {
                     <div class="col-md-3">
                         <label class="form-label">Diagnosis Utama</label>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <input type="text" class="form-control">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-text">KODE ICD 10</span>
                             <input type="text" class="form-control">
@@ -249,10 +301,10 @@ new class extends Component {
                     <div class="col-md-3">
                         <label class="form-label">Diagnosis Sekunder / Komorbid</label>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5">
                         <input type="text" class="form-control">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-text">KODE ICD 9</span>
                             <input type="text" class="form-control">
