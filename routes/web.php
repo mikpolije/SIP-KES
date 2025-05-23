@@ -32,6 +32,9 @@ Route::post('/sign-request/{token}', [generalConsentController::class, 'submitFo
 
 Route::prefix('/main/persuratan')->group(function () {
     Volt::route('/kontrol-print', 'persuratan.kontrol-print');
+    Volt::route('/sakit-print', 'persuratan.sakit-print');
+    Volt::route('/pulang-paksa-print', 'persuratan.pulang-paksa-print');
+    Volt::route('/kematian-print', 'persuratan.kematian-print');
 });
 
 Route::resource('/layanan', LayananController::class);
