@@ -6,9 +6,8 @@
 @unless ($hideLogo ?? false)
     <div class="brand-logo d-flex align-items-center justify-content-between">
         <a class="logo-img d-flex align-items-center text-nowrap" href="/main/index">
-            <img class="dark-logo logo-size" src="{{ URL::asset('build/images/logos/logopengembang.png') }}" alt="Logo-Dark" />
-            <img class="light-logo logo-size" src="{{ URL::asset('build/images/logos/logopengembang.png') }}"
-                alt="Logo-light" />
+            <img class="dark-logo logo-size" src="{{ URL::asset('build/images/logos/logosipkes.png') }}" alt="Logo-Dark" />
+            <img class="light-logo logo-size" src="{{ URL::asset('build/images/logos/logosipkes.png') }}" alt="Logo-light" />
         </a>
         <a class="sidebartoggler text-decoration-none fs-5 d-block d-xl-none ms-auto" href="javascript:void(0)">
             <i class="ti ti-x"></i>
@@ -238,7 +237,7 @@
                         <span class="hide-menu">Data Resep</span>
                     </a>
                 </li>
-                        <li class="sidebar-item">
+                <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/stokopname') ? 'active' : '' }}"
                         href="/main/stokopname" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
@@ -276,7 +275,8 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('general-consent*') ? 'show' : '' }}" aria-expanded="true">
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('general-consent*') ? 'show' : '' }}"
+                aria-expanded="true">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/"
                         aria-expanded="false">
@@ -368,7 +368,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/blog-detail">
+                    <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
+                        href="/main/laporankunjungan">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -387,7 +388,8 @@
             </ul>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('dokter') || request()->is('layanan') ? 'active' : '' }}"
+            <a class="sidebar-link has-arrow
+        {{ request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'active' : '' }}"
                 href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -398,8 +400,17 @@
                 </span>
                 <span class="hide-menu">Master Data</span>
             </a>
-            <ul class="first-level {{ request()->is('dokter') || request()->is('layanan') ? 'in' : '' }} collapse"
+            <ul class="first-level {{ request()->is('user') || request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'in' : '' }} collapse"
                 aria-expanded="false">
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('user') ? 'active' : '' }}"
+                        href="{{ route('user.index') }}" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Pengguna</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('dokter') ? 'active' : '' }}"
                         href="{{ route('doctor.index') }}" aria-expanded="false">
@@ -419,14 +430,17 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('poli') ? 'active' : '' }}"
+                        href="{{ route('poli.index') }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">poli</span>
+                        <span class="hide-menu">Poli</span>
                     </a>
                 </li>
             </ul>
         </li>
+
     </ul>
 </nav>
 <!-- ---------------------------------- -->

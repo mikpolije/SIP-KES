@@ -136,7 +136,7 @@ new class extends Component {
                         <th scope="col">TGL VISIT</th>
                         <th scope="col">DPJP</th>
                         <th scope="col">KETERANGAN</th>
-                        <th scope="col">OLEH</th>
+                        <th scope="col">DIUBAH OLEH</th>
                         <th scope="col" class="text-center">
                             <i class="bi bi-pencil-square"></i>
                         </th>

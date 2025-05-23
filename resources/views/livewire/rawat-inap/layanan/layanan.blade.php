@@ -3,6 +3,7 @@
 use Livewire\Volt\Component;
 use App\Models\LayananPendaftaran;
 use App\Models\Layanan;
+use App\Models\Pendaftaran;
 use Livewire\WithPagination;
 
 new class extends Component {
@@ -14,11 +15,17 @@ new class extends Component {
     public $layananList = [];
     public $search = '';
     public $perPage = 7;
-    public $notification = null; // Added notification property
+    public $notification = null;
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->loadLayananPendaftaran();
+
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+        if(!$pendaftaran->asessmen_awal) {
+            flash()->warning('Isi Asessmen Awal terlebih dahulu!');
+            $this->dispatch('switch-tab', tab: 'pemeriksaan');
+        }
     }
 
     public function loadLayananPendaftaran() {
@@ -40,26 +47,20 @@ new class extends Component {
     }
 
     public function selectLayanan($layananId) {
-        // Get the layanan name for the notification message
         $layanan = Layanan::find($layananId);
 
-        // Create the layanan pendaftaran record
         LayananPendaftaran::create([
             'id_pendaftaran' => $this->pendaftaranId,
             'id_layanan' => $layananId
         ]);
 
-        // Set notification message
         $this->notification = [
             'type' => 'success',
             'message' => 'Layanan "' . $layanan->nama_layanan . '" berhasil ditambahkan!'
         ];
 
-        // Reload the layanan list
         $this->loadLayananPendaftaran();
-
-        // Close the modal
-        $this->dispatch('close-modal');
+        flash()->success('Layanan berhasil ditambahkan!');
     }
 
     public function dismissNotification() {
@@ -202,15 +203,3 @@ new class extends Component {
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('livewire:initialized', () => {
-        // Listen for the custom event to close the modal
-        Livewire.on('close-modal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('layananModal'));
-            if (modal) {
-                modal.hide();
-            }
-        });
-    });
-</script>

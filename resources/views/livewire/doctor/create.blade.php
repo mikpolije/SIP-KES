@@ -135,6 +135,12 @@ new class extends Component {
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-4">
+          <x-signature-pad wire:model.defer="form.ttd" />
+        </div>
+      </div>
+
       <div class="d-flex justify-content-end gap-2">
         <button class="btn btn-primary" type="submit">Simpan</button>
         <a class="btn btn-secondary" href="{{ route('doctor.index') }}">Kembali</a>
