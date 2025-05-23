@@ -32,7 +32,7 @@ new class extends Component {
     public $provDomisili = '';
 
     #[Validate('required')]
-    public $kelasPerawatan = 'kelas1';
+    public $kelasPerawatan = '3';
     #[Validate('required')]
     public $ruangInap = '';
     #[Validate('required')]

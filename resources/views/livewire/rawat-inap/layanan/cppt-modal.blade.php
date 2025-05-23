@@ -24,7 +24,7 @@ new class extends Component {
         'id_icd9' => null,   // Changed from tindakanCode
         'id_obat' => null,
         'pemeriksaanPenunjang' => '',
-        'kelasPerawatan' => ''
+        'kelas' => ''
     ];
 
     public $diagnosaList = [];
@@ -38,7 +38,7 @@ new class extends Component {
     public $loadingDiagnosa = false;
     public $loadingTindakan = false;
     public $loadingObat = false;
-    public $kelasPerawatan = '';
+    public $kelas= '';
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
@@ -46,7 +46,7 @@ new class extends Component {
 
         $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->poli_rawat_inap->kelas;
         if($pendaftaran){
-            $this->kelasPerawatan = $pendaftaran;
+            $this->kelas = $pendaftaran;
         }
 
         $this->loadDiagnosaOptions();
@@ -140,7 +140,7 @@ new class extends Component {
             'id_icd9' => null,
             'id_obat' => null,
             'pemeriksaanPenunjang' => '',
-            'kelasPerawatan' => ''
+            'kelas' => ''
         ];
         $this->diagnosaSearch = '';
         $this->tindakanSearch = '';
@@ -173,7 +173,7 @@ new class extends Component {
             'id_icd9' => $this->formData['id_icd9'],
             'id_obat' => $this->formData['id_obat'],
             'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
-            'kelas_perawatan' => $this->formData['kelasPerawatan'],
+            'kelas' => $this->formData['kelas'],
         ]);
 
         flash()->success('CPPT berhasil ditambahkan!');
@@ -329,19 +329,19 @@ new class extends Component {
                                     <h5>Kelas Perawatan</h5>
                     <div class="border rounded p-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="1" id="kelas1" disabled>
+                            <input class="form-check-input" type="radio" wire:model.live="kelas" value="1" id="kelas1">
                             <label class="form-check-label" for="1">Kelas 1</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="2" id="kelas2" disabled>
+                            <input class="form-check-input" type="radio" wire:model.live="kelas" value="2" id="kelas2">
                             <label class="form-check-label" for="2">Kelas 2</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" wire:model.live="kelasPerawatan" value="3" id="kelas3" disabled>
+                            <input class="form-check-input" type="radio" wire:model.live="kelas" value="3" id="kelas3">
                             <label class="form-check-label" for="3">Kelas 3</label>
                         </div>
                     </div>
-                    @error('kelasPerawatan') <div class="text-danger">{{ $message }}</div> @enderror
+                    @error('kelas') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
