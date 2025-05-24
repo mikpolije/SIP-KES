@@ -35,7 +35,7 @@ new class extends Component {
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h2">Daftar Surat Kontrol</h1>
+        <h1 class="title">Daftar Surat Kontrol</h1>
         <a href="/main/persuratan/kontrol/create" class="btn btn-primary">
             <i class="fas fa-plus"></i> Tambah Surat Kontrol
         </a>
