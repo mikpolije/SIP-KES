@@ -26,6 +26,11 @@ new class extends Component {
         $this->showPatientDetails = true;
 
         $patient = Pendaftaran::where('id_pendaftaran', $id)->first();
+        if(!$patient->data_pasien){
+            flash()->error('No RM Pasien tidak ditemukan. Mohon hubungi petugas untuk bantuan lebih lanjut.');
+            $this->reset('selectedPatient', 'selectedPatientName', 'showPatientDetails');
+            return;
+        }
 
         $this->patientIsRegistered = (bool)(isset($patient->poli_rawat_inap) ?? 0);
         $this->patientIsExamined = (bool)((isset($patient->poli_rawat_inap->id_asessmen_awal) && isset($patient->poli_rawat_inap->id_informed_consent)) ?? 0);
