@@ -1,19 +1,35 @@
 <?php
-
 use Livewire\Volt\Component;
+use Livewire\WithPagination;
 use App\Models\SuratKontrol;
 
 new class extends Component {
-    public $suratKontrols;
+    use WithPagination;
 
-    public function mount()
+    protected $paginationTheme = 'bootstrap';
+
+    public function with()
     {
-        $this->suratKontrols = SuratKontrol::with(['dokter', 'data_pasien'])->latest()->get();
+        return [
+            'suratKontrols' => SuratKontrol::with(['dokter', 'data_pasien'])
+                ->latest()
+                ->paginate(10)
+        ];
     }
 
     public function detail($id)
     {
         return redirect()->route('main.persuratan.kontrol.print', ['id' => $id]);
+    }
+
+    public function delete($id)
+    {
+        try {
+            SuratKontrol::findOrFail($id)->delete();
+            flash()->success('Surat kontrol berhasil dihapus.');
+        } catch (\Exception $e) {
+            flash()->error('Gagal menghapus surat kontrol.');
+        }
     }
 }; ?>
 
@@ -47,7 +63,7 @@ new class extends Component {
                 <tbody>
                     @foreach($suratKontrols as $index => $surat)
                     <tr>
-                        <th scope="row">{{ $index + 1 }}</th>
+                        <th scope="row">{{ $suratKontrols->firstItem() + $index }}</th>
                         <td>{{ $surat->nomor }}</td>
                         <td>{{ $surat->tanggal }}</td>
                         <td>{{ $surat->data_pasien->nama_lengkap ?? '-' }}</td>
@@ -56,10 +72,13 @@ new class extends Component {
                         <td>{{ $surat->rencana_kontrol ? \Carbon\Carbon::parse($surat->rencana_kontrol)->format('d/m/Y') : '-' }}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button wire:click="detail({{ $surat->id }})" class="btn btn-sm btn-info">
+                                <button wire:click="detail({{ $surat->id }})" class="btn btn-sm btn-info" title="Lihat Detail">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button wire:click="delete({{ $surat->id }})" class="btn btn-sm btn-danger">
+                                <button wire:click="delete({{ $surat->id }})"
+                                        class="btn btn-sm btn-danger"
+                                        title="Hapus"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus surat kontrol ini?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -68,6 +87,16 @@ new class extends Component {
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <div class="text-muted">
+                    Menampilkan {{ $suratKontrols->firstItem() }} sampai {{ $suratKontrols->lastItem() }}
+                    dari {{ $suratKontrols->total() }} hasil
+                </div>
+                <div>
+                    {{ $suratKontrols->links() }}
+                </div>
+            </div>
         @endif
     </div>
 </div>
