@@ -171,7 +171,7 @@ new class extends Component {
     public function getSelectedDiagnosaInfo()
     {
         if ($this->selectedDiagnosa) {
-            $icd = Icd10::find($this->selectedDiagnosa);
+            $icd = ICD::find($this->selectedDiagnosa);
             return $icd ? $icd->code . ' - ' . $icd->display : '';
         }
         return '';
@@ -179,7 +179,7 @@ new class extends Component {
 }; ?>
 
 <div>
-    <div class="container py-5">
+    <div>
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-body p-4 p-md-5">
                 <h1 class="title mb-4 h3 text-center">SURAT RENCANA KONTROL</h1>
