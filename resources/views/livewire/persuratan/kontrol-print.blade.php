@@ -26,7 +26,7 @@ class extends Component {
                 <!-- Header with Logo -->
                 <div class="row mb-3 align-items-center">
                     <div class="col-4">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/klinik-insan-Dbaqf9KfqDyBdkMt8vpmeN9RG2AonK.png" alt="Klinik Insan Medika Logo" class="img-fluid" style="max-height: 70px;">
+                        <img src="{{ asset('assets/klinik-insan.png') }}" alt="Klinik Insan Medika Logo" class="img-fluid">
                     </div>
                     <div class="col-8 text-center">
                         <h3 class="title mb-0">SURAT RENCANA KONTROL</h3>
