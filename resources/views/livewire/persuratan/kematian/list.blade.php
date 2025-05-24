@@ -11,7 +11,7 @@ new class extends Component {
     public function with()
     {
         return [
-            'suratKematians' => SuratKematian::with(['data_pasien', 'icd'])
+            'suratKematians' => SuratKematian::with(['data_pasien', 'icd10'])
                 ->latest()
                 ->paginate(10)
         ];
@@ -89,9 +89,9 @@ new class extends Component {
                         </td>
                         <td>{{ $surat->tempat_kematian ?? '-' }}</td>
                         <td>
-                            @if($surat->icd)
-                                <span class="badge bg-secondary">{{ $surat->icd->kode }}</span><br>
-                                <small>{{ $surat->icd->nama }}</small>
+                            @if($surat->icd10)
+                                <span class="badge bg-secondary">{{ $surat->icd10->code }}</span><br>
+                                <small>{{ $surat->icd10->display }}</small>
                             @else
                                 -
                             @endif
