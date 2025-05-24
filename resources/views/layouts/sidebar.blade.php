@@ -324,7 +324,7 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Surat Control</span>
+                        <span class="hide-menu">Surat Kontrol</span>
                     </a>
                 </li>
 
