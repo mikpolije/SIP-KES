@@ -162,7 +162,6 @@ class extends Component {
                         <!-- Spacer -->
                     </div>
                     <div class="col-4 text-center">
-                        <p class="mb-1">{{ $this->surat_kematian->tempat_penerbitan ?? 'Sukoharjo' }}, {{ $this->surat_kematian->created_at->format('d M Y') }}</p>
                         <p class="mb-1">Dokter Yang Memeriksa</p>
                         <div class="border rounded mt-3" style="height: 70px; width: 100%;"></div>
                         <p class="mt-2 mb-1">{{ $this->surat_kematian->dokter->nama ?? $this->surat_kematian->penandatangan ?? "_____________" }}</p>
