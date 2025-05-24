@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('nomor');
             $table->date('tanggal');
 
-            $table->foreignIdFor(Dokter::class, 'id_dokter')
+            $table->foreignIdFor(Dokter::class, 'id_dokter')->nullable()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
@@ -46,6 +46,11 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
+            $table->foreignIdFor(ICD::class, 'id_icd')->nullable()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->text('kepada')->nullable();
             $table->text('diagnosa')->nullable();
             $table->date('rencana_kontrol')->nullable();
             $table->string('penandatangan')->nullable();

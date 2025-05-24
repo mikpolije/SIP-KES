@@ -6,7 +6,7 @@ use App\Models\DataPasien;
 use App\Models\ICD;
 
 new class extends Component {
-    public $nomor = '';
+    public $nomor = '(Auto Generated)';
     public $tanggal = '';
     public $selectedDokter = '';
     public $nomorRM = '';
@@ -14,6 +14,7 @@ new class extends Component {
     public $tglLahir = '';
     public $selectedDiagnosa = '';
     public $rencanaKontrol = '';
+    public $penandatangan = '';
 
     // Search properties
     public $dokterSearch = '';
@@ -124,13 +125,29 @@ new class extends Component {
             'rencanaKontrol' => 'required|date',
         ]);
 
-        // Convert dates to desired format for saving/display
-        $tanggalFormatted = \Carbon\Carbon::parse($this->tanggal)->format('d/m/Y');
-        $tglLahirFormatted = \Carbon\Carbon::parse($this->tglLahir)->format('d/m/Y');
-        $rencanaKontrolFormatted = \Carbon\Carbon::parse($this->rencanaKontrol)->format('d/m/Y');
+        $pasien = DataPasien::where('no_rm', $this->nomorRM)->first();
 
-        // Save logic here with converted dates
-        session()->flash('message', 'Surat Rencana Kontrol berhasil disimpan!');
+        $suratKontrol = new \App\Models\SuratKontrol();
+
+        if ($this->selectedDokter) {
+            $suratKontrol->id_dokter = $this->selectedDokter;
+        }
+
+        $countToday = \App\Models\SuratKontrol::whereDate('created_at', today())->count() + 1;
+        $suratKontrol->nomor = 'SK/' . now()->format('Ymd') . '/' . str_pad($countToday, 3, '0', STR_PAD_LEFT);
+        $suratKontrol->tanggal = \Carbon\Carbon::parse($this->tanggal);
+        $suratKontrol->no_rm = $pasien->no_rm;
+        $suratKontrol->id_icd = $this->selectedDiagnosa;
+
+        $suratKontrol->kepada = $this->dokterSearch;
+        $suratKontrol->diagnosa = $this->diagnosaSearch;
+
+        $suratKontrol->rencana_kontrol = \Carbon\Carbon::parse($this->rencanaKontrol);
+        $suratKontrol->penandatangan = $this->penandatangan;
+        $suratKontrol->save();
+
+        flash()->success('Surat Rencana Kontrol berhasil disimpan!');
+        return redirect()->route('main.persuratan.kontrol.print', ['id' => $suratKontrol->id]);
     }
 
     public function printSurat()
@@ -195,7 +212,7 @@ new class extends Component {
                         <label for="nomor" class="col-sm-2 col-form-label">No.</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('nomor') is-invalid @enderror"
-                                   wire:model="nomor" id="nomor">
+                                   wire:model="nomor" id="nomor" disabled>
                             @error('nomor') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
@@ -346,6 +363,7 @@ new class extends Component {
                         <div class="col-md-4 text-center">
                             <p>Mengetahui</p>
                             <div class="border rounded-3 mb-2" style="height: 100px;"></div>
+                            <input type="text" class="form-control border-top-0 border-start-0 border-end-0 border-bottom border-dark text-center @error('penandatangan') is-invalid @enderror" wire:model="penandatangan" id="penandatangan">
                         </div>
                     </div>
 
