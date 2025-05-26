@@ -28,7 +28,7 @@ class LaporanController extends Controller
         ];
 
         // Kirim data ke view
-        return view('poliumum.laporan', [
+        return view('PoliUmum.laporan', [
             'bulan' => $bulan,
             'caraBayar' => $caraBayar,
             'data' => $data
