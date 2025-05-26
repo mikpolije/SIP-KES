@@ -275,7 +275,7 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') ||  request()->is('main/persuratan/pulang-paksa') || request()->is('main/persuratan/sakit') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') ||  request()->is('main/persuratan/pulang-paksa') || request()->is('surat-keterangan-sakit*') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
                 aria-expanded="true">
 
                 <li class="sidebar-item">
@@ -309,8 +309,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/persuratan/sakit') ? 'active' : '' }}"
-                        href="/main/persuratan/sakit" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('surat-keterangan-sakit*') ? 'active' : '' }}"
+                        href="{{ route('surat.sakit') }}" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
