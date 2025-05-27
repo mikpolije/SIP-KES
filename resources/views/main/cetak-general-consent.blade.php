@@ -127,54 +127,67 @@
         {{-- PERNYATAAN --}}
         <p>Selaku wali/pasien Klinik Pratama “Insan Medika”, dengan ini menyatakan:</p>
 
-        <ol>
-            <li>Informasi tentang Hak dan Kewajiban Pasien
-                <ol class="sub-list">
-                    <li>
-                        Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk mendapatkan pelayanan di Klinik Pratama "Insan Medika", saya telah mendapat informasi tentang hak dan kewajiban saya sebagai pasien.
-                    </li>
-                    <li>
-                        Saya telah menerima informasi tentang peraturan yang diberlakukan oleh Klinik Pratama "Insan Medika", dan saya serta keluarga bersedia untuk mematuhinya.
-                    </li>
-                </ol>
-            </li>
+            <ol>
+                <li>Informasi tentang Hak dan Kewajiban Pasien
+                    <ol class="sub-list">
+                        <li>
+                            Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk mendapatkan
+                            pelayanan di Klinik Pratama "Insan Medika", saya telah mendapat informasi tentang hak dan
+                            kewajiban saya sebagai pasien.
+                        </li>
+                        <li>
+                            Saya telah menerima informasi tentang peraturan yang diberlakukan oleh Klinik Pratama "Insan
+                            Medika", dan saya serta keluarga bersedia untuk mematuhinya.
+                        </li>
+                    </ol>
+                </li>
 
             <li>Persetujuan Perawatan dan Pengobatan<br>
-                Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya mengizinkan dokter dan tenaga kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis sesuai kebutuhan meliputi: pemeriksaan fisik, pemasangan alat kesehatan, asuhan keperawatan, pemeriksaan laboratorium, dan pemeriksaan radiologi.
+                    Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya mengizinkan dokter
+                    dan tenaga kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis sesuai
+                    kebutuhan meliputi: pemeriksaan fisik, pemasangan alat kesehatan, asuhan keperawatan, pemeriksaan
+                    laboratorium, dan pemeriksaan radiologi.
             </li>
 
             <li>Persetujuan Pelepasan Informasi
                 <ol class="sub-list">
                     <li>
-                        Saya memahami bahwa informasi tentang saya seperti diagnosis, hasil laboratorium, dan hasil tes diagnostik akan digunakan untuk perawatan medis dan dijaga kerahasiaannya oleh Klinik Pratama “Insan Medika”.
+                        Saya memahami bahwa informasi tentang saya seperti diagnosis, hasil laboratorium, dan hasil tes
+                        diagnostik akan digunakan untuk perawatan medis dan dijaga kerahasiaannya oleh Klinik Pratama
+                        “Insan Medika”.
                     </li>
                     <li>
-                        Saya <u>{{ $data->namaPasien }}</u> {{ $data->beri === "memberikan" ? 'memberi' : 'tidak memberi' }} wewenang kepada Klinik Pratama “Insan Medika” untuk memberikan informasi tentang diagnosis hasil pelayanan dan pengobatan apabila diperlukan untuk memproses klaim asuransi/BPJS dan perusahaan kerja sama.
-                        @if($data->penanggungJawab1 || $data->penanggungJawab2)
-                        <ol class="list-angka">
-                            @if($data->penanggungJawab1)
-                            <li>{{ $data->penanggungJawab1 }}</li>
-                            @endif
-                            @if($data->penanggungJawab2)
-                            <li>{{ $data->penanggungJawab2 }}</li>
-                            @endif
-                        </ol>
+                        Saya <u>{{ $data->namaPasien }}</u>
+                        {{ $data->beri === 'memberikan' ? 'memberi' : 'tidak memberi' }} wewenang kepada Klinik Pratama
+                        “Insan Medika” untuk memberikan informasi tentang diagnosis hasil pelayanan dan pengobatan
+                        apabila diperlukan untuk memproses klaim asuransi/BPJS dan perusahaan kerja sama.
+                        @if ($data->penanggungJawab1 || $data->penanggungJawab2)
+                            <ol class="list-angka">
+                                @if ($data->penanggungJawab1)
+                                    <li>{{ $data->penanggungJawab1 }}</li>
+                                @endif
+                                @if ($data->penanggungJawab2)
+                                    <li>{{ $data->penanggungJawab2 }}</li>
+                                @endif
+                            </ol>
                         @endif
                     </li>
                 </ol>
             </li>
 
-            <li>Kebutuhan Privasi<br>
-                Saya <u>{{ $data->namaPasien }}</u> Klinik Pratama "Insan Merdeka" akses bagi keluarga dan saudara serta orang-orang yang akan mendampingi saya saat pemeriksaan (sebutkan nama bila ada permintaan khusus yang tidak diijinkan):
-                @if($data->penanggungJawab3 || $data->penanggungJawab4)
-                <ol class="sub-list">
-                    @if($data->penanggungJawab3)
-                    <li>{{ $data->penanggungJawab3 }}</li>
-                    @endif
-                    @if($data->penanggungJawab4)
-                    <li>{{ $data->penanggungJawab4 }}</li>
-                    @endif
-                </ol>
+          <li>Kebutuhan Privasi<br>
+                Saya <u>{{ $data->namaPasien }}</u> Klinik Pratama "Insan Merdeka" akses bagi keluarga dan saudara
+                serta orang-orang yang akan mendampingi saya saat pemeriksaan (sebutkan nama bila ada permintaan khusus
+                yang tidak diijinkan):
+                @if ($data->penanggungJawab3 || $data->penanggungJawab4)
+                    <ol class="sub-list">
+                        @if ($data->penanggungJawab3)
+                            <li>{{ $data->penanggungJawab3 }}</li>
+                        @endif
+                        @if ($data->penanggungJawab4)
+                            <li>{{ $data->penanggungJawab4 }}</li>
+                        @endif
+                    </ol>
                 @endif
             </li>
 
