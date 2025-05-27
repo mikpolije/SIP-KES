@@ -60,12 +60,15 @@
         </h1>
 
         <div class="d-flex justify-content-end my-4">
-            <div class="input-group" style="width: 300px;">
-                <input type="text" class="form-control" placeholder="Data Pasien">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            <form method="GET" action="{{ route('riwayat-medis.index') }}" class="d-flex justify-content-end my-4">
+                <div class="input-group" style="width: 300px;">
+                    <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                        placeholder="Cari pasien...">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
         </div>
 
         <div class="card shadow-sm">
@@ -116,6 +119,9 @@
                             {{-- Tambahkan data dummy lainnya jika mau --}}
                         </tbody>
                     </table>
+                     <div class="mt-3 d-flex justify-content-end px-3">
+                        {{ $data->appends(request()->query())->onEachSide(1)->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
         </div>
