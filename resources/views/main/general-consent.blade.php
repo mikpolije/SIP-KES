@@ -335,3 +335,91 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <script>
+        let pollingInterval;
+
+        document.getElementById('namaPenanggungJawab').addEventListener('click', showQRModal);
+
+        function showQRModal() {
+            const token = Math.random().toString(36).substring(2, 12);
+            const url = `http://10.125.173.66:8000/sign-request/${token}`;
+
+            document.getElementById('qrContainer').innerHTML = "";
+            new QRCode(document.getElementById("qrContainer"), url);
+            document.getElementById("signStatus").innerText = "Menunggu tanda tangan...";
+
+            $('#modalQRSignature').modal('show');
+
+            pollingInterval = setInterval(() => {
+                fetch(`/api/signature-status/${token}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.signed) {
+                            clearInterval(pollingInterval);
+                            document.getElementById('ttdPenanggungJawab').value = data.ttd_base64;
+                            document.getElementById('ttdPreview').src = data.ttd_base64;
+                            document.getElementById('ttdPreview').style.display = "block";
+                            document.getElementById("signStatus").innerText =
+                                `Ditandatangani oleh: ${data.nama}`;
+                            document.getElementById("namaPenanggungJawab").value = data.nama;
+                            setTimeout(() => {
+                                $('#modalQRSignature').modal('hide');
+                            }, 1000);
+                        }
+                    });
+            }, 3000);
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#hubungan').on('change', function() {
+                if ($(this).val() === '7') {
+                    $('#lain-wrapper').show();
+                    $('#lain').attr('required', true);
+                } else {
+                    $('#lain-wrapper').hide();
+                    $('#lain').val('');
+                    $('#lain').removeAttr('required');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const btnSimpan = document.getElementById('btnSimpan');
+            const btnCetak = document.getElementById('btnCetak');
+
+            function updateButtonState() {
+                const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+                btnSimpan.disabled = !allChecked;
+                btnCetak.disabled = !allChecked;
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateButtonState);
+            });
+
+            updateButtonState();
+        });
+
+        document.getElementById('btnSimpan').addEventListener('click', function() {
+            document.getElementById('formAction').value = 'simpan';
+        });
+
+        document.getElementById('btnCetak').addEventListener('click', function() {
+            document.getElementById('formAction').value = 'cetak';
+        });
+    </script>
+
+
+@endsection
