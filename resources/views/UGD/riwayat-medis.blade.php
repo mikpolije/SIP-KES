@@ -27,6 +27,32 @@
             text-align: center;
         }
     </style>
+    <style>
+        .pagination {
+            justify-content: flex-end;
+            margin: 1rem 0;
+        }
+
+        .pagination li {
+            margin: 0 2px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+
+        .page-link {
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
 
     <div class="container py-4">
         <h1 class="text-center judul-halaman" style="font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
@@ -34,12 +60,15 @@
         </h1>
 
         <div class="d-flex justify-content-end my-4">
-            <div class="input-group" style="width: 300px;">
-                <input type="text" class="form-control" placeholder="Data Pasien">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            <form method="GET" action="{{ route('riwayat-medis.index') }}" class="d-flex justify-content-end my-4">
+                <div class="input-group" style="width: 300px;">
+                    <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                        placeholder="Cari pasien...">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
         </div>
 
         <div class="card shadow-sm">
@@ -90,6 +119,9 @@
                             {{-- Tambahkan data dummy lainnya jika mau --}}
                         </tbody>
                     </table>
+                     <div class="mt-3 d-flex justify-content-end px-3">
+                        {{ $data->appends(request()->query())->onEachSide(1)->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
         </div>

@@ -77,6 +77,12 @@ Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiw
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
+// Route Laporan poli umum
+use App\Http\Controllers\PoliUmum\LaporanController;
+
+Route::get('/poliumum/laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
+
+
 use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
 use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 
