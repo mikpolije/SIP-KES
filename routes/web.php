@@ -105,7 +105,7 @@ Route::resource('/poli', PoliController::class);
 
 // Laporan Kunjungan
 Route::get('/laporan/kunjungan', [KunjunganController::class, 'index']);
-Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.poli-kia.report');
+Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.kunjungan.report');
 
 
 
