@@ -191,43 +191,49 @@
                 @endif
             </li>
 
-            <li>Pemahaman Hak<br>
-                Saya mengerti dan memahami tentang bahwa saya memiliki hak untuk persetujuan atau menolak persetujuan untuk setiap prosedur/terapi.
+           <li>Pemahaman Hak<br>
+                Saya mengerti dan memahami tentang bahwa saya memiliki hak untuk persetujuan atau menolak persetujuan
+                untuk setiap prosedur/terapi.
             </li>
 
-            <li>Peserta Didik<br>
-                Klinik Pratama “Insan Medika” telah memberikan informasi kepada saya terkait kemungkinan keterlibatan peserta didik/mahasiswa yang turut berpartisipasi dalam proses perawatan.
+             <li>Peserta Didik<br>
+                Klinik Pratama “Insan Medika” telah memberikan informasi kepada saya terkait kemungkinan keterlibatan
+                peserta didik/mahasiswa yang turut berpartisipasi dalam proses perawatan.
             </li>
 
             <li>Pengajuan Keluhan<br>
-                Saya menyatakan bahwa saya telah menerima informasi tentang adanya tata cara mengajukan dan menanggapi keluhan terkait pelayanan medis ataupun administrasi yang diberikan terhadap diri saya. Saya setuju mengikuti tata cara mengajukan keluhan sesuai prosedur yang ada.
+                Saya menyatakan bahwa saya telah menerima informasi tentang adanya tata cara mengajukan dan menanggapi
+                keluhan terkait pelayanan medis ataupun administrasi yang diberikan terhadap diri saya. Saya setuju
+                mengikuti tata cara mengajukan keluhan sesuai prosedur yang ada.
             </li>
         </ol>
 
         {{-- Pernyataan Penutup --}}
-        <p>
-            Dengan tanda tangan di bawah ini, saya menyatakan bahwa saya telah membaca dan sepenuhnya setuju dengan setiap pernyataan yang terdapat pada formulir ini dan menandatanganinya tanpa paksaan dan dengan kesadaran penuh seluruh kriteria yang terdapat pada persetujuan umum (General Consent).
+           <p>
+            Dengan tanda tangan di bawah ini, saya menyatakan bahwa saya telah membaca dan sepenuhnya setuju dengan
+            setiap pernyataan yang terdapat pada formulir ini dan menandatanganinya tanpa paksaan dan dengan kesadaran
+            penuh seluruh kriteria yang terdapat pada persetujuan umum (General Consent).
         </p>
+
 
         {{-- Tanda Tangan --}}
         <div class="row text-center mt-5">
             <div class="col-6">
-                <p>Pasien/keluarga/penanggung jawab</p>
+                @if ($data->ttdPenanggungJawab)
+                    <img src="{{ asset($data->ttdPenanggungJawab) }}" alt="TTD Pasien" style="max-height: 100px;"><br>
+                @else
+                    <p>( _______________________ )</p>
+                @endif
+                <p>{{ $data->namaPenanggungJawab ?? 'Tanda tangan dan nama terang' }}</p>
             </div>
             <div class="col-6">
-                <p>Jember, {{ \Carbon\Carbon::now('Asia/Jakarta')->format('d/m/Y') }}, Jam {{ \Carbon\Carbon::now('Asia/Jakarta')->format('H:i') }} WIB</p>
-                <p>Pemberi Informasi</p>
-            </div>
-        </div>
-
-        <div class="row text-center mt-5">
-            <div class="col-6">
-                <p>( _______________________ )</p>
-                <p>Tanda tangan dan nama terang</p>
-            </div>
-            <div class="col-6">
-                <p>( _______________________ )</p>
-                <p>Tanda tangan dan nama terang</p>
+                @if ($data->ttdPemberiInformasi)
+                    <img src="{{ asset($data->ttdPemberiInformasi) }}" alt="TTD Petugas"
+                        style="max-height: 100px;"><br>
+                @else
+                    <p>( _______________________ )</p>
+                @endif
+                <p>{{ $data->namaPemberiInformasi ?? 'Tanda tangan dan nama terang' }}</p>
             </div>
         </div>
 
