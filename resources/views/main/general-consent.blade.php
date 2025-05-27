@@ -318,3 +318,20 @@
         </div>
     </div>
     </div>
+    <!-- Tambahkan Modal QR & Signature -->
+    <div class="modal fade" id="modalQRSignature" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrModalLabel">Scan untuk Tanda Tangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Scan QR berikut menggunakan HP untuk menandatangani.</p>
+                    <div id="qrContainer"></div>
+                    <div id="signStatus" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
