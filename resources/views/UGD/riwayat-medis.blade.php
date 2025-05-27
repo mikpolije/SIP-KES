@@ -27,6 +27,32 @@
             text-align: center;
         }
     </style>
+    <style>
+        .pagination {
+            justify-content: flex-end;
+            margin: 1rem 0;
+        }
+
+        .pagination li {
+            margin: 0 2px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+
+        .page-link {
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
 
     <div class="container py-4">
         <h1 class="text-center judul-halaman" style="font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
