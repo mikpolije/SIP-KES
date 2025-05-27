@@ -281,4 +281,40 @@
                                 </div>
 
 
-                           
+                           </div>
+                            <div class="col-md-6 mb-3">
+                                <p class="text-center">Pemberi informasi</p>
+                                <div class="col-md-6 mx-auto">
+                                    <!-- Tampilkan gambar tanda tangan -->
+                                    <img src="{{ asset('ttd/ttd.png') }}" alt="Tanda Tangan Pemberi Informasi"
+                                        style="width: 100%; max-height: 120px; object-fit: contain; border: 1px solid #ccc; border-radius: 6px;" />
+
+                                    <!-- Simpan path ke database lewat input hidden -->
+                                    <input type="hidden" name="ttdPemberiInformasi" value="{{ asset('ttd/ttd.png') }}">
+                                    <div class="col-md-6 mx-auto text-center mt-2">
+                                        <input type="text" class="form-control text-center"
+                                            name="namaPemberiInformasi" value="Petugas Klinik"
+                                            placeholder="Nama Pemberi Informasi" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-center gap-3 mt-5 mb-5 me-5">
+                            <button class="btn btn-primary" id="btnSimpan" type="submit">Simpan</button>
+                            <button id="btnCetak" type="submit" class="btn btn-warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1" />
+                                    <path
+                                        d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                                </svg>
+                                Cetak
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
