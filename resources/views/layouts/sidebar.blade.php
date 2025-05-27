@@ -343,7 +343,7 @@
 
         <li class="sidebar-item">
             <a class="sidebar-link {{ request()->is('riwayat-medis*') ? 'active' : '' }}"
-                href="{{ route('riwayat.medis.index') }}" aria-expanded="false">
+                href="{{ route('riwayat-medis.index') }}" aria-expanded="false">
                 <span>
                     <svg class="bi bi-book" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
