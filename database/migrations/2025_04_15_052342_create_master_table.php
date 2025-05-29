@@ -37,89 +37,34 @@ return new class extends Migration
         });
 
         Schema::create('data_pasien', function (Blueprint $table) {
-            $table->string('no_rm', 6)->unique()->primary();
-            $table->string('nik', 16)->unique();
-            $table->string('no_identitas_lain', 50)->unique()->nullable();
-            $table->string('nama_lengkap');
-            $table->string('nama_ibu_kandung');
-            $table->string('tempat_lahir', 100);
-            $table->date('tanggal_lahir');
-            $table->unsignedInteger('jenis_kelamin')
-                ->comment(
-                    '
-                    0. Tidak diketahui;
-                    1. Laki-laki;
-                    2. Perempuan;
-                    3. Tidak dapat ditentukan;
-                    4. Tidak mengisi;
-                    '
-                );
-            $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghuchu', 'Penghayat', 'Lain-lain']);
+            $table->string('no_rm', 6)->primary();
+            $table->string('nik_pasien', 16)->unique();
+            $table->string('nama_lengkap', 255);
+            $table->string('nama_ibu_kandung', 255);
+            $table->string('tempat_lahir_pasien', 100);
+            $table->date('tanggal_lahir_pasien');
+            $table->unsignedTinyInteger('jenis_kelamin'); // 0-4
+
+            $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu', 'Lainnya']);
             $table->enum('gol_darah', ['A', 'B', 'AB', 'O']);
-            $table->string('suku', 100);
 
-            $table->text('alamat_lengkap');
-            $table->string('rt', 3);
-            $table->string('rw', 3);
-            $table->foreignId('id_provinsi')
-                ->references('id')
-                ->on('provinces')
-                ->constrained()
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
-            $table->foreignId('id_kota')
-                ->references('id')
-                ->on('cities')
-                ->constrained()
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
-            $table->foreignId('id_kecamatan')
-                ->references('id')
-                ->on('districts')
-                ->constrained()
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
-            $table->foreignId('id_desa')
-                ->references('id')
-                ->on('villages')
-                ->constrained()
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
-            $table->string('kode_negara', 3);
+            $table->text('alamat_pasien');
+            $table->string('rt', 3)->nullable();
+            $table->string('rw', 3)->nullable();
+
+            $table->unsignedBigInteger('id_provinsi');
+            $table->unsignedBigInteger('id_kota');
+            $table->unsignedBigInteger('id_kecamatan');
+            $table->unsignedBigInteger('id_desa');
+
+            $table->string('kewarganegaraan', 3);
             $table->string('kode_pos', 10);
-            $table->string('nomor_telepon', 30);
+            $table->string('nomor_telepon_pasien', 30);
 
-            $table->unsignedInteger('pendidikan')->comment(
-                '
-                0. Tidak sekolah;
-                1. SD;
-                2. SLTP sederajat;
-                3. SLTA sederajat;
-                4. D1-D3 sederajat;
-                5. D4;
-                6. S1;
-                7. S2;
-                8. S3
-                '
-            );
-            $table->unsignedInteger('pekerjaan')->comment(
-                '
-                0. Tidak bekerja;
-                1. PNS;
-                2. TNI/POLRI;
-                3. BUMN;
-                4. Pegawai Swasta/Wirausaha;
-                5. Lain-lain
-                '
-            );
-            $table->unsignedInteger('status_perkawinan')->comment(
-                '
-                1:Belum Kawin;
-                2:Kawin;
-                3:Cerai Hidup;
-                4:Cerai Mati
-                '
-            );
+            $table->unsignedTinyInteger('pendidikan_pasien'); // 0-8
+            $table->unsignedTinyInteger('pekerjaan_pasien');  // 0-5
+            $table->unsignedTinyInteger('status_perkawinan'); // 1-4
+
             $table->timestamps();
         });
 
