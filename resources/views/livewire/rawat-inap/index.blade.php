@@ -77,7 +77,7 @@ new class extends Component {
                 $query->whereHas('data_pasien', function ($subquery) {
                     $subquery->where('nama_lengkap', 'like', '%' . $this->search . '%')
                             ->orWhere('no_rm', 'like', '%' . $this->search . '%')
-                            ->orWhere('nik', 'like', '%' . $this->search . '%');
+                            ->orWhere('nik_pasien', 'like', '%' . $this->search . '%');
                 })
                 ->orWhere('id_pendaftaran', 'like', '%' . $this->search . '%');
             })
@@ -172,11 +172,11 @@ new class extends Component {
                                                     <td class="text-nowrap">{{ $patient->data_pasien->no_rm }}</td>
                                                     <td class="text-truncate" data-bs-toggle="tooltip"
                                                         title="{{ $patient->data_pasien->nama_lengkap }}">{{ $patient->data_pasien->nama_lengkap }}</td>
-                                                    <td class="text-nowrap">{{ $patient->data_pasien->nik }}</td>
-                                                    <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir }}</td>
+                                                    <td class="text-nowrap">{{ $patient->data_pasien->nik_pasien }}</td>
+                                                    <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir_pasien }}</td>
                                                     <td class="text-nowrap">{{ $patient->created_at }}</td>
                                                     <td class="text-truncate" data-bs-toggle="tooltip"
-                                                        title="{{ $patient->data_pasien->alamat_lengkap }}">{{ $patient->data_pasien->alamat_lengkap }}</td>
+                                                        title="{{ $patient->data_pasien->alamat_pasien }}">{{ $patient->data_pasien->alamat_pasien }}</td>
                                                     <td class="text-truncate" data-bs-toggle="tooltip"
                                                         title="{{ $patient->note ?? '' }}">Rujuk {{ $patient->layanan }}</td>
                                                     <td class="text-center p-1">
