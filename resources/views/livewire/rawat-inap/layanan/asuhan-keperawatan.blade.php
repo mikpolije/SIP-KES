@@ -120,7 +120,7 @@ new class extends Component {
             $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
             $this->noRM = $this->pendaftaran->data_pasien->no_rm;
             $this->tglDaftar = $this->pendaftaran->created_at->format('Y-m-d');
-            $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir;
+            $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir_pasien;
             $this->agama = $this->pendaftaran->data_pasien->agama;
 
             $this->calculateAge();
