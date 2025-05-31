@@ -118,12 +118,6 @@ new class extends Component {
         return redirect()->route('main.persuratan.kematian.print', ['id' => $suratKematian->id]);
     }
 
-    public function printSurat()
-    {
-        $this->js("window.print()");
-    }
-
-    // Helper methods to display formatted dates
     public function getFormattedTanggalMasuk()
     {
         return $this->tanggalMasukRS ? \Carbon\Carbon::parse($this->tanggalMasukRS)->format('d/m/Y') : '';
@@ -327,9 +321,6 @@ new class extends Component {
                                 <span class="spinner-border spinner-border-sm me-2"></span>
                                 Menyimpan...
                             </span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary px-4" wire:click="printSurat">
-                            <i class="bi bi-printer"></i> Print
                         </button>
                         <a href="/main/persuratan/kematian" class="btn btn-secondary px-4">
                             <i class="bi bi-arrow-left"></i> Kembali
