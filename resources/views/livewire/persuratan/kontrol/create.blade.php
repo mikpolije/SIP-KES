@@ -88,8 +88,8 @@ new class extends Component {
 
             if ($this->patient) {
                 $this->namaPasien = $this->patient->nama_lengkap;
-                $this->tglLahir = $this->patient->tanggal_lahir ?
-                    \Carbon\Carbon::parse($this->patient->tanggal_lahir)->format('Y-m-d') : '';
+                $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
+                    \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
                 $this->patientFound = true;
             } else {
                 $this->reset(['namaPasien', 'tglLahir', 'patient']);
