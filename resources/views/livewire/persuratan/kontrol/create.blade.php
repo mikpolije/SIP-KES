@@ -150,13 +150,6 @@ new class extends Component {
         return redirect()->route('main.persuratan.kontrol.print', ['id' => $suratKontrol->id]);
     }
 
-    public function printSurat()
-    {
-        // Print logic here
-        $this->js("window.print()");
-    }
-
-    // Helper methods to display formatted dates
     public function getFormattedTanggal()
     {
         return $this->tanggal ? \Carbon\Carbon::parse($this->tanggal)->format('d/m/Y') : '';
@@ -374,9 +367,6 @@ new class extends Component {
                                 <span class="spinner-border spinner-border-sm me-2"></span>
                                 Menyimpan...
                             </span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary px-4" wire:click="printSurat">
-                            <i class="bi bi-printer"></i> Print
                         </button>
                     </div>
                 </form>
