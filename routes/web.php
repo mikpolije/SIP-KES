@@ -80,7 +80,7 @@ Route::post('/login', [AuthController::class, 'login']);
 // Route Laporan poli umum
 use App\Http\Controllers\PoliUmum\LaporanController;
 
-Route::get('/poliumum/laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
+Route::get('laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
 Route::get('/poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
 
 
