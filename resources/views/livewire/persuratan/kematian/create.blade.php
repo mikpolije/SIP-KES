@@ -17,10 +17,8 @@ new class extends Component {
     public $selectedDiagnosa = '';
     public $penandatangan = '';
 
-    // Search properties
     public $diagnosaSearch = '';
 
-    // Dropdown states
     public $showDiagnosaDropdown = false;
 
     public $diagnosas = [];
@@ -33,7 +31,6 @@ new class extends Component {
         $this->waktuKematian = now()->format('H:i');
     }
 
-    // Diagnosa search functionality
     public function updatedDiagnosaSearch()
     {
         $this->showDiagnosaDropdown = !empty($this->diagnosaSearch);
@@ -55,7 +52,6 @@ new class extends Component {
         $this->showDiagnosaDropdown = false;
     }
 
-    // RM functionality
     public function updatedNomorRM()
     {
         if (!empty($this->nomorRM)) {
@@ -76,7 +72,6 @@ new class extends Component {
         }
     }
 
-    // Close dropdowns when clicking outside
     public function closeDiagnosaDropdown()
     {
         $this->showDiagnosaDropdown = false;
@@ -133,7 +128,6 @@ new class extends Component {
         return $this->tanggalKematian ? \Carbon\Carbon::parse($this->tanggalKematian)->format('d/m/Y') : '';
     }
 
-    // Helper method for diagnosa display
     public function getSelectedDiagnosaInfo()
     {
         if ($this->selectedDiagnosa) {
