@@ -175,7 +175,7 @@
 
                         <div class="btn-group">
                             <button type="submit" class="btn btn-blue">Tampilkan</button>
-                            <button type="button" class="btn btn-yellow">Download Excel</button>
+                            <button type="button" class="btn btn-yellow">Download</button>
                         </div>
                     </form>
                 </div>
@@ -227,7 +227,9 @@
             params.append('cara_bayar', formData.get('cara_bayar'));
 
             // Redirect to download URL
-            window.location.href = `{{ route('poliumum.laporan.download') }}?${params.toString()}`;
+            window.location.href = {{ route('poliumum.laporan.download') }} ? $ {
+                params.toString()
+            };
         });
     </script>
 @endsection
