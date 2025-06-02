@@ -372,7 +372,7 @@
                 aria-expanded="false">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
-                        href="{{ route('poliumum.laporan') }}">
+                        href="{{ route('poliumum/laporan') }}" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
