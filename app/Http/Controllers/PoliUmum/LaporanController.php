@@ -18,7 +18,7 @@ class LaporanController extends Controller
         $data = $this->getFilteredData($bulan, $caraBayar);
 
         // Kirim data ke view
-        return view('laporan', [
+        return view('PoliUmum.laporan', [
             'bulan' => $this->translateMonthToIndonesian($bulan),
             'caraBayar' => $caraBayar,
             'data' => $data
