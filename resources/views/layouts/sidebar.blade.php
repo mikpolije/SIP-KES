@@ -355,7 +355,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/*') ? 'active' : '' }}"
+            <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/laporan*') ? 'active' : '' }}"
                 href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -368,10 +368,10 @@
                 </span>
                 <span class="hide-menu">Laporan</span>
             </a>
-            <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/laporan') ? 'show' : '' }}"
+            <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/laporan*') ? 'show' : '' }}"
                 aria-expanded="false">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
                         href="{{ route('poliumum.laporan') }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
