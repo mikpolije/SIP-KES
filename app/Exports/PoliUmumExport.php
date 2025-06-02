@@ -2,34 +2,24 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class PoliUmumExport implements FromCollection, WithHeadings, WithTitle
+class PoliUmumExport implements FromArray, WithHeadings, WithTitle
 {
     protected $data;
-    protected $bulan;
-    protected $caraBayar;
+    protected $title;
 
-    public function __construct($data, $bulan, $caraBayar)
+    public function __construct(array $data, string $title)
     {
         $this->data = $data;
-        $this->bulan = $bulan;
-        $this->caraBayar = $caraBayar;
+        $this->title = $title;
     }
 
-    public function collection()
+    public function array(): array
     {
-        return collect($this->data)->map(function ($item, $index) {
-            return [
-                'NO' => $index + 1,
-                'KODE ICD-X' => $item[0],
-                'NAMA PENYAKIT' => $item[1],
-                'JUMLAH' => $item[2],
-                'PERSENTASE' => $item[3]
-            ];
-        });
+        return $this->data;
     }
 
     public function headings(): array
@@ -45,6 +35,6 @@ class PoliUmumExport implements FromCollection, WithHeadings, WithTitle
 
     public function title(): string
     {
-        return "10 Besar Penyakit {$this->bulan} {$this->caraBayar}";
+        return $this->title;
     }
 }

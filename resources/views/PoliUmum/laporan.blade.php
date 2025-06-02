@@ -217,18 +217,17 @@
 
     <script>
         document.querySelector('.btn-yellow').addEventListener('click', function() {
-            // Get current form values
+            // Get form values
             const form = document.querySelector('form');
-            const bulan = form.querySelector('#bulan').value;
-            const caraBayar = form.querySelector('#cara_bayar').value;
+            const formData = new FormData(form);
 
-            // Create download URL
-            const url = new URL("{{ route('poliumum.laporan.download') }}", window.location.origin);
-            url.searchParams.append('bulan', bulan);
-            url.searchParams.append('cara_bayar', caraBayar);
+            // Build query string
+            const params = new URLSearchParams();
+            params.append('bulan', formData.get('bulan'));
+            params.append('cara_bayar', formData.get('cara_bayar'));
 
-            // Trigger download
-            window.location.href = url.toString();
+            // Redirect to download URL
+            window.location.href = `{{ route('poliumum.laporan.download') }}?${params.toString()}`;
         });
     </script>
 @endsection

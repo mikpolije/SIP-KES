@@ -13,14 +13,10 @@ class LaporanController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil data filter dari request
         $bulan = $request->input('bulan', date('F'));
         $caraBayar = $request->input('cara_bayar', 'Umum');
-
-        // Data penyakit berdasarkan filter
         $data = $this->getFilteredData($bulan, $caraBayar);
 
-        // Kirim data ke view
         return view('PoliUmum.laporan', [
             'bulan' => $this->translateMonthToIndonesian($bulan),
             'caraBayar' => $caraBayar,
@@ -32,13 +28,26 @@ class LaporanController extends Controller
     {
         $bulan = $request->input('bulan', date('F'));
         $caraBayar = $request->input('cara_bayar', 'Umum');
-
         $data = $this->getFilteredData($bulan, $caraBayar);
         $bulanIndo = $this->translateMonthToIndonesian($bulan);
 
+        // Prepare data for export
+        $exportData = [];
+        foreach ($data as $index => $row) {
+            $exportData[] = [
+                $index + 1,
+                $row[0],
+                $row[1],
+                $row[2],
+                $row[3]
+            ];
+        }
+
+        $title = "10 Besar Penyakit {$bulanIndo} {$caraBayar}";
+
         return Excel::download(
-            new PoliUmumExport($data, $bulanIndo, $caraBayar),
-            "Laporan_10_Besar_Penyakit_{$bulanIndo}_{$caraBayar}.xlsx"
+            new PoliUmumExport($exportData, $title),
+            "10_besar_penyakit_{$bulanIndo}_{$caraBayar}.xlsx"
         );
     }
 
