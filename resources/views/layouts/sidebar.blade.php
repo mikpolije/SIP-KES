@@ -275,7 +275,7 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') ||  request()->is('main/persuratan/pulang-paksa') || request()->is('surat-keterangan-sakit*') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') || request()->is('main/persuratan/pulang-paksa') || request()->is('surat-keterangan-sakit*') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
                 aria-expanded="true">
 
                 <li class="sidebar-item">
@@ -354,49 +354,51 @@
                 <span class="hide-menu">Rekam Medis</span>
             </a>
         </li>
-       <li class="sidebar-item">
-    <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/*') ? 'active' : '' }}" href="javascript:void(0)"
-        aria-expanded="false">
-        <span class="d-flex">
-            <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                fill="currentColor" viewBox="0 0 16 16">
-                <path
-                    d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2" />
-                <path
-                    d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0" />
-            </svg>
-        </span>
-        <span class="hide-menu">Laporan</span>
-    </a>
-    <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/*') ? 'show' : '' }}" aria-expanded="false">
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('poliumum/laporan') ? 'active' : '' }}" href="{{ route('poliumum.laporan') }}">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                    <i class="ti ti-circle"></i>
-                </div>
-                <span class="hide-menu">Poli Umum</span>
+            <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/*') ? 'active' : '' }}"
+                href="javascript:void(0)" aria-expanded="false">
+                <span class="d-flex">
+                    <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2" />
+                        <path
+                            d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0" />
+                    </svg>
+                </span>
+                <span class="hide-menu">Laporan</span>
             </a>
-        </li>
-        <li class="sidebar-item">
-           <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
+            <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/laporan') ? 'show' : '' }}"
+                aria-expanded="false">
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
+                        href="{{ route('poliumum.laporan') }}">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Poli Umum</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
                         href="/main/laporankunjungan">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                <span class="hide-menu">Kunjungan</span>
-            </a>
+                        <span class="hide-menu">Kunjungan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/laporankia') ? 'active' : '' }}"
+                        href="/main/laporankia">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Laporan KIA</span>
+                    </a>
+                </li>
+            </ul>
         </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/laporankia') ? 'active' : '' }}"
-                href="/main/laporankia">
-                <div class="round-16 d-flex align-items-center justify-content-center">
-                    <i class="ti ti-circle"></i>
-                </div>
-                <span class="hide-menu">Laporan KIA</span>
-            </a>
-        </li>
-    </ul>
-</li>
 
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow

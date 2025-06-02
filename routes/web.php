@@ -81,6 +81,7 @@ Route::post('/login', [AuthController::class, 'login']);
 use App\Http\Controllers\PoliUmum\LaporanController;
 
 Route::get('/poliumum/laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
+Route::get('/poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
 
 
 use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
