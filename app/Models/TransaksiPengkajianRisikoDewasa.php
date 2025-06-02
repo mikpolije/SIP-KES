@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PengkajianRisikoDewasa extends Model
+class TransaksiPengkajianRisikoDewasa extends Model
 {
-    protected $table = 'pengkajian_risiko_dewasas';
+    protected $table = 'transaksi_pengkajian_risiko_dewasa_ugd';
 
     protected $fillable = [
-        'pasien_id',
+        'triase_id',
         'riwayat_jatuh',
         'diagnostik_sekunder',
         'alat_bantu',

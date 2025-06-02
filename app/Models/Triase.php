@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class KondisiPasien extends Model
+class Triase extends Model
 {
-    protected $table = 'kondisi_pasiens';
+    protected $table = 'triase';
 
     protected $fillable = [
-        'pasien_id',
+        'pendaftaran_id',
         'tanggal_masuk',
         'sarana_transportasi_kedatangan',
         'jam_masuk',
@@ -63,8 +63,48 @@ class KondisiPasien extends Model
         'updated_at',
     ];
 
-    public function pasien()
+    public function pendaftaran()
     {
-        return $this->belongsTo(Pasien::class, 'pasien_id', 'id');
+        return $this->belongsTo(Pendaftaran::class, 'pendaftaran_id', 'id_pendaftaran');
+    }
+    
+    public function rencanaKontrol ()
+    {
+        return $this->hasMany(RencanaKontrolUGD::class, 'triase_id', 'id');
+    }
+
+    public function adl ()
+    {
+        return $this->hasOne(TransaksiAdlUgd::class, 'triase_id', 'id');
+    }
+
+    public function icd () 
+    {
+        return $this->hasMany(TransaksiIcdUgd::class, 'triase_id', 'id');
+    }
+
+    public function icd9 ()
+    {
+        return $this->hasMany(TransaksiIcd9Ugd::class, 'triase_id', 'id');
+    }
+
+    public function layanan ()
+    {
+        return $this->hasMany(TransaksiLayananUgd::class, 'triase_id', 'id');
+    }
+
+    public function obat () 
+    {
+        return $this->hasMany(TransaksiObatUgd::class, 'triase_id', 'id');
+    }
+
+    public function pemeriksaan ()
+    {
+        return $this->hasOne(PemeriksaanUgd::class, 'triase_id', 'id');
+    }
+
+    public function pengkajianRisiko ()
+    {
+        return $this->hasOne(TransaksiPengkajianRisikoDewasa::class, 'triase_id', 'id');
     }
 }

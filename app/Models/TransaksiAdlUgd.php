@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdlUgd extends Model
+class TransaksiAdlUgd extends Model
 {
-    protected $table = 'adl_ugds';
+    protected $table = 'transaksi_adl_ugd';
 
     protected $fillable = [
-        'pasien_id',
+        'triase_id',
         'makan',
         'berpindah',
         'kebersihan_diri',
@@ -24,8 +24,8 @@ class AdlUgd extends Model
         'updated_at',
     ];
 
-    public function pasien()
+    public function triase()
     {
-        return $this->belongsTo(Pasien::class, 'pasien_id', 'id');
+        return $this->belongsTo(Triase::class, 'triase_id', 'id');
     }
 }

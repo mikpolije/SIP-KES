@@ -4,20 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RencanaKontrolUGD extends Model
+class TransaksiObatUgd extends Model
 {
-    protected $table = 'rencana_kontrol_ugds';
+    protected $table = 'transaksi_obat_ugd';
 
     protected $fillable = [
         'triase_id',
-        'tanggal',
-        'alasan',
+        'obat_id',
         'created_at',
         'updated_at',
     ];
 
-    public function triase()
+    public function triase ()
     {
         return $this->belongsTo(Triase::class, 'triase_id', 'id');
+    }
+
+    public function obat()
+    {
+        return $this->belongsTo(Obat::class, 'obat_id', 'id');
     }
 }
