@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\PoliUmum;
 
 use App\Http\Controllers\Controller;
+use App\Exports\PoliUmumExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
@@ -33,15 +36,10 @@ class LaporanController extends Controller
         $data = $this->getFilteredData($bulan, $caraBayar);
         $bulanIndo = $this->translateMonthToIndonesian($bulan);
 
-        // Generate Excel (simplified example)
-        $fileName = "Laporan_10_Besar_Penyakit_{$bulanIndo}_2024.xlsx";
-
-        // In real implementation, use Laravel Excel package
-        return Response::json([
-            'message' => 'Download functionality would be implemented here',
-            'file' => $fileName,
-            'data' => $data
-        ]);
+        return Excel::download(
+            new PoliUmumExport($data, $bulanIndo, $caraBayar),
+            "Laporan_10_Besar_Penyakit_{$bulanIndo}_{$caraBayar}.xlsx"
+        );
     }
 
     private function getFilteredData($bulan, $caraBayar)

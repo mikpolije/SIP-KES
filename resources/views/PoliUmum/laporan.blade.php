@@ -223,9 +223,29 @@
             const bulan = form.querySelector('#bulan').value;
             const caraBayar = form.querySelector('#cara_bayar').value;
 
-            // Redirect to download route
-            window.location.href =
-                `{{ route('poliumum.laporan.download') }}?bulan=${bulan}&cara_bayar=${caraBayar}`;
+            // Create a temporary form for download
+            const tempForm = document.createElement('form');
+            tempForm.method = 'GET';
+            tempForm.action = "{{ route('poliumum.laporan.download') }}";
+
+            // Add bulan parameter
+            const bulanInput = document.createElement('input');
+            bulanInput.type = 'hidden';
+            bulanInput.name = 'bulan';
+            bulanInput.value = bulan;
+            tempForm.appendChild(bulanInput);
+
+            // Add cara_bayar parameter
+            const caraBayarInput = document.createElement('input');
+            caraBayarInput.type = 'hidden';
+            caraBayarInput.name = 'cara_bayar';
+            caraBayarInput.value = caraBayar;
+            tempForm.appendChild(caraBayarInput);
+
+            // Append form to body and submit
+            document.body.appendChild(tempForm);
+            tempForm.submit();
+            document.body.removeChild(tempForm);
         });
     </script>
 @endsection
