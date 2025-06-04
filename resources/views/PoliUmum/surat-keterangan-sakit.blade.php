@@ -83,7 +83,7 @@
 
 <div class="container py-4">
     <h1 class="text-center judul-halaman" style="font-size: 3rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
-        Surat Keterangan Sakit
+        Surat Keterangan Sakit By Beee
     </h1>
 
     <div class="d-flex justify-content-end my-4">
