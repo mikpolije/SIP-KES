@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\GeneralConsent;
 use App\Models\Pendaftaran;
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -33,10 +35,13 @@ new class extends Component {
     public $nama_keluarga = '';
     public $hubungan_keluarga = '';
 
+    public $pendaftaranId;
+
     public function mount($pendaftaranId)
     {
         $this->pendaftaranId = $pendaftaranId;
         $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+        $general_consent = GeneralConsent::where('id_pendaftaran', $pendaftaranId)->first();
 
         if ($pendaftaran->data_pasien) {
             $this->no_rm = $pendaftaran->data_pasien['no_rm'] ?? '';
@@ -44,7 +49,72 @@ new class extends Component {
             $this->jenis_kelamin = $pendaftaran->data_pasien['jenis_kelamin'] ?? 'Laki-laki';
             $this->nama_pasien = $pendaftaran->data_pasien['nama_lengkap'] ?? '';
             $this->tanggal_lahir_pasien = $pendaftaran->data_pasien['tanggal_lahir_pasien'] ?? '';
+
+            $this->nama_wali = $pendaftaran->wali_pasien['nama_wali'] ?? '';
+            $this->tanggal_lahir_wali = $general_consent->tanggal_lahir_wali;
+            $this->hubungan_dengan_pasien = $general_consent->hubungan_dengan_pasien;
+            $this->alamat = $general_consent->alamat;
+            $this->no_telpon = $general_consent->no_telpon;
         }
+
+        if ($general_consent) {
+
+            $this->isTahuHak = $general_consent->isTahuHak;
+            $this->isSetujuAturan = $general_consent->isSetujuAturan;
+            $this->isSetujuPerawatan = $general_consent->isSetujuPerawatan;
+            $this->isPahamPrivasi = $general_consent->isPahamPrivasi;
+            $this->isBukaInfoAsuransi = $general_consent->isBukaInfoAsuransi;
+            $this->isIzinkanKeluarga = $general_consent->isIzinkanKeluarga;
+            $this->isPahamPenolakan = $general_consent->isPahamPenolakan;
+            $this->isPahamSiswa = $general_consent->isPahamSiswa;
+
+            $this->isBeriWewenang = $general_consent->isBeriWewenang;
+            $this->nama_penerima = $general_consent->nama_penerima;
+            $this->hubungan_penerima = $general_consent->hubungan_penerima;
+
+            $this->isBeriAkses = $general_consent->isBeriAkses;
+            $this->nama_keluarga = $general_consent->nama_keluarga;
+            $this->hubungan_keluarga = $general_consent->hubungan_keluarga;
+        }
+    }
+
+    #[On('submit-step1')]
+    public function submit()
+    {
+        $validated = $this->validate([
+            'nama_wali' => 'required|string',
+            'tanggal_lahir_wali' => 'required|date',
+            'hubungan_dengan_pasien' => 'required|string',
+            'alamat' => 'required|string',
+            'no_telpon' => 'required|string',
+
+            // Consent
+            'isTahuHak' => 'required|boolean',
+            'isSetujuAturan' => 'required|boolean',
+            'isSetujuPerawatan' => 'required|boolean',
+            'isPahamPrivasi' => 'required|boolean',
+            'isBukaInfoAsuransi' => 'required|boolean',
+            'isIzinkanKeluarga' => 'required|boolean',
+            'isPahamPenolakan' => 'required|boolean',
+            'isPahamSiswa' => 'required|boolean',
+
+            // Wewenang
+            'isBeriWewenang' => 'required|boolean',
+            'nama_penerima' => 'nullable|string',
+            'hubungan_penerima' => 'nullable|string',
+
+            // Family
+            'isBeriAkses' => 'required|boolean',
+            'nama_keluarga' => 'nullable|string',
+            'hubungan_keluarga' => 'nullable|string',
+        ]);
+
+        GeneralConsent::updateOrCreate(
+            ['id_pendaftaran' => $this->pendaftaranId],
+            $validated
+        );
+
+        flash()->success('Persetujuan umum berhasil disimpan.');
     }
 }; ?>
 

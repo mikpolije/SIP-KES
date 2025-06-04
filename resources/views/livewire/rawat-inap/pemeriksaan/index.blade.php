@@ -16,7 +16,7 @@ new class extends Component {
     public function nextStep()
     {
         if ($this->currentStep === 1) {
-            $this->dispatch('go-next-step');
+            $this->dispatch('submit-step1');
         }
 
         if ($this->currentStep === 2) {

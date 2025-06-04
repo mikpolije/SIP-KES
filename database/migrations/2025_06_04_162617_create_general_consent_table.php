@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('general_consent', function (Blueprint $table) {
+        Schema::create('general_consent', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->constrained()
