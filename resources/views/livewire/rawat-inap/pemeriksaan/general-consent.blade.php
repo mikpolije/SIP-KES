@@ -51,10 +51,10 @@ new class extends Component {
             $this->tanggal_lahir_pasien = $pendaftaran->data_pasien['tanggal_lahir_pasien'] ?? '';
 
             $this->nama_wali = $pendaftaran->wali_pasien['nama_wali'] ?? '';
-            $this->tanggal_lahir_wali = $general_consent->tanggal_lahir_wali;
-            $this->hubungan_dengan_pasien = $general_consent->hubungan_dengan_pasien;
-            $this->alamat = $general_consent->alamat;
-            $this->no_telpon = $general_consent->no_telpon;
+            $this->tanggal_lahir_wali = $pendaftaran->wali_pasien['tanggal_lahir_wali'] ?? '';
+            $this->hubungan_dengan_pasien = $pendaftaran->wali_pasien['hubungan_dengan_pasien'] ?? '';
+            $this->alamat = $pendaftaran->wali_pasien['alamat_wali'] ?? '';
+            $this->no_telpon = $pendaftaran->wali_pasien['no_telepon_wali'] ?? '';
         }
 
         if ($general_consent) {
@@ -82,12 +82,6 @@ new class extends Component {
     public function submit()
     {
         $validated = $this->validate([
-            'nama_wali' => 'required|string',
-            'tanggal_lahir_wali' => 'required|date',
-            'hubungan_dengan_pasien' => 'required|string',
-            'alamat' => 'required|string',
-            'no_telpon' => 'required|string',
-
             // Consent
             'isTahuHak' => 'required|boolean',
             'isSetujuAturan' => 'required|boolean',
@@ -115,6 +109,7 @@ new class extends Component {
         );
 
         flash()->success('Persetujuan umum berhasil disimpan.');
+        $this->dispatch('go-next-step');
     }
 }; ?>
 
@@ -156,23 +151,23 @@ new class extends Component {
             <div class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">NAMA</label>
-                    <input type="text" class="form-control" wire:model="nama_wali">
+                    <input type="text" class="form-control" wire:model="nama_wali" disabled>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">TANGGAL LAHIR</label>
-                    <input type="date" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_wali">
+                    <input type="date" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_wali" disabled>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">Hubungan Dengan Pasien</label>
-                    <input type="text" class="form-control" wire:model="hubungan_dengan_pasien">
+                    <input type="text" class="form-control" wire:model="hubungan_dengan_pasien" disabled>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">ALAMAT</label>
-                    <input type="text" class="form-control" wire:model="alamat">
+                    <input type="text" class="form-control" wire:model="alamat" disabled>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">No. Telpon</label>
-                    <input type="text" class="form-control" wire:model="no_telpon">
+                    <input type="text" class="form-control" wire:model="no_telpon" disabled>
                 </div>
             </div>
         </div>
