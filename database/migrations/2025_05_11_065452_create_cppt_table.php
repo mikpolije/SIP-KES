@@ -29,6 +29,7 @@ return new class extends Migration
 
             // pemeriksaan (seharusnya milih laboratorium, radiologi, etc idk)
             $table->text('pemeriksaan')->nullable();
+            $table->string('file_penunjang')->nullable();
             $table->enum('kelas', ['1', '2', '3'])->nullable();
 
             $table->timestamps();

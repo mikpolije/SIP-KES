@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
 use App\Models\Diagnosa;
 use App\Models\Tindakan;
 use App\Models\Obat;
@@ -9,6 +10,8 @@ use App\Models\ObatPendaftaran;
 use App\Models\Pendaftaran;
 
 new class extends Component {
+    use WithFileUploads;
+
     protected $listeners = ['open-cppt-modal' => 'openModal'];
 
     public $pendaftaranId;
@@ -26,6 +29,10 @@ new class extends Component {
         'id_obat' => [],
         'pemeriksaanPenunjang' => '',
     ];
+
+    // File upload properties
+    public $filePenunjang;
+    public $uploadedFileName = '';
 
     public $diagnosaList = [];
     public $tindakanList = [];
@@ -230,6 +237,23 @@ new class extends Component {
         $this->loadObatOptions();
     }
 
+    public function updatedFilePenunjang()
+    {
+        $this->validate([
+            'filePenunjang' => 'image|max:2048', // 2MB Max
+        ]);
+
+        if ($this->filePenunjang) {
+            $this->uploadedFileName = $this->filePenunjang->getClientOriginalName();
+        }
+    }
+
+    public function removeFile()
+    {
+        $this->filePenunjang = null;
+        $this->uploadedFileName = '';
+    }
+
     public function openModal() {
         $this->showModal = true;
     }
@@ -261,6 +285,10 @@ new class extends Component {
         $this->tindakanSearch = '';
         $this->obatSearch = '';
 
+        // Reset file upload
+        $this->filePenunjang = null;
+        $this->uploadedFileName = '';
+
         $this->loadDiagnosaOptions();
         $this->loadTindakanOptions();
         $this->loadObatOptions();
@@ -278,9 +306,15 @@ new class extends Component {
                 'formData.id_icd9' => 'nullable|array',
                 'formData.id_icd9.*' => 'exists:icd9,id',
                 'formData.id_obat' => 'nullable|array',
-                'formData.id_obat.*.id' => 'exists:obat,id',  // Changed to check the id property
+                'formData.id_obat.*.id' => 'exists:obat,id',
                 'formData.id_obat.*.qty' => 'required|numeric|min:1',
+                'filePenunjang' => 'nullable|image|max:2048',
             ]);
+
+            $filePenunjangPath = null;
+            if ($this->filePenunjang) {
+                $filePenunjangPath = $this->filePenunjang->store('cppt-penunjang', 'public');
+            }
 
             CPPT::create([
                 'id_pendaftaran' => $this->pendaftaranId,
@@ -292,6 +326,7 @@ new class extends Component {
                 'id_icd9' => json_encode($this->formData['id_icd9']),
                 'id_obat' => json_encode($this->formData['id_obat']),
                 'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
+                'file_penunjang' => $filePenunjangPath,
                 'kelas' => $this->kelas,
             ]);
 
@@ -547,6 +582,40 @@ new class extends Component {
                                         <option value="Laboratorium">Laboratorium</option>
                                         <option value="Radiologi">Radiologi</option>
                                     </select>
+
+                                    <!-- File Upload Section -->
+                                    <div class="mt-3">
+                                        <label class="form-label">Upload File Penunjang (Gambar)</label>
+                                        <input type="file"
+                                               class="form-control @error('filePenunjang') is-invalid @enderror"
+                                               wire:model="filePenunjang"
+                                               accept="image/*">
+
+                                        @error('filePenunjang')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+
+                                        <!-- Loading indicator -->
+                                        <div wire:loading wire:target="filePenunjang" class="text-muted small mt-1">
+                                            <i class="fas fa-spinner fa-spin"></i> Uploading...
+                                        </div>
+
+                                        <!-- Show uploaded file name -->
+                                        @if($uploadedFileName)
+                                            <div class="mt-2 p-2 bg-light rounded">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-success small">
+                                                        <i class="fas fa-check-circle"></i> {{ $uploadedFileName }}
+                                                    </span>
+                                                    <button type="button"
+                                                            class="btn btn-sm btn-outline-danger"
+                                                            wire:click="removeFile">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">

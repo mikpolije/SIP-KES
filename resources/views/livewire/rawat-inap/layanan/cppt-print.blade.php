@@ -101,10 +101,14 @@ class extends Component {
 
                     @if($record->pemeriksaan)
                         <strong>Pemeriksaan:</strong> {{ $record->pemeriksaan }}
+                        <br>
+                        <img src="{{ asset('storage/' . $record->file_penunjang) }}" width="200" alt="Pemeriksaan Penunjang">
+                        <br>
                     @endif
-
+                        <br>
                     @if($record->kelas)
                         <strong>Kelas:</strong> {{ $record->kelas }}
+
                     @endif
                 </td>
                 <td>
