@@ -33,6 +33,7 @@ return new class extends Migration
             $table->foreignIdFor(Obat::class, 'id_obat')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
+            $table->integer('qty')->default(1);
             $table->timestamps();
         });
 
