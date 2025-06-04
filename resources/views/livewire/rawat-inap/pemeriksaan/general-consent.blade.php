@@ -15,22 +15,22 @@ new class extends Component {
     public $alamat = '';
     public $no_telpon = '';
 
-    public $consent1 = false;
-    public $consent2 = false;
-    public $consent3 = false;
-    public $consent4 = false;
-    public $consent5 = false;
-    public $consent6 = false;
-    public $consent7 = false;
-    public $consent8 = false;
+    public $isTahuHak = false;
+    public $isSetujuAturan = false;
+    public $isSetujuPerawatan = false;
+    public $isPahamPrivasi = false;
+    public $isBukaInfoAsuransi = false;
+    public $isIzinkanKeluarga = false;
+    public $isPahamPenolakan = false;
+    public $isPahamSiswa = false;
 
-    public $memberikan_wewenang = true;
-    public $nama_penerima_info = '';
-    public $hubungan_penerima_info = '';
+    public $isBeriWewenang = true;
+    public $nama_penerima = '';
+    public $hubungan_penerima = '';
 
-    public $mengizinkan_akses = true;
-    public $nama_akses_keluarga = '';
-    public $hubungan_akses_keluarga = '';
+    public $isBeriAkses = true;
+    public $nama_keluarga = '';
+    public $hubungan_keluarga = '';
 }; ?>
 
 <div class="card-body">
@@ -97,15 +97,15 @@ new class extends Component {
             <p class="fw-semibold mb-3">Informasi tentang Hak dan kewajiban pasien</p>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent1" wire:model="consent1">
-                <label class="form-check-label" for="consent1">
+                <input class="form-check-input" type="checkbox" id="isTahuHak" wire:model="isTahuHak">
+                <label class="form-check-label" for="isTahuHak">
                     Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk mendapatkan PELAYANAN di Klinik Pratama "Insan Medika", saya telah mendapat informasi tentang hak dan kewajiban saya sebagai pasien.
                 </label>
             </div>
 
             <div class="form-check mb-4">
-                <input class="form-check-input" type="checkbox" id="consent2" wire:model="consent2">
-                <label class="form-check-label" for="consent2">
+                <input class="form-check-input" type="checkbox" id="isSetujuAturan" wire:model="isSetujuAturan">
+                <label class="form-check-label" for="isSetujuAturan">
                     Saya telah menerima informasi tentang peraturan yang diberlakukan oleh Klinik Pratama "Insan Medika", dan saya bersedia keluarga bersedia untuk mematuhinya.
                 </label>
             </div>
@@ -115,8 +115,8 @@ new class extends Component {
             <p class="fw-semibold mb-3">Persetujuan perawatan dan pengobatan</p>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent3" wire:model="consent3">
-                <label class="form-check-label" for="consent3">
+                <input class="form-check-input" type="checkbox" id="isSetujuPerawatan" wire:model="isSetujuPerawatan">
+                <label class="form-check-label" for="isSetujuPerawatan">
                     Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya menginginkan dokter dan profesional kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis seperti yang diperlukan dalam penilaian profesional mereka meliputi: Pemeriksaan fisik yang dilakukan oleh perawat dan dokter, Pemasangan alat kesehatan (kecuali yang membutuhkan persetujuan khusus), Asuhan keperawatan, Pemeriksaan laboratorium, Pemeriksaan Radiologi.
                 </label>
             </div>
@@ -126,15 +126,15 @@ new class extends Component {
             <p class="fw-semibold mb-3">Persetujuan pelepasan informasi</p>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent4" wire:model="consent4">
-                <label class="form-check-label" for="consent4">
+                <input class="form-check-input" type="checkbox" id="isPahamPrivasi" wire:model="isPahamPrivasi">
+                <label class="form-check-label" for="isPahamPrivasi">
                     Saya memahami informasi yang ada dalam diri saya termasuk diagnosis, hasil laboratorium, dan hasil tes diagnostik yang akan digunakan untuk perawatan medis di Klinik Pratama "Insan Medika" akan dijamin kerahasiaannya.
                 </label>
             </div>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent5" wire:model="consent5">
-                <label class="form-check-label" for="consent5">
+                <input class="form-check-input" type="checkbox" id="isBukaInfoAsuransi" wire:model="isBukaInfoAsuransi">
+                <label class="form-check-label" for="isBukaInfoAsuransi">
                     Saya memberi wewenang kepada Klinik Pratama "Insan Medika" untuk memberikan informasi tentang diagnosis hasil pelayanan dan pengobatan bila diperlukan untuk memproses klaim asuransi atau keperluan lain yang berkaitan.
                 </label>
             </div>
@@ -143,13 +143,13 @@ new class extends Component {
                 <label class="form-label">Saya</label>
                 <div class="d-inline-block mx-2">
                     <button type="button"
-                        class="btn btn-sm {{ $memberikan_wewenang ? 'btn-primary' : 'btn-outline-secondary' }}"
-                        wire:click="$set('memberikan_wewenang', true)">
+                        class="btn btn-sm {{ $isBeriWewenang ? 'btn-primary' : 'btn-outline-secondary' }}"
+                        wire:click="$set('isBeriWewenang', true)">
                         Memberikan
                     </button>
                     <button type="button"
-                        class="btn btn-sm {{ !$memberikan_wewenang ? 'btn-primary' : 'btn-outline-secondary' }}"
-                        wire:click="$set('memberikan_wewenang', false)">
+                        class="btn btn-sm {{ !$isBeriWewenang ? 'btn-primary' : 'btn-outline-secondary' }}"
+                        wire:click="$set('isBeriWewenang', false)">
                         Tidak Memberikan
                     </button>
                 </div>
@@ -158,10 +158,10 @@ new class extends Component {
 
             <div class="row g-2 mb-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_penerima_info">
+                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_penerima">
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_penerima_info">
+                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_penerima">
                 </div>
             </div>
         </div>
@@ -170,17 +170,17 @@ new class extends Component {
             <p class="fw-semibold mb-3">Kebutuhan Privasi</p>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent6" wire:model="consent6">
-                <label class="form-check-label" for="consent6">
+                <input class="form-check-input" type="checkbox" id="isIzinkanKeluarga" wire:model="isIzinkanKeluarga">
+                <label class="form-check-label" for="isIzinkanKeluarga">
                     Saya <span class="mx-2">
                         <button type="button"
-                            class="btn btn-sm {{ $mengizinkan_akses ? 'btn-primary' : 'btn-outline-secondary' }}"
-                            wire:click="$set('mengizinkan_akses', true)">
+                            class="btn btn-sm {{ $isBeriAkses ? 'btn-primary' : 'btn-outline-secondary' }}"
+                            wire:click="$set('isBeriAkses', true)">
                             Mengizinkan
                         </button>
                         <button type="button"
-                            class="btn btn-sm {{ !$mengizinkan_akses ? 'btn-primary' : 'btn-outline-secondary' }}"
-                            wire:click="$set('mengizinkan_akses', false)">
+                            class="btn btn-sm {{ !$isBeriAkses ? 'btn-primary' : 'btn-outline-secondary' }}"
+                            wire:click="$set('isBeriAkses', false)">
                             Tidak Mengizinkan
                         </button>
                     </span> Klinik Pratama "Insan Medika" memberi akses bagi keluarga dan saudara serta orang-orang yang akan menyebutkan kebutuhan nama bila ada permintaan khusus yang tidak diijinkan)
@@ -189,23 +189,23 @@ new class extends Component {
 
             <div class="row g-2 mb-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_akses_keluarga">
+                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_keluarga">
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_akses_keluarga">
+                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_keluarga">
                 </div>
             </div>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent7" wire:model="consent7">
-                <label class="form-check-label" for="consent7">
+                <input class="form-check-input" type="checkbox" id="isPahamPenolakan" wire:model="isPahamPenolakan">
+                <label class="form-check-label" for="isPahamPenolakan">
                     Saya mengerti dan memahami tentang bahwa saya memiliki hak untuk persetujuan atau menolak persetujuan untuk setiap prosedur/ terapi.
                 </label>
             </div>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="consent8" wire:model="consent8">
-                <label class="form-check-label" for="consent8">
+                <input class="form-check-input" type="checkbox" id="isPahamSiswa" wire:model="isPahamSiswa">
+                <label class="form-check-label" for="isPahamSiswa">
                     Klinik Pratama "Insan Medika" telah memberikan informasi kepada saya terkait kemungkinan keterbatasan peserta didik dan/ mahasiswa yang turut berpartisipasi dalam proses perawatan.
                 </label>
             </div>
