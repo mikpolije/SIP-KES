@@ -4,10 +4,12 @@ use Livewire\Volt\Component;
 use App\Models\Pendaftaran;
 use App\Models\Layanan;
 use App\Models\Obat;
+use Livewire\Attributes\On;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 new class extends Component {
     public $tanggalNota;
+    public $noNota;
 
     public $pendaftaran;
 
@@ -16,9 +18,17 @@ new class extends Component {
 
     public $idLayananBaru;
     public $qtyLayananBaru;
+    public $hargaLayananBaru;
 
     public $idObatBaru;
     public $qtyObatBaru;
+    public $hargaObatBaru;
+
+    public $notes;
+    public $discount;
+    public $tax;
+    public $paymentMethod = 'tunai';
+    public $paymentAmount;
 
     public function showPatientFinder()
     {
@@ -52,6 +62,39 @@ new class extends Component {
             return;
         }
     }
+
+    public function addService()
+    {
+        $this->pendaftaran->layananPendaftaran->create([
+            'id_layanan' => $this->idLayananBaru,
+            'qty' => $this->qtyLayananBaru,
+        ]);
+    }
+
+    public function addMedicine()
+    {
+        $this->pendaftaran->obatPendaftaran->create([
+            'id_obat' => $this->idObatBaru,
+            'qty' => $this->qtyObatBaru,
+        ]);
+    }
+
+    #[On('layanan-changed')]
+    public function updateServiceField()
+    {
+        if ($this->qtyLayananBaru && $this->idLayananBaru) {
+            $this->hargaLayananBaru = Layanan::find($this->idLayananBaru)->tarif_layanan * $this->qtyLayananBaru;
+        }
+    }
+
+    #[On('obat-changed')]
+    public function updateMedicineField()
+    {
+        if ($this->qtyObatBaru && $this->idObatBaru) {
+            $this->hargaObatBaru = Obat::find($this->idObatBaru)->harga * $this->qtyObatBaru;
+        }
+    }
+
 }; ?>
 
 <div class="container-fluid py-4">
@@ -87,7 +130,8 @@ new class extends Component {
           <div class="row mb-3">
             <label class="col-sm-5 col-form-label text-muted">Tanggal Nota</label>
             <div class="col-sm-7">
-              <input class="form-control bg-light border-0" type="date" wire:model="tanggalNota" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control bg-light border-0" type="date" wire:model="tanggalNota"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
           </div>
           <div class="row mb-3">
@@ -109,14 +153,16 @@ new class extends Component {
             <label class="col-sm-5 col-form-label text-muted">Nama Pasien</label>
             <div class="col-sm-7">
               <input class="form-control bg-light border-0" type="text"
-                value="{{ $this->pendaftaran?->data_pasien?->nama_lengkap }}" placeholder="Nama lengkap pasien" disabled>
+                value="{{ $this->pendaftaran?->data_pasien?->nama_lengkap }}" placeholder="Nama lengkap pasien"
+                disabled>
             </div>
           </div>
           <div class="row mb-3">
             <label class="col-sm-5 col-form-label text-muted">No Telp</label>
             <div class="col-sm-7">
               <input class="form-control bg-light border-0" type="text"
-                value="{{ $this->pendaftaran?->data_pasien?->nomor_telepon_pasien }}" placeholder="Nomor telepon" disabled>
+                value="{{ $this->pendaftaran?->data_pasien?->nomor_telepon_pasien }}" placeholder="Nomor telepon"
+                disabled>
             </div>
           </div>
         </div>
@@ -137,11 +183,11 @@ new class extends Component {
         <div class="card-body p-4">
           <div class="row g-2 mb-3">
             <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="qtyLayananBaru" placeholder="Jumlah"
-                min="1" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control" type="number" wire:change="updateServiceField" wire:model="qtyLayananBaru"
+                placeholder="Jumlah" min="1" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-4" wire:ignore>
-              <select class="form-select select2-layanan" wire:model="idLayananBaru" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <select class="form-select select2-layanan" wire:change="updateServiceField" wire:model="idLayananBaru">
                 <option value="">Pilih Layanan</option>
                 @foreach ($masterLayanan as $id => $nama)
                   <option value="{{ $id }}">{{ $nama }}</option>
@@ -149,11 +195,12 @@ new class extends Component {
               </select>
             </div>
             <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="hargaLayananBaru" placeholder="Harga"
+              <input class="form-control" type="number" wire:model="hargaLayananBaru" readonly placeholder="Harga"
                 min="0" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addService" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <button class="btn btn-primary w-100" wire:click="addService"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -173,8 +220,8 @@ new class extends Component {
                   <tr>
                     <td>{{ $item->qty }}</td>
                     <td>{{ $item->layanan->nama_layanan }}</td>
-                    <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
-                    <td>Rp {{ number_format($item->total, 0, ',', '.') }}</td>
+                    <td>Rp {{ number_format($item->layanan->tarif_layanan, 0, ',', '.') }}</td>
+                    <td>Rp {{ number_format($item->layanan->tarif_layanan * $item->qty, 0, ',', '.') }}</td>
                   </tr>
                 @empty
                   <tr>
@@ -200,11 +247,11 @@ new class extends Component {
         <div class="card-body p-4">
           <div class="row g-2 mb-3">
             <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="qtyObatBaru" placeholder="Jumlah"
-                min="1" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control" type="number" wire:change="updateMedicineField" wire:model="qtyObatBaru" placeholder="Jumlah" min="1"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-4" wire:ignore>
-              <select class="form-select select2-obat" wire:model="idObatBaru" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <select class="form-select select2-obat" wire:model="idObatBaru">
                 <option value="">Pilih Obat</option>
                 @foreach ($masterObat as $id => $nama)
                   <option value="{{ $id }}">{{ $nama }}</option>
@@ -212,11 +259,12 @@ new class extends Component {
               </select>
             </div>
             <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="hargaObatBaru" placeholder="Harga"
+              <input class="form-control" type="number" wire:model="hargaObatBaru" readonly placeholder="Harga"
                 min="0" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addMedicine" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <button class="btn btn-primary w-100" wire:click="addMedicine"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -236,8 +284,8 @@ new class extends Component {
                   <tr>
                     <td>{{ $item->qty }}</td>
                     <td>{{ $item->obat->nama }}</td>
-                    <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
-                    <td>Rp {{ number_format($item->total, 0, ',', '.') }}</td>
+                    <td>Rp {{ number_format($item->obat->harga, 0, ',', '.') }}</td>
+                    <td>Rp {{ number_format($item->obat->harga * $item->qty, 0, ',', '.') }}</td>
                   </tr>
                 @empty
                   <tr>
@@ -263,17 +311,20 @@ new class extends Component {
         <div class="card-body p-4">
           <div class="row g-2 mb-3">
             <div class="col-md-3">
-              <input class="form-control" type="date" wire:model="newLabDate" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control" type="date" wire:model="newLabDate"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newLabType" placeholder="Jenis Laboratorium" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control" type="text" wire:model="newLabType" placeholder="Jenis Laboratorium"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-3">
               <input class="form-control" type="number" wire:model="newLabPrice" placeholder="Harga"
                 min="0" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addLaboratory" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <button class="btn btn-primary w-100" wire:click="addLaboratory"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -311,17 +362,20 @@ new class extends Component {
         <div class="card-body p-4">
           <div class="row g-2 mb-3">
             <div class="col-md-3">
-              <input class="form-control" type="date" wire:model="newRadDate" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control" type="date" wire:model="newRadDate"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newRadType" placeholder="Jenis Radiologi" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control" type="text" wire:model="newRadType" placeholder="Jenis Radiologi"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-3">
               <input class="form-control" type="number" wire:model="newRadPrice" placeholder="Harga"
                 min="0" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addRadiology" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <button class="btn btn-primary w-100" wire:click="addRadiology"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -363,14 +417,16 @@ new class extends Component {
                 min="1" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newAdditionalCode" placeholder="Kode Tambahan" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <input class="form-control" type="text" wire:model="newAdditionalCode" placeholder="Kode Tambahan"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-3">
               <input class="form-control" type="number" wire:model="newAdditionalPrice" placeholder="Harga"
                 min="0" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addAdditionalItem" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <button class="btn btn-primary w-100" wire:click="addAdditionalItem"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -465,7 +521,8 @@ new class extends Component {
                 min="0" {{ !$this->pendaftaran ? 'disabled' : '' }}>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addPayment" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+              <button class="btn btn-primary w-100" wire:click="addPayment"
+                {{ !$this->pendaftaran ? 'disabled' : '' }}>
                 <i class="bi bi-plus"></i>
               </button>
             </div>
@@ -529,7 +586,8 @@ new class extends Component {
       Cetak
     </button>
     <div>
-      <button class="btn btn-primary px-4 py-2" wire:click="processPayment" {{ !$this->pendaftaran ? 'disabled' : '' }}>
+      <button class="btn btn-primary px-4 py-2" wire:click="processPayment"
+        {{ !$this->pendaftaran ? 'disabled' : '' }}>
         <i class="bi bi-credit-card me-2"></i>
         Proses Pembayaran
       </button>
@@ -551,6 +609,17 @@ new class extends Component {
 
   document.addEventListener('livewire:updated', function() {
     initializeSelect2();
+    updateSelect2DisabledState();
+  });
+
+  document.addEventListener('livewire:init', () => {
+    $('.select2-layanan').on('select2:select', function(e) {
+      Livewire.dispatch('layanan-changed');
+    });
+
+    $('.select2-obat').on('select2:select', function(e) {
+      Livewire.dispatch('obat-changed');
+    });
   });
 
   function initializeSelect2() {
