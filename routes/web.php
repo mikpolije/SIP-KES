@@ -70,6 +70,15 @@ Route::get('/get-pasien', [TriageController::class, 'getPasien'])->name('get-pas
 Route::get('/get-list-obat', [TriageController::class, 'getObat'])->name('get-list-obat');
 Route::get('/print-pdf/{id}', [TriageController::class, 'printPdf'])->name('print-pdf');
 
+// Route pendaftaran GolB
+Route::get('/main/pendaftaran', [PendafataranController::class, 'index'])->name('pendaftaran.index');
+Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
+Route::get('/get-data-pasien/{no_rm}', [PendafataranController::class, 'getDataPasien']);
+Route::get('/get-kabupaten/{province_code}', [PendafataranController::class, 'getKabupaten']);
+Route::get('/get-kecamatan/{city_code}', [PendafataranController::class, 'getKecamatan']);
+Route::get('/get-desa/{district_code}', [PendafataranController::class, 'getDesa']);
+
+
 Route::get('/{main}/{view}', [PageController::class, 'show']);
 Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
