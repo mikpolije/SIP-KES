@@ -396,13 +396,8 @@
             </a>
         </li>
         <li class="sidebar-item">
-<<<<<<< Updated upstream
             <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'laporan*') ? 'active' : '' }}"
                 href="javascript:void(0)" aria-expanded="{{ request()->is('laporan*') ? 'true' : 'false' }}">
-=======
-            <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/*') ? 'active' : '' }}"
-                href="javascript:void(0)" aria-expanded="false">
->>>>>>> Stashed changes
                 <span class="d-flex">
                     <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -414,17 +409,10 @@
                 </span>
                 <span class="hide-menu">Laporan</span>
             </a>
-<<<<<<< Updated upstream
             <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'laporan*') ? 'show' : '' }}"
                 aria-expanded="{{ request()->is('laporan*') ? 'true' : 'false' }}">
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('laporan*') ? 'active' : '' }}"
-=======
-            <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/*') ? 'show' : '' }}"
-                aria-expanded="false">
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
->>>>>>> Stashed changes
                         href="{{ route('poliumum.laporan') }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
