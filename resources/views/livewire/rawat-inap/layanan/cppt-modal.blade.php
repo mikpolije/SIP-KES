@@ -5,6 +5,7 @@ use App\Models\Diagnosa;
 use App\Models\Tindakan;
 use App\Models\Obat;
 use App\Models\CPPT;
+use App\Models\ObatPendaftaran;
 use App\Models\Pendaftaran;
 
 new class extends Component {
@@ -293,6 +294,14 @@ new class extends Component {
                 'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
                 'kelas' => $this->kelas,
             ]);
+
+            foreach ($this->formData['id_obat'] as $item) {
+                ObatPendaftaran::create([
+                    'id_pendaftaran' => $this->pendaftaranId,
+                    'id_obat' => $item['id'],
+                    'qty' => $item['qty'],
+                ]);
+            }
 
             flash()->success('CPPT berhasil ditambahkan!');
             $this->closeModal();

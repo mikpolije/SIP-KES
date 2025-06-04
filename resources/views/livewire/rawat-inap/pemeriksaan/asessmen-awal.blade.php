@@ -104,38 +104,43 @@ new class extends Component {
     #[On('submit-step2')]
     public function submit()
     {
-        $this->validate();
+        try{
+            $this->validate();
 
-        $data = [
-            'id_pendaftaran' => $this->pendaftaranId,
-            'keluhan_utama' => $this->keluhan,
-            'riwayat_penyakit' => $this->riwayatPenyakit,
-            'riwayat_pengobatan' => $this->riwayatPengobatan,
-            'alergi' => $this->alergi,
-            'jenis_alergi' => $this->alergi === 'ya' ? $this->jenisAlergi : null,
-            'denyut_jantung' => $this->denyutJantung,
-            'pernafasan' => $this->pernafasan,
-            'suhu_tubuh' => $this->suhuTubuh,
-            'tekanan_darah_sistole' => $this->sistole,
-            'tekanan_darah_diastole' => $this->diastole,
-            'skala_nyeri' => $this->skalaNyeri,
-            'status_psikologi' => $this->statusPsikologi,
-            'bunuh_diri' => $this->bunuhDiri,
-            'bunuh_diri_laporan' => $this->bunuhDiri ? $this->bunuhDiriLaporan : null,
-            'lain_lain' => $this->lainLain,
-            'lain_lain_text' => $this->lainLain ? $this->lainLainText : null,
-        ];
+            $data = [
+                'id_pendaftaran' => $this->pendaftaranId,
+                'keluhan_utama' => $this->keluhan,
+                'riwayat_penyakit' => $this->riwayatPenyakit,
+                'riwayat_pengobatan' => $this->riwayatPengobatan,
+                'alergi' => $this->alergi,
+                'jenis_alergi' => $this->alergi === 'ya' ? $this->jenisAlergi : null,
+                'denyut_jantung' => $this->denyutJantung,
+                'pernafasan' => $this->pernafasan,
+                'suhu_tubuh' => $this->suhuTubuh,
+                'tekanan_darah_sistole' => $this->sistole,
+                'tekanan_darah_diastole' => $this->diastole,
+                'skala_nyeri' => $this->skalaNyeri,
+                'status_psikologi' => $this->statusPsikologi,
+                'bunuh_diri' => $this->bunuhDiri,
+                'bunuh_diri_laporan' => $this->bunuhDiri ? $this->bunuhDiriLaporan : null,
+                'lain_lain' => $this->lainLain,
+                'lain_lain_text' => $this->lainLain ? $this->lainLainText : null,
+            ];
 
-        $asesmenAwal = AsessmenAwal::updateOrCreate(
-            ['id_pendaftaran' => $this->pendaftaranId],
-            $data
-        );
+            $asesmenAwal = AsessmenAwal::updateOrCreate(
+                ['id_pendaftaran' => $this->pendaftaranId],
+                $data
+            );
 
-        PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
-            ->update(['id_asessmen_awal' => $asesmenAwal->id]);
+            PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
+                ->update(['id_asessmen_awal' => $asesmenAwal->id]);
 
-        flash()->success('Asesmen awal berhasil disimpan');
-        $this->dispatch('go-next-step');
+            flash()->success('Asesmen awal berhasil disimpan');
+            $this->dispatch('go-next-step');
+        }catch(\Exception $e){
+            flash()->error('Terjadi kesalahan: ' . $e->getMessage());
+            return;
+        }
     }
 }; ?>
 
