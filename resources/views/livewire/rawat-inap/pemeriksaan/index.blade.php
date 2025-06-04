@@ -30,10 +30,8 @@ new class extends Component {
 
     public function goToStep($step)
     {
-        if ($step >= 1 && $step <= $this->totalSteps) {
-            $this->currentStep = $step;
-            $this->dispatch('scroll-to-top');
-        }
+        $this->currentStep = $step;
+        $this->dispatch('scroll-to-top');
     }
 
     #[On('go-next-step')]
