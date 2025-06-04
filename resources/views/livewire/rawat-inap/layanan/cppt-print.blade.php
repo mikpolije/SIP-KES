@@ -35,19 +35,19 @@ class extends Component {
         <table class="patient-info">
             <tr>
                 <td class="label">No. RM</td>
-                <td>{{ $cppt[0]->pendaftaran->data_pasien->no_rekam_medis ?? '' }}</td>
+                <td>{{ $this->cppt[0]->pendaftaran->data_pasien->no_rm ?? '' }}</td>
             </tr>
             <tr>
                 <td class="label">Nama Pasien</td>
-                <td>{{ $cppt[0]->pendaftaran->data_pasien->nama ?? '' }}</td>
+                <td>{{ $this->cppt[0]->pendaftaran->data_pasien->nama_lengkap ?? '' }}</td>
             </tr>
             <tr>
                 <td class="label">Tgl Lahir</td>
-                <td>{{ $cppt[0]->pendaftaran->data_pasien->tanggal_lahir ? $cppt->pendaftaran->pasien->tanggal_lahir->format('d/m/Y') : '' }}</td>
+                <td>{{ $this->cppt[0]->pendaftaran->data_pasien->tanggal_lahir_pasien ? $this->cppt[0]->pendaftaran->data_pasien->tanggal_lahir_pasien : '' }}</td>
             </tr>
             <tr>
                 <td class="label">Umur</td>
-                <td>{{ $cppt[0]->pendaftaran->data_pasien->tanggal_lahir ? $cppt->pendaftaran->pasien->tanggal_lahir->age . ' tahun' : '' }}</td>
+                <td>{{ $this->cppt[0]->pendaftaran->data_pasien->tanggal_lahir_pasien ? \Carbon\Carbon::parse($this->cppt[0]->pendaftaran->data_pasien->tanggal_lahir_pasien)->age . ' tahun' : '' }}</td>
             </tr>
         </table>
     </div>
