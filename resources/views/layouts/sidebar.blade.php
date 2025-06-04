@@ -151,6 +151,14 @@
                                 <span class="hide-menu">Antrian</span>
                             </a>
                         </li>
+                        <!-- Antrean Pemereiksaan -->
+                        <li class="sidebar-item">
+                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
+                                href="{{ route('antrean.poliumum') }}">
+                                <i class="ti ti-circle"></i>
+                                <span class="hide-menu">Antrean Pemeriksaan</span>
+                            </a>
+                        </li>
 
                         <!-- Riwayat -->
                         <li class="sidebar-item">
@@ -190,7 +198,7 @@
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Poli KIA</span>
-                    </a> -->  
+                    </a> -->
                     <ul id="submenu-polikia"
                         class="second-level collapse {{ request()->is('polikia/*') ? 'show' : '' }}"
                         aria-expanded="{{ request()->is('polikia/*') ? 'true' : 'false' }}">
@@ -201,7 +209,7 @@
                                 <span class="hide-menu">Antrean</span>
                             </a>
                         </li>
-                        <!-- 
+                        <!--
                         <li class="sidebar-item">
                             <a class="sidebar-link ps-5 {{ request()->is('polikia/riwayatpolikia') ? 'active' : '' }}"
                                 href="{{ route('riwayat.polikia') }}">
