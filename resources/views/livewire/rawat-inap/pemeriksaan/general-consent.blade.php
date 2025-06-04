@@ -90,7 +90,7 @@ new class extends Component {
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">TANGGAL LAHIR</label>
-                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_wali">
+                    <input type="date" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_wali">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">Hubungan Dengan Pasien</label>
