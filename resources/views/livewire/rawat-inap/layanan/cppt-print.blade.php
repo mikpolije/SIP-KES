@@ -1,13 +1,121 @@
 <?php
 
+use App\Models\CPPT;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
 new
 #[Layout('layouts.blank')]
 class extends Component {
-    //
+
+    public $cppt;
+
+    public function mount($id) {
+        $cppt = CPPT::find($id)->created_at->toDateString();
+        $this->cppt = CPPT::whereDate('created_at', $cppt)->get();
+    }
+
 }; ?>
+
+<div class="form-container">
+    <div class="header-section">
+        <div class="clinic-info">
+            <div class="logo-container">
+                <img src="{{ asset('assets/klinik-insan.png') }}" alt="Klinik Insan Medika Logo" class="img-fluid" width="200">
+                <div>
+                    <div class="clinic-name">KLINIK INSAN MEDIKA</div>
+                    <div class="clinic-address">
+                        Jl. Mr Wahid, Renes, Wirowongso, kec. Ajung,<br>
+                        Kabupaten Jember, Jawa Timur
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="patient-info">
+            <tr>
+                <td class="label">No. RM</td>
+                <td>{{ $cppt[0]->pendaftaran->data_pasien->no_rekam_medis ?? '' }}</td>
+            </tr>
+            <tr>
+                <td class="label">Nama Pasien</td>
+                <td>{{ $cppt[0]->pendaftaran->data_pasien->nama ?? '' }}</td>
+            </tr>
+            <tr>
+                <td class="label">Tgl Lahir</td>
+                <td>{{ $cppt[0]->pendaftaran->data_pasien->tanggal_lahir ? $cppt->pendaftaran->pasien->tanggal_lahir->format('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <td class="label">Umur</td>
+                <td>{{ $cppt[0]->pendaftaran->data_pasien->tanggal_lahir ? $cppt->pendaftaran->pasien->tanggal_lahir->age . ' tahun' : '' }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="main-title">
+        CATATAN PERKEMBANGAN PASIEN TERINTEGRASI
+    </div>
+
+    <table class="main-table">
+        <thead>
+            <tr>
+                <th class="col-date">TGL/JAM</th>
+                <th class="col-profession">PROFESI<br>(PPA)</th>
+                <th class="col-assessment">HASIL ASSESMENT<br>PENATALAKSANAAN<br>PASIEN</th>
+                <th class="col-instruction">INSTRUKSI</th>
+                <th class="col-edit">LAST EDIT</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($cppt as $record)
+            <tr>
+                <td>{{ $record->created_at->format('d/m/Y H:i') }}</td>
+                <td>Dokter</td>
+                <td>
+                    <strong>Subjective:</strong> {{ $record->s ?? '-' }}<br><br>
+                    <strong>Objective:</strong> {{ $record->o ?? '-' }}<br><br>
+                    <strong>Assessment:</strong> {{ $record->a ?? '-' }}<br><br>
+                    <strong>Plan:</strong> {{ $record->p ?? '-' }}
+                </td>
+                <td>
+                    @if($record->id_obat)
+                        <strong>Obat:</strong><br>
+                        @foreach(json_decode($record->id_obat) as $obat)
+                            - {{ $obat->nama }} ({{ $obat->qty }})<br>
+                        @endforeach
+                    @endif
+
+                    @if($record->id_icd10)
+                        <strong>ICD-10:</strong><br>
+                        @foreach(json_decode($record->id_icd10) as $icd10)
+                            - {{ App\Models\Diagnosa::find($icd10)->display ?? $icd10 }}<br>
+                        @endforeach
+                    @endif
+
+                    @if($record->id_icd9)
+                        <strong>ICD-9:</strong><br>
+                        @foreach(json_decode($record->id_icd9) as $icd9)
+                            - {{ App\Models\Tindakan::find($icd9)->display ?? $icd9 }}<br>
+                        @endforeach
+                    @endif
+
+                    @if($record->pemeriksaan)
+                        <strong>Pemeriksaan:</strong> {{ $record->pemeriksaan }}
+                    @endif
+
+                    @if($record->kelas)
+                        <strong>Kelas:</strong> {{ $record->kelas }}
+                    @endif
+                </td>
+                <td>
+                    {{ $record->updated_at->format('d/m/Y H:i') }}<br>
+                    oleh: {{ $record->pendaftaran->dokter->nama ?? 'Dokter' }}
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 @push('style')
     <style>
@@ -159,65 +267,3 @@ class extends Component {
         }
     </style>
 @endpush
-
-<div class="form-container">
-
-    <div class="header-section">
-        <div class="clinic-info">
-            <div class="logo-container">
-                <img src="{{ asset('assets/klinik-insan.png') }}" alt="Klinik Insan Medika Logo" class="img-fluid" width="200">
-                <div>
-                    <div class="clinic-name">KLINIK INSAN MEDIKA</div>
-                    <div class="clinic-address">
-                        Jl. Mr Wahid, Renes, Wirowongso, kec. Ajung,<br>
-                        Kabupaten Jember, Jawa Timur
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <table class="patient-info">
-            <tr>
-                <td class="label">No. RM</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="label">Nama Pasien</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="label">Tgl Lahir</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="label">Umur</td>
-                <td></td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="main-title">
-        CATATAN PERKEMBANGAN PASIEN TERINTEGRASI
-    </div>
-
-    <table class="main-table">
-        <thead>
-            <tr>
-                <th class="col-date">TGL/JAM</th>
-                <th class="col-profession">PROFESI<br>(PPA)</th>
-                <th class="col-assessment">HASIL ASSESMENT<br>PENATALAKSANAAN<br>PASIEN</th>
-                <th class="col-instruction">INSTRUKSI</th>
-                <th class="col-edit">LAST EDIT</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
