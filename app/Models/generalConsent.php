@@ -5,37 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class generalConsent extends Model
+class GeneralConsent extends Model
 {
     use HasFactory;
 
     protected $table = 'general_consent';
 
-    protected $fillable = [
-        'noRm',
-        'nik',
-        'jenisKelamin',
-        'namaPasien',
-        'tanggalLahir',
-        'namaWali',
-        'tanggalLahirWali',
-        'hubungan',
-        'alamat',
-        'notelp',
-        'beri',
-        'ijin',
-        'penanggungJawab1',
-        'penanggungJawab2',
-        'penanggungJawab3',
-        'penanggungJawab4',
-        'namaPenanggungJawab',
-        'namaPemberiInformasi',
-    ];
+    protected $guarded = ['id'];
 
     protected $casts = [
-        'tanggalLahir' => 'date',
-        'tanggalLahirWali' => 'date',
-        'nik' => 'string',
-        'notelp' => 'string',
+        'isTahuHak' => 'boolean',
+        'isSetujuAturan' => 'boolean',
+        'isSetujuPerawatan' => 'boolean',
+        'isPahamPrivasi' => 'boolean',
+        'isBukaInfoAsuransi' => 'boolean',
+        'isIzinkanKeluarga' => 'boolean',
+        'isPahamPenolakan' => 'boolean',
+        'isPahamSiswa' => 'boolean',
+        'isBeriWewenang' => 'boolean',
+        'isBeriAkses' => 'boolean',
+        'tanggal_lahir_pasien' => 'date',
+        'tanggal_lahir_wali' => 'date'
     ];
+
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
+    }
 }
