@@ -19,12 +19,6 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->string('no_rm');
-            $table->string('nik');
-            $table->string('jenis_kelamin');
-            $table->string('nama_pasien');
-            $table->date('tanggal_lahir_pasien');
-
             $table->string('nama_wali');
             $table->date('tanggal_lahir_wali');
             $table->string('hubungan_dengan_pasien');
