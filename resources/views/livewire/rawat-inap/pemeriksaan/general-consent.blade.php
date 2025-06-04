@@ -40,8 +40,42 @@ new class extends Component {
     public $kabPenanggungJawab = '';
     public $provPenanggungJawab = '';
 
+    #[Validate('required', message: 'Anda harus menyetujui pernyataan ini')]
+    public $menyetujuiHakKewajiban = false;
+
+    #[Validate('required', message: 'Anda harus menyetujui perawatan dan pengobatan')]
+    public $menyetujuiPerawatan = false;
+
+    #[Validate('required', message: 'Anda harus memilih kesediaan perawatan')]
+    public $kesediaanPerawatan = 'Bersedia'; // 'Bersedia' or 'Tidak Bersedia'
+
+    public $diagnosisAwal = '';
+    public $rencanaTindakan = '';
+    public $tanggalKonsultasi = '';
+    public $namaDokter = '';
+
+    public $namaPerawat = '';
+    public $namaDokterPenanggungJawab = '';
+    public $namaYangMenyatakan = '';
+    public $tanggalPenandatanganan = '';
+
+    public function mount() {
+        $this->tanggalPenandatanganan = now()->format('Y-m-d');
+        $this->tanggalKonsultasi = now()->format('Y-m-d');
+    }
+
     public function calculateAge($birthdate) {
         return now()->diffInYears($birthdate);
+    }
+
+    public function updatedTanggalLahirPenanggungJawab() {
+        if ($this->tanggalLahirPenanggungJawab) {
+            $this->umurPenanggungJawab = $this->calculateAge($this->tanggalLahirPenanggungJawab);
+        }
+    }
+
+    public function submit() {
+        $this->validate();
     }
 }; ?>
 
