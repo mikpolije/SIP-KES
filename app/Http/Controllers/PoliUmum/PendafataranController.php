@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\PoliUmum;
 
 use App\Models\Desa;
-use App\Models\Poli;
+use App\Models\poli;
 use App\Models\Dokter;
 use App\Models\Provinsi;
 use App\Models\Kabupaten;
