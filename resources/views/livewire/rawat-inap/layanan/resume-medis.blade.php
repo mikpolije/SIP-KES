@@ -79,18 +79,17 @@ new class extends Component {
         }
 
         if ($asesmen_awal && $informed_consent && $cpptAwal) {
-            dd($cpptAwal->icd10);
-            $this->diagnosaMasuk = $cpptAwal->icd10->first()->display;
+            $this->diagnosaMasuk = $cpptAwal->id_icd10;
             $this->ringkasanPenyakit = $informed_consent->ringkasan_penyakit;
             $this->riwayatPenyakit = $asesmen_awal->riwayat_penyakit;
             $this->keadaanUmum = $asesmen_awal->keadaan_umum;
             $this->indikasi = $informed_consent->indikasi_tindakan;
             $this->alergi = $asesmen_awal->alergi;
             $this->namaDPJP = $informed_consent->dokter->nama;
-            $this->diagnosisUtama = $cpptAwal->icd10->first()->display ?? '-';
-            $this->kodeICD10 = $cpptAwal->icd10->code ?? '-';
-            $this->diagnosisSekunder = ($cpptAkhir->icd9->first()->display ?? '-');
-            $this->kodeICD9 = ($cpptAkhir->icd9->code ?? '-');
+            $this->diagnosisUtama = $cpptAwal->id_icd10 ?? '-';
+            $this->kodeICD10 = $cpptAwal->id_icd10->code ?? '-';
+            $this->diagnosisSekunder = ($cpptAkhir->id_icd9 ?? '-');
+            $this->kodeICD9 = ($cpptAkhir->id_icd9 ?? '-');
         } else {
             $missing = [];
 
