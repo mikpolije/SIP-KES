@@ -18,14 +18,11 @@ class Pendaftaran extends Model
     protected $appends = ['layanan_terisi'];
 
     protected $fillable = [
-        'id_pendaftaran',
         'id_poli',
         'no_rm',
-        'id_jenis_pembayaran',
         'id_dokter',
-        'id_wali',
-        'created_at',
-        'updated_at',
+        'id_wali_pasien',
+        'jenis_pembayaran',
     ];
 
     public function data_pasien()
@@ -41,11 +38,6 @@ class Pendaftaran extends Model
     public function poli_rawat_inap()
     {
         return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');
-    }
-
-    public function asessmen_awal()
-    {
-        return $this->hasOne(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 
     public function cppt()
@@ -91,14 +83,6 @@ class Pendaftaran extends Model
     public function surat_kematian()
     {
         return $this->hasOne(SuratKematian::class, 'id_pendaftaran', 'id_pendaftaran');
-    }
-
-    public function layananPendaftaran() {
-        return $this->hasMany(LayananPendaftaran::class, 'id_pendaftaran');
-    }
-
-    public function obatPendaftaran() {
-        return $this->hasMany(ObatPendaftaran::class, 'id_pendaftaran');
     }
 
     public function getLayananTerisiAttribute()
