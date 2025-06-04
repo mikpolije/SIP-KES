@@ -143,6 +143,7 @@ class PendafataranController extends Controller
                 'id_dokter' => $validatedData['id_data_dokter'],
                 'id_wali_pasien' => $existingWali->id,
                 'jenis_pembayaran' => $validatedData['jenis_pembayaran'],
+                'status' => 'antri',
             ]);
 
             return redirect()->back()->with('success', 'Data pendaftaran berhasil disimpan.');
