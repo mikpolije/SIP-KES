@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pendaftaran;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -31,6 +32,20 @@ new class extends Component {
     public $isBeriAkses = true;
     public $nama_keluarga = '';
     public $hubungan_keluarga = '';
+
+    public function mount($pendaftaranId)
+    {
+        $this->pendaftaranId = $pendaftaranId;
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+
+        if ($pendaftaran->data_pasien) {
+            $this->no_rm = $pendaftaran->data_pasien['no_rm'] ?? '';
+            $this->nik = $pendaftaran->data_pasien['nik_pasien'] ?? '';
+            $this->jenis_kelamin = $pendaftaran->data_pasien['jenis_kelamin'] ?? 'Laki-laki';
+            $this->nama_pasien = $pendaftaran->data_pasien['nama_lengkap'] ?? '';
+            $this->tanggal_lahir_pasien = $pendaftaran->data_pasien['tanggal_lahir_pasien'] ?? '';
+        }
+    }
 }; ?>
 
 <div class="card-body">
@@ -40,26 +55,26 @@ new class extends Component {
             <div class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">NO RM</label>
-                    <input type="text" class="form-control" wire:model="no_rm">
+                    <input type="text" class="form-control" wire:model="no_rm" disabled>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">NIK</label>
-                    <input type="text" class="form-control" wire:model="nik">
+                    <input type="text" class="form-control" wire:model="nik" disabled>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">JENIS KELAMIN</label>
-                    <select class="form-select" wire:model="jenis_kelamin">
+                    <select class="form-select" wire:model="jenis_kelamin" disabled>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">NAMA</label>
-                    <input type="text" class="form-control" wire:model="nama_pasien">
+                    <input type="text" class="form-control" wire:model="nama_pasien" disabled>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">TANGGAL LAHIR</label>
-                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_pasien">
+                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_pasien" disabled>
                 </div>
             </div>
         </div>
