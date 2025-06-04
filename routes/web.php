@@ -126,6 +126,7 @@ Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'in
 
 // Route Riwayat Medis
 use App\Http\Controllers\RiwayatMedisController;
+use App\Models\Pendaftaran;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
@@ -146,3 +147,7 @@ Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path',
 
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
+
+
+//route autocomplete cari data pasien
+Route::get('/cari-pasien', [PendafataranController::class, 'cariPasien']);
