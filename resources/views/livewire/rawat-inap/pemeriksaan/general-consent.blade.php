@@ -1,331 +1,340 @@
 <?php
 
-use Livewire\Attributes\Validate;
+use App\Models\GeneralConsent;
+use App\Models\Pendaftaran;
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 new class extends Component {
-    public $nama = '';
-    public $nomorRM = '';
-    public $tanggalLahir = '';
-    public $jenisKelamin = '';
-    public $alamatLengkap = '';
-    public $kodePos = '';
-    public $rt = '';
-    public $rw = '';
-    public $kec = '';
-    public $kab = '';
-    public $prov = '';
+    public $no_rm = '';
+    public $nik = '';
+    public $jenis_kelamin = 'Laki-laki';
+    public $nama_pasien = '';
+    public $tanggal_lahir_pasien = '';
 
-    #[Validate('required')]
-    public $namaPenanggungJawab = '';
+    public $nama_wali = '';
+    public $tanggal_lahir_wali = '';
+    public $hubungan_dengan_pasien = '';
+    public $alamat = '';
+    public $no_telpon = '';
 
-    #[Validate('required')]
-    public $hubunganPasien = '';
+    public $isTahuHak = false;
+    public $isSetujuAturan = false;
+    public $isSetujuPerawatan = false;
+    public $isPahamPrivasi = false;
+    public $isBukaInfoAsuransi = false;
+    public $isIzinkanKeluarga = false;
+    public $isPahamPenolakan = false;
+    public $isPahamSiswa = false;
 
-    #[Validate('required')]
-    public $tanggalLahirPenanggungJawab = '';
+    public $isBeriWewenang = true;
+    public $nama_penerima = '';
+    public $hubungan_penerima = '';
 
-    public $umurPenanggungJawab = '';
+    public $isBeriAkses = true;
+    public $nama_keluarga = '';
+    public $hubungan_keluarga = '';
 
-    #[Validate('required')]
-    public $jenisKelaminPenanggungJawab = '';
+    public $pendaftaranId;
 
-    #[Validate('required')]
-    public $alamatPenanggungJawab = '';
+    public function mount($pendaftaranId)
+    {
+        $this->pendaftaranId = $pendaftaranId;
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+        $general_consent = GeneralConsent::where('id_pendaftaran', $pendaftaranId)->first();
 
-    public $kodePosPenanggungJawab = '';
-    public $rtPenanggungJawab = '';
-    public $rwPenanggungJawab = '';
-    public $kecPenanggungJawab = '';
-    public $kabPenanggungJawab = '';
-    public $provPenanggungJawab = '';
+        if ($pendaftaran->data_pasien) {
+            $this->no_rm = $pendaftaran->data_pasien['no_rm'] ?? '';
+            $this->nik = $pendaftaran->data_pasien['nik_pasien'] ?? '';
+            $this->jenis_kelamin = $pendaftaran->data_pasien['jenis_kelamin'] ?? 'Laki-laki';
+            $this->nama_pasien = $pendaftaran->data_pasien['nama_lengkap'] ?? '';
+            $this->tanggal_lahir_pasien = $pendaftaran->data_pasien['tanggal_lahir_pasien'] ?? '';
 
-    public function calculateAge($birthdate) {
-        return now()->diffInYears($birthdate);
+            $this->nama_wali = $pendaftaran->wali_pasien['nama_wali'] ?? '';
+            $this->tanggal_lahir_wali = $pendaftaran->wali_pasien['tanggal_lahir_wali'] ?? '';
+            $this->hubungan_dengan_pasien = $pendaftaran->wali_pasien['hubungan_dengan_pasien'] ?? '';
+            $this->alamat = $pendaftaran->wali_pasien['alamat_wali'] ?? '';
+            $this->no_telpon = $pendaftaran->wali_pasien['no_telepon_wali'] ?? '';
+        }
+
+        if ($general_consent) {
+
+            $this->isTahuHak = $general_consent->isTahuHak;
+            $this->isSetujuAturan = $general_consent->isSetujuAturan;
+            $this->isSetujuPerawatan = $general_consent->isSetujuPerawatan;
+            $this->isPahamPrivasi = $general_consent->isPahamPrivasi;
+            $this->isBukaInfoAsuransi = $general_consent->isBukaInfoAsuransi;
+            $this->isIzinkanKeluarga = $general_consent->isIzinkanKeluarga;
+            $this->isPahamPenolakan = $general_consent->isPahamPenolakan;
+            $this->isPahamSiswa = $general_consent->isPahamSiswa;
+
+            $this->isBeriWewenang = $general_consent->isBeriWewenang;
+            $this->nama_penerima = $general_consent->nama_penerima;
+            $this->hubungan_penerima = $general_consent->hubungan_penerima;
+
+            $this->isBeriAkses = $general_consent->isBeriAkses;
+            $this->nama_keluarga = $general_consent->nama_keluarga;
+            $this->hubungan_keluarga = $general_consent->hubungan_keluarga;
+        }
+    }
+
+    #[On('submit-step1')]
+    public function submit()
+    {
+        try {
+            $validated = $this->validate([
+                // Consent
+                'isTahuHak' => 'required|boolean',
+                'isSetujuAturan' => 'required|boolean',
+                'isSetujuPerawatan' => 'required|boolean',
+                'isPahamPrivasi' => 'required|boolean',
+                'isBukaInfoAsuransi' => 'required|boolean',
+                'isIzinkanKeluarga' => 'required|boolean',
+                'isPahamPenolakan' => 'required|boolean',
+                'isPahamSiswa' => 'required|boolean',
+
+                // Wewenang
+                'isBeriWewenang' => 'required|boolean',
+                'nama_penerima' => 'required_if:isBeriWewenang,true|string',
+                'hubungan_penerima' => 'required_if:isBeriWewenang,true|string',
+
+                // Family
+                'isBeriAkses' => 'required|boolean',
+                'nama_keluarga' => 'required_if:isBeriAkses,true|string',
+                'hubungan_keluarga' => 'required_if:isBeriAkses,true|string',
+            ], [
+                'required' => 'Kolom ini wajib diisi',
+                'required_if' => 'Kolom ini wajib diisi',
+                'boolean' => 'Nilai tidak valid',
+            ]);
+
+            GeneralConsent::updateOrCreate(
+                ['id_pendaftaran' => $this->pendaftaranId],
+                $validated
+            );
+
+            flash()->success('Persetujuan umum berhasil disimpan.');
+            $this->dispatch('go-next-step');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            flash()->error('Tolong isi semua field yang wajib diisi!');
+            throw $e; // Tetap lempar exception agar Livewire menampilkan error di field
+        }
     }
 }; ?>
 
-<div>
-    <div>
-        <form>
-            <p>Saya yang bertanda tangan di bawah ini :</p>
-            <p class="fw-bold">Keluarga Penanggung Jawab</p>
-
-            <!-- Family Responsible Person Section -->
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label for="namaPenanggungJawab" class="form-label">Nama</label>
+<div class="card-body">
+    <form>
+        <div class="mb-4">
+            <h5 class="fw-bold mb-3">DATA PASIEN</h5>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">NO RM</label>
+                    <input type="text" class="form-control" wire:model="no_rm" disabled>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" wire:model="namaPenanggungJawab"
-                        class="form-control @error('namaPenanggungJawab') is-invalid @enderror"
-                        id="namaPenanggungJawab">
-                    @error('namaPenanggungJawab') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <label class="form-label fw-semibold">NIK</label>
+                    <input type="text" class="form-control" wire:model="nik" disabled>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">JENIS KELAMIN</label>
+                    <select class="form-select" wire:model="jenis_kelamin" disabled>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">NAMA</label>
+                    <input type="text" class="form-control" wire:model="nama_pasien" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">TANGGAL LAHIR</label>
+                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_pasien" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <p class="mb-3">Pasien atau wali di minta membaca, memahami dan mengisi informasi berikut:</p>
+            <p class="fw-semibold mb-3">Yang bertanda tangan di bawah ini:</p>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">NAMA</label>
+                    <input type="text" class="form-control" wire:model="nama_wali" disabled>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">TANGGAL LAHIR</label>
+                    <input type="date" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_wali" disabled>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Hubungan Dengan Pasien</label>
+                    <input type="text" class="form-control" wire:model="hubungan_dengan_pasien" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">ALAMAT</label>
+                    <input type="text" class="form-control" wire:model="alamat" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">No. Telpon</label>
+                    <input type="text" class="form-control" wire:model="no_telpon" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <p class="mb-3">Selaku wali/pasien Klinik Pratama "Insan Medika", dengan ini menyatakan:</p>
+            <p class="fw-semibold mb-3">Informasi tentang Hak dan kewajiban pasien</p>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input @error('isTahuHak') is-invalid @enderror" type="checkbox" id="isTahuHak" wire:model="isTahuHak">
+                <label class="form-check-label" for="isTahuHak">
+                    Dengan menandatangani dokumen ini saya mengakui...
+                </label>
+                @error('isTahuHak') <div class="invalid-feedback">{{ $message }}</div> @enderror
+            </div>
+
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="isSetujuAturan" wire:model="isSetujuAturan">
+                <label class="form-check-label" for="isSetujuAturan">
+                    Saya telah menerima informasi tentang peraturan yang diberlakukan oleh Klinik Pratama "Insan Medika", dan saya bersedia keluarga bersedia untuk mematuhinya.
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <p class="fw-semibold mb-3">Persetujuan perawatan dan pengobatan</p>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isSetujuPerawatan" wire:model="isSetujuPerawatan">
+                <label class="form-check-label" for="isSetujuPerawatan">
+                    Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya menginginkan dokter dan profesional kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis seperti yang diperlukan dalam penilaian profesional mereka meliputi: Pemeriksaan fisik yang dilakukan oleh perawat dan dokter, Pemasangan alat kesehatan (kecuali yang membutuhkan persetujuan khusus), Asuhan keperawatan, Pemeriksaan laboratorium, Pemeriksaan Radiologi.
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <p class="fw-semibold mb-3">Persetujuan pelepasan informasi</p>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isPahamPrivasi" wire:model="isPahamPrivasi">
+                <label class="form-check-label" for="isPahamPrivasi">
+                    Saya memahami informasi yang ada dalam diri saya termasuk diagnosis, hasil laboratorium, dan hasil tes diagnostik yang akan digunakan untuk perawatan medis di Klinik Pratama "Insan Medika" akan dijamin kerahasiaannya.
+                </label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isBukaInfoAsuransi" wire:model="isBukaInfoAsuransi">
+                <label class="form-check-label" for="isBukaInfoAsuransi">
+                    Saya memberi wewenang kepada Klinik Pratama "Insan Medika" untuk memberikan informasi tentang diagnosis hasil pelayanan dan pengobatan bila diperlukan untuk memproses klaim asuransi atau keperluan lain yang berkaitan.
+                </label>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Saya</label>
+                <div class="d-inline-block mx-2">
+                    <button type="button"
+                        class="btn btn-sm {{ $isBeriWewenang ? 'btn-primary' : 'btn-outline-secondary' }}"
+                        wire:click="$set('isBeriWewenang', true)">
+                        Memberikan
+                    </button>
+                    <button type="button"
+                        class="btn btn-sm {{ !$isBeriWewenang ? 'btn-primary' : 'btn-outline-secondary' }}"
+                        wire:click="$set('isBeriWewenang', false)">
+                        Tidak Memberikan
+                    </button>
+                </div>
+                <span>wewenang kepada Klinik Pratama "Insan Medika" untuk memberikan informasi tentang diagnosis hasil</span>
+            </div>
+
+            <div class="row g-2 mb-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control @error('nama_penerima') is-invalid @enderror" placeholder="Nama" wire:model="nama_penerima">
+                    @error('nama_penerima') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control @error('hubungan_penerima') is-invalid @enderror" placeholder="Hubungan" wire:model="hubungan_penerima">
+                    @error('hubungan_penerima') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <p class="fw-semibold mb-3">Kebutuhan Privasi</p>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isIzinkanKeluarga" wire:model="isIzinkanKeluarga">
+                <label class="form-check-label" for="isIzinkanKeluarga">
+                    Saya <span class="mx-2">
+                        <button type="button"
+                            class="btn btn-sm {{ $isBeriAkses ? 'btn-primary' : 'btn-outline-secondary' }}"
+                            wire:click="$set('isBeriAkses', true)">
+                            Mengizinkan
+                        </button>
+                        <button type="button"
+                            class="btn btn-sm {{ !$isBeriAkses ? 'btn-primary' : 'btn-outline-secondary' }}"
+                            wire:click="$set('isBeriAkses', false)">
+                            Tidak Mengizinkan
+                        </button>
+                    </span> Klinik Pratama "Insan Medika" memberi akses bagi keluarga dan saudara serta orang-orang yang akan menyebutkan kebutuhan nama bila ada permintaan khusus yang tidak diijinkan)
+                </label>
+            </div>
+
+            <div class="row g-2 mb-3">
+                <div class="col-md-6">
+
+                    <input type="text" class="form-control @error('nama_keluarga') is-invalid @enderror" placeholder="Nama" wire:model="nama_keluarga">
+                    @error('nama_keluarga') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control @error('hubungan_keluarga') is-invalid @enderror" placeholder="Nama" wire:model="hubungan_keluarga">
+                    @error('hubungan_keluarga') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label for="hubunganPasien" class="form-label">Hubungan dengan Pasien</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="hubunganPasien"
-                        class="form-control @error('hubunganPasien') is-invalid @enderror" id="hubunganPasien">
-                    @error('hubunganPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isPahamPenolakan" wire:model="isPahamPenolakan">
+                <label class="form-check-label" for="isPahamPenolakan">
+                    Saya mengerti dan memahami tentang bahwa saya memiliki hak untuk persetujuan atau menolak persetujuan untuk setiap prosedur/ terapi.
+                </label>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label for="tanggalLahirPenanggungJawab" class="form-label">Tanggal Lahir</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="date" wire:model="tanggalLahirPenanggungJawab"
-                        class="form-control @error('tanggalLahirPenanggungJawab') is-invalid @enderror"
-                        id="tanggalLahirPenanggungJawab">
-                    @error('tanggalLahirPenanggungJawab') <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="col-md-1">
-                    <label for="umurPenanggungJawab" class="form-label">Umur</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" wire:model="umurPenanggungJawab" class="form-control"
-                        id="umurPenanggungJawab" readonly>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isPahamSiswa" wire:model="isPahamSiswa">
+                <label class="form-check-label" for="isPahamSiswa">
+                    Klinik Pratama "Insan Medika" telah memberikan informasi kepada saya terkait kemungkinan keterbatasan peserta didik dan/ mahasiswa yang turut berpartisipasi dalam proses perawatan.
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <p class="fw-semibold mb-3">Pengajuan Keluhan</p>
+            <p class="mb-3">Saya menyatakan bahwa saya telah menerima informasi tentang adanya tata cara mengajukan dan mengajukan keluhan terkait pelayanan medis ataupun administrasi yang diberikan terhadap diri saya. Saya setuju mengikuti tata cara mengajukan keluhan sesuai prosedur yang ada.</p>
+
+            <p class="mb-4">Dengan tanda tangan saya di bawah ini, saya menyatakan bahwa saya telah membaca dan sepenuhnya setuju dengan setiap pernyataan yang terdapat pada formulir ini dan menandatangani tanpa paksaan dan dengan kesadaran penuh seluruh kriteria yang terdapat pada persetujuan umum (General Consent).</p>
+
+            <div class="text-end mb-4">
+                <p>Jember, ___/___/20___, Jam ___WIB</p>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="text-center">
+                    <p class="fw-semibold mb-3">Pasien/Keluarga/penanggung jawab</p>
+                    <div class="border border-2 border-secondary" style="height: 120px; width: 100%;"></div>
                 </div>
             </div>
-
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label class="form-label">Jenis Kelamin</label>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" wire:model="jenisKelaminPenanggungJawab"
-                            id="lakiLaki" value="Laki-laki">
-                        <label class="form-check-label" for="lakiLaki">Laki-laki</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" wire:model="jenisKelaminPenanggungJawab"
-                            id="perempuan" value="Perempuan">
-                        <label class="form-check-label" for="perempuan">Perempuan</label>
-                    </div>
-                    @error('jenisKelaminPenanggungJawab') <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+            <div class="col-md-6">
+                <div class="text-center">
+                    <p class="fw-semibold mb-3">Pemberi Informasi</p>
+                    <div class="border border-2 border-secondary" style="height: 120px; width: 100%;"></div>
                 </div>
             </div>
+        </div>
 
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label for="alamatPenanggungJawab" class="form-label">Alamat</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="alamatPenanggungJawab"
-                        class="form-control @error('alamatPenanggungJawab') is-invalid @enderror"
-                        id="alamatPenanggungJawab">
-                    @error('alamatPenanggungJawab') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div>
-                <div class="col-md-2">
-                    <label for="kodePosPenanggungJawab" class="form-label">Kode Pos :</label>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" wire:model="kodePosPenanggungJawab" class="form-control"
-                        id="kodePosPenanggungJawab">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label class="form-label">RT:</label>
-                </div>
-                <div class="col-md-1">
-                    <input type="text" wire:model="rtPenanggungJawab" class="form-control" id="rtPenanggungJawab">
-                </div>
-                <div class="col-md-1">
-                    <label class="form-label">RW:</label>
-                </div>
-                <div class="col-md-1">
-                    <input type="text" wire:model="rwPenanggungJawab" class="form-control" id="rwPenanggungJawab">
-                </div>
-
-                <div class="col-md-1">
-                    <label class="form-label">Kec:</label>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" wire:model="kecPenanggungJawab" class="form-control" id="kecPenanggungJawab">
-                </div>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-md-2">
-                    <label for="kabPenanggungJawab" class="form-label">Kab:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="kabPenanggungJawab" class="form-control" id="kabPenanggungJawab">
-                </div>
-                <div class="col-md-1">
-                    <label for="provPenanggungJawab" class="form-label">Prov:</label>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" wire:model="provPenanggungJawab" class="form-control"
-                        id="provPenanggungJawab">
-                </div>
-            </div>
-
-            <!-- Declaration Section -->
-            <p>Selaku wali/pasien Klinik Pratama "Insan Medika", dengan ini menyatakan:</p>
-            <ol>
-                <li>Informasi tentang Hak dan Kewajiban pasien:
-                    <ol type="a">
-                        <li>Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk
-                            mendapatkan PELAYANAN di Klinik Pratama "Insan Medika", saya telah mendapat</li>
-                        <li>informasi tentang Hak - hak dan kewajiban saya sebagai pasien. Saya telah menerima
-                            informasi tentang peraturan yang diberlakukan oleh Klinik Pratama "Insan Medika", dan
-                            saya bersedia untuk mematuhinya.</li>
-                    </ol>
-                </li>
-                <li>Persetujuan perawatan dan pengobatan</li>
-            </ol>
-
-            <p class="mb-4">Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya
-                mengizinkan dokter dan profesional kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan
-                pengobatan medis seperti yang diperlukan dalam penilaian profesional mereka terhadap: Pemeriksaan
-                fisik yang dilakukan oleh perawat dan dokter. Pemasangan alat kesehatan (kecuali yang membutuhkan
-                persetujuan khusus), Asuhan keperawatan, Pemeriksaan laboratorium, Pemeriksaan Radiologi.</p>
-
-            <p class="mb-4">Dengan ini menyatakan: <span class="fw-bold">Bersedia</span> untuk dilakukan perawatan
-                di Klinik Insan Medika pada Pasien atas nama :</p>
-
-            <!-- Patient Information Section -->
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label for="namaPasien" class="form-label">Nama Pasien</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="nama" class="form-control" id="namaPasien" readonly>
-                </div>
-                <div class="col-md-2">
-                    <label for="noRM" class="form-label">NO.RM</label>
-                </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <input type="text" wire:model="nomorRM" class="form-control" id="noRM" readonly>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label for="tanggalLahirPasien" class="form-label">Tanggal Lahir</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="date" wire:model="tanggalLahir" class="form-control" id="tanggalLahirPasien"
-                        readonly>
-                </div>
-                <div class="col-md-2">
-                    <label for="umurPasien" class="form-label">Umur</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" value="{{ $tanggalLahir ? $this->calculateAge($tanggalLahir) : '' }}"
-                        class="form-control" id="umurPasien" readonly>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label class="form-label">Jenis Kelamin</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="jenisKelamin" class="form-control" readonly>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label for="alamatPasien" class="form-label">Alamat</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="alamatLengkap" class="form-control" id="alamatPasien" readonly>
-                </div>
-                <div class="col-md-2">
-                    <label for="kodePosPasien" class="form-label">Kode Pos :</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="kodePos" class="form-control" id="kodePosPasien" readonly>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-2">
-                    <label class="form-label">RT:</label>
-                </div>
-                <div class="col-md-1">
-                    <input type="text" wire:model="rt" class="form-control" id="rtPasien" readonly>
-                </div>
-                <div class="col-md-1">
-                    <label class="form-label">RW:</label>
-                </div>
-                <div class="col-md-1">
-                    <input type="text" wire:model="rw" class="form-control" id="rwPasien" readonly>
-                </div>
-                <div class="col-md-1">
-                    <label class="form-label">Kec:</label>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" wire:model="kec" class="form-control" id="kecPasien" readonly>
-                </div>
-            </div>
-
-            <div class="row mb-5">
-                <div class="col-md-2">
-                    <label for="kabPasien" class="form-label">Kab:</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" wire:model="kab" class="form-control" id="kabPasien" readonly>
-                </div>
-                <div class="col-md-1">
-                    <label for="provPasien" class="form-label">Prov:</label>
-                </div>
-                <div class="col-md-3">
-                    <input type="text" wire:model="prov" class="form-control" id="provPasien" readonly>
-                </div>
-            </div>
-
-            <!-- signature section -->
-            <div class="row text-center">
-                <!-- date row -->
-                <div class="col-12 mb-4 mr-6">
-                    <div class="row justify-content-end">
-                        <div class="col-auto">
-                            <p>Jember, 2025</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- signature blocks -->
-                <div class="col-md-4">
-                    <div class="signature-block">
-                        <p class="mb-5">Perawat</p>
-                        <div class="border-bottom mx-4" style="height: 80px;"></div>
-                        <p class="mt-2 small text-muted">(Nama & Tanda Tangan)</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="signature-block">
-                        <p class="mb-5">Dokter</p>
-                        <div class="border-bottom mx-4" style="height: 80px;"></div>
-                        <p class="mt-2 small text-muted">(Nama & Tanda Tangan)</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="signature-block">
-                        <p class="mb-5">Yang Menyatakan</p>
-                        <div class="border-bottom mx-4" style="height: 80px;"></div>
-                        <p class="mt-2 small text-muted">(Nama & Tanda Tangan)</p>
-                    </div>
-                </div>
-            </div>
-
-        </form>
-    </div>
+        <div class="d-flex justify-content-end gap-3">
+            <button type="button" class="btn btn-warning px-4 py-2">Cetak</button>
+        </div>
+    </form>
 </div>

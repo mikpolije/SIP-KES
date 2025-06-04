@@ -103,11 +103,11 @@
                                     <label for="searchNoRM" class="form-label">Cari Data Pasien</label>
                                     <input class="form-control" list="noRMList" id="searchNoRM"
                                         placeholder="Ketik atau pilih No. RM">
-                                    {{-- <datalist id="noRMList">
+                                    <datalist id="noRMList">
                                         @foreach ($data_pasien as $pasien)
                                             <option value="{{ $pasien->no_rm }} - {{ $pasien->nama_pasien }}"></option>
                                         @endforeach
-                                    </datalist> --}}
+                                    </datalist>
                                     <script>
                                         $(document).ready(function() {
                                             $('#searchNoRM').on('change', function() {

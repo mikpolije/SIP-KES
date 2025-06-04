@@ -299,7 +299,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/pembayaran') ? 'active' : '' }}" href="/main/pembayaran"
+            <a class="sidebar-link {{ request()->is('/pembayaran') ? 'active' : '' }}" href="/pembayaran"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-currency-dollar" xmlns="http://www.w3.org/2000/svg" width="16" height="16"

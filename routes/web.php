@@ -45,6 +45,10 @@ Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
     Volt::route('/kematian/create', 'persuratan.kematian.create')->name('.kematian.create');
 });
 
+Route::prefix('/main/rawat-inap')->name('main.rawat-inap')->group(function () {
+    Volt::route('/cppt/print/{id}', 'rawat-inap.layanan.cppt-print')->name('.layanan.cppt-print');
+});
+
 Route::prefix('main/polikia')->group(function () {
     Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
     Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
