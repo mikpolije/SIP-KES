@@ -93,6 +93,14 @@ class Pendaftaran extends Model
         return $this->hasOne(SuratKematian::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 
+    public function layananPendaftaran() {
+        return $this->hasMany(LayananPendaftaran::class, 'id_pendaftaran');
+    }
+
+    public function obatPendaftaran() {
+        return $this->hasMany(ObatPendaftaran::class, 'id_pendaftaran');
+    }
+
     public function getLayananTerisiAttribute()
     {
         if (!$this->relationLoaded('layanan_kia')) {

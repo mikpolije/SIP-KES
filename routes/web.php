@@ -25,6 +25,8 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/{dokter}', 'doctor.edit')->name('edit');
 });
 
+Volt::route('pembayaran', 'pembayaran.index')->name('pembayaran.index');
+
 // Route General Consent
 Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
 Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
