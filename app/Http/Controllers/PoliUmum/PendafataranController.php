@@ -4,7 +4,7 @@ namespace App\Http\Controllers\PoliUmum;
 
 use App\Models\Desa;
 use App\Models\Poli;
-use App\Models\dokter;
+use App\Models\Dokter;
 use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
