@@ -22,7 +22,7 @@ new class extends Component {
         $this->loadLayananPendaftaran();
 
         $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
-        if(!$pendaftaran->asessmen_awal) {
+        if(!$pendaftaran->poli_rawat_inap->asessmen_awal) {
             flash()->warning('Isi Asessmen Awal terlebih dahulu!');
             $this->dispatch('switch-tab', tab: 'pemeriksaan');
         }
