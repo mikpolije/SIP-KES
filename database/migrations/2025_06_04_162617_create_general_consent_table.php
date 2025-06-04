@@ -13,6 +13,42 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('general_consent', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->string('no_rm');
+            $table->string('nik');
+            $table->string('jenis_kelamin');
+            $table->string('nama_pasien');
+            $table->date('tanggal_lahir_pasien');
+
+            $table->string('nama_wali');
+            $table->date('tanggal_lahir_wali');
+            $table->string('hubungan_dengan_pasien');
+            $table->text('alamat');
+            $table->string('no_telpon');
+
+            $table->boolean('isTahuHak'); // Mengetahui hak pasien
+            $table->boolean('isSetujuAturan'); // Menyetujui aturan klinik
+            $table->boolean('isSetujuPerawatan'); // Menyetujui perawatan
+            $table->boolean('isPahamPrivasi'); // Memahami kerahasiaan
+            $table->boolean('isBukaInfoAsuransi'); // Membuka info untuk asuransi
+            $table->boolean('isIzinkanKeluarga'); // Mengizinkan akses keluarga
+            $table->boolean('isPahamPenolakan'); // Memahami hak penolakan
+            $table->boolean('isPahamSiswa'); // Memahami partisipasi siswa
+
+            $table->boolean('isBeriWewenang');
+            $table->string('nama_penerima')->nullable();
+            $table->string('hubungan_penerima')->nullable();
+
+            $table->boolean('isBeriAkses');
+            $table->string('nama_keluarga')->nullable();
+            $table->string('hubungan_keluarga')->nullable();
+
+            $table->timestamps();
         });
     }
 
