@@ -165,13 +165,24 @@ new class extends Component {
     }
 
     public function addObat($obatId) {
-        if (!in_array($obatId, $this->formData['id_obat'])) {
-            $this->formData['id_obat'][] = $obatId;
+        // Check if obat already exists
+        $exists = collect($this->formData['id_obat'])->firstWhere('id', $obatId);
 
-            // Add to selected items for display
+        if (!$exists) {
             $obat = collect($this->obatList)->firstWhere('value', $obatId);
             if ($obat) {
-                $this->selectedObat[] = $obat;
+                $this->formData['id_obat'][] = [
+                    'id' => $obatId,
+                    'qty' => 1, // Default quantity
+                    'nama' => $obat['nama']
+                ];
+
+                // Also add to selected items for display
+                $this->selectedObat[] = [
+                    'value' => $obatId,
+                    'nama' => $obat['nama'],
+                    'qty' => 1
+                ];
             }
         }
         $this->obatSearch = '';
@@ -179,13 +190,31 @@ new class extends Component {
     }
 
     public function removeObat($obatId) {
-        $this->formData['id_obat'] = array_values(array_filter($this->formData['id_obat'], function($id) use ($obatId) {
-            return $id != $obatId;
+        $this->formData['id_obat'] = array_values(array_filter($this->formData['id_obat'], function($item) use ($obatId) {
+            return $item['id'] != $obatId;
         }));
 
         $this->selectedObat = array_values(array_filter($this->selectedObat, function($item) use ($obatId) {
             return $item['value'] != $obatId;
         }));
+    }
+
+    public function updateObatQty($obatId, $qty) {
+        // Update in formData
+        foreach ($this->formData['id_obat'] as &$obat) {
+            if ($obat['id'] == $obatId) {
+                $obat['qty'] = $qty;
+                break;
+            }
+        }
+
+        // Update in selectedObat
+        foreach ($this->selectedObat as &$obat) {
+            if ($obat['value'] == $obatId) {
+                $obat['qty'] = $qty;
+                break;
+            }
+        }
     }
 
     public function updatedDiagnosaSearch() {
@@ -237,35 +266,41 @@ new class extends Component {
     }
 
     public function saveCppt() {
-        $this->validate([
-            'formData.soap.s' => 'required',
-            'formData.soap.o' => 'required',
-            'formData.soap.a' => 'required',
-            'formData.soap.p' => 'required',
-            'formData.id_icd10' => 'nullable|array',
-            'formData.id_icd10.*' => 'exists:icd10,id',
-            'formData.id_icd9' => 'nullable|array',
-            'formData.id_icd9.*' => 'exists:icd9,id',
-            'formData.id_obat' => 'nullable|array',
-            'formData.id_obat.*' => 'exists:obat,id',
-        ]);
+        try {
+            $this->validate([
+                'formData.soap.s' => 'required',
+                'formData.soap.o' => 'required',
+                'formData.soap.a' => 'required',
+                'formData.soap.p' => 'required',
+                'formData.id_icd10' => 'nullable|array',
+                'formData.id_icd10.*' => 'exists:icd10,id',
+                'formData.id_icd9' => 'nullable|array',
+                'formData.id_icd9.*' => 'exists:icd9,id',
+                'formData.id_obat' => 'nullable|array',
+                'formData.id_obat.*.id' => 'exists:obat,id',  // Changed to check the id property
+                'formData.id_obat.*.qty' => 'required|numeric|min:1',
+            ]);
 
-        CPPT::create([
-            'id_pendaftaran' => $this->pendaftaranId,
-            's' => $this->formData['soap']['s'],
-            'o' => $this->formData['soap']['o'],
-            'a' => $this->formData['soap']['a'],
-            'p' => $this->formData['soap']['p'],
-            'id_icd10' => json_encode($this->formData['id_icd10']),
-            'id_icd9' => json_encode($this->formData['id_icd9']),
-            'id_obat' => json_encode($this->formData['id_obat']),
-            'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
-            'kelas' => $this->kelas,
-        ]);
+            CPPT::create([
+                'id_pendaftaran' => $this->pendaftaranId,
+                's' => $this->formData['soap']['s'],
+                'o' => $this->formData['soap']['o'],
+                'a' => $this->formData['soap']['a'],
+                'p' => $this->formData['soap']['p'],
+                'id_icd10' => json_encode($this->formData['id_icd10']),
+                'id_icd9' => json_encode($this->formData['id_icd9']),
+                'id_obat' => json_encode($this->formData['id_obat']),
+                'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
+                'kelas' => $this->kelas,
+            ]);
 
-        flash()->success('CPPT berhasil ditambahkan!');
-        $this->closeModal();
-        $this->dispatch('cppt-added');
+            flash()->success('CPPT berhasil ditambahkan!');
+            $this->closeModal();
+            $this->dispatch('cppt-added');
+        } catch(\Exception $e) {
+            flash()->error('Gagal menyimpan CPPT: ' . $e->getMessage());
+            return;
+        }
     }
 } ?>
 
@@ -461,12 +496,18 @@ new class extends Component {
                                     <small class="text-muted">Obat terpilih:</small>
                                     <div class="mt-1">
                                         @foreach($selectedObat as $obat)
-                                        <span class="badge bg-warning text-dark me-1 mb-1 d-inline-flex align-items-center">
-                                            {{ $obat['nama'] }}
+                                        <div class="d-inline-flex align-items-center bg-light rounded p-2 me-2 mb-2">
+                                            <span class="me-2">{{ $obat['nama'] }}</span>
+                                            <input type="number"
+                                                   min="1"
+                                                   value="{{ $obat['qty'] }}"
+                                                   wire:change="updateObatQty({{ $obat['value'] }}, $event.target.value)"
+                                                   class="form-control form-control-sm"
+                                                   style="width: 60px;">
                                             <button type="button" class="btn-close ms-2"
                                                     style="font-size: 0.7em;"
                                                     wire:click="removeObat({{ $obat['value'] }})"></button>
-                                        </span>
+                                        </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -535,6 +576,16 @@ new class extends Component {
         }
         .cursor-pointer {
             cursor: pointer;
+        }
+        .obat-item {
+            transition: all 0.2s ease;
+        }
+        .obat-item:hover {
+            background-color: #f0f0f0;
+        }
+        .qty-input {
+            width: 60px;
+            text-align: center;
         }
     </style>
     @endif
