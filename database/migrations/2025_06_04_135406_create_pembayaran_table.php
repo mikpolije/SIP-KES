@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Pendaftaran;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('general_consent', function (Blueprint $table) {
+        Schema::create('pembayaran', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -21,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('general_consent');
+        Schema::dropIfExists('pembayaran');
     }
 };

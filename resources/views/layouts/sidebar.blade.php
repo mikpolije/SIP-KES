@@ -190,7 +190,7 @@
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Poli KIA</span>
-                    </a> -->  
+                    </a> -->
                     <ul id="submenu-polikia"
                         class="second-level collapse {{ request()->is('polikia/*') ? 'show' : '' }}"
                         aria-expanded="{{ request()->is('polikia/*') ? 'true' : 'false' }}">
@@ -201,7 +201,7 @@
                                 <span class="hide-menu">Antrean</span>
                             </a>
                         </li>
-                        <!-- 
+                        <!--
                         <li class="sidebar-item">
                             <a class="sidebar-link ps-5 {{ request()->is('polikia/riwayatpolikia') ? 'active' : '' }}"
                                 href="{{ route('riwayat.polikia') }}">
@@ -291,7 +291,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/pembayaran') ? 'active' : '' }}" href="/main/pembayaran"
+            <a class="sidebar-link {{ request()->is('/pembayaran') ? 'active' : '' }}" href="/pembayaran"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-currency-dollar" xmlns="http://www.w3.org/2000/svg" width="16" height="16"

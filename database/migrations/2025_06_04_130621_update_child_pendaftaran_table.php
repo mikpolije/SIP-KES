@@ -14,16 +14,12 @@ return new class extends Migration
         Schema::table('obat_pendaftaran', function (Blueprint $table) {
             $table->after('id_obat', function (Blueprint $table) {
                 $table->unsignedInteger('qty');
-                $table->unsignedInteger('harga');
-                $table->unsignedBigInteger('total')->virtualAs('qty * harga');
             });
         });
 
         Schema::table('layanan_pendaftaran', function (Blueprint $table) {
             $table->after('id_layanan', function (Blueprint $table) {
                 $table->unsignedInteger('qty');
-                $table->unsignedInteger('harga');
-                $table->unsignedBigInteger('total')->virtualAs('qty * harga');
             });
         });
     }
@@ -34,15 +30,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('obat_pendaftaran', function (Blueprint $table) {
-            $table->dropColumn('total');
             $table->dropColumn('qty');
-            $table->dropColumn('harga');
         });
 
         Schema::table('layanan_pendaftaran', function (Blueprint $table) {
-            $table->dropColumn('total');
             $table->dropColumn('qty');
-            $table->dropColumn('harga');
         });
     }
 };
