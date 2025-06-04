@@ -101,10 +101,7 @@ new class extends Component {
     <div class="container mt-4">
         <div class="row mb-3">
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" id="tanggal">
-                </div>
+                <h6>Fasilitas tambahan untuk pasien</h6>
             </div>
             <div class="col-md-6 d-flex justify-content-end align-items-end">
                 <button class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#layananModal">
