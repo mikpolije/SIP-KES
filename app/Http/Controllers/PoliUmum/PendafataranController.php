@@ -21,7 +21,7 @@ class PendafataranController extends Controller
     {
         return view('main.pendaftaran', [
             'data_pasien' => DataPasien::all(),
-            'data_dokter' => Dokter::all(),
+            'data_dokter' => dokter::all(),
             'data_poli' => Poli::all(),
             'data_provinsi' => Provinsi::all(),
             'data_kabupaten' => Kabupaten::all(),
