@@ -10,6 +10,7 @@ use App\Http\Controllers\TriageController;
 use App\Http\Controllers\Master\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\Api\ARController;
 
 Route::get('/', function () {
     return view('login');
@@ -40,6 +41,20 @@ Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
     Volt::route('/kematian/print', 'persuratan.kematian.print')->name('.kematian.print');
     Volt::route('/kematian/create', 'persuratan.kematian.create')->name('.kematian.create');
 });
+
+Route::prefix('main/polikia')->group(function () {
+    Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
+    Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
+    Route::get('/antrean', [ARController::class, 'antrean'])->name('antrean.polikia');
+    Route::get('/riwayat', [ARController::class, 'riwayat'])->name('riwayat.polikia');
+});
+
+// Route detail riwayat pasien
+Route::get('/poli-kia/detail/{rm}', function ($rm) {
+    return view('PoliKIA.detailPasien');
+})->name('poli-kia.detail');
+
+Route::get('/poli-kia/search-pasien', [App\Http\Controllers\Api\ARController::class, 'searchPasien'])->name('poli-kia.search-pasien');
 
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
