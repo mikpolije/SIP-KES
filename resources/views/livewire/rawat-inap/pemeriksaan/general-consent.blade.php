@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\GeneralConsent;
 use App\Models\Pendaftaran;
+use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -33,10 +35,13 @@ new class extends Component {
     public $nama_keluarga = '';
     public $hubungan_keluarga = '';
 
+    public $pendaftaranId;
+
     public function mount($pendaftaranId)
     {
         $this->pendaftaranId = $pendaftaranId;
         $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
+        $general_consent = GeneralConsent::where('id_pendaftaran', $pendaftaranId)->first();
 
         if ($pendaftaran->data_pasien) {
             $this->no_rm = $pendaftaran->data_pasien['no_rm'] ?? '';
@@ -44,6 +49,76 @@ new class extends Component {
             $this->jenis_kelamin = $pendaftaran->data_pasien['jenis_kelamin'] ?? 'Laki-laki';
             $this->nama_pasien = $pendaftaran->data_pasien['nama_lengkap'] ?? '';
             $this->tanggal_lahir_pasien = $pendaftaran->data_pasien['tanggal_lahir_pasien'] ?? '';
+
+            $this->nama_wali = $pendaftaran->wali_pasien['nama_wali'] ?? '';
+            $this->tanggal_lahir_wali = $pendaftaran->wali_pasien['tanggal_lahir_wali'] ?? '';
+            $this->hubungan_dengan_pasien = $pendaftaran->wali_pasien['hubungan_dengan_pasien'] ?? '';
+            $this->alamat = $pendaftaran->wali_pasien['alamat_wali'] ?? '';
+            $this->no_telpon = $pendaftaran->wali_pasien['no_telepon_wali'] ?? '';
+        }
+
+        if ($general_consent) {
+
+            $this->isTahuHak = $general_consent->isTahuHak;
+            $this->isSetujuAturan = $general_consent->isSetujuAturan;
+            $this->isSetujuPerawatan = $general_consent->isSetujuPerawatan;
+            $this->isPahamPrivasi = $general_consent->isPahamPrivasi;
+            $this->isBukaInfoAsuransi = $general_consent->isBukaInfoAsuransi;
+            $this->isIzinkanKeluarga = $general_consent->isIzinkanKeluarga;
+            $this->isPahamPenolakan = $general_consent->isPahamPenolakan;
+            $this->isPahamSiswa = $general_consent->isPahamSiswa;
+
+            $this->isBeriWewenang = $general_consent->isBeriWewenang;
+            $this->nama_penerima = $general_consent->nama_penerima;
+            $this->hubungan_penerima = $general_consent->hubungan_penerima;
+
+            $this->isBeriAkses = $general_consent->isBeriAkses;
+            $this->nama_keluarga = $general_consent->nama_keluarga;
+            $this->hubungan_keluarga = $general_consent->hubungan_keluarga;
+        }
+    }
+
+    #[On('submit-step1')]
+    public function submit()
+    {
+        try {
+            $validated = $this->validate([
+                // Consent
+                'isTahuHak' => 'required|boolean',
+                'isSetujuAturan' => 'required|boolean',
+                'isSetujuPerawatan' => 'required|boolean',
+                'isPahamPrivasi' => 'required|boolean',
+                'isBukaInfoAsuransi' => 'required|boolean',
+                'isIzinkanKeluarga' => 'required|boolean',
+                'isPahamPenolakan' => 'required|boolean',
+                'isPahamSiswa' => 'required|boolean',
+
+                // Wewenang
+                'isBeriWewenang' => 'required|boolean',
+                'nama_penerima' => 'required_if:isBeriWewenang,true|string',
+                'hubungan_penerima' => 'required_if:isBeriWewenang,true|string',
+
+                // Family
+                'isBeriAkses' => 'required|boolean',
+                'nama_keluarga' => 'required_if:isBeriAkses,true|string',
+                'hubungan_keluarga' => 'required_if:isBeriAkses,true|string',
+            ], [
+                'required' => 'Kolom ini wajib diisi',
+                'required_if' => 'Kolom ini wajib diisi',
+                'boolean' => 'Nilai tidak valid',
+            ]);
+
+            GeneralConsent::updateOrCreate(
+                ['id_pendaftaran' => $this->pendaftaranId],
+                $validated
+            );
+
+            flash()->success('Persetujuan umum berhasil disimpan.');
+            $this->dispatch('go-next-step');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            flash()->error('Tolong isi semua field yang wajib diisi!');
+            throw $e; // Tetap lempar exception agar Livewire menampilkan error di field
         }
     }
 }; ?>
@@ -86,23 +161,23 @@ new class extends Component {
             <div class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">NAMA</label>
-                    <input type="text" class="form-control" wire:model="nama_wali">
+                    <input type="text" class="form-control" wire:model="nama_wali" disabled>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">TANGGAL LAHIR</label>
-                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_wali">
+                    <input type="date" class="form-control" placeholder="DD/MM/YYYY" wire:model="tanggal_lahir_wali" disabled>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">Hubungan Dengan Pasien</label>
-                    <input type="text" class="form-control" wire:model="hubungan_dengan_pasien">
+                    <input type="text" class="form-control" wire:model="hubungan_dengan_pasien" disabled>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">ALAMAT</label>
-                    <input type="text" class="form-control" wire:model="alamat">
+                    <input type="text" class="form-control" wire:model="alamat" disabled>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">No. Telpon</label>
-                    <input type="text" class="form-control" wire:model="no_telpon">
+                    <input type="text" class="form-control" wire:model="no_telpon" disabled>
                 </div>
             </div>
         </div>
@@ -112,10 +187,11 @@ new class extends Component {
             <p class="fw-semibold mb-3">Informasi tentang Hak dan kewajiban pasien</p>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="isTahuHak" wire:model="isTahuHak">
+                <input class="form-check-input @error('isTahuHak') is-invalid @enderror" type="checkbox" id="isTahuHak" wire:model="isTahuHak">
                 <label class="form-check-label" for="isTahuHak">
-                    Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk mendapatkan PELAYANAN di Klinik Pratama "Insan Medika", saya telah mendapat informasi tentang hak dan kewajiban saya sebagai pasien.
+                    Dengan menandatangani dokumen ini saya mengakui...
                 </label>
+                @error('isTahuHak') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="form-check mb-4">
@@ -173,10 +249,12 @@ new class extends Component {
 
             <div class="row g-2 mb-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_penerima">
+                    <input type="text" class="form-control @error('nama_penerima') is-invalid @enderror" placeholder="Nama" wire:model="nama_penerima">
+                    @error('nama_penerima') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_penerima">
+                    <input type="text" class="form-control @error('hubungan_penerima') is-invalid @enderror" placeholder="Hubungan" wire:model="hubungan_penerima">
+                    @error('hubungan_penerima') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             </div>
         </div>
@@ -204,10 +282,13 @@ new class extends Component {
 
             <div class="row g-2 mb-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_keluarga">
+
+                    <input type="text" class="form-control @error('nama_keluarga') is-invalid @enderror" placeholder="Nama" wire:model="nama_keluarga">
+                    @error('nama_keluarga') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_keluarga">
+                    <input type="text" class="form-control @error('hubungan_keluarga') is-invalid @enderror" placeholder="Nama" wire:model="hubungan_keluarga">
+                    @error('hubungan_keluarga') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             </div>
 

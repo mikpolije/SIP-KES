@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\AsessmenAwal;
+use App\Models\GeneralConsent;
 use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
@@ -16,7 +18,7 @@ new class extends Component {
     public function nextStep()
     {
         if ($this->currentStep === 1) {
-            $this->dispatch('go-next-step');
+            $this->dispatch('submit-step1');
         }
 
         if ($this->currentStep === 2) {
@@ -30,6 +32,18 @@ new class extends Component {
 
     public function goToStep($step)
     {
+        if ($step < 1 || $step > $this->totalSteps) {
+            return;
+        }
+
+        $general_consent = GeneralConsent::where('id_pendaftaran', $this->pendaftaranId)->first();
+        $asessmen_awal = AsessmenAwal::where('id_pendaftaran', $this->pendaftaranId)->first();
+
+        if(!$general_consent && !$asessmen_awal) {
+            flash()->error('Anda harus menyelesaikan General Consent dan Asesmen Awal terlebih dahulu.');
+            return;
+        }
+
         $this->currentStep = $step;
         $this->dispatch('scroll-to-top');
     }
