@@ -81,35 +81,45 @@ new class extends Component {
     #[On('submit-step1')]
     public function submit()
     {
-        $validated = $this->validate([
-            // Consent
-            'isTahuHak' => 'required|boolean',
-            'isSetujuAturan' => 'required|boolean',
-            'isSetujuPerawatan' => 'required|boolean',
-            'isPahamPrivasi' => 'required|boolean',
-            'isBukaInfoAsuransi' => 'required|boolean',
-            'isIzinkanKeluarga' => 'required|boolean',
-            'isPahamPenolakan' => 'required|boolean',
-            'isPahamSiswa' => 'required|boolean',
+        try {
+            $validated = $this->validate([
+                // Consent
+                'isTahuHak' => 'required|boolean',
+                'isSetujuAturan' => 'required|boolean',
+                'isSetujuPerawatan' => 'required|boolean',
+                'isPahamPrivasi' => 'required|boolean',
+                'isBukaInfoAsuransi' => 'required|boolean',
+                'isIzinkanKeluarga' => 'required|boolean',
+                'isPahamPenolakan' => 'required|boolean',
+                'isPahamSiswa' => 'required|boolean',
 
-            // Wewenang
-            'isBeriWewenang' => 'required|boolean',
-            'nama_penerima' => 'nullable|string',
-            'hubungan_penerima' => 'nullable|string',
+                // Wewenang
+                'isBeriWewenang' => 'required|boolean',
+                'nama_penerima' => 'required_if:isBeriWewenang,true|string',
+                'hubungan_penerima' => 'required_if:isBeriWewenang,true|string',
 
-            // Family
-            'isBeriAkses' => 'required|boolean',
-            'nama_keluarga' => 'nullable|string',
-            'hubungan_keluarga' => 'nullable|string',
-        ]);
+                // Family
+                'isBeriAkses' => 'required|boolean',
+                'nama_keluarga' => 'required_if:isBeriAkses,true|string',
+                'hubungan_keluarga' => 'required_if:isBeriAkses,true|string',
+            ], [
+                'required' => 'Kolom ini wajib diisi',
+                'required_if' => 'Kolom ini wajib diisi',
+                'boolean' => 'Nilai tidak valid',
+            ]);
 
-        GeneralConsent::updateOrCreate(
-            ['id_pendaftaran' => $this->pendaftaranId],
-            $validated
-        );
+            GeneralConsent::updateOrCreate(
+                ['id_pendaftaran' => $this->pendaftaranId],
+                $validated
+            );
 
-        flash()->success('Persetujuan umum berhasil disimpan.');
-        $this->dispatch('go-next-step');
+            flash()->success('Persetujuan umum berhasil disimpan.');
+            $this->dispatch('go-next-step');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            flash()->error('Tolong isi semua field yang wajib diisi!');
+            throw $e; // Tetap lempar exception agar Livewire menampilkan error di field
+        }
     }
 }; ?>
 
@@ -177,10 +187,11 @@ new class extends Component {
             <p class="fw-semibold mb-3">Informasi tentang Hak dan kewajiban pasien</p>
 
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="isTahuHak" wire:model="isTahuHak">
+                <input class="form-check-input @error('isTahuHak') is-invalid @enderror" type="checkbox" id="isTahuHak" wire:model="isTahuHak">
                 <label class="form-check-label" for="isTahuHak">
-                    Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk mendapatkan PELAYANAN di Klinik Pratama "Insan Medika", saya telah mendapat informasi tentang hak dan kewajiban saya sebagai pasien.
+                    Dengan menandatangani dokumen ini saya mengakui...
                 </label>
+                @error('isTahuHak') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
 
             <div class="form-check mb-4">
@@ -238,10 +249,12 @@ new class extends Component {
 
             <div class="row g-2 mb-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_penerima">
+                    <input type="text" class="form-control @error('nama_penerima') is-invalid @enderror" placeholder="Nama" wire:model="nama_penerima">
+                    @error('nama_penerima') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_penerima">
+                    <input type="text" class="form-control @error('hubungan_penerima') is-invalid @enderror" placeholder="Hubungan" wire:model="hubungan_penerima">
+                    @error('hubungan_penerima') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             </div>
         </div>
@@ -269,10 +282,13 @@ new class extends Component {
 
             <div class="row g-2 mb-3">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Nama" wire:model="nama_keluarga">
+
+                    <input type="text" class="form-control @error('nama_keluarga') is-invalid @enderror" placeholder="Nama" wire:model="nama_keluarga">
+                    @error('nama_keluarga') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="Hubungan" wire:model="hubungan_keluarga">
+                    <input type="text" class="form-control @error('hubungan_keluarga') is-invalid @enderror" placeholder="Nama" wire:model="hubungan_keluarga">
+                    @error('hubungan_keluarga') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
             </div>
 
