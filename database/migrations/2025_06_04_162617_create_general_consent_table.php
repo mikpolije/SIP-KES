@@ -19,12 +19,6 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->string('nama_wali');
-            $table->date('tanggal_lahir_wali');
-            $table->string('hubungan_dengan_pasien');
-            $table->text('alamat');
-            $table->string('no_telpon');
-
             $table->boolean('isTahuHak'); // Mengetahui hak pasien
             $table->boolean('isSetujuAturan'); // Menyetujui aturan klinik
             $table->boolean('isSetujuPerawatan'); // Menyetujui perawatan
