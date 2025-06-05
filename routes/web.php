@@ -115,3 +115,5 @@ Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path',
 
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
