@@ -7,8 +7,6 @@
 
 <body>
 
-
-
 <div class="container mt-4">
     <h2 class="mb-4">Data Pengguna</h2>
 
@@ -36,7 +34,7 @@
             @forelse ($users as $user)
             <tr>
                 <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
+                <td>{{ $user->nama }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->created_at->format('d-m-Y') }}</td>
                 <td>
