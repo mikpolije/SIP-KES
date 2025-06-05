@@ -27,6 +27,7 @@
             margin: 0;
         }
     </style>
+    @stack('style')
 </head>
 <body>
     {{ $slot }}

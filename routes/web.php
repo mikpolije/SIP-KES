@@ -8,10 +8,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\TriageController;
 use App\Http\Controllers\Master\UserController;
-use App\Http\Controllers\PoliUmum\PendafataranController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use App\Http\Controllers\Api\ARController;
 
 Route::get('/', function () {
     return view('login');
@@ -25,8 +23,6 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/create', 'doctor.create')->name('create');
     Volt::route('/{dokter}', 'doctor.edit')->name('edit');
 });
-
-Volt::route('pembayaran', 'pembayaran.index')->name('pembayaran.index');
 
 // Route General Consent
 Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
@@ -45,20 +41,6 @@ Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
     Volt::route('/kematian/create', 'persuratan.kematian.create')->name('.kematian.create');
 });
 
-Route::prefix('main/polikia')->group(function () {
-    Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
-    Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
-    Route::get('/antrean', [ARController::class, 'antrean'])->name('antrean.polikia');
-    Route::get('/riwayat', [ARController::class, 'riwayat'])->name('riwayat.polikia');
-});
-
-// Route detail riwayat pasien
-Route::get('/poli-kia/detail/{rm}', function ($rm) {
-    return view('PoliKIA.detailPasien');
-})->name('poli-kia.detail');
-
-Route::get('/poli-kia/search-pasien', [App\Http\Controllers\Api\ARController::class, 'searchPasien'])->name('poli-kia.search-pasien');
-
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
 Route::resource('/triase', TriageController::class);
@@ -71,15 +53,6 @@ Route::get('/get-pasien', [TriageController::class, 'getPasien'])->name('get-pas
 Route::get('/get-list-obat', [TriageController::class, 'getObat'])->name('get-list-obat');
 Route::get('/print-pdf/{id}', [TriageController::class, 'printPdf'])->name('print-pdf');
 
-// Route pendaftaran GolB
-Route::get('/main/pendaftaran', [PendafataranController::class, 'index'])->name('pendaftaran.index');
-Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
-Route::get('/get-data-pasien/{no_rm}', [PendafataranController::class, 'getDataPasien']);
-Route::get('/get-kabupaten/{province_code}', [PendafataranController::class, 'getKabupaten']);
-Route::get('/get-kecamatan/{city_code}', [PendafataranController::class, 'getKecamatan']);
-Route::get('/get-desa/{district_code}', [PendafataranController::class, 'getDesa']);
-
-
 Route::get('/{main}/{view}', [PageController::class, 'show']);
 Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
@@ -87,8 +60,8 @@ Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('pat
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 Route::prefix('main/poliumum')->group(function () {
-    Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
-    Route::get('/get-data-pasien/{no_rm}', [PendafataranController::class, 'getDataPasien']);
+    Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
+    Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
     Route::get('/antrean', [AntrianRiwayatController::class, 'antrean'])->name('antrean.poliumum');
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });

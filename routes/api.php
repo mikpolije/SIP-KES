@@ -36,6 +36,8 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::post('/obat/{id}/update', [ObatController::class, 'update'])->name('obat.update');
     Route::post('/obat/{id}/delete', [ObatController::class, 'delete'])->name('obat.delete');
 
+    Route::get('icd10', [IcdController::class, 'icd10'])->name('icd10.index');
+    Route::get('icd9', [IcdController::class, 'icd9'])->name('icd9.index');
 });
 
 Route::get('/signature-status/{token}', [generalConsentController::class, 'checkStatus']);

@@ -155,7 +155,7 @@
                     <div class="card-body row">
                         <div class="col-md-2">
                             <label for="no_antrian" class="form-label">No Antrian</label>
-                            <input type="text" class="form-control" name="no_antrian" id="no_antrian">
+                            <input type="text" class="form-control" name="no_antrian" id="no_antrian" disabled>
                         </div>
                         <div class="col-md-2">
                             <label for="no_rm" class="form-label">No RM</label>
@@ -167,7 +167,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="tanggal" class="form-label">Tanggal</label>
-                            <input type="date" class="form-control" name="tanggal" id="tanggal">
+                            <input type="text" class="form-control" name="tanggal" id="tanggal" disabled>
                         </div>
                         <div class="col-md-2">
                             <label for="jenis_pemeriksaan" class="form-label">Jenis Pemeriksaan</label>
@@ -417,32 +417,60 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
         }
     }).done(function (res) {
         let data = res.data
-        $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
+        $('#nama_pemeriksaan').val(data.data_pasien.nama_lengkap)
         $('#no_rm').val(data.data_pasien.no_rm)
+        $('#tanggal').val(new Date().toISOString().split('T')[0])
+        $('#no_antrian').val("Sesuai Pendaftaran")
+
+        // Assesmen Awal
+        if (data.asessmen_awal) {
+            $('textarea[name=keluhan]').html(data.asessmen_awal.keluhan_utama)
+            $('input[name=sistole]').val(data.asessmen_awal.tekanan_darah_sistole)
+            $('input[name=diastole]').val(data.asessmen_awal.tekanan_darah_diastole)
+            $('input[name=bb]').val("tidak tercatat")
+            $('input[name=tb]').val("tidak tercatat")
+            $('input[name=suhu]').val(data.asessmen_awal.suhu_tubuh)
+            $('input[name=spo2]').val("tidak tercatat")
+            $('input[name=respirasi]').val(data.asessmen_awal.pernafasan)
+
+            // Persalinan
+            $('input[name=napas]').val(data.asessmen_awal.pernafasan)
+            $('input[name=nadi]').val(data.asessmen_awal.denyut_jantung)
+            $('input[name=nadi_o]').val(data.asessmen_awal.denyut_jantung)
+
+            // Kehamilan
+            $('input[name=keluhan_utama]').val(data.asessmen_awal.keluhan_utama)
+            $('input[name=tekanan_darah]').val(data.asessmen_awal.tekanan_darah_sistole+'/'+data.asessmen_awal.tekanan_darah_diastole)
+            $('input[name=alergi]').val(data.asessmen_awal.alergi+' '+data.asessmen_awal.jenis_alergi)
+
+            // KB
+            // $('input[name=berat_badan]').val("tidak tercatat")
+            // $('input[name=tinggi_badan]').val("tidak tercatat")
+
+            // Anak
+            $('input[name=tensi]').val(data.asessmen_awal.tekanan_darah_sistole+'/'+data.asessmen_awal.tekanan_darah_diastole)
+            $('input[name=keluhan]').val(data.asessmen_awal.keluhan_utama)
+        }
 
         // Set Data
         if (res.data.layanan_kia) {
-            $('#no_antrian').val(data.layanan_kia.no_antrian)
-            $('#tanggal').val(data.layanan_kia.tanggal)
             $('#jenis_pemeriksaan').val(data.layanan_kia.jenis_pemeriksaan)
 
-            layananFieldLists.forEach(field => {
-                setFieldValue(`#layanan [name=${field}]`, res.data.layanan_kia[field]);
-            });
+            // layananFieldLists.forEach(field => {
+            //     setFieldValue(`#layanan [name=${field}]`, res.data.layanan_kia[field]);
+            // });
             $(".validation-wizard").steps("next");
             $(".validation-wizard").steps("next");
         } else {
-            $('#no_antrian').val('')
-            $('#tanggal').val('')
             $('#jenis_pemeriksaan').val('Kehamilan')
 
-            layananFieldLists.forEach(field => {
-                if (field === 'jenis_pemeriksaan') {
-                    setFieldValue(`#layanan [name=${field}]`, 'Kehamilan');
-                } else {
-                    setFieldValue(`#layanan [name=${field}]`, '');
-                }
-            });
+            // layananFieldLists.forEach(field => {
+            //     if (field === 'jenis_pemeriksaan') {
+            //         setFieldValue(`#layanan [name=${field}]`, 'Kehamilan');
+            //     } else {
+            //         setFieldValue(`#layanan [name=${field}]`, '');
+            //     }
+            // });
 
             $(".validation-wizard").steps("next");
         }
@@ -457,6 +485,52 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
         eThis.val('Cari')
     })
 });
+
+$(document).on('click', '.search-icd10', function (e) {
+    var kode = $('input[name=kode_tindakan_kehamilan]').val() || $('input[name=kode_tindakan]').val() || '';
+
+    $.ajax({
+        url: "{{ route('api.icd10.index') }}?icd10="+kode,
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).done(function (res) {
+        let data = res.data
+
+        let html = '';
+        data.forEach(item => {
+            html += `<p>${item.code} - ${item.display}</p><br>`
+        });
+
+        $('.icd10-content').html(html)
+    }).fail(function (xhr, status, error) {
+        errorMessage(xhr.responseJSON.message)
+    })
+})
+
+$(document).on('click', '.search-icd9', function (e) {
+    var kode = $('#pemeriksaan-kb input[name=kode_tindakan]').val() || '';
+
+    $.ajax({
+        url: "{{ route('api.icd9.index') }}?icd9="+kode,
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).done(function (res) {
+        let data = res.data
+
+        let html = '';
+        data.forEach(item => {
+            html += `<p>${item.code} - ${item.display}</p><br>`
+        });
+
+        $('.icd9-content').html(html)
+    }).fail(function (xhr, status, error) {
+        errorMessage(xhr.responseJSON.message)
+    })
+})
 
 $(document).on('change', '#persuratan', function (e) {
     let val = $(this).val()
@@ -475,11 +549,11 @@ $(document).on('click', '#submit_layanan', function (e) {
 
     let formData = {};
     formData['id_pendaftaran'] = $('#id_pendaftaran').val();
-    layananFieldLists.forEach(field => {
-        formData[field] = $(`#layanan [name=${field}]`).val();
-    });
-    formData['no_antrian'] = $('#no_antrian').val()
-    formData['tanggal'] = $('#tanggal').val()
+    // layananFieldLists.forEach(field => {
+    //     formData[field] = $(`#layanan [name=${field}]`).val();
+    // });
+    // formData['no_antrian'] = $('#no_antrian').val()
+    // formData['tanggal'] = $('#tanggal').val()
     formData['jenis_pemeriksaan'] = $('#jenis_pemeriksaan').val()
 
     $.ajax({

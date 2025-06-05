@@ -11,13 +11,6 @@ class LayananPendaftaran extends Model
 
     protected $guarded = ['id'];
 
-    protected static function booted()
-    {
-        static::creating(function (LayananPendaftaran $model) {
-            $model->harga = $model->layanan->tarif_layanan;
-        });
-    }
-
     public function layanan(): BelongsTo
     {
         return $this->belongsTo(Layanan::class, 'id_layanan', 'id');
