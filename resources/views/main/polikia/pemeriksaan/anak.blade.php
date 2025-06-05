@@ -271,6 +271,9 @@
                         <label for="bidan" class="form-label">Bidan</label>
                         <select name="bidan" id="bidan" class="form-control" required>
                             <option value="">-</option>
+                            @foreach ($listBidan as $bidan)
+                                <option value="{{ $bidan->nama }}">{{ $bidan->nama }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
@@ -281,7 +284,7 @@
                         <label for="tindakan" class="form-label">ICD 10</label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="kode_tindakan" id="kode_tindakan" placeholder="Ketik Kode Tindakan" required>
-                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <span class="input-group-text cusror-pointer search-icd10"><i class="fa-solid fa-magnifying-glass"></i></span>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -289,7 +292,7 @@
                             <div class="icd-title">
                                 <p>Nama ICD 10</p>
                             </div>
-                            <div class="icd-content">
+                            <div class="icd10-content">
                                 <p>Tidak Ada Data</p>
                             </div>
                         </div>

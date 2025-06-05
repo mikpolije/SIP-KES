@@ -53,7 +53,9 @@ $bbl_asfiksia = [
                 <label for="id_bidan" class="form-label">Nama Bidan</label>
                 <select name="id_bidan" class="form-control" id="id_bidan" required>
                     <option value="">Pilih Bidan</option>
-                    <option value="1">Testt</option>
+                    @foreach ($listBidan as $bidan)
+                        <option value="{{ $bidan->id }}">{{ $bidan->nama }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="mb-3">

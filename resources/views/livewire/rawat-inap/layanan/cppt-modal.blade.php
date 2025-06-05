@@ -144,7 +144,6 @@ new class extends Component {
         $this->tindakanSearch = '';
         $this->obatSearch = '';
 
-        // Reload the options
         $this->loadDiagnosaOptions();
         $this->loadTindakanOptions();
         $this->loadObatOptions();
@@ -179,6 +178,7 @@ new class extends Component {
         $this->dispatch('cppt-added');
     }
 } ?>
+
 <div>
     <!-- CPPT Form Modal -->
     @if($showModal)

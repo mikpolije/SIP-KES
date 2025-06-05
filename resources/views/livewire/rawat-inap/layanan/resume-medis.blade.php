@@ -69,7 +69,7 @@ new class extends Component {
         if ($this->pendaftaran) {
             $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
             $this->noRM = $this->pendaftaran->data_pasien->no_rm;
-            $this->nik = $this->pendaftaran->data_pasien->nik;
+            $this->nik = $this->pendaftaran->data_pasien->nik_pasien;
             $this->tglMasuk = $this->pendaftaran->poli_rawat_inap->created_at->format('Y-m-d');
             $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir;
             $this->ruangPerawatan = $this->pendaftaran->poli_rawat_inap->kelas;

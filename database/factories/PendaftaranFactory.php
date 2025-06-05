@@ -25,8 +25,6 @@ class PendaftaranFactory extends Factory
                 'KIA',
                 'UGD',
                 'Rawat Inap',
-                'Circum',
-                'Vaksin Internasional'
             ]),
         ];
     }

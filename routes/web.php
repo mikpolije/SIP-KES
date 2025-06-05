@@ -30,11 +30,15 @@ Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class,
 Route::get('/sign-request/{token}', [generalConsentController::class, 'showForm']);
 Route::post('/sign-request/{token}', [generalConsentController::class, 'submitForm']);
 
-Route::prefix('/main/persuratan')->group(function () {
-    Volt::route('/kontrol-print', 'persuratan.kontrol-print');
-    Volt::route('/sakit-print', 'persuratan.sakit-print');
-    Volt::route('/pulang-paksa-print', 'persuratan.pulang-paksa-print');
-    Volt::route('/kematian-print', 'persuratan.kematian-print');
+Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
+    Volt::route('/kontrol/print', 'persuratan.kontrol.print')->name('.kontrol.print');
+    Volt::route('/kontrol/create', 'persuratan.kontrol.create')->name('.kontrol.create');
+    Volt::route('/sakit/print', 'persuratan.sakit.create')->name('.sakit.print');
+    Volt::route('/sakit/create', 'persuratan.sakit.print')->name('.sakit.create');
+    Volt::route('/pulang-paksa/print', 'persuratan.pulang-paksa.create')->name('.pulang-paksa.print');
+    Volt::route('/pulang-paksa/create', 'persuratan.pulang-paksa.print')->name('.pulang-paksa.create');
+    Volt::route('/kematian/print', 'persuratan.kematian.print')->name('.kematian.print');
+    Volt::route('/kematian/create', 'persuratan.kematian.create')->name('.kematian.create');
 });
 
 Route::resource('/layanan', LayananController::class);
@@ -73,6 +77,13 @@ Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiw
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
+// Route Laporan poli umum
+use App\Http\Controllers\PoliUmum\LaporanController;
+
+Route::get('laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
+Route::get('poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
+
+
 use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
 use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 
@@ -87,7 +98,7 @@ use App\Http\Controllers\RiwayatMedisController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
-Route::get('riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat.medis');
+Route::get('/riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat-medis.index');
 //Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
 
 // Poli
@@ -95,7 +106,7 @@ Route::resource('/poli', PoliController::class);
 
 // Laporan Kunjungan
 Route::get('/laporan/kunjungan', [KunjunganController::class, 'index']);
-Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.poli-kia.report');
+Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.kunjungan.report');
 
 
 

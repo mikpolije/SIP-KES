@@ -145,11 +145,11 @@
                     </tbody>
                 </table>
             </div>
-            
+
             {{-- Pagination --}}
             <div class="pagination-wrapper px-3 py-2">
                 <div class="pagination-info">
-                    Tampilan 
+                    Tampilan
                     <select class="select-entries" id="perPage">
                         <option value="10">10</option>
                         <option value="25">25</option>
@@ -273,7 +273,7 @@
             placeholder: 'Cari Data Pasien...',
             allowClear: true,
             ajax: {
-                url: '{{ route("surat-keterangan-sakit.search-pasien") }}',
+                url: '{{ route("poli-umum.search-pasien") }}',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -308,7 +308,7 @@
             const perPage = $(this).val();
             // Simpan preferensi ke cookie atau local storage
             localStorage.setItem('perPage', perPage);
-            
+
             // Reload halaman dengan parameter per_page
             const url = new URL(window.location.href);
             url.searchParams.set('per_page', perPage);

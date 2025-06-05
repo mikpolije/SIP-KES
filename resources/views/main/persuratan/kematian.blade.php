@@ -2,5 +2,5 @@
 @section('title', 'SIP-Kes | Rawat Inap')
 
 @section('pageContent')
-@livewire('persuratan.kematian')
+@livewire('persuratan.kematian.list')
 @endsection
