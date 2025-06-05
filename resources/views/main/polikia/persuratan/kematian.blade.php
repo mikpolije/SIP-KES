@@ -184,10 +184,30 @@
             }
         }).done(function (res) {
             let data = res.data
-            $('#nama_pasien').val(data.data_pasien.nama_pasien)
+            $('#nama_pasien').val(data.data_pasien.nama_lengkap)
             $('#tanggal_lahir').val(data.data_pasien.tanggal_lahir_pasien)
             $('#alamat').val(data.data_pasien.alamat_pasien)
-            $('#jenis_kelamin').val(data.data_pasien.jenis_kelamin)
+            let jenisKelaminText;
+            switch (data.data_pasien.jenis_kelamin) {
+                case 0:
+                    jenisKelaminText = 'Tidak Diketahui';
+                    break;
+                case 1:
+                    jenisKelaminText = 'Laki-laki';
+                    break;
+                case 2:
+                    jenisKelaminText = 'Perempuan';
+                    break;
+                case 3:
+                    jenisKelaminText = 'Tidak dapat ditentukan';
+                    break;
+                case 4:
+                    jenisKelaminText = 'Tidak mengisi';
+                    break;
+                default:
+                    jenisKelaminText = 'Tidak Diketahui';
+            }
+            $('#jenis_kelamin').val(jenisKelaminText);
 
             if (data.surat_kematian) {
                 $('#nomor').val(data.surat_kematian.nomor)

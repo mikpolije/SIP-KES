@@ -1,692 +1,672 @@
 <?php
 
 use Livewire\Volt\Component;
-use App\Models\Pendaftaran;
-use App\Models\Layanan;
-use App\Models\Obat;
-use Livewire\Attributes\On;
-use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 new class extends Component {
-    public $invoiceDate;
-    public $invoiceNumber;
+    public $noNota = '';
+    public $tanggalNota = '';
+    public $noRekamMedik = '';
+    public $namaPasien = '';
+    public $noTelp = '';
 
-    public $registration;
+    // Service Details
+    public $services = [];
+    public $newServiceQty = 1;
+    public $newServiceName = '';
+    public $newServicePrice = '';
 
-    public $masterServices = [];
-    public $masterMedicines = [];
+    // Medicine Details
+    public $medicines = [];
+    public $newMedicineQty = 1;
+    public $newMedicineName = '';
+    public $newMedicinePrice = '';
 
-    public $newServiceId;
-    public $newServiceQty;
-    public $newServicePrice;
+    // Laboratory Details
+    public $laboratories = [];
+    public $newLabDate = '';
+    public $newLabType = '';
+    public $newLabPrice = '';
 
-    public $newMedicineId;
-    public $newMedicineQty;
-    public $newMedicinePrice;
+    // Radiology Details
+    public $radiologies = [];
+    public $newRadDate = '';
+    public $newRadType = '';
+    public $newRadPrice = '';
 
-    public $subTotal;
+    // Additional Details
+    public $additionalItems = [];
+    public $newAdditionalQty = 1;
+    public $newAdditionalCode = '';
+    public $newAdditionalPrice = '';
 
+    // Notes
+    public $notes = '';
 
-    public $notes;
+    // Billing Summary
+    public $subtotal = 0;
     public $discount = 0;
-    public $tax = 10;
-    public $paymentMethod = 'tunai';
-    public $paymentAmount;
+    public $tax = 0;
+    public $total = 0;
 
-    public function showPatientFinder()
-    {
-        LivewireAlert::title('')
-            ->withOptions([
-                'input' => 'text',
-                'inputPlaceholder' => 'Masukkan nomor rekam medis',
-            ])
-            ->withConfirmButton('Cari')
-            ->onConfirm('findPatient')
-            ->show();
-    }
+    // Payment Details
+    public $paymentMethod = 'tunai';
+    public $paymentAmount = '';
+    public $paymentTransactions = [];
+    public $change = 0;
 
     public function mount()
     {
-        $this->invoiceDate = now()->format('Y-m-d');
-
-        $this->masterServices = Layanan::all()->pluck('nama_layanan', 'id');
-        $this->masterMedicines = Obat::all()->pluck('nama', 'id');
-
-        $this->subTotal = 0;
-    }
-
-    public function findPatient($data)
-    {
-        $noRm = $data['value'];
-        $this->registration = Pendaftaran::with(['data_pasien', 'layananPendaftaran.layanan', 'obatPendaftaran.obat'])
-            ->where('no_rm', $noRm)
-            ->first();
-
-        if (!$this->registration) {
-            LivewireAlert::title('Data pemeriksaan pasien tidak ditemukan')->error()->position('top-end')->toast()->show();
-            return;
-        }
-
-        // Calculate subtotal when patient is found
-        $this->calculateSubTotal();
-    }
-
-    public function calculateSubTotal()
-    {
-        $layananTotal = $this->registration->layananPendaftaran->sum(function ($item) {
-            return $item->layanan->tarif_layanan * $item->qty;
-        });
-
-        $obatTotal = $this->registration->obatPendaftaran->sum(function ($item) {
-            return $item->obat->harga * $item->qty;
-        });
-
-        $tax = (($layananTotal + $obatTotal) * $this->tax / 100);
-        $discount = (($layananTotal + $obatTotal) * $this->discount / 100);
-
-        $this->subTotal = ($layananTotal + $obatTotal) - $tax - $discount;
+        // Initialize with current date for nota
+        $this->tanggalNota = now()->format('Y-m-d');
     }
 
     public function addService()
     {
-        $this->registration->layananPendaftaran()->create([
-            'id_layanan' => $this->newServiceId,
-            'qty' => $this->newServiceQty,
+        $this->validate([
+            'newServiceQty' => 'required|numeric|min:1',
+            'newServiceName' => 'required',
+            'newServicePrice' => 'required|numeric|min:0',
         ]);
 
-        // Reset form fields
-        $this->newServiceId = null;
-        $this->newServiceQty = null;
-        $this->newServicePrice = null;
+        $total = $this->newServiceQty * $this->newServicePrice;
 
-        // Refresh the registration relationship
-        $this->registration->refresh();
-        $this->registration->load(['layananPendaftaran.layanan', 'obatPendaftaran.obat']);
+        $this->services[] = [
+            'qty' => $this->newServiceQty,
+            'name' => $this->newServiceName,
+            'price' => $this->newServicePrice,
+            'total' => $total
+        ];
 
-        // Recalculate subtotal
-        $this->calculateSubTotal();
+        $this->newServiceQty = 1;
+        $this->newServiceName = '';
+        $this->newServicePrice = '';
+        $this->calculateTotals();
     }
 
     public function addMedicine()
     {
-        $this->registration->obatPendaftaran()->create([
-            'id_obat' => $this->newMedicineId,
-            'qty' => $this->newMedicineQty,
+        $this->validate([
+            'newMedicineQty' => 'required|numeric|min:1',
+            'newMedicineName' => 'required',
+            'newMedicinePrice' => 'required|numeric|min:0',
         ]);
 
-        // Reset form fields
-        $this->newMedicineId = null;
-        $this->newMedicineQty = null;
-        $this->newMedicinePrice = null;
+        $total = $this->newMedicineQty * $this->newMedicinePrice;
 
-        // Refresh the registration relationship
-        $this->registration->refresh();
-        $this->registration->load(['layananPendaftaran.layanan', 'obatPendaftaran.obat']);
+        $this->medicines[] = [
+            'qty' => $this->newMedicineQty,
+            'name' => $this->newMedicineName,
+            'price' => $this->newMedicinePrice,
+            'total' => $total
+        ];
 
-        // Recalculate subtotal
-        $this->calculateSubTotal();
+        $this->newMedicineQty = 1;
+        $this->newMedicineName = '';
+        $this->newMedicinePrice = '';
+        $this->calculateTotals();
     }
 
-    #[On('layanan-changed')]
-    public function updateServiceField()
+    public function addLaboratory()
     {
-        if ($this->newServiceQty && $this->newServiceId) {
-            $this->newServicePrice = Layanan::find($this->newServiceId)->tarif_layanan * $this->newServiceQty;
-        }
+        $this->validate([
+            'newLabDate' => 'required|date',
+            'newLabType' => 'required',
+            'newLabPrice' => 'required|numeric|min:0',
+        ]);
+
+        $this->laboratories[] = [
+            'date' => $this->newLabDate,
+            'type' => $this->newLabType,
+            'price' => $this->newLabPrice,
+            'total' => $this->newLabPrice
+        ];
+
+        $this->newLabDate = '';
+        $this->newLabType = '';
+        $this->newLabPrice = '';
+        $this->calculateTotals();
     }
 
-    #[On('obat-changed')]
-    public function updateMedicineField()
+    public function addRadiology()
     {
-        if ($this->newMedicineQty && $this->newMedicineId) {
-            $this->newMedicinePrice = Obat::find($this->newMedicineId)->harga * $this->newMedicineQty;
-        }
+        $this->validate([
+            'newRadDate' => 'required|date',
+            'newRadType' => 'required',
+            'newRadPrice' => 'required|numeric|min:0',
+        ]);
+
+        $this->radiologies[] = [
+            'date' => $this->newRadDate,
+            'type' => $this->newRadType,
+            'price' => $this->newRadPrice,
+            'total' => $this->newRadPrice
+        ];
+
+        $this->newRadDate = '';
+        $this->newRadType = '';
+        $this->newRadPrice = '';
+        $this->calculateTotals();
     }
 
+    public function addAdditionalItem()
+    {
+        $this->validate([
+            'newAdditionalQty' => 'required|numeric|min:1',
+            'newAdditionalCode' => 'required',
+            'newAdditionalPrice' => 'required|numeric|min:0',
+        ]);
+
+        $total = $this->newAdditionalQty * $this->newAdditionalPrice;
+
+        $this->additionalItems[] = [
+            'qty' => $this->newAdditionalQty,
+            'code' => $this->newAdditionalCode,
+            'price' => $this->newAdditionalPrice,
+            'total' => $total
+        ];
+
+        $this->newAdditionalQty = 1;
+        $this->newAdditionalCode = '';
+        $this->newAdditionalPrice = '';
+        $this->calculateTotals();
+    }
+
+    public function addPayment()
+    {
+        $this->validate([
+            'paymentMethod' => 'required',
+            'paymentAmount' => 'required|numeric|min:0',
+        ]);
+
+        $this->paymentTransactions[] = [
+            'method' => $this->paymentMethod,
+            'amount' => $this->paymentAmount
+        ];
+
+        $this->paymentAmount = '';
+        $this->calculateChange();
+    }
+
+    public function calculateTotals()
+    {
+        $servicesTotal = collect($this->services)->sum('total');
+        $medicinesTotal = collect($this->medicines)->sum('total');
+        $labsTotal = collect($this->laboratories)->sum('total');
+        $radsTotal = collect($this->radiologies)->sum('total');
+        $additionalTotal = collect($this->additionalItems)->sum('total');
+
+        $this->subtotal = $servicesTotal + $medicinesTotal + $labsTotal + $radsTotal + $additionalTotal;
+
+        $discountAmount = $this->subtotal * ($this->discount / 100);
+        $taxAmount = $this->subtotal * ($this->tax / 100);
+
+        $this->total = $this->subtotal - $discountAmount + $taxAmount;
+
+        $this->calculateChange();
+    }
+
+    public function calculateChange()
+    {
+        $paidAmount = collect($this->paymentTransactions)->sum('amount');
+        $this->change = max(0, $paidAmount - $this->total);
+    }
+
+    public function processPayment()
+    {
+        $this->validate([
+            'noNota' => 'required',
+            'tanggalNota' => 'required|date',
+            'noRekamMedik' => 'required',
+            'namaPasien' => 'required',
+            'paymentTransactions' => 'required|array|min:1',
+        ]);
+
+        // save the payment to the database (ya begitulah)
+        // and perform any other necessary actions
+
+        session()->flash('message', 'Pembayaran berhasil diproses!');
+    }
+
+    public function updatedDiscount()
+    {
+        $this->calculateTotals();
+    }
+
+    public function updatedTax()
+    {
+        $this->calculateTotals();
+    }
 }; ?>
 
 <div class="container-fluid py-4">
-  <!-- Header -->
-  <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-    <div>
-      <h4 class="text-dark fw-bold mb-1">Pembayaran</h4>
-      <p class="text-muted small mb-0">Kelola pembayaran pasien dan transaksi</p>
+    <div class="card bg-light">
+        <div class="card-body p-4">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="title mb-0">Pembayaran</h4>
+                <button class="btn btn-outline-primary rounded-pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                    Data Pasien
+                </button>
+            </div>
+
+            <!-- Patient Information -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row mb-2">
+                                <div class="col-5">No Nota</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <input type="text" wire:model="noNota" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">Tanggal Nota</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <input type="date" wire:model="tanggalNota" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">Status</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <!-- status disini ntar -->
+                                    <span class="badge bg-success">Rawat Inap</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-2">
+                                <div class="col-5">No Rekam Medik</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <input type="text" wire:model="noRekamMedik" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">Nama Pasien</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <input type="text" wire:model="namaPasien" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5">No Telp</div>
+                                <div class="col-1">:</div>
+                                <div class="col-6">
+                                    <input type="text" wire:model="noTelp" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Left Column - Service Details -->
+                <div class="col-md-8">
+                    <!-- Service Details -->
+                    <div class="mb-4">
+                        <h6>Rincian Layanan</h6>
+                        <div class="input-group mb-2">
+                            <input type="number" wire:model="newServiceQty" class="form-control" placeholder="Jumlah"
+                                min="1">
+                            <input type="text" wire:model="newServiceName" class="form-control"
+                                placeholder="Nama Layanan">
+                            <input type="number" wire:model="newServicePrice" class="form-control" placeholder="Harga"
+                                min="0">
+                            <button class="btn btn-secondary" wire:click="addService">
+                                Tambah
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th>Jumlah</th>
+                                        <th>Nama Layanan</th>
+                                        <th>Harga</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-light">
+                                    @forelse($services as $index => $service)
+                                    <tr>
+                                        <td>{{ $service['qty'] }}</td>
+                                        <td>{{ $service['name'] }}</td>
+                                        <td>{{ number_format($service['price'], 0, ',', '.') }}</td>
+                                        <td>{{ number_format($service['total'], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Medicine Details -->
+                    <div class="mb-4">
+                        <h6>Rincian Obat</h6>
+                        <div class="input-group mb-2">
+                            <input type="number" wire:model="newMedicineQty" class="form-control" placeholder="Jumlah"
+                                min="1">
+                            <input type="text" wire:model="newMedicineName" class="form-control"
+                                placeholder="Nama Obat">
+                            <input type="number" wire:model="newMedicinePrice" class="form-control" placeholder="Harga"
+                                min="0">
+                            <button class="btn btn-secondary" wire:click="addMedicine">
+                                Tambah
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th>Jumlah</th>
+                                        <th>Nama Obat</th>
+                                        <th>Harga</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-light">
+                                    @forelse($medicines as $index => $medicine)
+                                    <tr>
+                                        <td>{{ $medicine['qty'] }}</td>
+                                        <td>{{ $medicine['name'] }}</td>
+                                        <td>{{ number_format($medicine['price'], 0, ',', '.') }}</td>
+                                        <td>{{ number_format($medicine['total'], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Laboratory Details -->
+                    <div class="mb-4">
+                        <h6>Rincian Laboratorium</h6>
+                        <div class="input-group mb-2">
+                            <input type="date" wire:model="newLabDate" class="form-control">
+                            <input type="text" wire:model="newLabType" class="form-control"
+                                placeholder="Jenis Laboratorium">
+                            <input type="number" wire:model="newLabPrice" class="form-control" placeholder="Harga"
+                                min="0">
+                            <button class="btn btn-secondary" wire:click="addLaboratory">
+                                Tambah
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jenis Laboratorium</th>
+                                        <th>Harga</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-light">
+                                    @forelse($laboratories as $index => $lab)
+                                    <tr>
+                                        <td>{{ $lab['date'] }}</td>
+                                        <td>{{ $lab['type'] }}</td>
+                                        <td>{{ number_format($lab['price'], 0, ',', '.') }}</td>
+                                        <td>{{ number_format($lab['total'], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Radiology Details -->
+                    <div class="mb-4">
+                        <h6>Rincian Radiologi</h6>
+                        <div class="input-group mb-2">
+                            <input type="date" wire:model="newRadDate" class="form-control">
+                            <input type="text" wire:model="newRadType" class="form-control"
+                                placeholder="Jenis Radiologi">
+                            <input type="number" wire:model="newRadPrice" class="form-control" placeholder="Harga"
+                                min="0">
+                            <button class="btn btn-secondary" wire:click="addRadiology">
+                                Tambah
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jenis Radiologi</th>
+                                        <th>Harga</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-light">
+                                    @forelse($radiologies as $index => $rad)
+                                    <tr>
+                                        <td>{{ $rad['date'] }}</td>
+                                        <td>{{ $rad['type'] }}</td>
+                                        <td>{{ number_format($rad['price'], 0, ',', '.') }}</td>
+                                        <td>{{ number_format($rad['total'], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="mb-4">
+                        <h6>Rincian Tambahan</h6>
+                        <div class="input-group mb-2">
+                            <input type="number" wire:model="newAdditionalQty" class="form-control" placeholder="Jumlah"
+                                min="1">
+                            <input type="text" wire:model="newAdditionalCode" class="form-control"
+                                placeholder="Kode Tambahan">
+                            <input type="number" wire:model="newAdditionalPrice" class="form-control"
+                                placeholder="Harga" min="0">
+                            <button class="btn btn-secondary" wire:click="addAdditionalItem">
+                                Tambah
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th>Jumlah</th>
+                                        <th>Nama Tambahan</th>
+                                        <th>Harga</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-light">
+                                    @forelse($additionalItems as $index => $item)
+                                    <tr>
+                                        <td>{{ $item['qty'] }}</td>
+                                        <td>{{ $item['code'] }}</td>
+                                        <td>{{ number_format($item['price'], 0, ',', '.') }}</td>
+                                        <td>{{ number_format($item['total'], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="mb-4">
+                        <h6>Keterangan</h6>
+                        <textarea class="form-control" wire:model="notes" rows="4"
+                            placeholder="Tambah Keterangan"></textarea>
+                    </div>
+                </div>
+
+                <!-- Right Column - Payment Summary -->
+                <div class="col-md-4">
+                    <!-- Billing Summary -->
+                    <div class="mb-4">
+                        <h6>Rincian Tagihan</h6>
+                        <div class="mb-2 row">
+                            <label class="col-sm-4 col-form-label">Subtotal</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext"
+                                    value="{{ number_format($subtotal, 0, ',', '.') }}">
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label class="col-sm-4 col-form-label">Diskon</label>
+                            <div class="col-sm-8">
+                                <input type="number" wire:model="discount" class="form-control" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label class="col-sm-4 col-form-label">Pajak (%)</label>
+                            <div class="col-sm-8">
+                                <input type="number" wire:model="tax" class="form-control" min="0" max="100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Details -->
+                    <div class="mb-4">
+                        <h6>Rincian Pembayaran</h6>
+                        <div class="input-group mb-2">
+                            <select class="form-select" wire:model="paymentMethod">
+                                <option value="tunai">Tunai</option>
+                                <option value="transfer">Transfer</option>
+                            </select>
+                            <input type="number" wire:model="paymentAmount" class="form-control" placeholder="Jumlah"
+                                min="0">
+                            <button class="btn btn-secondary" wire:click="addPayment">
+                                Tambah
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="table-responsive mt-3">
+                            <table class="table table-bordered">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th>Cara Bayar</th>
+                                        <th>Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-light">
+                                    @forelse($paymentTransactions as $index => $transaction)
+                                    <tr>
+                                        <td>{{ ucfirst($transaction['method']) }}</td>
+                                        <td>{{ number_format($transaction['amount'], 0, ',', '.') }}</td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="2" class="text-center">Tidak Ada Data</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <h5 class="text-primary">TOTAL TAGIHAN</h5>
+                            <div class="mb-2 row">
+                                <label class="col-sm-5 col-form-label">Total Bayar</label>
+                                <div class="col-sm-7">
+                                    <input type="text" readonly class="form-control-plaintext"
+                                        value="{{ number_format($total, 0, ',', '.') }}">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label class="col-sm-5 col-form-label">Kembalian</label>
+                                <div class="col-sm-7">
+                                    <input type="text" readonly class="form-control-plaintext"
+                                        value="{{ number_format($change, 0, ',', '.') }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-outline-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-printer" viewBox="0 0 16 16">
+                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                        <path
+                            d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                    </svg>
+                    Cetak
+                </button>
+                <div>
+                    <button class="btn btn-primary" wire:click="processPayment">Proses Pembayaran</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-primary rounded-pill px-4 py-2 shadow-sm" wire:click="showPatientFinder">
-      <i class="bi bi-search me-2"></i>
-      Cari Data Pasien
-    </button>
-  </div>
-
-  <!-- Patient Information -->
-  <div class="card mb-4 border-0 shadow-sm">
-    <div class="card-header bg-light border-0 py-3">
-      <h6 class="text-primary fw-semibold mb-0">
-        <i class="bi bi-person-fill me-2"></i>Informasi Pasien
-      </h6>
-    </div>
-    <div class="card-body p-4">
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted">No Nota</label>
-            <div class="col-sm-7">
-              <input class="form-control bg-light border-0" type="text" wire:model="invoiceNumber"
-                placeholder="Masukkan nomor nota" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted">Tanggal Nota</label>
-            <div class="col-sm-7">
-              <input class="form-control bg-light border-0" type="date" wire:model="invoiceDate"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted">Status</label>
-            <div class="col-sm-7">
-              <div class="form-control bg-light border-0">{{ $this->registration->layanan ?? '-' }}</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted">No Rekam Medik</label>
-            <div class="col-sm-7">
-              <input class="form-control bg-light border-0" type="text" value="{{ $this->registration?->no_rm }}"
-                placeholder="Nomor rekam medis" disabled>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted">Nama Pasien</label>
-            <div class="col-sm-7">
-              <input class="form-control bg-light border-0" type="text"
-                value="{{ $this->registration?->data_pasien?->nama_lengkap }}" placeholder="Nama lengkap pasien"
-                disabled>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted">No Telp</label>
-            <div class="col-sm-7">
-              <input class="form-control bg-light border-0" type="text"
-                value="{{ $this->registration?->data_pasien?->nomor_telepon_pasien }}" placeholder="Nomor telepon"
-                disabled>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row g-4">
-    <!-- Left Column - Service Details -->
-    <div class="col-xl-8">
-      <!-- Service Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-clipboard-check me-2"></i>Rincian Layanan
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:change="updateServiceField" wire:model="newServiceQty"
-                placeholder="Jumlah" min="1" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-4" wire:ignore>
-              <select class="form-select select2-layanan" wire:change="updateServiceField" wire:model="newServiceId">
-                <option value="">Pilih Layanan</option>
-                @foreach ($masterServices as $id => $nama)
-                  <option value="{{ $id }}">{{ $nama }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newServicePrice" readonly placeholder="Harga"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addService"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Jumlah</th>
-                  <th>Nama Layanan</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                @forelse ($this->registration->layananPendaftaran ?? [] as $item)
-                  <tr>
-                    <td>{{ $item->qty }}</td>
-                    <td>{{ $item->layanan->nama_layanan }}</td>
-                    <td>Rp {{ number_format($item->layanan->tarif_layanan, 0, ',', '.') }}</td>
-                    <td>Rp {{ number_format($item->layanan->tarif_layanan * $item->qty, 0, ',', '.') }}</td>
-                  </tr>
-                @empty
-                  <tr>
-                    <td class="text-muted py-4 text-center" colspan="4">
-                      <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                      Tidak Ada Data
-                    </td>
-                  </tr>
-                @endforelse
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Medicine Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-capsule me-2"></i>Rincian Obat
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:change="updateMedicineField" wire:model="newMedicineQty" placeholder="Jumlah" min="1"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-4" wire:ignore>
-              <select class="form-select select2-obat" wire:model="newMedicineId">
-                <option value="">Pilih Obat</option>
-                @foreach ($masterMedicines as $id => $nama)
-                  <option value="{{ $id }}">{{ $nama }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newMedicinePrice" readonly placeholder="Harga"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addMedicine"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Jumlah</th>
-                  <th>Nama Obat</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                @forelse ($this->registration->obatPendaftaran ?? [] as $item)
-                  <tr>
-                    <td>{{ $item->qty }}</td>
-                    <td>{{ $item->obat->nama }}</td>
-                    <td>Rp {{ number_format($item->obat->harga, 0, ',', '.') }}</td>
-                    <td>Rp {{ number_format($item->obat->harga * $item->qty, 0, ',', '.') }}</td>
-                  </tr>
-                @empty
-                  <tr>
-                    <td class="text-muted py-4 text-center" colspan="4">
-                      <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                      Tidak Ada Data
-                    </td>
-                  </tr>
-                @endforelse
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Laboratory Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-flask me-2"></i>Rincian Laboratorium
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-3">
-              <input class="form-control" type="date" wire:model="newLabDate"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newLabType" placeholder="Jenis Laboratorium"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newLabPrice" placeholder="Harga"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addLaboratory"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Tanggal</th>
-                  <th>Jenis Laboratorium</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-muted py-4 text-center" colspan="4">
-                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    Tidak Ada Data
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Radiology Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-x-ray me-2"></i>Rincian Radiologi
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-3">
-              <input class="form-control" type="date" wire:model="newRadDate"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newRadType" placeholder="Jenis Radiologi"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newRadPrice" placeholder="Harga"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addRadiology"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Tanggal</th>
-                  <th>Jenis Radiologi</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-muted py-4 text-center" colspan="4">
-                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    Tidak Ada Data
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Additional Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-plus-circle me-2"></i>Rincian Tambahan
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newAdditionalQty" placeholder="Jumlah"
-                min="1" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newAdditionalCode" placeholder="Kode Tambahan"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newAdditionalPrice" placeholder="Harga"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addAdditionalItem"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Jumlah</th>
-                  <th>Nama Tambahan</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-muted py-4 text-center" colspan="4">
-                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    Tidak Ada Data
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Notes -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-chat-left-text me-2"></i>Keterangan
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <textarea class="form-control bg-light border-0" wire:model="notes" rows="4"
-            placeholder="Tambahkan keterangan atau catatan tambahan..." {{ !$this->registration ? 'disabled' : '' }}></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column - Payment Summary -->
-    <div class="col-xl-4">
-      <!-- Billing Summary -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-calculator me-2"></i>Rincian Tagihan
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted fw-medium">Subtotal</label>
-            <div class="col-sm-7">
-              <input class="form-control bg-light border-0" type="text" value="Rp {{ number_format($this->subTotal, 0, ',', '.') }}" readonly>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted fw-medium">Diskon (%)</label>
-            <div class="col-sm-7">
-              <input class="form-control" type="number" wire:model="discount" min="0" max="100"
-                placeholder="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-5 col-form-label text-muted fw-medium">Pajak (%)</label>
-            <div class="col-sm-7">
-              <input class="form-control" type="number" wire:change="calculateSubTotal" wire:model="tax" min="0" max="100"
-                placeholder="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Payment Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-credit-card me-2"></i>Rincian Pembayaran
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-4">
-              <select class="form-select" wire:model="paymentMethod" {{ !$this->registration ? 'disabled' : '' }}>
-                <option value="tunai">Tunai</option>
-                <option value="transfer">Transfer</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <input class="form-control" type="number" wire:model="paymentAmount" placeholder="Jumlah"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addPayment"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Cara Bayar</th>
-                  <th>Jumlah</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{-- @forelse($paymentTransactions as $index => $transaction)
-                      <tr>
-                        <td>{{ ucfirst($transaction['method']) }}</td>
-                        <td>Rp {{ number_format($transaction['amount'], 0, ',', '.') }}</td>
-                      </tr>
-                    @empty --}}
-                <tr>
-                  <td class="text-muted py-4 text-center" colspan="2">
-                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    Tidak Ada Data
-                  </td>
-                </tr>
-                {{-- @endforelse --}}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Total -->
-      <div class="card bg-light mb-4">
-        <div class="card-body">
-          <h5 class="text-primary">TOTAL TAGIHAN</h5>
-          <div class="row mb-2">
-            <label class="col-sm-5 col-form-label">Total Bayar</label>
-            <div class="col-sm-7">
-              {{-- <input class="form-control-plaintext" type="text"
-                    value="{{ number_format($total, 0, ',', '.') }}" readonly> --}}
-            </div>
-          </div>
-          <div class="row mb-2">
-            <label class="col-sm-5 col-form-label">Kembalian</label>
-            <div class="col-sm-7">
-              {{-- <input class="form-control-plaintext" type="text"
-                    value="{{ number_format($change, 0, ',', '.') }}" readonly> --}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer Buttons -->
-  <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4 gap-3">
-    <button class="btn btn-outline-primary px-4 py-2" {{ !$this->registration ? 'disabled' : '' }}>
-      <i class="bi bi-printer me-2"></i>
-      Cetak
-    </button>
-    <div>
-      <button class="btn btn-primary px-4 py-2" wire:click="processPayment"
-        {{ !$this->registration ? 'disabled' : '' }}>
-        <i class="bi bi-credit-card me-2"></i>
-        Proses Pembayaran
-      </button>
-    </div>
-  </div>
 </div>
 
-
 @if (session()->has('message'))
-  <div class="alert alert-success mt-3">
+<div class="alert alert-success mt-3">
     {{ session('message') }}
-  </div>
+</div>
 @endif
-
-<script>
-  document.addEventListener('livewire:navigated', function() {
-    initializeSelect2();
-  });
-
-  document.addEventListener('livewire:updated', function() {
-    initializeSelect2();
-    updateSelect2DisabledState();
-  });
-
-  document.addEventListener('livewire:init', () => {
-    $('.select2-layanan').on('select2:select', function(e) {
-      Livewire.dispatch('layanan-changed');
-    });
-
-    $('.select2-obat').on('select2:select', function(e) {
-      Livewire.dispatch('obat-changed');
-    });
-  });
-
-  function initializeSelect2() {
-    // Initialize Select2 for layanan dropdown
-    $('.select2-layanan').select2({
-      placeholder: 'Pilih Layanan',
-      allowClear: true,
-      width: '100%'
-    }).on('change', function(e) {
-      @this.set('newServiceId', $(this).val());
-    });
-
-    // Initialize Select2 for obat dropdown
-    $('.select2-obat').select2({
-      placeholder: 'Pilih Obat',
-      allowClear: true,
-      width: '100%'
-    }).on('change', function(e) {
-      @this.set('newMedicineId', $(this).val());
-    });
-  }
-</script>

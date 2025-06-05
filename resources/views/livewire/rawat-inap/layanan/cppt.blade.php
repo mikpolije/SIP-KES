@@ -166,10 +166,11 @@ new class extends Component {
                             <td>{{ $dokter->nama ?? '-' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('main.rawat-inap.layanan.cppt-print', ['id' => $cppt->id]) }}"
-                                       class="btn btn-sm btn-primary rounded-circle me-1" target="_blank">
+                                    <button
+                                        class="btn btn-sm btn-primary rounded-circle me-1"
+                                        >
                                         <i class="bi bi-file-text"></i>
-                                    </a>
+                                    </button>
                                     <button class="btn btn-sm btn-primary rounded-circle" wire:click="confirmDuplicate('{{ $cppt->id }}')">
                                         <i class="bi bi-arrow-repeat"></i>
                                     </button>

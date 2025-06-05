@@ -1,17 +1,13 @@
 <?php
 
 use Livewire\Volt\Component;
-use Livewire\WithFileUploads;
 use App\Models\Diagnosa;
 use App\Models\Tindakan;
 use App\Models\Obat;
 use App\Models\CPPT;
-use App\Models\ObatPendaftaran;
 use App\Models\Pendaftaran;
 
 new class extends Component {
-    use WithFileUploads;
-
     protected $listeners = ['open-cppt-modal' => 'openModal'];
 
     public $pendaftaranId;
@@ -24,24 +20,15 @@ new class extends Component {
             'a' => '',
             'p' => ''
         ],
-        'id_icd10' => [],
-        'id_icd9' => [],
-        'id_obat' => [],
+        'id_icd10' => null,  // Changed from diagnosaCode
+        'id_icd9' => null,   // Changed from tindakanCode
+        'id_obat' => null,
         'pemeriksaanPenunjang' => '',
     ];
-
-    // File upload properties
-    public $filePenunjang;
-    public $uploadedFileName = '';
 
     public $diagnosaList = [];
     public $tindakanList = [];
     public $obatList = [];
-
-    // Selected items for display
-    public $selectedDiagnosa = [];
-    public $selectedTindakan = [];
-    public $selectedObat = [];
 
     public $diagnosaSearch = '';
     public $tindakanSearch = '';
@@ -50,15 +37,15 @@ new class extends Component {
     public $loadingDiagnosa = false;
     public $loadingTindakan = false;
     public $loadingObat = false;
-    public $kelas = '';
+    public $kelas= '';
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->currentTime = now()->format('H:i:s');
 
-        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
-        if ($pendaftaran && $pendaftaran->poli_rawat_inap) {
-            $this->kelas = $pendaftaran->poli_rawat_inap->kelas;
+        $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first()->poli_rawat_inap->kelas;
+        if($pendaftaran){
+            $this->kelas = $pendaftaran;
         }
 
         $this->loadDiagnosaOptions();
@@ -77,9 +64,7 @@ new class extends Component {
             ->map(function($item) {
                 return [
                     'value' => $item->id,
-                    'label' => $item->display . ' (' . $item->code . ')',
-                    'display' => $item->display,
-                    'code' => $item->code
+                    'label' => $item->display . ' (' . $item->code . ')'
                 ];
             })
             ->toArray();
@@ -97,9 +82,7 @@ new class extends Component {
             ->map(function($item) {
                 return [
                     'value' => $item->id,
-                    'label' => $item->display . ' (' . $item->code . ')',
-                    'display' => $item->display,
-                    'code' => $item->code
+                    'label' => $item->display . ' (' . $item->code . ')'
                 ];
             })
             ->toArray();
@@ -116,113 +99,11 @@ new class extends Component {
             ->map(function($item) {
                 return [
                     'value' => $item->id,
-                    'label' => $item->nama,
-                    'nama' => $item->nama
+                    'label' => $item->nama
                 ];
             })
             ->toArray();
         $this->loadingObat = false;
-    }
-
-    public function addDiagnosa($diagnosaId) {
-        if (!in_array($diagnosaId, $this->formData['id_icd10'])) {
-            $this->formData['id_icd10'][] = $diagnosaId;
-
-            // Add to selected items for display
-            $diagnosa = collect($this->diagnosaList)->firstWhere('value', $diagnosaId);
-            if ($diagnosa) {
-                $this->selectedDiagnosa[] = $diagnosa;
-            }
-        }
-        $this->diagnosaSearch = '';
-        $this->loadDiagnosaOptions();
-    }
-
-    public function removeDiagnosa($diagnosaId) {
-        $this->formData['id_icd10'] = array_values(array_filter($this->formData['id_icd10'], function($id) use ($diagnosaId) {
-            return $id != $diagnosaId;
-        }));
-
-        $this->selectedDiagnosa = array_values(array_filter($this->selectedDiagnosa, function($item) use ($diagnosaId) {
-            return $item['value'] != $diagnosaId;
-        }));
-    }
-
-    public function addTindakan($tindakanId) {
-        if (!in_array($tindakanId, $this->formData['id_icd9'])) {
-            $this->formData['id_icd9'][] = $tindakanId;
-
-            // Add to selected items for display
-            $tindakan = collect($this->tindakanList)->firstWhere('value', $tindakanId);
-            if ($tindakan) {
-                $this->selectedTindakan[] = $tindakan;
-            }
-        }
-        $this->tindakanSearch = '';
-        $this->loadTindakanOptions();
-    }
-
-    public function removeTindakan($tindakanId) {
-        $this->formData['id_icd9'] = array_values(array_filter($this->formData['id_icd9'], function($id) use ($tindakanId) {
-            return $id != $tindakanId;
-        }));
-
-        $this->selectedTindakan = array_values(array_filter($this->selectedTindakan, function($item) use ($tindakanId) {
-            return $item['value'] != $tindakanId;
-        }));
-    }
-
-    public function addObat($obatId) {
-        // Check if obat already exists
-        $exists = collect($this->formData['id_obat'])->firstWhere('id', $obatId);
-
-        if (!$exists) {
-            $obat = collect($this->obatList)->firstWhere('value', $obatId);
-            if ($obat) {
-                $this->formData['id_obat'][] = [
-                    'id' => $obatId,
-                    'qty' => 1, // Default quantity
-                    'nama' => $obat['nama']
-                ];
-
-                // Also add to selected items for display
-                $this->selectedObat[] = [
-                    'value' => $obatId,
-                    'nama' => $obat['nama'],
-                    'qty' => 1
-                ];
-            }
-        }
-        $this->obatSearch = '';
-        $this->loadObatOptions();
-    }
-
-    public function removeObat($obatId) {
-        $this->formData['id_obat'] = array_values(array_filter($this->formData['id_obat'], function($item) use ($obatId) {
-            return $item['id'] != $obatId;
-        }));
-
-        $this->selectedObat = array_values(array_filter($this->selectedObat, function($item) use ($obatId) {
-            return $item['value'] != $obatId;
-        }));
-    }
-
-    public function updateObatQty($obatId, $qty) {
-        // Update in formData
-        foreach ($this->formData['id_obat'] as &$obat) {
-            if ($obat['id'] == $obatId) {
-                $obat['qty'] = $qty;
-                break;
-            }
-        }
-
-        // Update in selectedObat
-        foreach ($this->selectedObat as &$obat) {
-            if ($obat['value'] == $obatId) {
-                $obat['qty'] = $qty;
-                break;
-            }
-        }
     }
 
     public function updatedDiagnosaSearch() {
@@ -235,23 +116,6 @@ new class extends Component {
 
     public function updatedObatSearch() {
         $this->loadObatOptions();
-    }
-
-    public function updatedFilePenunjang()
-    {
-        $this->validate([
-            'filePenunjang' => 'image|max:2048', // 2MB Max
-        ]);
-
-        if ($this->filePenunjang) {
-            $this->uploadedFileName = $this->filePenunjang->getClientOriginalName();
-        }
-    }
-
-    public function removeFile()
-    {
-        $this->filePenunjang = null;
-        $this->uploadedFileName = '';
     }
 
     public function openModal() {
@@ -271,23 +135,14 @@ new class extends Component {
                 'a' => '',
                 'p' => ''
             ],
-            'id_icd10' => [],
-            'id_icd9' => [],
-            'id_obat' => [],
+            'id_icd10' => null,
+            'id_icd9' => null,
+            'id_obat' => null,
             'pemeriksaanPenunjang' => '',
         ];
-
-        $this->selectedDiagnosa = [];
-        $this->selectedTindakan = [];
-        $this->selectedObat = [];
-
         $this->diagnosaSearch = '';
         $this->tindakanSearch = '';
         $this->obatSearch = '';
-
-        // Reset file upload
-        $this->filePenunjang = null;
-        $this->uploadedFileName = '';
 
         $this->loadDiagnosaOptions();
         $this->loadTindakanOptions();
@@ -295,56 +150,32 @@ new class extends Component {
     }
 
     public function saveCppt() {
-        try {
-            $this->validate([
-                'formData.soap.s' => 'required',
-                'formData.soap.o' => 'required',
-                'formData.soap.a' => 'required',
-                'formData.soap.p' => 'required',
-                'formData.id_icd10' => 'nullable|array',
-                'formData.id_icd10.*' => 'exists:icd10,id',
-                'formData.id_icd9' => 'nullable|array',
-                'formData.id_icd9.*' => 'exists:icd9,id',
-                'formData.id_obat' => 'nullable|array',
-                'formData.id_obat.*.id' => 'exists:obat,id',
-                'formData.id_obat.*.qty' => 'required|numeric|min:1',
-                'filePenunjang' => 'nullable|image|max:2048',
-            ]);
+        $this->validate([
+            'formData.soap.s' => 'required',
+            'formData.soap.o' => 'required',
+            'formData.soap.a' => 'required',
+            'formData.soap.p' => 'required',
+            'formData.id_icd10' => 'nullable|exists:icd10,id',
+            'formData.id_icd9' => 'nullable|exists:icd9,id',
+            'formData.id_obat' => 'nullable|exists:obat,id',
+        ]);
 
-            $filePenunjangPath = null;
-            if ($this->filePenunjang) {
-                $filePenunjangPath = $this->filePenunjang->store('cppt-penunjang', 'public');
-            }
+        CPPT::create([
+            'id_pendaftaran' => $this->pendaftaranId,
+            's' => $this->formData['soap']['s'],
+            'o' => $this->formData['soap']['o'],
+            'a' => $this->formData['soap']['a'],
+            'p' => $this->formData['soap']['p'],
+            'id_icd10' => $this->formData['id_icd10'],
+            'id_icd9' => $this->formData['id_icd9'],
+            'id_obat' => $this->formData['id_obat'],
+            'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
+            'kelas' => $this->kelas,
+        ]);
 
-            CPPT::create([
-                'id_pendaftaran' => $this->pendaftaranId,
-                's' => $this->formData['soap']['s'],
-                'o' => $this->formData['soap']['o'],
-                'a' => $this->formData['soap']['a'],
-                'p' => $this->formData['soap']['p'],
-                'id_icd10' => json_encode($this->formData['id_icd10']),
-                'id_icd9' => json_encode($this->formData['id_icd9']),
-                'id_obat' => json_encode($this->formData['id_obat']),
-                'pemeriksaan' => $this->formData['pemeriksaanPenunjang'],
-                'file_penunjang' => $filePenunjangPath,
-                'kelas' => $this->kelas,
-            ]);
-
-            foreach ($this->formData['id_obat'] as $item) {
-                ObatPendaftaran::create([
-                    'id_pendaftaran' => $this->pendaftaranId,
-                    'id_obat' => $item['id'],
-                    'qty' => $item['qty'],
-                ]);
-            }
-
-            flash()->success('CPPT berhasil ditambahkan!');
-            $this->closeModal();
-            $this->dispatch('cppt-added');
-        } catch(\Exception $e) {
-            flash()->error('Gagal menyimpan CPPT: ' . $e->getMessage());
-            return;
-        }
+        flash()->success('CPPT berhasil ditambahkan!');
+        $this->closeModal();
+        $this->dispatch('cppt-added');
     }
 } ?>
 
@@ -404,8 +235,6 @@ new class extends Component {
                             <!-- Diagnosis Section -->
                             <div class="mb-4">
                                 <h5>Diagnosa Pasien (ICD-10)</h5>
-
-                                <!-- Search Input -->
                                 <div class="input-group mb-2">
                                     <input
                                         type="text"
@@ -421,47 +250,18 @@ new class extends Component {
                                         @endif
                                     </span>
                                 </div>
-
-                                <!-- Selected Diagnosa Tags -->
-                                @if(count($selectedDiagnosa) > 0)
-                                <div class="mb-2">
-                                    <small class="text-muted">Diagnosa terpilih:</small>
-                                    <div class="mt-1">
-                                        @foreach($selectedDiagnosa as $diagnosa)
-                                        <span class="badge bg-primary me-1 mb-1 d-inline-flex align-items-center">
-                                            {{ $diagnosa['display'] }} ({{ $diagnosa['code'] }})
-                                            <button type="button" class="btn-close btn-close-white ms-2"
-                                                    style="font-size: 0.7em;"
-                                                    wire:click="removeDiagnosa({{ $diagnosa['value'] }})"></button>
-                                        </span>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @endif
-
-                                <!-- Dropdown Options -->
-                                @if($diagnosaSearch && count($diagnosaList) > 0)
-                                <div class="border rounded bg-white" style="max-height: 200px; overflow-y: auto;">
+                                <select class="form-select" wire:model="formData.id_icd10">
+                                    <option value="">Pilih Diagnosa</option>
                                     @foreach($diagnosaList as $diagnosa)
-                                        @if(!in_array($diagnosa['value'], $formData['id_icd10']))
-                                        <div class="p-2 border-bottom cursor-pointer hover-bg-light"
-                                             wire:click="addDiagnosa({{ $diagnosa['value'] }})"
-                                             style="cursor: pointer;">
-                                            <small class="text-primary">{{ $diagnosa['code'] }}</small><br>
-                                            {{ $diagnosa['display'] }}
-                                        </div>
-                                        @endif
+                                    <option value="{{ $diagnosa['value'] }}">{{ $diagnosa['label'] }}</option>
                                     @endforeach
-                                </div>
-                                @endif
-                                @error('formData.id_icd10') <div class="text-danger small">{{ $message }}</div> @enderror
+                                </select>
+                                @error('formData.id_icd10') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Procedure Section -->
                             <div class="mb-4">
                                 <h5>Tindakan (ICD-9)</h5>
-
-                                <!-- Search Input -->
                                 <div class="input-group mb-2">
                                     <input
                                         type="text"
@@ -477,47 +277,18 @@ new class extends Component {
                                         @endif
                                     </span>
                                 </div>
-
-                                <!-- Selected Tindakan Tags -->
-                                @if(count($selectedTindakan) > 0)
-                                <div class="mb-2">
-                                    <small class="text-muted">Tindakan terpilih:</small>
-                                    <div class="mt-1">
-                                        @foreach($selectedTindakan as $tindakan)
-                                        <span class="badge bg-success me-1 mb-1 d-inline-flex align-items-center">
-                                            {{ $tindakan['display'] }} ({{ $tindakan['code'] }})
-                                            <button type="button" class="btn-close btn-close-white ms-2"
-                                                    style="font-size: 0.7em;"
-                                                    wire:click="removeTindakan({{ $tindakan['value'] }})"></button>
-                                        </span>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @endif
-
-                                <!-- Dropdown Options -->
-                                @if($tindakanSearch && count($tindakanList) > 0)
-                                <div class="border rounded bg-white" style="max-height: 200px; overflow-y: auto;">
+                                <select class="form-select" wire:model="formData.id_icd9">
+                                    <option value="">Pilih Tindakan</option>
                                     @foreach($tindakanList as $tindakan)
-                                        @if(!in_array($tindakan['value'], $formData['id_icd9']))
-                                        <div class="p-2 border-bottom cursor-pointer hover-bg-light"
-                                             wire:click="addTindakan({{ $tindakan['value'] }})"
-                                             style="cursor: pointer;">
-                                            <small class="text-success">{{ $tindakan['code'] }}</small><br>
-                                            {{ $tindakan['display'] }}
-                                        </div>
-                                        @endif
+                                    <option value="{{ $tindakan['value'] }}">{{ $tindakan['label'] }}</option>
                                     @endforeach
-                                </div>
-                                @endif
-                                @error('formData.id_icd9') <div class="text-danger small">{{ $message }}</div> @enderror
+                                </select>
+                                @error('formData.id_icd9') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Medicine Section -->
                             <div class="mb-4">
                                 <h5>Obat</h5>
-
-                                <!-- Search Input -->
                                 <div class="input-group mb-2">
                                     <input
                                         type="text"
@@ -533,45 +304,13 @@ new class extends Component {
                                         @endif
                                     </span>
                                 </div>
-
-                                <!-- Selected Obat Tags -->
-                                @if(count($selectedObat) > 0)
-                                <div class="mb-2">
-                                    <small class="text-muted">Obat terpilih:</small>
-                                    <div class="mt-1">
-                                        @foreach($selectedObat as $obat)
-                                        <div class="d-inline-flex align-items-center bg-light rounded p-2 me-2 mb-2">
-                                            <span class="me-2">{{ $obat['nama'] }}</span>
-                                            <input type="number"
-                                                   min="1"
-                                                   value="{{ $obat['qty'] }}"
-                                                   wire:change="updateObatQty({{ $obat['value'] }}, $event.target.value)"
-                                                   class="form-control form-control-sm"
-                                                   style="width: 60px;">
-                                            <button type="button" class="btn-close ms-2"
-                                                    style="font-size: 0.7em;"
-                                                    wire:click="removeObat({{ $obat['value'] }})"></button>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @endif
-
-                                <!-- Dropdown Options -->
-                                @if($obatSearch && count($obatList) > 0)
-                                <div class="border rounded bg-white" style="max-height: 200px; overflow-y: auto;">
+                                <select class="form-select" wire:model="formData.id_obat">
+                                    <option value="">Pilih Obat</option>
                                     @foreach($obatList as $obat)
-                                        @if(!in_array($obat['value'], $formData['id_obat']))
-                                        <div class="p-2 border-bottom cursor-pointer hover-bg-light"
-                                             wire:click="addObat({{ $obat['value'] }})"
-                                             style="cursor: pointer;">
-                                            {{ $obat['nama'] }}
-                                        </div>
-                                        @endif
+                                    <option value="{{ $obat['value'] }}">{{ $obat['label'] }}</option>
                                     @endforeach
-                                </div>
-                                @endif
-                                @error('formData.id_obat') <div class="text-danger small">{{ $message }}</div> @enderror
+                                </select>
+                                @error('formData.id_obat') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
                             <div class="row g-3">
@@ -582,40 +321,6 @@ new class extends Component {
                                         <option value="Laboratorium">Laboratorium</option>
                                         <option value="Radiologi">Radiologi</option>
                                     </select>
-
-                                    <!-- File Upload Section -->
-                                    <div class="mt-3">
-                                        <label class="form-label">Upload File Penunjang (Gambar)</label>
-                                        <input type="file"
-                                               class="form-control @error('filePenunjang') is-invalid @enderror"
-                                               wire:model="filePenunjang"
-                                               accept="image/*">
-
-                                        @error('filePenunjang')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-
-                                        <!-- Loading indicator -->
-                                        <div wire:loading wire:target="filePenunjang" class="text-muted small mt-1">
-                                            <i class="fas fa-spinner fa-spin"></i> Uploading...
-                                        </div>
-
-                                        <!-- Show uploaded file name -->
-                                        @if($uploadedFileName)
-                                            <div class="mt-2 p-2 bg-light rounded">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-success small">
-                                                        <i class="fas fa-check-circle"></i> {{ $uploadedFileName }}
-                                                    </span>
-                                                    <button type="button"
-                                                            class="btn btn-sm btn-outline-danger"
-                                                            wire:click="removeFile">
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
                                 </div>
 
                                 <div class="col-md-6">
@@ -623,15 +328,15 @@ new class extends Component {
                                     <div class="border rounded p-2">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" wire:model.live="kelas" value="1" id="kelas1">
-                                            <label class="form-check-label" for="kelas1">Kelas 1</label>
+                                            <label class="form-check-label" for="1">Kelas 1</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" wire:model.live="kelas" value="2" id="kelas2">
-                                            <label class="form-check-label" for="kelas2">Kelas 2</label>
+                                            <label class="form-check-label" for="2">Kelas 2</label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" wire:model.live="kelas" value="3" id="kelas3">
-                                            <label class="form-check-label" for="kelas3">Kelas 3</label>
+                                            <label class="form-check-label" for="3">Kelas 3</label>
                                         </div>
                                     </div>
                                     @error('kelas') <div class="text-danger">{{ $message }}</div> @enderror
@@ -647,24 +352,5 @@ new class extends Component {
             </div>
         </div>
     </div>
-
-    <style>
-        .hover-bg-light:hover {
-            background-color: #f8f9fa !important;
-        }
-        .cursor-pointer {
-            cursor: pointer;
-        }
-        .obat-item {
-            transition: all 0.2s ease;
-        }
-        .obat-item:hover {
-            background-color: #f0f0f0;
-        }
-        .qty-input {
-            width: 60px;
-            text-align: center;
-        }
-    </style>
     @endif
 </div>
