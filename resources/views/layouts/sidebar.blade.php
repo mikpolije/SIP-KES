@@ -49,7 +49,7 @@
         <!-- Dashboard -->
         <!-- ---------------------------------- -->
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/" aria-expanded="false">
+            <a class="sidebar-link {{ request()->is('/main/index') ? 'active' : '' }}" href="/" aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-speedometer2" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -402,7 +402,7 @@
 
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow
-        {{ request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'active' : '' }}"
+        {{ request()->is('user') || request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'active' : '' }}"
                 href="javascript:void(0)" aria-expanded="false">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -413,6 +413,7 @@
                 </span>
                 <span class="hide-menu">Master Data</span>
             </a>
+
             <ul class="first-level {{ request()->is('user') || request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'in' : '' }} collapse"
                 aria-expanded="false">
                 <li class="sidebar-item">
