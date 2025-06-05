@@ -54,15 +54,15 @@ new class extends Component {
             if ($pendaftaran) {
                 $this->noRM = $pendaftaran->data_pasien->no_rm;
                 $this->nama = $pendaftaran->data_pasien->nama_lengkap;
-                $this->tanggalLahir = $pendaftaran->data_pasien->tanggal_lahir;
+                $this->tanggalLahir = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin;
                 $this->namaPasien = $pendaftaran->data_pasien->nama_lengkap;
-                $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir;
-                $this->alamatPasien = $pendaftaran->data_pasien->alamat_lengkap;
+                $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir_pasien;
+                $this->alamatPasien = $pendaftaran->data_pasien->alamat_pasien;
 
                 $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_lengkap ?? '';
-                $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir ?? '';
-                $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_lengkap ?? '';
+                $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir_pasien ?? '';
+                $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_pasien ?? '';
 
                 $this->timestamp = now();
 
@@ -95,7 +95,7 @@ new class extends Component {
         }
     }
 
-    #[On('submit-step2')]
+    #[On('submit-step3')]
     public function submit()
     {
         $this->validate([
@@ -315,7 +315,7 @@ new class extends Component {
 
                 <!-- is_menyatakan / PENOLAKAN TINDAKAN KEDOKTERAN -->
                 <div class="mb-4">
-                    <h5>is_menyatakan / PENOLAKAN TINDAKAN KEDOKTERAN</h5>
+                    <h5>PENOLAKAN TINDAKAN KEDOKTERAN</h5>
                     <div class="mb-3">
                         <p>Yang bertandatangan dibawah ini, saya</p>
                     </div>

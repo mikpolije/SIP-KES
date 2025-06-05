@@ -4,20 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IcdUgd extends Model
+class TransaksiIcdUgd extends Model
 {
-    protected $table = 'icd_ugds';
+    protected $table = 'transaksi_icd_ugd';
 
     protected $fillable = [
-        'pasien_id',
+        'triase_id',
         'icd_id',
         'created_at',
         'updated_at',
     ];
 
-    public function pasien()
+    public function triase()
     {
-        return $this->belongsTo(Pasien::class, 'pasien_id', 'id');
+        return $this->belongsTo(Triase::class, 'triase_id', 'id');
     }
 
     public function icd()

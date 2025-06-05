@@ -275,7 +275,7 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') ||  request()->is('main/persuratan/pulang-paksa') || request()->is('main/persuratan/sakit') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') || request()->is('main/persuratan/pulang-paksa') || request()->is('surat-keterangan-sakit*') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
                 aria-expanded="true">
 
                 <li class="sidebar-item">
@@ -309,8 +309,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/persuratan/sakit') ? 'active' : '' }}"
-                        href="/main/persuratan/sakit" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('surat-keterangan-sakit*') ? 'active' : '' }}"
+                        href="{{ route('surat.sakit') }}" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
@@ -324,7 +324,7 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Surat Control</span>
+                        <span class="hide-menu">Surat Kontrol</span>
                     </a>
                 </li>
 
@@ -343,7 +343,7 @@
 
         <li class="sidebar-item">
             <a class="sidebar-link {{ request()->is('riwayat-medis*') ? 'active' : '' }}"
-                href="{{ route('riwayat.medis') }}" aria-expanded="false">
+                href="{{ route('riwayat-medis.index') }}" aria-expanded="false">
                 <span>
                     <svg class="bi bi-book" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -355,8 +355,8 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
-                aria-expanded="false">
+            <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'laporan*') ? 'active' : '' }}"
+                href="javascript:void(0)" aria-expanded="{{ request()->is('laporan*') ? 'true' : 'false' }}">
                 <span class="d-flex">
                     <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -368,14 +368,15 @@
                 </span>
                 <span class="hide-menu">Laporan</span>
             </a>
-            <ul class="first-level {{ request()->is('') ? 'in' : '' }} collapse" aria-expanded="false">
+            <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'laporan*') ? 'show' : '' }}"
+                aria-expanded="{{ request()->is('laporan*') ? 'true' : 'false' }}">
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('laporan*') ? 'active' : '' }}"
+                        href="{{ route('poliumum.laporan') }}">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">10 Besar Penyakit</span>
+                        <span class="hide-menu">Poli Umum</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -398,6 +399,7 @@
                 </li>
             </ul>
         </li>
+
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow
         {{ request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'active' : '' }}"

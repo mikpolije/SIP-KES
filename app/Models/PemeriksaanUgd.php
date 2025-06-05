@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DetailKondisi extends Model
+class PemeriksaanUgd extends Model
 {
-    protected $table = 'detail_kondisis';
+    protected $table = 'pemeriksaan_ugd';
 
     protected $fillable = [
-        'pasien_id',
+        'triase_id',
         'keluhan',
         'sistole',
         'diastole',
@@ -58,8 +58,8 @@ class DetailKondisi extends Model
         'updated_at',
     ];
 
-    public function pasien()
+    public function triase ()
     {
-        return $this->belongsTo(Pasien::class, 'pasien_id', 'pasien');
+        return $this->belongsTo(Triase::class, 'triase_id', 'triase');
     }
 }
