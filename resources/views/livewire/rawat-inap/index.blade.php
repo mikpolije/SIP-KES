@@ -72,7 +72,7 @@ new class extends Component {
 
     public function getFilteredPatientsProperty()
     {
-        return Pendaftaran::where('layanan', 'Rawat Inap')
+        return Pendaftaran::where('id_poli', '4')
             ->when($this->search, function ($query) {
                 $query->whereHas('data_pasien', function ($subquery) {
                     $subquery->where('nama_lengkap', 'like', '%' . $this->search . '%')
