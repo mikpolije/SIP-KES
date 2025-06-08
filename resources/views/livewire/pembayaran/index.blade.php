@@ -160,7 +160,7 @@ new class extends Component {
 
   <!-- Patient Information -->
   <div class="card mb-4 border-0 shadow-sm">
-    <div class="card-header bg-light border-0 py-3">
+    <div class="card-header">
       <h6 class="text-primary fw-semibold mb-0">
         <i class="bi bi-person-fill me-2"></i>Informasi Pasien
       </h6>
@@ -223,7 +223,7 @@ new class extends Component {
     <div class="col-xl-8">
       <!-- Service Details -->
       <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
+        <div class="card-header">
           <h6 class="text-primary fw-semibold mb-0">
             <i class="bi bi-clipboard-check me-2"></i>Rincian Layanan
           </h6>
@@ -287,7 +287,7 @@ new class extends Component {
 
       <!-- Medicine Details -->
       <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
+        <div class="card-header">
           <h6 class="text-primary fw-semibold mb-0">
             <i class="bi bi-capsule me-2"></i>Rincian Obat
           </h6>
@@ -349,111 +349,10 @@ new class extends Component {
         </div>
       </div>
 
-      <!-- Laboratory Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-flask me-2"></i>Rincian Laboratorium
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-3">
-              <input class="form-control" type="date" wire:model="newLabDate"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newLabType" placeholder="Jenis Laboratorium"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newLabPrice" placeholder="Harga"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addLaboratory"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Tanggal</th>
-                  <th>Jenis Laboratorium</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-muted py-4 text-center" colspan="4">
-                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    Tidak Ada Data
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Radiology Details -->
-      <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
-          <h6 class="text-primary fw-semibold mb-0">
-            <i class="bi bi-x-ray me-2"></i>Rincian Radiologi
-          </h6>
-        </div>
-        <div class="card-body p-4">
-          <div class="row g-2 mb-3">
-            <div class="col-md-3">
-              <input class="form-control" type="date" wire:model="newRadDate"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-4">
-              <input class="form-control" type="text" wire:model="newRadType" placeholder="Jenis Radiologi"
-                {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-3">
-              <input class="form-control" type="number" wire:model="newRadPrice" placeholder="Harga"
-                min="0" {{ !$this->registration ? 'disabled' : '' }}>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary w-100" wire:click="addRadiology"
-                {{ !$this->registration ? 'disabled' : '' }}>
-                <i class="bi bi-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table-hover table align-middle">
-              <thead>
-                <tr>
-                  <th>Tanggal</th>
-                  <th>Jenis Radiologi</th>
-                  <th>Harga</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-muted py-4 text-center" colspan="4">
-                    <i class="bi bi-inbox display-6 d-block mb-2"></i>
-                    Tidak Ada Data
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
 
       <!-- Additional Details -->
       <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
+        <div class="card-header">
           <h6 class="text-primary fw-semibold mb-0">
             <i class="bi bi-plus-circle me-2"></i>Rincian Tambahan
           </h6>
@@ -504,7 +403,7 @@ new class extends Component {
 
       <!-- Notes -->
       <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
+        <div class="card-header">
           <h6 class="text-primary fw-semibold mb-0">
             <i class="bi bi-chat-left-text me-2"></i>Keterangan
           </h6>
@@ -520,7 +419,7 @@ new class extends Component {
     <div class="col-xl-4">
       <!-- Billing Summary -->
       <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
+        <div class="card-header">
           <h6 class="text-primary fw-semibold mb-0">
             <i class="bi bi-calculator me-2"></i>Rincian Tagihan
           </h6>
@@ -551,7 +450,7 @@ new class extends Component {
 
       <!-- Payment Details -->
       <div class="card mb-4 border-0 shadow-sm">
-        <div class="card-header bg-light border-0 py-3">
+        <div class="card-header">
           <h6 class="text-primary fw-semibold mb-0">
             <i class="bi bi-credit-card me-2"></i>Rincian Pembayaran
           </h6>
