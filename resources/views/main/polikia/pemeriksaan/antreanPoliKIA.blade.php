@@ -86,7 +86,6 @@
                 <tbody>
                     @foreach (range(1, 10) as $i)
                         <tr>
-                           
                             <td>{{ $i }}</td>
                             <td>00100{{ $i }}</td>
                             <td>{{ ['Arga Pratama', 'Keisha Anindya', 'Dimas Fadlan', 'Nayla Putri', 'Rizqy Maulana', 'Alika Salsabila', 'Revan Aditya', 'Tania Ramadhani', 'Ilham Setiawan', 'Vania Lestari'][$i - 1] }}
@@ -106,10 +105,13 @@
                             <td>
                                 <button class="btn btn-sm btn-primary">Pilih</button>
                             </td>
-                             <td>
-                                <button class="btn btn-sm btn-primary">Detail</button>
+                            <td>{{ $row[0] }}</td>
+                            <td>{{ $row[1] }}</td>
+                            <td>{{ $row[2] }}</td>
+                            <td>19-05-2025</td>
+                            <td>
+                                <a href="{{ route('poli-kia.detail', ['rm' => $row[0]]) }}" class="btn-detail">Detail</a>
                             </td>
-                            
                         </tr>
                     @endforeach
                 </tbody>

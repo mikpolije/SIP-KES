@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,26 +12,22 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * Nama tabel (pastikan plural: "users")
-     */
-    protected $table = 'users';
-
-    /**
-     * Atribut yang bisa diisi secara massal
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
      */
     protected $fillable = [
         'nama',
-        'username',
-        'nik',
-        'profesi',
-        'no_telepon',
         'email',
         'password',
-        'alamat',
     ];
 
+    protected $table = 'user';
+
     /**
-     * Atribut yang disembunyikan saat serialisasi
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -38,7 +35,9 @@ class User extends Authenticatable
     ];
 
     /**
-     * Atribut yang perlu dikonversi tipe data
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
     protected function casts(): array
     {

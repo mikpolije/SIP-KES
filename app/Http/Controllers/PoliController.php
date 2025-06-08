@@ -2,32 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Poli;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Database\QueryException;
 
 class PoliController extends Controller
 {
     private $title = 'UGD Sipkes | ';
-
     public function index()
     {
         try {
             $data['title'] = $this->title . 'Master Poli';
 
-            $data['list'] = DB::table('poli')
-                ->orderBy('id_poli', 'desc')
+            $data['list'] = Poli::orderBy('id_poli', 'desc')
                 ->get();
 
             return view('master.poli.index', compact('data'));
         } catch (Exception $e) {
             return $e;
         } catch (QueryException $e) {
-            return $e;
+
         }
     }
-
     public function create()
     {
         $data['title'] = $this->title . 'Add Poli';
@@ -41,11 +38,7 @@ class PoliController extends Controller
             'nama_poli' => 'required|string|max:255',
         ]);
 
-        DB::table('poli')->insert([
-            'nama_poli' => $request->nama_poli,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        Poli::create($request->only('nama_poli'));
 
         return redirect()->route('poli.index')->with('success', 'Poli berhasil ditambahkan.');
     }
@@ -56,18 +49,18 @@ class PoliController extends Controller
             'nama_poli' => 'required|string|max:255',
         ]);
 
-        DB::table('poli')->where('id_poli', $id)->update([
-            'nama_poli' => $request->input('nama_poli'),
-            'updated_at' => now(),
-        ]);
+        $poli = Poli::findOrFail($id);
+        $poli->nama_poli = $request->input('nama_poli');
+        $poli->save();
 
         return redirect()->route('poli.index')->with('success', 'Data Poli berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
-        DB::table('poli')->where('id_poli', $id)->delete();
+        $poli = Poli::findOrFail($id);
+        $poli->delete();
 
         return redirect()->route('poli.index')->with('success', 'Poli berhasil dihapus.');
-    }
+    }
 }

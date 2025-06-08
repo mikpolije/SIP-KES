@@ -17,13 +17,13 @@ class AuthController extends Controller
     {
         // Validate input
         $request->validate([
-            'username' => 'required|string',
+            'name' => 'required|string',
             'password' => 'required|string',
         ]);
 
         // Prepare credentials for authentication
         $credentials = [
-            'username' => $request->username,
+            'name' => $request->name,
             'password' => $request->password,
         ];
 

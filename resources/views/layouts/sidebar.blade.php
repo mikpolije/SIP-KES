@@ -148,15 +148,7 @@
                             <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
                                 href="{{ route('antrean.poliumum') }}">
                                 <i class="ti ti-circle"></i>
-                                <span class="hide-menu">Antrean</span>
-                            </a>
-                        </li>
-                        <!-- Antrean Pemereiksaan -->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
-                                href="{{ route('antrean.poliumum') }}">
-                                <i class="ti ti-circle"></i>
-                                <span class="hide-menu">Antrean Pemeriksaan</span>
+                                <span class="hide-menu">Antrian</span>
                             </a>
                         </li>
 
@@ -184,7 +176,7 @@
                     <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('polikia') || request()->is('polikia/*') ? 'active' : '' }}"
                         href="#" data-bs-toggle="collapse"
                         aria-expanded="{{ request()->is('polikia/*') ? 'true' : 'false' }}"
-                        data-bs-target="#submenu-polikia">
+                        data-bs-target="#submenu-poliumum">
                         <div class="d-flex align-items-center">
                             <div class="round-16 d-flex align-items-center justify-content-center">
                                 <i class="ti ti-circle"></i>
@@ -192,31 +184,27 @@
                             <span class="hide-menu ms-4">Poli KIA</span>
                         </div>
                     </a>
-                  <!-- <a class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}"
-                        href="/main/polikia">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu">Poli KIA</span>
-                    </a> -->
                     <ul id="submenu-polikia"
                         class="second-level collapse {{ request()->is('polikia/*') ? 'show' : '' }}"
                         aria-expanded="{{ request()->is('polikia/*') ? 'true' : 'false' }}">
+
+                        <!-- Antrean -->
                         <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('polikia/antreanpolikia') ? 'active' : '' }}"
+                            <a class="sidebar-link ps-5 {{ request()->is('polikia/antrean') ? 'active' : '' }}"
                                 href="{{ route('antrean.polikia') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Antrean</span>
                             </a>
                         </li>
-                        <!--
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('polikia/riwayatpolikia') ? 'active' : '' }}"
-                                href="{{ route('riwayat.polikia') }}">
+
+                        <!-- Riwayat -->
+                      <!--  <li class="sidebar-item">
+                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayat') ? 'active' : '' }}"
+                                href="{{ route('riwayat.poliumum') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Riwayat</span>
                             </a>
-                        </li>  -->
+                        </li> --> 
                     </ul>
                 </li>
 
@@ -299,7 +287,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('/pembayaran') ? 'active' : '' }}" href="/pembayaran"
+            <a class="sidebar-link {{ request()->is('main/pembayaran') ? 'active' : '' }}" href="/main/pembayaran"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-currency-dollar" xmlns="http://www.w3.org/2000/svg" width="16" height="16"

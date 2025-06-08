@@ -30,14 +30,22 @@ class PoliKiaController extends Controller
             'pengambilan_obat.racikan.detail_pembelian_obat.obat',
             'surat_kontrol',
             'surat_kematian',
+            'asessmen_awal'
         ])
             ->where('id_pendaftaran', $idPendaftaran)
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            // ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->first();
 
         if (! $data) {
             return response()->json([
                 'message' => 'Data Tidak Ditemukan',
+                'data' => [],
+            ], 404);
+        }
+
+        if ($data->asessmen_awal()->count() == 0) {
+            return response()->json([
+                'message' => 'Pemeriksaan awal belum dilakukan',
                 'data' => [],
             ], 404);
         }
@@ -52,7 +60,7 @@ class PoliKiaController extends Controller
     {
         $data = Pendaftaran::with('data_pasien', 'layanan_kia')
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->first();
 
         if (! $data) {
@@ -70,17 +78,7 @@ class PoliKiaController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'no_antrian' => 'required|max:255',
-            'tanggal' => 'required|date',
             'jenis_pemeriksaan' => 'required|in:Kehamilan,Persalinan,KB,Anak',
-            'keluhan' => 'required|max:255',
-            'sistole' => 'required|numeric',
-            'diastole' => 'required|numeric',
-            'bb' => 'required|numeric',
-            'tb' => 'required|numeric',
-            'suhu' => 'required|numeric',
-            'spo2' => 'required|numeric',
-            'respirasi' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -92,17 +90,7 @@ class PoliKiaController extends Controller
 
         $data->layanan_kia()->create([
             'id_pendaftaran' => $request->id_pendaftaran,
-            'no_antrian' => $request->no_antrian,
-            'tanggal' => $request->tanggal,
             'jenis_pemeriksaan' => $request->jenis_pemeriksaan,
-            'keluhan' => $request->keluhan,
-            'sistole' => $request->sistole,
-            'diastole' => $request->diastole,
-            'bb' => $request->bb,
-            'tb' => $request->tb,
-            'suhu' => $request->suhu,
-            'spo2' => $request->spo2,
-            'respirasi' => $request->respirasi,
         ]);
 
         return response()->json([
@@ -122,7 +110,7 @@ class PoliKiaController extends Controller
             'formulirAnak',
         ])
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Kehamilan');
             })
@@ -225,7 +213,7 @@ class PoliKiaController extends Controller
             'formulirAnak',
         ])
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Persalinan');
             })
@@ -428,7 +416,7 @@ class PoliKiaController extends Controller
         $detail = [];
         foreach ($request->detail as $value) {
             $detail[] = [
-                'id_transaksi_persalinan' => $data->id,
+                'id_formulir_persalinan' => $data->id,
                 'jam_ke' => $value['jam_ke'],
                 'waktu' => $value['waktu'],
                 'tekanan_darah' => $value['tekanan_darah'],
@@ -459,7 +447,7 @@ class PoliKiaController extends Controller
             'formulirAnak',
         ])
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'KB');
             })
@@ -544,7 +532,7 @@ class PoliKiaController extends Controller
             'formulirAnak',
         ])
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Anak');
             })
@@ -669,7 +657,7 @@ class PoliKiaController extends Controller
             'formulirAnak',
         ])
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->first();
 
         if (! $data) {
@@ -719,7 +707,7 @@ class PoliKiaController extends Controller
             'formulirAnak',
         ])
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('id_poli', 3) // Data Poli Belum Ada, Test ID 3
+            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->first();
 
         if (! $data) {

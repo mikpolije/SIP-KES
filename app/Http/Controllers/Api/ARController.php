@@ -10,7 +10,9 @@ class ARController extends Controller
 {
     public function antrean()
     {
-        return view('polikia.antreanPoliKIA');
+        $data = DB::table('poli_kia');
+
+        return view('main.polikia.antreanPoliKIA', ['data' => $data]);
     }
 
     public function riwayat()

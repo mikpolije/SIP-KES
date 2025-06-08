@@ -9,7 +9,7 @@ class LayananKia extends Model
 {
     use HasFactory;
 
-    protected $table = 'layanan_kia';
+    protected $table = 'poli_kia';
 
     protected $primaryKey = 'id';
 

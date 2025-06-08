@@ -9,7 +9,7 @@ class FormulirKb extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi_program_kb';
+    protected $table = 'formulir_kb';
 
     protected $primaryKey = 'id';
 

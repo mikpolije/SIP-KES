@@ -79,26 +79,19 @@ new class extends Component {
         }
 
         if ($asesmen_awal && $informed_consent && $cpptAwal) {
-            $this->diagnosaMasuk = $cpptAwal->id_icd10;
+            $this->diagnosaMasuk = $cpptAwal->icd10->display;
             $this->ringkasanPenyakit = $informed_consent->ringkasan_penyakit;
             $this->riwayatPenyakit = $asesmen_awal->riwayat_penyakit;
             $this->keadaanUmum = $asesmen_awal->keadaan_umum;
             $this->indikasi = $informed_consent->indikasi_tindakan;
             $this->alergi = $asesmen_awal->alergi;
             $this->namaDPJP = $informed_consent->dokter->nama;
-            $this->diagnosisUtama = $cpptAwal->id_icd10 ?? '-';
-            $this->kodeICD10 = $cpptAwal->id_icd10->code ?? '-';
-            $this->diagnosisSekunder = ($cpptAkhir->id_icd9 ?? '-');
-            $this->kodeICD9 = ($cpptAkhir->id_icd9 ?? '-');
+            $this->diagnosisUtama = $cpptAwal->icd10->display ?? '-';
+            $this->kodeICD10 = $cpptAwal->icd10->code ?? '-';
+            $this->diagnosisSekunder = ($cpptAkhir->icd9->display ?? '-');
+            $this->kodeICD9 = ($cpptAkhir->icd9->code ?? '-');
         } else {
-            $missing = [];
-
-            if (!$asesmen_awal) $missing[] = 'Asesmen Awal';
-            if (!$informed_consent) $missing[] = 'Informed Consent';
-            if (!$cpptAwal) $missing[] = 'CPPT';
-
-            $message = 'Tolong isi data berikut terlebih dahulu: ' . implode(', ', $missing);
-            flash()->error($message);
+            flash()->error('Tolong isi data Asesmen Awal, Informed Consent, dan CPPT terlebih dahulu');
             $this->dispatch('switch-tab', tab: 'pemeriksaan');
         }
     }
