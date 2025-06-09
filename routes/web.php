@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\ARController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\generalConsentController;
 use App\Http\Controllers\KunjunganController;
@@ -61,20 +60,11 @@ Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('pat
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 Route::prefix('main/poliumum')->group(function () {
-    // Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
-    // Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
-    //Route Poli Umum
+    Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
+    Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
     Route::get('/antrean', [AntrianRiwayatController::class, 'antrean'])->name('antrean.poliumum');
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
-
-    // Router Poli KIA
-        Route::get('/antrean/polikia', [ARController::class, 'antrean'])->name('antrean.polikia');
 });
-
-//Route Detail Pasien KIA
-Route::get('/antrean/polikia/detail/{id}', function ($id) {
-    return view('antrean.polikia.detailkia'); //Ubah path folder file ke blade
-})->name('antrean.polikia.detailkia');
 
 // Route detail riwayat pasien
 Route::get('/poli-umum/detail/{rm}', function ($rm) {
