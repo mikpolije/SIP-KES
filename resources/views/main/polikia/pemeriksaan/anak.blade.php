@@ -244,12 +244,18 @@
                 <div class="col-md-5">
                     <div class="mb-3">
                         <label for="tipe_pasien" class="form-label">Tipe Pasien</label>
-                        <input type="text" class="form-control" name="tipe_pasien" id="tipe_pasien" required>
+                        <select name="tipe_pasien" id="tipe_pasien" class="form-control" required>
+                            <option value="">-</option>
+                            <option value="Datang Sendiri">Datang Sendiri</option>
+                            <option value="Rujukan">Rujukan</option>
+                            <option value="Dari Dokter">Dari Dokter</option>
+                            <option value="Gawat Darurat">Gawat Darurat</option>
+                        </select>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="unit_layanan" class="form-label">Unit Layanan</label>
-                        <input type="text" class="form-control" name="unit_layanan" id="unit_layanan" required>
-                    </div>
+                    </div> --}}
+                    <input type="hidden" class="form-control" name="unit_layanan" id="unit_layanan" value="Poli KIA" required>
                     <div class="mb-4">
                         <label class="form-label required-label">Kunjungan Sakit</label><br>
                         <div class="form-check form-check-inline">
