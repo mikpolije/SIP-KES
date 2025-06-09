@@ -17,7 +17,7 @@ class ARController extends Controller
 
     public function riwayat()
     {
-        return view('Polikia.riwayatPoliKIA'); 
+        return view('main.polikia.riwayatPoliKIA',['data' => $id]); 
     }
 
     // Tambahkan method ini untuk Search Select2

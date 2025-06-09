@@ -66,6 +66,14 @@ Route::prefix('main/poliumum')->group(function () {
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
 
+<<<<<<< Updated upstream
+=======
+//Route Detail Pasien KIA
+Route::get('/polikia/detail/{id}', function ($id) {
+    return view('polikia.detailkia');
+})->name('polikia.detailkia');
+
+>>>>>>> Stashed changes
 // Route detail riwayat pasien
 Route::get('/poli-umum/detail/{rm}', function ($rm) {
     return view('PoliUmum.detailPasien');

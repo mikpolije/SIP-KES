@@ -86,7 +86,7 @@
                 <tbody>
                     @foreach (range(1, 10) as $i)
                         <tr>
-                           
+
                             <td>{{ $i }}</td>
                             <td>00100{{ $i }}</td>
                             <td>{{ ['Arga Pratama', 'Keisha Anindya', 'Dimas Fadlan', 'Nayla Putri', 'Rizqy Maulana', 'Alika Salsabila', 'Revan Aditya', 'Tania Ramadhani', 'Ilham Setiawan', 'Vania Lestari'][$i - 1] }}
@@ -106,7 +106,7 @@
                             <td>
                                 <button class="btn btn-sm btn-primary">Pilih</button>
                             </td>
-                             <td>
+                            <td>
                                 <button class="btn btn-sm btn-primary">Detail</button>
                             </td>
                             
@@ -118,7 +118,7 @@
     </div>
 
     <script>
-        $(document).ready(function () { 
+        $(document).ready(function () {
             // Fungsi pencarian pasien
             $('#btnCariPasien').on('click', function (e) {
                 e.preventDefault();
@@ -131,7 +131,7 @@
             });
         });
 
-                // Fungsi pencarian pasien
+        // Fungsi pencarian pasien
         $('#btnCariPasien').on('click', function (e) {
             e.preventDefault();
             const noRM = $('#searchPasien').val();
