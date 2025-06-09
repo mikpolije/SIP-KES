@@ -48,6 +48,13 @@ $bbl_asfiksia = [
 
 <div class="p-3">
     <div class="row g-5 mb-5">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <a href="#" class="btn btn-rounded rounded-pill btn-warning me-2">
+                    Rujuk Rawat Inap
+                </a>
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="id_bidan" class="form-label">Nama Bidan</label>
