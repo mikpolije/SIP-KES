@@ -154,11 +154,20 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-md-6">
-            <button class="btn btn-primary w-100" id="btn-simpan">Simpan</button>
+                <p>{{ date('d F Y') }}</p>
+        <p>Dokter Yang Merawat</p>
+
+        <div class="signature-box" id="signature-box">
+            {{-- Tempat ttd atau kosong --}}
         </div>
-        <div class="col-md-6">
-            <button class="btn btn-secondary w-100" id="btn-cetak">Cetak</button>
+
+        <div class="dokter-name" onclick="toggleQR()">
+            {{ $surat->dokter->nama }}
+        </div>
+
+        <div id="qr-ttd">
+            {{-- QR code tampil setelah klik nama --}}
+            <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($surat->dokter->nama . ' | ' . $surat->dokter->nip, 'QRCODE') }}" width="120">
         </div>
     </div>
 </div>
