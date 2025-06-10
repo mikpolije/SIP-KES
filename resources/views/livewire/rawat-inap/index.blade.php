@@ -26,6 +26,11 @@ new class extends Component {
         $this->showPatientDetails = true;
 
         $patient = Pendaftaran::where('id_pendaftaran', $id)->first();
+        if(!$patient->data_pasien){
+            flash()->error('No RM Pasien tidak ditemukan. Mohon hubungi petugas untuk bantuan lebih lanjut.');
+            $this->reset('selectedPatient', 'selectedPatientName', 'showPatientDetails');
+            return;
+        }
 
         $this->patientIsRegistered = (bool)(isset($patient->poli_rawat_inap) ?? 0);
         $this->patientIsExamined = (bool)((isset($patient->poli_rawat_inap->id_asessmen_awal) && isset($patient->poli_rawat_inap->id_informed_consent)) ?? 0);
@@ -72,7 +77,7 @@ new class extends Component {
                 $query->whereHas('data_pasien', function ($subquery) {
                     $subquery->where('nama_lengkap', 'like', '%' . $this->search . '%')
                             ->orWhere('no_rm', 'like', '%' . $this->search . '%')
-                            ->orWhere('nik', 'like', '%' . $this->search . '%');
+                            ->orWhere('nik_pasien', 'like', '%' . $this->search . '%');
                 })
                 ->orWhere('id_pendaftaran', 'like', '%' . $this->search . '%');
             })
@@ -125,7 +130,8 @@ new class extends Component {
                         <div class="mb-4">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center">
-                                    <select wire:model.live="perPage" class="form-select form-select-sm me-2" style="width: 80px;">
+                                    <select wire:model.live="perPage" class="form-select form-select-sm me-2"
+                                        style="width: 80px;">
                                         <option value="5">5</option>
                                         <option value="10">10</option>
                                         <option value="25">25</option>
@@ -159,34 +165,38 @@ new class extends Component {
                                     </thead>
                                     <tbody class="small">
                                         @if(count($this->filteredPatients) > 0)
-                                            @foreach($this->filteredPatients as $index => $patient)
-                                                <tr wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
-                                                    style="cursor: pointer;"
-                                                    class="hover-effect-row">
-                                                    <td class="text-center">{{ ($this->filteredPatients->currentPage() - 1) * $this->perPage + $index + 1 }}</td>
-                                                    <td class="text-nowrap">{{ $patient->data_pasien->no_rm }}</td>
-                                                    <td class="text-truncate" data-bs-toggle="tooltip"
-                                                        title="{{ $patient->data_pasien->nama_lengkap }}">{{ $patient->data_pasien->nama_lengkap }}</td>
-                                                    <td class="text-nowrap">{{ $patient->data_pasien->nik }}</td>
-                                                    <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir }}</td>
-                                                    <td class="text-nowrap">{{ $patient->created_at }}</td>
-                                                    <td class="text-truncate" data-bs-toggle="tooltip"
-                                                        title="{{ $patient->data_pasien->alamat_lengkap }}">{{ $patient->data_pasien->alamat_lengkap }}</td>
-                                                    <td class="text-truncate" data-bs-toggle="tooltip"
-                                                        title="{{ $patient->note ?? '' }}">Rujuk {{ $patient->layanan }}</td>
-                                                    <td class="text-center p-1">
-                                                        <button
-                                                            wire:click.stop="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
-                                                            class="btn btn-primary btn-sm p-0 px-1" title="Detail">
-                                                            <i class="ti ti-eye"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                        @foreach($this->filteredPatients as $index => $patient)
+                                        <tr wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
+                                            style="cursor: pointer;" class="hover-effect-row">
+                                            <td class="text-center">{{ ($this->filteredPatients->currentPage() - 1) *
+                                                $this->perPage + $index + 1 }}</td>
+                                            <td class="text-nowrap">{{ $patient->data_pasien->no_rm }}</td>
+                                            <td class="text-truncate" data-bs-toggle="tooltip"
+                                                title="{{ $patient->data_pasien->nama_lengkap }}">{{
+                                                $patient->data_pasien->nama_lengkap }}</td>
+                                            <td class="text-nowrap">{{ $patient->data_pasien->nik_pasien }}</td>
+                                            <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir_pasien }}
+                                            </td>
+                                            <td class="text-nowrap">{{ $patient->created_at }}</td>
+                                            <td class="text-truncate" data-bs-toggle="tooltip"
+                                                title="{{ $patient->data_pasien->alamat_pasien }}">{{
+                                                $patient->data_pasien->alamat_pasien }}</td>
+                                            <td class="text-truncate" data-bs-toggle="tooltip"
+                                                title="{{ $patient->note ?? '' }}">Rujuk {{ $patient->layanan }}</td>
+                                            <td class="text-center p-1">
+                                                <button
+                                                    wire:click.stop="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
+                                                    class="btn btn-primary btn-sm p-0 px-1" title="Detail">
+                                                    <i class="ti ti-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                         @else
-                                            <tr>
-                                                <td colspan="9" class="text-center py-3">Tidak ada data pasien yang ditemukan</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="9" class="text-center py-3">Tidak ada data pasien yang
+                                                ditemukan</td>
+                                        </tr>
                                         @endif
                                     </tbody>
                                 </table>
@@ -194,7 +204,9 @@ new class extends Component {
 
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 <div class="small text-muted">
-                                    Menampilkan {{ $this->filteredPatients->firstItem() ?? 0 }} hingga {{ $this->filteredPatients->lastItem() ?? 0 }} dari {{ $this->filteredPatients->total() ?? 0 }} data
+                                    Menampilkan {{ $this->filteredPatients->firstItem() ?? 0 }} hingga {{
+                                    $this->filteredPatients->lastItem() ?? 0 }} dari {{ $this->filteredPatients->total()
+                                    ?? 0 }} data
                                 </div>
                                 <div>
                                     {{ $this->filteredPatients->links() }}
@@ -209,7 +221,8 @@ new class extends Component {
                                 </button>
                                 <div>
                                     <span class="fw-bold">Pasien:</span>
-                                    <span class="ms-2">{{ $selectedPatientName }} (No Pendaftaran: {{ $selectedPatient }})</span>
+                                    <span class="ms-2">{{ $selectedPatientName }} (No Pendaftaran: {{ $selectedPatient
+                                        }})</span>
                                 </div>
                             </div>
 

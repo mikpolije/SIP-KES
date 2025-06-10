@@ -102,7 +102,7 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title1">Laporan KIA</h1>
+                <h1 class="title1">Laporan Kunjungan</h1>
                 <style>
                     .title1 {
                         font-family: 'Montserrat', sans-serif;
@@ -130,6 +130,19 @@
                                 <input type="date" class="form-control required" id="tanggal_akhir" name="tanggal_akhir"
                                     style="width: 150px;" />
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="layanan">Pilih Layanan:</label>
+                                <select class="form-select" id="layanan" name="layanan" style="width: 200px;">
+                                    <option value="">-- Semua Layanan --</option>
+                                    <option value="Poli Umum">Poli Umum</option>
+                                    <option value="KIA">KIA</option>
+                                    <option value="UGD">UGD</option>
+                                    <option value="Rawat Inap">Rawat Inap</option>
+                                    <option value="Circum">Circum</option>
+                                    <option value="Vaksin Internasional">Vaksin Internasional</option>
+                                </select>
+                            </div>
+                            
                             <button type="button" class="btn btn-info btn-3d" id="tampilkan-data"
                                 style="margin-top: 20px;">Tampilkan
                                 Data</button>
@@ -187,6 +200,7 @@
 
                 let tanggal_awal = $('#tanggal_awal').val();
                 let tanggal_akhir = $('#tanggal_akhir').val();
+                let layanan = $('#layanan').val();
 
                 if (!tanggal_awal || !tanggal_akhir) {
                     alert('Silakan pilih Tanggal Awal dan Tanggal Akhir terlebih dahulu.');
@@ -195,14 +209,15 @@
                 }
 
                 $.ajax({
-                    url: "{{ route('api.poli-kia.report') }}",
+                    url: "{{ route('api.kunjungan.report') }}",
                     type: 'GET',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     data: {
                         tanggal_awal: tanggal_awal,
-                        tanggal_akhir: tanggal_akhir
+                        tanggal_akhir: tanggal_akhir,
+                        layanan: layanan
                     },
                     success: function(res) {
                         console.log(res);
