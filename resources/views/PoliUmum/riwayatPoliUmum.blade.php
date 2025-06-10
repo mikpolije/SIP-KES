@@ -169,7 +169,7 @@ td {
                     <td>{{ $row[2] }}</td>
                     <td>19-05-2025</td>
                     <td>
-                        <a href="{{ route('poli-umum.detail', ['rm' => $row[0]]) }}" class="btn-detail">Detail</a>
+                        <a href="{{ route('poli-umum.detail', parameters: ['rm' => $row[0]]) }}" class="btn-detail">Detail</a>
                     </td>
                 </tr>
                 @endforeach

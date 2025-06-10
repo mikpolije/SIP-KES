@@ -80,36 +80,42 @@
                         <th>DOKTER</th>
                         <th>TIPE PASIEN</th>
                         <th>STATUS</th>
-                        <th>AKSI</th>
+                        <th class="text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (range(1, 10) as $i)
-                        <tr>
+                    
+                    
+                    @foreach ([
+                        ['1','id001001', 'Arga Pratama', 'Umum', 'dr. Oktavia', 'Umum', 'Diperiksa'], 
+                        ['2','id001002', 'Keisha Anindya', 'Umum', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
+                        ['3','id001003', 'Dimas Fadlan', 'Umum', 'dr. Laili Fitriana', 'Umum', 'Diperiksa'],
+                        ['4','id001004', 'Nayla Putri', 'Umum', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
+                        ['5','id001005', 'Rizqy Maulana', 'Umum', 'dr. Oktavia Putri', 'Umum', 'Diperiksa'],
+                        ['6','id001006', 'Alika Salsabila', 'Umum', 'dr. Sisil Karina', 'Umum', 'Antre'],
+                        ['7','id001007', 'Revan Aditya', 'Umum', 'dr. Shofi', 'Umum', 'Antre'],
+                        ['8','id001008', 'Tania Ramadhani', 'Umum', 'dr. Arvin Maulana', 'Umum', 'Antre'],
+                        ['9','id001009', 'Ilham Setiawan', 'Umum', 'dr. Arvin Maulana', 'Umum', 'Antre'],
+                        ['10','id001010', 'Vania Lestari', 'Umum', 'dr. Sisil Karina', 'Umum', 'Antre'],
+                        ] as $i)
 
-                            <td>{{ $i }}</td>
-                            <td>00100{{ $i }}</td>
-                            <td>{{ ['Arga Pratama', 'Keisha Anindya', 'Dimas Fadlan', 'Nayla Putri', 'Rizqy Maulana', 'Alika Salsabila', 'Revan Aditya', 'Tania Ramadhani', 'Ilham Setiawan', 'Vania Lestari'][$i - 1] }}
+                        <tr>
+                            <td>{{ $i[0] }}</td>
+                            <td>{{ $i[1] }}</td>
+                            <td>{{ $i[2] }}</td>
                             </td>
                             <td>17-04-2025</td>
-                            <td>Umum</td>
-                            <td>{{ ['dr. Oktavia', 'dr. Erwiyan', 'dr. Laili Fitriana', 'dr. Erwiyan', 'dr. Oktavia Putri', 'dr. Sisil Karina', 'dr. Shofi', 'dr. Arvin Maulana', 'dr. Arvin Maulana', 'dr. Sisil Karina'][$i - 1] }}
+                            <td>{{ $i[3] }}</td>
+                            <td>{{ $i[4]}}
                             </td>
-                            <td>{{ $i % 3 == 0 ? 'BPJS' : 'Umum' }}</td>
+                            <td>{{ $i[5]}}</td>
                             <td>
-                                @if ($i <= 5)
-                                    <span style="color: #007bff;">Diperiksa</span>
-                                @else
-                                    <span style="color: #F5A623;">Antre</span>
-                                @endif
+                                {{ $i[6] }}
                             </td>
                             <td>
                                 <button class="btn btn-sm btn-primary">Pilih</button>
+                                <a href="{{ route('polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
                             </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">Detail</button>
-                            </td>
-                            
                         </tr>
                     @endforeach
                 </tbody>

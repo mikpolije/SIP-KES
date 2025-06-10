@@ -68,7 +68,7 @@ Route::prefix('main/poliumum')->group(function () {
 
 //Route Detail Pasien KIA
 Route::get('/polikia/detail/{id}', function ($id) {
-    return view('polikia.detailkia');
+    return view('main.polikia.detailkia');
 })->name('polikia.detailkia');
 
 // Route detail riwayat pasien
