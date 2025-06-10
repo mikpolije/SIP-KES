@@ -190,7 +190,9 @@
                     <!-- OPTION BUTTON -->
                     <div class="row mb-9 justify-content-end">
                         <div class="col-md-8 d-flex justify-content-end">
-                            <button type="button" class="btn btn-success btn-3d" style="margin-right: 10px;">Simpan</button>
+                            <button type="button" class="btn btn-success btn-3d" style="margin-right: 10px;"
+                                onclick="window.location.href='{{ url('main/dataresep') }}'">Simpan</button>
+
                         </div>
                     </div>
                     <style>

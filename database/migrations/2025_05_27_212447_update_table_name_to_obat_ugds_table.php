@@ -11,12 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('obats', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama')->nullable();
-            $table->integer('harga')->nullable();
-            $table->timestamps();
-        });
+        Schema::rename('obat_ugds', 'transaksi_obat_ugd');
     }
 
     /**
@@ -24,6 +19,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('obats');
+        Schema::table('obat_ugds', function (Blueprint $table) {
+            //
+        });
     }
 };

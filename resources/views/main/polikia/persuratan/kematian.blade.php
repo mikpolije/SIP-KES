@@ -154,11 +154,20 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-md-6">
-            <button class="btn btn-primary w-100" id="btn-simpan">Simpan</button>
+                <p>{{ date('d F Y') }}</p>
+        <p>Dokter Yang Merawat</p>
+
+        <div class="signature-box" id="signature-box">
+            {{-- Tempat ttd atau kosong --}}
         </div>
-        <div class="col-md-6">
-            <button class="btn btn-secondary w-100" id="btn-cetak">Cetak</button>
+
+        <div class="dokter-name" onclick="toggleQR()">
+            {{ $surat->dokter->nama }}
+        </div>
+
+        <div id="qr-ttd">
+            {{-- QR code tampil setelah klik nama --}}
+            <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($surat->dokter->nama . ' | ' . $surat->dokter->nip, 'QRCODE') }}" width="120">
         </div>
     </div>
 </div>
@@ -184,10 +193,30 @@
             }
         }).done(function (res) {
             let data = res.data
-            $('#nama_pasien').val(data.data_pasien.nama_pasien)
+            $('#nama_pasien').val(data.data_pasien.nama_lengkap)
             $('#tanggal_lahir').val(data.data_pasien.tanggal_lahir_pasien)
             $('#alamat').val(data.data_pasien.alamat_pasien)
-            $('#jenis_kelamin').val(data.data_pasien.jenis_kelamin)
+            let jenisKelaminText;
+            switch (data.data_pasien.jenis_kelamin) {
+                case 0:
+                    jenisKelaminText = 'Tidak Diketahui';
+                    break;
+                case 1:
+                    jenisKelaminText = 'Laki-laki';
+                    break;
+                case 2:
+                    jenisKelaminText = 'Perempuan';
+                    break;
+                case 3:
+                    jenisKelaminText = 'Tidak dapat ditentukan';
+                    break;
+                case 4:
+                    jenisKelaminText = 'Tidak mengisi';
+                    break;
+                default:
+                    jenisKelaminText = 'Tidak Diketahui';
+            }
+            $('#jenis_kelamin').val(jenisKelaminText);
 
             if (data.surat_kematian) {
                 $('#nomor').val(data.surat_kematian.nomor)

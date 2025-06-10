@@ -33,7 +33,7 @@ class PoliKiaController extends Controller
             'asessmen_awal'
         ])
             ->where('id_pendaftaran', $idPendaftaran)
-            ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
+            // ->where('layanan', 'KIA') // Data Poli Belum Ada, Test ID 3
             ->first();
 
         if (! $data) {

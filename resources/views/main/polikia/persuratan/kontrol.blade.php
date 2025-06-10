@@ -59,9 +59,9 @@
         <div class="col-md-10">
             <select id="kepada" name="kepada" class="form-select">
                 <option value="">Nama Dokter</option>
-                <option value="dr_b_sp_pd">dr. B, Sp.PD</option>
-                <option value="dr_c_sp_an">dr. C, Sp.An</option>
-                <option value="bidan_dyah_ayu_wulandari">Bidan Dyah Ayu Wulandari</option>
+                @foreach ($listDokter as $dokter)
+                    <option value="{{ $dokter->nama }}">{{ $dokter->nama }}</option>
+                @endforeach
             </select>
         </div>
     </div>
@@ -146,7 +146,7 @@
             }
         }).done(function (res) {
             let data = res.data
-            $('#nama_pasien').val(data.data_pasien.nama_pasien)
+            $('#nama_pasien').val(data.data_pasien.nama_lengkap)
             $('#no_rm').val(data.data_pasien.no_rm)
             $('#tanggal_lahir').val(data.data_pasien.tanggal_lahir_pasien)
 

@@ -21,9 +21,9 @@ class ObatController extends Controller
     public function index(Request $request)
     {
         $data = Obat::select(
-            'obat.*',
-            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_opname'),
-            DB::raw('(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok_gudang'),
+            'obats.*',
+            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as stok_opname'),
+            DB::raw('(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as stok_gudang'),
         );
 
         $search = $request->input('search.value', '');
@@ -61,9 +61,9 @@ class ObatController extends Controller
         $page = intval($request->input('page', 1));
 
         $data = Obat::select(
-            'obat.*',
-            DB::raw("(CASE WHEN (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN '-' ELSE (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as kadaluarsa"),
-            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id) END) as stok')
+            'obats.*',
+            DB::raw("(CASE WHEN (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN '-' ELSE (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as kadaluarsa"),
+            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as stok')
         );
 
         if ($search) {
@@ -232,7 +232,7 @@ class ObatController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Berhasil melakukan koreksi obat.',
+            'message' => 'Berhasil melakukan koreksi obats.',
             'data' => $data,
         ], 200);
     }
@@ -616,3 +616,4 @@ class ObatController extends Controller
         }
     }
 }
+

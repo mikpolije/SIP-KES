@@ -281,12 +281,21 @@
                                 </div>
 
 
-                            </div>
+                           </div>
                             <div class="col-md-6 mb-3">
                                 <p class="text-center">Pemberi informasi</p>
                                 <div class="col-md-6 mx-auto">
-                                    <input type="text" class="form-control" style="height: 120px;"
-                                        id="namaPemberiInformasi" name="namaPemberiInformasi">
+                                    <!-- Tampilkan gambar tanda tangan -->
+                                    <img src="{{ asset('ttd/ttd.png') }}" alt="Tanda Tangan Pemberi Informasi"
+                                        style="width: 100%; max-height: 120px; object-fit: contain; border: 1px solid #ccc; border-radius: 6px;" />
+
+                                    <!-- Simpan path ke database lewat input hidden -->
+                                    <input type="hidden" name="ttdPemberiInformasi" value="{{ asset('ttd/ttd.png') }}">
+                                    <div class="col-md-6 mx-auto text-center mt-2">
+                                        <input type="text" class="form-control text-center"
+                                            name="namaPemberiInformasi" value="Petugas Klinik"
+                                            placeholder="Nama Pemberi Informasi" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -343,7 +352,7 @@
 
         function showQRModal() {
             const token = Math.random().toString(36).substring(2, 12);
-            const url = `http://192.168.1.203:8000/sign-request/${token}`;
+            const url = `http://10.125.173.66:8000/sign-request/${token}`;
 
             document.getElementById('qrContainer').innerHTML = "";
             new QRCode(document.getElementById("qrContainer"), url);

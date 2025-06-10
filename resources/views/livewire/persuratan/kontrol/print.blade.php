@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SuratKontrol;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Volt\Component;
@@ -8,7 +9,13 @@ new
 #[Layout('layouts.blank')]
 #[Title('Surat Rencana Kontrol')]
 class extends Component {
-    //
+
+    public $surat_kontrol;
+
+    public function mount()
+    {
+        $this->surat_kontrol = SuratKontrol::where('id', request()->id)->first();
+    }
 }; ?>
 
 <div>
@@ -24,38 +31,38 @@ class extends Component {
         <div class="card border-0">
             <div class="card-body p-4">
                 <!-- Header with Logo -->
-                <div class="row mb-3 align-items-center">
+                <div class="row align-items-center">
                     <div class="col-4">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/klinik-insan-Dbaqf9KfqDyBdkMt8vpmeN9RG2AonK.png" alt="Klinik Insan Medika Logo" class="img-fluid" style="max-height: 70px;">
+                        <img src="{{ asset('assets/klinik-insan.png') }}" alt="Klinik Insan Medika Logo" class="img-fluid">
                     </div>
-                    <div class="col-8 text-center">
+                    <div class="col-8">
                         <h3 class="title mb-0">SURAT RENCANA KONTROL</h3>
                         <h4 class="title">KLINIK INSAN MEDIKA</h4>
+                        <div>
+                            <p class="mb-0">Nomor : {{ $this->surat_kontrol->nomor }}</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Document Number -->
                 <div class="row mb-3">
-                    <div class="col-12 text-center">
-                        <p class="mb-0">Nomor : 126578</p>
-                    </div>
                 </div>
 
                 <!-- Patient Header -->
                 <div class="row mb-3">
                     <div class="col-12">
-                        <p class="mb-0">Kepada Yth, ADITYA HALINDRA</p>
-                        <p class="mb-0">Mohon Pemeriksaan dajn Penanganan Lebih Lanjut :</p>
+                        <p class="mb-0">Kepada Yth, {{ $this->surat_kontrol->data_pasien->nama_lengkap }}</p>
+                        <p class="mb-0">Mohon Pemeriksaan dan Penanganan Lebih Lanjut :</p>
                     </div>
                 </div>
 
                 <!-- Form Data -->
                 <div class="row mb-1">
                     <div class="col-2">
-                        <p class="mb-1">No.</p>
+                        <p class="mb-1">No. SIP</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: 126578</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->dokter->no_sip ?? "-" }}</p>
                     </div>
                 </div>
 
@@ -64,7 +71,7 @@ class extends Component {
                         <p class="mb-1">Tgl.</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: 23-02-2025</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->created_at->format('d M Y') }}</p>
                     </div>
                 </div>
 
@@ -73,7 +80,7 @@ class extends Component {
                         <p class="mb-1">Kepada Yth.</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: dr.Jeno</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->dokter->nama ?? $this->surat_kontrol->kepada }}</p>
                     </div>
                 </div>
 
@@ -88,7 +95,7 @@ class extends Component {
                         <p class="mb-1">Nomor RM</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: 009875</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->data_pasien->no_rm }}</p>
                     </div>
                 </div>
 
@@ -97,7 +104,7 @@ class extends Component {
                         <p class="mb-1">Nama Pasien</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: Aditya Halindra</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->data_pasien->nama_lengkap }}</p>
                     </div>
                 </div>
 
@@ -106,7 +113,7 @@ class extends Component {
                         <p class="mb-1">Tgl. Lahir</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: 18-09-1991</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->data_pasien->tanggal_lahir }}</p>
                     </div>
                 </div>
 
@@ -115,7 +122,7 @@ class extends Component {
                         <p class="mb-1">Diagnosa Akhir</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: Acne</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->diagnosa }}</p>
                     </div>
                 </div>
 
@@ -124,7 +131,7 @@ class extends Component {
                         <p class="mb-1">Rencana Kontrol</p>
                     </div>
                     <div class="col-10">
-                        <p class="mb-1">: 28-02-2025</p>
+                        <p class="mb-1">: {{ $this->surat_kontrol->rencana_kontrol }}</p>
                     </div>
                 </div>
 
@@ -141,7 +148,15 @@ class extends Component {
                     </div>
                     <div class="col-4 text-center">
                         <p class="mb-1">Mengetahui DPJP</p>
-                        <div class="border rounded mb-2" style="height: 70px; width: 100%;"></div>
+                        <div class="border rounded" style="height: 70px; width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-8">
+                        <!-- Spacer -->
+                    </div>
+                    <div class="col-4 text-center">
+                        <p class="mb-1"> {{ $this->surat_kontrol->penandatangan ?? "_____________"}} </p>
                     </div>
                 </div>
             </div>

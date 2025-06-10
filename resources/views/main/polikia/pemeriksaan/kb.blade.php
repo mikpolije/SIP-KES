@@ -303,7 +303,13 @@
                     </div>
                     <div class="col-12 mb-3">
                         <label for="tipe_pasien" class="form-label">Tipe Pasien</label>
-                        <input type="text" class="form-control" name="tipe_pasien" id="tipe_pasien" required>
+                        <select name="tipe_pasien" id="tipe_pasien" class="form-control" required>
+                            <option value="">-</option>
+                            <option value="Datang Sendiri">Datang Sendiri</option>
+                            <option value="Rujukan">Rujukan</option>
+                            <option value="Dari Dokter">Dari Dokter</option>
+                            <option value="Gawat Darurat">Gawat Darurat</option>
+                        </select>
                     </div>
                     <div class="col-12 mb-3">
                         <label for="tindakan" class="form-label">Tindakan</label>
@@ -313,7 +319,7 @@
                         <label for="tindakan" class="form-label">ICD 9 - CM</label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="kode_tindakan" id="kode_tindakan" placeholder="Ketik Kode Tindakan" required>
-                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <span class="input-group-text cursor-pointer search-icd9"><i class="fa-solid fa-magnifying-glass"></i></span>
                         </div>
                     </div>
                     <div class="col-12">
@@ -321,7 +327,7 @@
                             <div class="icd-title">
                                 <p>Nama ICD 9 - CM</p>
                             </div>
-                            <div class="icd-content">
+                            <div class="icd9-content">
                                 <p>Tidak Ada Data</p>
                             </div>
                         </div>

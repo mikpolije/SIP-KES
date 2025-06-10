@@ -28,30 +28,28 @@ class DataPasienFactory extends Factory
 
         return [
             'no_rm' => $this->faker->unique()->numerify('######'),
-            'nik' => $this->faker->unique()->numerify('################'),
-            'no_identitas_lain' => null,
+            'nik_pasien' => $this->faker->unique()->numerify('################'),
             'nama_lengkap' => $this->faker->name(),
             'nama_ibu_kandung' => $this->faker->name('female'),
-            'tempat_lahir' => $this->faker->city(),
-            'tanggal_lahir' => $this->faker->date(),
+            'tempat_lahir_pasien' => $this->faker->city(),
+            'tanggal_lahir_pasien' => $this->faker->date(),
             'jenis_kelamin' => $this->faker->numberBetween(1, 2), // 1: Laki-laki, 2: Perempuan
-            'agama' => $this->faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghuchu', 'Penghayat', 'Lain-lain']),
+            'agama' => $this->faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu', 'Lainnya']),
             'gol_darah' => $this->faker->randomElement(['A', 'B', 'AB', 'O']),
-            'suku' => $this->faker->randomElement(['Jawa', 'Sunda', 'Batak', 'Minang', 'Betawi', 'Bugis']),
 
-            'alamat_lengkap' => $this->faker->address(),
+            'alamat_pasien' => $this->faker->address(),
             'rt' => $this->faker->numerify('##'),
             'rw' => $this->faker->numerify('##'),
             'id_provinsi' => $provinceId,
             'id_kota' => $cityId,
             'id_kecamatan' => $districtId,
             'id_desa' => $villageId,
-            'kode_negara' => $this->faker->randomElement(['ID', 'MY', 'SG']),
             'kode_pos' => $this->faker->numerify('#####'),
-            'nomor_telepon' => $this->faker->phoneNumber(),
+            'nomor_telepon_pasien' => $this->faker->phoneNumber(),
+            'kewarganegaraan' => $this->faker->randomElement(['ID', 'MY', 'SG']),
 
-            'pendidikan' => $this->faker->numberBetween(0, 8),
-            'pekerjaan' => $this->faker->numberBetween(0, 5),
+            'pendidikan_pasien' => $this->faker->numberBetween(0, 8),
+            'pekerjaan_pasien' => $this->faker->numberBetween(0, 5),
             'status_perkawinan' => $this->faker->numberBetween(1, 4),
         ];
     }
