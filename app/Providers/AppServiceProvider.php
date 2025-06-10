@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Bidan;
+use App\Models\Dokter;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::share('listDokter', Dokter::all());
+        View::share('listBidan', Bidan::all());
+
         Validator::replacer('required', function ($message, $attribute, $rule, $parameters) {
             if (preg_match('/(.*)\.(\d+)/', $attribute, $matches)) {
                 $field = $matches[1];

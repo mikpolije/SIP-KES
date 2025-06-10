@@ -14,4 +14,19 @@ class SuratKematian extends Model
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
+
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'id_dokter');
+    }
+
+    public function data_pasien()
+    {
+        return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
+    }
+
+    public function icd10()
+    {
+        return $this->belongsTo(ICD::class, 'id_icd');
+    }
 }

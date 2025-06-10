@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\generalConsentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ARController;
 
 Route::middleware('api')->name('api.')->group(function () {
 
@@ -36,7 +37,16 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::post('/obat/{id}/update', [ObatController::class, 'update'])->name('obat.update');
     Route::post('/obat/{id}/delete', [ObatController::class, 'delete'])->name('obat.delete');
 
+    Route::get('icd10', [IcdController::class, 'icd10'])->name('icd10.index');
+    Route::get('icd9', [IcdController::class, 'icd9'])->name('icd9.index');
 });
 
+
+Route::prefix('main/polikia/pemeriksaan')->group(function () {
+    // Route::post('/main/pendaftaran/pasien', [PendaftaranController::class, 'storePendafataran'])->name('pendaftaran.store');
+    // Route::get('/get-data-pasien/{no_rm}', [PendaftaranController::class, 'getDataPasien']);
+    Route::get('/antrean/polikia', [ARController::class, 'antrean'])->name('antrean.polikia');
+    Route::get('/riwayat', [ARController::class, 'riwayat'])->name('riwayat.polikia');
+});
 Route::get('/signature-status/{token}', [generalConsentController::class, 'checkStatus']);
 

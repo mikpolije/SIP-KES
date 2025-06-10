@@ -9,7 +9,7 @@ class Obat extends Model
 {
     use HasFactory;
 
-    protected $table = 'obat';
+    protected $table = 'obats';
 
     protected $primaryKey = 'id';
 

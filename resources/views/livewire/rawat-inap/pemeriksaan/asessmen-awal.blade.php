@@ -101,7 +101,7 @@ new class extends Component {
         ];
     }
 
-    #[On('submit-step1')]
+    #[On('submit-step2')]
     public function submit()
     {
         $this->validate();

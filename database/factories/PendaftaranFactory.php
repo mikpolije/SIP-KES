@@ -20,14 +20,7 @@ class PendaftaranFactory extends Factory
             'no_rm' => $dataPasien->no_rm,
             'id_dokter' => $dokter->id,
             'id_wali_pasien' => $waliPasien->id,
-            'layanan' => $this->faker->randomElement([
-                'Poli Umum',
-                'KIA',
-                'UGD',
-                'Rawat Inap',
-                'Circum',
-                'Vaksin Internasional'
-            ]),
+            'id_poli' => 4,
         ];
     }
 

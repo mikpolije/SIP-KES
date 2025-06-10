@@ -9,7 +9,7 @@ class FormulirAnak extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi_p_anak';
+    protected $table = 'formulir_anak';
 
     protected $primaryKey = 'id';
 
