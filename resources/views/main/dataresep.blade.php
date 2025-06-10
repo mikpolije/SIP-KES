@@ -173,7 +173,7 @@
                                 <div id="hasil-search-obat" class="list-group position-absolute"
                                     style="top: 100%; z-index: 1000; width: 70%; display: none;"></div>
                                 <button class="btn btn-primary btn-3d me-auto" onclick="tambahObat()">
-                                    <i class="ti ti-plus"></i> Tambah Racikan
+                                    <i class="ti ti-plus"></i> Tambah
                                 </button>
                                 <button class="btn btn-primary btn-3d" onclick="searchobat()">Cari</button>
                             </div>
@@ -273,7 +273,7 @@
 
                     <!-- OPTION BUTTON -->
                     <div class="row mb-9 justify-content-end">
-                        <div class="col-md-8 d-flex justify-content-end">
+                        <div class="col-md-9 d-flex justify-content-end">
                             <button type="button" class="btn btn-info btn-3d" style="margin-right: 10px;"
                                 onclick="window.location.href='{{ url('main/datapengambilanobat') }}'">Sebelumnya</button>
                             <button type="button" class="btn btn-success btn-3d" style="margin-right: 10px;"
@@ -282,7 +282,7 @@
                             <button type="button" class="btn btn-warning btn-3d" style="margin-right: 10px;"
                                 onclick="printTables()">Cetak</button>
                             <button type="button" class="btn btn-info btn-3d" style="margin-right: 10px;"
-                                onclick="window.location.href='{{ url('main/dataformobatracikan') }}'">Racikan</button>
+                                onclick="window.location.href='{{ url('main/dataformobatracikan') }}'">Tambah Racikan</button>
                             <button type="button" class="btn btn-info btn-3d" style="margin-right: 10px;"
                                 onclick="window.location.href='{{ url('main/pembayaran') }}'">Selanjutnya</button>
                         </div>

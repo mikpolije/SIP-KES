@@ -370,7 +370,7 @@ $(".validation-wizard").steps({
             $('#page-subtitle').text('Data Pemeriksaan');
         }
 
-        if (newIndex > 0) {
+        if (newIndex > 1) {
             $('#persuratan-container').removeClass('d-none');
         } else {
             $('#persuratan-container').addClass('d-none');
@@ -487,7 +487,7 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
 });
 
 $(document).on('click', '.search-icd10', function (e) {
-    var kode = $('input[name=kode_tindakan_kehamilan]').val() || $('input[name=kode_tindakan]').val() || '';
+    var kode = $('input[name=kode_tindakan_kehamilan]').val() || $('#pemeriksaan-anak input[name=kode_tindakan]').val() || '';
 
     $.ajax({
         url: "{{ route('api.icd10.index') }}?icd10="+kode,
