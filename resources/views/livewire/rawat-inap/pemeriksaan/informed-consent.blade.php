@@ -53,14 +53,14 @@ new class extends Component {
 
             if ($pendaftaran) {
                 $this->noRM = $pendaftaran->data_pasien->no_rm;
-                $this->nama = $pendaftaran->data_pasien->nama_lengkap;
+                $this->nama = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahir = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin;
-                $this->namaPasien = $pendaftaran->data_pasien->nama_lengkap;
+                $this->namaPasien = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->alamatPasien = $pendaftaran->data_pasien->alamat_pasien;
 
-                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_lengkap ?? '';
+                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_pasien ?? '';
                 $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir_pasien ?? '';
                 $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_pasien ?? '';
 
