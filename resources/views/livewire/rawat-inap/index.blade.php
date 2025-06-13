@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Pendaftaran;
+use App\Models\DataPasien;
 use Livewire\Volt\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
@@ -72,17 +73,24 @@ new class extends Component {
 
     public function getFilteredPatientsProperty()
     {
-        return Pendaftaran::where('layanan', 'Rawat Inap')
+        $query = Pendaftaran::select('pendaftaran.*', 'data_pasien.*')
+            ->join('data_pasien', 'pendaftaran.no_rm', '=', 'data_pasien.no_rm')
+            ->where('pendaftaran.id_poli', '4')
             ->when($this->search, function ($query) {
-                $query->whereHas('data_pasien', function ($subquery) {
-                    $subquery->where('nama_lengkap', 'like', '%' . $this->search . '%')
-                            ->orWhere('no_rm', 'like', '%' . $this->search . '%')
-                            ->orWhere('nik_pasien', 'like', '%' . $this->search . '%');
-                })
-                ->orWhere('id_pendaftaran', 'like', '%' . $this->search . '%');
-            })
-            ->with('data_pasien')
-            ->paginate($this->perPage);
+                $query->where(function($q) {
+                    $q->where('data_pasien.nama_pasien', 'like', '%'.$this->search.'%')
+                      ->orWhere('data_pasien.no_rm', 'like', '%'.$this->search.'%')
+                      ->orWhere('data_pasien.nik_pasien', 'like', '%'.$this->search.'%')
+                      ->orWhere('pendaftaran.id_pendaftaran', 'like', '%'.$this->search.'%');
+                });
+            });
+
+        // Debug the SQL query
+        \Log::info('SQL Query: ' . $query->toSql());
+        \Log::info('Bindings: ' . json_encode($query->getBindings()));
+
+        $results = $query->paginate($this->perPage);
+        return $results;
     }
 
     #[On('switch-tab')]
@@ -159,33 +167,30 @@ new class extends Component {
                                             <th style="width: 8%">TGL LAHIR</th>
                                             <th style="width: 8%">TGL MASUK</th>
                                             <th style="width: 15%">ALAMAT</th>
-                                            <th style="width: 15%">KET</th>
                                             <th class="text-center" style="width: 6%">AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody class="small">
                                         @if(count($this->filteredPatients) > 0)
                                         @foreach($this->filteredPatients as $index => $patient)
-                                        <tr wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
+                                        <tr wire:click="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->nama_pasien }}')"
                                             style="cursor: pointer;" class="hover-effect-row">
                                             <td class="text-center">{{ ($this->filteredPatients->currentPage() - 1) *
                                                 $this->perPage + $index + 1 }}</td>
-                                            <td class="text-nowrap">{{ $patient->data_pasien->no_rm }}</td>
+                                            <td class="text-nowrap">{{ $patient->no_rm }}</td>
                                             <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient->data_pasien->nama_lengkap }}">{{
-                                                $patient->data_pasien->nama_lengkap }}</td>
-                                            <td class="text-nowrap">{{ $patient->data_pasien->nik_pasien }}</td>
-                                            <td class="text-nowrap">{{ $patient->data_pasien->tanggal_lahir_pasien }}
+                                                title="{{ $patient->nama_pasien }}">{{
+                                                $patient->nama_pasien }}</td>
+                                            <td class="text-nowrap">{{ $patient->nik_pasien }}</td>
+                                            <td class="text-nowrap">{{ $patient->tanggal_lahir_pasien }}
                                             </td>
                                             <td class="text-nowrap">{{ $patient->created_at }}</td>
                                             <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient->data_pasien->alamat_pasien }}">{{
-                                                $patient->data_pasien->alamat_pasien }}</td>
-                                            <td class="text-truncate" data-bs-toggle="tooltip"
-                                                title="{{ $patient->note ?? '' }}">Rujuk {{ $patient->layanan }}</td>
+                                                title="{{ $patient->alamat_pasien }}">{{
+                                                $patient->alamat_pasien }}</td>
                                             <td class="text-center p-1">
                                                 <button
-                                                    wire:click.stop="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->data_pasien->nama_lengkap }}')"
+                                                    wire:click.stop="selectPatient('{{ $patient->id_pendaftaran }}', '{{ $patient->nama_pasien }}')"
                                                     class="btn btn-primary btn-sm p-0 px-1" title="Detail">
                                                     <i class="ti ti-eye"></i>
                                                 </button>

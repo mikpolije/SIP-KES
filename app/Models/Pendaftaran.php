@@ -30,7 +30,7 @@ class Pendaftaran extends Model
 
     public function data_pasien()
     {
-        return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
+        return $this->hasOne(DataPasien::class, 'no_rm', 'no_rm');
     }
 
     public function wali_pasien()
