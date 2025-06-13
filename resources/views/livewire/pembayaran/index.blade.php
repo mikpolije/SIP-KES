@@ -50,7 +50,7 @@ new class extends Component {
         $this->invoiceDate = now()->format('Y-m-d');
 
         $this->masterServices = Layanan::all()->pluck('nama_layanan', 'id');
-        $this->masterMedicines = Obat::all()->pluck('nama', 'id');
+        $this->masterMedicines = Obat::all()->pluck('nama', 'id_obat');
 
         $this->subTotal = 0;
     }

@@ -67,7 +67,7 @@ new class extends Component {
         $informed_consent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
 
         if ($this->pendaftaran) {
-            $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
+            $this->nama = $this->pendaftaran->data_pasien->nama_pasien;
             $this->noRM = $this->pendaftaran->data_pasien->no_rm;
             $this->nik = $this->pendaftaran->data_pasien->nik_pasien;
             $this->tglMasuk = $this->pendaftaran->poli_rawat_inap->created_at->format('Y-m-d');
