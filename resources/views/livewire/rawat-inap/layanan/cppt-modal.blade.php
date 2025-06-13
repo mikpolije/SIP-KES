@@ -199,7 +199,7 @@ new class extends Component {
 
     public function removeObat($obatId) {
         $this->formData['id_obat'] = array_values(array_filter($this->formData['id_obat'], function($item) use ($obatId) {
-            return $item['id'] != $obatId;
+            return $item['id_obat'] != $obatId;
         }));
 
         $this->selectedObat = array_values(array_filter($this->selectedObat, function($item) use ($obatId) {
@@ -210,7 +210,7 @@ new class extends Component {
     public function updateObatQty($obatId, $qty) {
         // Update in formData
         foreach ($this->formData['id_obat'] as &$obat) {
-            if ($obat['id'] == $obatId) {
+            if ($obat['id_obat'] == $obatId) {
                 $obat['qty'] = $qty;
                 break;
             }
@@ -333,7 +333,7 @@ new class extends Component {
             foreach ($this->formData['id_obat'] as $item) {
                 ObatPendaftaran::create([
                     'id_pendaftaran' => $this->pendaftaranId,
-                    'id_obat' => $item['id'],
+                    'id_obat' => $item['id_obat'],
                     'qty' => $item['qty'],
                 ]);
             }
