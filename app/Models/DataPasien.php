@@ -16,6 +16,10 @@ class DataPasien extends Model
 
     protected $guarded = ['no_rm'];
 
+    protected $casts = [
+        'no_rm' => 'string',
+    ];
+
     public function wali_pasien()
     {
         return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm');

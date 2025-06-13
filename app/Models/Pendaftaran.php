@@ -28,9 +28,13 @@ class Pendaftaran extends Model
         'updated_at',
     ];
 
+    protected $casts = [
+        'no_rm' => 'string',
+    ];
+
     public function data_pasien()
     {
-        return $this->hasOne(DataPasien::class, 'no_rm', 'no_rm');
+        return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 
     public function wali_pasien()
