@@ -115,7 +115,7 @@ new class extends Component {
             ->get()
             ->map(function($item) {
                 return [
-                    'value' => $item->id,
+                    'value' => $item->id_obat,
                     'label' => $item->nama,
                     'nama' => $item->nama
                 ];
@@ -174,13 +174,13 @@ new class extends Component {
 
     public function addObat($obatId) {
         // Check if obat already exists
-        $exists = collect($this->formData['id_obat'])->firstWhere('id', $obatId);
+        $exists = collect($this->formData['id_obat'])->firstWhere('id_obat', $obatId);
 
         if (!$exists) {
             $obat = collect($this->obatList)->firstWhere('value', $obatId);
             if ($obat) {
                 $this->formData['id_obat'][] = [
-                    'id' => $obatId,
+                    'id_obat' => $obatId,
                     'qty' => 1, // Default quantity
                     'nama' => $obat['nama']
                 ];
@@ -306,7 +306,7 @@ new class extends Component {
                 'formData.id_icd9' => 'nullable|array',
                 'formData.id_icd9.*' => 'exists:icd9,id',
                 'formData.id_obat' => 'nullable|array',
-                'formData.id_obat.*.id' => 'exists:obats,id',
+                'formData.id_obat.*.id_obat' => 'exists:obat,id_obat',
                 'formData.id_obat.*.qty' => 'required|numeric|min:1',
                 'filePenunjang' => 'nullable|image|max:2048',
             ]);
