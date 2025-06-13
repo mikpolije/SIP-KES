@@ -47,11 +47,6 @@ class DatabaseSeeder extends Seeder
         Obat::factory()->count(50)->create();
         Layanan::factory()->count(50)->create();
 
-        User::factory()->create([
-            'nama' => 'Test User',
-            'email' => 'admin@project.com',
-        ]);
-
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
