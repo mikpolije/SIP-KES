@@ -11,9 +11,9 @@ class Obat extends Model
 
     protected $table = 'obat';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_obat';
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id_obat'];
 
     public function detail_pembelian_obat()
     {
