@@ -47,7 +47,7 @@ new class extends Component {
             $this->no_rm = $pendaftaran->data_pasien['no_rm'] ?? '';
             $this->nik = $pendaftaran->data_pasien['nik_pasien'] ?? '';
             $this->jenis_kelamin = $pendaftaran->data_pasien['jenis_kelamin'] ?? 'Laki-laki';
-            $this->nama_pasien = $pendaftaran->data_pasien['nama_lengkap'] ?? '';
+            $this->nama_pasien = $pendaftaran->data_pasien['nama_pasien'] ?? '';
             $this->tanggal_lahir_pasien = $pendaftaran->data_pasien['tanggal_lahir_pasien'] ?? '';
 
             $this->nama_wali = $pendaftaran->wali_pasien['nama_wali'] ?? '';
