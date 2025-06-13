@@ -51,7 +51,7 @@ new class extends Component {
 
         $this->existingRawatInap = PoliRawatInap::where('id_pendaftaran', $pendaftaranId)->first();
 
-        $this->nama = $this->currentPatient->nama_lengkap;
+        $this->nama = $this->currentPatient->nama_pasien;
         $this->alamatLengkap = $this->currentPatient->alamat_pasien;
         $this->nomorRM = $this->currentPatient->no_rm;
         $this->nik = $this->currentPatient->nik_pasien;
