@@ -41,6 +41,11 @@
     }
 </style>
 
+@section('styles')
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+
 @section('pageContent')
     <div class="container-fluid">
         <div class="card w-100">
@@ -3951,6 +3956,3 @@ $('#search-results').hide();
 
     @endsection
 
-@section('styles')
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-@endsection
