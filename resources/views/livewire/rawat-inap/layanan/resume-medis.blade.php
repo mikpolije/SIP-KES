@@ -578,8 +578,14 @@ new class extends Component {
                                     <th>Jumlah</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            </tbody>
+                                <tbody>
+                                    @foreach ($this->distinctObat as $obat)
+                                        <tr>
+                                            <td>{{ $obat['nama'] }}</td>
+                                            <td>{{ $obat['jumlah'] ?? 'N/A' }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                         </table>
                     </div>
                 </div>
