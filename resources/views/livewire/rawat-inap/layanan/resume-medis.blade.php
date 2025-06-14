@@ -574,15 +574,13 @@ new class extends Component {
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Nama Obat</th>
-                                    <th>Jumlah</th>
+                                    <th>Obat</th>
                                 </tr>
                             </thead>
                                 <tbody>
                                     @foreach ($this->distinctObat as $obat)
                                         <tr>
                                             <td>{{ $obat['nama'] }}</td>
-                                            <td>{{ $obat['jumlah'] ?? 'N/A' }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
