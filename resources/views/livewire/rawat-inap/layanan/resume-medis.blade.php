@@ -418,14 +418,6 @@ new class extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-3">
-                        <label class="form-label">Penyebab Luar / Cidera / Kecelakaan (jika ada)</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="penyebab_luar">
-                    </div>
-                </div>
                 <div class="row mb-2">
                     <div class="col-md-3">
                         <label class="form-label">Diagnosis Sekunder / Komorbid</label>
@@ -438,6 +430,14 @@ new class extends Component {
                             <span class="input-group-text">KODE ICD 9</span>
                             <input type="text" class="form-control" wire:model="kodeICD9" disabled>
                         </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Penyebab Luar / Cidera / Kecelakaan (jika ada)</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" wire:model="penyebab_luar">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -548,17 +548,10 @@ new class extends Component {
                                 <tr>
                                     <th>Nama Obat</th>
                                     <th>Jumlah</th>
-                                    <th>Cara Pemberian</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" class="form-control"></td>
-                                    <td><input type="text" class="form-control"></td>
-                                    <td><input type="text" class="form-control"></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" class="form-control"></td>
                                     <td><input type="text" class="form-control"></td>
                                     <td><input type="text" class="form-control"></td>
                                 </tr>
