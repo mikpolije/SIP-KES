@@ -13,7 +13,6 @@ new class extends Component {
     public $pendaftaran;
     public $existingResMed;
 
-    // Patient Info (Read-only)
     public $nama;
     public $noRM;
     public $tglMasuk;
@@ -35,7 +34,6 @@ new class extends Component {
     public $diagnosisSekunder;
     public $kodeICD9;
 
-    // Resume Medis Fields (Editable - mapped to migration)
     public $no = "(Auto-generated)";
     public $ringkasan_penyakit;
     public $laboratorium;
@@ -47,7 +45,6 @@ new class extends Component {
     public $tindakan;
     public $tanggal_kontrol;
 
-    // Additional fields for form completion
     public $tandaVital;
     public $pemeriksaanFisik;
     public $terapiMedis;
@@ -62,6 +59,7 @@ new class extends Component {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
         $this->existingResMed = ResumeMedis::where('id_pendaftaran', $pendaftaranId)->first();
+        $this->lastCPPT = CPPT::where('id_pendaftaran', $pendaftaranId)->latest();
 
         $cpptData = CPPT::where('id_pendaftaran', $pendaftaranId)
             ->orderBy('created_at', 'asc')
@@ -96,7 +94,6 @@ new class extends Component {
             $this->diagnosisSekunder = ($cpptAkhir->id_icd9 ?? '-');
             $this->kodeICD9 = ($cpptAkhir->id_icd9 ?? '-');
 
-            // Load existing resume medis data if exists
             if ($this->existingResMed) {
                 $this->no = $this->existingResMed->no;
                 $this->ringkasan_penyakit = $this->existingResMed->ringkasan_penyakit;
@@ -107,11 +104,11 @@ new class extends Component {
                 $this->kondisi_saat_pulang = $this->existingResMed->kondisi_saat_pulang;
                 $this->penyebab_luar = $this->existingResMed->penyebab_luar;
                 $this->tindakan = $this->existingResMed->tindakan;
-                $this->tanggal_kontrol = $this->existingResMed->tanggal_kontrol;
+                $this->tanggal_kontrol = $this->existingResMed->tanggal_kontrol
+                    ? $this->existingResMed->tanggal_kontrol->format('Y-m-d') : null;
             } else {
-                // Initialize from existing data if available
                 $this->ringkasan_penyakit = $informed_consent->ringkasan_penyakit;
-                $this->no = 'IM/' . date('Y') . '/000'; // Default value
+                $this->no = 'IM/' . date('Y') . '/000';
             }
         } else {
             $missing = [];
@@ -127,7 +124,6 @@ new class extends Component {
     }
 
     public function save() {
-        // Validate required fields
         $this->validate([
             'ringkasan_penyakit' => 'nullable|string',
             'laboratorium' => 'nullable|string',
@@ -155,11 +151,9 @@ new class extends Component {
             ];
 
             if ($this->existingResMed) {
-                // Update existing record
                 $this->existingResMed->update($data);
                 flash()->success('Resume Medis berhasil diperbarui!');
             } else {
-                // Create new record
                 $data['no'] = $this->generateResumeNumber();
                 ResumeMedis::create($data);
                 flash()->success('Resume Medis berhasil disimpan!');
