@@ -3,8 +3,9 @@
 @section('title', 'SIP-Kes')
 
 @section('pageContent')
-{{-- Select2 CSS --}}
+{{-- STYLE & SELECT2 --}}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
@@ -132,7 +133,7 @@ td {
 <div class="container-fluid py-4">
     <h1 class="judul-riwayat mb-4">Riwayat Pemeriksaan</h1>
 
-    {{-- Search Bar dengan Select2 --}}
+    {{-- Search Bar --}}
     <div class="mb-3 d-flex justify-content-end">
         <select class="form-control w-25 me-2" id="searchPasien" style="width: 100%;">
             <option value="">Cari Data Pasien...</option>
@@ -153,33 +154,29 @@ td {
                 </tr>
             </thead>
             <tbody>
-                @foreach ([
-                ['RM000754', 'Na Jaemin', '3509XXXXXXXXXXX'],
-                ['RM000841', 'Oktavia', '3509XXXXXXXXXXX'],
-                ['RM000645', 'Jennie', '3509XXXXXXXXXXX'],
-                ['RM000312', 'Laili', '3509XXXXXXXXXXX'],
-                ['RM000410', 'Shofi', '3509XXXXXXXXXXX'],
-                ['RM000453', 'Jaehyun', '3509XXXXXXXXXXX'],
-                ['RM000256', 'Asahi', '3509XXXXXXXXXXX'],
-                ['RM000213', 'Erwiyan', '3509XXXXXXXXXXX'],
-                ] as $row)
+                @foreach ($dataRiwayat as $row)
                 <tr>
-                    <td>{{ $row[0] }}</td>
-                    <td>{{ $row[1] }}</td>
-                    <td>{{ $row[2] }}</td>
-                    <td>19-05-2025</td>
+                    <td>{{ $row['no_rm'] }}</td>
+                    <td>{{ $row['nama'] }}</td>
+                    <td>{{ $row['nik'] }}</td>
+                    <td>{{ $row['tanggal_periksa'] }}</td>
                     <td>
-                        <a href="{{ route('poli-umum.detail', parameters: ['rm' => $row[0]]) }}" class="btn-detail">Detail</a>
+                        <a href="{{ route('poli-umum.detail', ['rm' => $row['no_rm']]) }}" class="btn-detail">Detail</a>
                     </td>
                 </tr>
                 @endforeach
+                @if($dataRiwayat->isEmpty())
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Tidak ada data pemeriksaan.</td>
+                </tr>
+                @endif
             </tbody>
         </table>
-        
+
         {{-- Pagination --}}
         <div class="pagination-wrapper">
             <div class="pagination-info">
-                Tampilan 
+                Tampilan
                 <select class="select-entries" id="perPage">
                     <option value="10">10</option>
                     <option value="25">25</option>
@@ -189,69 +186,81 @@ td {
                 entri
             </div>
             <ul class="pagination">
+                {{-- Contoh statis --}}
                 <li class="disabled"><a href="#">Sebelumnya</a></li>
                 <li class="active"><a href="#">1</a></li>
                 <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
                 <li><a href="#">Selanjutnya</a></li>
             </ul>
         </div>
     </div>
 </div>
 
-{{-- Script --}}
+{{-- SCRIPT --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-    $(document).ready(function () {
-        // Inisialisasi Select2 untuk pencarian pasien
-        $('#searchPasien').select2({
-            placeholder: 'Cari Data Pasien...',
-            allowClear: true,
-            ajax: {
-                url: '{{ route("poli-umum.search-pasien") }}',
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
+$(document).ready(function () {
+    $('#searchPasien').select2({
+        placeholder: 'Cari Data Pasien...',
+        allowClear: true,
+        ajax: {
+            url: '{{ route("poli-umum.search-pasien") }}',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return { q: params.term };
+            },
+            processResults: function (data) {
+                if (data.results.length === 0) {
                     return {
-                        q: params.term
+                        results: [{ id: '', text: 'Pasien tidak ditemukan', disabled: true }]
                     };
-                },
-                processResults: function (data) {
-                    return {
-                        results: data.results
-                    };
-                },
-                cache: true
-            }
-        });
-
-        // Fungsi pencarian pasien
-        $('#btnCariPasien').on('click', function (e) {
-            e.preventDefault();
-            const noRM = $('#searchPasien').val();
-            if (noRM) {
-                window.location.href = `/poli-umum/detail/${noRM}`;
-            } else {
-                alert('Silakan pilih data pasien terlebih dahulu.');
-            }
-        });
-
-        // Fungsi untuk mengubah jumlah entri per halaman
-        $('#perPage').on('change', function() {
-            const perPage = $(this).val();
-            // Simpan preferensi ke cookie atau local storage
-            localStorage.setItem('perPage', perPage);
-            
-            // Reload halaman dengan parameter per_page
-            const url = new URL(window.location.href);
-            url.searchParams.set('per_page', perPage);
-            window.location.href = url.toString();
-        });
-
-        // Set nilai default dari cookie/local storage
-        const savedPerPage = localStorage.getItem('perPage') || '10';
-        $('#perPage').val(savedPerPage);
+                }
+                return { results: data.results };
+            },
+            cache: true
+        }
     });
+
+    $('#btnCariPasien').on('click', function (e) {
+        e.preventDefault();
+        const noRM = $('#searchPasien').val();
+        if (noRM) {
+            window.location.href = `/poli-umum/detail/${noRM}`;
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Peringatan!',
+                text: 'Silakan pilih data pasien terlebih dahulu.'
+            });
+        }
+    });
+
+    // PerPage logic
+    $('#perPage').on('change', function () {
+        const perPage = $(this).val();
+        localStorage.setItem('perPage', perPage);
+        const url = new URL(window.location.href);
+        url.searchParams.set('per_page', perPage);
+        window.location.href = url.toString();
+    });
+
+    const savedPerPage = localStorage.getItem('perPage') || '10';
+    $('#perPage').val(savedPerPage);
+});
+
+// Flash message via session
+@if(session('success'))
+Swal.fire({
+    icon: 'success',
+    title: 'Sukses!',
+    text: '{{ session("success") }}',
+    timer: 2000,
+    showConfirmButton: false
+});
+@endif
 </script>
 @endsection
