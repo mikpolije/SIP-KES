@@ -26,7 +26,7 @@ return new class extends Migration
 
             $table->foreign('obat_id')
                 ->references('id')
-                ->on('obats')
+                ->on('obat')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('obats', function (Blueprint $table) {
+        Schema::create('obat', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('keterangan');
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->integer('stok_opname');
             $table->integer('stok_gudang');
 
-            $table->foreign('id_obat')->references('id')->on('obats')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_obat')->references('id')->on('obat')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
 
@@ -52,7 +52,7 @@ return new class extends Migration
             $table->string('ke_lokasi')->nullable();
             $table->text('keterangan')->nullable();
 
-            $table->foreign('id_obat')->references('id')->on('obats')->onDelete('cascade');
+            $table->foreign('id_obat')->references('id')->on('obat')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -65,6 +65,6 @@ return new class extends Migration
         Schema::dropIfExists('riwayat_stok_obat');
         Schema::dropIfExists('detail_pembelian_obat');
         Schema::dropIfExists('pembelian_obat');
-        Schema::dropIfExists('obats');
+        Schema::dropIfExists('obat');
     }
 };
