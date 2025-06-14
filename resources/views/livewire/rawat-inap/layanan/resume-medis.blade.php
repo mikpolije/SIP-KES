@@ -55,6 +55,10 @@ new class extends Component {
     public $statusPulang;
     public $caraKeluar;
 
+    public $distinctIcd10 = [];
+    public $distinctIcd9 = [];
+    public $distinctObat = [];
+
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
@@ -67,9 +71,29 @@ new class extends Component {
         $cpptAwal = $cpptData->first();
         $cpptAkhir = $cpptData->last();
 
-        $distinctIcd10 = $cpptData->flatMap->id_icd10->unique()->values();
-        $distinctIcd9 = $cpptData->flatMap->id_icd9->unique()->values();
-        $distinctObat = $cpptData->flatMap->id_obat->unique('id_obat')->values();
+        $allIcd10 = [];
+        $allIcd9 = [];
+        $allObat = [];
+
+        foreach ($cpptData as $cppt) {
+            $icd10 = json_decode($cppt->id_icd10, true) ?? [];
+            $icd9 = json_decode($cppt->id_icd9, true) ?? [];
+            $obat = json_decode($cppt->id_obat, true) ?? [];
+
+            $allIcd10 = array_merge($allIcd10, $icd10);
+            $allIcd9 = array_merge($allIcd9, $icd9);
+
+            foreach ($obat as $o) {
+                $allObat[] = [
+                    'id_obat' => $o['id_obat'] ?? null,
+                    'nama' => $o['nama'] ?? null
+                ];
+            }
+        }
+
+        $this->distinctIcd10 = array_unique($allIcd10);
+        $this->distinctIcd9 = array_unique($allIcd9);
+        $this->distinctObat = collect($allObat)->unique('id_obat')->all();
 
         $asesmen_awal = AsessmenAwal::where('id_pendaftaran', $pendaftaranId)->first();
         $informed_consent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
@@ -555,10 +579,6 @@ new class extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="text" class="form-control"></td>
-                                    <td><input type="text" class="form-control"></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

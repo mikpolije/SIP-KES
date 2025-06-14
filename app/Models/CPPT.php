@@ -33,18 +33,4 @@ class CPPT extends Model
         return $this->belongsTo(Obat::class, 'id_obat');
     }
 
-    public function getIdIcd10Attribute($value)
-    {
-        return json_decode($value, true) ?? [];
-    }
-
-    public function getIdIcd9Attribute($value)
-    {
-        return json_decode($value, true) ?? [];
-    }
-
-    public function getIdObatAttribute($value)
-    {
-        return json_decode($value, true) ?? [];
-    }
 }
