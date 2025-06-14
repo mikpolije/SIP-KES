@@ -9,6 +9,11 @@ use Livewire\Volt\Component;
 
 new class extends Component {
 
+    public $pendaftaranId;
+    public $pendaftaran;
+    public $existingResMed;
+
+    // Patient Info (Read-only)
     public $nama;
     public $noRM;
     public $tglMasuk;
@@ -19,44 +24,45 @@ new class extends Component {
     public $nik;
     public $dokterPenanggungJawab;
     public $ruangPerawatan;
-
     public $diagnosaMasuk;
-
     public $indikasi;
-
-    public $ringkasanPenyakit;
     public $riwayatPenyakit;
-
     public $keadaanUmum;
-    public $tandaVital;
-    public $pemeriksaanFisik;
-
-    public $laboratorium;
-    public $radiologi;
-    public $lainLain;
-    public $terapiMedis;
     public $alergi;
+    public $namaDPJP;
     public $diagnosisUtama;
     public $kodeICD10;
-    public $penyebabLuar;
     public $diagnosisSekunder;
     public $kodeICD9;
-    public $tindakan;
-    public $instruksiEdukasi;
 
+    // Resume Medis Fields (Editable - mapped to migration)
+    public $no = "(Auto-generated)";
+    public $ringkasan_penyakit;
+    public $laboratorium;
+    public $radiologi;
+    public $lain_lain;
+    public $instruksi_edukasi;
+    public $kondisi_saat_pulang;
+    public $penyebab_luar;
+    public $tindakan;
+    public $tanggal_kontrol;
+
+    // Additional fields for form completion
+    public $tandaVital;
+    public $pemeriksaanFisik;
+    public $terapiMedis;
     public $keadaanUmumPulang;
     public $kesadaran;
     public $tandaVitalPulang;
     public $catatanPenting;
     public $statusPulang;
     public $caraKeluar;
-    public $tanggalKontrol;
-    public $namaDPJP;
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
-        // $this->existingResMed = ResumeMedis::where('id_pendaftaran', $pendaftaranId)->first();
+        $this->existingResMed = ResumeMedis::where('id_pendaftaran', $pendaftaranId)->first();
+
         $cpptData = CPPT::where('id_pendaftaran', $pendaftaranId)
             ->orderBy('created_at', 'asc')
             ->get();
@@ -80,16 +86,33 @@ new class extends Component {
 
         if ($asesmen_awal && $informed_consent && $cpptAwal) {
             $this->diagnosaMasuk = $cpptAwal->id_icd10;
-            $this->ringkasanPenyakit = $informed_consent->ringkasan_penyakit;
+            $this->indikasi = $informed_consent->indikasi_tindakan;
             $this->riwayatPenyakit = $asesmen_awal->riwayat_penyakit;
             $this->keadaanUmum = $asesmen_awal->keadaan_umum;
-            $this->indikasi = $informed_consent->indikasi_tindakan;
             $this->alergi = $asesmen_awal->alergi;
             $this->namaDPJP = $informed_consent->dokter->nama;
             $this->diagnosisUtama = $cpptAwal->id_icd10 ?? '-';
             $this->kodeICD10 = $cpptAwal->id_icd10->code ?? '-';
             $this->diagnosisSekunder = ($cpptAkhir->id_icd9 ?? '-');
             $this->kodeICD9 = ($cpptAkhir->id_icd9 ?? '-');
+
+            // Load existing resume medis data if exists
+            if ($this->existingResMed) {
+                $this->no = $this->existingResMed->no;
+                $this->ringkasan_penyakit = $this->existingResMed->ringkasan_penyakit;
+                $this->laboratorium = $this->existingResMed->laboratorium;
+                $this->radiologi = $this->existingResMed->radiologi;
+                $this->lain_lain = $this->existingResMed->lain_lain;
+                $this->instruksi_edukasi = $this->existingResMed->instruksi_edukasi;
+                $this->kondisi_saat_pulang = $this->existingResMed->kondisi_saat_pulang;
+                $this->penyebab_luar = $this->existingResMed->penyebab_luar;
+                $this->tindakan = $this->existingResMed->tindakan;
+                $this->tanggal_kontrol = $this->existingResMed->tanggal_kontrol;
+            } else {
+                // Initialize from existing data if available
+                $this->ringkasan_penyakit = $informed_consent->ringkasan_penyakit;
+                $this->no = 'IM/' . date('Y') . '/000'; // Default value
+            }
         } else {
             $missing = [];
 
@@ -101,6 +124,66 @@ new class extends Component {
             flash()->error($message);
             $this->dispatch('switch-tab', tab: 'pemeriksaan');
         }
+    }
+
+    public function save() {
+        // Validate required fields
+        $this->validate([
+            'ringkasan_penyakit' => 'nullable|string',
+            'laboratorium' => 'nullable|string',
+            'radiologi' => 'nullable|string',
+            'lain_lain' => 'nullable|string',
+            'instruksi_edukasi' => 'nullable|string',
+            'kondisi_saat_pulang' => 'nullable|string',
+            'penyebab_luar' => 'nullable|string',
+            'tindakan' => 'nullable|string',
+            'tanggal_kontrol' => 'nullable|date',
+        ]);
+
+        try {
+            $data = [
+                'id_pendaftaran' => $this->pendaftaranId,
+                'ringkasan_penyakit' => $this->ringkasan_penyakit,
+                'laboratorium' => $this->laboratorium,
+                'radiologi' => $this->radiologi,
+                'lain_lain' => $this->lain_lain,
+                'instruksi_edukasi' => $this->instruksi_edukasi,
+                'kondisi_saat_pulang' => $this->kondisi_saat_pulang,
+                'penyebab_luar' => $this->penyebab_luar,
+                'tindakan' => $this->tindakan,
+                'tanggal_kontrol' => $this->tanggal_kontrol,
+            ];
+
+            if ($this->existingResMed) {
+                // Update existing record
+                $this->existingResMed->update($data);
+                flash()->success('Resume Medis berhasil diperbarui!');
+            } else {
+                // Create new record
+                $data['no'] = $this->generateResumeNumber();
+                ResumeMedis::create($data);
+                flash()->success('Resume Medis berhasil disimpan!');
+            }
+
+        } catch (\Exception $e) {
+            flash()->error('Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    private function generateResumeNumber() {
+        $year = date('Y');
+        $lastResume = ResumeMedis::where('no', 'like', "IM/{$year}/%")
+            ->orderBy('no', 'desc')
+            ->first();
+
+        if ($lastResume) {
+            $lastNumber = intval(substr($lastResume->no, -3));
+            $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+        } else {
+            $newNumber = '001';
+        }
+
+        return "IM/{$year}/{$newNumber}";
     }
 
     public function jenis_kelamin(bool $kelamin) {
@@ -115,19 +198,17 @@ new class extends Component {
 <div>
     <div class="py-4">
         <div class="mb-4">
-            <div>
+            <form wire:submit.prevent="save">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <h2 class="fw-bold mb-0">RESUME MEDIS</h2>
                         <div class="mb-2">
                             <label class="form-label fw-bold">NO:</label>
-                            <input type="text" class="form-control form-control-sm d-inline-block w-auto">
+                            <input type="text" class="form-control form-control-sm d-inline-block w-auto" wire:model="no" disabled>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <h5 class="fw-bold">RINGKASAN PULANG</h5>
@@ -234,7 +315,7 @@ new class extends Component {
                         <label class="form-label">Ringkasan Penyakit</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="ringkasanPenyakit">
+                        <textarea class="form-control" rows="3" wire:model="ringkasan_penyakit"></textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -257,7 +338,7 @@ new class extends Component {
                         <label class="form-label">Keadaan Umum</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="keadaanUmum">
+                        <input type="text" class="form-control" wire:model="keadaanUmum" disabled>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -265,7 +346,7 @@ new class extends Component {
                         <label class="form-label">Tanda Vital</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="tandaVital">
+                        <input type="text" class="form-control" wire:model="tandaVital" disabled>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -273,7 +354,7 @@ new class extends Component {
                         <label class="form-label">Pemeriksaan Fisik</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="pemeriksaanFisik">
+                        <input type="text" class="form-control" wire:model="pemeriksaanFisik" disabled>
                     </div>
                 </div>
 
@@ -288,7 +369,7 @@ new class extends Component {
                         <label class="form-label">1. Laboratorium</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="laboratorium">
+                        <textarea class="form-control" rows="2" wire:model="laboratorium"></textarea>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -296,7 +377,7 @@ new class extends Component {
                         <label class="form-label">2. Radiologi</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="radiologi">
+                        <textarea class="form-control" rows="2" wire:model="radiologi"></textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -304,7 +385,7 @@ new class extends Component {
                         <label class="form-label">Lain-Lain</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="lainLain">
+                        <textarea class="form-control" rows="2" wire:model="lain_lain"></textarea>
                     </div>
                 </div>
 
@@ -314,7 +395,7 @@ new class extends Component {
                         <label class="form-label">Terapi Medis Selama di Rumah Sakit</label>
                     </div>
                     <div class="col-md-9">
-                        <textarea class="form-control" rows="2" wire:model="terapiMedis"></textarea>
+                        <textarea class="form-control" rows="2" wire:model="terapiMedis" disabled></textarea>
                     </div>
                 </div>
 
@@ -348,7 +429,7 @@ new class extends Component {
                         <label class="form-label">Penyebab Luar / Cidera / Kecelakaan (jika ada)</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="penyebabLuar">
+                        <input type="text" class="form-control" wire:model="penyebab_luar">
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -370,7 +451,7 @@ new class extends Component {
                         <label class="form-label">Tindakan / Procedure</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="tindakan">
+                        <textarea class="form-control" rows="2" wire:model="tindakan"></textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -378,7 +459,7 @@ new class extends Component {
                         <label class="form-label">Instruksi dan Edukasi (Tindak lanjut)</label>
                     </div>
                     <div class="col-md-9">
-                        <textarea class="form-control" rows="2" wire:model="instruksiEdukasi"></textarea>
+                        <textarea class="form-control" rows="3" wire:model="instruksi_edukasi"></textarea>
                     </div>
                 </div>
 
@@ -393,7 +474,7 @@ new class extends Component {
                         <label class="form-label">Keadaan Umum</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="keadaanUmumPulang">
+                        <input type="text" class="form-control" wire:model="keadaanUmumPulang" disabled>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -401,7 +482,7 @@ new class extends Component {
                         <label class="form-label">Kesadaran</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="kesadaran">
+                        <input type="text" class="form-control" wire:model="kesadaran" disabled>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -409,7 +490,7 @@ new class extends Component {
                         <label class="form-label">Tanda Vital</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="tandaVitalPulang">
+                        <input type="text" class="form-control" wire:model="tandaVitalPulang" disabled>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -417,7 +498,7 @@ new class extends Component {
                         <label class="form-label">Catatan Penting (kondisi saat ini)</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="catatanPenting">
+                        <textarea class="form-control" rows="2" wire:model="kondisi_saat_pulang"></textarea>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -425,7 +506,7 @@ new class extends Component {
                         <label class="form-label">Status Pulang</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="statusPulang">
+                        <input type="text" class="form-control" wire:model="statusPulang" disabled>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -433,7 +514,7 @@ new class extends Component {
                         <label class="form-label">Cara Keluar RS</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="caraKeluar">
+                        <input type="text" class="form-control" wire:model="caraKeluar" disabled>
                     </div>
                 </div>
 
@@ -448,7 +529,7 @@ new class extends Component {
                         <label class="form-label">Tanggal Kontrol Ulang</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" wire:model="tanggalKontrol">
+                        <input type="date" class="form-control" wire:model="tanggal_kontrol">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -530,10 +611,16 @@ new class extends Component {
                 <!-- Save Button -->
                 <div class="row mt-3">
                     <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-primary px-4">Simpan</button>
+                        <button type="submit" class="btn btn-primary px-4" wire:loading.attr="disabled">
+                            <span wire:loading.remove>Simpan</span>
+                            <span wire:loading>
+                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                Menyimpan...
+                            </span>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
