@@ -18,4 +18,13 @@ class Pemeriksaan extends Model
     {
         return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran', 'id_pendaftaran');
     }
+    public function index()
+{
+    $dataRiwayat = DB::table('pemeriksaan')
+        ->select('no_rm', 'nama', 'nik', 'tanggal_periksa')
+        ->get();
+
+    return view('PoliUmum.riwayatPoliUmum', compact('dataRiwayat'));
+}
+
 }
