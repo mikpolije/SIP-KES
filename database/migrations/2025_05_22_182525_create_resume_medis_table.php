@@ -13,10 +13,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('resume_medis', function (Blueprint $table) {
+            $table->string('no')->default('IM/' . date('Y') . '/000')
+                ->primary();
+
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
-                ->primary()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
+
+            $table->text('ringkasan_penyakit')->nullable();
+            $table->text('laboratorium')->nullable();
+            $table->text('radiologi')->nullable();
+            $table->text('lain_lain')->nullable();
+            $table->text('instruksi_edukasi')->nullable();
+            $table->text('kondisi_saat_pulang')->nullable();
+
+            $table->string('diagnosis_utama')->nullable();
+            $table->string('penyebab_luar')->nullable();
+            $table->string('diagnosis_sekunder')->nullable();
+
+            $table->string('tindakan')->nullable();
+
+            $table->date('tanggal_kontrol')->nullable();
 
             $table->timestamps();
         });
