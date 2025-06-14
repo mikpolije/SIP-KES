@@ -199,10 +199,7 @@ class PendafataranController extends Controller
         Log::info('Pasien ditemukan:', ['pasien' => $pasien]);
         return response()->json($pasien);
     }
-}
-
-public function cariPasien(Request $request)
-{
+    public function cariPasien(Request $request){
     $term = $request->get('term');
 
     $pasien = Pasien::where('no_rm', 'like', '%' . $term . '%')
@@ -212,3 +209,6 @@ public function cariPasien(Request $request)
 
     return response()->json($pasien);
 }
+
+}
+
