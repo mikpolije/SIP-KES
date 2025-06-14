@@ -44,4 +44,9 @@ class DataPasien extends Model
     {
         return $this->belongsTo(\Laravolt\Indonesia\Models\District::class, 'id_kecamatan');
     }
+
+    public function desa()
+    {
+        return $this->belongsTo(\Laravolt\Indonesia\Models\Village::class, 'id_desa');
+    }
 }
