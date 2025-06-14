@@ -3173,6 +3173,9 @@
         <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
         <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
         <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 
         {{-- Wilayah indonesia --}}
         <script>
@@ -3947,3 +3950,7 @@ $('#search-results').hide();
         </script>
 
     @endsection
+
+@section('styles')
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+@endsection

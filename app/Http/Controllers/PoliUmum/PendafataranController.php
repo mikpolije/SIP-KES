@@ -143,6 +143,7 @@ class PendafataranController extends Controller
                 'id_dokter' => $validatedData['id_data_dokter'],
                 'id_wali_pasien' => $existingWali->id,
                 'jenis_pembayaran' => $validatedData['jenis_pembayaran'],
+                'status' => 'antri',
             ]);
 
             return redirect()->back()->with('success', 'Data pendaftaran berhasil disimpan.');
@@ -198,4 +199,16 @@ class PendafataranController extends Controller
         Log::info('Pasien ditemukan:', ['pasien' => $pasien]);
         return response()->json($pasien);
     }
+}
+
+public function cariPasien(Request $request)
+{
+    $term = $request->get('term');
+
+    $pasien = Pasien::where('no_rm', 'like', '%' . $term . '%')
+        ->orWhere('nama_pasien', 'like', '%' . $term . '%')
+        ->limit(10)
+        ->get(['no_rm', 'nama_pasien']);
+
+    return response()->json($pasien);
 }
