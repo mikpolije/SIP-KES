@@ -101,6 +101,9 @@ Route::prefix('main/poliumum')->group(function () {
 Route::get('/poli-umum/detail/{rm}', function ($rm) {
     return view('PoliUmum.detailPasien');
 })->name('poli-umum.detail');
+// ROUTE DETAIL PASIEN
+Route::get('/riwayat/detail/{no_rm}', [App\Http\Controllers\PoliUmum\AntrianRiwayatController::class, 'detail'])->name('riwayat.detail');
+Route::get('/riwayat/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiwayatController::class, 'searchPasien'])->name('riwayat.searchPasien');
 
 Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiwayatController::class, 'searchPasien'])->name('poli-umum.search-pasien');
 

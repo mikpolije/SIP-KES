@@ -92,7 +92,10 @@ class Pendaftaran extends Model
     {
         return $this->hasOne(SuratKematian::class, 'id_pendaftaran', 'id_pendaftaran');
     }
-
+    public function pemeriksaan()
+    {
+    return $this->hasMany(Pemeriksaan::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
     public function getLayananTerisiAttribute()
     {
         if (!$this->relationLoaded('layanan_kia')) {
@@ -109,4 +112,5 @@ class Pendaftaran extends Model
             default => false,
         };
     }
+
 }

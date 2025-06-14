@@ -5,6 +5,9 @@ namespace App\Http\Controllers\PoliUmum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Pendaftaran;
+use App\Models\Pemeriksaan;
+use App\Models\DataPasien;
 
 class AntrianRiwayatController extends Controller
 {
@@ -15,10 +18,10 @@ class AntrianRiwayatController extends Controller
 
     public function riwayat()
     {
-        return view('PoliUmum.riwayatPoliUmum'); 
+        return view('PoliUmum.riwayatPoliUmum');
     }
 
-    // Tambahkan method ini untuk Search Select2
+    // Untuk fitur Select2 pencarian pasien
     public function searchPasien(Request $request)
     {
         $search = $request->input('q');
@@ -40,4 +43,28 @@ class AntrianRiwayatController extends Controller
 
         return response()->json(['results' => $data]);
     }
+    
+
+    // ✅ Fungsi untuk menampilkan detail pasien + riwayat kunjungan
+    public function detail($rm)
+    {
+        // Ambil data pendaftaran dan pasien berdasarkan no RM
+        $pendaftaran = Pendaftaran::with('data_pasien')
+            ->where('no_rm', $rm)
+            ->firstOrFail();
+
+        // Ambil semua riwayat pemeriksaan terkait pasien ini
+        $riwayat = Pemeriksaan::with('pendaftaran')
+            ->whereHas('pendaftaran', function ($query) use ($rm) {
+                $query->where('no_rm', $rm);
+            })
+            ->orderBy('tanggal_periksa_pasien', 'desc')
+            ->get();
+
+        return view('PoliUmum.detailRiwayat', [
+            'pendaftaran' => $pendaftaran,
+            'riwayat' => $riwayat,
+        ]);
+    }
+
 }
