@@ -105,7 +105,7 @@
                                         placeholder="Ketik atau pilih No. RM">
                                     <datalist id="noRMList">
                                         @foreach ($data_pasien as $pasien)
-                                            <option value="{{ $pasien->no_rm }} - {{ $pasien->nama_pasien }}"></option>
+                                            <option value="{{ $pasien->no_rm }}">{{ $pasien->no_rm }} - {{ $pasien->nama_pasien }}</option>
                                         @endforeach
                                     </datalist>
                                     <script>
