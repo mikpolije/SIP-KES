@@ -26,7 +26,7 @@ new class extends Component {
     public $diagnosaMasuk;
     public $indikasi;
     public $riwayatPenyakit;
-    public $keadaanUmum;
+    public $keadaanUmum = "(Auto)";
     public $alergi;
     public $namaDPJP;
     public $diagnosisUtama;
@@ -45,15 +45,15 @@ new class extends Component {
     public $tindakan;
     public $tanggal_kontrol;
 
-    public $tandaVital;
-    public $pemeriksaanFisik;
-    public $terapiMedis;
-    public $keadaanUmumPulang;
-    public $kesadaran;
-    public $tandaVitalPulang;
+    public $tandaVital = "(Auto)";
+    public $pemeriksaanFisik = "(Auto)";
+    public $terapiMedis = "(Auto)";
+    public $keadaanUmumPulang = "(Auto)";
+    public $kesadaran = "(Auto)";
+    public $tandaVitalPulang = "(Auto)";
     public $catatanPenting;
-    public $statusPulang;
-    public $caraKeluar;
+    public $statusPulang = "(Auto)";
+    public $caraKeluar = "(Auto)";
 
     public $distinctIcd10 = [];
     public $distinctIcd9 = [];
@@ -114,7 +114,6 @@ new class extends Component {
             $this->diagnosaMasuk = $cpptAwal->id_icd10;
             $this->indikasi = $informed_consent->indikasi_tindakan;
             $this->riwayatPenyakit = $asesmen_awal->riwayat_penyakit;
-            $this->keadaanUmum = $asesmen_awal->keadaan_umum;
             $this->alergi = $asesmen_awal->alergi;
             $this->namaDPJP = $informed_consent->dokter->nama;
             $this->diagnosisUtama = $cpptAwal->id_icd10 ?? '-';
