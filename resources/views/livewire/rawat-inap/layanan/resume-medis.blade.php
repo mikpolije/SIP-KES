@@ -59,7 +59,6 @@ new class extends Component {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
         $this->existingResMed = ResumeMedis::where('id_pendaftaran', $pendaftaranId)->first();
-        $this->lastCPPT = CPPT::where('id_pendaftaran', $pendaftaranId)->latest();
 
         $cpptData = CPPT::where('id_pendaftaran', $pendaftaranId)
             ->orderBy('created_at', 'asc')
@@ -67,6 +66,11 @@ new class extends Component {
 
         $cpptAwal = $cpptData->first();
         $cpptAkhir = $cpptData->last();
+
+        $distinctIcd10 = $cpptData->flatMap->id_icd10->unique()->values();
+        $distinctIcd9 = $cpptData->flatMap->id_icd9->unique()->values();
+        $distinctObat = $cpptData->flatMap->id_obat->unique('id_obat')->values();
+
         $asesmen_awal = AsessmenAwal::where('id_pendaftaran', $pendaftaranId)->first();
         $informed_consent = InformedConsent::where('id_pendaftaran', $pendaftaranId)->first();
 
