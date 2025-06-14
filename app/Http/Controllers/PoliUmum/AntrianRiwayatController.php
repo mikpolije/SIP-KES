@@ -43,7 +43,7 @@ class AntrianRiwayatController extends Controller
 
         return response()->json(['results' => $data]);
     }
-    
+
 
     // ✅ Fungsi untuk menampilkan detail pasien + riwayat kunjungan
     public function detail($rm)
@@ -66,5 +66,13 @@ class AntrianRiwayatController extends Controller
             'riwayat' => $riwayat,
         ]);
     }
+       public function index()
+{
+    $dataRiwayat = DB::table('pemeriksaan')
+        ->select('no_rm', 'nama', 'nik', 'tanggal_periksa')
+        ->get();
+
+    return view('PoliUmum.riwayatPoliUmum', compact('dataRiwayat'));
+}
 
 }
