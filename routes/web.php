@@ -57,9 +57,9 @@ Route::prefix('main/polikia')->group(function () {
 });
 
 // Route detail riwayat pasien
-Route::get('/poli-kia/detail/{rm}', function ($rm) {
-    return view('PoliKIA.detailPasien');
-})->name('poli-kia.detail');
+Route::get('/poli-kia/detail/{id}', function ($id) {
+    return view('main.polikia.detailkia');
+})->name('main.polikia.detailkia');
 
 Route::get('/poli-kia/search-pasien', [App\Http\Controllers\Api\ARController::class, 'searchPasien'])->name('poli-kia.search-pasien');
 

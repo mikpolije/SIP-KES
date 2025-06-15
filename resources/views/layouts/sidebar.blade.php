@@ -428,6 +428,15 @@
                         <span class="hide-menu">Poli Umum</span>
                     </a>
                 </li>
+                    <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/laporankia') ? 'active' : '' }}"
+                        href="/main/laporankia">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Poli KIA</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
                         href="/main/laporankunjungan">
@@ -435,15 +444,6 @@
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Kunjungan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/laporankia') ? 'active' : '' }}"
-                        href="/main/laporankia">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu">Laporan KIA</span>
                     </a>
                 </li>
             </ul>

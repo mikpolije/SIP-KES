@@ -114,7 +114,7 @@
                             </td>
                             <td>
                                 <button class="btn btn-sm btn-primary">Pilih</button>
-                                <a href="{{ route('polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
+                                <a href="{{ route('main.polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
                             </td>
                         </tr>
                     @endforeach
