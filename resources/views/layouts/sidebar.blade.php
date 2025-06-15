@@ -443,7 +443,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link ps-5 {{ request()->is('laporankunjunganpoliumum') ? 'active' : '' }}"
-                                href="{{ route('poliumum.laporankunjunganpoliumum') }}">
+                                href="{{ route('poliumum.laporan.kunjungan') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Kunjungan Poli Umum</span>
                             </a>
