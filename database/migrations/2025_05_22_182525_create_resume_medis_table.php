@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('radiologi')->nullable();
             $table->text('lain_lain')->nullable();
             $table->text('instruksi_edukasi')->nullable();
-            $table->text('kondisi_saat_pulang')->nullable();
+            $table->enum('kondisi_saat_pulang', ['Hidup', 'Meninggal'])->nullable();
 
             $table->string('diagnosis_utama')->nullable();
             $table->string('penyebab_luar')->nullable();
