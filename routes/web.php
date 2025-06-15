@@ -12,6 +12,8 @@ use App\Http\Controllers\PoliUmum\PendafataranController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\Api\ARController;
+use App\Http\Middleware\CheckProfesi;
+use App\Http\Kernel;
 
 Route::get('/', function () {
     return view('login');
@@ -164,9 +166,9 @@ Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'
 Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 
-
-Route::resource('user', \App\Http\Controllers\UserController::class);
-
+Route::middleware(['auth', 'profesi:admin,superadmin,test'])->group(function () {
+    Route::resource('user', \App\Http\Controllers\UserController::class);
+});
 
 //route autocomplete cari data pasien
 Route::get('/cari-pasien', [PendafataranController::class, 'cariPasien']);
