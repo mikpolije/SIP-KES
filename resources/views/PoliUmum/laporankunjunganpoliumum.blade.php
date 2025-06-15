@@ -171,7 +171,6 @@
                             <option value="dr. Jenie">dr. Jenie</option>
                             <option value="dr. Jisoo">dr. Jisoo</option>
                             </select>
-                    </div>
                 </div>
 				</div>
 				    <div class="col-md-6">
