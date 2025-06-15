@@ -14,7 +14,7 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\Api\ARController;
 
 Route::get('/', function () {
-    return view('user/register');
+    return view('login');
 });
 Route::get('/login', function () {
     return view('login');
