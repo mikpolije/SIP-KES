@@ -173,7 +173,6 @@
                             </select>
                     </div>
                 </div>
-      <!-- Cara Bayar -->
 				</div>
 				    <div class="col-md-6">
                                         <div class="mb-3">
@@ -186,7 +185,6 @@
                                             </select>
                                         </div>
                                     </div>
-      <!-- Buttons -->
       <div class="row">
             <div class="col-half">
                 <div class="card">
