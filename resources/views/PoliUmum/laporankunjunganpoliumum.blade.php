@@ -225,14 +225,4 @@
     document.getElementById("tabelData").style.display = "block";
   });
 </script>
-
-
-<!-- Script -->
-<script>
-  document.getElementById("btnTampilkan").addEventListener("click", function () {
-    document.getElementById("tabelData").style.display = "block";
-  });
-</script>
-
-                </div>
-            @endsection
+ @endsection
