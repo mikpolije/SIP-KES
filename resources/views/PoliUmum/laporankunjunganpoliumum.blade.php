@@ -163,7 +163,6 @@
                         <input type="Date" class=:tanggal" placeholder="DD/MM/YYYY">
 			    </div>
                 </div>
-            </div>
 				<div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label" for="Dokter">Dokter</label>
@@ -174,17 +173,15 @@
                 </div>
 				</div>
 				    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="Cara Bayar">Cara Bayar</label>
-                                            <select class="form-select required" id="Cara Bayar"
-                                                name="carabayar">
-                                                <option value="Umum">Umum</option>
-                                                <option value="BPJS">BPJS</option>
-                                                <option value="Asuransi">Asuransi</option>
-                                            </select>
-                                        </div>
-                                    </div>
-      <div class="row">
+                    <div class="mb-3">
+                        <label class="form-label" for="Cara Bayar">Cara Bayar</label>
+                        <select class="form-select required" id="Cara Bayar"name="carabayar">
+                            <option value="Umum">Umum</option>
+                            <option value="BPJS">BPJS</option>
+                            <option value="Asuransi">Asuransi</option>
+                            </select>
+                    </div>
+                     </div>
             <div class="col-half">
                 <div class="card">
                     <div class="filter-header">
