@@ -33,8 +33,8 @@ new class extends Component {
                         <button type="button" class="btn btn-primary me-2">
                             <i class="bi bi-search"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary">
-                            <i class="bi bi-printer"></i>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('rawat-inap.laporan-print') }}'">
+                            <i class="bi bi-printer"></i> Print
                         </button>
                     </div>
                 </div>
