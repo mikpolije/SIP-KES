@@ -11,21 +11,32 @@ class RegisterController extends Controller
 {
     public function showForm()
     {
-        return view('register');
+        return view('user.register');
     }
 
     public function register(Request $request)
     {
         $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'nama'         => 'required|string|max:255',
+            'username'     => 'required|string|max:50|unique:users,username',
+            'nik'          => 'required|string|max:20|unique:users,nik',
+            'profesi'      => 'required|string|max:100',
+            'no_telepon'   => 'required|string|max:20',
+            'email'        => 'required|email|unique:users,email',
+            'password'     => 'required|string|min:6|confirmed',
+            'alamat'       => 'required|string',
         ]);
 
+
         User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
+            'nama'         => $request->nama,
+            'username'     => $request->username,
+            'nik'          => $request->nik,
+            'profesi'      => $request->profesi,
+            'no_telepon'   => $request->no_telepon,
+            'email'        => $request->email,
+            'password'     => Hash::make($request->password),
+            'alamat'       => $request->alamat,
         ]);
 
         return redirect()->route('register.form')->with('success', 'User registered successfully!');
