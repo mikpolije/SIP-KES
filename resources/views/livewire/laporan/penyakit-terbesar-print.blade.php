@@ -52,101 +52,10 @@ class extends Component {
                                 <td class="text-center">5</td>
                                 <td class="text-center fw-bold">20</td>
                             </tr>
-                            <tr class="table-light">
-                                <td class="text-center">2</td>
-                                <td class="text-center">J45</td>
-                                <td>Asthma</td>
-                                <td class="text-center">7</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td class="text-center">J46</td>
-                                <td>Status asthmaticus</td>
-                                <td class="text-center">9</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">4</td>
-                                <td class="text-center">J47</td>
-                                <td>Bronchiectasis</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">5</td>
-                                <td class="text-center">J86</td>
-                                <td>Pyothorax</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">6</td>
-                                <td class="text-center">L50</td>
-                                <td>Urticaria</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">7</td>
-                                <td class="text-center">L70</td>
-                                <td>Acne</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">8</td>
-                                <td class="text-center">M41</td>
-                                <td>Scoliosis</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">9</td>
-                                <td class="text-center">M54</td>
-                                <td>Dorsalgia</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">10</td>
-                                <td class="text-center">M60</td>
-                                <td>Myositis</td>
-                                <td class="text-center">2</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center">5</td>
-                                <td class="text-center fw-bold">20</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="d-flex justify-content-end gap-2 mt-4">
                     <button type="button" class="btn btn-primary px-4" onClick="window.print()">
                         <i class="bi bi-printer me-2"></i>Print
