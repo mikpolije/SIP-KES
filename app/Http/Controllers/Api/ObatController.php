@@ -29,8 +29,7 @@ class ObatController extends Controller
         $search = $request->input('search.value', '');
         if (! empty($search)) {
             $data->where(function ($query) use ($search) {
-                $query->where('nama', 'LIKE', "%$search%")
-                    ->orWhere('keterangan', 'LIKE', "%$search%");
+                $query->where('nama', 'LIKE', "%$search%");
             });
         }
 
@@ -67,8 +66,7 @@ class ObatController extends Controller
         );
 
         if ($search) {
-            $data->where('nama', 'LIKE', "%$search%")
-                ->orWhere('keterangan', 'LIKE', "%$search%");
+            $data->where('nama', 'LIKE', "%$search%");
         }
 
         $data = $data->orderBy('id_obat', 'desc')->paginate($length, ['*'], 'page', $page);
@@ -319,8 +317,10 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'bentuk_obat' => 'required',
+            'nama' => 'required|string|max:255',
+            'stok' => 'required|integer',
+            'tanggal_kadaluwarsa' => 'required|date',
+            'bentuk_obat' => 'required|string|max:255',
             'harga' => 'required|numeric',
         ]);
 
@@ -334,6 +334,8 @@ class ObatController extends Controller
 
         $data = Obat::create([
             'nama' => $request->nama,
+            'stok' => $request->stok,
+            'tanggal_kadaluwarsa' => $request->tanggal_kadaluwarsa,
             'bentuk_obat' => $request->bentuk_obat,
             'harga' => $request->harga,
         ]);
@@ -356,8 +358,10 @@ class ObatController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'bentuk_obat' => 'required',
+            'nama' => 'required|string|max:255',
+            'stok' => 'required|integer',
+            'tanggal_kadaluwarsa' => 'required|date',
+            'bentuk_obat' => 'required|string|max:255',
             'harga' => 'required|numeric',
         ]);
 
@@ -371,6 +375,8 @@ class ObatController extends Controller
 
         $data->update([
             'nama' => $request->nama,
+            'stok' => $request->stok,
+            'tanggal_kadaluwarsa' => $request->tanggal_kadaluwarsa,
             'bentuk_obat' => $request->bentuk_obat,
             'harga' => $request->harga,
         ]);
@@ -612,4 +618,3 @@ class ObatController extends Controller
         }
     }
 }
-

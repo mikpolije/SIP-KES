@@ -13,7 +13,15 @@ class Obat extends Model
 
     protected $primaryKey = 'id_obat';
 
-    protected $guarded = ['id_obat'];
+    protected $guarded = [];
+
+    protected $fillable = [
+        'nama',
+        'stok',
+        'tanggal_kadaluwarsa',
+        'bentuk_obat',
+        'harga',
+    ];
 
     public function detail_pembelian_obat()
     {
