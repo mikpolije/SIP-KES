@@ -180,8 +180,9 @@
                             <option value="BPJS">BPJS</option>
                             <option value="Asuransi">Asuransi</option>
                             </select>
-                    </div>
-                     </div>
+                                        </div>
+                                    </div>
+      <div class="row">
             <div class="col-half">
                 <div class="card">
                     <div class="filter-header">
