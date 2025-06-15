@@ -14,10 +14,25 @@ new class extends Component {
         $this->generateReport();
     }
 
+    public function filter()
+    {
+        $this->generateReport();
+    }
+
     public function generateReport()
     {
-        $icd10Codes = ResumeMedis::with('pendaftaran.cppt')
-            ->get()
+        $query = ResumeMedis::with(['pendaftaran.cppt', 'pendaftaran.data_pasien']);
+
+        if ($this->startDate) {
+            $query->whereDate('created_at', '>=', $this->startDate);
+        }
+        if ($this->endDate) {
+            $query->whereDate('created_at', '<=', $this->endDate);
+        }
+
+        $resumeMedis = $query->get();
+
+        $icd10Codes = $resumeMedis
             ->flatMap(function($rm) {
                 return $rm->pendaftaran->cppt
                     ->flatMap(function($cppt) {
@@ -34,23 +49,23 @@ new class extends Component {
         $this->icd10Counts = [];
 
         foreach ($icd10Codes as $code) {
-                if (!isset($diagnosas[$code])) continue;
+            if (!isset($diagnosas[$code])) continue;
 
-                $counts = [
-                    'laki_hidup' => 0,
-                    'perempuan_hidup' => 0,
-                    'laki_meninggal' => 0,
-                    'perempuan_meninggal' => 0
-                ];
+            $counts = [
+                'laki_hidup' => 0,
+                'perempuan_hidup' => 0,
+                'laki_meninggal' => 0,
+                'perempuan_meninggal' => 0
+            ];
 
-                $resumes = ResumeMedis::whereHas('pendaftaran.cppt', function($q) use ($code) {
-                    $q->where('id_icd10', 'like', '%"'.$code.'"%')
-                      ->orWhere('id_icd10', 'like', '%'.$code.'%');
-                })
-                ->with('pendaftaran.data_pasien')
-                ->get();
+            foreach ($resumeMedis as $rm) {
+                $hasCode = $rm->pendaftaran->cppt->contains(function($cppt) use ($code) {
+                    $codes = json_decode($cppt->id_icd10, true) ?? [];
+                    return in_array($code, $codes);
+                });
 
-            foreach ($resumes as $rm) {
+                if (!$hasCode) continue;
+
                 $gender = $rm->pendaftaran->data_pasien->jenis_kelamin;
                 $status = $rm->kondisi_saat_pulang;
 
@@ -78,23 +93,44 @@ new class extends Component {
 
                 <div class="row align-items-end mb-4">
                     <div class="col-md-3">
-                        <label for="tanggalMasuk" class="form-label text-muted small">Tanggal Masuk</label>
-                        <input type="date" class="form-control" id="tanggalMasuk" placeholder="dd/mm/yyyy">
+                        <label for="startDate" class="form-label text-muted small">Tanggal Masuk</label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="startDate"
+                            wire:model.live="startDate"
+                            placeholder="dd/mm/yyyy"
+                        >
                     </div>
 
                     <div class="col-md-3">
-                        <label for="tanggalKeluar" class="form-label text-muted small">Tanggal Keluar</label>
-                        <input type="date" class="form-control" id="tanggalKeluar" placeholder="dd/mm/yyyy">
+                        <label for="endDate" class="form-label text-muted small">Tanggal Keluar</label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="endDate"
+                            wire:model.live="endDate"
+                            placeholder="dd/mm/yyyy"
+                        >
                     </div>
 
                     <div class="col-md-6 text-end">
-                        <button type="button" class="btn btn-primary me-2">
-                            <i class="bi bi-search"></i>
+                        <button
+                            type="button"
+                            class="btn btn-primary me-2"
+                            wire:click="filter"
+                        >
+                            <i class="bi bi-search"></i> Filter
                         </button>
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('rawat-inap.laporan-print') }}'">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            onclick="window.location.href='{{ route('rawat-inap.laporan-print') }}'"
+                        >
                             <i class="bi bi-printer"></i> Print
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>
