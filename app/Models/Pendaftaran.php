@@ -30,11 +30,13 @@ class Pendaftaran extends Model
         return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 
-    public function layananPendaftaran() {
+    public function layananPendaftaran()
+    {
         return $this->hasMany(LayananPendaftaran::class, 'id_pendaftaran');
     }
 
-    public function obatPendaftaran() {
+    public function obatPendaftaran()
+    {
         return $this->hasMany(ObatPendaftaran::class, 'id_pendaftaran');
     }
 
@@ -94,7 +96,11 @@ class Pendaftaran extends Model
     }
     public function pemeriksaan()
     {
-    return $this->hasMany(Pemeriksaan::class, 'id_pendaftaran', 'id_pendaftaran');
+        return $this->hasMany(Pemeriksaan::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+    public function asessmen_awal()
+    {
+        return $this->hasMany(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
     }
     public function getLayananTerisiAttribute()
     {
