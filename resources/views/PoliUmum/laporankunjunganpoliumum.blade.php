@@ -183,14 +183,10 @@
                             </select>
                                         </div>
                                     </div>
-      <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="filter-header">
-                        <button class="btn btn-blue">Tampilkan</button>
-                        <button class="btn btn-yellow">Download</button>
-                    </div>
-                </a>
+        <div class="row">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-blue">Tampilkan</button>
+                <button type="button" class="btn btn-yellow">Download</button>
             </div>
         </form>
     </div>
