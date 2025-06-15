@@ -46,7 +46,7 @@
     @csrf
     <div class="mb-4">
         <label class="block text-gray-700 text-sm mb-2 font-poppins" for="name">Username</label>
-        <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+        <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
         @error('username')
             <span class="text-red-500 text-sm">{{ $message }}</span>
         @enderror
