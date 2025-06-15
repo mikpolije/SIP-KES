@@ -194,4 +194,22 @@
                         </form>
                     </div>
                 </div>
+                <!-- Table Panel -->
+            <div class="col-half">
+                <div class="card">
+                    <h3 class="table-title">10 BESAR PENYAKIT</h3>
+        <thead>
+                            <tr>
+                                <th>NO </th>
+                    <th>NOMOR RM</th>
+                    <th>NAMA</th>
+                    <th>NIK</th>
+		    <h>TANGGAL PERIKSA</th>
+                            </tr>
+                        </thead>
+<script>
+  document.getElementById("btnTampilkan").addEventListener("click", function () {
+    document.getElementById("tabelData").style.display = "block";
+  });
+</script>
             @endsection
