@@ -41,6 +41,7 @@ new class extends Component {
     public $lain_lain;
     public $instruksi_edukasi;
     public $kondisi_saat_pulang;
+    public $kondisiOptions = ['Hidup', 'Meninggal'];
     public $penyebab_luar;
     public $tindakan;
     public $tanggal_kontrol;
@@ -157,7 +158,7 @@ new class extends Component {
             'radiologi' => 'nullable|string',
             'lain_lain' => 'nullable|string',
             'instruksi_edukasi' => 'nullable|string',
-            'kondisi_saat_pulang' => 'nullable|string',
+            'kondisi_saat_pulang' => 'nullable|in:Hidup,Meninggal',
             'penyebab_luar' => 'nullable|string',
             'tindakan' => 'nullable|string',
             'tanggal_kontrol' => 'nullable|date',
@@ -519,7 +520,14 @@ new class extends Component {
                         <label class="form-label">Catatan Penting (kondisi saat ini)</label>
                     </div>
                     <div class="col-md-9">
-                        <textarea class="form-control" rows="2" wire:model="kondisi_saat_pulang"></textarea>
+                        <select class="form-control" wire:model="kondisi_saat_pulang">
+                            <option value="">-- Pilih Kondisi --</option>
+                            @foreach($kondisiOptions as $option)
+                                <option value="{{ $option }}" {{ $kondisi_saat_pulang == $option ? 'selected' : '' }}>
+                                    {{ $option }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="row mb-2">
