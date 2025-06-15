@@ -417,7 +417,7 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
         }
     }).done(function (res) {
         let data = res.data
-        $('#nama_pemeriksaan').val(data.data_pasien.nama_lengkap)
+        $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
         $('#no_rm').val(data.data_pasien.no_rm)
         $('#tanggal').val(new Date().toISOString().split('T')[0])
         $('#no_antrian').val("Sesuai Pendaftaran")
