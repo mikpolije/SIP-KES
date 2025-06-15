@@ -171,7 +171,6 @@
                             <thead class="table-dark gray">
                                 <tr>
                                     <th class="text-light">Nama Obat</th>
-                                    <th class="text-light">Keterangan Obat</th>
                                     <th class="text-light">Stok</th>
                                     <th class="text-light">Kadaluwarsa Terdekat</th>
                                     <th class="text-light">Bentuk Obat</th>
@@ -253,10 +252,6 @@
                   <input type="text" class="form-control" id="nama" name="nama">
                 </div>
                 <div class="mb-3">
-                  <label for="keterangan" class="col-form-label">Keterangan:</label>
-                  <input type="text" class="form-control" id="keterangan" name="keterangan">
-                </div>
-                <div class="mb-3">
                   <label for="bentuk_obat" class="col-form-label">Bentuk Obat:</label>
                   <input type="text" class="form-control" id="bentuk_obat" name="bentuk_obat">
                 </div>
@@ -327,7 +322,6 @@
 
                 let data = {
                     nama: $('#nama').val(),
-                    keterangan: $('#keterangan').val(),
                     bentuk_obat: $('#bentuk_obat').val(),
                     harga: $('#harga').val(),
                 }
@@ -372,7 +366,6 @@
                 let id = $(this).attr('data-id')
                 let data = {
                     nama: $('#nama').val(),
-                    keterangan: $('#keterangan').val(),
                     bentuk_obat: $('#bentuk_obat').val(),
                     harga: $('#harga').val(),
                 }
@@ -458,14 +451,12 @@
                 $('.add-obat').addClass('d-none')
                 $('.update-obat').attr('data-id', $(this).attr('data-id'))
                 $('#nama').val($(this).attr('data-nama'))
-                $('#keterangan').val($(this).attr('data-keterangan'))
                 $('#bentuk_obat').val($(this).attr('data-bentuk_obat'))
                 $('#harga').val($(this).attr('data-harga'))
             })
 
             $(document).on('click', '.btn-add-obat', function(e){
                 $('#nama').val('')
-                $('#keterangan').val('')
                 $('#bentuk_obat').val('')
                 $('#harga').val('')
 
@@ -497,7 +488,7 @@
                     let aksi = ``
                     data.forEach(item => {
                         aksi = `
-                            <button class="btn btn-warning me-2 edit-obat"  data-bs-toggle="modal" data-bs-target="#addModal" data-id="${item.id}" data-nama="${item.nama}" data-keterangan="${item.keterangan}" data-bentuk_obat="${item.bentuk_obat}" data-harga="${item.harga}">
+                            <button class="btn btn-warning me-2 edit-obat"  data-bs-toggle="modal" data-bs-target="#addModal" data-id="${item.id}" data-nama="${item.nama}" data-bentuk_obat="${item.bentuk_obat}" data-harga="${item.harga}">
                                 <i class="fas fa-edit"></i>
                             </button>
                             <button class="btn btn-danger delete-obat" data-id="${item.id}" data-nama="${item.nama}">
@@ -508,7 +499,6 @@
                         $('#data-list').append(`
                             <tr>
                                 <td>${item.nama}</td>
-                                <td>${item.keterangan}</td>
                                 <td>${item.stok}</td>
                                 <td>${item.kadaluarsa}</td>
                                 <td>${item.bentuk_obat}</td>

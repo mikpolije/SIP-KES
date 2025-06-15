@@ -17,6 +17,6 @@ class Obat extends Model
 
     public function detail_pembelian_obat()
     {
-        return $this->hasMany(DetailPembelianObat::class, 'id_obat', 'id');
+        return $this->hasMany(DetailPembelianObat::class, 'id_obat', 'id_obat');
     }
 }

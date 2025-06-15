@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('obat', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('keterangan');
             $table->integer('stok')->default(0);
             $table->string('bentuk_obat')->comment('gr, ml, dll');
             $table->decimal('harga', 16, 2);
