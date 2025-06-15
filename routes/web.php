@@ -34,6 +34,11 @@ Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class,
 Route::get('/sign-request/{token}', [generalConsentController::class, 'showForm']);
 Route::post('/sign-request/{token}', [generalConsentController::class, 'submitForm']);
 
+Route::prefix('rawat-inap')->name('rawat-inap.')->group(function () {
+    Volt::route('/laporan', 'laporan.penyakit-terbesar')->name('laporan');
+    Volt::route('/laporan/print', 'laporan.penyakit-terbesar-print')->name('laporan-print');
+});
+
 Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
     Volt::route('/kontrol/print', 'persuratan.kontrol.print')->name('.kontrol.print');
     Volt::route('/kontrol/create', 'persuratan.kontrol.create')->name('.kontrol.create');
@@ -113,12 +118,18 @@ Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiw
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
 
 // Route Laporan poli umum
 use App\Http\Controllers\PoliUmum\LaporanController;
 
 Route::get('laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
 Route::get('poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
+Route::prefix('poliumum/laporan')->group(function () {
+    Route::get('/penyakit-terbanyak', [LaporanController::class, 'penyakitTerbanyak'])->name('poliumum.laporan.penyakit-terbanyak');
+    Route::get('/kunjungan', [LaporanController::class, 'kunjungan'])->name('poliumum.laporan.kunjungan');
+});
 
 
 use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;

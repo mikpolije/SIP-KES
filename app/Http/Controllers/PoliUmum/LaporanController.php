@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
+    public function kunjungan()
+    {
+        return view('PoliUmum.laporankunjunganpoliumum');
+    }
+
     public function index(Request $request)
     {
         $bulan = $request->input('bulan', date('F'));

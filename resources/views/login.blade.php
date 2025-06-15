@@ -46,8 +46,8 @@
     @csrf
     <div class="mb-4">
         <label class="block text-gray-700 text-sm mb-2 font-poppins" for="name">Username</label>
-        <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
-        @error('name')
+        <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+        @error('username')
             <span class="text-red-500 text-sm">{{ $message }}</span>
         @enderror
     </div>
@@ -59,6 +59,12 @@
             <span class="text-red-500 text-sm">{{ $message }}</span>
         @enderror
     </div>
+
+    <div class="text-center mt-2">
+                    <a href="" class="text-blue-600 underline text-sm hover:text-blue-800">
+                        Forgot Password
+                    </a>
+                </div>
 
     <div class="flex items-center mb-6 ">
         <input type="checkbox" id="remember" name="remember" class="mr-2">

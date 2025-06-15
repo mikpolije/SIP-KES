@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -17,13 +19,13 @@ class AuthController extends Controller
     {
         // Validate input
         $request->validate([
-            'name' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
         // Prepare credentials for authentication
         $credentials = [
-            'name' => $request->name,
+            'username' => $request->username,
             'password' => $request->password,
         ];
 

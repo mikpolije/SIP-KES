@@ -172,9 +172,9 @@
                                 <tr>
                                     <th class="text-light">Nama Obat</th>
                                     <th class="text-light">Stok</th>
-                                    <th class="text-light">Kadaluwarsa Terdekat</th>
+                                    <th class="text-light">Tanggal Kadaluwarsa</th>
                                     <th class="text-light">Bentuk Obat</th>
-                                    <th class="text-light">Harga Obat</th>
+                                    <th class="text-light">Harga Satuan</th>
                                     <th class="text-light">Aksi</th>
                                 </tr>
                             </thead>
@@ -252,6 +252,14 @@
                   <input type="text" class="form-control" id="nama" name="nama">
                 </div>
                 <div class="mb-3">
+                  <label for="stok" class="col-form-label">Stok Obat:</label>
+                  <input type="number" class="form-control" id="stok" name="stok">
+                </div>
+                <div class="mb-3">
+                  <label for="tanggal_kadaluwarsa" class="col-form-label">Tanggal Kadaluwarsa:</label>
+                  <input type="date" class="form-control" id="tanggal_kadaluwarsa" name="tanggal_kadaluwarsa">
+                </div>
+                <div class="mb-3">
                   <label for="bentuk_obat" class="col-form-label">Bentuk Obat:</label>
                   <input type="text" class="form-control" id="bentuk_obat" name="bentuk_obat">
                 </div>
@@ -322,6 +330,8 @@
 
                 let data = {
                     nama: $('#nama').val(),
+                    stok: $('#stok').val(),
+                    tanggal_kadaluwarsa: $('#tanggal_kadaluarsa').val(),
                     bentuk_obat: $('#bentuk_obat').val(),
                     harga: $('#harga').val(),
                 }
@@ -366,6 +376,8 @@
                 let id = $(this).attr('data-id')
                 let data = {
                     nama: $('#nama').val(),
+                    stok: $('#stok').val(),
+                    tanggal_kadaluwarsa: $('#tanggal_kadaluarsa').val(),
                     bentuk_obat: $('#bentuk_obat').val(),
                     harga: $('#harga').val(),
                 }
@@ -451,12 +463,16 @@
                 $('.add-obat').addClass('d-none')
                 $('.update-obat').attr('data-id', $(this).attr('data-id'))
                 $('#nama').val($(this).attr('data-nama'))
+                $('#stok').val($(this).attr('data-stok'))
+                $('#tanggal_kadaluarsa').val($(this).attr('data-tanggal_kadaluarsa'))
                 $('#bentuk_obat').val($(this).attr('data-bentuk_obat'))
                 $('#harga').val($(this).attr('data-harga'))
             })
 
             $(document).on('click', '.btn-add-obat', function(e){
                 $('#nama').val('')
+                 $('#stok').val('')
+                $('#tanggal_kadaluarsa').val('')
                 $('#bentuk_obat').val('')
                 $('#harga').val('')
 
@@ -488,10 +504,10 @@
                     let aksi = ``
                     data.forEach(item => {
                         aksi = `
-                            <button class="btn btn-warning me-2 edit-obat"  data-bs-toggle="modal" data-bs-target="#addModal" data-id="${item.id}" data-nama="${item.nama}" data-bentuk_obat="${item.bentuk_obat}" data-harga="${item.harga}">
+                            <button class="btn btn-warning me-2 edit-obat"  data-bs-toggle="modal" data-bs-target="#addModal" data-id_obat="${item.id_obat}" data-nama="${item.nama}" data-stok="${item.stok}" data-tanggal_kadaluarsa="${item.tanggal_kadaluarsa}" data-bentuk_obat="${item.bentuk_obat}" data-harga="${item.harga}">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-danger delete-obat" data-id="${item.id}" data-nama="${item.nama}">
+                            <button class="btn btn-danger delete-obat" data-id_obat="${item.id_obat}" data-nama="${item.nama}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         `
