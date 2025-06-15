@@ -12,11 +12,9 @@ class extends Component {
 }; ?>
 
 <div>
-    <div class="container-fluid p-4">
-        <!-- Main Modal-like Card -->
-        <div class="card shadow-lg mx-auto" style="max-width: 1200px;">
-            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
-                <!-- Logo and Title -->
+    <div class="container-fluid p-4 bg-white ">
+        <div class="mx-auto" style="max-width: 1200px;">
+            <div class="border-0 d-flex justify-content-between align-items-center py-3">
                 <div class="d-flex align-items-center">
                     <div class="me-3">
                         <img src="{{ asset('assets/klinik-insan.png') }}" alt="Klinik Insan Medika Logo" class="img-fluid">
@@ -28,7 +26,7 @@ class extends Component {
                 </div>
             </div>
 
-            <div class="card-body">
+            <div>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -157,8 +155,4 @@ class extends Component {
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
 </div>
