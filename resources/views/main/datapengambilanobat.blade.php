@@ -199,8 +199,8 @@
                         <div class="col-md-8">
                             <label class="form-label" for="decisions3">Rincian Obat</label>
                             <div class="d-flex mb-3 position-relative">
-                                <input type="text" class="form-control me-2" id="cari-obat" placeholder="Cari Obat (minimal 2 huruf)" style="width: 70%;">
-                                <div id="hasil-search-obat" class="list-group position-absolute" style="top: 100%; z-index: 1000; width: 70%; display: none;"></div>
+                                <input type="text" class="form-control me-2" id="cari-obat" placeholder="Cari Obat (minimal 2 huruf)" style="width: 67%;">
+                                <div id="hasil-search-obat" class="list-group position-absolute" style="top: 100%; z-index: 1000; width: 100%; display: none;"></div>
                                 <button class="btn btn-primary btn-3d me-auto" onclick="tambahObat()">
                                     <i class="ti ti-plus"></i> Tambah
                                 </button>
