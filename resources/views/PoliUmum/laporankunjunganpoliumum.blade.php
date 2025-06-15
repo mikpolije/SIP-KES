@@ -151,16 +151,17 @@
             <div class="col-half">
                 <div class="card">
                     <div class="filter-header">
-                        <button class="btn btn-blue">10 Besar Penyakit</button>
-                        <button class="btn btn-gray">Laporan Kunjungan</button>
+                        <button class="btn btn-gray">10 Besar Penyakit</button>
+                        <button class="btn btn-blue">Laporan Kunjungan</button>
                     </div>
             <div class="row">
                 <!-- Form Section -->
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="form-label" for="Tanggal">Tanggal </label>
-                        <input type="Date" class="tanggal" placeholder="DD/MM/YYYY"><span>s/d</span>
-                        <input type="Date" class=:tanggal" placeholder="DD/MM/YYYY">
+                        <input type="Date" class="tanggal" placeholder="DD/MM/YYYY">
+                        <label>s/d</label>
+                        <input type="Date" class="tanggal" placeholder="DD/MM/YYYY">
 			    </div>
                 </div>
                 </div>
