@@ -12,7 +12,6 @@ use App\Http\Controllers\PoliUmum\PendafataranController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\Api\ARController;
-use App\Http\Controllers\PoliUmum\LaporanController;
 
 Route::get('/', function () {
     return view('login');
@@ -117,10 +116,6 @@ use App\Http\Controllers\PoliUmum\LaporanController;
 
 Route::get('laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
 Route::get('poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
-Route::prefix('poliumum/laporan')->group(function () {
-    Route::get('/penyakit-terbanyak', [LaporanController::class, 'penyakitTerbanyak'])->name('poliumum.laporan.penyakit-terbanyak');
-    Route::get('/kunjungan', [LaporanController::class, 'kunjungan'])->name('poliumum.laporan.kunjungan');
-});
 
 
 use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
