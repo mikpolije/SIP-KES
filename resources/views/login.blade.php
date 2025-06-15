@@ -60,6 +60,12 @@
         @enderror
     </div>
 
+    <div class="text-center mt-2">
+                    <a href="" class="text-blue-600 underline text-sm hover:text-blue-800">
+                        Forgot Password
+                    </a>
+                </div>
+
     <div class="flex items-center mb-6 ">
         <input type="checkbox" id="remember" name="remember" class="mr-2">
         <label for="remember" class="text-sm text-gray-700 font-poppins">Remember This Device</label>
