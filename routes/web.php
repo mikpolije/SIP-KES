@@ -36,7 +36,8 @@ Route::post('/sign-request/{token}', [generalConsentController::class, 'submitFo
 
 Route::prefix('rawat-inap')->name('rawat-inap.')->group(function () {
     Volt::route('/laporan', 'laporan.penyakit-terbesar')->name('laporan');
-    Volt::route('/laporan/print', 'laporan.penyakit-terbesar-print')->name('laporan-print');
+    Volt::route('/laporan/print/{startDate?}/{endDate?}', 'laporan.penyakit-terbesar-print')
+        ->name('laporan-print');
 });
 
 Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
