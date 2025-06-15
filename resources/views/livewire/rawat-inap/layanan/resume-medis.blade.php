@@ -450,14 +450,8 @@ new class extends Component {
                     <div class="col-md-3">
                         <label class="form-label">Diagnosis Sekunder / Komorbid</label>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-9">
                         <input type="text" class="form-control" wire:model="diagnosisSekunder" disabled>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <span class="input-group-text">KODE ICD 9</span>
-                            <input type="text" class="form-control" wire:model="kodeICD9" disabled>
-                        </div>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -472,8 +466,14 @@ new class extends Component {
                     <div class="col-md-3">
                         <label class="form-label">Tindakan / Procedure</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-5">
                         <textarea class="form-control" rows="2" wire:model="tindakan"></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text">KODE ICD 9</span>
+                            <input type="text" class="form-control" wire:model="kodeICD9" disabled>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-3">
