@@ -335,7 +335,7 @@ class ObatController extends Controller
         $data = Obat::create([
             'nama' => $request->nama,
             'stok' => $request->stok,
-            'tanggal_kadaluwarsa' => $request->tanggal_kadaluwarsa,
+            'tanggal_kadaluarsa' => $request->tanggal_kadaluwarsa,
             'bentuk_obat' => $request->bentuk_obat,
             'harga' => $request->harga,
         ]);
@@ -413,7 +413,7 @@ class ObatController extends Controller
             'tanggal_faktur' => 'required|date',
 
             'id_obat' => 'required|array',
-            'id_obat.*' => 'required|exists:obat,id',
+            'id_obat.*' => 'required|exists:obat,id_obat',
 
             'tanggal_kadaluarsa' => 'required|array',
             'tanggal_kadaluarsa.*' => 'required|date',
