@@ -159,8 +159,7 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label class="form-label" for="Tanggal">Tanggal </label>
-                        <input type="Date" class="tanggal" placeholder="DD/MM/YYYY">
-                        <label>s/d</label>
+                        <input type="Date" class="tanggal" placeholder="DD/MM/YYYY"><label>s/d</label>
                         <input type="Date" class="tanggal" placeholder="DD/MM/YYYY">
 			    </div>
                 </div>
@@ -185,7 +184,7 @@
                                         </div>
                                     </div>
       <div class="row">
-            <div class="col-half">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="filter-header">
                         <button class="btn btn-blue">Tampilkan</button>
