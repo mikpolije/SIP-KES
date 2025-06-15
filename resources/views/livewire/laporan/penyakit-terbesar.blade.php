@@ -125,8 +125,7 @@ new class extends Component {
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            onclick="window.location.href='{{ route('rawat-inap.laporan-print') }}'"
-                        >
+                            onclick="window.location.href='{{ route('rawat-inap.laporan-print', ['startDate' => $startDate, 'endDate' => $endDate]) }}'">
                             <i class="bi bi-printer"></i> Print
                         </button>
                     </div>
