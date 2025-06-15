@@ -32,7 +32,7 @@ class extends Component {
                         <thead>
                             <tr class="table-primary text-center">
                                 <th scope="col" class="align-middle">NO.</th>
-                                <th scope="col" class="align-middle">KODE ICD X</th>
+                                <th scope="col" class="align-middle">KODE ICD 10</th>
                                 <th scope="col" class="align-middle">PENYAKIT</th>
                                 <th scope="col" class="align-middle">PASIEN KELUAR HIDUP<br>LAKI LAKI</th>
                                 <th scope="col" class="align-middle">PASIEN KELUAR HIDUP<br>PEREMPUAN</th>
