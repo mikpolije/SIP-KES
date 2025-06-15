@@ -56,7 +56,7 @@
 </head>
 <body>
     <div class="register-container">
-        <h2>Register</h2>
+        <h2>Registrasi Pengguna</h2>
 
         @if (session('success'))
             <div class="alert" style="color: green;">

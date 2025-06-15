@@ -120,6 +120,7 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
 Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+Route::view('/user/register', 'register')->name('register');
 
 // Route Laporan poli umum
 use App\Http\Controllers\PoliUmum\LaporanController;
