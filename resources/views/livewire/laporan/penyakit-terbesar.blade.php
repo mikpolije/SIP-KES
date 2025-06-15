@@ -1,9 +1,18 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\ResumeMedis;
 
 new class extends Component {
-    //
+
+    public $resumeMedis;
+
+    public function mount()
+    {
+        $resumeMedis = ResumeMedis::all();
+        $this->resumeMedis = $resumeMedis;
+    }
+
 }; ?>
 
 <div>
@@ -44,7 +53,7 @@ new class extends Component {
                         <thead class="table-light">
                             <tr class="text-center">
                                 <th scope="col" class="align-middle">NO.</th>
-                                <th scope="col" class="align-middle">KODE ICD X</th>
+                                <th scope="col" class="align-middle">KODE ICD 10</th>
                                 <th scope="col" class="align-middle">PENYAKIT</th>
                                 <th scope="col" class="align-middle">PASIEN KELUAR HIDUP<br>LAKI LAKI</th>
                                 <th scope="col" class="align-middle">PASIEN KELUAR HIDUP<br>PEREMPUAN</th>
@@ -55,14 +64,16 @@ new class extends Component {
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">J44</td>
-                                <td>Other chronic obstructive pulmonary disease</td>
-                                <td class="text-center">10</td>
-                                <td class="text-center">7</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center fw-bold">17</td>
+                                @foreach ($resumeMedis as $index => $medis)
+                                    <td class="text-center">{{ $index + 1 }}</td>
+                                    <td class="text-center">{{ $medis->pendaftaran->cppt->first()->icd10()->first()->code }}</td>
+                                    <td>{{ $medis->pendaftaran->cppt->first()->icd10()->first()->display }}</td>
+                                    <td class="text-center">10</td>
+                                    <td class="text-center">7</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center">0</td>
+                                    <td class="text-center fw-bold">17</td>
+                                @endforeach
                             </tr>
                         </tbody>
                     </table>
