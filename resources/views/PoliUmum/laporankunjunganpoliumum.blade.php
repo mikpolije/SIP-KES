@@ -144,7 +144,7 @@
             margin-top: 15px;
         }
     </style>
-<div class="container">
+    <div class="container">
         <h1 class="title">LAPORAN KUNJUNGAN</h1>
 
         <div class="row">
@@ -154,41 +154,44 @@
                         <button class="btn btn-gray">10 Besar Penyakit</button>
                         <button class="btn btn-blue">Laporan Kunjungan</button>
                     </div>
-            <div class="row">
-                <!-- Form Section -->
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="form-label" for="Tanggal">Tanggal </label>
-                        <input type="Date" class="tanggal" placeholder="DD/MM/YYYY"><label>s/d</label>
-                        <input type="Date" class="tanggal" placeholder="DD/MM/YYYY">
-			    </div>
-                </div>
-                </div>
-				<div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="Dokter">Dokter</label>
-                        <select class="form-select required" id="Dokter" name="dokter">
-                            <option value="dr. Jenie">dr. Jenie</option>
-                            <option value="dr. Jisoo">dr. Jisoo</option>
+                    <div class="row">
+                        <!-- Form Section -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="Tanggal">Tanggal</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input type="date" class="form-control" placeholder="DD/MM/YYYY">
+                                    <label class="mx-2 mb-0">s/d</label>
+                                    <input type="date" class="form-control" placeholder="DD/MM/YYYY">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="Dokter">Dokter</label>
+                            <select class="form-select required" id="Dokter" name="dokter">
+                                <option value="dr. Jenie">dr. Jenie</option>
+                                <option value="dr. Jisoo">dr. Jisoo</option>
                             </select>
-                </div>
-				</div>
-				    <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label" for="Cara Bayar">Cara Bayar</label>
-                        <select class="form-select required" id="Cara Bayar"name="carabayar">
-                            <option value="Umum">Umum</option>
-                            <option value="BPJS">BPJS</option>
-                            <option value="Asuransi">Asuransi</option>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label" for="Cara Bayar">Cara Bayar</label>
+                            <select class="form-select required" id="Cara Bayar"name="carabayar">
+                                <option value="Umum">Umum</option>
+                                <option value="BPJS">BPJS</option>
+                                <option value="Asuransi">Asuransi</option>
                             </select>
-                                        </div>
-                                    </div>
-        <div class="row">
-            <div class="btn-group">
-                <button type="submit" class="btn btn-blue">Tampilkan</button>
-                <button type="button" class="btn btn-yellow">Download</button>
-            </div>
-        </form>
-    </div>
-</div>
-@endsection
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-blue">Tampilkan</button>
+                            <button type="button" class="btn btn-yellow">Download</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            @endsection
