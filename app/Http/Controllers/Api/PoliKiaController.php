@@ -60,7 +60,7 @@ class PoliKiaController extends Controller
     {
         $data = Pendaftaran::with('data_pasien', 'layanan_kia')
             ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
-            ->where('layanan', operator: 'KIA') // Data Poli Belum Ada, Test ID 3
+            // ->where('layanan', operator: 'KIA') // Data Poli Belum Ada, Test ID 3
             
             ->first();
 
