@@ -63,6 +63,9 @@ Route::get('/poli-kia/detail/{id}', function ($id) {
 
 Route::get('/poli-kia/search-pasien', [App\Http\Controllers\Api\ARController::class, 'searchPasien'])->name('poli-kia.search-pasien');
 
+Route::get('/main/layanan', function () {
+    return view('main.layanankia');
+})->name('layanan.kia');
 Route::resource('/layanan', LayananController::class);
 // Route::resource('/users', UsersController::class);
 Route::resource('/triase', TriageController::class);
