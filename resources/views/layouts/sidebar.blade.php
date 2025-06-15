@@ -402,6 +402,7 @@
                 <span class="hide-menu">Rekam Medis</span>
             </a>
         </li>
+
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'laporan*') ? 'active' : '' }}"
                 href="javascript:void(0)" aria-expanded="{{ request()->is('laporan*') ? 'true' : 'false' }}">
@@ -416,8 +417,10 @@
                 </span>
                 <span class="hide-menu">Laporan</span>
             </a>
+
             <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/laporan*') ? 'show' : '' }}"
                 aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}">
+
                 <!-- Dropdown untuk Laporan Poli Umum -->
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
@@ -450,6 +453,34 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('rawat-inap/laporan*') ? 'active' : '' }}"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        aria-expanded="{{ request()->is('rawat-inap/laporan*') ? 'true' : 'false' }}"
+                        data-bs-target="#submenu-laporan-rawat-inap">
+                        <div class="d-flex align-items-center">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu ms-4">Laporan Rawat Inap</span>
+                        </div>
+                        <i class="ti ti-chevron-down"></i> <!-- Add this arrow icon -->
+                    </a>
+                    <ul id="submenu-laporan-rawat-inap"
+                        class="second-level collapse {{ request()->is('rawat-inap/laporan*') ? 'show' : '' }}"
+                        data-bs-parent="#sidebar-nav"> <!-- Add this parent reference -->
+                        <li class="sidebar-item">
+                            <a class="sidebar-link ps-5 {{ request()->is('rawat-inap/laporan') ? 'active' : '' }}"
+                                href="{{ route('rawat-inap.laporan') }}">
+                                <i class="ti ti-circle"></i>
+                                <span class="hide-menu">10 Besar Penyakit</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
                         href="/main/laporankunjungan">
@@ -469,7 +500,9 @@
                     </a>
                 </li>
             </ul>
+
         </li>
+
 
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow
