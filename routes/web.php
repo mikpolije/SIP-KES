@@ -100,6 +100,8 @@ Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('pat
 
 // route sidebar antrian dan riwayat
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
+Route::get('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'pemeriksaanAwal'])->name('poliumum.pemeriksaanAwal');
+Route::post('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'storePemeriksaanAwal'])->name('poliumum.pemeriksaanAwal.store');
 
 Route::prefix('main/poliumum')->group(function () {
     Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
