@@ -3611,6 +3611,35 @@
             });
         </script>
 
+        <script>
+            $(function() {
+                $("#searchNoRM").autocomplete({
+                    source: function(request, response) {
+                        $.getJSON("/cari-pasien", {
+                            term: request.term
+                        }, function(data) {
+                            response($.map(data, function(item) {
+                                return {
+                                    label: item.no_rm + " - " + item.nama_pasien,
+                                    value: item.no_rm
+                                };
+                            }));
+                        });
+                    },
+                    minLength: 2,
+                    select: function(event, ui) {
+                        let no_rm = ui.item.value;
+                        $.get('/get-data-pasien/' + no_rm, function(data) {
+                            $('#no_rm').val(data.no_rm);
+                            $('#nama_pasien').val(data.nama_pasien);
+                            // dst...
+                        });
+                    }
+                });
+            });
+        </script>
+
+
         {{-- <!-- ICD-10 Search Script -->
     <script>
         $(document).ready(function() {
@@ -3955,4 +3984,3 @@ $('#search-results').hide();
         </script>
 
     @endsection
-

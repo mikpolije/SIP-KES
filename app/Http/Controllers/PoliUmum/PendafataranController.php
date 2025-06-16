@@ -202,7 +202,7 @@ class PendafataranController extends Controller
     public function cariPasien(Request $request){
     $term = $request->get('term');
 
-    $pasien = Pasien::where('no_rm', 'like', '%' . $term . '%')
+    $pasien = DataPasien::where('no_rm', 'like', '%' . $term . '%')
         ->orWhere('nama_pasien', 'like', '%' . $term . '%')
         ->limit(10)
         ->get(['no_rm', 'nama_pasien']);
