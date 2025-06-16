@@ -9,6 +9,7 @@ use App\Models\Pendaftaran;
 use App\Models\Pemeriksaan;
 use App\Models\DataPasien;
 use App\Models\PemeriksaanAwal;
+use Illuminate\Support\Facades\Log;
 
 class AntrianRiwayatController extends Controller
 {
