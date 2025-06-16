@@ -150,10 +150,6 @@
         <div class="row">
             <div class="col-half">
                 <div class="card">
-                    <div class="filter-header">
-                        <button class="btn btn-gray">10 Besar Penyakit</button>
-                        <button class="btn btn-blue">Laporan Kunjungan</button>
-                    </div>
                     <div class="row">
                         <!-- Form Section -->
                         <div class="col-md-6">
