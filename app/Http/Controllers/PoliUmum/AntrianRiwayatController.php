@@ -13,7 +13,51 @@ class AntrianRiwayatController extends Controller
 {
     public function antrean()
     {
-        return view('PoliUmum.antreanPoliUmum');
+        $data_pasien = Pendaftaran::with('data_pasien', 'wali_pasien',)->where('status', 'antri')->get();
+        return view('PoliUmum.antreanPoliUmum', [
+            'data_pasien' => $data_pasien
+        ]);
+    }
+
+    public function pemeriksaanAwal($id_pendaftaran)
+    {
+        // dd($id_pendaftaran);
+        $data_pendaftaran = Pendaftaran::where('id_pendaftaran', $id_pendaftaran)->first();
+        return view('PoliUmum.pemeriksaanAwal', [
+            'data_pendaftaran' => $data_pendaftaran
+        ]);
+    }
+
+    public function storePemeriksaanAwal(Request $request)
+    {
+        // dd($request->all());
+        try {
+            $id_pendaftaran = Pendaftaran::where('id_pendaftaran', $request->id_pendaftaran)->first();
+            $validatedData = $request->validate([
+                'tanggal_periksa_pasien' => 'required|date',
+                'kunjungan_sakit' => 'required',
+                'subjektif' => 'required',
+                'sistole' => 'required',
+                'diastole' => 'required',
+                'bb_pasien' => 'required',
+                'tb_pasien' => 'required',
+                'suhu' => 'required',
+                'spo2' => 'required',
+                'rr_pasien' => 'required',
+            ]);
+
+            $validatedData['id_pendaftaran'] = $id_pendaftaran->id_pendaftaran;
+            PemeriksaanAwal::create($validatedData);
+
+            Pendaftaran::where('id_pendaftaran', $request->id_pendaftaran)->update([
+                'status' => 'belum diperiksa'
+            ]);
+
+            return redirect()->route('poliumum.antrean')->with('success', 'Data pendaftaran berhasil disimpan.');
+        } catch (\Exception $e) {
+            Log::error('Gagal menambahkan data periksaan awal: ' . $e->getMessage());
+            return redirect()->route('poliumum.antrean')->withErrors(['msg' => 'Gagal menambahkan data: ' . $e->getMessage()]);
+        }
     }
 
     public function riwayat()
@@ -66,5 +110,5 @@ class AntrianRiwayatController extends Controller
             'riwayat' => $riwayat,
         ]);
     }
- 
+
 }
