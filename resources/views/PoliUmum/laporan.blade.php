@@ -152,6 +152,10 @@
             <!-- Filter Panel -->
             <div class="col-half">
                 <div class="card">
+                    <div class="filter-header">
+                        <button class="btn btn-blue">10 Besar Penyakit</button>
+                        <button class="btn btn-gray">Laporan Kunjungan</button>
+                    </div>
                     <form method="GET" action="{{ route('poliumum.laporan') }}">
                         <label for="bulan">Bulan</label>
                         <select name="bulan" id="bulan">
