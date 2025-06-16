@@ -139,9 +139,10 @@
                         <th>NAMA</th>
                         <th>NIK</th>
                         <th>TANGGAL PERIKSA</th>
+                        <th>STATUS PERIKSA</th>
                         <th>AKSI</th>
-                    </tr>
-                </thead>
+                    </thead>
+                </tr>
                 <tbody>
                     @foreach ($data_pemeriksaan as $dp)
                         <tr>
@@ -153,6 +154,7 @@
                                 <a href="#"
                                     class="btn-detail">Periksa</a>
                             </td>
+                            <td>{{ $dp->pendaftaran->status }}</td>
                         </tr>
                     @endforeach
                 </tbody>
