@@ -47,7 +47,7 @@ class Pendaftaran extends Model
 
     public function poli()
     {
-        return $this->belongsTo(Poli::class, 'id_poli', 'id_poli');
+        return $this->belongsTo(poli::class, 'id_poli', 'id_poli');
     }
 
     public function poli_rawat_inap()
