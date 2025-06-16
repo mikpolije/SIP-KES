@@ -424,7 +424,7 @@
                 <!-- Dropdown untuk Laporan Poli Umum -->
                 <li class="sidebar-item">
                     <a class="sidebar-link d-flex justify-content-between align-items-center {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
-                        href="{{ url('poliumum/laporan*') }}">
+                        href="{{ route('poliumum.laporan') }}">
                         <div class="d-flex align-items-center">
                             <div class="round-16 d-flex align-items-center justify-content-center">
                                 <i class="ti ti-circle"></i>
