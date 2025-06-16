@@ -49,6 +49,10 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo(poli::class, 'id_poli', 'id_poli');
     }
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'id_dokter', 'id');
+    }
 
     public function poli_rawat_inap()
     {
