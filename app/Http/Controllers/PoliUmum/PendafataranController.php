@@ -188,7 +188,7 @@ class PendafataranController extends Controller
 
         Log::info('NO_RM diterima:', ['no_rm' => $no_rm]);
 
-        $pasien = DataPasien::with('wali', 'provinsi', 'kota', 'kecamatan', 'desa')
+        $pasien = DataPasien::with('wali_pasien', 'provinsi', 'kota', 'kecamatan', 'desa')
             ->where('no_rm', $no_rm)
             ->first();
 
