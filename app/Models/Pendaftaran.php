@@ -45,6 +45,11 @@ class Pendaftaran extends Model
         return $this->belongsTo(WaliPasien::class, 'id_wali_pasien', 'id');
     }
 
+    public function poli()
+    {
+        return $this->belongsTo(Poli::class, 'id_poli', 'id_poli');
+    }
+
     public function poli_rawat_inap()
     {
         return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');
