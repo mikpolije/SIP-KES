@@ -172,6 +172,3 @@ Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path',
 Route::middleware(['auth', 'profesi:admin,superadmin,test'])->group(function () {
     Route::resource('user', \App\Http\Controllers\UserController::class);
 });
-
-//route autocomplete cari data pasien
-Route::get('/cari-pasien', [PendafataranController::class, 'cariPasien']);
