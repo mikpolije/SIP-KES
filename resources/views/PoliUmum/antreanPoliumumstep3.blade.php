@@ -150,11 +150,11 @@
                             <td>{{ $dp->pendaftaran->data_pasien->nama_pasien }}</td>
                             <td>{{ $dp->pendaftaran->data_pasien->nik_pasien }}</td>
                             <td>{{ \Carbon\Carbon::parse($dp->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
+                            <td>{{ $dp->pendaftaran->status }}</td>
                             <td>
                                 <a href="#"
                                     class="btn-detail">Periksa</a>
                             </td>
-                            <td>{{ $dp->pendaftaran->status }}</td>
                         </tr>
                     @endforeach
                 </tbody>
