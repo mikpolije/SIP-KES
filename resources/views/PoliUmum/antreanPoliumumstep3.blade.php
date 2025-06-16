@@ -150,7 +150,7 @@
                             <td>{{ $dp->pendaftaran->data_pasien->nik_pasien }}</td>
                             <td>{{ \Carbon\Carbon::parse($dp->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
                             <td>
-                                <a href="{{ route('poliumum.riwayat.periksaanAkhir', $dp->id_pemeriksaan) }}"
+                                <a href="#"
                                     class="btn-detail">Periksa</a>
                             </td>
                         </tr>
