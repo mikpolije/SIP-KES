@@ -153,7 +153,7 @@
                     <div class="filter-header mb-4">
                         <a href="{{ route('poliumum.laporan.penyakit-terbanyak') }}">
                             <button
-                                class="btn {{ request()->routeIs('poliumum.laporan.penyakit-terbanyak') ? 'btn-blue' : 'btn-gray' }}">
+                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
                                 10 Besar Penyakit
                             </button>
                         </a>
