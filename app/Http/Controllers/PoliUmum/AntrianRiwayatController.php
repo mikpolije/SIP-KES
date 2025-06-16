@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Pendaftaran;
 use App\Models\Pemeriksaan;
 use App\Models\DataPasien;
+use App\Models\PemeriksaanAwal;
 
 class AntrianRiwayatController extends Controller
 {
