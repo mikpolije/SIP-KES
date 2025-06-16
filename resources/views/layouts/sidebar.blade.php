@@ -434,24 +434,6 @@
                             <span class="hide-menu ms-4">Laporan Poli Umum</span>
                         </div>
                     </a>
-                    <ul id="submenu-laporan-poliumum"
-                        class="second-level collapse {{ request()->is('poliumum/laporan*') ? 'show' : '' }}"
-                        aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
-                                href="{{ route('poliumum.laporan') }}">
-                                <i class="ti ti-circle"></i>
-                                <span class="hide-menu">10 Besar Penyakit</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/laporan/kunjungan') ? 'active' : '' }}"
-                                href="{{ route('poliumum.laporan.kunjungan') }}">
-                                <i class="ti ti-circle"></i>
-                                <span class="hide-menu">Kunjungan Poli Umum</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-item">
