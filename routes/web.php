@@ -131,7 +131,6 @@ use App\Http\Controllers\PoliUmum\LaporanController;
 Route::get('laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
 Route::get('poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
 Route::prefix('poliumum/laporan')->group(function () {
-    Route::get('/penyakit-terbanyak', [LaporanController::class, 'penyakitTerbanyak'])->name('poliumum.laporan.penyakit-terbanyak');
     Route::get('/kunjungan', [LaporanController::class, 'kunjungan'])->name('poliumum.laporan.kunjungan');
 });
 
