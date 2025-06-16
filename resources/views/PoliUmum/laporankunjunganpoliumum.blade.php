@@ -4,7 +4,6 @@
 
 @section('pageContent')
     <style>
-        /* Semua CSS tetap dari yang kamu punya, hanya minor adjustment */
         .container {
             max-width: 1200px;
             margin: 0 auto;
