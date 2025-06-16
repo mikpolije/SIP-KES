@@ -423,10 +423,8 @@
 
                 <!-- Dropdown untuk Laporan Poli Umum -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
-                        href="{{ route('poliumum.laporan') }}" data-bs-toggle="collapse"
-                        aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}"
-                        data-bs-target="#submenu-laporan-poliumum">
+                    <a class="sidebar-link d-flex justify-content-between align-items-center {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
+                        href="{{ url('poliumum/laporan') }}">
                         <div class="d-flex align-items-center">
                             <div class="round-16 d-flex align-items-center justify-content-center">
                                 <i class="ti ti-circle"></i>
@@ -438,8 +436,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('rawat-inap/laporan*') ? 'active' : '' }}"
-                        href="#"
-                        data-bs-toggle="collapse"
+                        href="#" data-bs-toggle="collapse"
                         aria-expanded="{{ request()->is('rawat-inap/laporan*') ? 'true' : 'false' }}"
                         data-bs-target="#submenu-laporan-rawat-inap">
                         <div class="d-flex align-items-center">
