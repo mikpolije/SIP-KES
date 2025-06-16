@@ -65,7 +65,7 @@ class AntrianRiwayatController extends Controller
     public function antrianPemeriksaan3()
     {
         $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')->get();
-        return view('PoliUmum.riwayatPoliUmum', [
+        return view('PoliUmum.antreanPoliumumstep3', [
             'data_pemeriksaan' => $data_pemeriksaan
         ]);
     }
