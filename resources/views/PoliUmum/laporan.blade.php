@@ -153,9 +153,9 @@
             <div class="col-half">
                 <div class="card">
                     <div class="filter-header mb-4">
-                        <a href="{{ route('poliumum.laporan.penyakit-terbanyak') }}">
+                        <a href="{{ route('poliumum.laporan') }}">
                             <button
-                                class="btn {{ request()->routeIs('poliumum.laporan.index') ? 'btn-blue' : 'btn-gray' }}">
+                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
                                 10 Besar Penyakit
                             </button>
                         </a>
