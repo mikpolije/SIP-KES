@@ -150,9 +150,19 @@
         <div class="row">
             <div class="col-half">
                 <div class="card">
-                    <div class="filter-header">
-                        <button class="btn btn-blue">10 Besar Penyakit</button>
-                        <button class="btn btn-gray">Laporan Kunjungan</button>
+                    <div class="filter-header mb-4">
+                        <a href="{{ route('poliumum.laporan.penyakit-terbanyak') }}">
+                            <button
+                                class="btn {{ request()->routeIs('poliumum.laporan.penyakit-terbanyak') ? 'btn-blue' : 'btn-gray' }}">
+                                10 Besar Penyakit
+                            </button>
+                        </a>
+                        <a href="{{ route('poliumum.laporan.kunjungan') }}">
+                            <button
+                                class="btn {{ request()->routeIs('poliumum.laporan.kunjungan') ? 'btn-blue' : 'btn-gray' }}">
+                                Laporan Kunjungan
+                            </button>
+                        </a>
                     </div>
                     <div class="row">
                         <!-- Form Section -->
@@ -187,42 +197,42 @@
                         </div>
                     </div>
                     <div class="row mt-4">
-  <div class="btn-group">
-    <button type="button" class="btn btn-blue" id="btnTampilkan">Tampilkan</button>
-    <button type="button" class="btn btn-yellow">Download</button>
-  </div>
-</div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-blue" id="btnTampilkan">Tampilkan</button>
+                            <button type="button" class="btn btn-yellow">Download</button>
+                        </div>
+                    </div>
 
-<!-- Tabel (Awalnya disembunyikan) -->
-<div class="mt-4" id="tabelData" style="display: none;">
-  <table class="table-auto w-full border border-collapse mt-4 text-sm">
-    <thead class="bg-gray-100">
-     <h3 class="table-title">LAPORAN KUNJUNGAN</h3>
-      <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>No. RM</th>
-        <th>NIK</th>
-	<th>TANGGAL PERIKSA</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Mudafiatun</td>
-        <td>RM123456</td>
-        <td>3201012300010001</td>
-	<td>25-05-2025</td>
-      </tr>
-      <!-- Tambah baris lainnya jika perlu -->
-    </tbody>
-  </table>
-</div>
+                    <!-- Tabel (Awalnya disembunyikan) -->
+                    <div class="mt-4" id="tabelData" style="display: none;">
+                        <table class="table-auto w-full border border-collapse mt-4 text-sm">
+                            <thead class="bg-gray-100">
+                                <h3 class="table-title">LAPORAN KUNJUNGAN</h3>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>No. RM</th>
+                                    <th>NIK</th>
+                                    <th>TANGGAL PERIKSA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mudafiatun</td>
+                                    <td>RM123456</td>
+                                    <td>3201012300010001</td>
+                                    <td>25-05-2025</td>
+                                </tr>
+                                <!-- Tambah baris lainnya jika perlu -->
+                            </tbody>
+                        </table>
+                    </div>
 
-<!-- Script -->
-<script>
-  document.getElementById("btnTampilkan").addEventListener("click", function () {
-    document.getElementById("tabelData").style.display = "block";
-  });
-</script>
- @endsection
+                    <!-- Script -->
+                    <script>
+                        document.getElementById("btnTampilkan").addEventListener("click", function() {
+                            document.getElementById("tabelData").style.display = "block";
+                        });
+                    </script>
+                @endsection

@@ -152,9 +152,19 @@
             <!-- Filter Panel -->
             <div class="col-half">
                 <div class="card">
-                    <div class="filter-header">
-                        <button class="btn btn-blue">10 Besar Penyakit</button>
-                        <button class="btn btn-gray">Laporan Kunjungan</button>
+                    <div class="filter-header mb-4">
+                        <a href="{{ route('poliumum.laporan.penyakit-terbanyak') }}">
+                            <button
+                                class="btn {{ request()->routeIs('poliumum.laporan.penyakit-terbanyak') ? 'btn-blue' : 'btn-gray' }}">
+                                10 Besar Penyakit
+                            </button>
+                        </a>
+                        <a href="{{ route('poliumum.laporan.kunjungan') }}">
+                            <button
+                                class="btn {{ request()->routeIs('poliumum.laporan.kunjungan') ? 'btn-blue' : 'btn-gray' }}">
+                                Laporan Kunjungan
+                            </button>
+                        </a>
                     </div>
                     <form method="GET" action="{{ route('poliumum.laporan') }}">
                         <label for="bulan">Bulan</label>
