@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\Api\ARController;
 use App\Http\Middleware\CheckProfesi;
-use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
-use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 use App\Http\Kernel;
 
 Route::get('/', function () {
@@ -100,20 +98,17 @@ Route::get('/get-desa/{district_code}', [PendafataranController::class, 'getDesa
 Route::get('/{main}/{view}', [PageController::class, 'show']);
 Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
-// ROUTE POLI UMUM
+// route sidebar antrian dan riwayat
+use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
+Route::get('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'pemeriksaanAwal'])->name('poliumum.pemeriksaanAwal');
+Route::post('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'storePemeriksaanAwal'])->name('poliumum.pemeriksaanAwal.store');
+
 Route::prefix('main/poliumum')->group(function () {
     Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
     Route::get('/get-data-pasien/{no_rm}', [PendafataranController::class, 'getDataPasien']);
     Route::get('/antrean', [AntrianRiwayatController::class, 'antrean'])->name('antrean.poliumum');
     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
 });
-// route sidebar antrian dan riwayat
-use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
-Route::get('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'pemeriksaanAwal'])->name('poliumum.pemeriksaanAwal');
-Route::post('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'storePemeriksaanAwal'])->name('poliumum.pemeriksaanAwal.store');
-Route::post('main/antrian/pemeriksaan-akhir', [AntrianRiwayatController::class, 'antrianPemeriksaan3'])->name('poliumum.pemeriksaanAkhir');
-Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
-Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
 
 // Route detail riwayat pasien
 Route::get('/poli-umum/detail/{rm}', function ($rm) {
@@ -141,6 +136,16 @@ Route::prefix('poliumum/laporan')->group(function () {
     Route::get('/', [LaporanController::class, 'index'])->name(''); // poliumum.laporan
     Route::get('/kunjungan', [LaporanController::class, 'kunjungan'])->name('poliumum.laporan.kunjungan');
 });
+
+
+use App\Http\Controllers\PoliUmum\SuratKeteranganSakitController;
+use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
+
+// Route Surat Keterangan Sehat
+Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
+
+// Route Surat Keterangan Sakit
+Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
 
 // Route Riwayat Medis
 use App\Http\Controllers\RiwayatMedisController;
