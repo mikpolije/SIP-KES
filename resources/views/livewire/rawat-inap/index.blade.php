@@ -12,7 +12,7 @@ new class extends Component {
 
     public $activeStep = 1;
     public $totalSteps = 3;
-    public $activeTab = 'pendaftaran'; // Keep this for compatibility with child components
+    public $activeTab = 'pendaftaran';
     public $showPatientDetails = false;
     public $selectedPatient = null;
     public $selectedPatientName = null;
@@ -64,7 +64,6 @@ new class extends Component {
 
         $this->activeStep = $step;
 
-        // Map steps to tabs for compatibility
         $stepToTab = [
             1 => 'pendaftaran',
             2 => 'pemeriksaan',
@@ -78,12 +77,10 @@ new class extends Component {
         }
     }
 
-    // Add back the changeTab method for child component compatibility
     public function changeTab($tab)
     {
         $this->activeTab = $tab;
 
-        // Map tabs to steps
         $tabToStep = [
             'pendaftaran' => 1,
             'pemeriksaan' => 2,
@@ -125,7 +122,6 @@ new class extends Component {
             ->paginate($this->perPage);
     }
 
-    // Add back the switch-tab listener for child components
     #[On('switch-tab')]
     public function handleTabSwitch($tab)
     {
@@ -155,7 +151,6 @@ new class extends Component {
         $this->activeTab = 'layanan';
     }
 
-    // Add back the shouldShowTab method if child components need it
     public function shouldShowTab($tab)
     {
         if ($tab === 'pendaftaran') {
