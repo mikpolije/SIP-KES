@@ -18,13 +18,9 @@ new class extends Component {
 
     public function update()
     {
-        try {
-            $this->form->update();
-            session()->flash('success', 'Berhasil mengubah data dokter');
-            $this->redirect(route('doctor.index'));
-        } catch (Exception $e) {
-            session()->flash('error', 'Gagal mengubah data dokter');
-        }
+        $this->form->update();
+        session()->flash('success', 'Berhasil mengubah data dokter');
+        $this->redirect(route('doctor.index'));
     }
 };
 
