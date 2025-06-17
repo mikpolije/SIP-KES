@@ -196,25 +196,35 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Nama Pasien:</label>
-                                                <input type="text" class="form-control" placeholder="Nama Pasien" name="nama_pasien" value="{{ $data['data']->nama }}" disabled>
+                                                <input type="text" class="form-control" placeholder="Nama Pasien" name="nama_pasien" value="{{ $data['data']->pendaftaran->data_pasien->nama_pasien ?? '-' }}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Usia Pasien:</label>
-                                                <input type="number" class="form-control" placeholder="Usia Pasien" name="usia_pasien" value="{{ $data['data']->usia }}" disabled>
+                                                @php
+                                                    if ($data['data']->pendaftaran->data_pasien) {
+                                                        $birth_date = $data['data']->pendaftaran->data_pasien->tanggal_lahir_pasien;
+                                                        $current_date = date('Y-m-d');
+                                                        $birth_date_obj = new DateTime($birth_date);
+                                                        $current_date_obj = new DateTime($current_date);
+                                                        $diff = $current_date_obj->diff($birth_date_obj);
+                                                        $age_years = $diff->y;
+                                                    }
+                                                @endphp
+                                                <input type="number" class="form-control" placeholder="Usia Pasien" name="usia_pasien" value="{{ $age_years ?? 0 }}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">No. Jamkes:</label>
-                                                <input type="text" class="form-control" placeholder="No. Jamkes" name="no_jamkes" value="{{ $data['data']->no_jamkes }}" disabled>
+                                                <input type="text" class="form-control" placeholder="No. Jamkes" name="no_jamkes" value="{{ $data['data']->pendaftaran->data_pasien->no_jamkes ?? '-' }}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Nama Penanggung Jawab:</label>
-                                                <input type="text" class="form-control" placeholder="Nama Penanggung Jawab" name="nama_penanggung_jawab" value="{{ $data['data']->nama_penanggung_jawab }}" disabled>
+                                                <input type="text" class="form-control" placeholder="Nama Penanggung Jawab" name="nama_penanggung_jawab" value="{{ $data['data']->pendaftaran->wali_pasien->nama_wali ?? '-' }}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -575,25 +585,25 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Nama:</label>
-                                                <input type="text" class="form-control" placeholder="Nama" readonly id="nama-readonly" value="{{ $data['data']->nama }}" disabled>
+                                                <input type="text" class="form-control" placeholder="Nama" readonly id="nama-readonly" value="{{ $data['data']->pendaftaran->data_pasien->nama_pasien ?? '-' }}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">No. RM:</label>
-                                                <input type="text" class="form-control" placeholder="No. RM" readonly id="no_rm-readonly" value="{{ $data['data']->id }}" disabled>
+                                                <input type="text" class="form-control" placeholder="No. RM" readonly id="no_rm-readonly" value="{{ $data['data']->pendaftaran->data_pasien->no_rm ?? '-' }}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Alamat:</label>
-                                                <input type="text" class="form-control" placeholder="Alamat" readonly id="alamat-readonly" value="-" disabled>
+                                                <input type="text" class="form-control" placeholder="Alamat" readonly id="alamat-readonly" value="{{ $data['data']->pendaftaran->data_pasien->alamat_pasien ?? '-' }}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Tanggal:</label>
-                                                <input type="text" class="form-control" placeholder="Tanggal" readonly id="tanggal-readonly" value="{{ $data['data']->tanggal_masuk }}" disabled>
+                                                <input type="text" class="form-control" placeholder="Tanggal" readonly id="tanggal-readonly" value="{{ $data['data']->pendaftaran->created_at ?? '-' }}" disabled>
                                             </div>
                                         </div>
                                     </div>

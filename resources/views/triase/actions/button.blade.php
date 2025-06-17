@@ -9,7 +9,7 @@
     }
 @endphp
 @if ($data->data_pasien)
-    <button type="button" class="btn text-white btn-primary btnPilihPasien closePasien" data-bs-dismiss="modal" aria-label="Close" data-no_rm="{{ $data->no_rm }}" data-nama="{{ $data->data_pasien->nama_lengkap }}" data-penanggung_jawab="{{ $data->wali_pasien->nama_lengkap }}" data-usia="{{ $age_years }}" data-alamat="{{ $data->data_pasien->alamat_lengkap }}" data-tanggal="{{ date('d/m/Y', strtotime($data->created_at)) }}" data-pendaftaran_id="{{ $data->id_pendaftaran }}">
+    <button type="button" class="btn text-white btn-primary btnPilihPasien closePasien" data-bs-dismiss="modal" aria-label="Close" data-no_rm="{{ $data->no_rm }}" data-nama="{{ $data->data_pasien->nama_pasien }}" data-penanggung_jawab="{{ $data->wali_pasien->nama_wali }}" data-usia="{{ $age_years }}" data-alamat="{{ $data->data_pasien->alamat_pasien }}" data-tanggal="{{ date('d/m/Y', strtotime($data->created_at)) }}" data-pendaftaran_id="{{ $data->id_pendaftaran }}">
         Pilih
     </button>
 @else
