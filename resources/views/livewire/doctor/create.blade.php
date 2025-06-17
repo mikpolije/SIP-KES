@@ -9,14 +9,10 @@ new class extends Component {
 
     public function store()
     {
-        try {
             $this->form->store();
             session()->flash('success', 'Berhasil menambahkan data dokter');
 
             $this->redirect(route('doctor.index'));
-        } catch (Exception $e) {
-            session()->flash('error', 'Gagal menambahkan data dokter');
-        }
     }
 };
 
