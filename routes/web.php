@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\generalConsentController;
 use App\Http\Controllers\KunjunganController;
 use App\Http\Controllers\LayananController;
