@@ -367,22 +367,22 @@ class TriageController extends Controller
     {
         $pendaftaran = Pendaftaran::with('data_pasien', 'wali_pasien')
             ->get();
-
+        // return $pendaftaran;
         return DataTables::of($pendaftaran)
             ->addColumn('nama', function ($data) {
-                return $data->data_pasien->nama_lengkap;
+                return $data->data_pasien->nama_lengkap ?? '-';
             })
             ->addColumn('no_rm', function ($data) {
-                return $data->no_rm;
+                return $data->no_rm ?? '-';
             })
             ->addColumn('alamat', function ($data) {
-                return $data->data_pasien->alamat_lengkap;
+                return $data->data_pasien->alamat_pasien ?? '-';
             })
             ->addColumn('tanggal_registrasi', function ($data) {
-                return date('d/m/Y', strtotime($data->created_at));
+                return date('d/m/Y', strtotime($data->created_at ?? now()));
             })
             ->addColumn('dokter', function ($data) {
-                return $data->wali_pasien->nama_lengkap;
+                return $data->wali_pasien->nama_lengkap ?? '-';
             })
             ->addColumn('tipe_pasien', function ($data) {
                 return '-';
