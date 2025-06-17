@@ -13,10 +13,16 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__.'/../routes/api.php',
     )
     ->withMiddleware(function (Middleware $middleware) {
+
+        // Daftarkan global middleware web stack:
+        $middleware->web();
+
+        // Middleware alias custom kamu
         $middleware->alias([
-        'auth' => Authenticate::class,
-        'profesi' => \App\Http\Middleware\CheckProfesi::class,
-    ]);
+            'auth' => Authenticate::class,
+            'profesi' => \App\Http\Middleware\CheckProfesi::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

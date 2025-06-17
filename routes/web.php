@@ -13,14 +13,16 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\Api\ARController;
 use App\Http\Middleware\CheckProfesi;
-use App\Http\Kernel;
 
-Route::get('/', function () {
-    return view('login');
+
+Route::middleware('web')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
 });
-Route::get('/login', function () {
-    return view('login');
-});
+
 
 Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/', 'doctor.index')->name('index');
@@ -122,8 +124,8 @@ Route::get('/riwayat/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiway
 Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiwayatController::class, 'searchPasien'])->name('poli-umum.search-pasien');
 
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+
+
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
 Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
 Route::view('/user/register', 'register')->name('register');
