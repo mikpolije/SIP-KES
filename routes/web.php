@@ -20,6 +20,9 @@ Route::middleware('web')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
         return redirect()->route('login');
+    Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+    Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+    Route::view('/user/register', 'register')->name('register');
     });
 });
 
@@ -126,9 +129,7 @@ Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiw
 
 
 
-Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
-Route::view('/user/register', 'register')->name('register');
+
 
 // Route Laporan poli umum
 use App\Http\Controllers\PoliUmum\LaporanController;
