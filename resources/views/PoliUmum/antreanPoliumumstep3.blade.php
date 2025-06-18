@@ -152,7 +152,7 @@
                             <td>{{ \Carbon\Carbon::parse($dp->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
                             <td>{{ $dp->pendaftaran->status }}</td>
                             <td>
-                                <a href="#"
+                                <a href="{{ routw('poliumum.periksaanAkhir.step3', $dp->id_pmeriksaan)}}"
                                     class="btn-detail">Periksa</a>
                             </td>
                         </tr>
