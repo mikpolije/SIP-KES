@@ -76,7 +76,7 @@ class AntrianRiwayatController extends Controller
         $pemeriksaan = PemeriksaanAwal::where('id_pemeriksaan', $id_pemeriksaan)->first();
         $layanan = Layanan::orderBy('nama_layanan', 'asc')->get();
         $obat = Obat::orderBy('nama', 'asc')->get();
-        return view('PoliUmum.antrianpemeriksaanstep3', [
+        return view('PoliUmum.antreanPoliUmumstep3', [
             'pemeriksaan' => $pemeriksaan,
             'layanan' => $layanan,
             'obat' => $obat,
