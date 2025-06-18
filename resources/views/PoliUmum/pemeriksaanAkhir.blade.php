@@ -943,7 +943,7 @@
 
                 if (query.length >= 2) {
                     $.ajax({
-                        url: "/search/icd9",
+                        url: "{{ route('search.icd9') }}",
                         type: "GET",
                         data: {
                             term: query
