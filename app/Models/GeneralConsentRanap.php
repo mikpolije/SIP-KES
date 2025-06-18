@@ -9,7 +9,7 @@ class GeneralConsentRanap extends Model
 {
     use HasFactory;
 
-    protected $table = 'general_consent';
+    protected $table = 'general_consent_rawat_inap';
 
     protected $guarded = ['id'];
 
