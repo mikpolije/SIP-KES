@@ -82,8 +82,6 @@ class AntrianRiwayatController extends Controller
 
     public function storePemeriksaanStep3(Request $request, $id_pemeriksaan)
     {
-        // dd($request->all());
-        // dd($request->id_layanan_list);
         try {
             $validatedData = $request->validate([
                 'diagnosa' => 'nullable',
