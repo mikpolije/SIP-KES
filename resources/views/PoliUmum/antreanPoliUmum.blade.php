@@ -84,18 +84,19 @@
                 </thead>
                 <tbody>
                     @foreach ($data_pasien as $d)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $d->data_pasien->no_rm }}</td>
-                        <td>{{ $d->data_pasien->nama_pasien }}</td>
-                        <td>{{ $d->created_at->format('d-m-Y') }}</td>
-                        <td>{{ $d->poli->nama_poli }}</td>
-                        <td>{{ $d->dokter->nama }}</td>
-                        <td>{{ $d->status }}</td>
-                        <td>
-                            <a href="{{ route('poliumum.pemeriksaanAwal', $d->id_pendaftaran) }}" class="btn btn-sm btn-primary">Pilih</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $d->data_pasien->no_rm }}</td>
+                            <td>{{ $d->data_pasien->nama_pasien }}</td>
+                            <td>{{ $d->created_at->format('d-m-Y') }}</td>
+                            <td>{{ $d->poli->nama_poli }}</td>
+                            <td>{{ $d->dokter->nama }}</td>
+                            <td>{{ $d->status }}</td>
+                            <td>
+                                <a href="{{ route('poliumum.pemeriksaanAwal', $d->id_pendaftaran) }}"
+                                    class="btn btn-sm btn-primary">Pilih</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
