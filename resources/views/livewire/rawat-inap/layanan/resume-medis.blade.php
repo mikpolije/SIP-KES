@@ -119,7 +119,7 @@ new class extends Component {
             $this->diagnosisUtama = $cpptAwal->id_icd10 ?? '-';
             $this->kodeICD10 = $cpptAwal->id_icd10->code ?? '-';
             $this->diagnosisSekunder = ($cpptAkhir->id_icd9 ?? '-');
-            $this->dokterPenanggungJawab = $this->pendaftaran->poli_rawat_inap->informed_consent->dokter->nama;
+            $this->dokterPenanggungJawab = $informed_consent->dokter->nama;
             $this->kodeICD9 = ($cpptAkhir->id_icd9 ?? '-');
 
             if ($this->existingResMed) {
