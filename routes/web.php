@@ -112,7 +112,7 @@ Route::get('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatCont
 Route::post('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'storePemeriksaanAwal'])->name('poliumum.pemeriksaanAwal.store');
 Route::get('main/antrian/pemeriksaan-akhir', [AntrianRiwayatController::class, 'antrianPemeriksaan3'])->name('poliumum.pemeriksaanAkhir');
 Route::get('main/antrian/pemeriksaan-akhir/{id_pemeriksaan}', [AntrianRiwayatController::class, 'pemeriksaanAkhir'])->name('poliumum.pemeriksaanAkhir.step3');
-Route::post('main/riyawat/pemeriksaan-akhir/{id_pemeriksaan}', [AntrianRiwayatController::class, 'storePemeriksaanStep3'])->name('poliumum.pemeriksaanAkhir.store');
+Route::post('main/antrian/pemeriksaan-akhir/{id_pemeriksaan}', [AntrianRiwayatController::class, 'storePemeriksaanStep3'])->name('poliumum.pemeriksaanAkhir.store');
 Route::get('/search/icd9', [AntrianRiwayatController::class, 'searchICD9'])->name('search.icd9');
 Route::get('/search-icd10', [AntrianRiwayatController::class, 'searchICD10'])->name('search.icd10');
 Route::get('/search-layanan', [AntrianRiwayatController::class, 'searchLayanan'])->name('search.layanan');

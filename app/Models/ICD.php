@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class ICD extends Model
 {
     protected $table = 'icd10';
-    protected $timestamps = false
+    protected $timestamps = false;
 }
