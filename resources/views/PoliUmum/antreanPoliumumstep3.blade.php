@@ -141,7 +141,7 @@
                         <th>TANGGAL PERIKSA</th>
                         <th>STATUS PERIKSA</th>
                         <th>AKSI</th>
-                    </thead>
+                </thead>
                 </tr>
                 <tbody>
                     @foreach ($data_pemeriksaan as $dp)
@@ -152,7 +152,7 @@
                             <td>{{ \Carbon\Carbon::parse($dp->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
                             <td>{{ $dp->pendaftaran->status }}</td>
                             <td>
-                                <a href="{{ route('poliumum.periksaanAkhir.step3', $dp->id_pmeriksaan)}}"
+                                <a href="{{ route('poliumum.periksaanAkhir.step3', $dp->id_pmeriksaan) }}"
                                     class="btn-detail">Periksa</a>
                             </td>
                         </tr>
