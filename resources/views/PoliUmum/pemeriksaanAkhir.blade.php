@@ -342,7 +342,8 @@
                                             data-bs-target="#statusLokalisModal">Tambah +</button>
                                     </div>
                                     <div class="d-flex gap-2 mb-2">
-                                        <input type="text" class="form-control" placeholder="Masukkan nama bagian" name="bagian_diperiksa">
+                                        <input type="text" class="form-control" placeholder="Masukkan nama bagian"
+                                            name="bagian_diperiksa">
                                         <textarea class="form-control" placeholder="Masukkan keterangan" name="keterangan"></textarea>
                                     </div>
                                     <!-- CANVAS -->
@@ -942,7 +943,7 @@
 
                 if (query.length >= 2) {
                     $.ajax({
-                        url: "{{ route('search.icd9') }}",
+                        url: "/search/icd9",
                         type: "GET",
                         data: {
                             term: query
