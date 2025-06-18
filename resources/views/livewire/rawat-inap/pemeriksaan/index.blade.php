@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\AsessmenAwal;
-use App\Models\GeneralConsent;
+use App\Models\GeneralConsentRanap;
 use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
@@ -42,7 +42,7 @@ new class extends Component {
             return;
         }
 
-        $general_consent = GeneralConsent::where('id_pendaftaran', $this->pendaftaranId)->first();
+        $general_consent = GeneralConsentRanap::where('id_pendaftaran', $this->pendaftaranId)->first();
         $asessmen_awal = AsessmenAwal::where('id_pendaftaran', $this->pendaftaranId)->first();
 
         if(!$general_consent && !$asessmen_awal) {
