@@ -20,16 +20,25 @@ class CPPT extends Model
 
     public function icd10()
     {
-        return $this->belongsTo(Diagnosa::class, 'id_icd10');
+        $diagnosaIds = json_decode($this->id_icd10, true) ?? [];
+        $diagnosaIds = collect($diagnosaIds)->flatten()->filter()->toArray();
+
+        return Diagnosa::whereIn('id', $diagnosaIds);
     }
 
     public function icd9()
     {
-        return $this->belongsTo(Tindakan::class, 'id_icd9');
+        $tindakanIds = json_decode($this->id_icd9, true) ?? [];
+        $tindakanIds = collect($tindakanIds)->flatten()->filter()->toArray();
+
+        return Tindakan::whereIn('id', $tindakanIds);
     }
 
     public function obat()
     {
-        return $this->belongsTo(Obat::class, 'id_obat');
+        $obatIds = json_decode($this->id_obat, true) ?? [];
+        $obatIds = collect($obatIds)->flatten()->filter()->toArray();
+
+        return Obat::whereIn('id_obat', $obatIds);
     }
 }

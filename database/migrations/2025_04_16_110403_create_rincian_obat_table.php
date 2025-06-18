@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('obats', function (Blueprint $table) {
-            $table->id();
+        Schema::create('obat', function (Blueprint $table) {
+            $table->id('id_obat');
             $table->string('nama');
-            $table->string('keterangan');
             $table->integer('stok')->default(0);
-            $table->string('bentuk_obat')->comment('gr, ml, dll');
+            $table->date('tanggal_kadaluarsa')->nullable();
+            $table->string('bentuk_obat')->comment('tablet, ampul, dll');
             $table->decimal('harga', 16, 2);
             $table->timestamps();
         });
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->integer('stok_opname');
             $table->integer('stok_gudang');
 
-            $table->foreign('id_obat')->references('id')->on('obats')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_obat')->references('id_obat')->on('obat')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
 
@@ -52,7 +52,7 @@ return new class extends Migration
             $table->string('ke_lokasi')->nullable();
             $table->text('keterangan')->nullable();
 
-            $table->foreign('id_obat')->references('id')->on('obats')->onDelete('cascade');
+            $table->foreign('id_obat')->references('id_obat')->on('obat')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -65,6 +65,6 @@ return new class extends Migration
         Schema::dropIfExists('riwayat_stok_obat');
         Schema::dropIfExists('detail_pembelian_obat');
         Schema::dropIfExists('pembelian_obat');
-        Schema::dropIfExists('obats');
+        Schema::dropIfExists('obat');
     }
 };

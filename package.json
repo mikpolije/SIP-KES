@@ -40,7 +40,7 @@
         "jquery-raty-js": "2.8.0",
         "jquery-steps": "1.1.0",
         "jquery-ui": "1.13.2",
-        "jquery-validation": "1.19.5",
+        "jquery-validation": "^1.21.0",
         "jquery.repeater": "1.2.1",
         "magnific-popup": "1.1.0",
         "moment": "2.29.4",
@@ -57,7 +57,7 @@
         "simplebar": "6.2.1",
         "sweetalert2": "^11.6.13",
         "terser": "^5.31.2",
-        "tinymce": "^6.8.5",
+        "tinymce": "^7.9.1",
         "typeahead.js": "0.11.1",
         "wnumb": "1.2.0"
     }

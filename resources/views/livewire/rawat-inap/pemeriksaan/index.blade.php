@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\AsessmenAwal;
+use App\Models\GeneralConsentRanap;
 use Livewire\Attributes\On;
 use Livewire\Volt\Component;
 
@@ -7,6 +9,12 @@ new class extends Component {
     public $pendaftaranId;
     public $currentStep = 1;
     public $totalSteps = 3;
+
+    public $tabs = [
+        1 => 'General Consent',
+        2 => 'Assesmen Awal',
+        3 => 'Informed Consent'
+    ];
 
     public function mount($pendaftaranId = null)
     {
@@ -16,7 +24,7 @@ new class extends Component {
     public function nextStep()
     {
         if ($this->currentStep === 1) {
-            $this->dispatch('go-next-step');
+            $this->dispatch('submit-step1');
         }
 
         if ($this->currentStep === 2) {
@@ -30,10 +38,20 @@ new class extends Component {
 
     public function goToStep($step)
     {
-        if ($step >= 1 && $step <= $this->totalSteps) {
-            $this->currentStep = $step;
-            $this->dispatch('scroll-to-top');
+        if ($step < 1 || $step > $this->totalSteps) {
+            return;
         }
+
+        $general_consent = GeneralConsentRanap::where('id_pendaftaran', $this->pendaftaranId)->first();
+        $asessmen_awal = AsessmenAwal::where('id_pendaftaran', $this->pendaftaranId)->first();
+
+        if(!$general_consent && !$asessmen_awal) {
+            flash()->error('Anda harus menyelesaikan General Consent dan Asesmen Awal terlebih dahulu.');
+            return;
+        }
+
+        $this->currentStep = $step;
+        $this->dispatch('scroll-to-top');
     }
 
     #[On('go-next-step')]
@@ -69,48 +87,61 @@ new class extends Component {
     }
 }; ?>
 
-<div class="container stepper-container p-4">
-    <div class="stepper" id="stepper">
-        <div class="step" wire:click="goToStep(1)" style="cursor: pointer;">
-            <div class="step-circle {{ $currentStep >= 1 ? 'active' : '' }}" data-step="1">1</div>
-            <div class="step-title">General Consent</div>
+<div class="container">
+    <div class="card">
+        <div class="card-body p-0">
+            <!-- Tab Navigation -->
+            <ul class="nav nav-pills nav-fill bg-primary bg-opacity-25 rounded-top">
+                @foreach($tabs as $stepId => $tabName)
+                <li class="nav-item">
+                    <button class="nav-link rounded-0 {{ $currentStep === $stepId ? 'bg-white text-primary fw-bold' : 'bg-primary text-white' }}"
+                            wire:click="goToStep({{ $stepId }})"
+                            wire:loading.attr="disabled">
+                        <span wire:loading.remove wire:target="goToStep({{ $stepId }})">
+                            {{ $tabName }}
+                        </span>
+                    </button>
+                </li>
+                @endforeach
+            </ul>
+
+            <!-- Tab Content Area -->
+            <div class="p-4">
+                <!-- Loading indicator for tab content -->
+                <div wire:loading wire:target="goToStep" class="text-center p-4">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+                <!-- Step 1 content - General Consent -->
+                <div class="{{ $currentStep !== 1 ? 'd-none' : '' }}" id="step-1">
+                    <livewire:rawat-inap.pemeriksaan.general-consent :pendaftaranId="$pendaftaranId" />
+                </div>
+
+                <!-- Step 2 content - Asessmen Awal -->
+                <div class="{{ $currentStep !== 2 ? 'd-none' : '' }}" id="step-2">
+                    <livewire:rawat-inap.pemeriksaan.asessmen-awal :pendaftaranId="$pendaftaranId" />
+                </div>
+
+                <!-- Step 3 content - Informed Consent -->
+                <div class="{{ $currentStep !== 3 ? 'd-none' : '' }}" id="step-3">
+                    <livewire:rawat-inap.pemeriksaan.informed-consent :pendaftaranId="$pendaftaranId" />
+                </div>
+
+                <div class="navigation-buttons mt-4">
+                    <button class="btn btn-secondary" wire:click="prevStep" {{ $currentStep === 1 ? 'disabled' : '' }}>
+                        Previous
+                    </button>
+
+                    @if($currentStep < $totalSteps)
+                        <button class="btn btn-primary" wire:click="nextStep">Next</button>
+                    @else
+                        <button class="btn btn-success" wire:click="submit">Simpan</button>
+                    @endif
+                </div>
+            </div>
         </div>
-        <div class="step-connector {{ $currentStep >= 2 ? 'active' : '' }}" data-connector="1-2"></div>
-        <div class="step" wire:click="goToStep(2)" style="cursor: pointer;">
-            <div class="step-circle {{ $currentStep >= 2 ? 'active' : '' }}" data-step="2">2</div>
-            <div class="step-title">Assesmen Awal</div>
-        </div>
-        <div class="step-connector {{ $currentStep >= 3 ? 'active' : '' }}" data-connector="2-3"></div>
-        <div class="step" wire:click="goToStep(3)" style="cursor: pointer;">
-            <div class="step-circle {{ $currentStep >= 3 ? 'active' : '' }}" data-step="3">3</div>
-            <div class="step-title">Informed Consent</div>
-        </div>
-    </div>
-
-    <!-- Step 1 content - General Consent -->
-    <div class="step-content {{ $currentStep === 1 ? 'active' : '' }}" data-step-content="1">
-        <livewire:rawat-inap.pemeriksaan.general-consent :pendaftaranId="$pendaftaranId" />
-    </div>
-
-    <!-- Step 2 content - Asessmen Awal -->
-    <div class="step-content {{ $currentStep === 2 ? 'active' : '' }}" data-step-content="2">
-        <livewire:rawat-inap.pemeriksaan.asessmen-awal :pendaftaranId="$pendaftaranId" />
-    </div>
-
-    <!-- Step 3 content - Informed Consent -->
-    <div class="step-content {{ $currentStep === 3 ? 'active' : '' }}" data-step-content="3">
-        <livewire:rawat-inap.pemeriksaan.informed-consent :pendaftaranId="$pendaftaranId" />
-    </div>
-
-    <div class="navigation-buttons mt-4">
-        <button class="btn btn-secondary" wire:click="prevStep" {{ $currentStep === 1 ? 'disabled' : '' }}>
-            Previous
-        </button>
-
-        @if($currentStep < $totalSteps) <button class="btn btn-primary" wire:click="nextStep">Next</button>
-            @else
-            <button class="btn btn-success" wire:click="submit">Simpan</button>
-            @endif
     </div>
 
     @if (session()->has('message'))

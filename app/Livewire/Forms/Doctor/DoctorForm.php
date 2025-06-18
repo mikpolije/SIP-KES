@@ -74,21 +74,21 @@ class DoctorForm extends Form
 
     public function update()
     {
-        // $this->validate();
-        try {
-            Storage::put('public/signatures/signature-' . $this->doctor->id . '.png', base64_decode(Str::of($this->ttd)->after(',')));
-            $this->ttd = Storage::url('public/signatures/signature-' . $this->doctor->id . '.png');
-            $this->doctor->update(
-                $this->all()
-            );
-        } catch (\Throwable $th) {
-            dd($th);
-        }
+        $this->validate();
+        $uniqueFilename = 'signature-' . $this->doctor->id . '-' . time() . '-' . Str::uuid() . '.png';
+        Storage::put('public/signatures/' . $uniqueFilename, base64_decode(Str::of($this->ttd)->after(',')));
+        $this->ttd = Storage::url('public/signatures/' . $uniqueFilename);
+        $this->doctor->update(
+            $this->all()
+        );
     }
 
     public function store()
     {
         $this->validate();
+        $uniqueFilename = 'signature-' . time() . '-' . Str::uuid() . '.png';
+        Storage::put('public/signatures/' . $uniqueFilename, base64_decode(Str::of($this->ttd)->after(',')));
+        $this->ttd = Storage::url('public/signatures/' . $uniqueFilename);
         Dokter::create($this->all());
     }
 }

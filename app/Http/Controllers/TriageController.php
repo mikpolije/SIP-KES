@@ -55,7 +55,65 @@ class TriageController extends Controller
         // return $request->all();
         DB::beginTransaction();
         try {
-            $triase = Triase::where('id', $request->triase_id)->first();
+            if ($request->get('triase_id') == null) {
+                $triase = new Triase;
+            } else {
+                $triase = Triase::find($request->get('triase_id'));
+            }
+            $triase->pendaftaran_id = $request->get('pendaftaran_id');
+            $triase->tanggal_masuk = $request->get('tanggal_masuk');
+            $triase->sarana_transportasi_kedatangan = $request->get('sarana_transportasi_kedatangan');
+            $triase->jam_masuk = $request->get('jam_masuk');
+            $triase->kondisi_pasien_tiba = $request->get('kondisi_pasien_tiba');
+            $triase->triase = $request->get('triase');
+            $triase->riwayat_alergi = $request->get('riwayat_alergi');
+            $triase->keluhan = $request->get('keluhan');
+            $triase->berat_badan = $request->get('berat_badan');
+            $triase->tinggi_badan = $request->get('tinggi_badan');
+            $triase->lingkar_perut = $request->get('lingkar_perut');
+            $triase->imt = $request->get('imt');
+            $triase->nafas = $request->get('nafas');
+            $triase->sistol = $request->get('sistol');
+            $triase->diastol = $request->get('diastol');
+            $triase->suhu = $request->get('suhu');
+            $triase->nadi = $request->get('nadi');
+
+            $triase->kepala = strtolower($request->get('kepala') ?? 'normal');
+            $triase->mata = strtolower($request->get('mata') ?? 'normal');
+            $triase->tht = strtolower($request->get('tht') ?? 'normal');
+            $triase->leher = strtolower($request->get('leher') ?? 'normal');
+            $triase->thorax = strtolower($request->get('thorax') ?? 'normal');
+            $triase->abdomen = strtolower($request->get('abdomen') ?? 'normal');
+            $triase->extemitas = strtolower($request->get('extemitas') ?? 'normal');
+            $triase->genetalia = strtolower($request->get('genetalia') ?? 'normal');
+            $triase->ecg = strtolower($request->get('ecg') ?? 'normal');
+            $triase->ronsen = strtolower($request->get('ronsen') ?? 'tidak');
+            $triase->terapi = strtolower($request->get('terapi') ?? 'normal');
+            $triase->kie = strtolower($request->get('kie') ?? 'tidak');
+            $triase->pemeriksaan_penunjang = strtolower($request->get('pemeriksaan_penunjang') ?? 'tidak');
+
+            $triase->jalur_nafas = $request->get('jalur_nafas');
+            $triase->pola_nafas = $request->get('pola_nafas');
+            $triase->gerakan_dada = $request->get('gerakan_dada');
+            $triase->kulit = $request->get('kulit');
+            $triase->turgor = $request->get('turgor');
+            $triase->akral = $request->get('akral');
+            $triase->spo = $request->get('spo');
+            $triase->kesadaran = $request->get('kesadaran');
+            $triase->mata_neurologi = $request->get('mata_neurologi');
+            $triase->motorik = $request->get('motorik');
+            $triase->verbal = $request->get('verbal');
+            $triase->kondisi_umum = $request->get('kondisi_umum');
+            $triase->laborat = $request->get('laborat');
+            // $triase->laboratorium_farmasi = $request->get('laboratorium_farmasi');
+            $triase->aktivitas_fisik = $request->get('aktivitas_fisik');
+            $triase->konsumsi_alkohol = $request->get('konsumsi_alkohol');
+            $triase->makan_buah_sayur = $request->get('makan_buah_sayur');
+            $triase->merokok = $request->get('merokok');
+            $triase->riwayat_keluarga = $request->get('riwayat_keluarga');
+            $triase->riwayat_penyakit_terdahulu = $request->get('riwayat_penyakit_terdahulu');
+            $triase->created_at = now();
+            $triase->save();
             $pemeriksaanUgd = new PemeriksaanUgd();
             $layananUgd = new TransaksiLayananUgd();
             $pengkajianRisiko = new TransaksiPengkajianRisikoDewasa();
@@ -224,7 +282,7 @@ class TriageController extends Controller
             return redirect()->back()->with('error', $e->getMessage());
         } catch (QueryException $e) {
             DB::rollBack();
-            return $e->getMessage();
+            return $e;
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -236,7 +294,7 @@ class TriageController extends Controller
     {
         $data['title'] = $this->title.'Outcome Triase';
         $data['data'] = Triase::where('id', $id)
-            ->with('pemeriksaan', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'icd9', 'icd9.icd9', 'obat', 'obat.obat', 'rencanaKontrol')
+            ->with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.wali_pasien', 'pemeriksaan', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'icd9', 'icd9.icd9', 'obat', 'obat.obat', 'rencanaKontrol')
             ->first();
 
         // return $data['data'];
@@ -247,7 +305,7 @@ class TriageController extends Controller
     {
         $data['title'] = $this->title.'Outcome Triase';
         $data['data'] = Triase::where('id', $id)
-            ->with('pemeriksaan', 'pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.wali_pasien', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'icd9', 'icd9.icd9', 'obat', 'obat.obat', 'rencanaKontrol')
+            ->with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.wali_pasien', 'pemeriksaan', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'icd9', 'icd9.icd9', 'obat', 'obat.obat', 'rencanaKontrol')
             ->first();
 
         $filenamePdf = 'Outcome Triase UGD - '.$data['data']->pendaftaran->data_pasien->nama_lengkap.'.pdf';
@@ -367,22 +425,22 @@ class TriageController extends Controller
     {
         $pendaftaran = Pendaftaran::with('data_pasien', 'wali_pasien')
             ->get();
-
+        // return $pendaftaran;
         return DataTables::of($pendaftaran)
             ->addColumn('nama', function ($data) {
-                return $data->data_pasien->nama_lengkap;
+                return $data->data_pasien->nama_pasien ?? '-';
             })
             ->addColumn('no_rm', function ($data) {
-                return $data->no_rm;
+                return $data->no_rm ?? '-';
             })
             ->addColumn('alamat', function ($data) {
-                return $data->data_pasien->alamat_lengkap;
+                return $data->data_pasien->alamat_pasien ?? '-';
             })
             ->addColumn('tanggal_registrasi', function ($data) {
-                return date('d/m/Y', strtotime($data->created_at));
+                return date('d/m/Y', strtotime($data->created_at ?? now()));
             })
             ->addColumn('dokter', function ($data) {
-                return $data->wali_pasien->nama_lengkap;
+                return $data->wali_pasien->nama_wali ?? '-';
             })
             ->addColumn('tipe_pasien', function ($data) {
                 return '-';
@@ -415,7 +473,7 @@ class TriageController extends Controller
 
     public function getObat(Request $request)
     {
-        $obats = Obat::select('id', 'nama', 'harga')
+        $obats = Obat::select('id_obat', 'nama', 'harga')
             ->where('nama', 'like', '%'.$request->term.'%')
             ->get();
 

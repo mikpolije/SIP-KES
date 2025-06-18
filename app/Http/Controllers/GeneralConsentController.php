@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\generalConsent;
+use App\Models\GeneralConsent;
 use Illuminate\Http\Request;
 
-class generalConsentController extends Controller
+class GeneralConsentController extends Controller
 {
     public function store(Request $request)
     {
@@ -32,7 +32,7 @@ class generalConsentController extends Controller
 
         $hubungan = $request->hubungan === '7' ? $request->lain : $request->hubungan;
 
-        $data = generalConsent::create([
+        $data = GeneralConsent::create([
             'noRm' => $request->noRm,
             'nik' => $request->nik,
             'jenisKelamin' => $request->jenisKelamin,
@@ -62,7 +62,7 @@ class generalConsentController extends Controller
 
     public function cetak($id)
     {
-        $data = generalConsent::findOrFail($id);
+        $data = GeneralConsent::findOrFail($id);
         return view('main/cetak-general-consent', compact('data'));
     }
 }

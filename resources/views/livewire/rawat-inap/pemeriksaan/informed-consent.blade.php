@@ -53,14 +53,14 @@ new class extends Component {
 
             if ($pendaftaran) {
                 $this->noRM = $pendaftaran->data_pasien->no_rm;
-                $this->nama = $pendaftaran->data_pasien->nama_lengkap;
+                $this->nama = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahir = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin;
-                $this->namaPasien = $pendaftaran->data_pasien->nama_lengkap;
+                $this->namaPasien = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->alamatPasien = $pendaftaran->data_pasien->alamat_pasien;
 
-                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_lengkap ?? '';
+                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_pasien ?? '';
                 $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir_pasien ?? '';
                 $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_pasien ?? '';
 
@@ -98,63 +98,67 @@ new class extends Component {
     #[On('submit-step3')]
     public function submit()
     {
-        $this->validate([
-            'noRM' => 'required',
-            'nama' => 'required',
-            'dokterPelaksana' => 'required',
-            'pemberiInformasi' => 'required',
-            'penerimaInformasi' => 'required',
-            'diagnosis' => 'required',
-            'tindakanKedokteran' => 'required',
-            'indikasi' => 'required',
-            'tataCara' => 'required',
-            'risiko' => 'required',
-            'komplikasi' => 'required',
-            'prognosis' => 'required',
-            'namaPasien' => 'required',
-            'is_menyatakan' => 'required',
-        ]);
+        try {
+            $this->validate([
+                'noRM' => 'required',
+                'nama' => 'required',
+                'dokterPelaksana' => 'required',
+                'pemberiInformasi' => 'required',
+                'penerimaInformasi' => 'required',
+                'diagnosis' => 'required',
+                'tindakanKedokteran' => 'required',
+                'indikasi' => 'required',
+                'tataCara' => 'required',
+                'risiko' => 'required',
+                'komplikasi' => 'required',
+                'prognosis' => 'required',
+                'namaPasien' => 'required',
+                'is_menyatakan' => 'required',
+            ]);
 
-        $data = [
-            'id_pendaftaran' => $this->pendaftaranId,
-            'id_dokter' => $this->dokterPelaksana,
-            'pemberi_informasi' => $this->pemberiInformasi,
-            'penerima_informasi' => $this->penerimaInformasi,
-            'diagnosis' => $this->diagnosis,
-            'tindakan_kedokteran' => $this->tindakanKedokteran,
-            'indikasi_tindakan' => $this->indikasi,
-            'tata_cara' => $this->tataCara,
-            'risiko' => $this->risiko,
-            'komplikasi' => $this->komplikasi,
-            'prognosis' => $this->prognosis,
-            'alternatif_risiko' => $this->alternatif,
-            'pengambilan_sampel_darah' => $this->pengambilanSampel,
-            'lain_lain' => $this->lainLainConsent,
-            'nama_pasien' => $this->namaPasien,
-            'tanggal_lahir_pasien' => $this->tanggalLahirPasien,
-            'alamat_pasien' => $this->alamatPasien,
+            $data = [
+                'id_pendaftaran' => $this->pendaftaranId,
+                'id_dokter' => $this->dokterPelaksana,
+                'pemberi_informasi' => $this->pemberiInformasi,
+                'penerima_informasi' => $this->penerimaInformasi,
+                'diagnosis' => $this->diagnosis,
+                'tindakan_kedokteran' => $this->tindakanKedokteran,
+                'indikasi_tindakan' => $this->indikasi,
+                'tata_cara' => $this->tataCara,
+                'risiko' => $this->risiko,
+                'komplikasi' => $this->komplikasi,
+                'prognosis' => $this->prognosis,
+                'alternatif_risiko' => $this->alternatif,
+                'pengambilan_sampel_darah' => $this->pengambilanSampel,
+                'lain_lain' => $this->lainLainConsent,
+                'nama_pasien' => $this->namaPasien,
+                'tanggal_lahir_pasien' => $this->tanggalLahirPasien,
+                'alamat_pasien' => $this->alamatPasien,
 
-            'is_diterangkan' => $this->is_diterangkan,
-            'is_diterima' => $this->is_diterima,
-            'is_menyatakan' => $this->is_menyatakan,
-            'tindakan' => $this->tindakan,
+                'is_diterangkan' => $this->is_diterangkan,
+                'is_diterima' => $this->is_diterima,
+                'is_menyatakan' => $this->is_menyatakan,
+                'tindakan' => $this->tindakan,
 
-            'nama_perwakilan' => $this->namaPerwakilan,
-            'tanggal_lahir_perwakilan' => $this->tanggalLahirPerwakilan,
-            'alamat_perwakilan' => $this->alamatPerwakilan,
-            'anestesi' => $this->anestesi,
-        ];
+                'nama_perwakilan' => $this->namaPerwakilan,
+                'tanggal_lahir_perwakilan' => $this->tanggalLahirPerwakilan,
+                'alamat_perwakilan' => $this->alamatPerwakilan,
+                'anestesi' => $this->anestesi,
+            ];
 
-        $informedConsent = InformedConsent::updateOrCreate(
-            ['id_pendaftaran' => $this->pendaftaranId],
-            $data
-        );
+            $informedConsent = InformedConsent::updateOrCreate(
+                ['id_pendaftaran' => $this->pendaftaranId],
+                $data
+            );
 
-        PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
-            ->update(['id_informed_consent' => $informedConsent->id]);
+            PoliRawatInap::where('id_pendaftaran', $this->pendaftaranId)
+                ->update(['id_informed_consent' => $informedConsent->id]);
 
-        flash()->success('Informed consent berhasil disimpan');
-        $this->dispatch('submit-finally', success: true);
+            flash()->success('Informed consent berhasil disimpan');
+            $this->dispatch('submit-finally', success: true);
+        } catch (\Exception $e) {
+            flash()->error('Gagal menyimpan informed consent: ' . $e->getMessage());
+        }
     }
 }; ?>
 
@@ -207,8 +211,8 @@ new class extends Component {
                                 id="pemberiInformasi" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="penerimaInformasi" class="form-label">Penerima Informasi / Pemberi
-                                is_menyatakan</label>
+                            <label for="penerimaInformasi" class="form-label">Penerima / Pemberi Informasi
+                                </label>
                             <input type="text" wire:model="penerimaInformasi" class="form-control"
                                 id="penerimaInformasi" required>
                             @error('penerimaInformasi') <div class="invalid-feedback">{{ $message }}</div> @enderror

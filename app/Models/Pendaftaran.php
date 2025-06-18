@@ -18,14 +18,11 @@ class Pendaftaran extends Model
     protected $appends = ['layanan_terisi'];
 
     protected $fillable = [
-        'id_pendaftaran',
         'id_poli',
         'no_rm',
-        'id_jenis_pembayaran',
         'id_dokter',
-        'id_wali',
-        'created_at',
-        'updated_at',
+        'id_wali_pasien',
+        'jenis_pembayaran',
     ];
 
     public function data_pasien()
@@ -33,19 +30,33 @@ class Pendaftaran extends Model
         return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 
+    public function layananPendaftaran()
+    {
+        return $this->hasMany(LayananPendaftaran::class, 'id_pendaftaran');
+    }
+
+    public function obatPendaftaran()
+    {
+        return $this->hasMany(ObatPendaftaran::class, 'id_pendaftaran');
+    }
+
     public function wali_pasien()
     {
         return $this->belongsTo(WaliPasien::class, 'id_wali_pasien', 'id');
     }
 
+    public function poli()
+    {
+        return $this->belongsTo(poli::class, 'id_poli', 'id_poli');
+    }
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'id_dokter', 'id');
+    }
+
     public function poli_rawat_inap()
     {
         return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');
-    }
-
-    public function asessmen_awal()
-    {
-        return $this->hasOne(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 
     public function cppt()
@@ -92,7 +103,14 @@ class Pendaftaran extends Model
     {
         return $this->hasOne(SuratKematian::class, 'id_pendaftaran', 'id_pendaftaran');
     }
-
+    public function pemeriksaan()
+    {
+        return $this->hasMany(Pemeriksaan::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+    public function asessmen_awal()
+    {
+        return $this->hasMany(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
     public function getLayananTerisiAttribute()
     {
         if (!$this->relationLoaded('layanan_kia')) {
@@ -109,4 +127,5 @@ class Pendaftaran extends Model
             default => false,
         };
     }
+
 }

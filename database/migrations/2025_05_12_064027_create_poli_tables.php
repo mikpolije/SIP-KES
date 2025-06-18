@@ -25,10 +25,10 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->foreignId('id_general_consent')
+            $table->foreignId('id_general_consent_rawat_inap')
                 ->nullable()
                 ->default(null)
-                ->constrained('general_consent')
+                ->constrained('general_consent_rawat_inap')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 

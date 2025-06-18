@@ -11,7 +11,7 @@
     }
     .card-custom {
         max-width: 650px;
-        margin: 50px auto;
+        margin: 10px auto;
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0 0 15px rgba(0,0,0,0.1);
@@ -109,18 +109,45 @@
         <label for="tanggal_tanda_tangan" class="form-label">Jember,</label>
         <input type="date" id="tanggal_tanda_tangan" name="tanggal_tanda_tangan" class="form-control mb-2 ms-auto" style="max-width: 200px;">
         <p>Mengetahui</p>
-        <br>
-        <input type="text" id="nama_penandatangan" name="penandatangan" class="form-control ms-auto text-center" placeholder="Nama Penandatangan"
-        style="max-width: 250px; border: none; border-bottom: 1px solid #000; background: transparent; outline: none; box-shadow: none;">
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <button class="btn btn-primary w-100" id="btn-simpan">Simpan</button>
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Kosong / Spacer -->
         </div>
-        <div class="col-md-6">
-            <button class="btn btn-secondary w-100" id="btn-cetak">Cetak</button>
+        <div class="col-md-4 text-center">
+            <p>Dokter Yang Merawat</p>
+
+            <div class="signature-box mb-2" id="signature-box" style="border: 1px solid #ccc; width: 200px; max-width: 200px; height: 150px;">
+                <canvas id="signature-canvas" width="200" height="150" style="border:1px solid #000;"></canvas>
+            </div>
+
+            <div class="mb-2">
+                <button type="button" class="btn btn-sm btn-danger me-1" onclick="clearSignature()">Hapus TTD</button>
+                <button type="button" class="btn btn-sm btn-success" onclick="saveSignature()">Simpan TTD</button>
+            </div>
+
+            <input type="hidden" name="signature_data" id="signature_data">
+
+            <div class="mt-2">
+                <select id="penandatangan" name="penandatangan" class="form-select">
+                    <option value="">Nama Dokter</option>
+                    @foreach ($listDokter as $dokter)
+                        <option value="{{ $dokter->nama }}">{{ $dokter->nama }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-2 mt-4">
+        <button type="submit" class="btn btn-primary px-4" id="btn-simpan">
+            <span>Simpan</span>
+        </button>
+        <button class="btn btn-secondary w-100" id="btn-cetak">Cetak</button>
+        <a href="/main/persuratan/kematian" class="btn btn-secondary px-4">
+            <i class="bi bi-arrow-left"></i> Kembali
+        </a>
     </div>
 </div>
 
@@ -146,7 +173,7 @@
             }
         }).done(function (res) {
             let data = res.data
-            $('#nama_pasien').val(data.data_pasien.nama_lengkap)
+            $('#nama_pasien').val(data.data_pasien.nama_pasien)
             $('#no_rm').val(data.data_pasien.no_rm)
             $('#tanggal_lahir').val(data.data_pasien.tanggal_lahir_pasien)
 
@@ -189,7 +216,7 @@ $('#btn-simpan').on('click', function(e) {
     formData['diagnosa'] = $('input[name="diagnosa"]').val()
     formData['rencana_kontrol'] = $('input[name="rencana_kontrol"]').val()
     formData['tanggal_tanda_tangan'] = $('input[name="tanggal_tanda_tangan"]').val()
-    formData['penandatangan'] = $('input[name="penandatangan"]').val()
+    formData['penandatangan'] = $('select[name="penandatangan"]').val()
 
     $.ajax({
         url: "{{ route('api.poli-kia.surat-kontrol.store') }}",
@@ -216,100 +243,94 @@ $('#btn-cetak').on('click', function(e) {
     e.preventDefault();
 
     const nomor = $('#nomor').val();
-    const tanggal = $('#tanggal').val();
+    const tanggal = formatTanggalIndonesia($('#tanggal').val());
     const kepada = $('#kepada option:selected').text();
     const noRm = $('#no_rm').val();
     const namaPasien = $('#nama_pasien').val();
-    const tanggalLahir = $('#tanggal_lahir').val();
+    const tanggalLahir = formatTanggalIndonesia($('#tanggal_lahir').val());
     const diagnosa = $('#diagnosa').val();
     const rencanaKontrol = $('#rencana_kontrol').val();
-    const tanggalTtd = $('#tanggal_tanda_tangan').val();
+    const tanggalTtd = formatTanggalIndonesia($('#tanggal_tanda_tangan').val());
     const penandatangan = $('#nama_penandatangan').val();
+    const signatureData = document.getElementById('signature-canvas').toDataURL("image/png");
 
     const printContent = `
-        <html>
-        <head>
-            <title>Surat Rencana Kontrol</title>
-            <style>
-                body {
-                    font-family: 'Times New Roman', Times, serif;
-                    margin: 50px 60px;
-                    font-size: 14pt;
-                    color: #000;
-                }
-                h4 {
-                    text-align: center;
-                    font-weight: bold;
-                    text-decoration: underline;
-                    margin-bottom: 40px;
-                }
-                p {
-                    margin: 8px 0;
-                    text-align: justify;
-                }
-                .field-label {
-                    display: inline-block;
-                    width: 180px;
-                }
-                .signature-block {
-                    margin-top: 60px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-end; /* Posisi ke kiri */
-                    font-family: "Times New Roman", Times, serif;
-                    margin-left: 50px; /* Jarak dari kiri halaman */
-                }
+    <html>
+    <head>
+        <title>Surat Rencana Kontrol</title>
+        <style>
+            body {
+                font-family: "Times New Roman", Times, serif;
+                font-size: 12pt;
+                margin: 10mm 15mm;
+            }
+            h4 {
+                text-align: center;
+                font-weight: bold;
+                text-decoration: underline;
+                margin: 10px 0 30px 0;
+            }
+            .underline {
+                display: inline-block;
+                padding: 0 5px;
+            }
+            .field { margin-bottom: 6px; }
+            .label { display: inline-block; width: 180px; }
+            .header-table img {
+                height: 70px;
+            }
+            .signature-block {
+                margin-top: 40px;
+                text-align: right;
+            }
+            .signature-img {
+                margin-top: 10px;
+                height: 60px;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="header-table" style="width: 100%;">
+            <tr>
+                <td style="width: 80px;">
+                    <img src="/assets/klinik-insan.png" alt="Logo Klinik">
+                </td>
+                <td style="text-align: center; line-height: 1.3;">
+                    <div style="font-weight: bold; font-size: 18pt;">KLINIK PRATAMA</div>
+                    <div style="font-weight: bold; font-size: 18pt;">RAWAT JALAN INSAN MEDIKA</div>
+                    <div style="font-size: 12pt;">Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</div>
+                </td>
+            </tr>
+        </table>
+        <hr style="border: 1.5px solid black; margin: 6px 0 20px;">
 
-                .signature-date,
-                .signature-label,
-                .signature-name {
-                    text-align: left;
-                    margin: 0;
-                    font-size: 16px;
-                }
+        <h4>SURAT RENCANA KONTROL</h4>
+        <p style="margin-bottom: 20px;">Nomor: <span class="underline">${nomor}</span></p>
+        <p style="margin-top: -10px; margin-bottom: 20px;">Tanggal: <span class="underline">${tanggal}</span></p>
 
-                .signature-space {
-                    height: 80px;
-                }
+        <p style="margin-bottom: 20px;">Kepada Yth.<br>${kepada}<br>Di Tempat</p>
 
-                .underline {
-                    display: inline-block;
-                    border-bottom: 1px solid #000;
-                    min-width: 180px;
-                    padding: 0 5px;
-                }
-            </style>
-        </head>
-        <body>
-            <h4>SURAT RENCANA KONTROL</h4>
+        <p style="margin-bottom: 20px;">Mohon dilakukan pemeriksaan dan penanganan lebih lanjut terhadap pasien berikut:</p>
 
-            <p><span class="field-label">Nomor</span>: <span class="underline">${nomor}</span></p>
-            <p><span class="field-label">Tanggal</span>: <span class="underline">${tanggal}</span></p>
-            <p><span class="field-label">Kepada Yth.</span>: <span class="underline">${kepada}</span></p>
+        <div class="field"><span class="label">Nomor RM</span>: <span class="underline">${noRm}</span></div>
+        <div class="field"><span class="label">Nama Pasien</span>: <span class="underline">${namaPasien}</span></div>
+        <div class="field"><span class="label">Tanggal Lahir</span>: <span class="underline">${tanggalLahir}</span></div>
+        <div class="field"><span class="label">Diagnosa Akhir</span>: <span class="underline">${diagnosa}</span></div>
+        <div class="field"><span class="label">Rencana Kontrol</span>: <span class="underline">${rencanaKontrol}</span></div>
 
-            <p style="margin-top: 30px;">Mohon dilakukan pemeriksaan dan penanganan lebih lanjut terhadap pasien berikut:</p>
+        <p style="margin-top: 25px;">Demikian surat ini dibuat untuk digunakan sebagaimana mestinya. Atas perhatian dan kerjasamanya, diucapkan terima kasih.</p>
 
-            <p><span class="field-label">Nomor RM</span>: <span class="underline">${noRm}</span></p>
-            <p><span class="field-label">Nama Pasien</span>: <span class="underline">${namaPasien}</span></p>
-            <p><span class="field-label">Tanggal Lahir</span>: <span class="underline">${tanggalLahir}</span></p>
-            <p><span class="field-label">Diagnosa Akhir</span>: <span class="underline">${diagnosa}</span></p>
-            <p><span class="field-label">Rencana Kontrol</span>: <span class="underline">${rencanaKontrol}</span></p>
-
-            <p style="margin-top: 30px;">Demikian surat ini dibuat untuk digunakan sebagaimana mestinya. Atas perhatian dan kerjasamanya, diucapkan terima kasih.</p>
-
-            <div class="signature-block">
-                <div class="signature-inner">
-                    <p class="signature-date">Jember, <span class="underline">${tanggalTtd}</span></p>
-                    <p class="signature-label">Mengetahui,</p>
-                    <div class="signature-space"></div>
-                    <p class="signature-name underline">${penandatangan}</p>
-                </div>
-            </div>
-        </body>
-        </html>
+        <div class="signature-block">
+            <p>Jember, <span class="underline">${tanggalTtd}</span></p>
+            <p>Mengetahui,</p>
+            <img src="${signatureData}" alt="Tanda Tangan" class="signature-img">
+            <p style="font-weight:bold;text-decoration:underline">${penandatangan}</p>
+        </div>
+    </body>
+    </html>
     `;
 
-    // Tampilkan jendela cetak
     const printWindow = window.open('', '', 'width=800,height=600');
     printWindow.document.write(printContent);
     printWindow.document.close();
@@ -317,7 +338,6 @@ $('#btn-cetak').on('click', function(e) {
     printWindow.print();
     printWindow.close();
 });
-
 
 // Function Helper
 function setFieldValue(id, value) {
@@ -361,5 +381,57 @@ function successMessage(msg) {
         closeButton: true,
     });
 }
+function formatTanggalIndonesia(tanggalStr) {
+    const bulanIndo = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+
+    const dateObj = new Date(tanggalStr);
+    const tanggal = dateObj.getDate();
+    const bulan = bulanIndo[dateObj.getMonth()];
+    const tahun = dateObj.getFullYear();
+
+    return `${tanggal} ${bulan} ${tahun}`;
+}
 </script>
+<script>
+    const canvas = document.getElementById('signature-canvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    canvas.addEventListener('mousedown', (e) => {
+        drawing = true;
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (drawing) {
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        drawing = false;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+        drawing = false;
+    });
+
+    function clearSignature() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById('signature_data').value = '';
+    }
+
+    function saveSignature() {
+        const dataURL = canvas.toDataURL();
+        document.getElementById('signature_data').value = dataURL;
+        alert('Tanda tangan berhasil disimpan!');
+        // Optional: Kirim dataURL ke server melalui form / Ajax
+    }
+</script>
+
 @endsection

@@ -9,14 +9,14 @@ class Obat extends Model
 {
     use HasFactory;
 
-    protected $table = 'obats';
+    protected $table = 'obat';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_obat';
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id_obat'];
 
     public function detail_pembelian_obat()
     {
-        return $this->hasMany(DetailPembelianObat::class, 'id_obat', 'id');
+        return $this->hasMany(DetailPembelianObat::class, 'id_obat', 'id_obat');
     }
 }

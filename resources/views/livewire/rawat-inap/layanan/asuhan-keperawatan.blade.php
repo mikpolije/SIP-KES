@@ -117,7 +117,7 @@ new class extends Component {
         $this->existingAskep = AsuhanKeperawatan::where('id_pendaftaran', $pendaftaranId)->first();
 
         if ($this->pendaftaran) {
-            $this->nama = $this->pendaftaran->data_pasien->nama_lengkap;
+            $this->nama = $this->pendaftaran->data_pasien->nama_pasien;
             $this->noRM = $this->pendaftaran->data_pasien->no_rm;
             $this->tglDaftar = $this->pendaftaran->created_at->format('Y-m-d');
             $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir_pasien;

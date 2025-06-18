@@ -15,8 +15,8 @@ return new class extends Migration
             $table->dropConstrainedForeignId('obat_id');
             $table->unsignedBigInteger('obat_id');
             $table->foreign('obat_id')
-                ->references('id')
-                ->on('obats')
+                ->references('id_obat')
+                ->on('obat')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

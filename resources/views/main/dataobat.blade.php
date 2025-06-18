@@ -171,11 +171,10 @@
                             <thead class="table-dark gray">
                                 <tr>
                                     <th class="text-light">Nama Obat</th>
-                                    <th class="text-light">Keterangan Obat</th>
                                     <th class="text-light">Stok</th>
-                                    <th class="text-light">Kadaluwarsa Terdekat</th>
+                                    <th class="text-light">Tanggal Kadaluwarsa</th>
                                     <th class="text-light">Bentuk Obat</th>
-                                    <th class="text-light">Harga Obat</th>
+                                    <th class="text-light">Harga Satuan</th>
                                     <th class="text-light">Aksi</th>
                                 </tr>
                             </thead>
@@ -253,10 +252,6 @@
                   <input type="text" class="form-control" id="nama" name="nama">
                 </div>
                 <div class="mb-3">
-                  <label for="keterangan" class="col-form-label">Keterangan:</label>
-                  <input type="text" class="form-control" id="keterangan" name="keterangan">
-                </div>
-                <div class="mb-3">
                   <label for="bentuk_obat" class="col-form-label">Bentuk Obat:</label>
                   <input type="text" class="form-control" id="bentuk_obat" name="bentuk_obat">
                 </div>
@@ -327,7 +322,6 @@
 
                 let data = {
                     nama: $('#nama').val(),
-                    keterangan: $('#keterangan').val(),
                     bentuk_obat: $('#bentuk_obat').val(),
                     harga: $('#harga').val(),
                 }
@@ -341,7 +335,7 @@
                     data: data
                 }).done(function (res) {
                     alert(res.message)
-                    $('#addModal').modal('hide');
+                    $('[data-bs-dismiss="modal"]').trigger('click');
                     loadObat()
                 }).fail(function (xhr, status, error) {
                     let errors = xhr.responseJSON.errors
@@ -369,10 +363,9 @@
                 let eThis = $(this)
                 eThis.prop('disabled', true)
                 eThis.html('Loading...')
-                let id = $(this).attr('data-id')
+                let id = $(this).attr('data-id_obat')
                 let data = {
                     nama: $('#nama').val(),
-                    keterangan: $('#keterangan').val(),
                     bentuk_obat: $('#bentuk_obat').val(),
                     harga: $('#harga').val(),
                 }
@@ -386,7 +379,7 @@
                     data: data
                 }).done(function (res) {
                     alert(res.message)
-                    $('#addModal').modal('hide');
+                    $('[data-bs-dismiss="modal"]').trigger('click');
                     loadObat()
                 }).fail(function (xhr, status, error) {
                     let errors = xhr.responseJSON.errors
@@ -414,7 +407,7 @@
                 let eThis = $(this)
                 eThis.prop('disabled', true)
                 eThis.html('Loading...')
-                let id = $(this).attr('data-id')
+                let id = $(this).attr('data-id_obat')
                 let nama = $(this).attr('data-nama')
 
                 if (confirm(`Apakah Anda yakin ingin menghapus obat ${nama}?`)) {
@@ -456,21 +449,19 @@
             $(document).on('click', '.edit-obat', function(e){
                 $('.update-obat').removeClass('d-none')
                 $('.add-obat').addClass('d-none')
-                $('.update-obat').attr('data-id', $(this).attr('data-id'))
+                $('.update-obat').attr('data-id_obat', $(this).attr('data-id_obat'))
                 $('#nama').val($(this).attr('data-nama'))
-                $('#keterangan').val($(this).attr('data-keterangan'))
                 $('#bentuk_obat').val($(this).attr('data-bentuk_obat'))
                 $('#harga').val($(this).attr('data-harga'))
             })
 
             $(document).on('click', '.btn-add-obat', function(e){
                 $('#nama').val('')
-                $('#keterangan').val('')
                 $('#bentuk_obat').val('')
                 $('#harga').val('')
 
                 $('.update-obat').addClass('d-none')
-                $('.update-obat').attr('data-id', '')
+                $('.update-obat').attr('data-id_obat', '')
                 $('.add-obat').removeClass('d-none')
             })
 
@@ -497,10 +488,10 @@
                     let aksi = ``
                     data.forEach(item => {
                         aksi = `
-                            <button class="btn btn-warning me-2 edit-obat"  data-bs-toggle="modal" data-bs-target="#addModal" data-id="${item.id}" data-nama="${item.nama}" data-keterangan="${item.keterangan}" data-bentuk_obat="${item.bentuk_obat}" data-harga="${item.harga}">
+                            <button class="btn btn-warning me-2 edit-obat"  data-bs-toggle="modal" data-bs-target="#addModal" data-id_obat="${item.id_obat}" data-nama="${item.nama}" data-bentuk_obat="${item.bentuk_obat}" data-harga="${item.harga}">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-danger delete-obat" data-id="${item.id}" data-nama="${item.nama}">
+                            <button class="btn btn-danger delete-obat" data-id_obat="${item.id_obat}" data-nama="${item.nama}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         `
@@ -508,7 +499,6 @@
                         $('#data-list').append(`
                             <tr>
                                 <td>${item.nama}</td>
-                                <td>${item.keterangan}</td>
                                 <td>${item.stok}</td>
                                 <td>${item.kadaluarsa}</td>
                                 <td>${item.bentuk_obat}</td>

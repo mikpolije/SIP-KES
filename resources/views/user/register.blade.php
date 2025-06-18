@@ -1,92 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        body {
-            background-color: #f8fafc;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: auto;
-            padding: 30px 0;
-        }
-        .register-container {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 500px;
-        }
-        .register-container h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .register-container form input,
-        .register-container form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .register-container form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #38c172;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .register-container form button:hover {
-            background-color: #2d995b;
-        }
-        .alert {
-            color: red;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="register-container">
-        <h2>Register</h2>
+@extends('layouts.master')
 
-        @if (session('success'))
-            <div class="alert" style="color: green;">
-                {{ session('success') }}
+@section('title', 'Registrasi Pengguna')
+
+@section('pageContent')
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="card-title mb-4 text-center font-montserrat">Registrasi Pengguna</h1>
+
+                    @if (session('success'))
+                        <div class="alert alert-success text-center">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('register.users') }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama Lengkap</label>
+                            <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" value="{{ old('username') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nik" class="form-label">NIK</label>
+                            <input type="text" name="nik" class="form-control" value="{{ old('nik') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="profesi" class="form-label">Profesi</label>
+                            <input type="text" name="profesi" class="form-control" value="{{ old('profesi') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="no_telepon" class="form-label">Nomor Telepon</label>
+                            <input type="text" name="no_telepon" class="form-control" value="{{ old('no_telepon') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                            <input type="password" name="password_confirmation" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <textarea name="alamat" class="form-control" rows="3" required>{{ old('alamat') }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 font-poppins">Register</button>
+                    </form>
+
+                </div>
             </div>
-        @endif
 
-        @if ($errors->any())
-            <div class="alert">
-                <ul style="list-style: none; padding: 0;">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('register.users') }}">
-            @csrf
-            <input type="text" name="nama" placeholder="Nama Lengkap" value="{{ old('nama') }}" required>
-            <input type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
-            <input type="text" name="nik" placeholder="NIK" value="{{ old('nik') }}" required>
-            <input type="text" name="profesi" placeholder="Profesi" value="{{ old('profesi') }}" required>
-            <input type="text" name="no_telepon" placeholder="Nomor Telepon" value="{{ old('no_telepon') }}" required>
-            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
-            <textarea name="alamat" rows="3" placeholder="Alamat" required>{{ old('alamat') }}</textarea>
-            <button type="submit">Register</button>
-        </form>
+        </div>
     </div>
-</body>
-</html>
+</div>
+@endsection
