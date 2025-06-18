@@ -247,10 +247,10 @@ class AntrianRiwayatController extends Controller
         ]);
     }
 
-    public function riwayat()
-    {
-        return view('PoliUmum.riwayatPoliUmum');
-    }
+    // public function riwayat()
+    // {
+    //     return view('PoliUmum.riwayatPoliUmum');
+    // }
 
     // Untuk fitur Select2 pencarian pasien
     public function searchPasien(Request $request)
