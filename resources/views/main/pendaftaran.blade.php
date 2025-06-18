@@ -456,11 +456,11 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="goldar">Golongan Darah:</label>
                                         <select class="form-select required" id="gol_darah" name="gol_darah">
+                                            <option value="0">Tidak Diketahui</option>
                                             <option value="1">A</option>
                                             <option value="2">B</option>
                                             <option value="3">AB</option>
                                             <option value="4">O</option>
-                                            <option value="0">Tidak Diketahui</option>
                                         </select>
                                     </div>
                                 </div>
