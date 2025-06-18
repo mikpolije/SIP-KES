@@ -102,16 +102,48 @@
                                             : '-' }}
                                     </td>
                                     <td>{{ $item->data_pasien->no_telepon_pasien ?? '-' }}</td>
-                                    <td>{{ $item->data_pasien->agama ?? '-' }}</td>
-                                    <td>{{ $item->data_pasien->gol_darah ?? '-' }}</td>
-                                    <td>{{ $item->data_pasien->jenis_kelamin ?? '-' }}</td>
+                                    @php
+                                        $agamaList = [
+                                            1 => 'Islam',
+                                            2 => 'Kristen (Protestan)',
+                                            3 => 'Katolik',
+                                            4 => 'Hindu',
+                                            5 => 'Budha',
+                                            6 => 'Konghucu',
+                                            7 => 'Penghayat',
+                                            8 => 'Lain-lain'
+                                        ];
+                                        
+                                    @endphp
+
+                                    <td>
+                                        {{ $agamaList[$item->data_pasien->agama] ?? '-' }}
+                                    </td>
+                                    @php
+                                        $jenis_golongandarah = [
+                                            1 => 'A',
+                                            2 => 'B',
+                                            3 => 'AB',
+                                            4 => 'O'
+                                        ]
+                                    @endphp
+                                    <td>{{ $jenis_golongandarah[$item->data_pasien->gol_darah] ?? '-' }}</td>
+                                    @php 
+                                        $jenis_kelamin = [
+                                            1 => 'Laki-Laki',
+                                            2 => 'Perempuan',
+                                            3 => 'Tidak dapat ditentukan',
+                                            4 => 'Tidak mengisi'    
+                                        ]
+                                    @endphp
+                                    <td>{{ $jenis_kelamin[(string) $item->data_pasien->jenis_kelamin] ?? '-' }}</td>
                                     <td class="d-flex justify-content-center gap-2">
-                                        <button class="btn btn-warning btn-sm">
+                                        <a href="{{ route('riwayat-medis.cetak', ['id' => $item->id_pendaftaran]) }}" target="_blank" class="btn btn-warning btn-sm">
                                             <i class="fas fa-print"></i> Cetak
-                                        </button>
-                                        <button class="btn btn-info btn-sm">
+                                        </a>
+                                        <a href="{{ route('riwayat-medis.show', $item->no_rm) }}" class="btn btn-info btn-sm">
                                             Detail
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

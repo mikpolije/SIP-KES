@@ -21,15 +21,16 @@ class ObatController extends Controller
     public function index(Request $request)
     {
         $data = Obat::select(
-            'obat.*',
-            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) END) as stok_opname'),
-            DB::raw('(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) END) as stok_gudang'),
+            'obats.*',
+            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as stok_opname'),
+            DB::raw('(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as stok_gudang'),
         );
 
         $search = $request->input('search.value', '');
         if (! empty($search)) {
             $data->where(function ($query) use ($search) {
-                $query->where('nama', 'LIKE', "%$search%");
+                $query->where('nama', 'LIKE', "%$search%")
+                ->orWhere('keterangan', 'LIKE', "%$search%");
             });
         }
 
@@ -37,7 +38,7 @@ class ObatController extends Controller
         $length = intval($request->input('length', 0));
         $start = intval($request->input('start', 0));
 
-        $data = $data->orderBy('id_obat', 'desc');
+        $data = $data->orderBy('id', 'desc');
         if (! $length && ! $start) {
             $data = $data->get();
         } else {
@@ -60,16 +61,16 @@ class ObatController extends Controller
         $page = intval($request->input('page', 1));
 
         $data = Obat::select(
-            'obat.*',
-            DB::raw("(CASE WHEN (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) IS NULL THEN '-' ELSE (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) END) as kadaluarsa"),
-            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) END) as stok')
+            'obats.*',
+            DB::raw("(CASE WHEN (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN '-' ELSE (SELECT MIN(tanggal_kadaluarsa) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as kadaluarsa"),
+            DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obats.id) END) as stok')
         );
 
         if ($search) {
-            $data->where('nama', 'LIKE', "%$search%");
+            $data->where('nama', 'LIKE', "%$search%")->orWhere('keterangan', 'LIKE', "%$search%");
         }
 
-        $data = $data->orderBy('id_obat', 'desc')->paginate($length, ['*'], 'page', $page);
+        $data = $data->orderBy('id', 'desc')->paginate($length, ['*'], 'page', $page);
 
         return response()->json([
             'data' => $data->items(),
@@ -317,10 +318,9 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required|string|max:255',
-            'stok' => 'required|integer',
-            'tanggal_kadaluwarsa' => 'required|date',
-            'bentuk_obat' => 'required|string|max:255',
+            'nama' => 'required',
+            'keterangan' => 'required',
+            'bentuk_obat' => 'required',
             'harga' => 'required|numeric',
         ]);
 
@@ -334,8 +334,7 @@ class ObatController extends Controller
 
         $data = Obat::create([
             'nama' => $request->nama,
-            'stok' => $request->stok,
-            'tanggal_kadaluarsa' => $request->tanggal_kadaluwarsa,
+            'keterangan' => $request->keterangan,
             'bentuk_obat' => $request->bentuk_obat,
             'harga' => $request->harga,
         ]);
@@ -359,9 +358,8 @@ class ObatController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:255',
-            'stok' => 'required|integer',
-            'tanggal_kadaluwarsa' => 'required|date',
-            'bentuk_obat' => 'required|string|max:255',
+            'keterangan' => 'required',
+            'bentuk_obat' => 'required',
             'harga' => 'required|numeric',
         ]);
 
@@ -375,8 +373,7 @@ class ObatController extends Controller
 
         $data->update([
             'nama' => $request->nama,
-            'stok' => $request->stok,
-            'tanggal_kadaluwarsa' => $request->tanggal_kadaluwarsa,
+            'keterangan' => $request->keterangan,
             'bentuk_obat' => $request->bentuk_obat,
             'harga' => $request->harga,
         ]);
@@ -413,7 +410,7 @@ class ObatController extends Controller
             'tanggal_faktur' => 'required|date',
 
             'id_obat' => 'required|array',
-            'id_obat.*' => 'required|exists:obat,id_obat',
+            'id_obat.*' => 'required|exists:obat,id',
 
             'tanggal_kadaluarsa' => 'required|array',
             'tanggal_kadaluarsa.*' => 'required|date',

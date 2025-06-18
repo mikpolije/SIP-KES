@@ -103,8 +103,7 @@ Route::get('/get-kecamatan/{city_code}', [PendafataranController::class, 'getKec
 Route::get('/get-desa/{district_code}', [PendafataranController::class, 'getDesa']);
 
 
-Route::get('/{main}/{view}', [PageController::class, 'show']);
-Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
+
 
 // route sidebar antrian dan riwayat
 use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
@@ -161,7 +160,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 Route::get('/riwayat-medis', [RiwayatMedisController::class, 'index'])->name('riwayat-medis.index');
-//Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat.medis.show');
+Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name('riwayat-medis.show');
 
 // Poli
 Route::resource('/poli', PoliController::class);
@@ -170,9 +169,9 @@ Route::resource('/poli', PoliController::class);
 Route::get('/laporan/kunjungan', [KunjunganController::class, 'index']);
 Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.kunjungan.report');
 
+Route::get('/riwayat-medis/cetak/{id}', [App\Http\Controllers\RiwayatMedisController::class, 'cetak'])->name('riwayat-medis.cetak');
 
 
-Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
 
 
 Route::middleware(['auth', 'profesi:admin,superadmin,test'])->group(function () {
@@ -181,3 +180,9 @@ Route::middleware(['auth', 'profesi:admin,superadmin,test'])->group(function () 
 
 //route autocomplete cari data pasien
 Route::get('/cari-pasien', [PendafataranController::class, 'cariPasien']);
+
+
+
+Route::get('/main/{path}', [PageController::class, 'showByPath'])->where('path', '.*');
+Route::get('/{main}/{view}', [PageController::class, 'show']);
+Route::get('/main/to/{path}', [PageController::class, 'showByPath'])->where('path', '.*');

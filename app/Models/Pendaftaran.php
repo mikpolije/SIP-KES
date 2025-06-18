@@ -109,7 +109,10 @@ class Pendaftaran extends Model
     }
     public function asessmen_awal()
     {
-        return $this->hasMany(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
+        return $this->hasOne(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+    public function asuhan_keperawatan(){
+        return $this->hasOne(AsuhanKeperawatan::class, 'id_pendaftaran', 'id_pendaftaran');
     }
     public function getLayananTerisiAttribute()
     {
