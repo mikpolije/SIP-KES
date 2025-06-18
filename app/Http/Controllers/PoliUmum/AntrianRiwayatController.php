@@ -174,10 +174,10 @@ class AntrianRiwayatController extends Controller
             }
 
 
-            return redirect()->route('poliumum.pemeriksaanAkhir')->with('success', 'Data pemeriksaan berhasil disimpan.');
+            return redirect()->route('poliumum.pemeriksaanAkhir.step3', $id_pemeriksaan)->with('success', 'Data pemeriksaan berhasil disimpan.');
         } catch (\Exception $e) {
             Log::error('Gagal menambahkan data pemeriksaan: ' . $e->getMessage());
-            return redirect()->route('poliumum.pemeriksaanAkhir')->withErrors(['msg' => 'Gagal menambahkan data: ' . $e->getMessage()]);
+            return redirect()->route('poliumum.pemeriksaanAkhir.step3', $id_pemeriksaan)->withErrors(['msg' => 'Gagal menambahkan data: ' . $e->getMessage()]);
         }
     }
 
