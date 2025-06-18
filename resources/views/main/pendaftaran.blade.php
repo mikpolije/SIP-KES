@@ -460,7 +460,7 @@
                                             <option value="2">B</option>
                                             <option value="3">AB</option>
                                             <option value="4">O</option>
-                                            <option value="5">Tidak Diketahui</option>
+                                            <option value="0">Tidak Diketahui</option>
                                         </select>
                                     </div>
                                 </div>
