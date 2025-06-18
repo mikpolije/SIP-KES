@@ -21,7 +21,7 @@ class ObatController extends Controller
     public function index(Request $request)
     {
         $data = Obat::select(
-            'obat.*',More actions
+            'obat.*',
             DB::raw('(CASE WHEN (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) IS NULL THEN 0 ELSE (SELECT SUM(stok_opname) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) END) as stok_opname'),
             DB::raw('(CASE WHEN (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) IS NULL THEN 0 ELSE (SELECT SUM(stok_gudang) FROM detail_pembelian_obat WHERE id_obat = obat.id_obat) END) as stok_gudang'),
         );
