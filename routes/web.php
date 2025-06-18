@@ -23,7 +23,6 @@ Route::middleware('web')->group(function () {
         return redirect()->route('login');
     Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
     Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
-    Route::view('/user/register', 'register')->name('register');
     });
 });
 
