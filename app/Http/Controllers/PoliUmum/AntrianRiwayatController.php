@@ -74,7 +74,7 @@ class AntrianRiwayatController extends Controller
     {
         // $icd10 = ICD::orderBy('id', 'asc')->get();
         $pemeriksaan = PemeriksaanAwal::where('id_pemeriksaan', $id_pemeriksaan)->first();
-        return view('PoliUmum.antreanPoliUmumstep3', [
+        return view('PoliUmum.pemeriksaanAkhir', [
             'pemeriksaan' => $pemeriksaan,
             // 'icd10' => $icd10
         ]);
