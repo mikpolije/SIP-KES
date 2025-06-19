@@ -5,6 +5,8 @@
   @include('layouts.head')
   <title>@yield('title', 'SIP-Kes')</title>
   @yield('css')
+>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   @stack('style')
   <link href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" rel="stylesheet">

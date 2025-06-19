@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\generalConsentController;
+use App\Http\Controllers\GeneralConsentController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('api')->name('api.')->group(function () {
@@ -40,5 +40,5 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::get('icd9', [IcdController::class, 'icd9'])->name('icd9.index');
 });
 
-Route::get('/signature-status/{token}', [generalConsentController::class, 'checkStatus']);
+Route::get('/signature-status/{token}', [GeneralConsentController::class, 'checkStatus']);
 

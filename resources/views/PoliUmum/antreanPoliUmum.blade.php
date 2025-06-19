@@ -78,32 +78,23 @@
                         <th>TANGGAL PENDAFTARAN</th>
                         <th>UNIT LAYANAN</th>
                         <th>DOKTER</th>
-                        <th>TIPE PASIEN</th>
                         <th>STATUS</th>
                         <th>AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (range(1, 10) as $i)
+                    @foreach ($data_pasien as $d)
                         <tr>
-                            <td>{{ $i }}</td>
-                            <td>00100{{ $i }}</td>
-                            <td>{{ ['Arga Pratama', 'Keisha Anindya', 'Dimas Fadlan', 'Nayla Putri', 'Rizqy Maulana', 'Alika Salsabila', 'Revan Aditya', 'Tania Ramadhani', 'Ilham Setiawan', 'Vania Lestari'][$i - 1] }}
-                            </td>
-                            <td>17-04-2025</td>
-                            <td>Umum</td>
-                            <td>{{ ['dr. Oktavia', 'dr. Erwiyan', 'dr. Laili Fitriana', 'dr. Erwiyan', 'dr. Oktavia Putri', 'dr. Sisil Karina', 'dr. Shofi', 'dr. Arvin Maulana', 'dr. Arvin Maulana', 'dr. Sisil Karina'][$i - 1] }}
-                            </td>
-                            <td>{{ $i % 3 == 0 ? 'BPJS' : 'Umum' }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $d->data_pasien->no_rm }}</td>
+                            <td>{{ $d->data_pasien->nama_pasien }}</td>
+                            <td>{{ $d->created_at->format('d-m-Y') }}</td>
+                            <td>{{ $d->poli->nama_poli }}</td>
+                            <td>{{ $d->dokter->nama }}</td>
+                            <td>{{ $d->status }}</td>
                             <td>
-                                @if ($i <= 5)
-                                    <span style="color: #007bff;">Diperiksa</span>
-                                @else
-                                    <span style="color: #F5A623;">Antri</span>
-                                @endif
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">Pilih</button>
+                                <a href="{{ route('poliumum.pemeriksaanAwal', $d->id_pendaftaran) }}"
+                                    class="btn btn-sm btn-primary">Pilih</a>
                             </td>
                         </tr>
                     @endforeach

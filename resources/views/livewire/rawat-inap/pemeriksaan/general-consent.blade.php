@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\GeneralConsent;
+use App\Models\GeneralConsentRanap;
 use App\Models\Pendaftaran;
 use Livewire\Attributes\On;
 use Livewire\Volt\Component;
@@ -41,7 +41,7 @@ new class extends Component {
     {
         $this->pendaftaranId = $pendaftaranId;
         $pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->firstOrFail();
-        $general_consent = GeneralConsent::where('id_pendaftaran', $pendaftaranId)->first();
+        $general_consent = GeneralConsentRanap::where('id_pendaftaran', $pendaftaranId)->first();
 
         if ($pendaftaran->data_pasien) {
             $this->no_rm = $pendaftaran->data_pasien['no_rm'] ?? '';
@@ -108,7 +108,7 @@ new class extends Component {
                 'boolean' => 'Nilai tidak valid',
             ]);
 
-            GeneralConsent::updateOrCreate(
+            GeneralConsentRanap::updateOrCreate(
                 ['id_pendaftaran' => $this->pendaftaranId],
                 $validated
             );

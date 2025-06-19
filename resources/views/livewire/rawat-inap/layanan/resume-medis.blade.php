@@ -106,7 +106,6 @@ new class extends Component {
             $this->tglMasuk = $this->pendaftaran->poli_rawat_inap->created_at->format('Y-m-d');
             $this->tanggal_lahir = $this->pendaftaran->data_pasien->tanggal_lahir;
             $this->ruangPerawatan = $this->pendaftaran->poli_rawat_inap->kelas;
-            $this->dokterPenanggungJawab = $this->pendaftaran->poli_rawat_inap->informed_consent->dokter->nama;
             $this->pembayaran = $this->pendaftaran->poli_rawat_inap->pembayaran;
             $this->tglLahir = $this->pendaftaran->data_pasien->tanggal_lahir . ' / ' . $this->jenis_kelamin($this->pendaftaran->data_pasien->jenis_kelamin);
         }
@@ -120,6 +119,7 @@ new class extends Component {
             $this->diagnosisUtama = $cpptAwal->id_icd10 ?? '-';
             $this->kodeICD10 = $cpptAwal->id_icd10->code ?? '-';
             $this->diagnosisSekunder = ($cpptAkhir->id_icd9 ?? '-');
+            $this->dokterPenanggungJawab = $informed_consent->dokter->nama;
             $this->kodeICD9 = ($cpptAkhir->id_icd9 ?? '-');
 
             if ($this->existingResMed) {

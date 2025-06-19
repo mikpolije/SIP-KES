@@ -45,6 +45,15 @@ class Pendaftaran extends Model
         return $this->belongsTo(WaliPasien::class, 'id_wali_pasien', 'id');
     }
 
+    public function poli()
+    {
+        return $this->belongsTo(poli::class, 'id_poli', 'id_poli');
+    }
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'id_dokter', 'id');
+    }
+
     public function poli_rawat_inap()
     {
         return $this->hasOne(PoliRawatInap::class, 'id_pendaftaran', 'id_pendaftaran');
@@ -102,6 +111,10 @@ class Pendaftaran extends Model
     {
         return $this->hasOne(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
     }
+    public function asuhan_keperawatan(){
+        return $this->hasOne(AsuhanKeperawatan::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
     public function getLayananTerisiAttribute()
     {
         if (!$this->relationLoaded('layanan_kia')) {
