@@ -52,7 +52,6 @@
                                     <th>Nama Obat</th>
                                     <th>Stok Opname</th>
                                     <th>Stok Gudang</th>
-                                    <th>Stok Bebas</th>
                                 </tr>
                             </thead>
                         </table>
@@ -300,7 +299,6 @@
                     { data: 'nama' },
                     { data: 'stok_opname' },
                     { data: 'stok_gudang' },
-                    { data: 'stok_opname' },
                 ],
                 buttons: [
                     {

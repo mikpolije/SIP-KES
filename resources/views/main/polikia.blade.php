@@ -604,7 +604,8 @@ $(document).on('click', '#submit_pemeriksaan_kehamilan', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
@@ -649,7 +650,8 @@ $(document).on('click', '#submit_pemeriksaan_kb', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
@@ -688,7 +690,8 @@ $(document).on('click', '#submit_pemeriksaan_anak', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
@@ -817,7 +820,8 @@ $(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
