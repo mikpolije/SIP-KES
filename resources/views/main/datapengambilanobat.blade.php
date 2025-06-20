@@ -12,7 +12,7 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Data Pengambilan Obat</h1>
+                <h1 class="title">Data Resep Obat</h1>
                 <style>
                     .title {
                         font-family: 'Montserrat', sans-serif;
