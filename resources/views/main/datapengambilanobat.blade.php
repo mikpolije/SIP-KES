@@ -235,6 +235,7 @@
                                         <th class="text-light">Jumlah</th>
                                         <th class="text-light">Nama Obat</th>
                                         <th class="text-light">Harga Obat</th>
+                                        <th class="text-light">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabel-obat">
@@ -407,6 +408,9 @@
                                         </td>
                                         <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
                                         <td>${harga}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm btn-delete-obat" data-id="${random}">Hapus</button>
+        <                               /td>
                                     </tr>
                                 `)
 
@@ -420,6 +424,9 @@
                                         </td>
                                         <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
                                         <td>${harga}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm btn-delete-obat" data-id="${random}">Hapus</button>
+        <                               /td>
                                     </tr>
                                 `)
                             })
@@ -445,6 +452,13 @@
                     eThis.prop('disabled', false)
                     eThis.html('Cari')
                 })
+            });
+
+            $(document).on('click', '.btn-delete-obat', function () {
+                const id = $(this).data('id');
+
+                $(`#tabel-obat tr[data-id="${id}"]`).remove();
+                $(`#tabel-pengambilan-obat tr[data-id="${id}"]`).remove();
             });
         });
 
