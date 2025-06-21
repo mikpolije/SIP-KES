@@ -10,10 +10,9 @@ class PemeriksaanAwal extends Model
     protected $primaryKey = 'id_pemeriksaan';
     public $timestamps = false;
     protected $fillable = [
-        'id_layanan',
+        'id_perawat',
         'kode_tindakan',
         'kode_diagnosa',
-        'id_perawat',
         'id_pendaftaran',
         'tanggal_periksa_pasien',
         'sistole',
@@ -27,8 +26,14 @@ class PemeriksaanAwal extends Model
         'subjektif',
         'pemeriksaan_fisik',
         'kunjungan_sakit',
-        'rencana_tindak_lanjut',
+        'rencana_kontrol',
         'catatan_obat',
+        'assesment',
+        'bagian_diperiksa',
+        'keterangan',
+        'foto_fisik',
+        'alasan_kontrol',
+        'plan'
     ];
 
     public function pendaftaran()

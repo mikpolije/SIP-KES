@@ -70,12 +70,13 @@ class AntrianRiwayatController extends Controller
         }
     }
 
-    public function riwayat()
-    {
-        return view('PoliUmum.antreanPoliUmumstep3', [
-            'data_pemeriksaan' => $data_pemeriksaan
-        ]);
-    }
+    // public function riwayat()
+    // {
+
+    //     return view('PoliUmum.antreanPoliUmumstep3', [
+    //         'data_pemeriksaan' => $data_pemeriksaan
+    //     ]);
+    // }
 
     public function antrianPemeriksaan3()
     {
@@ -192,7 +193,7 @@ class AntrianRiwayatController extends Controller
             }
 
 
-            return redirect()->route('poliumum.pemeriksaanAkhir.step3', $id_pemeriksaan)->with('success', 'Data pemeriksaan berhasil disimpan.');
+            return redirect()->route('poliumum.pemeriksaanAkhir', $id_pemeriksaan)->with('success', 'Data pemeriksaan berhasil disimpan.');
         } catch (\Exception $e) {
             Log::error('Gagal menambahkan data pemeriksaan: ' . $e->getMessage());
             return redirect()->route('poliumum.pemeriksaanAkhir.step3', $id_pemeriksaan)->withErrors(['msg' => 'Gagal menambahkan data: ' . $e->getMessage()]);
