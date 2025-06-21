@@ -49,7 +49,7 @@ class DataPasien extends Model
 
     public function wali()
     {
-        return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm');
+        return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm')->latestOfMany();
     }
 
     public function pendaftaran()
