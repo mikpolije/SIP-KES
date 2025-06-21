@@ -41,6 +41,7 @@
             text-align: left;
             vertical-align: middle;
         }
+
         td {
             background-color: white;
             font-weight: 400;
@@ -64,51 +65,32 @@
                         <th class="text-center">NO ANTREAN</th>
                         <th class="text-center">NOMOR RM</th>
                         <th class="text-center">NAMA</th>
-                        <th class="text-center">TANGGAL PENDAFTARAN</th>
                         <th class="text-center">UNIT LAYANAN</th>
                         <th class="text-center">DOKTER</th>
-                        <th class="text-center">TIPE PASIEN</th>
                         <th class="text-center">STATUS</th>
                         <th class="text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
-
-
-                    @foreach ([
-                            ['1', 'id001001', 'Arga Pratama', 'KIA', 'dr. Oktavia', 'Umum', 'Diperiksa'],
-                            ['2', 'id001002', 'Keisha Anindya', 'KIA', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
-                            ['3', 'id001003', 'Dimas Fadlan', 'KIA', 'dr. Laili Fitriana', 'Umum', 'Diperiksa'],
-                            ['4', 'id001004', 'Nayla Putri', 'KIA', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
-                            ['5', 'id001005', 'Rizqy Maulana', 'KIA', 'dr. Oktavia Putri', 'Umum', 'Diperiksa'],
-                            ['6', 'id001006', 'Alika Salsabila', 'KIA', 'dr. Sisil Karina', 'Umum', 'Antre'],
-                            ['7', 'id001007', 'Revan Aditya', 'KIA', 'dr. Shofi', 'Umum', 'Antre'],
-                            ['8', 'id001008', 'Tania Ramadhani', 'KIA', 'dr. Arvin Maulana', 'Umum', 'Antre'],
-                            ['9', 'id001009', 'Ilham Setiawan', 'KIA', 'dr. Arvin Maulana', 'Umum', 'Antre'],
-                            ['10', 'id001010', 'Vania Lestari', 'KIA', 'dr. Sisil Karina', 'Umum', 'Antre'],
-                        ] as $i)
+                    @foreach ($data_pasien as $i)
                         <tr>
-                          <td class="text-center">{{ $i[0] }}</td>
-                                    <td class="text-center">{{ $i[1] }}</td>
-                                    <td class="text-center">{{ $i[2] }}</td>
-                                    <td class="text-center">17-04-2025</td>
-                                    <td class="text-center">{{ $i[3] }}</td>
-                                    <td class="text-center">{{ $i[4] }}</td>
-                                    <td class="text-center">{{ $i[5] }}</td>
-                            <td class="text-center">{{ $i[6] }}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <select class="form-select btn btn-primary" style="width: 100px; padding: 4px 6px;">
-                                    <option selected>Pilih</option>
-                                    <option value="1">Kehamilan</option>
-                                    <option value="2">Persalinan</option>
-                                    <option value="3">KB</option>
-                                    <option value="4">Anak</option>
-                                    </select>
-                                </div>
-                                    <a href="{{ route('main.polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
+                            @if ($i->poli->nama_poli == 'Poli KIA')
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $i->data_pasien->no_rm }}</td>
+                                <td>{{ $i->data_pasien->nama_pasien }}</td>
+                                <td class="text-center">{{ $i->poli->nama_poli }}</td>
+                                <td>{{ $i->dokter->nama }}</td>
+                                <td class="text-center">{{ $i->status }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('poliumum.pemeriksaanAwal', $i->id_pendaftaran) }}"
+                                        class="btn btn-sm btn-primary">Pilih</a>
+                                    <a href="{{ route('main.polikia.detailkia', ['id' => $i->id_pendaftaran]) }}"
+                                        class="btn btn-sm btn-primary">Detail</a>
                                 </td>
-                            </tr>
+                            @else
+                                @continue
+                            @endif
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -116,17 +98,6 @@
     </div>
     <script>
         $(document).ready(function () {
-                // Fungsi pencarian pasien
-            $('#btnCariPasien').on('click', function (e) {
-                e.preventDefault();
-                const noRM = $('#searchPasien').val();
-                if (noRM) {
-                    window.location.href = `/poli-kia/detail/${noRM}`;
-                } else {
-                    alert('Silakan pilih data pasien terlebih dahulu.');
-                }
-            });
-        });
             // Fungsi pencarian pasien
             $('#btnCariPasien').on('click', function (e) {
                 e.preventDefault();
@@ -137,5 +108,16 @@
                     alert('Silakan pilih data pasien terlebih dahulu.');
                 }
             });
-        </script>
+        });
+        // Fungsi pencarian pasien
+        $('#btnCariPasien').on('click', function (e) {
+            e.preventDefault();
+            const noRM = $('#searchPasien').val();
+            if (noRM) {
+                window.location.href = `/poli-kia/detail/${noRM}`;
+            } else {
+                alert('Silakan pilih data pasien terlebih dahulu.');
+            }
+        });
+    </script>
 @endsection
