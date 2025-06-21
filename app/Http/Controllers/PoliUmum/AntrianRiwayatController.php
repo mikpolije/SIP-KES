@@ -10,7 +10,7 @@ use App\Models\Pemeriksaan;
 use App\Models\DataPasien;
 use App\Models\ICD;
 use App\Models\ICD10_Umum;
-use App\Models\ICD9;
+use App\Models\Icd9;
 use App\Models\ICD9_Umum;
 use App\Models\Layanan;
 use App\Models\LayananPendaftaran;
@@ -194,7 +194,7 @@ class AntrianRiwayatController extends Controller
     {
         $term = $request->input('term');
 
-        $results = ICD9::where('code', 'LIKE', "%{$term}%")
+        $results = Icd9::where('code', 'LIKE', "%{$term}%")
             ->orWhere('display', 'LIKE', "%{$term}%")
             ->limit(10)
             ->get(['id', 'code', 'display']);
