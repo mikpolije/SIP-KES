@@ -114,12 +114,12 @@ Route::get('/search-icd10', [AntrianRiwayatController::class, 'searchICD10'])->n
 Route::get('/search-layanan', [AntrianRiwayatController::class, 'searchLayanan'])->name('search.layanan');
 Route::get('/search-obat', [AntrianRiwayatController::class, 'searchObat'])->name('search.obat');
 
-// Route::prefix('main/poliumum')->group(function () {
-//     Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
-//     Route::get('/get-data-pasien/{no_rm}', [PendafataranController::class, 'getDataPasien']);
-//     Route::get('/antrean', [AntrianRiwayatController::class, 'antrean'])->name('antrean.poliumum');
-//     Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
-// });
+Route::prefix('main/poliumum')->group(function () {
+    Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
+    Route::get('/get-data-pasien/{no_rm}', [PendafataranController::class, 'getDataPasien']);
+    Route::get('/antrean', [AntrianRiwayatController::class, 'antrean'])->name('antrean.poliumum');
+    Route::get('/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('riwayat.poliumum');
+});
 
 // Route detail riwayat pasien
 Route::get('/poli-umum/detail/{rm}', function ($rm) {
