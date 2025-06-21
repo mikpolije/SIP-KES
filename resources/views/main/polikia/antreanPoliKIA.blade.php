@@ -41,20 +41,9 @@
             text-align: left;
             vertical-align: middle;
         }
-
-        th {
-            background-color: #F9FAFC;
-            font-weight: 600;
-        }
-
         td {
             background-color: white;
             font-weight: 400;
-        }
-
-        td button {
-            padding: 4px 10px;
-            font-size: 12px;
         }
     </style>
 
@@ -72,66 +61,62 @@
             <table class="table table-bordered mb-0">
                 <thead>
                     <tr>
-                        <th>NO ANTREAN</th>
-                        <th>NOMOR RM</th>
-                        <th>NAMA</th>
-                        <th>TANGGAL PENDAFTARAN</th>
-                        <th>UNIT LAYANAN</th>
-                        <th>DOKTER</th>
-                        <th>TIPE PASIEN</th>
-                        <th>STATUS</th>
+                        <th class="text-center">NO ANTREAN</th>
+                        <th class="text-center">NOMOR RM</th>
+                        <th class="text-center">NAMA</th>
+                        <th class="text-center">TANGGAL PENDAFTARAN</th>
+                        <th class="text-center">UNIT LAYANAN</th>
+                        <th class="text-center">DOKTER</th>
+                        <th class="text-center">TIPE PASIEN</th>
+                        <th class="text-center">STATUS</th>
                         <th class="text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    
-                    @foreach ([
-                        ['1','id001001', 'Arga Pratama', 'Umum', 'dr. Oktavia', 'Umum', 'Diperiksa'], 
-                        ['2','id001002', 'Keisha Anindya', 'Umum', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
-                        ['3','id001003', 'Dimas Fadlan', 'Umum', 'dr. Laili Fitriana', 'Umum', 'Diperiksa'],
-                        ['4','id001004', 'Nayla Putri', 'Umum', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
-                        ['5','id001005', 'Rizqy Maulana', 'Umum', 'dr. Oktavia Putri', 'Umum', 'Diperiksa'],
-                        ['6','id001006', 'Alika Salsabila', 'Umum', 'dr. Sisil Karina', 'Umum', 'Antre'],
-                        ['7','id001007', 'Revan Aditya', 'Umum', 'dr. Shofi', 'Umum', 'Antre'],
-                        ['8','id001008', 'Tania Ramadhani', 'Umum', 'dr. Arvin Maulana', 'Umum', 'Antre'],
-                        ['9','id001009', 'Ilham Setiawan', 'Umum', 'dr. Arvin Maulana', 'Umum', 'Antre'],
-                        ['10','id001010', 'Vania Lestari', 'Umum', 'dr. Sisil Karina', 'Umum', 'Antre'],
-                        ] as $i)
 
+
+                    @foreach ([
+                            ['1', 'id001001', 'Arga Pratama', 'KIA', 'dr. Oktavia', 'Umum', 'Diperiksa'],
+                            ['2', 'id001002', 'Keisha Anindya', 'KIA', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
+                            ['3', 'id001003', 'Dimas Fadlan', 'KIA', 'dr. Laili Fitriana', 'Umum', 'Diperiksa'],
+                            ['4', 'id001004', 'Nayla Putri', 'KIA', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
+                            ['5', 'id001005', 'Rizqy Maulana', 'KIA', 'dr. Oktavia Putri', 'Umum', 'Diperiksa'],
+                            ['6', 'id001006', 'Alika Salsabila', 'KIA', 'dr. Sisil Karina', 'Umum', 'Antre'],
+                            ['7', 'id001007', 'Revan Aditya', 'KIA', 'dr. Shofi', 'Umum', 'Antre'],
+                            ['8', 'id001008', 'Tania Ramadhani', 'KIA', 'dr. Arvin Maulana', 'Umum', 'Antre'],
+                            ['9', 'id001009', 'Ilham Setiawan', 'KIA', 'dr. Arvin Maulana', 'Umum', 'Antre'],
+                            ['10', 'id001010', 'Vania Lestari', 'KIA', 'dr. Sisil Karina', 'Umum', 'Antre'],
+                        ] as $i)
                         <tr>
-                            <td class="text-center">{{ $i[0] }}</td>
-                            <td class="text-center">{{ $i[1] }}</td>
-                            <td class="text-center">{{ $i[2] }}</td>
-                            <td class="text-center">17-04-2025</td>
-                            <td class="text-center">{{ $i[3] }}</td>
-                            <td class="text-center">{{ $i[4] }}</td>
-                            <td class="text-center">{{ $i[5] }}</td>
+                          <td class="text-center">{{ $i[0] }}</td>
+                                    <td class="text-center">{{ $i[1] }}</td>
+                                    <td class="text-center">{{ $i[2] }}</td>
+                                    <td class="text-center">17-04-2025</td>
+                                    <td class="text-center">{{ $i[3] }}</td>
+                                    <td class="text-center">{{ $i[4] }}</td>
+                                    <td class="text-center">{{ $i[5] }}</td>
                             <td class="text-center">{{ $i[6] }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Pilih
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">KB</a></li>
-                                        <li><a class="dropdown-item" href="#">Kehamilan</a></li>
-                                        <li><a class="dropdown-item" href="#">Persalinan</a></li>
-                                        <li><a class="dropdown-item" href="#">Anak</a></li>
-                                    </ul>
+                                    <select class="form-select btn btn-primary" style="width: 100px; padding: 4px 6px;">
+                                    <option selected>Pilih</option>
+                                    <option value="1">Kehamilan</option>
+                                    <option value="2">Persalinan</option>
+                                    <option value="3">KB</option>
+                                    <option value="4">Anak</option>
+                                    </select>
                                 </div>
-                                <a href="{{ route('main.polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
-                            </td>
-                        </tr>
+                                    <a href="{{ route('main.polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
+                                </td>
+                            </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
     <script>
         $(document).ready(function () {
-            // Fungsi pencarian pasien
+                // Fungsi pencarian pasien
             $('#btnCariPasien').on('click', function (e) {
                 e.preventDefault();
                 const noRM = $('#searchPasien').val();
@@ -142,16 +127,15 @@
                 }
             });
         });
-
-        // Fungsi pencarian pasien
-        $('#btnCariPasien').on('click', function (e) {
-            e.preventDefault();
-            const noRM = $('#searchPasien').val();
-            if (noRM) {
-                window.location.href = `/poli-kia/detail/${noRM}`;
-            } else {
-                alert('Silakan pilih data pasien terlebih dahulu.');
-            }
-        });
-    </script>
+            // Fungsi pencarian pasien
+            $('#btnCariPasien').on('click', function (e) {
+                e.preventDefault();
+                const noRM = $('#searchPasien').val();
+                if (noRM) {
+                    window.location.href = `/poli-kia/detail/${noRM}`;
+                } else {
+                    alert('Silakan pilih data pasien terlebih dahulu.');
+                }
+            });
+        </script>
 @endsection
