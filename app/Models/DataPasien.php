@@ -47,7 +47,7 @@ class DataPasien extends Model
         'no_rm' => 'string',
     ];
 
-    public function wali_pasien()
+    public function waliPasien()
     {
         return $this->hasOne(WaliPasien::class, 'no_rm', 'no_rm');
     }

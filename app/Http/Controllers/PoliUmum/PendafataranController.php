@@ -188,7 +188,7 @@ class PendafataranController extends Controller
 
         Log::info('NO_RM diterima:', ['no_rm' => $no_rm]);
 
-        $pasien = DataPasien::with('wali_pasien', 'provinsi', 'kota', 'kecamatan', 'desa')
+        $pasien = DataPasien::with('waliPasien', 'provinsi', 'kota', 'kecamatan', 'desa')
             ->where('no_rm', $no_rm)
             ->first();
 
@@ -199,15 +199,16 @@ class PendafataranController extends Controller
         Log::info('Pasien ditemukan:', ['pasien' => $pasien]);
         return response()->json($pasien);
     }
-    public function cariPasien(Request $request)
-    {
-        $term = $request->get('term');
 
-        $pasien = DataPasien::where('no_rm', 'like', '%' . $term . '%')
-            ->orWhere('nama_pasien', 'like', '%' . $term . '%')
-            ->limit(10)
-            ->get(['no_rm', 'nama_pasien']);
+    // public function cariPasien(Request $request)
+    // {
+    //     $term = $request->get('term');
 
-        return response()->json($pasien);
-    }
+    //     $pasien = DataPasien::where('no_rm', 'like', '%' . $term . '%')
+    //         ->orWhere('nama_pasien', 'like', '%' . $term . '%')
+    //         ->limit(10)
+    //         ->get(['no_rm', 'nama_pasien']);
+
+    //     return response()->json($pasien);
+    // }
 }
