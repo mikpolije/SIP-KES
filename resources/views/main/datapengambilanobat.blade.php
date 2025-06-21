@@ -424,9 +424,6 @@
                                         </td>
                                         <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
                                         <td>${harga}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-danger btn-sm btn-delete-obat" data-id="${random}">Hapus</button>
-        <                               /td>
                                     </tr>
                                 `)
                             })
