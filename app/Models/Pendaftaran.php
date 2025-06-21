@@ -117,11 +117,11 @@ class Pendaftaran extends Model
 
     public function getLayananTerisiAttribute()
     {
-        if (!$this->relationLoaded('poli_kia')) {
-            $this->load('poli_kia');
+        if (!$this->relationLoaded('layanan_kia')) {
+            $this->load('layanan_kia');
         }
 
-        $jenis_layanan = $this->poli->jenis_pemeriksaan ?? null;
+        $jenis_layanan = $this->layanan_kia->jenis_pemeriksaan ?? null;
 
         return match ($jenis_layanan) {
             'KB' => $this->formulirKb !== null,
