@@ -100,20 +100,26 @@
                         ] as $i)
 
                         <tr>
-                            <td>{{ $i[0] }}</td>
-                            <td>{{ $i[1] }}</td>
-                            <td>{{ $i[2] }}</td>
-                            </td>
-                            <td>17-04-2025</td>
-                            <td>{{ $i[3] }}</td>
-                            <td>{{ $i[4]}}
-                            </td>
-                            <td>{{ $i[5]}}</td>
+                            <td class="text-center">{{ $i[0] }}</td>
+                            <td class="text-center">{{ $i[1] }}</td>
+                            <td class="text-center">{{ $i[2] }}</td>
+                            <td class="text-center">17-04-2025</td>
+                            <td class="text-center">{{ $i[3] }}</td>
+                            <td class="text-center">{{ $i[4] }}</td>
+                            <td class="text-center">{{ $i[5] }}</td>
+                            <td class="text-center">{{ $i[6] }}</td>
                             <td>
-                                {{ $i[6] }}
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">Pilih</button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Pilih
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">KB</a></li>
+                                        <li><a class="dropdown-item" href="#">Kehamilan</a></li>
+                                        <li><a class="dropdown-item" href="#">Persalinan</a></li>
+                                        <li><a class="dropdown-item" href="#">Anak</a></li>
+                                    </ul>
+                                </div>
                                 <a href="{{ route('main.polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
                             </td>
                         </tr>
