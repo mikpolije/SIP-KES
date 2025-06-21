@@ -14,7 +14,7 @@ class DataPasien extends Model
 
     protected $primaryKey = 'no_rm';
 
-    protected $guarded = ['no_rm'];
+    protected $guarded = [];
 
     protected $casts = [
         'no_rm' => 'string',
