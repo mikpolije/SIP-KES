@@ -115,35 +115,35 @@ tbody td {
         <div class="row g-3">
             <div class="col-md-3">
                 <label class="form-label">No. RM</label>
-                <input type="text" class="form-control" value="RM000841" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
             <div class="col-md-3">
                 <label class="form-label">Nama</label>
-                <input type="text" class="form-control" value="Oktavia" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
             <div class="col-md-3">
                 <label class="form-label">NIK</label>
-                <input type="text" class="form-control" value="3509xxxxxxxxxxx" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
             <div class="col-md-3">
                 <label class="form-label">Tanggal Lahir</label>
-                <input type="text" class="form-control" value="10/01/2003" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
             <div class="col-md-3">
                 <label class="form-label">Jenis Kelamin</label>
-                <input type="text" class="form-control" value="Perempuan" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
             <div class="col-md-3">
                 <label class="form-label">Agama</label>
-                <input type="text" class="form-control" value="Islam" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
             <div class="col-md-3">
                 <label class="form-label">No. Telepon</label>
-                <input type="text" class="form-control" value="+628514453156" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Alamat</label>
-                <input type="text" class="form-control" value="Jl. Mastrip, Blok A, Jember" readonly>
+                <input type="text" class="form-control" value="" readonly>
             </div>
         </div>
 

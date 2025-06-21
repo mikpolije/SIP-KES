@@ -82,8 +82,15 @@
                                 <td>{{ $i->dokter->nama }}</td>
                                 <td class="text-center">{{ $i->status }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('poliumum.pemeriksaanAwal', $i->id_pendaftaran) }}"
-                                        class="btn btn-sm btn-primary">Pilih</a>
+                                    <div class="btn-group">
+                                        <select class="form-select btn btn-primary" style="width: 100px; padding: 4px 6px;">
+                                            <option selected>Pilih</option>
+                                            <option value="1">Kehamilan</option>
+                                            <option value="2">Persalinan</option>
+                                            <option value="3">KB</option>
+                                            <option value="4">Anak</option>
+                                        </select>
+                                    </div>
                                     <a href="{{ route('main.polikia.detailkia', ['id' => $i->id_pendaftaran]) }}"
                                         class="btn btn-sm btn-primary">Detail</a>
                                 </td>
