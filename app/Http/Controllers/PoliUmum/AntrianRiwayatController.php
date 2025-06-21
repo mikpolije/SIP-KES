@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Pendaftaran;
 use App\Models\Pemeriksaan;
 use App\Models\DataPasien;
+use App\Models\ICD10_Umum;
+use App\Models\ICD9_Umum;
+use App\Models\LayananPendaftaran;
+use App\Models\Obat;
+use App\Models\ObatPendaftaran;
 use App\Models\PemeriksaanAwal;
 use Illuminate\Support\Facades\Log;
 
