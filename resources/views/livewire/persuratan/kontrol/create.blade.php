@@ -129,7 +129,7 @@ new class extends Component {
 
             if ($this->patient) {
                 logger('Pasien ditemukan:', [$this->patient]);
-                $this->namaPasien = $this->patient->nama;
+                $this->namaPasien = $this->patient->nama_pasien;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
                     \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
                 $this->patientFound = true;
