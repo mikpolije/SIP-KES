@@ -5,9 +5,11 @@ use App\Models\DataPasien;
 use App\Models\ICD;
 
 new class extends Component {
-    public $nomor = '(Auto Generated)';
+    public $nomor = '';
     public $nomorRM = '';
     public $namaPasien = '';
+    public $jenisKelamin = '';
+    public $alamat = '';
     public $tglLahir = '';
     public $tanggalMasukRS = '';
     public $waktuMasukRS = '';
@@ -25,8 +27,45 @@ new class extends Component {
     public $patient = null;
     public $patientFound = false;
 
+    public function generateNomor()
+    {
+        $countThisMonth = \App\Models\SuratKematian::whereYear('created_at', now()->year)
+                        ->whereMonth('created_at', now()->month)
+                        ->count() + 1;
+
+        $this->nomor = str_pad($countThisMonth, 3, '0', STR_PAD_LEFT)
+                        . '/SKM/KLINIK/INMED/'
+                        . now()->format('m')
+                        . '/'
+                        . now()->format('Y');
+    }
+
+    public function store()
+    {
+        // Hitung ulang nomor (biar aman)
+        $countThisMonth = \App\Models\SuratKematian::whereYear('created_at', now()->year)
+                        ->whereMonth('created_at', now()->month)
+                        ->count() + 1;
+
+        $nomor = str_pad($countThisMonth, 3, '0', STR_PAD_LEFT)
+                    . '/SKM/KLINIK/INMED/'
+                    . now()->format('m')
+                    . '/'
+                    . now()->format('Y');
+
+        $suratKematian = new \App\Models\SuratKematian();
+        $suratKematian->nomor = $nomor;
+        // simpan field lain
+        $suratKematian->save();
+
+        session()->flash('success', 'Surat kematian berhasil dibuat dengan nomor: ' . $nomor);
+        // Reset nomor biar bisa input lagi
+        $this->generateNomor();
+    }
+
     public function mount()
     {
+        $this->generateNomor();
         $this->tanggalKematian = now()->format('Y-m-d');
         $this->waktuKematian = now()->format('H:i');
     }
@@ -59,15 +98,17 @@ new class extends Component {
 
             if ($this->patient) {
                 $this->namaPasien = $this->patient->nama_lengkap;
+                $this->jenisKelamin = $this->patient->jenis_kelamin;
+                $this->alamat = $this->patient->alamat;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
                     \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
                 $this->patientFound = true;
             } else {
-                $this->reset(['namaPasien', 'tglLahir', 'patient']);
+                $this->reset(['namaPasien', 'jenisKelamin', 'alamat', 'tglLahir', 'patient']);
                 $this->patientFound = false;
             }
         } else {
-            $this->reset(['namaPasien', 'tglLahir', 'patient']);
+            $this->reset(['namaPasien', 'jenisKelamin', 'alamat', 'tglLahir', 'patient']);
             $this->patientFound = false;
         }
     }
@@ -82,6 +123,8 @@ new class extends Component {
         $this->validate([
             'nomorRM' => 'required|exists:data_pasien,no_rm',
             'namaPasien' => 'required',
+            'jenisKelamin' => 'required|in:L,P', // L for Laki-laki, P for Perempuan
+            'alamat' => 'required|string|max:500',
             'tglLahir' => 'required|date',
             'tanggalKematian' => 'required|date',
             'waktuKematian' => 'required',
@@ -96,7 +139,7 @@ new class extends Component {
 
         // Generate nomor surat
         $countToday = \App\Models\SuratKematian::whereDate('created_at', today())->count() + 1;
-        $suratKematian->nomor = 'SKM/' . now()->format('Ymd') . '/' . str_pad($countToday, 3, '0', STR_PAD_LEFT);
+        $suratKematian->nomor = 'SKM/' . now()->format('Y/m/d') . '/' . str_pad($countToday, 3, '0', STR_PAD_LEFT);
 
         $suratKematian->no_rm = $pasien->no_rm;
         $suratKematian->tanggal_masuk_rs = $this->tanggalMasukRS ? \Carbon\Carbon::parse($this->tanggalMasukRS) : null;
@@ -141,6 +184,8 @@ new class extends Component {
 <div>
     <div>
         <div class="card shadow-sm border-0 rounded-4">
+            <div id="form-input">
+            <form wire:submit.prevent="simpanData">
             <div class="card-body p-4 p-md-5">
                 <h1 class="title mb-4 h3 text-center">SURAT KEMATIAN</h1>
 
@@ -160,19 +205,19 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <p class="mt-4 mb-3">Yang bertanda tangan di bawah ini menerangkan bahwa:</p>
+                    <p class="mt-4 mb-3">Saya yang bertanda tangan di bawah ini menyatakan bahwa:</p>
 
                     <div class="row mb-3">
                         <label for="nomorRM" class="col-sm-2 col-form-label">Nomor RM</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('nomorRM') is-invalid @enderror"
-                                   wire:model.live="nomorRM" id="nomorRM" placeholder="Nomor RM">
+                                wire:model.live="nomorRM" id="nomorRM" placeholder="Nomor RM">
                             @error('nomorRM') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             @if($nomorRM && !$patientFound)
-                                <div class="text-danger small mt-1">Pasien tidak ditemukan</div>
+                                <small class="text-danger">Pasien tidak ditemukan</small>
                             @endif
                             @if($patientFound)
-                                <div class="text-success small mt-1">Pasien ditemukan</div>
+                                <small class="text-success">Pasien ditemukan</small>
                             @endif
                         </div>
                     </div>
@@ -181,23 +226,38 @@ new class extends Component {
                         <label for="namaPasien" class="col-sm-2 col-form-label">Nama Pasien</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
-                                   wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                   {{ $patientFound ? 'readonly' : '' }} disabled>
+                                wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
+                                {{ $patientFound ? 'readonly' : '' }} disabled>
+                            @if($namaPasien)
+                                <small class="text-muted">Format tampil: {{ $this->getFormattedNamaPasien() }}</small>
+                            @endif
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="jenisKelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-10">
+                            <select class="form-select @error('jenisKelamin') is-invalid @enderror"
+                                    wire:model="jenisKelamin" id="jenisKelamin"
+                                    {{ $patientFound ? 'disabled' : '' }}>
+                                <option value="">-- Pilih Jenis Kelamin --</option>
+                                <option value="Tidak Diketahui">Tidak Diketahui</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                                <option value="Tidak Dapat Ditentukan">Tidak Dapat Ditentukan</option>
+                                <option value="Tidak mengisi">Tidak mengisi</option>
+                            </select>
+                            @error('jenisKelamin') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="tglLahir" class="col-sm-2 col-form-label">Tgl. Lahir</label>
                         <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
-                                       wire:model="tglLahir" id="tglLahir"
-                                       {{ $patientFound ? 'readonly' : '' }} disabled>
-                                <span class="input-group-text">
-                                    <i class="bi bi-calendar"></i>
-                                </span>
-                            </div>
+                            <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
+                                wire:model="tglLahir" id="tglLahir"
+                                {{ $patientFound ? 'readonly' : '' }} disabled>
                             @if($tglLahir)
                                 <small class="text-muted">Format tampil: {{ $this->getFormattedTglLahir() }}</small>
                             @endif
@@ -205,7 +265,15 @@ new class extends Component {
                         </div>
                     </div>
 
-                    <hr class="my-4">
+                    <div class="row mb-3">
+                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control @error('alamat') is-invalid @enderror"
+                                    wire:model="alamat" id="alamat" placeholder="Alamat lengkap"
+                                    rows="2" {{ $patientFound ? 'readonly' : '' }}></textarea>
+                            @error('alamat') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
+                    </div>
 
                     <div class="row mb-3">
                         <label for="tanggalMasukRS" class="col-sm-2 col-form-label">Tgl. Masuk RS</label>
@@ -230,6 +298,10 @@ new class extends Component {
                         </div>
                     </div>
 
+                    <hr class="my-4">
+
+                    <p class="mt-4 mb-3 fw-bold text-dark"><strong>Telah Meninggal Dunia, pada:</strong></p>
+                    
                     <div class="row mb-3">
                         <label for="tanggalKematian" class="col-sm-2 col-form-label">Tgl. Kematian <span class="text-danger">*</span></label>
                         <div class="col-sm-5">
@@ -299,16 +371,22 @@ new class extends Component {
                             <!-- Spacer -->
                         </div>
                         <div class="col-md-4 text-center">
-                            <p>{{ now()->format('d F Y') }}</p>
-                            <p>Dokter Yang Merawat</p>
-                            <div class="border rounded-3 mb-2" style="height: 100px;"></div>
-                            <input type="text" class="form-control border-top-0 border-start-0 border-end-0 border-bottom border-dark text-center @error('penandatangan') is-invalid @enderror"
-                                   wire:model="penandatangan" id="penandatangan" placeholder="Nama Dokter" required>
-                            @error('penandatangan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            <p>Jember, {{ now()->format('d F Y') }}</p>
+                            <p>Dokter Yang Memeriksa,</p>
+                                <div style="border: 1px solid #000; width: 250px; height: 150px; margin: 0 auto; position: relative;">
+                                    <canvas id="signature-canvas-memeriksa" width="250" height="150"
+                                            onmouseup="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"
+                                            ontouchend="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"></canvas>
+                                </div>
+                                <input type="hidden" name="signature_data_memeriksa" id="signature_data_memeriksa">
+                                <input type="text" class="form-control mt-2 border-top-0 border-start-0 border-end-0 border-bottom border-dark text-center @error('penandatangan') is-invalid @enderror"
+                                    wire:model="penandatangan" id="penandatangan" placeholder="Nama Dokter" required>
+                                @error('penandatangan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center gap-2 mt-4">
+                </form>
+            </div>
+            <div class="d-flex justify-content-center gap-2 mt-4">
                         <button type="submit" class="btn btn-primary px-4">
                             <span wire:loading.remove>Simpan</span>
                             <span wire:loading>
@@ -316,6 +394,13 @@ new class extends Component {
                                 Menyimpan...
                             </span>
                         </button>
+
+                        <button type="button" class="btn btn-warning px-4 text-white d-flex align-items-center gap-2"
+                            style="background-color: #f0ad4e; border: none;"
+                            onclick="printSurat()">
+                        <i class="bi bi-printer"></i> Cetak
+                    </button>
+
                         <a href="/main/persuratan/kematian" class="btn btn-secondary px-4">
                             <i class="bi bi-arrow-left"></i> Kembali
                         </a>
@@ -376,6 +461,141 @@ new class extends Component {
                     Livewire.dispatch('closeDiagnosaDropdown');
                 }
             });
+        });
+    </script>
+    <script>
+        const signatureHistories = {};
+
+        function initCanvas(canvasId, inputId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext("2d");
+            let drawing = false;
+
+            signatureHistories[canvasId] = [];
+
+            // Gambar tombol Undo (misal kotak kecil di pojok kanan atas)
+            function drawUndoButton() {
+                ctx.fillStyle = "#f00";
+                ctx.fillRect(canvas.width - 40, 0, 40, 20);
+                ctx.fillStyle = "#fff";
+                ctx.font = "10px sans-serif";
+                ctx.fillText("Undo", canvas.width - 36, 14);
+            }
+
+            function saveToHistory() {
+                signatureHistories[canvasId].push(canvas.toDataURL());
+                document.getElementById(inputId).value = canvas.toDataURL();
+            }
+
+            function redrawFromImage(dataURL) {
+                const img = new Image();
+                img.onload = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0);
+                    drawUndoButton();
+                };
+                img.src = dataURL;
+            }
+
+            function undoSignature() {
+                if (signatureHistories[canvasId].length > 1) {
+                    signatureHistories[canvasId].pop(); 
+                    const prev = signatureHistories[canvasId][signatureHistories[canvasId].length - 1];
+                    redrawFromImage(prev);
+                    document.getElementById(inputId).value = prev;
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    drawUndoButton();
+                    document.getElementById(inputId).value = '';
+                    signatureHistories[canvasId] = [];
+                }
+            }
+
+            canvas.addEventListener("mousedown", (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Cek klik di area Undo
+                if (x >= canvas.width - 40 && y >= 0 && x <= canvas.width && y <= 20) {
+                    undoSignature();
+                    return;
+                }
+
+                drawing = true;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            });
+
+            canvas.addEventListener("mousemove", (e) => {
+                if (!drawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                ctx.lineWidth = 2;
+                ctx.lineCap = "round";
+                ctx.strokeStyle = "#000";
+                ctx.lineTo(x, y);
+                ctx.stroke();
+            });
+
+            canvas.addEventListener("mouseup", () => {
+                if (drawing) {
+                    drawing = false;
+                    saveToHistory();
+                }
+            });
+
+            canvas.addEventListener("mouseout", () => {
+                drawing = false;
+            });
+
+            // Touch support
+            canvas.addEventListener("touchstart", (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                const x = touch.clientX - rect.left;
+                const y = touch.clientY - rect.top;
+
+                // Undo check
+                if (x >= canvas.width - 40 && y >= 0 && x <= canvas.width && y <= 20) {
+                    undoSignature();
+                    return;
+                }
+
+                drawing = true;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            });
+
+            canvas.addEventListener("touchmove", (e) => {
+                e.preventDefault();
+                if (!drawing) return;
+                const touch = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                const x = touch.clientX - rect.left;
+                const y = touch.clientY - rect.top;
+                ctx.lineWidth = 2;
+                ctx.lineCap = "round";
+                ctx.strokeStyle = "#000";
+                ctx.lineTo(x, y);
+                ctx.stroke();
+            });
+
+            canvas.addEventListener("touchend", (e) => {
+                e.preventDefault();
+                if (drawing) {
+                    drawing = false;
+                    saveToHistory();
+                }
+            });
+
+            drawUndoButton();
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initCanvas("signature-canvas-memeriksa", "signature_data_memeriksa");
         });
     </script>
 </div>
