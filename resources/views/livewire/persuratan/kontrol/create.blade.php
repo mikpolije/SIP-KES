@@ -316,10 +316,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
                                    wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                   {{ $patientFound ? 'readonly' : '' }} disabled>
-                            @if($namaPasien)
-                                <small class="text-muted mt-1">Format tampil: {{ $namaPasien }}</small>
-                            @endif
+                            @if($patientFound) readonly @endif>
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
