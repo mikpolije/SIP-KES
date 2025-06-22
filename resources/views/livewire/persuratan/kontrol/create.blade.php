@@ -5,6 +5,7 @@ use App\Models\Dokter;
 use App\Models\DataPasien;
 use App\Models\ICD;
 
+
 new class extends Component {
     public $nomor = '';
     public $tanggal = '';
@@ -318,10 +319,19 @@ new class extends Component {
                     <div class="row mb-3">
                         <label for="namaPasien" class="col-sm-2 col-form-label">Nama Pasien</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
-                                   wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                   readonly class="form-control">
-                            <p class="text-muted mt-2">Debug Nama: {{ $namaPasien }}</p>
+                            <div class="input-group">
+                                <input type="text"
+                                    class="form-control @error('namaPasien') is-invalid @enderror"
+                                    wire:model="namaPasien" id="namaPasien"
+                                    placeholder="Nama Pasien"
+                                    {{ $patientFound ? 'readonly' : '' }}>
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                            </div>
+                            @if($namaPasien)
+                                <small class="text-muted">Nama pasien terdeteksi: {{ $namaPasien }}</small>
+                            @endif
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
