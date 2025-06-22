@@ -97,7 +97,7 @@ new class extends Component {
             $this->patient = DataPasien::where('no_rm', $this->nomorRM)->first();
 
             if ($this->patient) {
-                $this->namaPasien = $this->patient->nama_pasien;
+                $this->namaPasien = $this->patient->nama_lengkap;
                 $this->jenisKelamin = $this->patient->jenis_kelamin;
                 $this->alamat = $this->patient->alamat;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
