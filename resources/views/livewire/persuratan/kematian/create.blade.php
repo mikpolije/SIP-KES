@@ -157,7 +157,7 @@ new class extends Component {
         $this->validate([
             'nomorRM' => 'required|exists:data_pasien,no_rm',
             'namaPasien' => 'required',
-            'jenisKelamin' => 'required|in:L,P', // L for Laki-laki, P for Perempuan
+            'jenisKelamin' => 'required',
             'alamat' => 'required|string|max:500',
             'tglLahir' => 'required|date',
             'tanggalKematian' => 'required|date',
@@ -294,11 +294,11 @@ new class extends Component {
                         <div class="col-sm-10">
                             <select class="form-select @error('jenisKelamin') is-invalid @enderror"
                                     wire:model="jenisKelamin" id="jenisKelamin"
-                                    {{ $patientFound ? 'readonly' : '' }}>
+                                    {{ $patientFound ? 'disabled' : '' }}>
                                 <option value="">-- Pilih Jenis Kelamin --</option>
-                                <option value="Tidak Diketahui">Tidak Diketahui</option>
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
+                                <option value="Tidak Diketahui">Tidak Diketahui</option>
                                 <option value="Tidak Dapat Ditentukan">Tidak Dapat Ditentukan</option>
                                 <option value="Tidak mengisi">Tidak mengisi</option>
                             </select>
