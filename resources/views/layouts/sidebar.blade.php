@@ -423,15 +423,15 @@
 
                 <!-- Dropdown untuk Laporan Poli Umum -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link d-flex align-items-center justify-content-start {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
-                        href="{{ route('poliumum.laporan') }}">
-                        <div class="round-16 d-flex align-items-center justify-content-center me-2">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu text-start">Laporan Poli Umum</span>
-                    </a>
+                        <a class="sidebar-link d-flex align-items-center px-2 {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
+                            href="{{ route('poliumum.laporan') }}">
+                            <div class="round-16 d-flex align-items-center justify-content-center me-2">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu text-start flex-grow-1">Laporan Poli Umum</span>
+                        </a>
                     </li>
-                    
+
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('rawat-inap/laporan*') ? 'active' : '' }}"
                         href="#"
