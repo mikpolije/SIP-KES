@@ -425,17 +425,22 @@ new class extends Component {
                             <p>Dokter Yang Memeriksa,</p>
                                 <div style="border: 1px solid #000; width: 250px; height: 150px; margin: 0 auto; position: relative;">
                                     <canvas id="signature-canvas-memeriksa" width="250" height="150"
-                                            onmouseup="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"
-                                            ontouchend="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"></canvas>
+                                        onmouseup="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"
+                                        ontouchend="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"></canvas>
                                 </div>
-                                                            <div class="position-relative w-100" style="max-width: 400px;">
+                                <div class="position-relative w-100" style="max-width: 400px;">
                                 <input type="text"
                                        class="form-control @error('selectedDokter') is-invalid @enderror"
                                        wire:model.live="dokterSearch"
                                        wire:focus="showDokterDropdown = true"
                                        placeholder="Cari dokter..."
                                        autocomplete="off"
-                                       style="border-bottom: 2px solid #000; border-radius: 0;">
+                                       style="width: 80%;
+                                            max-width: 600px;
+                                            font-weight: bold;
+                                            text-align: center;
+                                            border-bottom: 2px solid #000; 
+                                            border-radius: 0;">
 
                                 @if($showDokterDropdown && count($dokters) > 0)
                                     <div class="dropdown-menu show position-absolute w-100" style="z-index: 1000;">
