@@ -398,11 +398,32 @@ new class extends Component {
                                             onmouseup="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"
                                             ontouchend="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"></canvas>
                                 </div>
-                                <input type="hidden" name="signature_data_memeriksa" id="signature_data_memeriksa">
-                                <input type="text" class="form-control mt-2 border-top-0 border-start-0 border-end-0 border-bottom border-dark text-center @error('penandatangan') is-invalid @enderror"
-                                    wire:model="penandatangan" id="penandatangan" placeholder="Nama Dokter" required>
-                                @error('penandatangan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            <div class="position-relative">
+                                <input type="text"
+                                       class="form-control @error('selectedDokter') is-invalid @enderror"
+                                       wire:model.live="dokterSearch"
+                                       wire:focus="showDokterDropdown = true"
+                                       placeholder="Cari dokter..."
+                                       autocomplete="off">
+
+                                @if($showDokterDropdown && count($dokters) > 0)
+                                    <div class="dropdown-menu show position-absolute w-100" style="z-index: 1000;">
+                                        @foreach($dokters as $dokter)
+                                            @php
+                                                $fullName = trim($dokter->gelar_depan . ' ' . $dokter->nama . ' ' . $dokter->gelar_belakang);
+                                            @endphp
+                                            <button type="button"
+                                                    class="dropdown-item"
+                                                    wire:click="selectDokter({{ $dokter->id }}, '{{ $fullName }}')">
+                                                <strong>{{ $fullName }}</strong>
+                                                <br><small class="text-muted">{{ $dokter->no_sip }} | {{ $dokter->jadwal_layanan }}</small>
+                                            </button>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
+                            @error('selectedDokter') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
                         </div>
 
                     <div class="d-flex justify-content-center gap-2 mt-4">
