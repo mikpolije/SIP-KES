@@ -422,15 +422,15 @@
                 aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}">
 
                 <!-- Dropdown untuk Laporan Poli Umum -->
-                                <li class="sidebar-item">
-                        <a class="sidebar-link d-flex align-items-center {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
-                            href="{{ route('poliumum.laporan') }}">
-                            <div class="round-16 d-flex align-items-center justify-content-center">
-                                <i class="ti ti-circle"></i>
+                <li class="sidebar-item">
+                    <a class="sidebar-link d-flex align-items-center {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
+                        href="{{ route('poliumum.laporan') }}">
+                         <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
                             </div>
                             <span class="hide-menu ms-4">Laporan Poli Umum</span>
-                        </a>
-                    </li>
+                    </a>
+                </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('rawat-inap/laporan*') ? 'active' : '' }}"
