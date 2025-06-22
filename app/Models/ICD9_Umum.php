@@ -10,4 +10,9 @@ class ICD9_Umum extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_icd9_umum';
     protected $fillable = ['id_icd9', 'id_pemeriksaan'];
+
+     public function icd9()
+    {
+        return $this->belongsTo(ICD9::class, 'id_icd9', 'id');
+    }
 }
