@@ -425,10 +425,10 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link d-flex align-items-center {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
                         href="{{ route('poliumum.laporan') }}">
-                         <div class="round-16 d-flex align-items-center justify-content-center">
+                        <div class="round-16 d-flex align-items-center justify-content-center me-2">
                             <i class="ti ti-circle"></i>
-                            </div>
-                            <span class="hide-menu ms-4">Laporan Poli Umum</span>
+                        </div>
+                        <span class="hide-menu text-start">Laporan Poli Umum</span>
                     </a>
                 </li>
 
