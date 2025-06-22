@@ -569,7 +569,7 @@ $(document).on('click', '#submit_pemeriksaan_kehamilan', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['no_rm'] = $('#no_rm').val();
+    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
     pemeriksaanFieldLists['kehamilan'].forEach(field => {
         const $input = $(`#pemeriksaan-kehamilan [name=${field}]`);
 
@@ -609,7 +609,7 @@ $(document).on('click', '#submit_pemeriksaan_kb', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['no_rm'] = $('#no_rm').val();
+    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
     pemeriksaanFieldLists['kb'].forEach(field => {
         const $input = $(`#pemeriksaan-kb [name="${field}"], #pemeriksaan-kb [name="${field}[]"]`);
 
@@ -655,7 +655,7 @@ $(document).on('click', '#submit_pemeriksaan_anak', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['no_rm'] = $('#no_rm').val();
+    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
     pemeriksaanFieldLists['anak'].forEach(field => {
         const $input = $(`#pemeriksaan-anak [name=${field}]`);
 
@@ -762,7 +762,7 @@ $(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
     let formData = {
         detail: []
     };
-    formData['no_rm'] = $('#no_rm').val();
+    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
     pemeriksaanFieldLists['persalinan'].forEach(field => {
         const $input = $(`#pemeriksaan-persalinan [name="${field}"], #pemeriksaan-persalinan [name="${field}[]"]`);
 
