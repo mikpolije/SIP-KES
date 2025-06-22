@@ -230,7 +230,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
                                 wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                {{ $patientFound ? 'readonly' : '' }}>
+                                {{ $patientFound ? 'readonly' : '' }} disabled>
                             @if($namaPasien)
                                 <small class="text-muted">Format tampil: {{ $this->getFormattedNamaPasien() }}</small>
                             @endif
