@@ -94,9 +94,9 @@
 
                             <!-- Search bar and button -->
                             <div class="d-flex">
-                                <input type="text" class="form-control search-bar me-2" id="id_pendaftaran" placeholder="ID Pendaftaran"
+                                <input type="text" class="form-control search-bar me-2" id="no_rm" placeholder="Masukkan No.RM"
                                     style="width: 250px;">
-                                <button class="btn btn-primary search-button" id="cari_data_pendaftaran">Cari</button>
+                                <button class="btn btn-primary search-button" id="cari_data_pasien">Cari</button>
                             </div>
 
                             <style>
@@ -354,12 +354,12 @@
 
     <script>
         $(document).ready(function () {
-            $(document).on('click', '#cari_data_pendaftaran', function (e) {
+            $(document).on('click', '#cari_data_pasien', function (e) {
                 let eThis = $(this)
-                let id_pendaftaran = $('#id_pendaftaran').val()
+                let no_rm = $('#no_rm').val()
 
-                if (!id_pendaftaran) {
-                    errorMessage('ID Pendaftaran tidak boleh kosong')
+                if (!no_rm) {
+                    errorMessage('No.RM tidak boleh kosong')
                     return
                 }
 
@@ -367,7 +367,7 @@
                 eThis.html('Loading...')
 
                 $.ajax({
-                    url: "{{ route('api.poli-kia.show', ':idPendaftaran') }}".replace(':idPendaftaran', id_pendaftaran),
+                    url: "{{ route('api.poli-kia.show', ':noRm') }}".replace(':noRm', no_rm),
                     type: 'GET',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -64,10 +64,10 @@
 
                     <div class="row mb-9 justify-content-end">
                         <div class="col-md-8 d-flex justify-content-end">
-                            <input type="text" class="form-control search-bar me-2" placeholder="Id Pendaftaran"
-                                style="width: 250px;" id="id_pendaftaran">
+                            <input type="text" class="form-control search-bar me-2" placeholder="Masukkan No.RM"
+                                style="width: 250px;" id="no_rm">
                             <button class="btn btn-primary search-button" style="margin-right: 10px;"
-                                id="cari_data_pendaftaran">Cari</button>
+                                id="cari_data_pasien">Cari</button>
                         </div>
                     </div>
 
@@ -341,12 +341,12 @@
 
                 <script>
                     $(document).ready(function () {
-                        $(document).on('click', '#cari_data_pendaftaran', function (e) {
+                        $(document).on('click', '#cari_data_pasien', function (e) {
                             let eThis = $(this)
-                            let id_pendaftaran = $('#id_pendaftaran').val()
+                            let no_rm = $('#no_rm').val()
 
-                            if (!id_pendaftaran) {
-                                errorMessage('ID Pendaftaran tidak boleh kosong')
+                            if (!no_rm) {
+                                errorMessage('No.RM tidak boleh kosong')
                                 return
                             }
 
@@ -354,7 +354,7 @@
                             eThis.html('Loading...')
 
                             $.ajax({
-                                url: "{{ route('api.poli-kia.show', ':idPendaftaran') }}".replace(':idPendaftaran', id_pendaftaran),
+                                url: "{{ route('api.poli-kia.show', ':noRm') }}".replace(':noRm', no_rm),
                                 type: 'GET',
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
