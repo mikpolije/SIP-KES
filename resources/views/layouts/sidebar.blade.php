@@ -162,7 +162,7 @@
                         <!-- Riwayat -->
                         <li class="sidebar-item">
                             <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayat') ? 'active' : '' }}"
-                                href="{{ route('riwayat.poliumum') }}">
+                                href="{{ route('poliumum.riyawat') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Riwayat</span>
                             </a>

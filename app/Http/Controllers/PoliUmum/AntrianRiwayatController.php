@@ -23,7 +23,10 @@ class AntrianRiwayatController extends Controller
 {
     public function antrean()
     {
-        $data_pasien = Pendaftaran::with('data_pasien', 'wali_pasien',)->where('status', 'antri')->get();
+        $data_pasien = Pendaftaran::with('data_pasien', 'wali_pasien')
+            ->where('status', 'antri')
+            ->where('id_poli', 1)
+            ->get();
         return view('PoliUmum.antreanPoliUmum', [
             'data_pasien' => $data_pasien
         ]);
@@ -70,19 +73,12 @@ class AntrianRiwayatController extends Controller
         }
     }
 
-    // public function riwayat()
-    // {
-
-    //     return view('PoliUmum.antreanPoliUmumstep3', [
-    //         'data_pemeriksaan' => $data_pemeriksaan
-    //     ]);
-    // }
-
     public function antrianPemeriksaan3()
     {
         $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')
-            ->whereHas('pendaftaran', function ($query) {
-                $query->where('status', 'belum diperiksa');
+            ->whereHas('pendaftaran', function ($q) {
+                $q->where('status', 'belum diperiksa')
+                    ->where('id_poli', 1);
             })->get();
         return view('PoliUmum.antreanPoliumumstep3', [
             'data_pemeriksaan' => $data_pemeriksaan
@@ -252,10 +248,17 @@ class AntrianRiwayatController extends Controller
         return response()->json($results);
     }
 
-    // public function riwayat()
-    // {
-    //     return view('PoliUmum.riwayatPoliUmum');
-    // }
+    public function riwayat()
+    {
+        $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')
+            ->whereHas('pendaftaran', function ($q) {
+                $q->where('status', 'selesai')
+                    ->where('id_poli', 1);
+            })->get();
+        return view('PoliUmum.riwayatPoliUmum', [
+            'data_pemeriksaan' => $data_pemeriksaan
+        ]);
+    }
 
     // Untuk fitur Select2 pencarian pasien
     public function searchPasien(Request $request)
