@@ -36,7 +36,7 @@ new class extends Component {
                         ->count() + 1;
 
         $this->nomor = str_pad($countThisMonth, 3, '0', STR_PAD_LEFT)
-                        . '/SKM/KLINIK/INMED/'
+                        . '/SKK/KLINIK/INMED/'
                         . now()->format('m')
                         . '/'
                         . now()->format('Y');
