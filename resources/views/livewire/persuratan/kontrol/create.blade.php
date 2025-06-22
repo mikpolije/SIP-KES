@@ -123,8 +123,11 @@ new class extends Component {
     {
         if (!empty($this->nomorRM)) {
             $this->patient = DataPasien::where('no_rm', $this->nomorRM)->first();
-
+            logger('updatedNomorRM dipanggil, nilai:', [$this->nomorRM]);
+            logger('Mencari pasien dengan no_rm:', [$this->nomorRM]);
+            
             if ($this->patient) {
+                logger('Pasien ditemukan:', [$this->patient]);
                 $this->namaPasien = $this->patient->nama;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
                     \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
@@ -132,6 +135,7 @@ new class extends Component {
             } else {
                 $this->reset(['namaPasien', 'tglLahir', 'patient']);
                 $this->patientFound = false;
+                logger('Pasien tidak ditemukan untuk no_rm: ' . $this->nomorRM);
             }
         } else {
             $this->reset(['namaPasien', 'tglLahir', 'patient']);
@@ -316,7 +320,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
                                    wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                            @if($patientFound) readonly @endif>
+                                   readonly class="form-control">
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
