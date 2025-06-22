@@ -77,7 +77,7 @@ class AntrianRiwayatController extends Controller
     {
         $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')
             ->whereHas('pendaftaran', function ($q) {
-                $q->where('status', 'belum diperiksa')
+                $q->where('status', 'diperiksa')
                     ->where('id_poli', 1);
             })->get();
         return view('PoliUmum.antreanPoliumumstep3', [
