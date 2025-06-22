@@ -398,13 +398,14 @@ new class extends Component {
                                             onmouseup="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"
                                             ontouchend="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"></canvas>
                                 </div>
-                            <div class="position-relative">
+                            <div class="position-relative w-100" style="max-width: 400px;">
                                 <input type="text"
                                        class="form-control @error('selectedDokter') is-invalid @enderror"
                                        wire:model.live="dokterSearch"
                                        wire:focus="showDokterDropdown = true"
                                        placeholder="Cari dokter..."
                                        autocomplete="off">
+                                       style="border-bottom: 2px solid #000; border-radius: 0;">
 
                                 @if($showDokterDropdown && count($dokters) > 0)
                                     <div class="dropdown-menu show position-absolute w-100" style="z-index: 1000;">
@@ -422,7 +423,7 @@ new class extends Component {
                                     </div>
                                 @endif
                             </div>
-                            @error('selectedDokter') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            @error('selectedDokter') <div class="invalid-feedback text-center">{{ $message }}</div> @enderror
                         </div>
                         </div>
 
