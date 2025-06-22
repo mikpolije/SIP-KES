@@ -5,6 +5,7 @@ use App\Models\Dokter;
 use App\Models\DataPasien;
 use App\Models\ICD;
 
+
 new class extends Component {
     public $nomor = '';
     public $tanggal = '';
@@ -123,8 +124,11 @@ new class extends Component {
     {
         if (!empty($this->nomorRM)) {
             $this->patient = DataPasien::where('no_rm', $this->nomorRM)->first();
+            logger('updatedNomorRM dipanggil, nilai:', [$this->nomorRM]);
+            logger('Mencari pasien dengan no_rm:', [$this->nomorRM]);
 
             if ($this->patient) {
+                logger('Pasien ditemukan:', [$this->patient]);
                 $this->namaPasien = $this->patient->nama;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
                     \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
@@ -132,6 +136,7 @@ new class extends Component {
             } else {
                 $this->reset(['namaPasien', 'tglLahir', 'patient']);
                 $this->patientFound = false;
+                logger('Pasien tidak ditemukan untuk no_rm: ' . $this->nomorRM);
             }
         } else {
             $this->reset(['namaPasien', 'tglLahir', 'patient']);
@@ -314,11 +319,18 @@ new class extends Component {
                     <div class="row mb-3">
                         <label for="namaPasien" class="col-sm-2 col-form-label">Nama Pasien</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
-                                   wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                   {{ $patientFound ? 'readonly' : '' }} disabled>
+                            <div class="input-group">
+                                <input type="text"
+                                    class="form-control @error('namaPasien') is-invalid @enderror"
+                                    wire:model="namaPasien" id="namaPasien"
+                                    placeholder="Nama Pasien"
+                                    {{ $patientFound ? 'readonly' : '' }}>
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                            </div>
                             @if($namaPasien)
-                                <small class="text-muted mt-1">Format tampil: {{ $namaPasien }}</small>
+                                <small class="text-muted">Nama pasien terdeteksi: {{ $namaPasien }}</small>
                             @endif
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
