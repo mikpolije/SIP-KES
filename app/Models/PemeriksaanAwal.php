@@ -40,4 +40,9 @@ class PemeriksaanAwal extends Model
     {
         return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
     }
+
+    public function icd9Umum()
+    {
+        return $this->hasMany(Icd9_Umum::class, 'id_pemeriksaan', 'id_pemeriksaan');
+    }
 }
