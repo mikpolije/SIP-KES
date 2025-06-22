@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\Api\ARController;
 use App\Http\Middleware\CheckProfesi;
-use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 
 Route::middleware('web')->group(function () {
@@ -74,9 +73,8 @@ Route::prefix('main/polikia')->group(function () {
 });
 
 // Route detail riwayat pasien
-Route::get('/poli-kia/detail/{id}', function ($id) {
-    return view('main.polikia.detailkia');
-})->name('main.polikia.detailkia');
+
+Route::get('/poli-kia/detail/{no_rm}', [App\Http\Controllers\Api\PoliKiaController::class, 'getDataPasien'])->name('main.polikia.detailkia');
 
 Route::get('/poli-kia/search-pasien', [App\Http\Controllers\Api\ARController::class, 'searchPasien'])->name('poli-kia.search-pasien');
 
@@ -103,7 +101,11 @@ Route::get('/get-kabupaten/{province_code}', [PendafataranController::class, 'ge
 Route::get('/get-kecamatan/{city_code}', [PendafataranController::class, 'getKecamatan']);
 Route::get('/get-desa/{district_code}', [PendafataranController::class, 'getDesa']);
 
+
+
+
 // route sidebar antrian dan riwayat
+use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 Route::get('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'pemeriksaanAwal'])->name('poliumum.pemeriksaanAwal');
 Route::post('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'storePemeriksaanAwal'])->name('poliumum.pemeriksaanAwal.store');
 Route::get('main/antrian/pemeriksaan-akhir', [AntrianRiwayatController::class, 'antrianPemeriksaan3'])->name('poliumum.pemeriksaanAkhir');

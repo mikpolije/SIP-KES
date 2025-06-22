@@ -65,6 +65,7 @@
                         <th class="text-center">NO ANTREAN</th>
                         <th class="text-center">NOMOR RM</th>
                         <th class="text-center">NAMA</th>
+                        <th class="text-center">TANGGAL</th>
                         <th class="text-center">UNIT LAYANAN</th>
                         <th class="text-center">DOKTER</th>
                         <th class="text-center">STATUS</th>
@@ -78,20 +79,22 @@
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $i->data_pasien->no_rm }}</td>
                                 <td>{{ $i->data_pasien->nama_pasien }}</td>
+                                <td>{{ $i->created_at->format('d-m-Y') }}</td>
                                 <td class="text-center">{{ $i->poli->nama_poli }}</td>
                                 <td>{{ $i->dokter->nama }}</td>
                                 <td class="text-center">{{ $i->status }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <select class="form-select btn btn-primary" style="width: 100px; padding: 4px 6px;">
-                                            <option selected>Pilih</option>
-                                            <option value="1">Kehamilan</option>
-                                            <option value="2">Persalinan</option>
-                                            <option value="3">KB</option>
-                                            <option value="4">Anak</option>
+                                        <select class="form-select btn btn-primary pilih-jenis-pemeriksaan"
+                                            data-no_rm="{{ $i->no_rm }}">
+                                            <option selected disabled>Pilih</option>
+                                            <option value="Kehamilan">Kehamilan</option>
+                                            <option value="Persalinan">Persalinan</option>
+                                            <option value="KB">KB</option>
+                                            <option value="Anak">Anak</option>
                                         </select>
                                     </div>
-                                    <a href="{{ route('main.polikia.detailkia', ['id' => $i->id_pendaftaran]) }}"
+                                    <a href="{{ route('main.polikia.detailkia', ['no_rm' => $i->no_rm]) }}"
                                         class="btn btn-sm btn-primary">Detail</a>
                                 </td>
                             @else
@@ -103,6 +106,7 @@
             </table>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
             // Fungsi pencarian pasien
@@ -110,7 +114,7 @@
                 e.preventDefault();
                 const noRM = $('#searchPasien').val();
                 if (noRM) {
-                    window.location.href = `/poli-kia/detail/${noRM}`;
+                    window.location.href = `/main/polikia/detail/${noRM}`;
                 } else {
                     alert('Silakan pilih data pasien terlebih dahulu.');
                 }
@@ -121,10 +125,46 @@
             e.preventDefault();
             const noRM = $('#searchPasien').val();
             if (noRM) {
-                window.location.href = `/poli-kia/detail/${noRM}`;
+                window.location.href = `/main/polikia/detail/${noRM}`;
             } else {
                 alert('Silakan pilih data pasien terlebih dahulu.');
             }
         });
     </script>
+    <script>
+$(document).on('change', '.pilih-jenis-pemeriksaan', function () {
+    console.log('Dropdown changed!');
+    const jenis = $(this).val();
+    const no_rm = $(this).data('no_rm');
+    console.log('jenis:', jenis, 'no_rm:', no_rm);
+
+    if (!jenis || !no_rm) return;
+
+    $.ajax({
+        url: "{{ route('api.poli-kia.storeAntrean') }}",
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            no_rm: no_rm,
+            jenis_pemeriksaan: jenis,
+            status: 'antri'
+        },
+        success: function (res) {
+            console.log('AJAX success:', res);
+            if (res.redirect) {
+                window.location.href = res.redirect;
+            } else {
+                toastr.success('Jenis pemeriksaan berhasil dipilih dan status diubah ke antri.');
+            }
+        },
+        error: function (xhr) {
+            console.log('AJAX error:', xhr);
+            toastr.error('Gagal mengubah jenis pemeriksaan.');
+        }
+    });
+});
+</script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection

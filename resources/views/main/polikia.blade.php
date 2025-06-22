@@ -140,8 +140,8 @@
                             <input type="text" class="form-control" name="no_antrian" id="no_antrian" disabled>
                         </div>
                         <div class="col-md-2">
-                            <label for="no_rm" class="form-label">No RM</label>
-                            <input type="text" class="form-control" name="no_rm" id="no_rm" disabled>
+                            <label for="no_rm_display" class="form-label">No RM</label>
+                            <input type="text" class="form-control" name="no_rm_display" id="no_rm_display" disabled>
                         </div>
                         <div class="col-md-4">
                             <label for="nama_pemeriksaan" class="form-label">Nama</label>
@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="jenis_pemeriksaan" class="form-label">Jenis Pemeriksaan</label>
-                            <select name="jenis_pemeriksaan" id="jenis_pemeriksaan" class="form-control">
+                            <select name="jenis_pemeriksaan" id="jenis_pemeriksaan" class="form-control" disabled>
                                 <option value="Kehamilan">Kehamilan</option>
                                 <option value="Persalinan">Persalinan</option>
                                 <option value="KB">KB</option>
@@ -172,12 +172,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-9">
-                                <label for="id_pendaftaran" class="form-label">ID Pendaftaran</label>
-                                <input type="text" class="form-control" name="id_pendaftaran" id="id_pendaftaran" required>
+                                <label for="no_rm" class="form-label">No. RM</label>
+                                <input type="text" class="form-control" name="no_rm" id="no_rm" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="cari_data_pendaftaran" class="form-label">&nbsp;</label>
-                                <input type="button" class="btn btn-primary form-control" name="cari_data_pendaftaran" id="cari_data_pendaftaran" value="Cari">
+                                <label for="cari_no_rm" class="form-label">&nbsp;</label>
+                                <input type="button" class="btn btn-primary form-control" name="cari_no_rm" id="cari_no_rm" value="Cari">
                             </div>
                         </div>
                     </div>
@@ -379,12 +379,12 @@ $(document).on('click', '.previous-step', function (e) {
     $(".validation-wizard").steps("previous");
 })
 
-$(document).on('click', '#cari_data_pendaftaran', function (e) {
+$(document).on('click', '#cari_no_rm', function (e) {
     let eThis = $(this)
-    let id_pendaftaran = $('#id_pendaftaran').val()
+    let no_rm = $('#no_rm').val()
 
-    if (!id_pendaftaran) {
-        errorMessage('ID Pendaftaran tidak boleh kosong')
+    if (!no_rm) {
+        errorMessage('No RM tidak boleh kosong')
         return
     }
 
@@ -392,7 +392,7 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
     eThis.val('Loading...')
 
     $.ajax({
-        url: "{{ route('api.poli-kia.show', ':idPendaftaran') }}".replace(':idPendaftaran', id_pendaftaran),
+        url: "{{ route('api.poli-kia.show', ':noRm') }}".replace(':noRm', no_rm),
         type: 'GET',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -400,6 +400,7 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
     }).done(function (res) {
         let data = res.data
         $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
+        $('#no_rm_display').val(data.data_pasien.no_rm)
         $('#no_rm').val(data.data_pasien.no_rm)
         $('#tanggal').val(new Date().toISOString().split('T')[0])
         $('#no_antrian').val("Sesuai Pendaftaran")
@@ -816,6 +817,21 @@ $(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
     })
 })
 
+// Get no_rm from URL
+const urlParams = new URLSearchParams(window.location.search);
+const no_rm = urlParams.get('no_rm');
+
+if (no_rm) {
+    // Call your API to get data for this no_rm
+    $.ajax({
+        url: '/api/poli-kia/' + no_rm,
+        type: 'GET',
+        success: function(res) {
+            // Populate your form or page with res.data
+        }
+    });
+}
+
 // Function Helper
 function setFieldValue(id, value) {
     $(`${id}`).val(value ?? '').trigger('change');
@@ -858,5 +874,18 @@ function successMessage(msg) {
         closeButton: true,
     });
 }
+</script>
+
+<script>
+$(document).ready(function() {
+    // Get no_rm from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const no_rm = urlParams.get('no_rm');
+    if (no_rm) {
+        $('#no_rm').val(no_rm);
+        // Optionally, trigger the search automatically:
+        // $('#cari_no_rm').click();
+    }
+});
 </script>
 @endsection

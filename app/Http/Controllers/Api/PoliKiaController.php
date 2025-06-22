@@ -14,10 +14,12 @@ use App\Models\SuratKematian;
 use App\Models\SuratKontrol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+use App\Models\DataPasien;
 
 class PoliKiaController extends Controller
 {
-    public function show($idPendaftaran)
+    public function show($noRm)
     {
         $data = Pendaftaran::with([
             'data_pasien',
@@ -32,7 +34,7 @@ class PoliKiaController extends Controller
             'surat_kematian',
             'asessmen_awal'
         ])
-            ->where('id_pendaftaran', $idPendaftaran)
+            ->where('no_rm', $noRm)
             ->where('id_poli', 2) // Data Poli Belum Ada, Test ID 3
             ->first();
 
@@ -56,6 +58,22 @@ class PoliKiaController extends Controller
         ]);
     }
 
+    public function getDataPasien($no_rm)
+    {
+        // Fetch the patient registration and related data
+        $pendaftaran = \App\Models\Pendaftaran::where('no_rm', $no_rm)->latest()->first();
+        $data_pasien = \App\Models\DataPasien::where('no_rm', $no_rm)->first();
+
+        if (!$pendaftaran || !$data_pasien) {
+            return view('main.polikia.detailkia', ['not_found' => true]);
+        }
+
+        return view('main.polikia.detailkia', [
+            'pendaftaran' => $pendaftaran,
+            'data_pasien' => $data_pasien,
+            'not_found' => false
+        ]);
+    }
     public function store(Request $request)
     {
         $data = Pendaftaran::with('data_pasien', 'layanan_kia')
@@ -695,6 +713,8 @@ class PoliKiaController extends Controller
             'data' => null,
         ]);
     }
+
+    
 
     public function suratKematian(Request $request)
     {
