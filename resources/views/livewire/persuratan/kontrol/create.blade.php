@@ -324,14 +324,11 @@ new class extends Component {
                                     class="form-control @error('namaPasien') is-invalid @enderror"
                                     wire:model="namaPasien" id="namaPasien"
                                     placeholder="Nama Pasien"
-                                    {{ $patientFound ? 'readonly' : '' }}>
+                                    {{ $patientFound ? 'readonly' : '' }} disabled>
                                 <span class="input-group-text">
                                     <i class="bi bi-person"></i>
                                 </span>
                             </div>
-                            @if($namaPasien)
-                                <small class="text-muted">Nama pasien terdeteksi: {{ $namaPasien }}</small>
-                            @endif
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>

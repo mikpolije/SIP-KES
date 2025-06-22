@@ -126,7 +126,7 @@ new class extends Component {
             $this->patient = DataPasien::where('no_rm', $this->nomorRM)->first();
 
             if ($this->patient) {
-                $this->namaPasien = $this->patient->nama_lengkap;
+                $this->namaPasien = $this->patient->nama_pasien;
                 $this->jenisKelamin = $this->patient->jenis_kelamin;
                 $this->alamat = $this->patient->alamat;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
@@ -157,7 +157,7 @@ new class extends Component {
         $this->validate([
             'nomorRM' => 'required|exists:data_pasien,no_rm',
             'namaPasien' => 'required',
-            'jenisKelamin' => 'required|in:L,P', // L for Laki-laki, P for Perempuan
+            'jenisKelamin' => 'required',
             'alamat' => 'required|string|max:500',
             'tglLahir' => 'required|date',
             'tanggalKematian' => 'required|date',
@@ -275,12 +275,16 @@ new class extends Component {
                     <div class="row mb-3">
                         <label for="namaPasien" class="col-sm-2 col-form-label">Nama Pasien</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
-                                wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                {{ $patientFound ? 'readonly' : '' }}>
-                            @if($namaPasien)
-                                <small class="text-muted">Format tampil: {{ $this->getFormattedNamaPasien() }}</small>
-                            @endif
+                            <div class="input-group">
+                                <input type="text"
+                                    class="form-control @error('namaPasien') is-invalid @enderror"
+                                    wire:model="namaPasien" id="namaPasien"
+                                    placeholder="Nama Pasien"
+                                    {{ $patientFound ? 'readonly' : '' }} disabled>
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                            </div>
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
@@ -290,11 +294,11 @@ new class extends Component {
                         <div class="col-sm-10">
                             <select class="form-select @error('jenisKelamin') is-invalid @enderror"
                                     wire:model="jenisKelamin" id="jenisKelamin"
-                                    {{ $patientFound ? 'readonly' : '' }}>
+                                    {{ $patientFound ? 'disabled' : '' }}>
                                 <option value="">-- Pilih Jenis Kelamin --</option>
-                                <option value="Tidak Diketahui">Tidak Diketahui</option>
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
+                                <option value="Tidak Diketahui">Tidak Diketahui</option>
                                 <option value="Tidak Dapat Ditentukan">Tidak Dapat Ditentukan</option>
                                 <option value="Tidak mengisi">Tidak mengisi</option>
                             </select>
