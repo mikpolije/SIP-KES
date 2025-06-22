@@ -435,7 +435,7 @@ new class extends Component {
                                        wire:focus="showDokterDropdown = true"
                                        placeholder="Cari dokter..."
                                        autocomplete="off"
-                                       style="width: 80%;
+                                       style="width: 100%;
                                             max-width: 600px;
                                             font-weight: bold;
                                             text-align: center;
