@@ -15,7 +15,7 @@ class LayananKia extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['id_pendaftaran', 'jenis_pemeriksaan'];
+    protected $fillable = ['id_pendaftaran', 'jenis_pemeriksaan', 'no_rm'];
 
     public function pendaftaran()
     {
