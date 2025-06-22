@@ -423,35 +423,13 @@
 
                 <!-- Dropdown untuk Laporan Poli Umum -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
-                        href="#" data-bs-toggle="collapse"
-                        aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}"
-                        data-bs-target="#submenu-laporan-poliumum">
-                        <div class="d-flex align-items-center">
-                            <div class="round-16 d-flex align-items-center justify-content-center">
-                                <i class="ti ti-circle"></i>
+                    <a class="sidebar-link d-flex align-items-center {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
+                        href="{{ route('poliumum.laporan') }}">
+                         <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
                             </div>
                             <span class="hide-menu ms-4">Laporan Poli Umum</span>
-                        </div>
                     </a>
-                    <ul id="submenu-laporan-poliumum"
-                        class="second-level collapse {{ request()->is('poliumum/laporan*') ? 'show' : '' }}"
-                        aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
-                                href="{{ route('poliumum.laporan') }}">
-                                <i class="ti ti-circle"></i>
-                                <span class="hide-menu">10 Besar Penyakit</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/laporan/kunjungan') ? 'active' : '' }}"
-                                href="{{ route('poliumum.laporan.kunjungan') }}">
-                                <i class="ti ti-circle"></i>
-                                <span class="hide-menu">Kunjungan Poli Umum</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-item">
