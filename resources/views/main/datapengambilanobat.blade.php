@@ -12,7 +12,7 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Data Pengambilan Obat</h1>
+                <h1 class="title">Data Resep Obat</h1>
                 <style>
                     .title {
                         font-family: 'Montserrat', sans-serif;
@@ -449,6 +449,13 @@
                     eThis.prop('disabled', false)
                     eThis.html('Cari')
                 })
+            });
+
+            $(document).on('click', '.btn-delete-obat', function () {
+                const id = $(this).data('id');
+
+                $(`#tabel-obat tr[data-id="${id}"]`).remove();
+                $(`#tabel-pengambilan-obat tr[data-id="${id}"]`).remove();
             });
         });
 

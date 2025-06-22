@@ -1140,7 +1140,6 @@
                                     <li data-id="${item.id}" data-nama="${item.nama_layanan}" data-tarif="${item.tarif_layanan}" data-stok="${item.stok}">
                                         <span class="nama">${item.nama_layanan}</span><br>
                                         <span class="tarif">Rp${item.tarif_layanan}.00</span>
-                                        <span class="tarif">${item.stok}</span>
                                     </li>
                                 `);
                                 });

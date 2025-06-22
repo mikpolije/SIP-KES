@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Pendaftaran;
 use App\Models\Pemeriksaan;
 use App\Models\DataPasien;
+use App\Models\ICD;
+use App\Models\ICD10_Umum;
+use App\Models\Icd9;
+use App\Models\ICD9_Umum;
+use App\Models\Layanan;
+use App\Models\LayananPendaftaran;
+use App\Models\Obat;
+use App\Models\ObatPendaftaran;
 use App\Models\PemeriksaanAwal;
 use Illuminate\Support\Facades\Log;
 
@@ -62,10 +70,21 @@ class AntrianRiwayatController extends Controller
         }
     }
 
-    public function riwayat()
+    // public function riwayat()
+    // {
+
+    //     return view('PoliUmum.antreanPoliUmumstep3', [
+    //         'data_pemeriksaan' => $data_pemeriksaan
+    //     ]);
+    // }
+
+    public function antrianPemeriksaan3()
     {
-        $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')->get();
-        return view('PoliUmum.antreanPoliUmumstep3', [
+        $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')
+            ->whereHas('pendaftaran', function ($query) {
+                $query->where('status', 'belum diperiksa');
+            })->get();
+        return view('PoliUmum.antreanPoliumumstep3', [
             'data_pemeriksaan' => $data_pemeriksaan
         ]);
     }
@@ -174,7 +193,7 @@ class AntrianRiwayatController extends Controller
             }
 
 
-            return redirect()->route('poliumum.pemeriksaanAkhir.step3', $id_pemeriksaan)->with('success', 'Data pemeriksaan berhasil disimpan.');
+            return redirect()->route('poliumum.pemeriksaanAkhir', $id_pemeriksaan)->with('success', 'Data pemeriksaan berhasil disimpan.');
         } catch (\Exception $e) {
             Log::error('Gagal menambahkan data pemeriksaan: ' . $e->getMessage());
             return redirect()->route('poliumum.pemeriksaanAkhir.step3', $id_pemeriksaan)->withErrors(['msg' => 'Gagal menambahkan data: ' . $e->getMessage()]);
@@ -186,7 +205,7 @@ class AntrianRiwayatController extends Controller
     {
         $term = $request->input('term');
 
-        $results = ICD9::where('code', 'LIKE', "%{$term}%")
+        $results = Icd9::where('code', 'LIKE', "%{$term}%")
             ->orWhere('display', 'LIKE', "%{$term}%")
             ->limit(10)
             ->get(['id', 'code', 'display']);
@@ -231,14 +250,6 @@ class AntrianRiwayatController extends Controller
             ->get(['id_obat', 'nama', 'harga', 'stok']);
 
         return response()->json($results);
-    }
-
-    public function antrianPemeriksaan3()
-    {
-        $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')->get();
-        return view('PoliUmum.antreanPoliumumstep3', [
-            'data_pemeriksaan' => $data_pemeriksaan
-        ]);
     }
 
     // public function riwayat()
@@ -291,5 +302,4 @@ class AntrianRiwayatController extends Controller
             'riwayat' => $riwayat,
         ]);
     }
-
 }

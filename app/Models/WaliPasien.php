@@ -17,6 +17,6 @@ class WaliPasien extends Model
 
     public function pasien()
     {
-        return $this->hasOne(Pasien::class, 'no_rm', 'no_rm');
+        return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 }
