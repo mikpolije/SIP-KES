@@ -66,9 +66,6 @@ new class extends Component {
     public function mount()
     {
         $this->generateNomor();
-            if ($this->patientFound) {
-        $this->namaPasien = $this->patientFound->nama_pasien; 
-        }
         $this->tanggalKematian = now()->format('Y-m-d');
         $this->waktuKematian = now()->format('H:i');
     }
