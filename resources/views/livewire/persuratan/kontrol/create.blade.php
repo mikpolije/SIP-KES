@@ -404,7 +404,7 @@ new class extends Component {
                                        wire:model.live="dokterSearch"
                                        wire:focus="showDokterDropdown = true"
                                        placeholder="Cari dokter..."
-                                       autocomplete="off">
+                                       autocomplete="off"
                                        style="border-bottom: 2px solid #000; border-radius: 0;">
 
                                 @if($showDokterDropdown && count($dokters) > 0)
