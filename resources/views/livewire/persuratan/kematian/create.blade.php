@@ -2,6 +2,7 @@
 
 use Livewire\Volt\Component;
 use App\Models\DataPasien;
+use App\Models\Dokter;
 use App\Models\ICD;
 
 new class extends Component {
@@ -18,11 +19,16 @@ new class extends Component {
     public $tempatKematian = '';
     public $selectedDiagnosa = '';
     public $penandatangan = '';
+    public $selectedDokter = '';
 
+        // Search properties
+    public $dokterSearch = '';
     public $diagnosaSearch = '';
 
+    public $showDokterDropdown = false;
     public $showDiagnosaDropdown = false;
 
+    public $dokters = [];
     public $diagnosas = [];
     public $patient = null;
     public $patientFound = false;
@@ -68,6 +74,29 @@ new class extends Component {
         $this->generateNomor();
         $this->tanggalKematian = now()->format('Y-m-d');
         $this->waktuKematian = now()->format('H:i');
+        $this->dokters = Dokter::limit(10)->get();
+    }
+    // Dokter search functionality
+    public function updatedDokterSearch()
+    {
+        $this->showDokterDropdown = !empty($this->dokterSearch);
+        if (!empty($this->dokterSearch)) {
+            $this->dokters = Dokter::where('nama', 'like', '%' . $this->dokterSearch . '%')
+                ->orWhere('gelar_depan', 'like', '%' . $this->dokterSearch . '%')
+                ->orWhere('gelar_belakang', 'like', '%' . $this->dokterSearch . '%')
+                ->limit(10)
+                ->get();
+        } else {
+            $this->dokters = Dokter::limit(10)->get();
+            $this->selectedDokter = '';
+        }
+    }
+
+    public function selectDokter($dokterId, $dokterName)
+    {
+        $this->selectedDokter = $dokterId;
+        $this->dokterSearch = $dokterName;
+        $this->showDokterDropdown = false;
     }
 
     public function updatedDiagnosaSearch()
@@ -113,6 +142,11 @@ new class extends Component {
         }
     }
 
+    public function closeDokterDropdown()
+    {
+        $this->showDokterDropdown = false;
+    }
+
     public function closeDiagnosaDropdown()
     {
         $this->showDiagnosaDropdown = false;
@@ -131,11 +165,16 @@ new class extends Component {
             'tempatKematian' => 'required|string|max:255',
             'selectedDiagnosa' => 'required|exists:icd10,id',
             'penandatangan' => 'required|string|max:255',
+            'selectedDokter' => 'required',
         ]);
 
         $pasien = DataPasien::where('no_rm', $this->nomorRM)->first();
 
         $suratKematian = new \App\Models\SuratKematian();
+        
+        if ($this->selectedDokter) {
+            $suratKematian->id_dokter = $this->selectedDokter;
+        }
 
         // Generate nomor surat
         $countToday = \App\Models\SuratKematian::whereDate('created_at', today())->count() + 1;
@@ -148,14 +187,25 @@ new class extends Component {
         $suratKematian->waktu_kematian = $this->waktuKematian;
         $suratKematian->tempat_kematian = $this->tempatKematian;
         $suratKematian->id_icd = $this->selectedDiagnosa;
-        $suratKematian->penandatangan = $this->penandatangan;
-
+        $suratKematian->penandatangan= $this->dokterSearch;
         $suratKematian->save();
 
         flash()->success('Surat Kematian berhasil disimpan!');
         return redirect()->route('main.persuratan.kematian.print', ['id' => $suratKematian->id]);
     }
 
+        // Helper methods for display
+    public function getSelectedDokterName()
+    {
+        if ($this->selectedDokter) {
+            $dokter = Dokter::find($this->selectedDokter);
+            if ($dokter) {
+                $fullName = trim($dokter->gelar_depan . ' ' . $dokter->nama . ' ' . $dokter->gelar_belakang);
+                return $fullName;
+            }
+        }
+        return '';
+    }
     public function getFormattedTanggalMasuk()
     {
         return $this->tanggalMasukRS ? \Carbon\Carbon::parse($this->tanggalMasukRS)->format('d/m/Y') : '';
@@ -378,11 +428,33 @@ new class extends Component {
                                             onmouseup="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"
                                             ontouchend="updateSignature('signature-canvas-memeriksa', 'signature_data_memeriksa')"></canvas>
                                 </div>
-                                <input type="hidden" name="signature_data_memeriksa" id="signature_data_memeriksa">
-                                <input type="text" class="form-control mt-2 border-top-0 border-start-0 border-end-0 border-bottom border-dark text-center @error('penandatangan') is-invalid @enderror"
-                                    wire:model="penandatangan" id="penandatangan" placeholder="Nama Dokter" required>
-                                @error('penandatangan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                                            <div class="position-relative w-100" style="max-width: 400px;">
+                                <input type="text"
+                                       class="form-control @error('selectedDokter') is-invalid @enderror"
+                                       wire:model.live="dokterSearch"
+                                       wire:focus="showDokterDropdown = true"
+                                       placeholder="Cari dokter..."
+                                       autocomplete="off"
+                                       style="border-bottom: 2px solid #000; border-radius: 0;">
+
+                                @if($showDokterDropdown && count($dokters) > 0)
+                                    <div class="dropdown-menu show position-absolute w-100" style="z-index: 1000;">
+                                        @foreach($dokters as $dokter)
+                                            @php
+                                                $fullName = trim($dokter->gelar_depan . ' ' . $dokter->nama . ' ' . $dokter->gelar_belakang);
+                                            @endphp
+                                            <button type="button"
+                                                    class="dropdown-item"
+                                                    wire:click="selectDokter({{ $dokter->id }}, '{{ $fullName }}')">
+                                                <strong>{{ $fullName }}</strong>
+                                                <br><small class="text-muted">{{ $dokter->no_sip }} | {{ $dokter->jadwal_layanan }}</small>
+                                            </button>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
+                            @error('selectedDokter') <div class="invalid-feedback text-center">{{ $message }}</div> @enderror
+                        </div>
                         </div>
                 </form>
             </div>
@@ -459,6 +531,7 @@ new class extends Component {
             dropdowns.forEach(function(dropdown) {
                 if (!dropdown.contains(event.target)) {
                     Livewire.dispatch('closeDiagnosaDropdown');
+                    Livewire.dispatch('closeDokterDropdown');
                 }
             });
         });
