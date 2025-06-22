@@ -96,6 +96,7 @@
                             <div class="d-flex">
                                 <input type="text" class="form-control search-bar me-2" id="no_rm" placeholder="Masukkan No.RM"
                                     style="width: 250px;">
+                                <input type="hidden" name="id_pendaftaran" id="id_pendaftaran">
                                 <button class="btn btn-primary search-button" id="cari_data_pasien">Cari</button>
                             </div>
 
@@ -151,7 +152,7 @@
                         <div class="col-md-2">
                             <div class="mb-3">
                                 <label class="form-label" for="participants3">No. RM:</label>
-                                <input type="text" class="form-control required" id="no_rm" disabled/>
+                                <input type="text" class="form-control required" id="no_rm_display" disabled/>
                             </div>
                         </div>
 
@@ -375,7 +376,8 @@
                 }).done(function (res) {
                     let data = res.data
                     $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
-                    $('#no_rm').val(data.data_pasien.no_rm)
+                    $('#no_rm_display').val(data.data_pasien.no_rm)
+                    $('#id_pendaftaran').val(data.id_pendaftaran)
 
                     if (data.pengambilan_obat) {
                         $('[name="no_antrian"]').val(data.pengambilan_obat.no_antrian)
@@ -574,7 +576,7 @@
             let eThis = $(this)
             eThis.prop('disabled', true)
             eThis.html('Loading...')
-            let id = $('#id_pendaftaran').val()
+            let id = $('#no_rm').val()
 
             if (id == '') {
                 errorMessage('Pilih pasien terlebih dahulu.')

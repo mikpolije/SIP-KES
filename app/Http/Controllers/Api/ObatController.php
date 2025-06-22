@@ -508,7 +508,7 @@ class ObatController extends Controller
             }
 
             $pengambilanObat = PengambilanObat::updateOrCreate(
-                ['no_rm' => $id],
+                ['id_pendaftaran' => $data->id_pendaftaran],
                 [
                     'no_antrian' => $request->no_antrian,
                     'tanggal_penyerahan' => $request->tanggal_penyerahan,
@@ -583,7 +583,7 @@ class ObatController extends Controller
             }
 
             $pengambilanObat = PengambilanObat::updateOrCreate(
-                ['no_rm' => $id],
+                ['id_pendaftaran' => $data->id_pendaftaran],
                 [
                     'no_antrian' => $request->no_antrian,
                     'tanggal_penyerahan' => $request->tanggal_penyerahan,
