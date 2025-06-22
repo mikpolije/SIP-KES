@@ -12,6 +12,7 @@ new class extends Component {
     public $nomorRM = '';
     public $namaPasien = '';
     public $tglLahir = '';
+    public $alamat = '';
     public $selectedDiagnosa = '';
     public $rencanaKontrol = '';
     public $penandatangan = '';
@@ -314,8 +315,11 @@ new class extends Component {
                         <label for="namaPasien" class="col-sm-2 col-form-label">Nama Pasien</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
-                                   wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                   {{ $patientFound ? 'readonly' : '' }} disabled>
+                                wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
+                                @if($patientFound) readonly @endif>
+                            @if($namaPasien)
+                                <small class="text-muted mt-1">Format tampil: {{ $namaPasien }}</small>
+                            @endif
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
