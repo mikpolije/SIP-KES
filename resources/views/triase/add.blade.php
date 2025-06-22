@@ -2293,6 +2293,7 @@
                 $("#tanggal-readonly").val(btn.data('tanggal'))
 
                 $(".closePasien").trigger('close')
+                $("#tablePasien").DataTable().destroy()
             })
         })
     </script>

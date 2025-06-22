@@ -42,19 +42,9 @@
             vertical-align: middle;
         }
 
-        th {
-            background-color: #F9FAFC;
-            font-weight: 600;
-        }
-
         td {
             background-color: white;
             font-weight: 400;
-        }
-
-        td button {
-            padding: 4px 10px;
-            font-size: 12px;
         }
     </style>
 
@@ -72,57 +62,51 @@
             <table class="table table-bordered mb-0">
                 <thead>
                     <tr>
-                        <th>NO ANTREAN</th>
-                        <th>NOMOR RM</th>
-                        <th>NAMA</th>
-                        <th>TANGGAL PENDAFTARAN</th>
-                        <th>UNIT LAYANAN</th>
-                        <th>DOKTER</th>
-                        <th>TIPE PASIEN</th>
-                        <th>STATUS</th>
+                        <th class="text-center">NO ANTREAN</th>
+                        <th class="text-center">NOMOR RM</th>
+                        <th class="text-center">NAMA</th>
+                        <th class="text-center">TANGGAL</th>
+                        <th class="text-center">UNIT LAYANAN</th>
+                        <th class="text-center">DOKTER</th>
+                        <th class="text-center">STATUS</th>
                         <th class="text-center">AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    
-                    @foreach ([
-                        ['1','id001001', 'Arga Pratama', 'Umum', 'dr. Oktavia', 'Umum', 'Diperiksa'], 
-                        ['2','id001002', 'Keisha Anindya', 'Umum', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
-                        ['3','id001003', 'Dimas Fadlan', 'Umum', 'dr. Laili Fitriana', 'Umum', 'Diperiksa'],
-                        ['4','id001004', 'Nayla Putri', 'Umum', 'dr. Erwiyan', 'Umum', 'Diperiksa'],
-                        ['5','id001005', 'Rizqy Maulana', 'Umum', 'dr. Oktavia Putri', 'Umum', 'Diperiksa'],
-                        ['6','id001006', 'Alika Salsabila', 'Umum', 'dr. Sisil Karina', 'Umum', 'Antre'],
-                        ['7','id001007', 'Revan Aditya', 'Umum', 'dr. Shofi', 'Umum', 'Antre'],
-                        ['8','id001008', 'Tania Ramadhani', 'Umum', 'dr. Arvin Maulana', 'Umum', 'Antre'],
-                        ['9','id001009', 'Ilham Setiawan', 'Umum', 'dr. Arvin Maulana', 'Umum', 'Antre'],
-                        ['10','id001010', 'Vania Lestari', 'Umum', 'dr. Sisil Karina', 'Umum', 'Antre'],
-                        ] as $i)
-
+                    @foreach ($data_pasien as $i)
                         <tr>
-                            <td>{{ $i[0] }}</td>
-                            <td>{{ $i[1] }}</td>
-                            <td>{{ $i[2] }}</td>
-                            </td>
-                            <td>17-04-2025</td>
-                            <td>{{ $i[3] }}</td>
-                            <td>{{ $i[4]}}
-                            </td>
-                            <td>{{ $i[5]}}</td>
-                            <td>
-                                {{ $i[6] }}
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary">Pilih</button>
-                                <a href="{{ route('main.polikia.detailkia', parameters: ['id' => $i[1]]) }}" class="btn btn-sm btn-primary">Detail</a>
-                            </td>
+                            @if ($i->poli->nama_poli == 'Poli KIA')
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $i->data_pasien->no_rm }}</td>
+                                <td>{{ $i->data_pasien->nama_pasien }}</td>
+                                <td>{{ $i->created_at->format('d-m-Y') }}</td>
+                                <td class="text-center">{{ $i->poli->nama_poli }}</td>
+                                <td>{{ $i->dokter->nama }}</td>
+                                <td class="text-center">{{ $i->status }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <select class="form-select btn btn-primary pilih-jenis-pemeriksaan"
+                                            data-no_rm="{{ $i->no_rm }}">
+                                            <option selected disabled>Pilih</option>
+                                            <option value="Kehamilan">Kehamilan</option>
+                                            <option value="Persalinan">Persalinan</option>
+                                            <option value="KB">KB</option>
+                                            <option value="Anak">Anak</option>
+                                        </select>
+                                    </div>
+                                    <a href="{{ route('main.polikia.detailkia', ['no_rm' => $i->no_rm]) }}"
+                                        class="btn btn-sm btn-primary">Detail</a>
+                                </td>
+                            @else
+                                @continue
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
             // Fungsi pencarian pasien
@@ -130,22 +114,57 @@
                 e.preventDefault();
                 const noRM = $('#searchPasien').val();
                 if (noRM) {
-                    window.location.href = `/poli-kia/detail/${noRM}`;
+                    window.location.href = `/main/polikia/detail/${noRM}`;
                 } else {
                     alert('Silakan pilih data pasien terlebih dahulu.');
                 }
             });
         });
-
         // Fungsi pencarian pasien
         $('#btnCariPasien').on('click', function (e) {
             e.preventDefault();
             const noRM = $('#searchPasien').val();
             if (noRM) {
-                window.location.href = `/poli-kia/detail/${noRM}`;
+                window.location.href = `/main/polikia/detail/${noRM}`;
             } else {
                 alert('Silakan pilih data pasien terlebih dahulu.');
             }
         });
     </script>
+    <script>
+$(document).on('change', '.pilih-jenis-pemeriksaan', function () {
+    console.log('Dropdown changed!');
+    const jenis = $(this).val();
+    const no_rm = $(this).data('no_rm');
+    console.log('jenis:', jenis, 'no_rm:', no_rm);
+
+    if (!jenis || !no_rm) return;
+
+    $.ajax({
+        url: "{{ route('api.poli-kia.storeAntrean') }}",
+        type: "POST",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            no_rm: no_rm,
+            jenis_pemeriksaan: jenis,
+            status: 'antri'
+        },
+        success: function (res) {
+            console.log('AJAX success:', res);
+            if (res.redirect) {
+                window.location.href = res.redirect;
+            } else {
+                toastr.success('Jenis pemeriksaan berhasil dipilih dan status diubah ke antri.');
+            }
+        },
+        error: function (xhr) {
+            console.log('AJAX error:', xhr);
+            toastr.error('Gagal mengubah jenis pemeriksaan.');
+        }
+    });
+});
+</script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection

@@ -52,7 +52,6 @@
                                     <th>Nama Obat</th>
                                     <th>Stok Opname</th>
                                     <th>Stok Gudang</th>
-                                    <th>Stok Bebas</th>
                                 </tr>
                             </thead>
                         </table>
@@ -263,7 +262,7 @@
                 success: function(response) {
                     var options = '<option value="">Pilih Obat</option>';
                     $.each(response.data, function(index, obat) {
-                        options += `<option value="${obat.id}">${obat.nama}</option>`;
+                        options += `<option value="${obat.id_obat}">${obat.nama}</option>`;
                     });
                     selectElement.html(options);
                 }
@@ -300,7 +299,6 @@
                     { data: 'nama' },
                     { data: 'stok_opname' },
                     { data: 'stok_gudang' },
-                    { data: 'stok_opname' },
                 ],
                 buttons: [
                     {

@@ -22,6 +22,6 @@ class DetailPembelianObat extends Model
 
     public function obat()
     {
-        return $this->belongsTo(Obat::class, 'id_obat', 'id');
+        return $this->belongsTo(Obat::class, 'id_obat', 'id_obat');
     }
 }

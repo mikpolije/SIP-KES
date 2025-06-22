@@ -12,7 +12,7 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Data Pengambilan Obat</h1>
+                <h1 class="title">Data Resep Obat</h1>
                 <style>
                     .title {
                         font-family: 'Montserrat', sans-serif;
@@ -235,11 +235,12 @@
                                         <th class="text-light">Jumlah</th>
                                         <th class="text-light">Nama Obat</th>
                                         <th class="text-light">Harga Obat</th>
+                                        <th class="text-light">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tabel-obat">
                                     <tr>
-                                        <td colspan="3" class="text-center">Tidak Ada Data</td>
+                                        <td colspan="4" class="text-center">Tidak Ada Data</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -383,7 +384,7 @@
                     }
                 }).done(function (res) {
                     let data = res.data
-                    $('#nama_pemeriksaan').val(data.data_pasien.nama_lengkap)
+                    $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
                     $('#no_rm').val(data.data_pasien.no_rm)
 
                     if (data.pengambilan_obat) {
@@ -399,7 +400,7 @@
                                 let nama = obat.detail_pembelian_obat.obat.nama
                                 let harga = obat.detail_pembelian_obat.obat.harga
                                 $('#tabel-obat').append(`
-                                    <tr class="item-tabel-obat parent-multiple-data">
+                                    <tr class="item-tabel-obat parent-multiple-data" data-id="${obat.detail_pembelian_obat.id}">
                                         <td>
                                             <input type="hidden" name="id_detail_pembelian_obat[]" value="${obat.detail_pembelian_obat.id}">
                                             <input type="number" class="form-control" name="jumlah[]" value="${obat.jumlah}" min="1" id="${random}">
@@ -407,11 +408,14 @@
                                         </td>
                                         <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
                                         <td>${harga}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger" onclick="hapusObat('${obat.detail_pembelian_obat.id}')">Hapus</button>
+                                        </td>
                                     </tr>
                                 `)
 
                                 $('#tabel-pengambilan-obat').append(`
-                                    <tr class="item-tabel-pengambilan-obat parent-multiple-data">
+                                    <tr class="item-tabel-pengambilan-obat parent-multiple-data" data-id="${obat.detail_pembelian_obat.id}">
                                         <td>
                                             <input type="date" class="form-control" name="tanggal[]" value="${obat.tanggal}">
                                         </td>
@@ -430,7 +434,7 @@
                         $('[name="catatan"]').html('')
                         $('#tabel-obat').html(`
                             <tr>
-                                <td colspan="3" class="text-center">Tidak Ada Data</td>
+                                <td colspan="4" class="text-center">Tidak Ada Data</td>
                             </tr>
                         `)
                         $('#tabel-pengambilan-obat').html(`
@@ -445,6 +449,13 @@
                     eThis.prop('disabled', false)
                     eThis.html('Cari')
                 })
+            });
+
+            $(document).on('click', '.btn-delete-obat', function () {
+                const id = $(this).data('id');
+
+                $(`#tabel-obat tr[data-id="${id}"]`).remove();
+                $(`#tabel-pengambilan-obat tr[data-id="${id}"]`).remove();
             });
         });
 
@@ -514,7 +525,7 @@
             }
 
             $('#tabel-obat').append(`
-                <tr class="item-tabel-obat parent-multiple-data">
+                <tr class="item-tabel-obat parent-multiple-data" data-id="${id}">
                     <td>
                         <input type="hidden" name="id_detail_pembelian_obat[]" value="${id}">
                         <input type="number" class="form-control" name="jumlah[]" value="1" min="1" id="${random}">
@@ -522,6 +533,9 @@
                     </td>
                     <td>${nama}</td>
                     <td>${harga}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="hapusObat('${id}')">Hapus</button>
+                    </td>
                 </tr>
             `)
 
@@ -530,7 +544,7 @@
             }
 
             $('#tabel-pengambilan-obat').append(`
-                <tr class="item-tabel-pengambilan-obat parent-multiple-data">
+                <tr class="item-tabel-pengambilan-obat parent-multiple-data" data-id="${id}">
                     <td>
                         <input type="date" class="form-control" name="tanggal[]">
                     </td>
@@ -541,6 +555,23 @@
                     <td>${harga}</td>
                 </tr>
             `)
+        }
+
+        function hapusObat(id) {
+            $(`.parent-multiple-data[data-id="${id}"]`).remove();
+
+            if ($('#tabel-obat tr').length == 0) {
+                $('#tabel-obat').html(`
+                    <tr>
+                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                    </tr>
+                `)
+                $('#tabel-pengambilan-obat').html(`
+                    <tr>
+                        <td colspan="4" class="text-center">Tidak Ada Data</td>
+                    </tr>
+                `)
+            }
         }
 
         $(document).on('input', 'input[name="jumlah[]"]', function (e) {

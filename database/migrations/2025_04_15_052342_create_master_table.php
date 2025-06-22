@@ -139,7 +139,7 @@ return new class extends Migration
             $table->string('version');
         });
 
-        Schema::create('general_consent', function (Blueprint $table) {
+        Schema::create('general_consent_rawat_inap', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Pendaftaran::class, 'id_pendaftaran')
                 ->constrained()
@@ -181,6 +181,6 @@ return new class extends Migration
         Schema::dropIfExists('pendaftaran');
         Schema::dropIfExists('icd10');
         Schema::dropIfExists('icd9');
-        Schema::dropIfExists('general_consent');
+        Schema::dropIfExists('general_consent_rawat_inap');
     }
 };

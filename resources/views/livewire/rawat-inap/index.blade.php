@@ -10,6 +10,8 @@ new class extends Component {
 
     protected $paginationTheme = 'bootstrap';
 
+    public $activeStep = 1;
+    public $totalSteps = 3;
     public $activeTab = 'pendaftaran';
     public $showPatientDetails = false;
     public $selectedPatient = null;
@@ -36,10 +38,13 @@ new class extends Component {
         $this->patientIsExamined = (bool)((isset($patient->poli_rawat_inap->id_asessmen_awal) && isset($patient->poli_rawat_inap->id_informed_consent)) ?? 0);
 
         if (!$this->patientIsRegistered) {
+            $this->activeStep = 1;
             $this->activeTab = 'pendaftaran';
         } elseif (!$this->patientIsExamined) {
+            $this->activeStep = 2;
             $this->activeTab = 'pemeriksaan';
         } else {
+            $this->activeStep = 3;
             $this->activeTab = 'layanan';
         }
 
@@ -51,9 +56,41 @@ new class extends Component {
         $this->reset('selectedPatient', 'selectedPatientName', 'showPatientDetails');
     }
 
+    public function goToStep($step)
+    {
+        if ($step < 1 || $step > $this->totalSteps) {
+            return;
+        }
+
+        $this->activeStep = $step;
+
+        $stepToTab = [
+            1 => 'pendaftaran',
+            2 => 'pemeriksaan',
+            3 => 'layanan'
+        ];
+
+        $this->activeTab = $stepToTab[$step];
+
+        if ($this->selectedPatient) {
+            $this->dispatch('patient-selected', pendaftaranId: $this->selectedPatient);
+        }
+    }
+
     public function changeTab($tab)
     {
         $this->activeTab = $tab;
+
+        $tabToStep = [
+            'pendaftaran' => 1,
+            'pemeriksaan' => 2,
+            'layanan' => 3
+        ];
+
+        if (isset($tabToStep[$tab])) {
+            $this->activeStep = $tabToStep[$tab];
+        }
+
         if ($this->selectedPatient) {
             $this->dispatch('patient-selected', pendaftaranId: $this->selectedPatient);
         }
@@ -91,11 +128,7 @@ new class extends Component {
         $validTabs = ['pendaftaran', 'pemeriksaan', 'layanan'];
 
         if (in_array($tab, $validTabs)) {
-            $this->activeTab = $tab;
-
-            if ($this->selectedPatient) {
-                $this->dispatch('patient-selected', pendaftaranId: $this->selectedPatient);
-            }
+            $this->changeTab($tab);
         }
     }
 
@@ -105,9 +138,18 @@ new class extends Component {
         $register = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
         if(isset($register->poli_rawat_inap)) {
             $this->patientIsRegistered = true;
+            $this->activeStep = 2;
+            $this->activeTab = 'pemeriksaan';
         }
     }
 
+    #[On('examination-completed')]
+    public function handleExaminationCompleted($pendaftaranId)
+    {
+        $this->patientIsExamined = true;
+        $this->activeStep = 3;
+        $this->activeTab = 'layanan';
+    }
 
     public function shouldShowTab($tab)
     {
@@ -223,61 +265,60 @@ new class extends Component {
                                 </div>
                             </div>
 
-                            @if($patientIsRegistered)
-                            <ul class="nav nav-tabs mb-4" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button wire:click="changeTab('pendaftaran')"
-                                        class="nav-link {{ $activeTab === 'pendaftaran' ? 'active' : '' }}"
-                                        type="button">
-                                        {{-- <i class="bi bi-file--check"></i> --}}
-                                        Pendaftaran
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button wire:click="changeTab('pemeriksaan')"
-                                        class="nav-link {{ $activeTab === 'pemeriksaan' ? 'active' : '' }}"
-                                        type="button">
-                                        Pemeriksaan
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button wire:click="changeTab('layanan')"
-                                        class="nav-link {{ $activeTab === 'layanan' ? 'active' : '' }}" type="button">
-                                        Layanan
-                                    </button>
-                                </li>
-                            </ul>
-                            <hr>
-                            @endif
+                            @if($patientIsRegistered || $patientIsExamined)
+                            <div class="container stepper-container p-4">
+                                <div class="stepper" id="stepper">
+                                    <div class="step" wire:click="goToStep(1)" style="cursor: pointer;">
+                                        <div class="step-circle {{ $activeStep >= 1 ? 'active' : '' }}" data-step="1">1</div>
+                                        <div class="step-title">Pendaftaran</div>
+                                    </div>
+                                    <div class="step-connector {{ $activeStep >= 2 ? 'active' : '' }}" data-connector="1-2"></div>
+                                    <div class="step" wire:click="goToStep(2)" style="cursor: pointer;">
+                                        <div class="step-circle {{ $activeStep >= 2 ? 'active' : '' }}" data-step="2">2</div>
+                                        <div class="step-title">Pemeriksaan</div>
+                                    </div>
+                                    <div class="step-connector {{ $activeStep >= 3 ? 'active' : '' }}" data-connector="2-3"></div>
+                                    <div class="step" wire:click="goToStep(3)" style="cursor: pointer;">
+                                        <div class="step-circle {{ $activeStep >= 3 ? 'active' : '' }}" data-step="3">3</div>
+                                        <div class="step-title">Layanan</div>
+                                    </div>
+                                </div>
 
-                            <!-- Tab content -->
-                            <div>
-                                @if(!$patientIsRegistered)
+                                <!-- Step content -->
+                                <div class="step-content-container">
+                                    @if(!$patientIsRegistered)
+                                    <div class="step-content active">
+                                        @livewire('rawat-inap.pendaftaran.index', ['pendaftaranId' => $selectedPatient],
+                                        key('pendaftaran-'.$selectedPatient))
+                                    </div>
+                                    @else
+                                    <div class="step-content {{ $activeStep === 1 ? 'active' : '' }}" data-step-content="1">
+                                        @livewire('rawat-inap.pendaftaran.index',
+                                        ['pendaftaranId' => $selectedPatient],
+                                        key('pendaftaran-'.$selectedPatient)
+                                        )
+                                    </div>
+                                    <div class="step-content {{ $activeStep === 2 ? 'active' : '' }}" data-step-content="2">
+                                        @livewire('rawat-inap.pemeriksaan.index',
+                                        ['pendaftaranId' => $selectedPatient],
+                                        key('pemeriksaan-'.$selectedPatient)
+                                        )
+                                    </div>
+                                    <div class="step-content {{ $activeStep === 3 ? 'active' : '' }}" data-step-content="3">
+                                        @livewire('rawat-inap.layanan.index',
+                                        ['pendaftaranId' => $selectedPatient],
+                                        key('layanan-'.$selectedPatient)
+                                        )
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            @else
+                            <div class="step-content active">
                                 @livewire('rawat-inap.pendaftaran.index', ['pendaftaranId' => $selectedPatient],
                                 key('pendaftaran-'.$selectedPatient))
-                                @else
-                                @switch($activeTab)
-                                @case('pendaftaran')
-                                @livewire('rawat-inap.pendaftaran.index',
-                                ['pendaftaranId' => $selectedPatient],
-                                key('pendaftaran-'.$selectedPatient)
-                                )
-                                @break
-                                @case('pemeriksaan')
-                                @livewire('rawat-inap.pemeriksaan.index',
-                                ['pendaftaranId' => $selectedPatient],
-                                key('pemeriksaan-'.$selectedPatient)
-                                )
-                                @break
-                                @case('layanan')
-                                @livewire('rawat-inap.layanan.index',
-                                ['pendaftaranId' => $selectedPatient],
-                                key('layanan-'.$selectedPatient)
-                                )
-                                @break
-                                @endswitch
-                                @endif
                             </div>
+                            @endif
                         </div>
                         @endif
                     </div>

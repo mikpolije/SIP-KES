@@ -30,6 +30,16 @@ class Pendaftaran extends Model
         return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 
+    public function data_dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'id_dokter', 'id');
+    }
+
+    public function icd9_umum()
+    {
+        return $this->hasMany(ICD9_Umum::class, 'id_pendaftaran');
+    }
+
     public function layananPendaftaran()
     {
         return $this->hasMany(LayananPendaftaran::class, 'id_pendaftaran');
@@ -43,6 +53,15 @@ class Pendaftaran extends Model
     public function wali_pasien()
     {
         return $this->belongsTo(WaliPasien::class, 'id_wali_pasien', 'id');
+    }
+
+    public function poli()
+    {
+        return $this->belongsTo(poli::class, 'id_poli', 'id_poli');
+    }
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'id_dokter', 'id');
     }
 
     public function poli_rawat_inap()
@@ -100,8 +119,12 @@ class Pendaftaran extends Model
     }
     public function asessmen_awal()
     {
-        return $this->hasMany(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
+        return $this->hasOne(AsessmenAwal::class, 'id_pendaftaran', 'id_pendaftaran');
     }
+    public function asuhan_keperawatan(){
+        return $this->hasOne(AsuhanKeperawatan::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
     public function getLayananTerisiAttribute()
     {
         if (!$this->relationLoaded('layanan_kia')) {

@@ -12,7 +12,7 @@
         <div class="card w-100">
             <div class="card-body wizard-content">
                 <h1 class="card-title"></h1>
-                <h1 class="title">Data Resep Obat</h1>
+                <h1 class="title">Data Pengambilan Obat</h1>
                 <style>
                     .title {
                         font-family: 'Montserrat', sans-serif;
@@ -64,7 +64,7 @@
 
                     <div class="row mb-9 justify-content-end">
                         <div class="col-md-8 d-flex justify-content-end">
-                            <input type="text" class="form-control search-bar me-2" placeholder="Data Pasien"
+                            <input type="text" class="form-control search-bar me-2" placeholder="Id Pendaftaran"
                                 style="width: 250px;" id="id_pendaftaran">
                             <button class="btn btn-primary search-button" style="margin-right: 10px;"
                                 id="cari_data_pendaftaran">Cari</button>
@@ -381,22 +381,41 @@
                                     $('[name="tanggal_penyerahan"]').val(data.pengambilan_obat.tanggal_penyerahan)
                                     $('[name="catatan"]').html(data.pengambilan_obat.catatan)
 
+                                    if (data.pengambilan_obat.detail_pengambilan_obat.length > 0) {
+                                        $('#tabel-obat').html('')
+                                        data.pengambilan_obat.detail_pengambilan_obat.forEach((obat, index) => {
+                                            let nama = obat.detail_pembelian_obat.obat.nama
+                                            let harga = obat.detail_pembelian_obat.obat.harga
+                                            $('#tabel-obat').append(`
+                                                <tr class="item-tabel-obat parent-multiple-data">
+                                                    <td>
+                                                        <input type="hidden" name="id_detail_pembelian_obat[]" value="${obat.detail_pembelian_obat.id}">
+                                                        <input type="number" class="form-control" name="jumlah[]" value="${obat.jumlah}" min="1">
+                                                        <input type="hidden" name="harga[]" value="${harga}">
+                                                    </td>
+                                                    <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
+                                                    <td>${harga}</td>
+                                                </tr>
+                                            `)
+                                        })
+                                    }
+
                                     if (data.pengambilan_obat.racikan.length > 0) {
                                         $('#tabel-obat').html('')
                                         data.pengambilan_obat.racikan.forEach((obat, index) => {
                                             let nama = obat.detail_pembelian_obat.obat.nama
                                             let harga = obat.detail_pembelian_obat.obat.harga
                                             $('#tabel-obat').append(`
-                                        <tr class="item-tabel-obat parent-multiple-data">
-                                            <td>
-                                                <input type="hidden" name="id_detail_pembelian_obat[]" value="${obat.detail_pembelian_obat.id}">
-                                                <input type="number" class="form-control" name="jumlah[]" value="${obat.jumlah}" min="1">
-                                                <input type="hidden" name="harga[]" value="${harga}">
-                                            </td>
-                                            <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
-                                            <td>${harga}</td>
-                                        </tr>
-                                    `)
+                                                <tr class="item-tabel-obat parent-multiple-data">
+                                                    <td>
+                                                        <input type="hidden" name="id_detail_pembelian_obat[]" value="${obat.detail_pembelian_obat.id}">
+                                                        <input type="number" class="form-control" name="jumlah[]" value="${obat.jumlah}" min="1">
+                                                        <input type="hidden" name="harga[]" value="${harga}">
+                                                    </td>
+                                                    <td>${nama} (Exp ${obat.detail_pembelian_obat.tanggal_kadaluarsa})</td>
+                                                    <td>${harga}</td>
+                                                </tr>
+                                            `)
                                         })
                                     }
                                 } else {
