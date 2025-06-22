@@ -260,6 +260,38 @@ class AntrianRiwayatController extends Controller
         ]);
     }
 
+    public function detalRiyawat($id_pemeriksaan)
+    {
+        $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+            ->where('id_pemeriksaan', $id_pemeriksaan)
+            ->first();
+
+        $rm = $data_pemeriksaan->pendaftaran->data_pasien->no_rm;
+
+        $riyawat = PemeriksaanAwal::with([
+            'pendaftaran.data_pasien',
+            'pendaftaran.data_dokter',
+            'icd9Umum.icd9'
+        ])
+            ->whereHas('pendaftaran', function ($q) use ($rm) {
+                $q->whereHas('data_pasien', function ($q) use ($rm) {
+                    $q->where('no_rm', $rm);
+                });
+            })
+            ->whereHas('pendaftaran', function ($q) {
+                $q->where('status', 'selesai');
+            })
+            ->whereHas('icd9Umum', function ($q) use ($id_pemeriksaan) {
+                $q->where('id_pemeriksaan', $id_pemeriksaan);
+            })
+            ->get();
+
+        return view('PoliUmum.detailPasien', [
+            'data_pemeriksaan' => $data_pemeriksaan,
+            'riyawat' => $riyawat
+        ]);
+    }
+
     // Untuk fitur Select2 pencarian pasien
     public function searchPasien(Request $request)
     {
