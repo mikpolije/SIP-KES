@@ -230,7 +230,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
                                 wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                {{ $patientFound ? 'readonly' : '' }} disabled>
+                                {{ $patientFound ? 'readonly' : '' }}>
                             @if($namaPasien)
                                 <small class="text-muted">Format tampil: {{ $this->getFormattedNamaPasien() }}</small>
                             @endif
@@ -243,7 +243,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <select class="form-select @error('jenisKelamin') is-invalid @enderror"
                                     wire:model="jenisKelamin" id="jenisKelamin"
-                                    {{ $patientFound ? 'disabled' : '' }}>
+                                    {{ $patientFound ? 'readonly' : '' }}>
                                 <option value="">-- Pilih Jenis Kelamin --</option>
                                 <option value="Tidak Diketahui">Tidak Diketahui</option>
                                 <option value="Laki-laki">Laki-laki</option>
@@ -260,7 +260,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
                                 wire:model="tglLahir" id="tglLahir"
-                                {{ $patientFound ? 'readonly' : '' }} disabled>
+                                {{ $patientFound ? 'readonly' : '' }}>
                             @if($tglLahir)
                                 <small class="text-muted">Format tampil: {{ $this->getFormattedTglLahir() }}</small>
                             @endif
