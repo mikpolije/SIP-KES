@@ -405,7 +405,12 @@ new class extends Component {
                                        wire:focus="showDokterDropdown = true"
                                        placeholder="Cari dokter..."
                                        autocomplete="off"
-                                       style="border-bottom: 2px solid #000; border-radius: 0;">
+                                       style="width: 100%;
+                                            max-width: 600px;
+                                            font-weight: bold;
+                                            text-align: center;
+                                            border-bottom: 2px solid #000; 
+                                            border-radius: 0;">
 
                                 @if($showDokterDropdown && count($dokters) > 0)
                                     <div class="dropdown-menu show position-absolute w-100" style="z-index: 1000;">
