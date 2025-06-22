@@ -50,7 +50,7 @@ $bbl_asfiksia = [
     <div class="row g-5 mb-5">
         <div class="col-md-12">
             <div class="col-md-12">
-                <a href="#" class="btn btn-rounded rounded-pill btn-warning me-2">
+                <a href="{{ url('main/rawat-inap') }}" class="btn btn-rounded rounded-pill btn-warning me-2">
                     Rujuk Rawat Inap
                 </a>
             </div>
