@@ -125,7 +125,7 @@ new class extends Component {
             $this->patient = DataPasien::where('no_rm', $this->nomorRM)->first();
             logger('updatedNomorRM dipanggil, nilai:', [$this->nomorRM]);
             logger('Mencari pasien dengan no_rm:', [$this->nomorRM]);
-            
+
             if ($this->patient) {
                 logger('Pasien ditemukan:', [$this->patient]);
                 $this->namaPasien = $this->patient->nama;
@@ -321,6 +321,7 @@ new class extends Component {
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
                                    wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
                                    readonly class="form-control">
+                            <p class="text-muted mt-2">Debug Nama: {{ $namaPasien }}</p>
                             @error('namaPasien') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
