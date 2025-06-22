@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="jenis_pemeriksaan" class="form-label">Jenis Pemeriksaan</label>
-                            <select name="jenis_pemeriksaan" id="jenis_pemeriksaan" class="form-control" disabled>
+                            <select name="jenis_pemeriksaan" id="jenis_pemeriksaan" class="form-control">
                                 <option value="Kehamilan">Kehamilan</option>
                                 <option value="Persalinan">Persalinan</option>
                                 <option value="KB">KB</option>

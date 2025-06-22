@@ -94,9 +94,9 @@
                                             <option value="Anak">Anak</option>
                                         </select>
                                     </div>
-                                    <a href="{{ route('main.polikia.detailkia', ['no_rm' => $i->no_rm]) }}"
+<!--                                     <a href="{{ route('main.polikia.detailkia', ['no_rm' => $i->no_rm]) }}"
                                         class="btn btn-sm btn-primary">Detail</a>
-                                </td>
+ -->                                </td>
                             @else
                                 @continue
                             @endif

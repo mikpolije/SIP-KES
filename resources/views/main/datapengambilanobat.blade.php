@@ -346,16 +346,6 @@
             // Create a new window for printing
             const printWindow = window.open('', '', 'width=800,height=600');
 
-            // Write the tables' HTML into the new window
-            printWindow.document.write('<html><head><title>Tabel Obat</title>');
-            printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #000; padding: 8px; text-align: left; }</style>');
-            printWindow.document.write('</head><body>');
-            printWindow.document.write('<h3>Rincian Obat</h3>');
-            printWindow.document.write(table1.outerHTML);
-            printWindow.document.write('<h3></h3>');
-            printWindow.document.write(table2.outerHTML);
-            printWindow.document.write('</body></html>');
-
             // Close the document and trigger the print dialog
             printWindow.document.close();
             printWindow.print();
