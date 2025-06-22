@@ -43,6 +43,6 @@ class PemeriksaanAwal extends Model
 
     public function icd9Umum()
     {
-        return $this->hasMany(Icd9_Umum::class, 'id_pemeriksaan', 'id_pemeriksaan');
+        return $this->hasMany(ICD9_Umum::class, 'id_pemeriksaan', 'id_pemeriksaan');
     }
 }

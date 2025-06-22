@@ -13,6 +13,6 @@ class ICD9_Umum extends Model
 
      public function icd9()
     {
-        return $this->belongsTo(ICD9::class, 'id_icd9', 'id');
+        return $this->belongsTo(Icd9::class, 'id_icd9', 'id');
     }
 }
