@@ -878,22 +878,21 @@ function successMessage(msg) {
 
 <script>
 $(document).ready(function() {
-    // Get no_rm from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const no_rm = urlParams.get('no_rm');
+    const jenis = urlParams.get('jenis');
     if (no_rm) {
         $('#no_rm').val(no_rm);
-        // Optionally, trigger the search automatically:
-        // $('#cari_no_rm').click();
+        $('#cari_no_rm').click();
+        // Jika ingin langsung ke step Pemeriksaan:
+        setTimeout(function() {
+            if (jenis) {
+                $('#jenis_pemeriksaan').val(jenis).trigger('change');
+            }
+            // Langsung ke step Pemeriksaan (step ke-2 atau ke-3 tergantung urutan wizard)
+            $(".validation-wizard").steps("goTo", 2); // 0: Pendaftaran, 1: Layanan, 2: Pemeriksaan
+        }, 1000); // delay agar data terisi dulu
     }
-
-    // Enable Enter key to trigger Cari button
-    $('#no_rm').on('keydown', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            $('#cari_no_rm').click();
-        }
-    });
 });
 </script>
 @endsection

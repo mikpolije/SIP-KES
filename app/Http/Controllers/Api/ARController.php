@@ -11,7 +11,9 @@ class ARController extends Controller
 {
     public function antrean()
     {
-        $data_pasien = Pendaftaran::with('data_pasien', 'wali_pasien', )->where('id_poli', '2')->get();
+        $data_pasien = Pendaftaran::with('data_pasien', 'wali_pasien', )
+        ->where('status', 'antri')
+        ->where('id_poli', '2')->get();
         return view('main.polikia.antreanPoliKIA', [
             'data_pasien' => $data_pasien
         ]);
@@ -90,38 +92,53 @@ class ARController extends Controller
 
     public function store(Request $request)
     {
+        \Log::info('Store KIA called', $request->all());
+
         $request->validate([
             'no_rm' => 'required|exists:pendaftaran,no_rm',
-            'jenis_pemeriksaan' => 'required|in:Kehamilan,Persalinan,KB,Anak',
             'status' => 'required'
         ]);
 
         $pendaftaran = \App\Models\Pendaftaran::where('no_rm', $request->no_rm)
-            ->whereIn('status', ['belum diperiksa', 'antri'])
+            // ->whereIn('status', ['diperiksa', 'antri'])
             ->latest()
             ->first();
 
         if (!$pendaftaran) {
+            \Log::warning('Pendaftaran tidak ditemukan', ['no_rm' => $request->no_rm]);
             return response()->json(['error' => 'Pendaftaran tidak ditemukan'], 404);
         }
 
-        $layananKia = $pendaftaran->layanan_kia;
-        if ($layananKia) {
-            $layananKia->jenis_pemeriksaan = $request->jenis_pemeriksaan;
-            $layananKia->save();
-        } else {
-            $pendaftaran->layanan_kia()->create([
-                'jenis_pemeriksaan' => $request->jenis_pemeriksaan,
-            ]);
-        }
+        // Ambil jenis pemeriksaan dari poli_kia
+        $poliKia = \DB::table('poli_kia')
+            ->where('id_pendaftaran', $pendaftaran->id_pendaftaran)
+            ->latest()
+            ->first();
 
-        $pendaftaran->status = $request->status;
+        $jenis_pemeriksaan = $poliKia ? $poliKia->jenis_pemeriksaan : null;
+
+        // Update status pendaftaran
+        $pendaftaran->status = 'diperiksa';
         $pendaftaran->save();
 
-        // Return redirect URL
+        \Log::info('Pendaftaran updated', [
+            'id_pendaftaran' => $pendaftaran->id_pendaftaran,
+            'status' => $pendaftaran->status,
+            'jenis_pemeriksaan' => $jenis_pemeriksaan,
+        ]);
+        $redirectUrl = url('/main/polikia?no_rm=' . $request->no_rm);
+
         return response()->json([
             'success' => true,
-            'redirect' => url('/main/polikia?no_rm=' . $request->no_rm)
+            'jenis_pemeriksaan' => $jenis_pemeriksaan,
+            'redirect' => $redirectUrl
         ]);
     }
+
+        // Return redirect URL
+        // return response()->json([
+        //     'success' => true,
+        //     'redirect' => url('/main/polikia?no_rm=' . $request->no_rm)
+        // ]);
+    
 }
