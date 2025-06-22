@@ -886,6 +886,14 @@ $(document).ready(function() {
         // Optionally, trigger the search automatically:
         // $('#cari_no_rm').click();
     }
+
+    // Enable Enter key to trigger Cari button
+    $('#no_rm').on('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            $('#cari_no_rm').click();
+        }
+    });
 });
 </script>
 @endsection
