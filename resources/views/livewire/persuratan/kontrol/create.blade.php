@@ -125,7 +125,7 @@ new class extends Component {
             $this->patient = DataPasien::where('no_rm', $this->nomorRM)->first();
 
             if ($this->patient) {
-                $this->namaPasien = $this->patient->nama_lengkap;
+                $this->namaPasien = $this->patient->nama;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
                     \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
                 $this->patientFound = true;
