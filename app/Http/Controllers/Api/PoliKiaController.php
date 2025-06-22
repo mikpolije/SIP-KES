@@ -644,10 +644,10 @@ class PoliKiaController extends Controller
 
         $data = LayananKia::selectRaw('jenis_pemeriksaan, COUNT(*) as total')
             ->when($request->tanggal_awal, function ($query) use ($request) {
-                $query->whereDate('tanggal', '>=', $request->tanggal_awal);
+                $query->whereDate('created_at', '>=', $request->tanggal_awal);
             })
             ->when($request->tanggal_akhir, function ($query) use ($request) {
-                $query->whereDate('tanggal', '<=', $request->tanggal_akhir);
+                $query->whereDate('created_at', '<=', $request->tanggal_akhir);
             })
             ->when($request->jenis_pemeriksaan === 'ibu', function ($query) {
                 $query->whereIn('jenis_pemeriksaan', ['Kehamilan', 'Persalinan', 'KB']);

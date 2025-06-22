@@ -66,6 +66,9 @@ new class extends Component {
     public function mount()
     {
         $this->generateNomor();
+            if ($this->patientFound) {
+        $this->namaPasien = $this->patientFound->nama_lengkap; 
+        }
         $this->tanggalKematian = now()->format('Y-m-d');
         $this->waktuKematian = now()->format('H:i');
     }
@@ -227,7 +230,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
                                 wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                {{ $patientFound ? 'readonly' : '' }} disabled>
+                                {{ $patientFound ? 'readonly' : '' }}>
                             @if($namaPasien)
                                 <small class="text-muted">Format tampil: {{ $this->getFormattedNamaPasien() }}</small>
                             @endif
