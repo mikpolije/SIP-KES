@@ -174,6 +174,7 @@
                             <div class="col-md-9">
                                 <label for="no_rm" class="form-label">No. RM</label>
                                 <input type="text" class="form-control" name="no_rm" id="no_rm" required>
+                                <input type="hidden" class="form-control" name="id_pendaftaran" id="id_pendaftaran">
                             </div>
                             <div class="col-md-3">
                                 <label for="cari_no_rm" class="form-label">&nbsp;</label>
@@ -402,6 +403,7 @@ $(document).on('click', '#cari_no_rm', function (e) {
         $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
         $('#no_rm_display').val(data.data_pasien.no_rm)
         $('#no_rm').val(data.data_pasien.no_rm)
+        $('#id_pendaftaran').val(data.id_pendaftaran)
         $('#tanggal').val(new Date().toISOString().split('T')[0])
         $('#no_antrian').val("Sesuai Pendaftaran")
 
@@ -531,7 +533,7 @@ $(document).on('click', '#submit_layanan', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
+    formData['no_rm'] = $('#no_rm').val();
     // layananFieldLists.forEach(field => {
     //     formData[field] = $(`#layanan [name=${field}]`).val();
     // });
@@ -567,7 +569,7 @@ $(document).on('click', '#submit_pemeriksaan_kehamilan', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
+    formData['no_rm'] = $('#no_rm').val();
     pemeriksaanFieldLists['kehamilan'].forEach(field => {
         const $input = $(`#pemeriksaan-kehamilan [name=${field}]`);
 
@@ -607,7 +609,7 @@ $(document).on('click', '#submit_pemeriksaan_kb', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
+    formData['no_rm'] = $('#no_rm').val();
     pemeriksaanFieldLists['kb'].forEach(field => {
         const $input = $(`#pemeriksaan-kb [name="${field}"], #pemeriksaan-kb [name="${field}[]"]`);
 
@@ -653,7 +655,7 @@ $(document).on('click', '#submit_pemeriksaan_anak', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
+    formData['no_rm'] = $('#no_rm').val();
     pemeriksaanFieldLists['anak'].forEach(field => {
         const $input = $(`#pemeriksaan-anak [name=${field}]`);
 
@@ -760,7 +762,7 @@ $(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
     let formData = {
         detail: []
     };
-    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
+    formData['no_rm'] = $('#no_rm').val();
     pemeriksaanFieldLists['persalinan'].forEach(field => {
         const $input = $(`#pemeriksaan-persalinan [name="${field}"], #pemeriksaan-persalinan [name="${field}[]"]`);
 
