@@ -315,8 +315,8 @@ new class extends Component {
                         <label for="namaPasien" class="col-sm-2 col-form-label">Nama Pasien</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control @error('namaPasien') is-invalid @enderror"
-                                wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
-                                @if($patientFound) readonly @endif>
+                                   wire:model="namaPasien" id="namaPasien" placeholder="Nama Pasien"
+                                   {{ $patientFound ? 'readonly' : '' }} disabled>
                             @if($namaPasien)
                                 <small class="text-muted mt-1">Format tampil: {{ $namaPasien }}</small>
                             @endif
