@@ -128,7 +128,7 @@ class PoliKiaController extends Controller
             'formulirPersalinan',
             'formulirAnak',
         ])
-            ->where('no_rm', $request->no_rm ?? 'null')
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 2) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Kehamilan');
@@ -231,7 +231,7 @@ class PoliKiaController extends Controller
             'formulirPersalinan',
             'formulirAnak',
         ])
-            ->where('no_rm', $request->no_rm ?? 'null')
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 2) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Persalinan');
@@ -465,7 +465,7 @@ class PoliKiaController extends Controller
             'formulirPersalinan',
             'formulirAnak',
         ])
-            ->where('no_rm', $request->no_rm ?? 'null')
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 2) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'KB');
@@ -550,7 +550,7 @@ class PoliKiaController extends Controller
             'formulirPersalinan',
             'formulirAnak',
         ])
-            ->where('no_rm', $request->no_rm ?? 'null')
+            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
             ->where('id_poli', 2) // Data Poli Belum Ada, Test ID 3
             ->whereHas('layanan_kia', function ($q) {
                 $q->where('jenis_pemeriksaan', 'Anak');
