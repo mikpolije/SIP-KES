@@ -236,17 +236,6 @@
                     </div>
                 </div>
             </div>
-
-            <style>
-                .modal-title {
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 3rem;
-                    font-weight: 800;
-                    text-align: left;
-                    color: #111754;
-                    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-                }
-            </style>
     @endforeach
 @endsection
 
