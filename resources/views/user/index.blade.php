@@ -59,24 +59,22 @@
         </tbody>
     </table>
 
-    <div class="d-flex justify-content-between">
-    <div>
-        <form method="GET" action="{{ route('user.index') }}" class="d-flex align-items-center">
-            {{-- Jaga supaya search tetap ada saat submit --}}
-            <input type="hidden" name="search" value="{{ request('search') }}">
-            <label for="perPage" class="mr-2 mb-0">Tampilkan</label>
-            <select name="perPage" id="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
-                @foreach ([5, 10, 20, 50, 100] as $limit)
-                    <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
-                @endforeach
-            </select>
-            <span class="ml-2">data per halaman</span>
-        </form>
+<form method="GET" action="{{ route('user.index') }}" class="form-inline">
+    <input type="hidden" name="search" value="{{ request('search') }}">
+    <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="perPage">Tampilkan</label>
+        </div>
+        <select class="form-control" id="perPage" name="perPage" onchange="this.form.submit()">
+            @foreach ([5, 10, 20, 50, 100] as $limit)
+                <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
+            @endforeach
+        </select>
+        <div class="input-group-append">
+            <span class="input-group-text">data</span>
+        </div>
     </div>
-    <div>
-        {{ $users->links() }}
-    </div>
-</div>
+</form>
 
 </div>
 @endsection
