@@ -156,7 +156,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="detailModalLabel{{ $rw->id_pemeriksaan }}">Surat Keterangan Sehat</h5>
+                        <h5 class="modal-title" id="detailModalLabel{{ $rw->id_pemeriksaan }}">Surat Keterangan Sakit</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -169,7 +169,10 @@
                                         <label class="fw-semibold">Nomor</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="001/MS/I/2025" readonly>
+                                        <input type="hidden" class="form-control" name="id_pemeriksaan"
+                                            value="{{ $rw->id_pemeriksaan }}">
+                                        <input type="text" class="form-control" value="" name="nomor_surat"
+                                            readonly>
                                     </div>
                                 </div>
                                 <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
@@ -180,7 +183,8 @@
                                         <label class="fw-semibold">Nama</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="Rina Sofia" readonly>
+                                        <input type="text" class="form-control"
+                                            value="{{ $rw->pendaftaran->data_pasien->nama_pasien }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -188,7 +192,8 @@
                                         <label class="fw-semibold">Tanggal Lahir</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="26 Oktober 2003" readonly>
+                                        <input type="text" class="form-control"
+                                            value="{{ $rw->pendaftaran->data_pasien->tanggal_lahir_pasien }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -196,7 +201,9 @@
                                         <label class="fw-semibold">Jenis Kelamin</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="Perempuan" readonly>
+                                        <input type="text" class="form-control"
+                                            value="{{ $rw->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}"
+                                            readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -204,8 +211,9 @@
                                         <label class="fw-semibold">Alamat</label>
                                     </div>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99"
-                                            readonly style="height: 50px;">
+                                        <input type="text" class="form-control"
+                                            value="{{ $rw->pendaftaran->data_pasien->alamat_pasien }}" readonly
+                                            style="height: 50px;">
                                     </div>
                                 </div>
                                 <div class="mb-3 d-flex align-items-center gap-2">
@@ -215,17 +223,20 @@
                                     <input type="text" class="form-control" value="4" readonly style="width: 50px;">
                                     <label class="fw-semibold">hari</label>
                                 </div>
-                                <div class="mb-3 d-flex align-items-center">
-                                    <label class="fw-semibold me-2">mulai tanggal</label>
-                                    <input type="text" class="form-control" value="10/02/2025 s/d 13/02/2025" readonly
-                                        style="width: 250px;">
+                                <div class="mb-3 d-flex align-items-center gap-2">
+                                    <label class="fw-semibold me-2">Tanggal</label>
+                                    <input type="date" name="tanggal_awal" class="form-control" style="width: 180px;">
+                                    <span class="fw-semibold">s/d</span>
+                                    <input type="date" name="tanggal_akhir" class="form-control"
+                                        style="width: 180px;">
                                 </div>
+
                                 <div class="mb-3">
                                     <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
                                 </div>
                             </div>
                             <div class="mb-4 text-left ms-auto" style="width: fit-content;">
-                                <p>Jember, 1 Januari 2025</p>
+                                <p>Jember, {{ \Carbon\Carbon::now()->isoFormat('d MMMM Y') }}</p>
 
                                 <p>Dokter yang memeriksa :</p>
 
@@ -233,8 +244,8 @@
                                     style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
                                 </div>
 
-                                <p>(Nama Dokter)</p>
-                                <p>SIP.</p>
+                                <p>{{ $rw->pendaftaran->data_dokter->nama }}</p>
+                                <p>{{ $rw->pendaftaran->data_dokter->no_sip }}</p>
                             </div>
                             <div style="display: flex; justify-content: center;">
                                 <button class="btn btn-primary" type="submit">Simpan</button>
