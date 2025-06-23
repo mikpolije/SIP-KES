@@ -9,10 +9,30 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
-public function store(Request $request)
+    public function index(Request $request)
 {
-    if ($request->isMethod('get')) {
+    $search = $request->input('search');
+    $perPage = $request->input('perPage', 10); // default 10
+
+    $users = User::query()
+        ->when($search, function($query, $search) {
+            $query->where('nama', 'like', "%{$search}%")
+                  ->orWhere('username', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+        })
+        ->paginate($perPage)
+        ->appends($request->except('page')); // agar pagination tetap menyertakan query
+
+    return view('user.index', compact('users'));
+}
+
+public function create()
+{
+    return view('user.create');
+}
+
+  public function store(Request $request)
+    {
         $request->validate([
             'nama'         => 'required|string|max:255',
             'username'     => 'required|string|max:50|unique:users,username',
@@ -38,12 +58,15 @@ public function store(Request $request)
         return redirect()->route('user.index')->with('success', 'User berhasil didaftarkan!');
     }
 
-    return view('user.create');
+
+public function edit(User $user)
+{
+    return view('user.edit', compact('user'));
 }
 
-public function update(Request $request, User $user)
-{
-    if ($request->isMethod('get')) {
+
+    public function update(Request $request, User $user)
+    {
         $request->validate([
             'nama'       => 'required|string|max:255',
             'username'   => 'required|string|max:255|unique:users,username,' . $user->id,
@@ -59,6 +82,8 @@ public function update(Request $request, User $user)
             'nama', 'username', 'nik', 'profesi', 'no_telepon', 'email', 'alamat'
         ]);
 
+
+
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
@@ -68,15 +93,10 @@ public function update(Request $request, User $user)
         return redirect()->route('user.index')->with('success', 'User berhasil diperbarui.');
     }
 
-    return view('user.edit', compact('user'));
-}
-
-public function destroy(User $user)
-{
-    $user->delete();
-    return redirect()->route('user.index')->with('success', 'User berhasil dihapus.');
-}
-
-
+ public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'User berhasil dihapus.');
+    }
 
 }

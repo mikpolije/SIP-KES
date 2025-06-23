@@ -8,7 +8,7 @@
 
     <div class="d-flex justify-content-between mb-3">
         <div>
-            <a href="{{ route('register.forms') }}" class="btn btn-primary">+ Tambah User</a>
+            <a href="{{ route('user.create'}}" class="btn btn-primary">+ Tambah User</a>
         </div>
         <form action="{{ route('user.index') }}" method="GET" class="d-flex">
             <input type="text" name="search" placeholder="Cari..." class="form-control" value="{{ request('search') }}">
@@ -43,7 +43,7 @@
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-secondary ml-2">Edit</a>
-<form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+<form href="{{ route('user.destroy', $user->id) }}" style="display:inline-block;">
     @csrf
     @method('DELETE')
     <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger ml-2">Hapus</button>
@@ -59,22 +59,28 @@
         </tbody>
     </table>
 
-<form method="GET" action="{{ route('user.index') }}" class="form-inline">
-    <input type="hidden" name="search" value="{{ request('search') }}">
-    <div class="input-group input-group-sm">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="perPage">Tampilkan</label>
-        </div>
-        <select class="form-control" id="perPage" name="perPage" onchange="this.form.submit()">
-            @foreach ([5, 10, 20, 50, 100] as $limit)
-                <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
-            @endforeach
-        </select>
-        <div class="input-group-append">
-            <span class="input-group-text">data</span>
-        </div>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <form method="GET" action="{{ route('user.index') }}" class="form-inline">
+            {{-- Jaga supaya search tetap ada saat submit --}}
+            <input type="hidden" name="search" value="{{ request('search') }}">
+            
+            <div class="form-group mr-2 mb-0">
+                <label for="perPage" class="mr-2 mb-0">Tampilkan</label>
+                <select name="perPage" id="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
+                    @foreach ([5, 10, 20, 50, 100] as $limit)
+                        <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
+                    @endforeach
+                </select>
+                <span class="ml-2">data per halaman</span>
+            </div>
+        </form>
     </div>
-</form>
+
+    <div>
+        {{ $users->links() }}
+    </div>
+</div>
 
 </div>
 @endsection

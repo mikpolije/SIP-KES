@@ -4,7 +4,7 @@
 <div class="container mt-4">
     <h2 class="mb-4">Tambah Pengguna</h2>
 
-<form action="{{ route('user.store') }}" method="POST">
+<form href="{{ route('user.store') }}">
         @csrf
 
         <div class="mb-3">
