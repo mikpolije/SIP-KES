@@ -20,10 +20,9 @@ Route::middleware('web')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
-        return redirect()->route('login');
+        return redirect()->route('login'); });
     Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
     Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
-    });
     Route::view('/user/register', 'user.register')->name('register.forms');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
