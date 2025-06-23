@@ -182,7 +182,7 @@
 
                         <div class="btn-group">
                             <button type="submit" class="btn btn-blue">Tampilkan</button>
-                            <button type="button" class="btn btn-yellow">Download</button>
+                            <button onclick="exportIcd10Excel()" type="button" class="btn btn-yellow">Download</button>
                         </div>
                     </form>
                 </div>
@@ -195,7 +195,7 @@
                     <p class="table-subtitle">01 {{ $bulan }} 2024 s/d {{ date('t', strtotime($bulan . ' 2024')) }}
                         {{ $bulan }} 2024</p>
 
-                    <table>
+                    <table id="tableICD10">
                         <thead>
                             <tr>
                                 <th width="5%">NO</th>
@@ -224,21 +224,17 @@
         </div>
     </div>
 
+    <!-- Library XLSX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Fungsi export -->
     <script>
-        document.querySelector('.btn-yellow').addEventListener('click', function() {
-            // Get form values
-            const form = document.querySelector('form');
-            const formData = new FormData(form);
-
-            // Build query string
-            const params = new URLSearchParams();
-            params.append('bulan', formData.get('bulan'));
-            params.append('cara_bayar', formData.get('cara_bayar'));
-
-            // Redirect to download URL
-            window.location.href = {{ route('poliumum.laporan.download') }} ? $ {
-                params.toString()
-            };
-        });
+        function exportIcd10Excel() {
+            var table = document.getElementById("tableICD10");
+            var wb = XLSX.utils.table_to_book(table, {
+                sheet: "ICD10"
+            });
+            XLSX.writeFile(wb, 'Laporan_Data_Penyakit.xlsx');
+        }
     </script>
 @endsection

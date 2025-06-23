@@ -8,12 +8,52 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\ICD10_Umum;
+use App\Models\PemeriksaanAwal;
+use App\Models\Dokter;
 
 class LaporanController extends Controller
 {
-    public function kunjungan()
+    public function kunjungan(Request $request)
     {
-        return view('PoliUmum.laporankunjunganpoliumum');
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+        $idDokter = $request->input('id_dokter');
+        $caraBayar = $request->input('carabayar');
+
+        $kunjungan = PemeriksaanAwal::with(['pendaftaran.data_pasien'])
+            ->whereHas('pendaftaran', function ($query) use ($startDate, $endDate, $idDokter, $caraBayar) {
+                $query->where('id_poli', 1)
+                    ->where('status', 'selesai');
+
+                // Filter tanggal
+                if ($startDate && $endDate) {
+                    $query->whereBetween('created_at', [$startDate, $endDate]);
+                }
+
+                // Filter dokter
+                if ($idDokter) {
+                    $query->where('id_dokter', $idDokter);
+                }
+
+                // Filter jenis bayar
+                if ($caraBayar) {
+                    $query->where('jenis_pembayaran', $caraBayar);
+                }
+            })
+            ->orderByDesc('created_at')
+            ->limit(10)
+            ->get();
+
+        $dokter = Dokter::all();
+
+        return view('PoliUmum.laporankunjunganpoliumum', [
+            'kunjungan' => $kunjungan,
+            'dokter' => $dokter,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'id_dokter' => $idDokter,
+            'carabayar' => $caraBayar,
+        ]);
     }
 
     public function index(Request $request)

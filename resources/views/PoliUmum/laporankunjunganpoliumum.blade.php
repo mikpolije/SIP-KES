@@ -120,7 +120,8 @@
             font-size: 14px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             border: 1px solid #e5e7eb;
             text-align: left;
@@ -155,8 +156,7 @@
                     <!-- Tombol navigasi -->
                     <div class="filter-header">
                         <a href="{{ route('poliumum.laporan') }}">
-                            <button
-                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
+                            <button class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
                                 10 Besar Penyakit
                             </button>
                         </a>
@@ -169,37 +169,44 @@
                     </div>
 
                     <!-- Form Filter -->
-                    <div class="mb-3">
-                        <label class="form-label">Tanggal</label>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="date" class="form-control" id="startDate" placeholder="DD/MM/YYYY">
-                            <label class="form-label" style="margin: auto 0;">s/d</label>
-                            <input type="date" class="form-control" id="endDate" placeholder="DD/MM/YYYY">
+                    <form action="{{ route('poliumum.laporan.kunjungan') }}" method="GET">
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="date" class="form-control" id="startDate" name="startDate"
+                                    value="{{ $startDate }}">
+                                <label class="form-label" style="margin: auto 0;">s/d</label>
+                                <input type="date" class="form-control" id="endDate" name="endDate"
+                                    value="{{ $endDate }}">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="Dokter">Dokter</label>
-                        <select class="form-select" id="Dokter" name="dokter">
-                            <option value="dr. Jenie">dr. Jenie</option>
-                            <option value="dr. Jisoo">dr. Jisoo</option>
-                        </select>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Dokter">Dokter</label>
+                            <select class="form-select" id="Dokter" name="id_dokter">
+                                <option value="">-- Semua Dokter --</option>
+                                @foreach ($dokter as $d)
+                                    <option value="{{ $d->id_dokter }}">
+                                        {{ $d->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="CaraBayar">Cara Bayar</label>
-                        <select class="form-select" id="CaraBayar" name="carabayar">
-                            <option value="Umum">Umum</option>
-                            <option value="BPJS">BPJS</option>
-                            <option value="Asuransi">Asuransi</option>
-                        </select>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="CaraBayar">Cara Bayar</label>
+                            <select class="form-select" id="CaraBayar" name="carabayar">
+                                <option value="">-- Semua --</option>
+                                <option value="1" {{ $carabayar == '1' ? 'selected' : '' }}>Umum</option>
+                                <option value="2" {{ $carabayar == '2' ? 'selected' : '' }}>BPJS</option>
+                            </select>
+                        </div>
 
-                    <!-- Tombol -->
-                    <div class="btn-group mt-4">
-                        <button type="button" class="btn btn-blue" id="btnTampilkan">Tampilkan</button>
-                        <button type="button" class="btn btn-yellow">Download</button>
-                    </div>
+                        <div class="btn-group mt-4">
+                            <button type="submit" class="btn btn-blue">Tampilkan</button>
+                            <button onclick="exportKunjunganExcel()" type="button" class="btn btn-yellow">Download</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -210,7 +217,7 @@
                     <h3 class="table-title">LAPORAN KUNJUNGAN</h3>
                     <p class="table-subtitle" id="periodeText"></p>
 
-                    <table class="table-auto">
+                    <table id="tableKunjungan">
                         <thead>
                             <tr>
                                 <th>NO</th>
@@ -221,16 +228,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>1</td><td>RM000754</td><td>Mudafiatun</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>2</td><td>RM000841</td><td>Vivi</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>3</td><td>RM000645</td><td>Na Jaemin</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>4</td><td>RM000312</td><td>Oktavia</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>5</td><td>RM00410</td><td>Jennie</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>6</td><td>RM000453</td><td>Laili</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>7</td><td>RM000458</td><td>Shofi</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>8</td><td>RM000777</td><td>Jaehyun</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>9</td><td>RM000934</td><td>Asahi</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>10</td><td>RM000422</td><td>Erwiyan</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
+                            @foreach ($kunjungan as $k)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $k->pendaftaran->data_pasien->no_rm }}</td>
+                                    <td>{{ $k->pendaftaran->data_pasien->nama_pasien }}</td>
+                                    <td>{{ $k->pendaftaran->data_pasien->nik_pasien }}</td>
+                                    <td>{{ $k->pendaftaran->created_at->format('d-m-Y') }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -238,21 +244,15 @@
         </div>
     </div>
 
-    <!-- Script -->
+    <!-- Library XLSX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
-        document.getElementById("btnTampilkan").addEventListener("click", function () {
-            const start = document.getElementById("startDate").value;
-            const end = document.getElementById("endDate").value;
-
-            const formatter = new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
-
-            let tglStart = start ? formatter.format(new Date(start)) : '-';
-            let tglEnd = end ? formatter.format(new Date(end)) : '-';
-
-            document.getElementById("filterText").textContent = `Filter: ${tglStart} s/d ${tglEnd}`;
-            document.getElementById("periodeText").textContent = `${tglStart} s/d ${tglEnd}`;
-
-            document.getElementById("tabelData").style.display = "block";
-        });
+        function exportKunjunganExcel() {
+            var table = document.getElementById("tableKunjungan");
+            var wb = XLSX.utils.table_to_book(table, {
+                sheet: "Kunjungan"
+            });
+            XLSX.writeFile(wb, 'Laporan_Kunjungan.xlsx');
+        }
     </script>
 @endsection
