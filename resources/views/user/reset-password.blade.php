@@ -2,6 +2,10 @@
 
 @section('title', 'Reset Password')
 
+@php
+    $hideSidebar = true;
+@endphp
+
 @section('pageContent')
 <div class="container mt-5">
     <h1 class="mb-4">New Password For {{ $user->username }}</h1>
