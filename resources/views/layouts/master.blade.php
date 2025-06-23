@@ -5,7 +5,6 @@
   @include('layouts.head')
   <title>@yield('title', 'SIP-Kes')</title>
   @yield('css')
->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   @stack('style')
