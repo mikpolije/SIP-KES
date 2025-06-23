@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PemeriksaanAwal;
 use App\Models\SuratSehat;
+use PDF;
 
 class SuratKeteranganSehatController extends Controller
 {
@@ -35,5 +36,14 @@ class SuratKeteranganSehatController extends Controller
         SuratSehat::create($validated);
 
         return redirect()->route('surat.sehat')->with('success', 'Surat sehat berhasil disimpan.');
+    }
+
+    public function cetak($id)
+    {
+        $rw = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+            ->where('id_pemeriksaan', $id)
+            ->firstOrFail();
+
+        return view('PoliUmum.cetak-surat-sehat', compact('rw'));
     }
 }

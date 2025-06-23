@@ -65,9 +65,10 @@
                                     <td>30/B/IIM/IV/2025</td>
                                     <td>{{ $rw->pendaftaran->data_pasien->nama_pasien }}</td>
                                     <td class="d-flex justify-content-center gap-2">
-                                        <button class="btn btn-warning btn-sm">
+                                        <a href="{{ route('surat.sehat.cetak', $rw->id_pemeriksaan) }}" target="_blank"
+                                            class="btn btn-warning btn-sm">
                                             <i class="fas fa-print"></i> Cetak
-                                        </button>
+                                        </a>
                                         <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#detailModal{{ $rw->id_pemeriksaan }}">
                                             Detail
@@ -102,8 +103,10 @@
                                         <label class="fw-semibold">Nomor</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" name="nomor_surat" value="" placeholder="silahkan diisi nomor surat">
-                                        <input type="hidden" class="form-control" name="id_pemeriksaan" value="{{ $rw->id_pemeriksaan }}">
+                                        <input type="text" class="form-control" name="nomor_surat" value=""
+                                            placeholder="silahkan diisi nomor surat">
+                                        <input type="hidden" class="form-control" name="id_pemeriksaan"
+                                            value="{{ $rw->id_pemeriksaan }}">
                                     </div>
                                 </div>
                                 <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
@@ -156,13 +159,15 @@
                                     <label class="fw-semibold">dengan hasil: </label>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="3" name="hasil" style="resize: none; white-space: pre-wrap;" placeholder="silahkan diisi"></textarea>
+                                    <textarea class="form-control" rows="3" name="hasil" style="resize: none; white-space: pre-wrap;"
+                                        placeholder="silahkan diisi"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="fw-semibold">Surat ini dipergunakan untuk</label>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" value="" name="dipergunakan_untuk" placeholder="silahkan diisi" style="height: 70px;">
+                                    <input type="text" class="form-control" value="" name="dipergunakan_untuk"
+                                        placeholder="silahkan diisi" style="height: 70px;">
                                 </div>
                                 <div class="mb-3">
                                     <label class="fw-semibold">Keterangan:</label>
@@ -208,7 +213,8 @@
                                         <label class="fw-semibold">Tekanan darah</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="{{ $rw->sistole }}/{{ $rw->diastole }} mmHg" readonly>
+                                        <input type="text" class="form-control"
+                                            value="{{ $rw->sistole }}/{{ $rw->diastole }} mmHg" readonly>
                                     </div>
                                 </div>
                             </div>

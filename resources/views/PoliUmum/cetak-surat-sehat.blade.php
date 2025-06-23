@@ -6,126 +6,191 @@
     <title>Surat Keterangan Sehat</title>
     <style>
         body {
-            font-family: "Times New Roman", serif;
-            margin: 40px;
-            font-size: 14px;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 50px;
+            color: #000;
         }
 
-        .container {
-            border: 2px solid #00B0F0;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
+        .row {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            display: block;
         }
 
         .header {
             text-align: center;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
             margin-bottom: 20px;
         }
 
         .header h2 {
             margin: 0;
-            text-decoration: underline;
+            font-size: 20px;
         }
 
-        .logo {
-            float: left;
-            width: 100px;
+        .header h3 {
+            margin: 0;
+            font-size: 18px;
         }
 
-        .clinic-name {
+        .header p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .title {
             text-align: center;
+            margin: 30px 0 10px 0;
+        }
+
+        .title h3 {
+            text-decoration: underline;
+            font-size: 18px;
             font-weight: bold;
         }
 
-        .clearfix {
-            clear: both;
+        .title p {
+            margin-top: 5px;
         }
 
         .content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .content .row {
+            display: flex;
+        }
+
+        .content .row .label {
+            width: 180px;
+        }
+
+        .content .indent {
+            text-indent: 40px;
+        }
+
+        .keterangan {
             margin-top: 20px;
         }
 
-        .content p {
-            margin: 6px 0;
-        }
-
-        .label {
-            display: inline-block;
-            width: 150px;
-        }
-
-        .signature {
-            float: right;
-            text-align: center;
-            margin-top: 40px;
+        .keterangan .row {
+            display: flex;
         }
 
         .footer {
-            margin-top: 80px;
-            text-align: left;
-            font-weight: bold;
+            margin-top: 50px;
+            text-align: right;
         }
 
-        hr {
-            margin-top: 20px;
-            border: none;
-            border-top: 1px solid #000;
+        .ttd {
+            margin-top: 60px;
+            text-align: right;
+        }
+
+        .ttd p {
+            margin: 2px 0;
+        }
+
+        .dotline {
+            border-bottom: 1px dotted black;
+            margin: 10px 0;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="logo">
-            <img src="{{ asset('build/images/logos/logo.png') }}"
-                width="80">
+    <div class="header">
+        <div class="row">
+            <!-- Logo di sebelah kiri -->
+            <div class="logo" style="flex: 1;">
+                <img src="{{ asset('klinik-insan.png') }}" alt="Logo Klinik" style="width: 80px; height: auto;">
+            </div>
+
+            <!-- Teks di sebelah kanan -->
+            <div class="text" style="flex: 3; text-align: center;">
+                <h2>KLINIK PRATAMA</h2>
+                <h3>RAWAT JALAN INSAN MEDIKA</h3>
+                <p>Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</p>
+            </div>
         </div>
-        <div class="clinic-name">
-            <p>KLINIK PRATAMA<br>RAWAT JALAN INSAN MEDIKA<br>
-                Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</p>
-        </div>
-        <div class="clearfix"></div>
-        <div class="header">
-            <h2>SURAT KETERANGAN SEHAT</h2>
-            <p>Nomor: 001SS/KM/I/2025</p>
-        </div>
-
-        <div class="content">
-            <p>Yang bertanda tangan di bawah ini dr. Ida Lailatul Hasanah, Dokter KLINIK PRATAMA INSAN MEDIKA,
-                menerangkan bahwa:</p>
-            <p><span class="label">Nama</span>: Muhammad Jaemin</p>
-            <p><span class="label">Kelamin</span>: Laki - laki</p>
-            <p><span class="label">Tanggal Lahir</span>: 13 Agustus 2000</p>
-            <p><span class="label">Jenis Pekerjaan</span>: Wiraswasta</p>
-            <p><span class="label">Alamat</span>: Jl. Trunojoyo, Kec. Kaliwates, Kab. Jember</p>
-
-            <p>Telah menjalani pemeriksaan kesehatan jasmani pada tanggal 13 Maret dengan hasil:</p>
-            <p><strong>Alhamdulillah sehat</strong></p>
-
-            <p>Surat keterangan ini dipergunakan untuk :</p>
-            <p>Agar terindikasi sehat</p>
-
-            <p>Demikian agar digunakan sebagaimana mestinya.</p>
-
-            <p><strong>Keterangan:</strong></p>
-            <p><span class="label">Berat Badan</span>: 60 Kg</p>
-            <p><span class="label">Tinggi Badan</span>: 180 CM</p>
-            <p><span class="label">Golongan Darah</span>: O</p>
-            <p><span class="label">Tekanan Darah</span>: 000.00/000.00 mmHG</p>
-        </div>
-
-        <div class="signature">
-            <p>Jember, ..................................</p>
-            <p>Dokter yang memeriksa:</p>
-            <br><br><br>
-            <p><strong>Dr. IDA LAILATUL HASANAH</strong><br>
-                SIP: 503/A.1/0278DU/35.09.325/2023</p>
-        </div>
-
-        <div class="clearfix"></div>
+        <hr style="border: 2px solid black; margin-top: 10px;">
     </div>
+
+    <div class="title">
+        <h3>SURAT KETERANGAN SEHAT</h3>
+        <p>Nomor: 001/SS/KM/I/2025</p>
+    </div>
+
+    <div class="content">
+        <p class="indent">Yang bertanda tangan di bawah ini dr. Ida Lailatul Hasanah, Dokter KLINIK PRATAMA INSAN
+            MEDIKA,
+            menerangkan bahwa:</p>
+
+        <div class="row">
+            <div class="label">Nama</div>: {{ $rw->pendaftaran->data_pasien->nama_pasien }}
+        </div>
+        <div class="row">
+            <div class="label">Kelamin</div>:
+            {{ $rw->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}
+        </div>
+        <div class="row">
+            <div class="label">Tanggal Lahir</div>: {{ $rw->pendaftaran->data_pasien->tanggal_lahir_pasien }}
+        </div>
+        <div class="row">
+            <div class="label">Jenis Pekerjaan</div>: {{ $rw->pendaftaran->data_pasien->pekerjaan }}
+        </div>
+        <div class="row">
+            <div class="label">Alamat</div>: J{{ $rw->pendaftaran->data_pasien->alamat_pasien }}
+        </div>
+
+        <p class="indent">Telah menjalani pemeriksaan kesehatan jasmani pada tanggal
+            {{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }} dengan hasil:</p>
+        <div class="dotline">{{ $rw->hasil }}</div>
+
+        <p>Surat keterangan ini dipergunakan untuk :</p>
+        <div class="dotline">{{ $rw->digunakan_untuk }}</div>
+        <div class="dotline">Demikian agar digunakan sebagaimana mestinya.</div>
+
+        <div class="keterangan">
+            <p><strong>Keterangan:</strong></p>
+            <div class="row">
+                <div class="label">Berat Badan</div>: {{ $rw->bb_pasien }} KG
+            </div>
+            <div class="row">
+                <div class="label">Tinggi Badan</div>: {{ $rw->tb_pasien }} CM
+            </div>
+            <div class="row">
+                <div class="label">Golongan Darah</div>:
+                {{ $rw->gol_darah == 1 ? 'A' : ($rw->gol_darah == 2 ? 'B' : ($rw->gol_darah == 3 ? 'AB' : ($rw->gol_darah == 4 ? 'O' : 'Tidak Diketahui'))) }}
+            </div>
+            <div class="row">
+                <div class="label">Tekanan Darah</div>: {{ $rw->sistole }}/{{ $rw->diastole }} mmHG
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Jember, {{ \Carbon\Carbon::now()->isoFormat('d MMMM Y') }}</p>
+        <p>Dokter yang memeriksa:</p>
+    </div>
+
+    <div class="ttd">
+        <div style="width: 200px; height: 80px; border: 1px dashed #666;"></div>
+        <p><strong>Dr. {{ $rw->pendaftaran->data_dokter->nama }}</strong></p>
+        <p><strong>{{ $rw->pendaftaran->data_dokter->no_sip }}</strong></p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        };
+    </script>
 
 </body>
 
