@@ -31,7 +31,7 @@ Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edi
 Route::get('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
 
-  //  Route::resource('user', \App\Http\Controllers\UserController::class);
+  Route::resource('user', \App\Http\Controllers\UserController::class);
 
 Route::get('/forgot-password', [AuthController::class, 'showIdentityForm'])->name('password.forgot');
 Route::post('/forgot-password/check', [AuthController::class, 'checkIdentity'])->name('password.checkIdentity');
