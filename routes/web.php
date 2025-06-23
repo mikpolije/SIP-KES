@@ -21,10 +21,10 @@ Route::middleware('web')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
         return redirect()->route('login');
-    Route::get('/user/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-    Route::post('/user/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+    Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+    Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
     });
-    Route::get('/user/register', function () {
+    Route::get('/user/index', function () {
     return view('user.register');
 })->name('register.forms');
 });
