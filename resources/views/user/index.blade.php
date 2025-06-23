@@ -57,5 +57,24 @@
             @endforelse
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-between">
+    <div>
+        <form method="GET" action="{{ route('user.index') }}" class="d-flex align-items-center">
+            {{-- Jaga supaya search tetap ada saat submit --}}
+            <input type="hidden" name="search" value="{{ request('search') }}">
+            <label for="perPage" class="mr-2">Tampilkan</label>
+            <select name="perPage" id="perPage" class="form-control" onchange="this.form.submit()">
+                @foreach ([5, 10, 20, 50, 100] as $limit)
+                    <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
+                @endforeach
+            </select>
+            <span class="ml-2">data per halaman</span>
+        </form>
+    </div>
+    <div>
+        {{ $users->links() }}
+    </div>
+</div>
 </div>
 @endsection

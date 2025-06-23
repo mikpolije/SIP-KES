@@ -27,6 +27,11 @@ Route::middleware('web')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+// Hak Akses
+Route::middleware(['auth', 'profesi:admin'])->group(function () {
+    Route::resource('user', \App\Http\Controllers\UserController::class);
+});
+
 
 Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/', 'doctor.index')->name('index');
@@ -181,9 +186,7 @@ Route::get('/riwayat-medis/cetak/{id}', [App\Http\Controllers\RiwayatMedisContro
 
 
 
-Route::middleware(['auth', 'profesi:pmik'])->group(function () {
-    Route::resource('user', \App\Http\Controllers\UserController::class);
-});
+
 
 //route autocomplete cari data pasien
 Route::get('/cari-pasien', [PendafataranController::class, 'cariPasien']);
