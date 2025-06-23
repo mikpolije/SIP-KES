@@ -57,13 +57,13 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle text-center">
-                            @foreach ($riwayat as $rw)
+                            @foreach ($riyawat as $rw)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
-                                    <td>{{ $rw->pendaftaran->data_pasien->no_rm }}</td>
-                                    <td>{{ $rw->nomor_surat ?? '-' }}</td>
-                                    <td>{{ $rw->pendaftaran->data_pasien->nama_pasien }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($rw->pemeriksaan->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
+                                    <td>{{ $rw->pemeriksaan->pendaftaran->data_pasien->no_rm }}</td>
+                                    <td>{{ $rw->nomor_surat ?? 'belum ada nomor surat' }}</td>
+                                    <td>{{ $rw->pemeriksaan->pendaftaran->data_pasien->nama_pasien }}</td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="{{ route('surat.sehat.cetak', $rw->id_pemeriksaan) }}" target="_blank"
                                             class="btn btn-warning btn-sm">
@@ -84,7 +84,7 @@
     </div>
 
     <!-- Modal -->
-    @foreach ($riwayat as $rw)
+    @foreach ($riyawat as $rw)
         <div class="modal fade" id="detailModal{{ $rw->id_pemeriksaan }}" tabindex="-1"
             aria-labelledby="detailModalLabel{{ $rw->id_pemeriksaan }}" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pendaftaran->data_pasien->nama_pasien }}" readonly>
+                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->nama_pasien }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pendaftaran->data_pasien->tanggal_lahir_pasien }}" readonly>
+                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->tanggal_lahir_pasien }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}"
+                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}"
                                             readonly>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="col-md-10">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pendaftaran->data_pasien->alamat_pasien }}" readonly
+                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}" readonly
                                             style="height: 50px;">
                                     </div>
                                 </div>
@@ -154,19 +154,18 @@
                                     <label class="fw-semibold">Telah menjalani pemeriksaan kesehatan jasmani pada
                                         tanggal</label>
                                     <input type="text" class="form-control"
-                                        value="{{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }}"
+                                        value="{{ \Carbon\Carbon::parse($rw->pemeriksaan->tanggal_periksa_pasien)->format('d-m-Y') }}"
                                         readonly style="width: 150px;">
                                     <label class="fw-semibold">dengan hasil: </label>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="3" name="hasil" style="resize: none; white-space: pre-wrap;"
-                                        placeholder="silahkan diisi"></textarea>
+                                    <textarea class="form-control" rows="3" style="resize: none; white-space: pre-wrap;" placeholder="silahkan diisi"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="fw-semibold">Surat ini dipergunakan untuk</label>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" value="" name="dipergunakan_untuk"
+                                    <input type="text" class="form-control" value=""
                                         placeholder="silahkan diisi" style="height: 70px;">
                                 </div>
                                 <div class="mb-3">
@@ -177,7 +176,7 @@
                                         <label class="fw-semibold">Berat badan</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="{{ $rw->bb_pasien }}"
+                                        <input type="text" class="form-control" value="{{ $rw->pemeriksaan->bb_pasien }}"
                                             readonly>
                                     </div>
                                 </div>
@@ -186,7 +185,7 @@
                                         <label class="fw-semibold">Tinggi badan</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="{{ $rw->tb_pasien }} cm"
+                                        <input type="text" class="form-control" value="{{ $rw->pemeriksaan->tb_pasien }} cm"
                                             readonly>
                                     </div>
                                 </div>
@@ -196,13 +195,13 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pendaftaran->data_pasien->gol_darah == 1
+                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 1
                                                 ? 'A'
-                                                : ($rw->pendaftaran->data_pasien->gol_darah == 2
+                                                : ($rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 2
                                                     ? 'B'
-                                                    : ($rw->pendaftaran->data_pasien->gol_darah == 3
+                                                    : ($rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 3
                                                         ? 'AB'
-                                                        : ($rw->pendaftaran->data_pasien->gol_darah == 4
+                                                        : ($rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 4
                                                             ? 'O'
                                                             : 'Tidak Diketahui'))) }}"
                                             readonly>
@@ -214,7 +213,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->sistole }}/{{ $rw->diastole }} mmHg" readonly>
+                                            value="{{ $rw->pemeriksaan->sistole }}/{{ $rw->pemeriksaan->diastole }} mmHg" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -228,8 +227,8 @@
                                     style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
                                 </div>
 
-                                <p>{{ $rw->pendaftaran->data_dokter->nama }}</p>
-                                <p>{{ $rw->pendaftaran->data_dokter->no_sip }}</p>
+                                <p>{{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}</p>
+                                <p>{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</p>
                             </div>
                             <div style="display: flex; justify-content: center;">
                                 <button class="btn btn-primary" type="submit">Simpan</button>
