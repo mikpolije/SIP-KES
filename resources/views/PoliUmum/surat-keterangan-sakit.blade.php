@@ -171,8 +171,7 @@
                                     <div class="col-md-4">
                                         <input type="text" class="form-control" name="id_pemeriksaan"
                                             value="{{ $rw->id_pemeriksaan }}">
-                                        <input type="text" class="form-control" value="" name="nomor_surat"
-                                            readonly>
+                                        <input type="text" class="form-control" value="" name="nomor_surat">
                                     </div>
                                 </div>
                                 <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
@@ -220,7 +219,7 @@
                                     <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit,
                                         sehingga
                                         perlu istirahat selama</label>
-                                    <input type="number" class="form-control" name="hari" value="" readonly style="width: 50px;">
+                                    <input type="number" class="form-control" name="hari" value="" style="width: 50px;">
                                     <label class="fw-semibold">hari</label>
                                 </div>
                                 <div class="mb-3 d-flex align-items-center gap-2">
