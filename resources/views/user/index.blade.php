@@ -8,7 +8,7 @@
 
     <div class="d-flex justify-content-between mb-3">
         <div>
-            <a href="{{ route('user.create'}}" class="btn btn-primary">+ Tambah User</a>
+            <a href="{{ route('user.create') }}" class="btn btn-primary">+ Tambah User</a>
         </div>
         <form action="{{ route('user.index') }}" method="GET" class="d-flex">
             <input type="text" name="search" placeholder="Cari..." class="form-control" value="{{ request('search') }}">
