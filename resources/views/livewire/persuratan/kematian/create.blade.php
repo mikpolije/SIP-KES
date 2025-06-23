@@ -136,7 +136,7 @@ new class extends Component {
                 $this->namaPasien = $this->patient->nama_pasien;
                 $kodeKelamin = $this->patient->jenis_kelamin;
                 $this->jenisKelamin = $this->jenisKelaminList[$kodeKelamin] ?? 'Tidak Diketahui';
-                $this->alamat = $this->patient->alamat;
+                $this->alamat = $this->patient->alamat_pasien;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
                     \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
                 $this->patientFound = true;
