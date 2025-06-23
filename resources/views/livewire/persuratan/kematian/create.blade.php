@@ -166,7 +166,7 @@ new class extends Component {
             'nomorRM' => 'required|exists:data_pasien,no_rm',
             'namaPasien' => 'required',
             'jenisKelamin' => 'required',
-            'alamat' => 'required|string|max:500',
+            'alamat' => 'required|string|max:200',
             'tglLahir' => 'required|date',
             'tanggalKematian' => 'required|date',
             'waktuKematian' => 'required',
@@ -326,7 +326,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <textarea class="form-control @error('alamat') is-invalid @enderror"
                                     wire:model="alamat" id="alamat" placeholder="Alamat lengkap"
-                                    rows="2" {{ $patientFound ? 'readonly' : '' }}></textarea>
+                                    rows="2" {{ $patientFound ? 'readonly' : '' }} disable>
                             @error('alamat') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
