@@ -107,13 +107,28 @@
                 <div class="label">Nama</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->nama_pasien }}
             </div>
             <div class="row">
-                <div class="label">Tanggal Lahir</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->tanggal_lahir_pasien }}
+                <div class="label">Tanggal Lahir</div>:
+                {{ $rw->pemeriksaan->pendaftaran->data_pasien->tanggal_lahir_pasien }}
             </div>
             <div class="row">
-                <div class="label">Jenis Kelamin</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}
+                <div class="label">Jenis Kelamin</div>:
+                {{ $rw->pemeriksaan->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}
             </div>
             <div class="row">
-                <div class="label">Pekerjaan</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan }}
+                <div class="label">Pekerjaan</div>:
+                {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '0'
+                    ? 'Tidak bekerja'
+                    : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '1'
+                        ? 'PNS'
+                        : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '2'
+                            ? 'TNI/POLRI'
+                            : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '3'
+                                ? 'BUMN'
+                                : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '4'
+                                    ? 'Pegawai Swasta/Wirausaha'
+                                    : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '5'
+                                        ? 'Lain-lain'
+                                        : 'Tidak diketahui'))))) }}
             </div>
             <div class="row">
                 <div class="label">Alamat</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}
@@ -121,8 +136,10 @@
             </div>
         </div>
 
-        <p>Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama {{ $rw->hari }} hari mulai tanggal
-            {{ \Carbon\Carbon::parse($rw->tanggal_awal)->format('d-m-Y') }} s/d {{ \Carbon\Carbon::parse($rw->tanggal_awal)->format('d-m-Y') }}.</p>
+        <p>Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga perlu istirahat selama {{ $rw->hari }}
+            hari mulai tanggal
+            {{ \Carbon\Carbon::parse($rw->tanggal_awal)->format('d-m-Y') }} s/d
+            {{ \Carbon\Carbon::parse($rw->tanggal_awal)->format('d-m-Y') }}.</p>
 
         <p>Demikian agar digunakan sebagaimana mestinya.</p>
     </div>

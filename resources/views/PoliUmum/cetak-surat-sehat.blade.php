@@ -144,7 +144,20 @@
             {{ $rw->pemeriksaan->pendaftaran->data_pasien->tanggal_lahir_pasien }}
         </div>
         <div class="row">
-            <div class="label">Jenis Pekerjaan</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan }}
+            <div class="label">Jenis Pekerjaan</div>:
+            {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '0'
+                ? 'Tidak bekerja'
+                : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '1'
+                    ? 'PNS'
+                    : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '2'
+                        ? 'TNI/POLRI'
+                        : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '3'
+                            ? 'BUMN'
+                            : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '4'
+                                ? 'Pegawai Swasta/Wirausaha'
+                                : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '5'
+                                    ? 'Lain-lain'
+                                    : 'Tidak diketahui'))))) }}
         </div>
         <div class="row">
             <div class="label">Alamat</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}
@@ -179,7 +192,8 @@
                                 : 'Tidak Diketahui'))) }}
             </div>
             <div class="row">
-                <div class="label">Tekanan Darah</div>: {{ $rw->pemeriksaan->sistole }}/{{ $rw->pemeriksaan->diastole }} mmHG
+                <div class="label">Tekanan Darah</div>:
+                {{ $rw->pemeriksaan->sistole }}/{{ $rw->pemeriksaan->diastole }} mmHG
             </div>
         </div>
     </div>
