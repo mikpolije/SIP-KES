@@ -33,6 +33,7 @@ public function create()
 
   public function store(Request $request)
     {
+        $request->session()->regenerateToken();
         $request->validate([
             'nama'         => 'required|string|max:255',
             'username'     => 'required|string|max:50|unique:users,username',
