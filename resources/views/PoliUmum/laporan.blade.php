@@ -154,8 +154,7 @@
                 <div class="card">
                     <div class="filter-header mb-4">
                         <a href="{{ route('poliumum.laporan') }}">
-                            <button
-                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
+                            <button class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
                                 10 Besar Penyakit
                             </button>
                         </a>
@@ -208,15 +207,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $index => $row)
+                            @forelse ($data as $index => $row)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $row[0] }}</td>
-                                    <td>{{ $row[1] }}</td>
+                                    <td>{{ $row[0] }}</td> {{-- KODE ICD-X --}}
+                                    <td>{{ $row[1] }}</td> {{-- NAMA PENYAKIT --}}
                                     <td class="text-right">{{ number_format($row[2], 0, ',', '.') }}</td>
-                                    <td class="text-right">{{ $row[3] }}</td>
+                                    {{-- JUMLAH --}}
+                                    <td class="text-right">{{ $row[3] }}</td> {{-- % --}}
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">Data tidak ditemukan</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

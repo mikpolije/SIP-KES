@@ -8,8 +8,6 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\ICD10_Umum;
 use App\Models\ICD;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
@@ -22,32 +20,14 @@ class LaporanController extends Controller
     {
         $bulan = $request->input('bulan', date('F'));
         $caraBayar = $request->input('cara_bayar', 'Umum');
+        $bulanAngka = \Carbon\Carbon::parse('1 ' . $bulan)->month;
 
-        $data = $this->getDataPenyakit($bulan, $caraBayar);
-
-        return view('PoliUmum.laporan', [
-            'bulan' => $this->translateMonthToIndonesian($bulan),
-            'caraBayar' => $caraBayar,
-            'data' => $data,
-        ]);
-    }
-
-    private function getDataPenyakit($bulan, $caraBayar)
-    {
-        $bulanAngka = date('m', strtotime("1 $bulan 2024"));
-        $tahun = 2024;
-
-        $startDate = Carbon::create($tahun, $bulanAngka, 1)->startOfMonth()->toDateString();
-        $endDate = Carbon::create($tahun, $bulanAngka, 1)->endOfMonth()->toDateString();
-
-        // Query data ICD10
-        $data = ICD10_Umum::select('id_icd10', DB::raw('COUNT(*) as jumlah'))
-            ->whereHas('pemeriksaan', function ($query) use ($startDate, $endDate, $caraBayar) {
-                $query->whereBetween('created_at', [$startDate, $endDate])
-                    ->whereHas('pendaftaran', function ($q) use ($caraBayar) {
-                        $q->where('jenis_pembayaran', $caraBayar);
-                    });
+        $data = ICD10_Umum::with('pemeriksaan')
+            ->whereHas('pemeriksaan', function ($query) use ($bulanAngka, $caraBayar) {
+                $query->whereMonth('created_at', $bulanAngka)
+                    ->where('cara_bayar', $caraBayar);
             })
+            ->selectRaw('id_icd10, COUNT(*) as jumlah')
             ->groupBy('id_icd10')
             ->orderByDesc('jumlah')
             ->limit(10)
@@ -55,16 +35,26 @@ class LaporanController extends Controller
 
         $total = $data->sum('jumlah');
 
-        // Format data tabel
-        return $data->map(function ($item) use ($total) {
-            $kode = $item->id_icd10;
-            $nama = ICD::where('id', $kode)->value('display') ?? '-'; // Pastikan ada data
-            $jumlah = $item->jumlah;
-            $persen = $total > 0 ? number_format(($jumlah / $total) * 100, 2) : '0.00';
+        $result = $data->map(function ($row) use ($total) {
+            $icd = ICD::find($row->id_icd10);
 
-            return [$kode, $nama, $jumlah, $persen . '%'];
+            return [
+                $icd->code ?? '-',
+                $icd->display ?? '-',
+                $row->jumlah,
+                $total > 0 ? round(($row->jumlah / $total) * 100, 2) . '%' : '0%'
+            ];
         });
+
+        return view('PoliUmum.laporan', [
+            'bulan' => $this->translateMonthToIndonesian($bulan),
+            'caraBayar' => $caraBayar,
+            'data' => $result
+        ]);
     }
+
+
+    public function getDataPenyakit() {}
 
     public function downloadExcel(Request $request)
     {
