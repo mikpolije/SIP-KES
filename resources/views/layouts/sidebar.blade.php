@@ -460,12 +460,12 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
-                        href="/main/laporankunjungan">
+                    <a class="sidebar-link {{ request()->is('main/laporanUGD') ? 'active' : '' }}"
+                        href="/main/laporanUGD">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Kunjungan</span>
+                        <span class="hide-menu">laporan UGD</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
