@@ -186,7 +186,7 @@
                             <select class="form-select" id="Dokter" name="id_dokter">
                                 <option value="">-- Semua Dokter --</option>
                                 @foreach ($dokter as $d)
-                                    <option value="{{ $d->id_dokter }}">
+                                    <option value="{{ $d->id }}" {{ $id_dokter == $d->id ? 'selected' : '' }}>
                                         {{ $d->nama }}
                                     </option>
                                 @endforeach
