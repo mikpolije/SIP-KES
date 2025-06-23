@@ -20,19 +20,14 @@ use App\Http\Middleware\CheckProfesi;
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
         return redirect()->route('login'); });
-  //  Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-  //  Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
     Route::view('/user/register', 'user.register')->name('register.forms');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/user', [UserController::class, 'index'])->name('user.index');
-Route::get('/user/create', [UserController::class, 'store'])->name('user.create');
-Route::get('/user/store', [UserController::class, 'store'])->name('user.store');
-Route::get('/user/{user}/edit', [UserController::class, 'update'])->name('user.edit');
-Route::get('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
-Route::get('/user/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
 
-//  Route::resource('user', \App\Http\Controllers\UserController::class);
+
+Route::resource('user', \App\Http\Controllers\UserController::class);
 
 Route::get('/forgot-password', [AuthController::class, 'showIdentityForm'])->name('password.forgot');
 Route::post('/forgot-password/check', [AuthController::class, 'checkIdentity'])->name('password.checkIdentity');
