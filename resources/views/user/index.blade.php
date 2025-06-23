@@ -4,7 +4,8 @@
 
 @section('pageContent')
 <div class="container mt-4">
-    <h2 class="mb-4">Data Pengguna</h2>
+    <h1 class="mb-4">Master Data</h1>
+    <h3 class="mb-4">Data Pengguna</h3>
 
     <div class="d-flex justify-content-between mb-3">
         <div>
