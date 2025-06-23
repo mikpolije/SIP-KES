@@ -181,8 +181,9 @@ Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name(
 Route::resource('/poli', PoliController::class);
 
 // Laporan Kunjungan
-Route::get('/laporan/kunjungan', [KunjunganController::class, 'index']);
+Route::get('/main/laporanUGD', [KunjunganController::class, 'index'])->name('laporan.kunjungan.index');
 Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.kunjungan.report');
+Route::get('/cetak-kunjungan', [KunjunganController::class, 'print'])->name('laporan_kunjungan.print');
 
 Route::get('/riwayat-medis/cetak/{id}', [App\Http\Controllers\RiwayatMedisController::class, 'cetak'])->name('riwayat-medis.cetak');
 
