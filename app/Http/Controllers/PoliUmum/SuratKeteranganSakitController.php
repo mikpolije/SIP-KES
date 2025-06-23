@@ -5,7 +5,7 @@ namespace App\Http\Controllers\PoliUmum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PemeriksaanAwal;
-use App\Models\SuratSehat;
+use App\Models\SuratSakit;
 
 class SuratKeteranganSakitController extends Controller
 {
