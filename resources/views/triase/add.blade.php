@@ -225,12 +225,10 @@
                                                 Surat Keterangan
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
-                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
-                                                <li><a class="dropdown-item" href="#">General Consent</a></li>
-                                                <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('surat.sehat') }}">Surat Keterangan Sehat</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('surat.sakit') }}">Surat Keterangan Sakit</a></li>
+                                                <li><a class="dropdown-item" href="">General Consent</a></li>
+                                                {{-- <li><a class="dropdown-item" href="#">Informed Consent</a></li> --}}
                                             </ul>
                                         </div>
                                     </div>
