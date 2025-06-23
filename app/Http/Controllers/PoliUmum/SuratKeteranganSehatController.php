@@ -40,7 +40,7 @@ class SuratKeteranganSehatController extends Controller
 
     public function cetak($id)
     {
-        $rw = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+        $rw = SuratSehat::with('pemeriksaan', 'pemeriksaan.pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
             ->where('id_pemeriksaan', $id)
             ->firstOrFail();
 

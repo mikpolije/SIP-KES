@@ -9,4 +9,14 @@ class SuratSehat extends Model
     protected $table = 'surat_keterangan_sehat';
     protected $guarded = ['id'];
     public $timestamps = false;
+
+    public function pemeriksaan()
+    {
+        return $this->belongsTo(PemeriksaanAwal::class, 'id_pemeriksaan');
+    }
+
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
+    }
 }
