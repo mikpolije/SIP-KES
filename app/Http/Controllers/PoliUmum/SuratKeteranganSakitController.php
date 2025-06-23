@@ -11,7 +11,7 @@ class SuratKeteranganSakitController extends Controller
 {
     public function index()
     {
-        $riyawat = PemeriksaanAwal::with('SuratSehat', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+        $riyawat = PemeriksaanAwal::with('SuratSakit', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
             ->whereHas('pendaftaran', function ($q) {
                 $q->where('status', 'selesai')
                     ->where('id_poli', 1);

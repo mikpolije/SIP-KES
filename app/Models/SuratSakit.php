@@ -14,4 +14,14 @@ class SuratSakit extends Model
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
+
+    public function pemeriksaan()
+    {
+        return $this->belongsTo(PemeriksaanAwal::class, 'id_pemeriksaan', 'id_pemeriksaan');
+    }
+
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
+    }
 }

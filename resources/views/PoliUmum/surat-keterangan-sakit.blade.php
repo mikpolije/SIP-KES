@@ -127,7 +127,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
                                     <td>{{ $rw->pendaftaran->data_pasien->no_rm }}</td>
-                                    <td>{{ $rw->SuratSehat->nomor_surat ?? 'belum ada nomor surat' }}</td>
+                                    <td>{{ $rw->SuratSakit->nomor_surat ?? 'belum ada nomor surat' }}</td>
 
                                     <td>{{ $rw->pendaftaran->data_pasien->nama_pasien }}</td>
                                     <td class="d-flex justify-content-center gap-2">

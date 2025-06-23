@@ -50,4 +50,9 @@ class PemeriksaanAwal extends Model
     {
         return $this->hasOne(SuratSehat::class, 'id_pemeriksaan', 'id_pemeriksaan');
     }
+
+    public function SuratSakit()
+    {
+        return $this->hasOne(SuratSakit::class, 'id_pemeriksaan', 'id_pemeriksaan');
+    }
 }
