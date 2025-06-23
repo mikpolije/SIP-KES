@@ -313,7 +313,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
                                 wire:model="tglLahir" id="tglLahir"
-                                {{ $patientFound ? 'readonly' : '' }}>
+                                {{ $patientFound ? 'readonly' : '' }} disabled>
                             @if($tglLahir)
                                 <small class="text-muted">Format tampil: {{ $this->getFormattedTglLahir() }}</small>
                             @endif
