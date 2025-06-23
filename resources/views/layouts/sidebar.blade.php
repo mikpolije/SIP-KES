@@ -536,6 +536,29 @@
             </ul>
         </li>
 
+        <!-- ---------------------------------- -->
+        <!-- Logout -->
+        <!-- ---------------------------------- -->
+        <li class="sidebar-item mt-auto">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="sidebar-link btn btn-danger w-100 text-start d-flex align-items-center">
+                    <span class="d-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M10 15a1 1 0 0 0 1-1v-2a.5.5 0 0 1 1 0v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v2a.5.5 0 0 1-1 0V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7z"/>
+                            <path fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 8l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                            <path fill-rule="evenodd"
+                                d="M5 8a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 0-1h-8A.5.5 0 0 0 5 8z"/>
+                        </svg>
+                    </span>
+                    <span class="hide-menu ms-2">Logout</span>
+                </button>
+            </form>
+        </li>
+
     </ul>
 </nav>
 <!-- ---------------------------------- -->
