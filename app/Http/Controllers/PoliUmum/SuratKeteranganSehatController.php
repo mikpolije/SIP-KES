@@ -24,19 +24,20 @@ class SuratKeteranganSehatController extends Controller
         ]);
     }
 
-    public function storeSuratSehat(Request $request)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'id_pemeriksaan' => 'required',
-            'nomor_surat' => 'required',
+            'nomor_surat' => 'required|string',
             'hasil' => 'required|string',
-            'dipergunakan_untuk' => 'required',
+            'dipergunakan_untuk' => 'required|string',
         ]);
 
-        SuratSehat::create($validated);
+        $surat = SuratSehat::findOrFail($id);
+        $surat->update($validated);
 
-        return redirect()->route('surat.sehat')->with('success', 'Surat sehat berhasil disimpan.');
+        return redirect()->route('surat.sehat')->with('success', 'Surat sehat berhasil diperbarui.');
     }
+
 
     public function cetak($id)
     {

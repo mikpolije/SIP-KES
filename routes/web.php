@@ -156,7 +156,8 @@ use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 
 // Route Surat Keterangan Sehat
 Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
-Route::post('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'storeSuratSehat'])->name('surat.sehat.store');
+// Route::post('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'storeSuratSehat'])->name('surat.sehat.store');
+Route::put('surat-keterangan-sehat/{id}', [SuratKeteranganSehatController::class, 'update'])->name('surat.sehat.update');
 Route::get('surat-keterangan-sehat/cetak/{id}', [SuratKeteranganSehatController::class, 'cetak'])->name('surat.sehat.cetak');
 
 // Route Surat Keterangan Sakit

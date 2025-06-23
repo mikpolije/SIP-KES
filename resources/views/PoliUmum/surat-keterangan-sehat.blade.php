@@ -60,7 +60,8 @@
                             @foreach ($riyawat as $rw)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($rw->pemeriksaan->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($rw->pemeriksaan->tanggal_periksa_pasien)->format('d-m-Y') }}
+                                    </td>
                                     <td>{{ $rw->pemeriksaan->pendaftaran->data_pasien->no_rm }}</td>
                                     <td>{{ $rw->nomor_surat ?? 'belum ada nomor surat' }}</td>
                                     <td>{{ $rw->pemeriksaan->pendaftaran->data_pasien->nama_pasien }}</td>
@@ -95,8 +96,9 @@
                     </div>
                     <div class="modal-body">
                         <!-- ISI MODAL -->
-                        <form action="{{ route('surat.sehat.store') }}" method="POST">
+                        <form action="{{ route('surat.sehat.update', $rw->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div>
                                 <div class="row mb-2 align-items-center">
                                     <div class="col-md-2">
@@ -127,7 +129,8 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->tanggal_lahir_pasien }}" readonly>
+                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->tanggal_lahir_pasien }}"
+                                            readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -146,8 +149,8 @@
                                     </div>
                                     <div class="col-md-10">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}" readonly
-                                            style="height: 50px;">
+                                            value="{{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}"
+                                            readonly style="height: 50px;">
                                     </div>
                                 </div>
                                 <div class="mb-3 d-flex align-items-center gap-2">
@@ -176,8 +179,8 @@
                                         <label class="fw-semibold">Berat badan</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="{{ $rw->pemeriksaan->bb_pasien }}"
-                                            readonly>
+                                        <input type="text" class="form-control"
+                                            value="{{ $rw->pemeriksaan->bb_pasien }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -185,8 +188,8 @@
                                         <label class="fw-semibold">Tinggi badan</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" value="{{ $rw->pemeriksaan->tb_pasien }} cm"
-                                            readonly>
+                                        <input type="text" class="form-control"
+                                            value="{{ $rw->pemeriksaan->tb_pasien }} cm" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-2 align-items-center">
@@ -213,7 +216,8 @@
                                     </div>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control"
-                                            value="{{ $rw->pemeriksaan->sistole }}/{{ $rw->pemeriksaan->diastole }} mmHg" readonly>
+                                            value="{{ $rw->pemeriksaan->sistole }}/{{ $rw->pemeriksaan->diastole }} mmHg"
+                                            readonly>
                                     </div>
                                 </div>
                             </div>
