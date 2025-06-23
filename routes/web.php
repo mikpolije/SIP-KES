@@ -25,9 +25,9 @@ use App\Http\Middleware\CheckProfesi;
     Route::view('/user/register', 'user.register')->name('register.forms');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('/user/create', [UserController::class, 'store'])->name('user.create');
 Route::get('/user/store', [UserController::class, 'store'])->name('user.store');
-Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::get('/user/{user}/edit', [UserController::class, 'update'])->name('user.edit');
 Route::get('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
 Route::get('/user/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
 
