@@ -52,4 +52,54 @@ class AuthController extends Controller
 
     return redirect('/login');
     }
+
+
+
+    public function showIdentityForm()
+    {
+        return view('user.forgot-password');
+    }
+
+    public function checkIdentity(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'nik' => 'required',
+            'profesi' => 'required',
+        ]);
+
+        $user = User::where('username', $request->username)
+                    ->where('nik', $request->nik)
+                    ->where('profesi', $request->profesi)
+                    ->first();
+
+        if (!$user) {
+            return back()->withErrors(['identity' => 'Data tidak cocok.']);
+        }
+
+        // Redirect ke halaman reset password
+        return redirect()->route('password.reset', $user->id);
+    }
+
+    public function showResetForm($id)
+    {
+        $user = User::findOrFail($id);
+        return view('user.reset-password', compact('user'));
+    }
+
+    public function resetPassword(Request $request, $id)
+    {
+        $request->validate([
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('login')->with('success', 'Password berhasil diperbarui. Silakan login kembali.');
+    }
+
+
+
 }
