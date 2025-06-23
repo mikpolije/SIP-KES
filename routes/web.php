@@ -21,8 +21,8 @@ Route::middleware('web')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
         return redirect()->route('login');
-    Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-    Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+    Route::get('/user/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+    Route::post('/user/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
     });
     Route::get('/user/register', function () {
     return view('user.register');

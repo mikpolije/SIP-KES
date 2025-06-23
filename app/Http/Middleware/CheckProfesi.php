@@ -15,7 +15,11 @@ class CheckProfesi
     {
         $user = auth()->user();
 
-        if (!$user || !in_array(strtolower($user->profesi), $allowedProfesi)) {
+        // Normalize profesi dan allowedProfesi ke lowercase untuk perbandingan
+        $userProfesi = strtolower($user->profesi ?? '');
+        $allowedProfesi = array_map('strtolower', $allowedProfesi);
+
+        if (!$user || !in_array($userProfesi, $allowedProfesi)) {
             abort(403, 'Anda tidak memiliki akses.');
         }
 
