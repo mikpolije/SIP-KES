@@ -150,104 +150,107 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailModalLabel">Surat Keterangan Sakit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- ISI MODAL -->
-                    <div>
-                        <div class="row mb-2 align-items-center">
-                            <div class="col-md-2">
-                                <label class="fw-semibold">Nomor</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" value="001/MS/I/2025" readonly>
-                            </div>
-                        </div>
-                        <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK PRATAMA
-                            INSAN MEDIKA, menerangkan bahwa:</label>
-                        <div class="row mb-2 align-items-center">
-                            <div class="col-md-2">
-                                <label class="fw-semibold">Nama</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" value="Rina Sofia" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-2 align-items-center">
-                            <div class="col-md-2">
-                                <label class="fw-semibold">Tanggal Lahir</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" value="26 Oktober 2003" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-2 align-items-center">
-                            <div class="col-md-2">
-                                <label class="fw-semibold">Jenis Kelamin</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" value="Perempuan" readonly>
-                            </div>
-                        </div>
-                        <div class="row mb-2 align-items-center">
-                            <div class="col-md-2">
-                                <label class="fw-semibold">Alamat</label>
-                            </div>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99" readonly
-                                    style="height: 50px;">
-                            </div>
-                        </div>
-                        <div class="mb-3 d-flex align-items-center gap-2">
-                            <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga
-                                perlu istirahat selama</label>
-                            <input type="text" class="form-control" value="4" readonly style="width: 50px;">
-                            <label class="fw-semibold">hari</label>
-                        </div>
-                        <div class="mb-3 d-flex align-items-center">
-                            <label class="fw-semibold me-2">mulai tanggal</label>
-                            <input type="text" class="form-control" value="10/02/2025 s/d 13/02/2025" readonly
-                                style="width: 250px;">
-                        </div>
-                        <div class="mb-3">
-                            <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
-                        </div>
+    @foreach ($riyawat as $rw)
+        <div class="modal fade" id="detailModal{{ $rw->id_pemeriksaan }}" tabindex="-1"
+            aria-labelledby="detailModalLabel{{ $rw->id_pemeriksaan }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailModalLabel{{ $rw->id_pemeriksaan }}">Surat Keterangan Sehat</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-4 text-left ms-auto" style="width: fit-content;">
-                        <p>Jember, 1 Januari 2025</p>
-
-                        <p>Dokter yang memeriksa :</p>
-
-                        <div
-                            style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
+                    <div class="modal-body">
+                        <!-- ISI MODAL -->
+                        <div>
+                            <div class="row mb-2 align-items-center">
+                                <div class="col-md-2">
+                                    <label class="fw-semibold">Nomor</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" value="001/MS/I/2025" readonly>
+                                </div>
+                            </div>
+                            <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
+                                PRATAMA
+                                INSAN MEDIKA, menerangkan bahwa:</label>
+                            <div class="row mb-2 align-items-center">
+                                <div class="col-md-2">
+                                    <label class="fw-semibold">Nama</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" value="Rina Sofia" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-2 align-items-center">
+                                <div class="col-md-2">
+                                    <label class="fw-semibold">Tanggal Lahir</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" value="26 Oktober 2003" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-2 align-items-center">
+                                <div class="col-md-2">
+                                    <label class="fw-semibold">Jenis Kelamin</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" value="Perempuan" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-2 align-items-center">
+                                <div class="col-md-2">
+                                    <label class="fw-semibold">Alamat</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99"
+                                        readonly style="height: 50px;">
+                                </div>
+                            </div>
+                            <div class="mb-3 d-flex align-items-center gap-2">
+                                <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga
+                                    perlu istirahat selama</label>
+                                <input type="text" class="form-control" value="4" readonly style="width: 50px;">
+                                <label class="fw-semibold">hari</label>
+                            </div>
+                            <div class="mb-3 d-flex align-items-center">
+                                <label class="fw-semibold me-2">mulai tanggal</label>
+                                <input type="text" class="form-control" value="10/02/2025 s/d 13/02/2025" readonly
+                                    style="width: 250px;">
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
+                            </div>
                         </div>
+                        <div class="mb-4 text-left ms-auto" style="width: fit-content;">
+                            <p>Jember, 1 Januari 2025</p>
 
-                        <p>(Nama Dokter)</p>
-                        <p>SIP.</p>
+                            <p>Dokter yang memeriksa :</p>
+
+                            <div
+                                style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
+                            </div>
+
+                            <p>(Nama Dokter)</p>
+                            <p>SIP.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <style>
-            .modal-title {
-                font-family: 'Montserrat', sans-serif;
-                font-size: 3rem;
-                font-weight: 800;
-                text-align: left;
-                color: #111754;
-                text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-            }
-        </style>
+            <style>
+                .modal-title {
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 3rem;
+                    font-weight: 800;
+                    text-align: left;
+                    color: #111754;
+                    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+                }
+            </style>
+    @endforeach
+@endsection
 
-    @endsection
-
-    @push('scripts')
+{{-- @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -323,4 +326,4 @@
                 });
             });
         </script>
-    @endpush
+    @endpush --}}
