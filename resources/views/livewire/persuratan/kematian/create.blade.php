@@ -166,7 +166,7 @@ new class extends Component {
             'nomorRM' => 'required|exists:data_pasien,no_rm',
             'namaPasien' => 'required',
             'jenisKelamin' => 'required',
-            'alamat' => 'required|string|max:200',
+            'alamat' => 'required|string|max:500',
             'tglLahir' => 'required|date',
             'tanggalKematian' => 'required|date',
             'waktuKematian' => 'required',
