@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Exports\PoliUmumExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
-use App\Models\ICD10_Umum;
 
 class LaporanController extends Controller
 {
@@ -20,42 +20,14 @@ class LaporanController extends Controller
     {
         $bulan = $request->input('bulan', date('F'));
         $caraBayar = $request->input('cara_bayar', 'Umum');
-        $bulanAngka = \Carbon\Carbon::parse('1 ' . $bulan)->month;
-
-        // Query langsung gabungkan ICD10_Umum, Pemeriksaan, dan ICD10
-        $data = ICD10_Umum::join('pemeriksaan_awal', 'icd10_umum.id_pemeriksaan', '=', 'pemeriksaan_awal.id_pemeriksaan')
-            ->leftJoin('icd10', 'icd10_umum.id_icd10', '=', 'icd10.id_icd10')
-            ->whereMonth('pemeriksaan_awal.created_at', $bulanAngka)
-            ->where('pemeriksaan_awal.cara_bayar', $caraBayar)
-            ->select(
-                'icd10.code',
-                'icd10.display',
-                DB::raw('COUNT(icd10_umum.id_icd10) as jumlah')
-            )
-            ->groupBy('icd10_umum.id_icd10', 'icd10.code', 'icd10.display')
-            ->orderByDesc('jumlah')
-            ->limit(10)
-            ->get();
-
-        $total = $data->sum('jumlah');
-
-        $result = $data->map(function ($row) use ($total) {
-            return [
-                $row->code ?? '-',
-                $row->display ?? '-',
-                $row->jumlah,
-                $total > 0 ? round(($row->jumlah / $total) * 100, 2) . '%' : '0%'
-            ];
-        });
+        $data = $this->getFilteredData($bulan, $caraBayar);
 
         return view('PoliUmum.laporan', [
             'bulan' => $this->translateMonthToIndonesian($bulan),
             'caraBayar' => $caraBayar,
-            'data' => $result
+            'data' => $data
         ]);
     }
-
-    public function getDataPenyakit() {}
 
     public function downloadExcel(Request $request)
     {
