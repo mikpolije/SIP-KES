@@ -227,7 +227,7 @@
                                             <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
                                                 <li><a class="dropdown-item" href="{{ route('surat.sehat') }}">Surat Keterangan Sehat</a></li>
                                                 <li><a class="dropdown-item" href="{{ route('surat.sakit') }}">Surat Keterangan Sakit</a></li>
-                                                <li><a class="dropdown-item" href="">General Consent</a></li>
+                                                <li><a class="dropdown-item" href="/main/general-consent">General Consent</a></li>
                                                 {{-- <li><a class="dropdown-item" href="#">Informed Consent</a></li> --}}
                                             </ul>
                                         </div>
