@@ -57,7 +57,7 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle text-center">
-                            @foreach ($riyawat as $rw)
+                            @foreach ($riwayat as $rw)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
@@ -83,7 +83,7 @@
     </div>
 
     <!-- Modal -->
-    @foreach ($riyawat as $rw)
+    @foreach ($riwayat as $rw)
         <div class="modal fade" id="detailModal{{ $rw->id_pemeriksaan }}" tabindex="-1"
             aria-labelledby="detailModalLabel{{ $rw->id_pemeriksaan }}" aria-hidden="true">
             <div class="modal-dialog modal-lg">
