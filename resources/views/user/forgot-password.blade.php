@@ -2,9 +2,6 @@
 
 @section('title', 'Data Verification')
 
-@php
-    $hideSidebar = true;
-@endphp
 
 @section('pageContent')
 <div class="container mt-5">

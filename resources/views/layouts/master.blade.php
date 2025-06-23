@@ -146,10 +146,6 @@
   </div>
   <div id="main-wrapper">
 
-    <!-- Sidebar (bisa ditampilkan atau disembunyikan) -->
-    @if (!isset($hideSidebar) || !$hideSidebar)
-        @include('layouts.sidebar')
-    @endif
 
     <!-- Sidebar Start -->
     <aside class="left-sidebar with-vertical">
