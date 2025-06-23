@@ -16,7 +16,6 @@ use App\Http\Controllers\Api\ARController;
 use App\Http\Middleware\CheckProfesi;
 
 
-Route::middleware('web')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
@@ -25,7 +24,6 @@ Route::middleware('web')->group(function () {
     Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
     Route::view('/user/register', 'user.register')->name('register.forms');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-});
 
 // Hak Akses
 Route::middleware(['auth', 'profesi:admin'])->group(function () {

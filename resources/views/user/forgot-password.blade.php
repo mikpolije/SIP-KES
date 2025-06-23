@@ -1,10 +1,11 @@
 @extends('layouts.master')
 
-@section('title', 'Lupa Password')
+@section('title', 'Data Verification')
 
 @section('pageContent')
 <div class="container mt-5">
-    <h3 class="mb-4">Lupa Password</h3>
+    <h1 class="mb-4">Data Verification</h1>
+    <h3 class="mb-4">Enter Your Account</h3>
 
     @if($errors->has('identity'))
         <div class="alert alert-danger">{{ $errors->first('identity') }}</div>
