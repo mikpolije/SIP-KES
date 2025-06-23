@@ -15,4 +15,9 @@ class ICD10_Umum extends Model
     {
         return $this->belongsTo(PemeriksaanAwal::class, 'id_pemeriksaan', 'id_pemeriksaan');
     }
+
+    public function icd10()
+    {
+        return $this->belongsTo(ICD::class, 'id_icd10');
+    }
 }
