@@ -19,7 +19,7 @@
             <input type="password" name="password_confirmation" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-success">Simpan Password Baru</button>
+        <button type="submit" class="btn btn-primary d-block mx-auto" style="width: 30%;">Simpan Password Baru</button>
     </form>
 </div>
 @endsection

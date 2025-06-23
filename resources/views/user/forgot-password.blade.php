@@ -28,7 +28,8 @@
             <input type="text" name="profesi" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Lanjut</button>
+        <button type="submit" class="btn btn-primary d-block mx-auto" style="width: 30%;">Send</button>
+
     </form>
 </div>
 @endsection

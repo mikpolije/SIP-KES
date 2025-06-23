@@ -42,12 +42,13 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
                     <td>
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-secondary ml-2">Edit</a>
-                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger">Hapus</button>
-                        </form>
+                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-secondary ml-2">Edit</a>
+<form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+    @csrf
+    @method('DELETE')
+    <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger ml-2">Hapus</button>
+</form>
+
                     </td>
                 </tr>
             @empty
