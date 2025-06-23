@@ -169,7 +169,7 @@
                                         <label class="fw-semibold">Nomor</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" name="id_pemeriksaan"
+                                        <input type="hidden" class="form-control" name="id_pemeriksaan"
                                             value="{{ $rw->id_pemeriksaan }}">
                                         <input type="text" class="form-control" value="" name="nomor_surat">
                                     </div>
