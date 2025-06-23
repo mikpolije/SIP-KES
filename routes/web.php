@@ -43,6 +43,7 @@ Route::post('/main/general-content/save', [GeneralConsentController::class, 'sto
 Route::get('/main/cetak-general-consent/{id}', [GeneralConsentController::class, 'cetak'])->name('general-consent.cetak');
 Route::get('/sign-request/{token}', [GeneralConsentController::class, 'showForm']);
 Route::post('/sign-request/{token}', [GeneralConsentController::class, 'submitForm']);
+Route::resource('GeneralConsent', [GeneralConsentController::class]);
 
 Route::prefix('rawat-inap')->name('rawat-inap.')->group(function () {
     Volt::route('/laporan', 'laporan.penyakit-terbesar')->name('laporan');
