@@ -37,4 +37,13 @@ class SuratKeteranganSakitController extends Controller
 
         return redirect()->route('surat.sakit')->with('success', 'Surat sakit berhasil disimpan.');
     }
+
+    public function cetak($id)
+    {
+        $rw = SuratSakit::with('pemeriksaan', 'pemeriksaan.pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+            ->where('id_pemeriksaan', $id)
+            ->firstOrFail();
+
+        return view('PoliUmum.cetak-surat-sakit', compact('rw'));
+    }
 }

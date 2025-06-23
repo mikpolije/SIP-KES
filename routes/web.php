@@ -165,7 +165,7 @@ Route::get('surat-keterangan-sehat/cetak/{id}', [SuratKeteranganSehatController:
 // Route Surat Keterangan Sakit
 Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
 Route::post('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'storeSuratSakit'])->name('surat.sakit.store');
-// Route::get('surat-keterangan-sehat/cetak/{id}', [SuratKeteranganSehatController::class, 'cetak'])->name('surat.sehat.cetak');
+Route::get('surat-keterangan-sakit/cetak/{id}', [SuratKeteranganSakitController::class, 'cetak'])->name('surat.sakit.cetak');
 
 // Route Riwayat Medis
 use App\Http\Controllers\RiwayatMedisController;

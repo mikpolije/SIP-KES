@@ -147,7 +147,7 @@
             <div class="label">Jenis Pekerjaan</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan }}
         </div>
         <div class="row">
-            <div class="label">Alamat</div>: J{{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}
+            <div class="label">Alamat</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}
         </div>
 
         <p>Telah menjalani pemeriksaan kesehatan jasmani pada tanggal
@@ -192,7 +192,7 @@
     <div class="ttd">
         <div style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block;"></div>
         <p><strong>Dr. {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}</strong></p>
-        <p><strong>{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</strong></p>
+        <p><strong>SIP.{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</strong></p>
     </div>
 
     <script>

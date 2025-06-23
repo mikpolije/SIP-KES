@@ -131,7 +131,7 @@
 
                                     <td>{{ $rw->pendaftaran->data_pasien->nama_pasien }}</td>
                                     <td class="d-flex justify-content-center gap-2">
-                                        <a href="{{ route('surat.sehat.cetak', $rw->id_pemeriksaan) }}" target="_blank"
+                                        <a href="{{ route('surat.sakit.cetak', $rw->id_pemeriksaan) }}" target="_blank"
                                             class="btn btn-warning btn-sm">
                                             <i class="fas fa-print"></i> Cetak
                                         </a>
