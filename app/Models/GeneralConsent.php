@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GeneralConsent extends Model
+class generalConsent extends Model
 {
     use HasFactory;
 
     protected $table = 'general_consent';
 
     protected $fillable = [
-        'noRm',
+        'no_rm',
         'nik',
         'jenisKelamin',
         'namaPasien',
@@ -30,7 +30,10 @@ class GeneralConsent extends Model
         'penanggungJawab4',
         'namaPenanggungJawab',
         'namaPemberiInformasi',
+        'ttdPenanggungJawab',
+        'ttdPemberiInformasi',
     ];
+
 
     protected $casts = [
         'tanggalLahir' => 'date',
