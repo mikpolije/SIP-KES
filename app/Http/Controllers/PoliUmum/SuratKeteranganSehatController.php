@@ -26,7 +26,7 @@ class SuratKeteranganSehatController extends Controller
     public function storeSuratSehat(Request $request)
     {
         $validated = $request->validate([
-            'id_pemeriksaan' => 'required|exists:pemeriksaan_awal,id',
+            'id_pemeriksaan' => 'required',
             'nomor_surat' => 'required|string|max:255',
             'hasil' => 'required|string',
             'dipergunakan_untuk' => 'required|string|max:255',
