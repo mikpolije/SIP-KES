@@ -326,16 +326,256 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
                 <script>
                     function printTables() {
-                        // Get all table elements
-                        const tables = document.querySelectorAll('table.table-striped');
-
-                        // Create a new window for printing
+                        const noAntrian = document.getElementById('no_antrian').value || '-';
+                        const noRM = document.getElementById('no_rm_display').value || '-';
+                        const namaPasien = document.getElementById('nama_pemeriksaan').value || '-';
+                        const tanggalPenyerahan = document.querySelector('input[name="tanggal_penyerahan"]').value || '-';
+                        const catatan = document.querySelector('textarea[name="catatan"]').value || '-';
+                        
+                        let tableContent = `
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Jumlah</th>
+                                        <th>Nama Obat</th>
+                                        <th>Harga Obat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        `;
+                        
+                        const tableRows = document.querySelectorAll('#tabel-obat tr.item-tabel-obat');
+                        if (tableRows.length === 0) {
+                            tableContent += '<tr><td colspan="3" class="text-center">Tidak Ada Data</td></tr>';
+                        } else {
+                            tableRows.forEach(row => {
+                                const jumlah = row.querySelector('input[name="jumlah[]"]')?.value || '-';
+                                const namaObat = row.cells[1]?.textContent || '-';
+                                const harga = row.cells[2]?.textContent || '-';
+                                
+                                tableContent += `
+                                    <tr>
+                                        <td>${jumlah}</td>
+                                        <td>${namaObat}</td>
+                                        <td>Rp ${harga}</td>
+                                    </tr>
+                                `;
+                            });
+                        }
+                        tableContent += '</tbody></table>';
+                        
                         const printWindow = window.open('', '', 'width=800,height=600');
-
-                        // Write the tables' HTML into the new window
-                        printWindow.document.write('<html><head><title>Tabel Obat</title>');
-                        printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #000; padding: 8px; text-align: left; }</style>');
-                        printWindow.document.write('</head><body>');
+                        
+                        printWindow.document.write(`
+                            <!DOCTYPE html>
+                            <html>
+                            <head>
+                                <title>Data Pengambilan Obat - Print</title>
+                                <style>
+                                    body {
+                                        font-family: Arial, sans-serif;
+                                        margin: 20px;
+                                        color: #333;
+                                        line-height: 1.4;
+                                    }
+                                    .header {
+                                        text-align: center;
+                                        margin-bottom: 30px;
+                                        border-bottom: 2px solid #333;
+                                        padding-bottom: 20px;
+                                    }
+                                    .header h1 {
+                                        color: #111754;
+                                        font-size: 28px;
+                                        margin: 0;
+                                        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+                                    }
+                                    .patient-info {
+                                        margin-bottom: 30px;
+                                        border: 1px solid #ddd;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        background-color: #f9f9f9;
+                                    }
+                                    .patient-info h3 {
+                                        margin-top: 0;
+                                        color: #111754;
+                                        border-bottom: 1px solid #ddd;
+                                        padding-bottom: 10px;
+                                        font-size: 18px;
+                                    }
+                                    .info-row {
+                                        display: flex;
+                                        margin-bottom: 10px;
+                                        align-items: center;
+                                    }
+                                    .info-label {
+                                        font-weight: bold;
+                                        width: 200px;
+                                        display: inline-block;
+                                        color: #555;
+                                    }
+                                    .info-value {
+                                        flex: 1;
+                                        color: #333;
+                                    }
+                                    .section-title {
+                                        color: #111754;
+                                        font-size: 20px;
+                                        margin: 30px 0 15px 0;
+                                        border-bottom: 2px solid #111754;
+                                        padding-bottom: 8px;
+                                        font-weight: bold;
+                                    }
+                                    table {
+                                        width: 100%;
+                                        border-collapse: collapse;
+                                        margin-bottom: 30px;
+                                        font-size: 14px;
+                                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                                    }
+                                    table, th, td {
+                                        border: 1px solid #333;
+                                    }
+                                    th {
+                                        background-color: #111754;
+                                        color: white;
+                                        padding: 12px;
+                                        text-align: center;
+                                        font-weight: bold;
+                                        font-size: 14px;
+                                    }
+                                    td {
+                                        padding: 10px;
+                                        text-align: center;
+                                        vertical-align: middle;
+                                    }
+                                    tr:nth-child(even) {
+                                        background-color: #f8f9fa;
+                                    }
+                                    tr:hover {
+                                        background-color: #e9ecef;
+                                    }
+                                    .notes {
+                                        border: 1px solid #ddd;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        background-color: #f9f9f9;
+                                        margin-top: 30px;
+                                    }
+                                    .notes h4 {
+                                        margin-top: 0;
+                                        color: #111754;
+                                        font-size: 16px;
+                                        border-bottom: 1px solid #ddd;
+                                        padding-bottom: 8px;
+                                    }
+                                    .notes p {
+                                        margin: 10px 0 0 0;
+                                        line-height: 1.6;
+                                        color: #555;
+                                    }
+                                    .print-date {
+                                        text-align: right;
+                                        font-size: 11px;
+                                        color: #666;
+                                        margin-top: 40px;
+                                        border-top: 1px solid #ddd;
+                                        padding-top: 10px;
+                                    }
+                                    .footer {
+                                        margin-top: 50px;
+                                        text-align: center;
+                                        font-size: 12px;
+                                        color: #666;
+                                    }
+                                    @media print {
+                                        body { 
+                                            margin: 0;
+                                            -webkit-print-color-adjust: exact;
+                                            print-color-adjust: exact;
+                                        }
+                                        .patient-info, .notes { 
+                                            background-color: #f9f9f9 !important; 
+                                        }
+                                        th {
+                                            background-color: #111754 !important;
+                                            color: white !important;
+                                        }
+                                        tr:nth-child(even) {
+                                            background-color: #f8f9fa !important;
+                                        }
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <div class="header">
+                                    <h1>DATA PENGAMBILAN OBAT</h1>
+                                </div>
+                                
+                                <div class="patient-info">
+                                    <h3>Informasi Pasien</h3>
+                                    <div class="info-row">
+                                        <span class="info-label">No. Antrian:</span>
+                                        <span class="info-value"><strong>${noAntrian}</strong></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">No. RM:</span>
+                                        <span class="info-value"><strong>${noRM}</strong></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Nama Pasien:</span>
+                                        <span class="info-value"><strong>${namaPasien}</strong></span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span class="info-label">Tanggal Penyerahan:</span>
+                                        <span class="info-value"><strong>${tanggalPenyerahan}</strong></span>
+                                    </div>
+                                </div>
+                                
+                                <h2 class="section-title">Rincian Obat</h2>
+                                ${tableContent}
+                                
+                                ${catatan && catatan.trim() !== '' ? `
+                                <div class="notes">
+                                    <h4>Catatan:</h4>
+                                    <p>${catatan.replace(/\n/g, '<br>')}</p>
+                                </div>
+                                ` : ''}
+                                
+                                <div class="print-date">
+                                    Dicetak pada: ${new Date().toLocaleString('id-ID', {
+                                        weekday: 'long',
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    })}
+                                </div>
+                                
+                                <div class="footer">
+                                    <p>Sistem Informasi Pengambilan Obat - SIP-Kes</p>
+                                </div>
+                            </body>
+                            </html>
+                        `);
+                        
+                        printWindow.document.close();
+                        
+                        setTimeout(() => {
+                            printWindow.print();
+                            
+                            printWindow.onafterprint = function() {
+                                printWindow.close();
+                            };
+                            
+                            setTimeout(() => {
+                                if (!printWindow.closed) {
+                                    printWindow.close();
+                                }
+                            }, 3000);
+                        }, 500);
                     }
                 </script>
 

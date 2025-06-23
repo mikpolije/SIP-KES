@@ -169,8 +169,7 @@
                         <!-- OPTION BUTTON -->
                         <div class="row mb-9 justify-content-end">
                             <div class="col-md-8 d-flex justify-content-end">
-                                <button type="button" class="btn btn-warning btn-3d" style="margin-right: 10px;"
-                                    onclick="printChartAsTable()">Cetak</button>
+                                <button type="button" class="btn btn-warning btn-3d btn-print-report" style="margin-right: 10px;">Cetak</button>
                             </div>
                         </div>
                 </section>
@@ -285,72 +284,280 @@
                 eThis.html('Tampilkan Data')
             })
         })
-    })
-</script>
 
-<script>
+        $(document).on('click', '.btn-print-report', function () {
+            printChartAsTable();
+        })
+    })
+
     function printChartAsTable() {
+        if (!window.myChart) {
+            alert('Silakan tampilkan data terlebih dahulu sebelum mencetak!');
+            return;
+        }
+
         let labels = window.myChart.data.labels;
         let data = window.myChart.data.datasets[0].data;
         let tanggal = $('#tanggal-laporan').text();
         let total = $('#jumlah-kunjungan').text();
+        let jenisFilter = $('#jenis_pemeriksaan option:selected').text();
 
         let chartImage = window.myChart.toBase64Image();
 
         let tableRows = '';
+        let totalKunjungan = 0;
+        
         labels.forEach((label, index) => {
-            tableRows += `<tr>
-                <td>${index + 1}</td>
-                <td>${label}</td>
-                <td>${data[index]}</td>
-            </tr>`;
+            totalKunjungan += parseInt(data[index]);
+            tableRows += `
+                <tr>
+                    <td style="text-align: center;">${index + 1}</td>
+                    <td style="text-align: left; padding-left: 15px;">${label}</td>
+                    <td style="text-align: center; font-weight: bold;">${data[index]}</td>
+                </tr>`;
         });
 
-        let htmlContent = `<html>
-            <head>
-                <title>Laporan Kunjungan Poli KIA</title>
-                <style>
-                    body { font-family: Arial, sans-serif; margin: 20px; }
-                    h2 { text-align: center; }
-                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                    th, td { border: 1px solid #000; padding: 8px; text-align: center; }
-                    th { background-color: #f2f2f2; }
-                    .info { margin-top: 20px; }
-                    .chart-container { text-align: center; margin-top: 30px; }
-                    img { max-width: 100%; }
-                </style>
-            </head>
-            <body>
-                <h2>Laporan Kunjungan Poli KIA</h2>
-                <div class="info">
-                    <strong>Periode:</strong> ${tanggal}<br>
-                    <strong>Total Kunjungan:</strong> ${total}
-                </div>
+        tableRows += `
+            <tr style="background-color: #e9ecef; font-weight: bold;">
+                <td colspan="2" style="text-align: center;">TOTAL</td>
+                <td style="text-align: center; color: #111754;">${totalKunjungan}</td>
+            </tr>`;
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Jenis Pemeriksaan</th>
-                            <th>Jumlah</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${tableRows}
-                    </tbody>
-                </table>
+        let tanggalCetak = new Date().toLocaleDateString('id-ID', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
 
-                <div class="chart-container" style="margin-top: 20px;">
-                    <img src="${chartImage}" alt="Chart" />
+        let htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Laporan Kunjungan Poli KIA</title>
+            <style>
+                @media print {
+                    body { margin: 0; }
+                    .no-print { display: none; }
+                    .page-break { page-break-before: always; }
+                }
+                
+                body { 
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                    margin: 20px; 
+                    color: #333;
+                    line-height: 1.4;
+                }
+                
+                .header {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    border-bottom: 3px solid #0066cc;
+                    padding-bottom: 20px;
+                }
+                
+                .header h1 {
+                    color: #111754;
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                
+                .header h2 {
+                    color: #666;
+                    margin: 5px 0;
+                    font-size: 18px;
+                    font-weight: normal;
+                }
+                
+                .info-section {
+                    background-color: #f8f9fa;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    border-left: 4px solid #111754;
+                }
+                
+                .info-row {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 8px;
+                }
+                
+                .info-row:last-child {
+                    margin-bottom: 0;
+                }
+                
+                .info-label {
+                    font-weight: bold;
+                    color: #555;
+                    min-width: 150px;
+                }
+                
+                .info-value {
+                    color: #333;
+                    font-weight: 500;
+                }
+                
+                table { 
+                    width: 100%; 
+                    border-collapse: collapse; 
+                    margin: 20px 0;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    border-radius: 8px;
+                    overflow: hidden;
+                }
+                
+                th { 
+                    background: #111754;
+                    color: white;
+                    padding: 12px 8px;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+                
+                td { 
+                    border: 1px solid #ddd; 
+                    padding: 10px 8px;
+                    font-size: 13px;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+                
+                tr:hover {
+                    background-color: #e3f2fd;
+                }
+                
+                .chart-container { 
+                    text-align: center; 
+                    margin: 30px 0;
+                    padding: 20px;
+                    background-color: #fafafa;
+                    border-radius: 8px;
+                    border: 1px solid #e0e0e0;
+                }
+                
+                .chart-container h3 {
+                    color: #111754;
+                    margin-bottom: 15px;
+                    font-size: 16px;
+                }
+                
+                .chart-container img { 
+                    max-width: 100%; 
+                    height: auto;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                }
+                
+                .footer {
+                    margin-top: 40px;
+                    text-align: right;
+                    font-size: 12px;
+                    color: #666;
+                    border-top: 1px solid #ddd;
+                    padding-top: 15px;
+                }
+                
+                .summary-box {
+                    background: #f8f9fa;
+                    padding: 15px;
+                    border-radius: 8px;
+                    text-align: center;
+                    margin: 20px 0;
+                    border: 1px solid #111754;
+                }
+                
+                .summary-box h3 {
+                    margin: 0;
+                    color: #111754;
+                    font-size: 18px;
+                }
+                
+                .print-button {
+                    background-color: #111754;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    margin-bottom: 20px;
+                }
+                
+                .print-button:hover {
+                    background-color: #0d1142;
+                }
+            </style>
+        </head>
+        <body>
+            <button class="print-button no-print" onclick="window.print()">🖨️ Cetak Laporan</button>
+            
+            <div class="header">
+                <h1>LAPORAN KUNJUNGAN POLI KIA</h1>
+                <h2>Sistem Informasi Pelayanan Kesehatan</h2>
+            </div>
+
+            <div class="info-section">
+                <div class="info-row">
+                    <span class="info-label">Periode Laporan:</span>
+                    <span class="info-value">${tanggal || 'Semua Data'}</span>
                 </div>
-            </body>
+                <div class="info-row">
+                    <span class="info-label">Filter Pemeriksaan:</span>
+                    <span class="info-value">${jenisFilter}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tanggal Cetak:</span>
+                    <span class="info-value">${tanggalCetak}</span>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h3>Total Kunjungan: ${total} Pasien</h3>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">No</th>
+                        <th style="width: 60%;">Jenis Pemeriksaan</th>
+                        <th style="width: 30%;">Jumlah Kunjungan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <h3>Grafik Visualisasi Data</h3>
+                <img src="${chartImage}" alt="Grafik Laporan Kunjungan Poli KIA" />
+            </div>
+
+            <div class="footer">
+                <p><strong>Dicetak pada:</strong> ${tanggalCetak}</p>
+                <p><em>Dokumen ini digenerate secara otomatis oleh Sistem Informasi Pelayanan Kesehatan</em></p>
+            </div>
+        </body>
         </html>`;
 
-        const printWindow = window.open('', '', 'width=800,height=600');
-        printWindow.document.write(htmlContent);
-        printWindow.document.close();
-        printWindow.print();
+        const printWindow = window.open('', '_blank', 'width=1000,height=700,scrollbars=yes');
+        
+        if (printWindow) {
+            printWindow.document.write(htmlContent);
+            printWindow.document.close();
+            
+            setTimeout(() => {
+                printWindow.focus();
+            }, 500);
+        } else {
+            alert('Popup blocker mungkin memblokir jendela print. Silakan izinkan popup untuk situs ini.');
+        }
     }
-
 </script>
 @endsection
