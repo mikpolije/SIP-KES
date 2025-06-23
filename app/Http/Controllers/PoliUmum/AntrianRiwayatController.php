@@ -17,6 +17,7 @@ use App\Models\LayananPendaftaran;
 use App\Models\Obat;
 use App\Models\ObatPendaftaran;
 use App\Models\PemeriksaanAwal;
+use App\Models\SuratSehat;
 use Illuminate\Support\Facades\Log;
 
 class AntrianRiwayatController extends Controller
@@ -132,6 +133,13 @@ class AntrianRiwayatController extends Controller
             Pendaftaran::where('id_pendaftaran', $pemeriksaan->id_pendaftaran)->update([
                 'status' => 'selesai'
             ]);
+
+            // tambah id pemeriksaan di surat keterangan
+            if (!SuratSehat::where('id_pemeriksaan', $id_pemeriksaan)->exists()) {
+                SuratSehat::create([
+                    'id_pemeriksaan' => $id_pemeriksaan
+                ]);
+            }
 
             // ICD9
             foreach ($request->id_icd9_list as $id_icd9) {

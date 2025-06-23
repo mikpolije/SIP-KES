@@ -9,6 +9,7 @@ class SuratSehat extends Model
     protected $table = 'surat_keterangan_sehat';
     protected $guarded = ['id'];
     public $timestamps = false;
+    protected $fillable = ['id_pemeriksaan', 'nomor_surat', 'hasil', 'dipergunakan_untuk'];
 
     public function pemeriksaan()
     {
