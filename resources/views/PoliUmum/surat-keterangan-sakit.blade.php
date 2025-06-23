@@ -161,158 +161,166 @@
                     </div>
                     <div class="modal-body">
                         <!-- ISI MODAL -->
-                        <div>
-                            <div class="row mb-2 align-items-center">
-                                <div class="col-md-2">
-                                    <label class="fw-semibold">Nomor</label>
+                        <form action="#" method="POST">
+                            @csrf
+                            <div>
+                                <div class="row mb-2 align-items-center">
+                                    <div class="col-md-2">
+                                        <label class="fw-semibold">Nomor</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" value="001/MS/I/2025" readonly>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" value="001/MS/I/2025" readonly>
+                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
+                                    PRATAMA
+                                    INSAN MEDIKA, menerangkan bahwa:</label>
+                                <div class="row mb-2 align-items-center">
+                                    <div class="col-md-2">
+                                        <label class="fw-semibold">Nama</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" value="Rina Sofia" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-2 align-items-center">
+                                    <div class="col-md-2">
+                                        <label class="fw-semibold">Tanggal Lahir</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" value="26 Oktober 2003" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-2 align-items-center">
+                                    <div class="col-md-2">
+                                        <label class="fw-semibold">Jenis Kelamin</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" value="Perempuan" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-2 align-items-center">
+                                    <div class="col-md-2">
+                                        <label class="fw-semibold">Alamat</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99"
+                                            readonly style="height: 50px;">
+                                    </div>
+                                </div>
+                                <div class="mb-3 d-flex align-items-center gap-2">
+                                    <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit,
+                                        sehingga
+                                        perlu istirahat selama</label>
+                                    <input type="text" class="form-control" value="4" readonly style="width: 50px;">
+                                    <label class="fw-semibold">hari</label>
+                                </div>
+                                <div class="mb-3 d-flex align-items-center">
+                                    <label class="fw-semibold me-2">mulai tanggal</label>
+                                    <input type="text" class="form-control" value="10/02/2025 s/d 13/02/2025" readonly
+                                        style="width: 250px;">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
                                 </div>
                             </div>
-                            <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
-                                PRATAMA
-                                INSAN MEDIKA, menerangkan bahwa:</label>
-                            <div class="row mb-2 align-items-center">
-                                <div class="col-md-2">
-                                    <label class="fw-semibold">Nama</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" value="Rina Sofia" readonly>
-                                </div>
-                            </div>
-                            <div class="row mb-2 align-items-center">
-                                <div class="col-md-2">
-                                    <label class="fw-semibold">Tanggal Lahir</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" value="26 Oktober 2003" readonly>
-                                </div>
-                            </div>
-                            <div class="row mb-2 align-items-center">
-                                <div class="col-md-2">
-                                    <label class="fw-semibold">Jenis Kelamin</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" value="Perempuan" readonly>
-                                </div>
-                            </div>
-                            <div class="row mb-2 align-items-center">
-                                <div class="col-md-2">
-                                    <label class="fw-semibold">Alamat</label>
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" value="Perumahan Taman Gading Blok 99"
-                                        readonly style="height: 50px;">
-                                </div>
-                            </div>
-                            <div class="mb-3 d-flex align-items-center gap-2">
-                                <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit, sehingga
-                                    perlu istirahat selama</label>
-                                <input type="text" class="form-control" value="4" readonly style="width: 50px;">
-                                <label class="fw-semibold">hari</label>
-                            </div>
-                            <div class="mb-3 d-flex align-items-center">
-                                <label class="fw-semibold me-2">mulai tanggal</label>
-                                <input type="text" class="form-control" value="10/02/2025 s/d 13/02/2025" readonly
-                                    style="width: 250px;">
-                            </div>
-                            <div class="mb-3">
-                                <label class="fw-semibold">Demikian agar digunakan sebagaimana mestinya.</label>
-                            </div>
-                        </div>
-                        <div class="mb-4 text-left ms-auto" style="width: fit-content;">
-                            <p>Jember, 1 Januari 2025</p>
+                            <div class="mb-4 text-left ms-auto" style="width: fit-content;">
+                                <p>Jember, 1 Januari 2025</p>
 
-                            <p>Dokter yang memeriksa :</p>
+                                <p>Dokter yang memeriksa :</p>
 
-                            <div
-                                style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
+                                <div
+                                    style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
+                                </div>
+
+                                <p>(Nama Dokter)</p>
+                                <p>SIP.</p>
                             </div>
-
-                            <p>(Nama Dokter)</p>
-                            <p>SIP.</p>
-                        </div>
+                            <div style="display: flex; justify-content: center;">
+                                <button class="btn btn-primary" type="submit">Simpan</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     @endforeach
 @endsection
 
 @push('scripts')
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <script>
-            $(document).ready(function() {
-                // Inisialisasi Select2 untuk pencarian pasien
-                $('#searchPasien').select2({
-                    placeholder: 'Cari Data Pasien...',
-                    allowClear: true,
-                    ajax: {
-                        url: '{{ route('poli-umum.search-pasien') }}',
-                        dataType: 'json',
-                        delay: 250,
-                        data: function(params) {
-                            return {
-                                q: params.term
-                            };
-                        },
-                        processResults: function(data) {
-                            return {
-                                results: data.results
-                            };
-                        },
-                        cache: true
-                    }
-                });
-
-                // Fungsi pencarian pasien
-                $('#btnCariPasien').on('click', function(e) {
-                    e.preventDefault();
-                    const noRM = $('#searchPasien').val();
-                    if (noRM) {
-                        // Lakukan pencarian atau filter data
-                        alert('Akan mencari pasien dengan RM: ' + noRM);
-                        // Implementasi sebenarnya: filter tabel atau reload halaman dengan parameter
-                    } else {
-                        alert('Silakan pilih data pasien terlebih dahulu.');
-                    }
-                });
-
-                // Fungsi untuk mengubah jumlah entri per halaman
-                $('#perPage').on('change', function() {
-                    const perPage = $(this).val();
-                    // Simpan preferensi ke cookie atau local storage
-                    localStorage.setItem('perPage', perPage);
-
-                    // Reload halaman dengan parameter per_page
-                    const url = new URL(window.location.href);
-                    url.searchParams.set('per_page', perPage);
-                    window.location.href = url.toString();
-                });
-
-                // Set nilai default dari cookie/local storage
-                const savedPerPage = localStorage.getItem('perPage') || '10';
-                $('#perPage').val(savedPerPage);
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi Select2 untuk pencarian pasien
+            $('#searchPasien').select2({
+                placeholder: 'Cari Data Pasien...',
+                allowClear: true,
+                ajax: {
+                    url: '{{ route('poli-umum.search-pasien') }}',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: params.term
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: data.results
+                        };
+                    },
+                    cache: true
+                }
             });
 
-            // Contoh: tombol detail akan isi modal secara dinamis
-            document.addEventListener("DOMContentLoaded", function() {
-                document.querySelectorAll(".btn-detail").forEach(button => {
-                    button.addEventListener("click", function() {
-                        const nama = this.getAttribute("data-nama");
-                        const rm = this.getAttribute("data-rm");
-                        const periksa = this.getAttribute("data-periksa");
-                        const surat = this.getAttribute("data-surat");
+            // Fungsi pencarian pasien
+            $('#btnCariPasien').on('click', function(e) {
+                e.preventDefault();
+                const noRM = $('#searchPasien').val();
+                if (noRM) {
+                    // Lakukan pencarian atau filter data
+                    alert('Akan mencari pasien dengan RM: ' + noRM);
+                    // Implementasi sebenarnya: filter tabel atau reload halaman dengan parameter
+                } else {
+                    alert('Silakan pilih data pasien terlebih dahulu.');
+                }
+            });
 
-                        document.getElementById("modal-nama").textContent = nama;
-                        document.getElementById("modal-rm").textContent = rm;
-                        document.getElementById("modal-periksa").textContent = periksa;
-                        document.getElementById("modal-surat").textContent = surat;
-                    });
+            // Fungsi untuk mengubah jumlah entri per halaman
+            $('#perPage').on('change', function() {
+                const perPage = $(this).val();
+                // Simpan preferensi ke cookie atau local storage
+                localStorage.setItem('perPage', perPage);
+
+                // Reload halaman dengan parameter per_page
+                const url = new URL(window.location.href);
+                url.searchParams.set('per_page', perPage);
+                window.location.href = url.toString();
+            });
+
+            // Set nilai default dari cookie/local storage
+            const savedPerPage = localStorage.getItem('perPage') || '10';
+            $('#perPage').val(savedPerPage);
+        });
+
+        // Contoh: tombol detail akan isi modal secara dinamis
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".btn-detail").forEach(button => {
+                button.addEventListener("click", function() {
+                    const nama = this.getAttribute("data-nama");
+                    const rm = this.getAttribute("data-rm");
+                    const periksa = this.getAttribute("data-periksa");
+                    const surat = this.getAttribute("data-surat");
+
+                    document.getElementById("modal-nama").textContent = nama;
+                    document.getElementById("modal-rm").textContent = rm;
+                    document.getElementById("modal-periksa").textContent = periksa;
+                    document.getElementById("modal-surat").textContent = surat;
                 });
             });
-        </script>
-    @endpush
+        });
+    </script>
+@endpush
