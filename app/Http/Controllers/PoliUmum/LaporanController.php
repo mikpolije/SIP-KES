@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Exports\PoliUmumExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
+use App\Models\ICD10_Umum;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
@@ -26,6 +27,51 @@ class LaporanController extends Controller
             'bulan' => $this->translateMonthToIndonesian($bulan),
             'caraBayar' => $caraBayar,
             'data' => $data
+        ]);
+    }
+
+    public function getDataPenyakit(Request $request)
+    {
+        $bulan = $request->input('bulan', 'Januari');
+        $caraBayar = $request->input('cara_bayar', 'Umum');
+
+        // Konversi bulan ke angka
+        $bulanAngka = date('m', strtotime("1 $bulan 2024"));
+        $tahun = 2024;
+
+        // Buat range tanggal awal dan akhir
+        $startDate = Carbon::create($tahun, $bulanAngka, 1)->startOfMonth()->toDateString();
+        $endDate = Carbon::create($tahun, $bulanAngka, 1)->endOfMonth()->toDateString();
+
+        // Query ICD10 paling banyak
+        $data = ICD10_Umum::select('id_icd10', DB::raw('COUNT(*) as jumlah'))
+            ->whereHas('pemeriksaan', function ($query) use ($startDate, $endDate, $caraBayar) {
+                $query->whereBetween('created_at', [$startDate, $endDate])
+                    ->whereHas('pendaftaran', function ($q) use ($caraBayar) {
+                        $q->where('jenis_pembayaran', $caraBayar);
+                    });
+            })
+            ->groupBy('id_icd10')
+            ->orderByDesc('jumlah')
+            ->limit(10)
+            ->get();
+
+        $total = $data->sum('jumlah');
+
+        // Bentuk array untuk tabel
+        $dataFormatted = $data->map(function ($item) use ($total) {
+            $kode = $item->id_icd10;
+            $nama = ICD10::where('id', $kode)->value('display'); // Sesuaikan dengan struktur tabel ICD10 Anda
+            $jumlah = $item->jumlah;
+            $persen = number_format(($jumlah / $total) * 100, 2);
+
+            return [$kode, $nama, $jumlah, $persen . '%'];
+        });
+
+        return view('poli-umum.laporan.10-besar', [
+            'data' => $dataFormatted,
+            'bulan' => $bulan,
+            'caraBayar' => $caraBayar,
         ]);
     }
 

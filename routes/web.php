@@ -147,6 +147,7 @@ Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiw
 use App\Http\Controllers\PoliUmum\LaporanController;
 
 Route::get('laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
+Route::get('/poli-umum/laporan', [LaporanController::class, 'getDataPenyakit'])->name('poliumum.laporan.filter');
 Route::get('poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
 Route::prefix('poliumum/laporan')->group(function () {
     Route::get('/', [LaporanController::class, 'index'])->name(''); // poliumum.laporan

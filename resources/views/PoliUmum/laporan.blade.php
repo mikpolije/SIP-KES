@@ -166,7 +166,7 @@
                             </button>
                         </a>
                     </div>
-                    <form method="GET" action="{{ route('poliumum.laporan') }}">
+                    <form method="GET" action="{{ route('poliumum.laporan.filter') }}">
                         <label for="bulan">Bulan</label>
                         <select name="bulan" id="bulan">
                             @foreach (['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'] as $month)
