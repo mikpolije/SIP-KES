@@ -154,8 +154,7 @@
                 <div class="card">
                     <div class="filter-header mb-4">
                         <a href="{{ route('poliumum.laporan') }}">
-                            <button
-                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
+                            <button class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
                                 10 Besar Penyakit
                             </button>
                         </a>
@@ -208,13 +207,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $index => $row)
+                            @foreach ($icd10 as $icd)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $row[0] }}</td>
-                                    <td>{{ $row[1] }}</td>
-                                    <td class="text-right">{{ number_format($row[2], 0, ',', '.') }}</td>
-                                    <td class="text-right">{{ $row[3] }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $icd->icd10->code ?? '-' }}</td>
+                                    <td>{{ $icd->icd10->display ?? '-' }}</td>
+                                    <td class="text-right">{{ $icd->jumlah }}</td>
+                                    <td class="text-right">
+                                        {{ number_format(($icd->jumlah / $icd10->sum('jumlah')) * 100, 2) }}%
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

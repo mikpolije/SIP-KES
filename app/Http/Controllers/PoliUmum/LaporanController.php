@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Exports\PoliUmumExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
+use App\Models\ICD10_Umum;
 
 class LaporanController extends Controller
 {
@@ -22,10 +22,18 @@ class LaporanController extends Controller
         $caraBayar = $request->input('cara_bayar', 'Umum');
         $data = $this->getFilteredData($bulan, $caraBayar);
 
+        $icd10 = ICD10_Umum::select('id_icd10', DB::raw('COUNT(*) as jumlah'))
+            ->groupBy('id_icd10')
+            ->orderByDesc('jumlah')
+            ->take(10)
+            ->with('icd10')
+            ->get();
+
         return view('PoliUmum.laporan', [
             'bulan' => $this->translateMonthToIndonesian($bulan),
             'caraBayar' => $caraBayar,
-            'data' => $data
+            'data' => $data,
+            'icd10' => $icd10
         ]);
     }
 
