@@ -24,7 +24,7 @@
             text-align: center;
             border-bottom: 3px solid #000;
             padding-bottom: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
 
         .header h2 {
@@ -109,7 +109,7 @@
         <div class="row">
             <!-- Logo di sebelah kiri -->
             <div class="logo" style="flex: 1;">
-                <img src="{{ asset('klinik-insan.png') }}" alt="Logo Klinik" style="width: 80px; height: auto;">
+                <img src="{{ URL::asset('/assets/klinik-insan.png') }}" width="150" alt="Logo">
             </div>
 
             <!-- Teks di sebelah kanan -->
@@ -119,12 +119,12 @@
                 <p>Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</p>
             </div>
         </div>
-        <hr style="border: 2px solid black; margin-top: 10px;">
+        <hr style="border: 2px solid black; margin-top: 0px;">
     </div>
 
     <div class="title">
         <h3>SURAT KETERANGAN SEHAT</h3>
-        <p>Nomor: 001/SS/KM/I/2025</p>
+        <p>Nomor: {{ $rw->nomor_surat }}</p>
     </div>
 
     <div class="content">
@@ -133,44 +133,53 @@
             menerangkan bahwa:</p>
 
         <div class="row">
-            <div class="label">Nama</div>: {{ $rw->pendaftaran->data_pasien->nama_pasien }}
+            <div class="label">Nama</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->nama_pasien }}
         </div>
         <div class="row">
             <div class="label">Kelamin</div>:
-            {{ $rw->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}
+            {{ $rw->pemeriksaan->pendaftaran->data_pasien->jenis_kelamin == '1' ? 'Laki-laki' : 'Perempuan' }}
         </div>
         <div class="row">
-            <div class="label">Tanggal Lahir</div>: {{ $rw->pendaftaran->data_pasien->tanggal_lahir_pasien }}
+            <div class="label">Tanggal Lahir</div>:
+            {{ $rw->pemeriksaan->pendaftaran->data_pasien->tanggal_lahir_pasien }}
         </div>
         <div class="row">
-            <div class="label">Jenis Pekerjaan</div>: {{ $rw->pendaftaran->data_pasien->pekerjaan }}
+            <div class="label">Jenis Pekerjaan</div>: {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan }}
         </div>
         <div class="row">
-            <div class="label">Alamat</div>: J{{ $rw->pendaftaran->data_pasien->alamat_pasien }}
+            <div class="label">Alamat</div>: J{{ $rw->pemeriksaan->pendaftaran->data_pasien->alamat_pasien }}
         </div>
 
-        <p class="indent">Telah menjalani pemeriksaan kesehatan jasmani pada tanggal
-            {{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }} dengan hasil:</p>
+        <p>Telah menjalani pemeriksaan kesehatan jasmani pada tanggal
+            {{ \Carbon\Carbon::parse($rw->pemeriksaan->tanggal_periksa_pasien)->format('d-m-Y') }} dengan hasil:</p>
         <div class="dotline">{{ $rw->hasil }}</div>
 
         <p>Surat keterangan ini dipergunakan untuk :</p>
-        <div class="dotline">{{ $rw->digunakan_untuk }}</div>
+        <div class="dotline">{{ $rw->dipergunakan_untuk }}</div>
         <div class="dotline">Demikian agar digunakan sebagaimana mestinya.</div>
 
         <div class="keterangan">
             <p><strong>Keterangan:</strong></p>
             <div class="row">
-                <div class="label">Berat Badan</div>: {{ $rw->bb_pasien }} KG
+                <div class="label">Berat Badan</div>: {{ $rw->pemeriksaan->bb_pasien }} KG
             </div>
             <div class="row">
-                <div class="label">Tinggi Badan</div>: {{ $rw->tb_pasien }} CM
+                <div class="label">Tinggi Badan</div>: {{ $rw->pemeriksaan->tb_pasien }} CM
             </div>
             <div class="row">
                 <div class="label">Golongan Darah</div>:
-                {{ $rw->gol_darah == 1 ? 'A' : ($rw->gol_darah == 2 ? 'B' : ($rw->gol_darah == 3 ? 'AB' : ($rw->gol_darah == 4 ? 'O' : 'Tidak Diketahui'))) }}
+                {{ $rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 1
+                    ? 'A'
+                    : ($rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 2
+                        ? 'B'
+                        : ($rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 3
+                            ? 'AB'
+                            : ($rw->pemeriksaan->pendaftaran->data_pasien->gol_darah == 4
+                                ? 'O'
+                                : 'Tidak Diketahui'))) }}
             </div>
             <div class="row">
-                <div class="label">Tekanan Darah</div>: {{ $rw->sistole }}/{{ $rw->diastole }} mmHG
+                <div class="label">Tekanan Darah</div>: {{ $rw->pemeriksaan->sistole }}/{{ $rw->pemeriksaan->diastole }} mmHG
             </div>
         </div>
     </div>
@@ -182,8 +191,8 @@
 
     <div class="ttd">
         <div style="width: 200px; height: 80px; border: 1px dashed #666;"></div>
-        <p><strong>Dr. {{ $rw->pendaftaran->data_dokter->nama }}</strong></p>
-        <p><strong>{{ $rw->pendaftaran->data_dokter->no_sip }}</strong></p>
+        <p><strong>Dr. {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}</strong></p>
+        <p><strong>{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</strong></p>
     </div>
 
     <script>

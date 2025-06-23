@@ -62,7 +62,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
                                     <td>{{ $rw->pendaftaran->data_pasien->no_rm }}</td>
-                                    <td>30/B/IIM/IV/2025</td>
+                                    <td>{{ $rw->nomor_surat ?? 'belum ada nomor surat' }}</td>
                                     <td>{{ $rw->pendaftaran->data_pasien->nama_pasien }}</td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="{{ route('surat.sehat.cetak', $rw->id_pemeriksaan) }}" target="_blank"
