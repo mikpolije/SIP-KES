@@ -219,7 +219,7 @@
                                     <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit,
                                         sehingga
                                         perlu istirahat selama</label>
-                                    <input type="number" class="form-control" name="hari" value="" style="width: 50px;">
+                                    <input type="number" class="form-control" name="hari" value="" style="width: 90px;">
                                     <label class="fw-semibold">hari</label>
                                 </div>
                                 <div class="mb-3 d-flex align-items-center gap-2">

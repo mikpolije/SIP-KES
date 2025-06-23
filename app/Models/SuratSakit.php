@@ -10,9 +10,8 @@ class SuratSakit extends Model
     use HasFactory;
 
     protected $table = 'surat_keterangan_sakit';
-
     protected $primaryKey = 'id';
-
+    public $timestamps = false;
     protected $guarded = ['id'];
     protected $fillable = ['id_pemeriksaan', 'nomor_surat', 'hari', 'tanggal_awal', 'tanggal_akhir'];
 
