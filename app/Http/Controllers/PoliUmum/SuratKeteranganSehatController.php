@@ -27,9 +27,9 @@ class SuratKeteranganSehatController extends Controller
     {
         $validated = $request->validate([
             'id_pemeriksaan' => 'required',
-            'nomor_surat' => 'required|string|max:255',
+            'nomor_surat' => 'required',
             'hasil' => 'required|string',
-            'dipergunakan_untuk' => 'required|string|max:255',
+            'dipergunakan_untuk' => 'required',
         ]);
 
         SuratSehat::create($validated);
