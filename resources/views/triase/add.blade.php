@@ -1912,7 +1912,7 @@
                                 results: $.map(data, function (item) {
                                     return {
                                         text: 'Rp. ' + item.harga + ' - ' + item.nama,
-                                        id: item.id
+                                        id: item.id_obat
                                     }
                                 })
                             };
