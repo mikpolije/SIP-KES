@@ -159,13 +159,13 @@
                                     <label class="fw-semibold">dengan hasil: </label>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="3" style="resize: none; white-space: pre-wrap;" placeholder="silahkan diisi"></textarea>
+                                    <textarea class="form-control" rows="3" name="hasil" style="resize: none; white-space: pre-wrap;" placeholder="silahkan diisi"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="fw-semibold">Surat ini dipergunakan untuk</label>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" value=""
+                                    <input type="text" class="form-control" value="" name="dipergunakan_untuk"
                                         placeholder="silahkan diisi" style="height: 70px;">
                                 </div>
                                 <div class="mb-3">
