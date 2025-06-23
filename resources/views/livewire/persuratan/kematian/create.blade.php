@@ -326,10 +326,11 @@ new class extends Component {
                         <div class="col-sm-10">
                             <textarea class="form-control @error('alamat') is-invalid @enderror"
                                     wire:model="alamat" id="alamat" placeholder="Alamat lengkap"
-                                    rows="2" {{ $patientFound ? 'readonly' : '' }} disable>
+                                    rows="2" {{ $patientFound ? 'readonly' : '' }}></textarea>
                             @error('alamat') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
+
 
                     <div class="row mb-3">
                         <label for="tanggalMasukRS" class="col-sm-2 col-form-label">Tgl. Masuk RS</label>
