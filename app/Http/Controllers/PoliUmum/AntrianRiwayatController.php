@@ -135,11 +135,11 @@ class AntrianRiwayatController extends Controller
             ]);
 
             // tambah id pemeriksaan di surat keterangan
-            if (!SuratSehat::where('id_pemeriksaan', $id_pemeriksaan)->exists()) {
-                SuratSehat::create([
-                    'id_pemeriksaan' => $id_pemeriksaan
-                ]);
-            }
+            // if (!SuratSehat::where('id_pemeriksaan', $id_pemeriksaan)->exists()) {
+            //     SuratSehat::create([
+            //         'id_pemeriksaan' => $id_pemeriksaan
+            //     ]);
+            // }
 
             // ICD9
             foreach ($request->id_icd9_list as $id_icd9) {

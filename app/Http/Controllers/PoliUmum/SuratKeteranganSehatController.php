@@ -12,8 +12,8 @@ class SuratKeteranganSehatController extends Controller
 {
     public function index()
     {
-        $riyawat = SuratSehat::with('pemeriksaan.pendaftaran.data_pasien', 'pemeriksaan.pendaftaran.data_dokter')
-            ->whereHas('pemeriksaan.pendaftaran', function ($q) {
+        $riyawat = PemeriksaanAwal::with('SuratSehat', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+            ->whereHas('pendaftaran', function ($q) {
                 $q->where('status', 'selesai')
                     ->where('id_poli', 1);
             })
@@ -24,20 +24,19 @@ class SuratKeteranganSehatController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function storeSuratSehat(Request $request)
     {
         $validated = $request->validate([
-            'nomor_surat' => 'required|string',
+            'id_pemeriksaan' => 'required',
+            'nomor_surat' => 'required',
             'hasil' => 'required|string',
-            'dipergunakan_untuk' => 'required|string',
+            'dipergunakan_untuk' => 'required',
         ]);
 
-        $surat = SuratSehat::findOrFail($id);
-        $surat->update($validated);
+        SuratSehat::create($validated);
 
-        return redirect()->route('surat.sehat')->with('success', 'Surat sehat berhasil diperbarui.');
+        return redirect()->route('surat.sehat')->with('success', 'Surat sehat berhasil disimpan.');
     }
-
 
     public function cetak($id)
     {

@@ -21,8 +21,8 @@ Route::middleware('web')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
         return redirect()->route('login');
-    Route::get('/user/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-    Route::post('/user/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+    Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+    Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
     });
     Route::get('/user/register', function () {
     return view('user.register');
@@ -156,8 +156,7 @@ use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 
 // Route Surat Keterangan Sehat
 Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
-// Route::post('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'storeSuratSehat'])->name('surat.sehat.store');
-Route::put('surat-keterangan-sehat/{id}', [SuratKeteranganSehatController::class, 'update'])->name('surat.sehat.update');
+Route::post('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'storeSuratSehat'])->name('surat.sehat.store');
 Route::get('surat-keterangan-sehat/cetak/{id}', [SuratKeteranganSehatController::class, 'cetak'])->name('surat.sehat.cetak');
 
 // Route Surat Keterangan Sakit

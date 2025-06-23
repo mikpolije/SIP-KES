@@ -13,7 +13,7 @@ class SuratSehat extends Model
 
     public function pemeriksaan()
     {
-        return $this->belongsTo(PemeriksaanAwal::class, 'id_pemeriksaan');
+        return $this->belongsTo(PemeriksaanAwal::class, 'id_pemeriksaan', 'id_pemeriksaan');
     }
 
     public function pendaftaran()
