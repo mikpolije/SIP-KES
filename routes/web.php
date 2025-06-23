@@ -26,10 +26,7 @@ Route::post('/register', [App\Http\Controllers\RegisterController::class, 'regis
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// Hak Akses
-Route::middleware(['auth', 'profesi:admin'])->group(function () {
-    Route::resource('user', \App\Http\Controllers\UserController::class);
-});
+Route::resource('user', \App\Http\Controllers\UserController::class);
 
 Route::get('/forgot-password', [AuthController::class, 'showIdentityForm'])->name('password.forgot');
 Route::post('/forgot-password/check', [AuthController::class, 'checkIdentity'])->name('password.checkIdentity');
