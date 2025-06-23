@@ -42,12 +42,10 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
 Volt::route('pembayaran', 'pembayaran.index')->name('pembayaran.index');
 
 // Route General Consent
-Route::get('/main/general-consent', [GeneralConsentController::class, 'index'])->name('general-consent.index');
-Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
-Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
-Route::get('/sign-request/{token}', [generalConsentController::class, 'showForm']);
-Route::post('/sign-request/{token}', [generalConsentController::class, 'submitForm']);
-Route::post('/api/register-token/{token}', [generalConsentController::class, 'registerToken'])
+Route::post('/main/general-content/save', [GeneralConsentController::class, 'store'])->name('general-consent.store');
+Route::get('/main/cetak-general-consent/{id}', [GeneralConsentController::class, 'cetak'])->name('general-consent.cetak');
+Route::get('/sign-request/{token}', [GeneralConsentController::class, 'showForm']);
+Route::post('/sign-request/{token}', [GeneralConsentController::class, 'submitForm']);
 
 Route::prefix('rawat-inap')->name('rawat-inap.')->group(function () {
     Volt::route('/laporan', 'laporan.penyakit-terbesar')->name('laporan');
