@@ -22,4 +22,19 @@ class SuratKeteranganSakitController extends Controller
             'riyawat' => $riyawat
         ]);
     }
+
+    public function storeSuratSakit(Request $request)
+    {
+        $validated = $request->validate([
+            'id_pemeriksaan' => 'required',
+            'nomor_surat' => 'required',
+            'hari' => 'required',
+            'tanggal_awal' => 'required|date',
+            'tanggal_akhir' => 'required|date',
+        ]);
+
+        SuratSakit::create($validated);
+
+        return redirect()->route('surat.sakit')->with('success', 'Surat sakit berhasil disimpan.');
+    }
 }

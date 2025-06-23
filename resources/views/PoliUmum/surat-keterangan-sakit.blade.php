@@ -161,7 +161,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- ISI MODAL -->
-                        <form action="#" method="POST">
+                        <form action="{{ route('surat.sakit.store') }}" method="POST">
                             @csrf
                             <div>
                                 <div class="row mb-2 align-items-center">
@@ -169,7 +169,7 @@
                                         <label class="fw-semibold">Nomor</label>
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="hidden" class="form-control" name="id_pemeriksaan"
+                                        <input type="text" class="form-control" name="id_pemeriksaan"
                                             value="{{ $rw->id_pemeriksaan }}">
                                         <input type="text" class="form-control" value="" name="nomor_surat"
                                             readonly>
@@ -220,7 +220,7 @@
                                     <label class="fw-semibold">Pada pemeriksaan saat ini ternyata dalam keadaan sakit,
                                         sehingga
                                         perlu istirahat selama</label>
-                                    <input type="text" class="form-control" value="4" readonly style="width: 50px;">
+                                    <input type="number" class="form-control" name="hari" value="" readonly style="width: 50px;">
                                     <label class="fw-semibold">hari</label>
                                 </div>
                                 <div class="mb-3 d-flex align-items-center gap-2">

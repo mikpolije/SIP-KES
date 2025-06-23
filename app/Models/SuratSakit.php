@@ -14,6 +14,7 @@ class SuratSakit extends Model
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
+    protected $fillable = ['id_pemeriksaan', 'nomor_surat', 'hari', 'tanggal_awal', 'tanggal_akhir'];
 
     public function pemeriksaan()
     {
