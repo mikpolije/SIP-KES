@@ -163,11 +163,13 @@ new class extends Component {
     public function save()
     {
         $this->validate([
+            'nomor' => 'required',
             'nomorRM' => 'required|exists:data_pasien,no_rm',
             'namaPasien' => 'required',
             'jenisKelamin' => 'required',
-            'alamat' => 'required|string|max:500',
             'tglLahir' => 'required|date',
+            'alamat' => 'required|string|max:500',
+            'tanggalMasuk' => 'required|date',
             'tanggalKematian' => 'required|date',
             'waktuKematian' => 'required',
             'tempatKematian' => 'required|string|max:255',
@@ -189,6 +191,10 @@ new class extends Component {
         $suratKematian->nomor = 'SKM/' . now()->format('Y/m/d') . '/' . str_pad($countToday, 3, '0', STR_PAD_LEFT);
 
         $suratKematian->no_rm = $pasien->no_rm;
+        $suratKematian->nama_pasien = $pasien->nama_pasien;
+        $suratKematian->jenis_kelamin = $pasien->jenis_kelamin;
+        $suratKematian->tgl_lahir = $pasien->tanggal_lahir_pasien ? \Carbon\Carbon::parse($pasien->tanggal_lahir_pasien) : null;
+        $suratKematian->alamat = $pasien->alamat_pasien;
         $suratKematian->tanggal_masuk_rs = $this->tanggalMasukRS ? \Carbon\Carbon::parse($this->tanggalMasukRS) : null;
         $suratKematian->waktu_masuk_rs = $this->waktuMasukRS ?: null;
         $suratKematian->tanggal_kematian = \Carbon\Carbon::parse($this->tanggalKematian);
@@ -196,6 +202,7 @@ new class extends Component {
         $suratKematian->tempat_kematian = $this->tempatKematian;
         $suratKematian->id_icd = $this->selectedDiagnosa;
         $suratKematian->penandatangan= $this->dokterSearch;
+
         $suratKematian->save();
 
         flash()->success('Surat Kematian berhasil disimpan!');
