@@ -10,6 +10,13 @@ new class extends Component {
     public $nomorRM = '';
     public $namaPasien = '';
     public $jenisKelamin = '';
+    public $jenisKelaminList = [
+        0 => 'Tidak Diketahui',
+        1 => 'Laki-laki',
+        2 => 'Perempuan',
+        3 => 'Tidak Dapat Ditentukan',
+        4 => 'Tidak Mengisi',
+        ];
     public $alamat = '';
     public $tglLahir = '';
     public $tanggalMasukRS = '';
@@ -127,8 +134,9 @@ new class extends Component {
 
             if ($this->patient) {
                 $this->namaPasien = $this->patient->nama_pasien;
-                $this->jenisKelamin = $this->patient->jenis_kelamin;
-                $this->alamat = $this->patient->alamat;
+                $kodeKelamin = $this->patient->jenis_kelamin;
+                $this->jenisKelamin = $this->jenisKelaminList[$kodeKelamin] ?? 'Tidak Diketahui';
+                $this->alamat = $this->patient->alamat_pasien;
                 $this->tglLahir = $this->patient->tanggal_lahir_pasien ?
                     \Carbon\Carbon::parse($this->patient->tanggal_lahir_pasien)->format('Y-m-d') : '';
                 $this->patientFound = true;
@@ -292,16 +300,10 @@ new class extends Component {
                     <div class="row mb-3">
                         <label for="jenisKelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-10">
-                            <select class="form-select @error('jenisKelamin') is-invalid @enderror"
-                                    wire:model="jenisKelamin" id="jenisKelamin"
-                                    {{ $patientFound ? 'disabled' : '' }}>
-                                <option value="">-- Pilih Jenis Kelamin --</option>
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                                <option value="Tidak Diketahui">Tidak Diketahui</option>
-                                <option value="Tidak Dapat Ditentukan">Tidak Dapat Ditentukan</option>
-                                <option value="Tidak mengisi">Tidak mengisi</option>
-                            </select>
+                            <input type="text"
+                                class="form-control @error('jenisKelamin') is-invalid @enderror"
+                                wire:model="jenisKelamin" id="jenisKelamin"
+                                placeholder="Jenis Kelamin" readonly disabled>
                             @error('jenisKelamin') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
@@ -311,7 +313,7 @@ new class extends Component {
                         <div class="col-sm-10">
                             <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
                                 wire:model="tglLahir" id="tglLahir"
-                                {{ $patientFound ? 'readonly' : '' }}>
+                                {{ $patientFound ? 'readonly' : '' }} disabled>
                             @if($tglLahir)
                                 <small class="text-muted">Format tampil: {{ $this->getFormattedTglLahir() }}</small>
                             @endif
@@ -328,6 +330,7 @@ new class extends Component {
                             @error('alamat') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
+
 
                     <div class="row mb-3">
                         <label for="tanggalMasukRS" class="col-sm-2 col-form-label">Tgl. Masuk RS</label>
