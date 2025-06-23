@@ -10,6 +10,23 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
+public function index(Request $request)
+{
+    $search = $request->input('search');
+    $perPage = $request->input('perPage', 10); // default 10
+
+    $users = User::query()
+        ->when($search, function($query, $search) {
+            $query->where('nama', 'like', "%{$search}%")
+                  ->orWhere('username', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+        })
+        ->paginate($perPage)
+        ->appends($request->except('page')); // agar pagination tetap menyertakan query
+
+    return view('user.index', compact('users'));
+}
+
 public function store(Request $request)
 {
     if ($request->isMethod('get')) {
