@@ -212,7 +212,7 @@
 
             <!-- Kolom Hasil Tabel -->
             <div class="col-half">
-                <div class="card" id="tabelData" style="display: none;">
+                <div class="card" id="tabelData">
                     <p id="filterText"></p>
                     <h3 class="table-title">LAPORAN KUNJUNGAN</h3>
                     <p class="table-subtitle" id="periodeText"></p>
