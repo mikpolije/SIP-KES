@@ -10,14 +10,21 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function index(Request $request)
-    {
-        $search = $request->input('search');
-        $users = User::query()
-            ->when($search, fn($q) => $q->where('nama', 'like', "%{$search}%"))
-            ->get();
+{
+    $search = $request->input('search');
+    $perPage = $request->input('perPage', 10); // default 10
 
-        return view('user.index', compact('users'));
-    }
+    $users = User::query()
+        ->when($search, function($query, $search) {
+            $query->where('nama', 'like', "%{$search}%")
+                  ->orWhere('username', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+        })
+        ->paginate($perPage)
+        ->appends($request->except('page')); // agar pagination tetap menyertakan query
+
+    return view('user.index', compact('users'));
+}
 
 public function create()
 {
@@ -26,6 +33,8 @@ public function create()
 
   public function store(Request $request)
     {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         $request->validate([
             'nama'         => 'required|string|max:255',
             'username'     => 'required|string|max:50|unique:users,username',

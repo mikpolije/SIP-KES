@@ -8,28 +8,30 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\TriageController;
-use App\Http\Controllers\Master\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PoliUmum\PendafataranController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\Api\ARController;
 use App\Http\Middleware\CheckProfesi;
-use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 
 
-Route::middleware('web')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
-        return redirect()->route('login');
-    Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-    Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
-    });
-    Route::get('/user/register', function () {
-    return view('user.register');
-})->name('register.forms');
-});
+        return redirect()->route('login'); });
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+    Route::view('/user/register', 'user.register')->name('register.forms');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+Route::resource('user', \App\Http\Controllers\UserController::class);
+
+Route::get('/forgot-password', [AuthController::class, 'showIdentityForm'])->name('password.forgot');
+Route::post('/forgot-password/check', [AuthController::class, 'checkIdentity'])->name('password.checkIdentity');
+Route::get('/reset-password/{id}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password/{id}', [AuthController::class, 'resetPassword'])->name('password.update');
 
 Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/', 'doctor.index')->name('index');
@@ -74,9 +76,8 @@ Route::prefix('main/polikia')->group(function () {
 });
 
 // Route detail riwayat pasien
-Route::get('/poli-kia/detail/{id}', function ($id) {
-    return view('main.polikia.detailkia');
-})->name('main.polikia.detailkia');
+
+Route::get('/poli-kia/detail/{no_rm}', [App\Http\Controllers\Api\PoliKiaController::class, 'getDataPasien'])->name('main.polikia.detailkia');
 
 Route::get('/poli-kia/search-pasien', [App\Http\Controllers\Api\ARController::class, 'searchPasien'])->name('poli-kia.search-pasien');
 
@@ -103,7 +104,11 @@ Route::get('/get-kabupaten/{province_code}', [PendafataranController::class, 'ge
 Route::get('/get-kecamatan/{city_code}', [PendafataranController::class, 'getKecamatan']);
 Route::get('/get-desa/{district_code}', [PendafataranController::class, 'getDesa']);
 
+
+
+
 // route sidebar antrian dan riwayat
+use App\Http\Controllers\PoliUmum\AntrianRiwayatController;
 Route::get('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'pemeriksaanAwal'])->name('poliumum.pemeriksaanAwal');
 Route::post('main/antrian/pemeriksaan-awal/{id_pendaftaran}', [AntrianRiwayatController::class, 'storePemeriksaanAwal'])->name('poliumum.pemeriksaanAwal.store');
 Route::get('main/antrian/pemeriksaan-akhir', [AntrianRiwayatController::class, 'antrianPemeriksaan3'])->name('poliumum.pemeriksaanAkhir');
@@ -113,6 +118,8 @@ Route::get('/search/icd9', [AntrianRiwayatController::class, 'searchICD9'])->nam
 Route::get('/search-icd10', [AntrianRiwayatController::class, 'searchICD10'])->name('search.icd10');
 Route::get('/search-layanan', [AntrianRiwayatController::class, 'searchLayanan'])->name('search.layanan');
 Route::get('/search-obat', [AntrianRiwayatController::class, 'searchObat'])->name('search.obat');
+Route::get('/main/antrian/riwayat', [AntrianRiwayatController::class, 'riwayat'])->name('poliumum.riwayat');
+Route::get('/main/antrian/riyawat/detail/{id_pemeriksaan}', [AntrianRiwayatController::class, 'detalRiyawat'])->name('poliumum.detailRiwayat');
 
 Route::prefix('main/poliumum')->group(function () {
     Route::post('/main/pendaftaran/pasien', [PendafataranController::class, 'storePendafataran'])->name('pendaftaran.store');
@@ -152,6 +159,8 @@ use App\Http\Controllers\PoliUmum\SuratKeteranganSehatController;
 
 // Route Surat Keterangan Sehat
 Route::get('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'index'])->name('surat.sehat');
+Route::post('surat-keterangan-sehat', [SuratKeteranganSehatController::class, 'storeSuratSehat'])->name('surat.sehat.store');
+Route::get('surat-keterangan-sehat/cetak/{id}', [SuratKeteranganSehatController::class, 'cetak'])->name('surat.sehat.cetak');
 
 // Route Surat Keterangan Sakit
 Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
@@ -177,9 +186,7 @@ Route::get('/riwayat-medis/cetak/{id}', [App\Http\Controllers\RiwayatMedisContro
 
 
 
-Route::middleware(['auth', 'profesi:admin,superadmin,test'])->group(function () {
-    Route::resource('user', \App\Http\Controllers\UserController::class);
-});
+
 
 //route autocomplete cari data pasien
 Route::get('/cari-pasien', [PendafataranController::class, 'cariPasien']);

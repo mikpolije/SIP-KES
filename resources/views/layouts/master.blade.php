@@ -5,7 +5,6 @@
   @include('layouts.head')
   <title>@yield('title', 'SIP-Kes')</title>
   @yield('css')
->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   @stack('style')
@@ -146,6 +145,7 @@
     <img class="lds-ripple img-fluid" src="{{ URL::asset('build/images/logos/logo.png') }}" alt="loader" />
   </div>
   <div id="main-wrapper">
+
 
     <!-- Sidebar Start -->
     <aside class="left-sidebar with-vertical">

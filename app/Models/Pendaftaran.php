@@ -30,6 +30,16 @@ class Pendaftaran extends Model
         return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
     }
 
+    public function data_dokter()
+    {
+        return $this->belongsTo(Dokter::class, 'id_dokter', 'id');
+    }
+
+    public function icd9_umum()
+    {
+        return $this->hasMany(ICD9_Umum::class, 'id_pendaftaran');
+    }
+
     public function layananPendaftaran()
     {
         return $this->hasMany(LayananPendaftaran::class, 'id_pendaftaran');

@@ -4,7 +4,8 @@
 
 @section('pageContent')
 <div class="container mt-4">
-    <h2 class="mb-4">Data Pengguna</h2>
+    <h1 class="mb-4">Master Data</h1>
+    <h3 class="mb-4">Data Pengguna</h3>
 
     <div class="d-flex justify-content-between mb-3">
         <div>
@@ -42,12 +43,13 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
                     <td>
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-secondary ml-2">Edit</a>
-                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger">Hapus</button>
-                        </form>
+                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-secondary ml-2">Edit</a>
+<form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+    @csrf
+    @method('DELETE')
+    <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger ml-2">Hapus</button>
+</form>
+
                     </td>
                 </tr>
             @empty
@@ -57,5 +59,23 @@
             @endforelse
         </tbody>
     </table>
+
+<form method="GET" action="{{ route('user.index') }}" class="form-inline">
+    <input type="hidden" name="search" value="{{ request('search') }}">
+    <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="perPage">Tampilkan</label>
+        </div>
+        <select class="form-control" id="perPage" name="perPage" onchange="this.form.submit()">
+            @foreach ([5, 10, 20, 50, 100] as $limit)
+                <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
+            @endforeach
+        </select>
+        <div class="input-group-append">
+            <span class="input-group-text">data</span>
+        </div>
+    </div>
+</form>
+
 </div>
 @endsection

@@ -162,7 +162,7 @@
                         <!-- Riwayat -->
                         <li class="sidebar-item">
                             <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayat') ? 'active' : '' }}"
-                                href="{{ route('riwayat.poliumum') }}">
+                                href="{{ route('poliumum.riwayat') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Riwayat</span>
                             </a>
@@ -423,36 +423,14 @@
 
                 <!-- Dropdown untuk Laporan Poli Umum -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('poliumum/laporan*') ? 'active' : '' }}"
-                        href="#" data-bs-toggle="collapse"
-                        aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}"
-                        data-bs-target="#submenu-laporan-poliumum">
-                        <div class="d-flex align-items-center">
-                            <div class="round-16 d-flex align-items-center justify-content-center">
+                        <a class="sidebar-link d-flex align-items-center px-2 {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
+                            href="{{ route('poliumum.laporan') }}">
+                            <div class="round-16 d-flex align-items-center justify-content-center me-2">
                                 <i class="ti ti-circle"></i>
                             </div>
-                            <span class="hide-menu ms-4">Laporan Poli Umum</span>
-                        </div>
-                    </a>
-                    <ul id="submenu-laporan-poliumum"
-                        class="second-level collapse {{ request()->is('poliumum/laporan*') ? 'show' : '' }}"
-                        aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
-                                href="{{ route('poliumum.laporan') }}">
-                                <i class="ti ti-circle"></i>
-                                <span class="hide-menu">10 Besar Penyakit</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/laporan/kunjungan') ? 'active' : '' }}"
-                                href="{{ route('poliumum.laporan.kunjungan') }}">
-                                <i class="ti ti-circle"></i>
-                                <span class="hide-menu">Kunjungan Poli Umum</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            <span class="hide-menu text-start flex-grow-1">Laporan Poli Umum</span>
+                        </a>
+                    </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('rawat-inap/laporan*') ? 'active' : '' }}"
@@ -487,7 +465,7 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Kunjungan</span>
+                        <span class="hide-menu">laporan UGD</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -557,6 +535,26 @@
                 </li>
             </ul>
         </li>
+
+        <!-- ---------------------------------- -->
+        <!-- Logout -->
+        <!-- ---------------------------------- -->
+        <li class="sidebar-item mt-auto" style="margin-top: 50px;">
+            <a class="sidebar-link btn btn-danger w-100 text-start d-flex align-items-center" href="{{ route('logout') }}">
+                <span class="d-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                        d="M10 15a1 1 0 0 0 1-1v-2a.5.5 0 0 1 1 0v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v2a.5.5 0 0 1-1 0V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7z"/>
+                        <path fill-rule="evenodd"
+                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 8l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        <path fill-rule="evenodd"
+                        d="M5 8a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 0-1h-8A.5.5 0 0 0 5 8z"/>
+                    </svg>
+                </span>
+            <span class="hide-menu ms-2">Logout</span>
+        </a>
+    </li>
 
     </ul>
 </nav>

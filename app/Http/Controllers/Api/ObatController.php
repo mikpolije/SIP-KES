@@ -468,7 +468,7 @@ class ObatController extends Controller
 
     public function pengambilan(Request $request, $id)
     {
-        $data = Pendaftaran::with('pengambilan_obat.detail_pengambilan_obat.detail_pembelian_obat.obat')->where('id_pendaftaran', $id)->first();
+        $data = Pendaftaran::with('pengambilan_obat.detail_pengambilan_obat.detail_pembelian_obat.obat')->where('no_rm', $id)->first();
 
         if (! $data) {
             return response()->json([
@@ -508,7 +508,7 @@ class ObatController extends Controller
             }
 
             $pengambilanObat = PengambilanObat::updateOrCreate(
-                ['id_pendaftaran' => $id],
+                ['id_pendaftaran' => $data->id_pendaftaran],
                 [
                     'no_antrian' => $request->no_antrian,
                     'tanggal_penyerahan' => $request->tanggal_penyerahan,
@@ -548,7 +548,7 @@ class ObatController extends Controller
 
     public function racikan(Request $request, $id)
     {
-        $data = Pendaftaran::with('pengambilan_obat.racikan')->where('id_pendaftaran', $id)->first();
+        $data = Pendaftaran::with('pengambilan_obat.racikan')->where('no_rm', $id)->first();
 
         if (! $data) {
             return response()->json([
@@ -583,7 +583,7 @@ class ObatController extends Controller
             }
 
             $pengambilanObat = PengambilanObat::updateOrCreate(
-                ['id_pendaftaran' => $id],
+                ['id_pendaftaran' => $data->id_pendaftaran],
                 [
                     'no_antrian' => $request->no_antrian,
                     'tanggal_penyerahan' => $request->tanggal_penyerahan,

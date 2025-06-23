@@ -2,18 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratSakit extends Model
+class SuratSehat extends Model
 {
-    use HasFactory;
-
-    protected $table = 'surat_keterangan_sakit';
-
-    protected $primaryKey = 'id';
-
+    protected $table = 'surat_keterangan_sehat';
     protected $guarded = ['id'];
+    public $timestamps = false;
+    protected $fillable = ['id_pemeriksaan', 'nomor_surat', 'hasil', 'dipergunakan_untuk'];
 
     public function pemeriksaan()
     {

@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('api')->name('api.')->group(function () {
 
-    Route::get('/poli-kia/{idPendaftaran}', [PoliKiaController::class, 'show'])->name('poli-kia.show');
+    Route::get('/poli-kia/{noRm}', [PoliKiaController::class, 'show'])->name('poli-kia.show');
     Route::post('/poli-kia', [PoliKiaController::class, 'store'])->name('poli-kia.store');
+    Route::post('/poli-kia/antrean', [ARController::class, 'store'])->name('poli-kia.storeAntrean');
     Route::post('/poli-kia/pemeriksaan/kehamilan', [PoliKiaController::class, 'pemeriksaanKehamilan'])->name('poli-kia.pemeriksaan-kehamilan');
     Route::post('/poli-kia/pemeriksaan/kb', [PoliKiaController::class, 'pemeriksaanKb'])->name('poli-kia.pemeriksaan-kb');
     Route::post('/poli-kia/pemeriksaan/anak', [PoliKiaController::class, 'pemeriksaanAnak'])->name('poli-kia.pemeriksaan-anak');

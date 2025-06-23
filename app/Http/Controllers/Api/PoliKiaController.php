@@ -14,10 +14,12 @@ use App\Models\SuratKematian;
 use App\Models\SuratKontrol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+use App\Models\DataPasien;
 
 class PoliKiaController extends Controller
 {
-    public function show($idPendaftaran)
+    public function show($noRm)
     {
         $data = Pendaftaran::with([
             'data_pasien',
@@ -32,7 +34,7 @@ class PoliKiaController extends Controller
             'surat_kematian',
             'asessmen_awal'
         ])
-            ->where('id_pendaftaran', $idPendaftaran)
+            ->where('no_rm', $noRm)
             ->where('id_poli', 2) // Data Poli Belum Ada, Test ID 3
             ->first();
 
@@ -56,10 +58,26 @@ class PoliKiaController extends Controller
         ]);
     }
 
+    public function getDataPasien($no_rm)
+    {
+        // Fetch the patient registration and related data
+        $pendaftaran = \App\Models\Pendaftaran::where('no_rm', $no_rm)->latest()->first();
+        $data_pasien = \App\Models\DataPasien::where('no_rm', $no_rm)->first();
+
+        if (!$pendaftaran || !$data_pasien) {
+            return view('main.polikia.detailkia', ['not_found' => true]);
+        }
+
+        return view('main.polikia.detailkia', [
+            'pendaftaran' => $pendaftaran,
+            'data_pasien' => $data_pasien,
+            'not_found' => false
+        ]);
+    }
     public function store(Request $request)
     {
         $data = Pendaftaran::with('data_pasien', 'layanan_kia')
-            ->where('id_pendaftaran', $request->id_pendaftaran ?? 'null')
+            ->where('no_rm', $request->no_rm ?? 'null')
             ->where('id_poli', 2) // Data Poli Belum Ada, Test ID 3
             ->first();
 
@@ -89,8 +107,9 @@ class PoliKiaController extends Controller
         }
 
         $data->layanan_kia()->create([
-            'id_pendaftaran' => $request->id_pendaftaran,
+            'id_pendaftaran' => $data->id_pendaftaran,
             'jenis_pemeriksaan' => $request->jenis_pemeriksaan,
+            'no_rm' => $request->no_rm,
         ]);
 
         return response()->json([
@@ -626,10 +645,10 @@ class PoliKiaController extends Controller
 
         $data = LayananKia::selectRaw('jenis_pemeriksaan, COUNT(*) as total')
             ->when($request->tanggal_awal, function ($query) use ($request) {
-                $query->whereDate('tanggal', '>=', $request->tanggal_awal);
+                $query->whereDate('created_at', '>=', $request->tanggal_awal);
             })
             ->when($request->tanggal_akhir, function ($query) use ($request) {
-                $query->whereDate('tanggal', '<=', $request->tanggal_akhir);
+                $query->whereDate('created_at', '<=', $request->tanggal_akhir);
             })
             ->when($request->jenis_pemeriksaan === 'ibu', function ($query) {
                 $query->whereIn('jenis_pemeriksaan', ['Kehamilan', 'Persalinan', 'KB']);
@@ -695,6 +714,8 @@ class PoliKiaController extends Controller
             'data' => null,
         ]);
     }
+
+    
 
     public function suratKematian(Request $request)
     {

@@ -293,17 +293,6 @@
             printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #000; padding: 8px; text-align: left; }</style>');
             printWindow.document.write('</head><body>');
 
-            // Loop through all tables and add them to the print window
-            tables.forEach((table, index) => {
-                printWindow.document.write(`<h3>Rincian Obat</h3>`);
-                printWindow.document.write(table.outerHTML);
-            });
-
-            printWindow.document.write('</body></html>');
-
-            // Close the document and trigger the print dialog
-            printWindow.document.close();
-            printWindow.print();
         }
     </script>
 

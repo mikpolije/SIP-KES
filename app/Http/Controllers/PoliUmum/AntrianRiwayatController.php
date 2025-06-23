@@ -17,13 +17,17 @@ use App\Models\LayananPendaftaran;
 use App\Models\Obat;
 use App\Models\ObatPendaftaran;
 use App\Models\PemeriksaanAwal;
+use App\Models\SuratSehat;
 use Illuminate\Support\Facades\Log;
 
 class AntrianRiwayatController extends Controller
 {
     public function antrean()
     {
-        $data_pasien = Pendaftaran::with('data_pasien', 'wali_pasien',)->where('status', 'antri')->get();
+        $data_pasien = Pendaftaran::with('data_pasien', 'wali_pasien')
+            ->where('status', 'antri')
+            ->where('id_poli', 1)
+            ->get();
         return view('PoliUmum.antreanPoliUmum', [
             'data_pasien' => $data_pasien
         ]);
@@ -60,7 +64,7 @@ class AntrianRiwayatController extends Controller
             PemeriksaanAwal::create($validatedData);
 
             Pendaftaran::where('id_pendaftaran', $request->id_pendaftaran)->update([
-                'status' => 'belum diperiksa'
+                'status' => 'diperiksa'
             ]);
 
             return redirect()->route('antrean.poliumum')->with('success', 'Data pendaftaran berhasil disimpan.');
@@ -70,19 +74,12 @@ class AntrianRiwayatController extends Controller
         }
     }
 
-    // public function riwayat()
-    // {
-
-    //     return view('PoliUmum.antreanPoliUmumstep3', [
-    //         'data_pemeriksaan' => $data_pemeriksaan
-    //     ]);
-    // }
-
     public function antrianPemeriksaan3()
     {
         $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')
-            ->whereHas('pendaftaran', function ($query) {
-                $query->where('status', 'belum diperiksa');
+            ->whereHas('pendaftaran', function ($q) {
+                $q->where('status', 'diperiksa')
+                    ->where('id_poli', 1);
             })->get();
         return view('PoliUmum.antreanPoliumumstep3', [
             'data_pemeriksaan' => $data_pemeriksaan
@@ -136,6 +133,13 @@ class AntrianRiwayatController extends Controller
             Pendaftaran::where('id_pendaftaran', $pemeriksaan->id_pendaftaran)->update([
                 'status' => 'selesai'
             ]);
+
+            // tambah id pemeriksaan di surat keterangan
+            // if (!SuratSehat::where('id_pemeriksaan', $id_pemeriksaan)->exists()) {
+            //     SuratSehat::create([
+            //         'id_pemeriksaan' => $id_pemeriksaan
+            //     ]);
+            // }
 
             // ICD9
             foreach ($request->id_icd9_list as $id_icd9) {
@@ -252,10 +256,49 @@ class AntrianRiwayatController extends Controller
         return response()->json($results);
     }
 
-    // public function riwayat()
-    // {
-    //     return view('PoliUmum.riwayatPoliUmum');
-    // }
+    public function riwayat()
+    {
+        $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')
+            ->whereHas('pendaftaran', function ($q) {
+                $q->where('status', 'selesai')
+                    ->where('id_poli', 1);
+            })->get();
+        return view('PoliUmum.riwayatPoliUmum', [
+            'data_pemeriksaan' => $data_pemeriksaan
+        ]);
+    }
+
+    public function detalRiyawat($id_pemeriksaan)
+    {
+        $data_pemeriksaan = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+            ->where('id_pemeriksaan', $id_pemeriksaan)
+            ->first();
+
+        $rm = $data_pemeriksaan->pendaftaran->data_pasien->no_rm;
+
+        $riyawat = PemeriksaanAwal::with([
+            'pendaftaran.data_pasien',
+            'pendaftaran.data_dokter',
+            'icd9Umum.icd9'
+        ])
+            ->whereHas('pendaftaran', function ($q) use ($rm) {
+                $q->whereHas('data_pasien', function ($q) use ($rm) {
+                    $q->where('no_rm', $rm);
+                });
+            })
+            ->whereHas('pendaftaran', function ($q) {
+                $q->where('status', 'selesai');
+            })
+            ->whereHas('icd9Umum', function ($q) use ($id_pemeriksaan) {
+                $q->where('id_pemeriksaan', $id_pemeriksaan);
+            })
+            ->get();
+
+        return view('PoliUmum.detailPasien', [
+            'data_pemeriksaan' => $data_pemeriksaan,
+            'riyawat' => $riyawat
+        ]);
+    }
 
     // Untuk fitur Select2 pencarian pasien
     public function searchPasien(Request $request)

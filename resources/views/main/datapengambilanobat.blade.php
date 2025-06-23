@@ -94,9 +94,10 @@
 
                             <!-- Search bar and button -->
                             <div class="d-flex">
-                                <input type="text" class="form-control search-bar me-2" id="id_pendaftaran" placeholder="ID Pendaftaran"
+                                <input type="text" class="form-control search-bar me-2" id="no_rm" placeholder="Masukkan No.RM"
                                     style="width: 250px;">
-                                <button class="btn btn-primary search-button" id="cari_data_pendaftaran">Cari</button>
+                                <input type="hidden" name="id_pendaftaran" id="id_pendaftaran">
+                                <button class="btn btn-primary search-button" id="cari_data_pasien">Cari</button>
                             </div>
 
                             <style>
@@ -151,7 +152,7 @@
                         <div class="col-md-2">
                             <div class="mb-3">
                                 <label class="form-label" for="participants3">No. RM:</label>
-                                <input type="text" class="form-control required" id="no_rm" disabled/>
+                                <input type="text" class="form-control required" id="no_rm_display" disabled/>
                             </div>
                         </div>
 
@@ -339,37 +340,246 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         function printTables() {
-            // Get both table elements
-            const table1 = document.querySelector('table.table-striped:nth-of-type(1)');
-            const table2 = document.querySelector('table.table-striped:nth-of-type(2)');
-
-            // Create a new window for printing
+            const noAntrian = document.getElementById('no_antrian').value || '-';
+            const noRM = document.getElementById('no_rm_display').value || '-';
+            const namaPasien = document.getElementById('nama_pemeriksaan').value || '-';
+            const tanggalPenyerahan = document.querySelector('input[name="tanggal_penyerahan"]').value || '-';
+            const catatan = document.querySelector('textarea[name="catatan"]').value || '-';
+            
+            let table1Content = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jumlah</th>
+                            <th>Nama Obat</th>
+                            <th>Harga Obat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            const table1Rows = document.querySelectorAll('#tabel-obat tr.item-tabel-obat');
+            if (table1Rows.length === 0) {
+                table1Content += '<tr><td colspan="3" class="text-center">Tidak Ada Data</td></tr>';
+            } else {
+                table1Rows.forEach(row => {
+                    const jumlah = row.querySelector('input[name="jumlah[]"]')?.value || '-';
+                    const namaObat = row.cells[1]?.textContent || '-';
+                    const harga = row.cells[2]?.textContent || '-';
+                    
+                    table1Content += `
+                        <tr>
+                            <td>${jumlah}</td>
+                            <td>${namaObat}</td>
+                            <td>${harga}</td>
+                        </tr>
+                    `;
+                });
+            }
+            table1Content += '</tbody></table>';
+            
+            let table2Content = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Jumlah</th>
+                            <th>Nama Obat</th>
+                            <th>Harga Obat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            const table2Rows = document.querySelectorAll('#tabel-pengambilan-obat tr.item-tabel-pengambilan-obat');
+            if (table2Rows.length === 0) {
+                table2Content += '<tr><td colspan="4" class="text-center">Tidak Ada Data</td></tr>';
+            } else {
+                table2Rows.forEach(row => {
+                    const tanggal = row.querySelector('input[name="tanggal[]"]')?.value || '-';
+                    const jumlah = row.cells[1]?.textContent || '-';
+                    const namaObat = row.cells[2]?.textContent || '-';
+                    const harga = row.cells[3]?.textContent || '-';
+                    
+                    table2Content += `
+                        <tr>
+                            <td>${tanggal}</td>
+                            <td>${jumlah}</td>
+                            <td>${namaObat}</td>
+                            <td>${harga}</td>
+                        </tr>
+                    `;
+                });
+            }
+            table2Content += '</tbody></table>';
+            
             const printWindow = window.open('', '', 'width=800,height=600');
-
-            // Write the tables' HTML into the new window
-            printWindow.document.write('<html><head><title>Tabel Obat</title>');
-            printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #000; padding: 8px; text-align: left; }</style>');
-            printWindow.document.write('</head><body>');
-            printWindow.document.write('<h3>Rincian Obat</h3>');
-            printWindow.document.write(table1.outerHTML);
-            printWindow.document.write('<h3></h3>');
-            printWindow.document.write(table2.outerHTML);
-            printWindow.document.write('</body></html>');
-
-            // Close the document and trigger the print dialog
+            
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Data Resep Obat - Print</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                            color: #333;
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 30px;
+                            border-bottom: 2px solid #333;
+                            padding-bottom: 20px;
+                        }
+                        .header h1 {
+                            color: #111754;
+                            font-size: 24px;
+                            margin: 0;
+                        }
+                        .patient-info {
+                            margin-bottom: 30px;
+                            border: 1px solid #ddd;
+                            padding: 15px;
+                            border-radius: 5px;
+                            background-color: #f9f9f9;
+                        }
+                        .patient-info h3 {
+                            margin-top: 0;
+                            color: #111754;
+                            border-bottom: 1px solid #ddd;
+                            padding-bottom: 10px;
+                        }
+                        .info-row {
+                            display: flex;
+                            margin-bottom: 8px;
+                        }
+                        .info-label {
+                            font-weight: bold;
+                            width: 150px;
+                            display: inline-block;
+                        }
+                        .info-value {
+                            flex: 1;
+                        }
+                        .section-title {
+                            color: #111754;
+                            font-size: 18px;
+                            margin: 30px 0 15px 0;
+                            border-bottom: 1px solid #333;
+                            padding-bottom: 5px;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 30px;
+                            font-size: 12px;
+                        }
+                        table, th, td {
+                            border: 1px solid #333;
+                        }
+                        th {
+                            background-color: #343a40;
+                            color: white;
+                            padding: 10px;
+                            text-align: center;
+                            font-weight: bold;
+                        }
+                        td {
+                            padding: 8px;
+                            text-align: center;
+                        }
+                        tr:nth-child(even) {
+                            background-color: #f8f9fa;
+                        }
+                        .notes {
+                            border: 1px solid #ddd;
+                            padding: 15px;
+                            border-radius: 5px;
+                            background-color: #f9f9f9;
+                            margin-top: 20px;
+                        }
+                        .notes h4 {
+                            margin-top: 0;
+                            color: #111754;
+                        }
+                        .print-date {
+                            text-align: right;
+                            font-size: 10px;
+                            color: #666;
+                            margin-top: 30px;
+                        }
+                        @media print {
+                            body { margin: 0; }
+                            .patient-info, .notes { background-color: #f9f9f9 !important; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>DATA RESEP OBAT</h1>
+                    </div>
+                    
+                    <div class="patient-info">
+                        <h3>Informasi Pasien</h3>
+                        <div class="info-row">
+                            <span class="info-label">No. Antrian:</span>
+                            <span class="info-value">${noAntrian}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">No. RM:</span>
+                            <span class="info-value">${noRM}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Nama Pasien:</span>
+                            <span class="info-value">${namaPasien}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Tanggal Penyerahan:</span>
+                            <span class="info-value">${tanggalPenyerahan}</span>
+                        </div>
+                    </div>
+                    
+                    <h2 class="section-title">Rincian Obat</h2>
+                    ${table1Content}
+                    
+                    <h2 class="section-title">Data Pengambilan Obat</h2>
+                    ${table2Content}
+                    
+                    ${catatan ? `
+                    <div class="notes">
+                        <h4>Catatan:</h4>
+                        <p>${catatan.replace(/\n/g, '<br>')}</p>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="print-date">
+                        Dicetak pada: ${new Date().toLocaleString('id-ID')}
+                    </div>
+                </body>
+                </html>
+            `);
+            
             printWindow.document.close();
-            printWindow.print();
+            
+            setTimeout(() => {
+                printWindow.print();
+                
+                printWindow.onafterprint = function() {
+                    printWindow.close();
+                };
+            }, 500);
         }
     </script>
 
     <script>
         $(document).ready(function () {
-            $(document).on('click', '#cari_data_pendaftaran', function (e) {
+            $(document).on('click', '#cari_data_pasien', function (e) {
                 let eThis = $(this)
-                let id_pendaftaran = $('#id_pendaftaran').val()
+                let no_rm = $('#no_rm').val()
 
-                if (!id_pendaftaran) {
-                    errorMessage('ID Pendaftaran tidak boleh kosong')
+                if (!no_rm) {
+                    errorMessage('No.RM tidak boleh kosong')
                     return
                 }
 
@@ -377,7 +587,7 @@
                 eThis.html('Loading...')
 
                 $.ajax({
-                    url: "{{ route('api.poli-kia.show', ':idPendaftaran') }}".replace(':idPendaftaran', id_pendaftaran),
+                    url: "{{ route('api.poli-kia.show', ':noRm') }}".replace(':noRm', no_rm),
                     type: 'GET',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -385,7 +595,8 @@
                 }).done(function (res) {
                     let data = res.data
                     $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
-                    $('#no_rm').val(data.data_pasien.no_rm)
+                    $('#no_rm_display').val(data.data_pasien.no_rm)
+                    $('#id_pendaftaran').val(data.id_pendaftaran)
 
                     if (data.pengambilan_obat) {
                         $('[name="no_antrian"]').val(data.pengambilan_obat.no_antrian)
@@ -584,7 +795,7 @@
             let eThis = $(this)
             eThis.prop('disabled', true)
             eThis.html('Loading...')
-            let id = $('#id_pendaftaran').val()
+            let id = $('#no_rm').val()
 
             if (id == '') {
                 errorMessage('Pilih pasien terlebih dahulu.')

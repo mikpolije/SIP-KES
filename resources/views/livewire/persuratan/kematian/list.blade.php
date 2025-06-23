@@ -40,6 +40,14 @@ new class extends Component {
             <i class="fas fa-plus"></i> Tambah Surat Kematian
         </a>
     </div>
+    <div class="d-flex justify-content-end my-4">
+        <select class="form-control me-2" id="searchPasien" style="width: 300px;">
+            <option value="">Cari Data Pasien...</option>
+        </select>
+        <button class="btn btn-primary" type="button" id="btnCariPasien">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
 
     <div class="table-responsive">
         @if($suratKematians->isEmpty())
