@@ -64,7 +64,7 @@ class AntrianRiwayatController extends Controller
             PemeriksaanAwal::create($validatedData);
 
             Pendaftaran::where('id_pendaftaran', $request->id_pendaftaran)->update([
-                'status' => 'belum diperiksa'
+                'status' => 'diperiksa'
             ]);
 
             return redirect()->route('antrean.poliumum')->with('success', 'Data pendaftaran berhasil disimpan.');
