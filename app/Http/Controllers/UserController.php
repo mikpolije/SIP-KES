@@ -33,6 +33,7 @@ public function create()
 
   public function store(Request $request)
     {
+        $request->session()->invalidate();
         $request->session()->regenerateToken();
         $request->validate([
             'nama'         => 'required|string|max:255',
