@@ -3,93 +3,95 @@
 @section('title', 'SIP-Kes')
 
 @section('pageContent')
-    <div class="container-fluid">
-        <div class="card w-100">
-            <div class="card-body">
-                <h1 class="card-title"></h1>
-                <h1 class="title">General Consent</h1>
+<div class="container-fluid">
+    <div class="card w-100">
+        <div class="card-body">
+            <h1 class="card-title"></h1>
+            <h1 class="title">General Consent</h1>
+            <style>
+                .title {
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 3rem;
+                    font-weight: bold;
+                    text-align: left;
+                    color: #111754;
+                    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+                }
+            </style>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <form id="formGeneralConsent" method="POST" action="{{ route('general-consent.store') }}">
+                @csrf
+                <!-- Step 1 -->
+                <div class="flex justify-content-between">
+                    <h5 class="section-title">Data Pasien</h5>
+                    <div class="mb-3 mb-3">
+                        <div class="form-group">
+                            <button type="button" id="btnCariPasien" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="ti ti-search"></i>
+                                Cari Pasien
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="action" id="formAction" value="simpan">
                 <style>
-                    .title {
-                        font-family: 'Montserrat', sans-serif;
-                        font-size: 3rem;
+                    .section-title {
+                        font-family: 'Poppins', sans-serif;
+                        font-size: 2rem;
                         font-weight: bold;
                         text-align: left;
-                        color: #111754;
-                        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+                        color: #1A1A1A;
+                        padding: 9px 0;
                     }
                 </style>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                <form id="formGeneralConsent" method="POST" action="{{ route('general-consent.store') }}">
-                    @csrf
-                    <!-- Step 1 -->
-                    <h5 class="section-title">Data Pasien</h5>
-                    <input type="hidden" name="action" id="formAction" value="simpan">
-                    <style>
-                        .section-title {
-                            font-family: 'Poppins', sans-serif;
-                            font-size: 2rem;
-                            font-weight: bold;
-                            text-align: left;
-                            color: #1A1A1A;
-                            padding: 9px 0;
-                        }
-                    </style>
-                    <div class="w-100">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label class="form-label" for="noRm"> No RM : <span class="danger">*</span>
-                                    </label>
-                                    <input type="text" class="form-control required" id="noRm" name="noRm"
-                                        placeholder="Masukkan No. RM" />
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label class="form-label" for="nik"> NIK : <span class="danger">*</span>
-                                    </label>
-                                    <input type="text" class="form-control required" id="nik" name="nik"
-                                        placeholder="16 digit" />
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="mb-3">
-                                    <label class="form-label" for="jenisKelamin">Jenis Kelamin: <span
-                                            class="danger">*</span>
-                                    </label>
-                                    <select class="form-select required" id="jenisKelamin" name="jenisKelamin">
-                                        <option value="1">Laki-laki</option>
-                                        <option value="2">Perempuan</option>
-                                    </select>
-                                </div>
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label" for="no_rm"> No RM : <span class="danger">*</span></label>
+                                <input type="text" class="form-control required" id="no_rm" name="no_rm" readonly placeholder="Masukkan No. RM" />
                             </div>
                         </div>
+
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label" for="nik"> NIK : <span class="danger">*</span></label>
+                                <input type="text" class="form-control required" id="nik" name="nik" readonly placeholder="16 digit" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="mb-3">
+                                <label class="form-label" for="jenisKelaminText">Jenis Kelamin: <span class="danger">*</span></label>
+                                <input type="text" class="form-control required" id="jenisKelaminText" readonly name="jenisKelaminText" />
+                                <input type="hidden" name="jenisKelamin" id="jenisKelamin"> <!-- dikirim ke server -->
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="mb-3">
                                     <label class="form-label" for="namaPasien">Nama: <span class="danger">*</span></label>
-                                    <input type="text" class="form-control required" id="namaPasien" name="namaPasien"
-                                        placeholder="Masukkan nama" />
+                                    <input type="text" class="form-control required" id="namaPasien" name="namaPasien" readonly placeholder="Masukkan nama" />
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="mb-3">
-                                    <label class="form-label" for="tanggalLahir">Tanggal Lahir: <span
-                                            class="danger">*</span></label>
-                                    <input type="date" class="form-control required" id="tanggalLahir"
-                                        name="tanggalLahir" />
+                                    <label class="form-label" for="tanggalLahir">Tanggal Lahir: <span class="danger">*</span></label>
+                                    <input type="date" class="form-control required" id="tanggalLahir" name="tanggalLahir" readonly />
                                 </div>
                             </div>
                         </div>
+
                         <p>Pasien atau wali di minta membaca, memahami dan mengisi informasi berikut:</p>
                         <p>Yang bertanda tangan dibawah ini:</p>
                         <div class="row">
@@ -276,17 +278,34 @@
 
                                     <input type="hidden" id="ttdPenanggungJawab" name="ttdPenanggungJawab">
 
-                                    <img id="ttdPreview" src="" alt="Tanda Tangan"
-                                        style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 6px; display: none; margin-top: 8px;" />
+                                    <img id="ttdPreview" src="" alt="Tanda Tangan" height="50"
+                                        style="width: 100%; height: 120px; object-fit: contain; border: 1px solid #ccc; border-radius: 6px; display: none; margin-top: 8px;" />
+                                    <input type="text" class="form-control mb-2 text-center mt-4" id="namaPenanggungJawabDisplay" disabled
+                                        style="background-color: #f0f0f0;" />
                                 </div>
 
 
                             </div>
                             <div class="col-md-6 mb-3">
                                 <p class="text-center">Pemberi informasi</p>
-                                <div class="col-md-6 mx-auto">
-                                    <input type="text" class="form-control" style="height: 120px;"
-                                        id="namaPemberiInformasi" name="namaPemberiInformasi">
+                                <div class="col-md-6 mx-auto text-center">
+                                    <!-- Canvas untuk tanda tangan -->
+                                    <canvas id="ttdPemberiCanvas" width="300" height="120" style="border:1px solid #ccc; border-radius:6px;"></canvas>
+
+                                    <!-- Tombol bersihkan -->
+                                    <div class="text-start mb-2 mt-1">
+                                        <button type="button" class="btn btn-sm btn-secondary" onclick="clearTtdPemberi()">Bersihkan</button>
+                                    </div>
+
+                                    <!-- Input hidden untuk menyimpan base64 tanda tangan -->
+                                    <input type="hidden" name="ttdPemberiInformasi" id="ttdPemberiInformasi">
+
+                                    <!-- Nama pemberi informasi -->
+                                    <div class="mt-3">
+                                        <input type="text" class="form-control text-center"
+                                            name="namaPemberiInformasi" value="Petugas Klinik"
+                                            placeholder="Nama Pemberi Informasi" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -304,113 +323,289 @@
                             </button>
                         </div>
                     </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
-    </div>
-    <!-- Tambahkan Modal QR & Signature -->
-    <div class="modal fade" id="modalQRSignature" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="qrModalLabel">Scan untuk Tanda Tangan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <p>Scan QR berikut menggunakan HP untuk menandatangani.</p>
+</div>
+</div>
+<!-- Tambahkan Modal QR & Signature -->
+<div class="modal fade" id="modalQRSignature" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qrModalLabel">Scan untuk Tanda Tangan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Scan QR berikut menggunakan HP untuk menandatangani.</p>
+
+                <!-- QR Code ditengah -->
+                <div class="d-flex justify-content-center">
                     <div id="qrContainer"></div>
-                    <div id="signStatus" class="mt-3"></div>
                 </div>
+
+                <div id="signStatus" class="mt-3"></div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal Cari Pasien -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modalPasienLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cari Pasien</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <input type="text" id="cariNamaPasien" class="form-control" placeholder="Cari nama pasien...">
+                    </div>
+                </div>
+                <table class="table table-bordered table-striped" id="tablePasien">
+                    <thead>
+                        <tr>
+                            <th>Nama Pasien</th>
+                            <th>No. RM</th>
+                            <th>NIK</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                        $jenisKelaminMap = [
+                        0 => 'Tidak diketahui',
+                        1 => 'Laki-laki',
+                        2 => 'Perempuan',
+                        3 => 'Tidak dapat ditentukan',
+                        4 => 'Tidak mengisi',
+                        ];
+                        @endphp
+                        @foreach($pasiens as $index => $pasien)
+                        <tr>
+                            <td>{{ $pasien->nama_pasien }}</td>
+                            <td>{{ $pasien->no_rm }}</td>
+                            <td>{{ $pasien->nik_pasien }}</td>
+                            <td>{{ $jenisKelaminMap[$pasien->jenis_kelamin] ?? 'Tidak diketahui' }}</td>
+                            <td>{{ $pasien->tanggal_lahir_pasien }}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm pilihPasien"
+                                    data-nama="{{ $pasien->nama_pasien }}"
+                                    data-no_rm="{{ $pasien->no_rm }}"
+                                    data-nik="{{ $pasien->nik_pasien }}"
+                                    data-jenis_kelamin="{{ $pasien->jenis_kelamin }}"
+                                    data-tgl_lahir="{{ $pasien->tanggal_lahir_pasien }}">
+                                    Pilih
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
-    <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
-    <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-    <script>
-        let pollingInterval;
+<script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
+<script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
+<script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+<script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
+<script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
+<script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById("cariNamaPasien");
+        input.addEventListener("keyup", function() {
+            const filter = input.value.toLowerCase();
+            const rows = document.querySelectorAll("#tablePasien tbody tr");
 
-        document.getElementById('namaPenanggungJawab').addEventListener('click', showQRModal);
-
-        function showQRModal() {
-            const token = Math.random().toString(36).substring(2, 12);
-            const url = `http://192.168.1.203:8000/sign-request/${token}`;
-
-            document.getElementById('qrContainer').innerHTML = "";
-            new QRCode(document.getElementById("qrContainer"), url);
-            document.getElementById("signStatus").innerText = "Menunggu tanda tangan...";
-
-            $('#modalQRSignature').modal('show');
-
-            pollingInterval = setInterval(() => {
-                fetch(`/api/signature-status/${token}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.signed) {
-                            clearInterval(pollingInterval);
-                            document.getElementById('ttdPenanggungJawab').value = data.ttd_base64;
-                            document.getElementById('ttdPreview').src = data.ttd_base64;
-                            document.getElementById('ttdPreview').style.display = "block";
-                            document.getElementById("signStatus").innerText =
-                                `Ditandatangani oleh: ${data.nama}`;
-                            document.getElementById("namaPenanggungJawab").value = data.nama;
-                            setTimeout(() => {
-                                $('#modalQRSignature').modal('hide');
-                            }, 1000);
-                        }
-                    });
-            }, 3000);
-        }
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#hubungan').on('change', function() {
-                if ($(this).val() === '7') {
-                    $('#lain-wrapper').show();
-                    $('#lain').attr('required', true);
+            rows.forEach(function(row) {
+                const nama = row.querySelector("td:nth-child(1)")?.textContent.toLowerCase();
+                if (nama.includes(filter)) {
+                    row.style.display = "";
                 } else {
-                    $('#lain-wrapper').hide();
-                    $('#lain').val('');
-                    $('#lain').removeAttr('required');
+                    row.style.display = "none";
                 }
             });
         });
+    });
+</script>
+<script>
+    // Inisialisasi SignaturePad untuk pemberi informasi
+    const canvasPemberi = document.getElementById('ttdPemberiCanvas');
+    const signaturePemberi = new SignaturePad(canvasPemberi);
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            const btnSimpan = document.getElementById('btnSimpan');
-            const btnCetak = document.getElementById('btnCetak');
+    function clearTtdPemberi() {
+        signaturePemberi.clear();
+    }
 
-            function updateButtonState() {
-                const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-                btnSimpan.disabled = !allChecked;
-                btnCetak.disabled = !allChecked;
-            }
+    // Sebelum form disubmit, simpan gambar tanda tangan
+    document.getElementById('formGeneralConsent').addEventListener('submit', function(e) {
+        const namaWaliInput = document.getElementById('namaWali');
+        const namaPenanggungJawabInput = document.getElementById('namaPenanggungJawab');
 
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateButtonState);
+        // ✅ Tambahkan baris ini
+        if (namaWaliInput && namaPenanggungJawabInput) {
+            namaPenanggungJawabInput.value = namaWaliInput.value;
+        }
+
+        if (!signaturePemberi.isEmpty()) {
+            document.getElementById('ttdPemberiInformasi').value = signaturePemberi.toDataURL('image/png');
+        } else {
+            alert('Silakan tanda tangani kolom Pemberi Informasi terlebih dahulu.');
+            e.preventDefault();
+        }
+    });
+</script>
+<script>
+    let pollingInterval;
+
+    document.getElementById('namaPenanggungJawab').addEventListener('click', showQRModal);
+
+    function showQRModal() {
+        const token = Math.random().toString(36).substring(2, 12);
+        const url = http://sipkes.mikpolije.com/${token};
+
+        // Tampilkan QR
+        document.getElementById('qrContainer').innerHTML = "";
+        new QRCode(document.getElementById("qrContainer"), url);
+        document.getElementById("signStatus").innerText = "Menunggu tanda tangan...";
+
+        $('#modalQRSignature').modal('show');
+
+        pollingInterval = setInterval(() => {
+            fetch(/api/signature-status/${token})
+                .then(res => res.json())
+                .then(data => {
+                    if (data.signed) {
+                        clearInterval(pollingInterval);
+                        document.getElementById('ttdPenanggungJawab').value = data.ttd_base64;
+                        document.getElementById('ttdPreview').src = data.ttd_base64;
+                        document.getElementById('ttdPreview').style.display = "block";
+                        document.getElementById("signStatus").innerText =
+                            // Ditandatangani oleh: ${data.nama};
+                            setTimeout(() => {
+                                $('#modalQRSignature').modal('hide');
+                            }, 1000);
+                    }
+                });
+        }, 3000);
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const namaWaliInput = document.getElementById('namaWali');
+        const displayPenanggungJawab = document.getElementById('namaPenanggungJawabDisplay');
+
+        if (namaWaliInput && displayPenanggungJawab) {
+            namaWaliInput.addEventListener('input', function() {
+                displayPenanggungJawab.value = namaWaliInput.value;
             });
 
-            updateButtonState();
+            // Set nilai awal saat page load
+            displayPenanggungJawab.value = namaWaliInput.value;
+        }
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#hubungan').on('change', function() {
+            if ($(this).val() === '7') {
+                $('#lain-wrapper').show();
+                $('#lain').attr('required', true);
+            } else {
+                $('#lain-wrapper').hide();
+                $('#lain').val('');
+                $('#lain').removeAttr('required');
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const btnSimpan = document.getElementById('btnSimpan');
+        const btnCetak = document.getElementById('btnCetak');
+
+        function updateButtonState() {
+            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            btnSimpan.disabled = !allChecked;
+            btnCetak.disabled = !allChecked;
+        }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateButtonState);
         });
 
-        document.getElementById('btnSimpan').addEventListener('click', function() {
-            document.getElementById('formAction').value = 'simpan';
-        });
+        updateButtonState();
+    });
 
-        document.getElementById('btnCetak').addEventListener('click', function() {
-            document.getElementById('formAction').value = 'cetak';
-        });
-    </script>
+    document.getElementById('btnSimpan').addEventListener('click', function() {
+        document.getElementById('formAction').value = 'simpan';
+    });
 
+    document.getElementById('btnCetak').addEventListener('click', function() {
+        document.getElementById('formAction').value = 'cetak';
+    });
+</script>
 
+<script>
+    $(document).on('click', '.pilihPasien', function() {
+        // Reset semua field yang bukan readonly
+        $('#formGeneralConsent')[0].reset();
+
+        // Set ulang hanya data pasien
+        $('#no_rm').val($(this).data('no_rm'));
+        $('#nik').val($(this).data('nik'));
+        $('#namaPasien').val($(this).data('nama'));
+        $('#tanggalLahir').val($(this).data('tgl_lahir'));
+
+        const genderValue = $(this).data('jenis_kelamin');
+        let genderText = '';
+
+        switch (parseInt(genderValue)) {
+            case 1:
+                genderText = 'Laki-laki';
+                break;
+            case 2:
+                genderText = 'Perempuan';
+                break;
+            case 0:
+                genderText = 'Tidak diketahui';
+                break;
+            case 3:
+                genderText = 'Tidak dapat ditentukan';
+                break;
+            case 4:
+                genderText = 'Tidak mengisi';
+                break;
+            default:
+                genderText = 'Tidak diketahui';
+        }
+
+        $('#jenisKelaminText').val(genderText);
+        $('#jenisKelamin').val(genderValue);
+
+        $('#exampleModal').modal('hide');
+
+        setTimeout(() => {
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            $('html, body').css({
+                'overflow': 'auto',
+                'position': 'relative'
+            });
+        }, 400);
+    });
+</script>
 @endsection

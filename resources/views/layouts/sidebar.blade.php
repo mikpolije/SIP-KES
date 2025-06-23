@@ -106,22 +106,23 @@
                     {{-- <ul class="second-level collapse" aria-expanded="false">
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
-                    href="/main/poliumum/antrian">
-                    <div class="round-16 d-flex align-items-center justify-content-center">
-                        <i class="ti ti-circle"></i>
-                    </div>
-                    <span class="hide-menu">Antrian</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/main/poliumum/riwayat">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu">Riwayat</span>
-                    </a>
-                </li>
-            </ul> --}}
+                                href="/main/poliumum/antrian">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Antrian</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
+                                href="/main/poliumum/riwayat">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Riwayat</span>
+                            </a>
+                        </li>
+                    </ul> --}}
 
 
                     <!-- Sidebar Item for Poli Umum -->
@@ -146,14 +147,22 @@
                             <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
                                 href="{{ route('antrean.poliumum') }}">
                                 <i class="ti ti-circle"></i>
-                                <span class="hide-menu">Antrian</span>
+                                <span class="hide-menu">Antrean</span>
+                            </a>
+                        </li>
+                        <!-- Antrean Pemereiksaan -->
+                        <li class="sidebar-item">
+                            <a class="sidebar-link ps-5 {{ request()->is('poliumum/antrean') ? 'active' : '' }}"
+                                href="{{ route('poliumum.pemeriksaanAkhir') }}">
+                                <i class="ti ti-circle"></i>
+                                <span class="hide-menu">Antrean Pemeriksaan</span>
                             </a>
                         </li>
 
                         <!-- Riwayat -->
                         <li class="sidebar-item">
                             <a class="sidebar-link ps-5 {{ request()->is('poliumum/riwayat') ? 'active' : '' }}"
-                                href="{{ route('riwayat.poliumum') }}">
+                                href="{{ route('poliumum.riwayat') }}">
                                 <i class="ti ti-circle"></i>
                                 <span class="hide-menu">Riwayat</span>
                             </a>
@@ -169,6 +178,45 @@
                         </div>
                         <span class="hide-menu">Poli KIA</span>
                     </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('polikia') || request()->is('polikia/*') ? 'active' : '' }}"
+                        href="#" data-bs-toggle="collapse"
+                        aria-expanded="{{ request()->is('polikia/*') ? 'true' : 'false' }}"
+                        data-bs-target="#submenu-polikia">
+                        <div class="d-flex align-items-center">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu ms-4">Poli KIA</span>
+                        </div>
+                    </a>
+                    <!-- <a class="sidebar-link {{ request()->is('main/polikia', 'main/polikia/*') ? 'active' : '' }}"
+                        href="/main/polikia">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Poli KIA</span>
+                    </a> -->
+                    <ul id="submenu-polikia"
+                        class="second-level collapse {{ request()->is('polikia/*') ? 'show' : '' }}"
+                        aria-expanded="{{ request()->is('polikia/*') ? 'true' : 'false' }}">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link ps-5 {{ request()->is('polikia/antreanpolikia') ? 'active' : '' }}"
+                                href="{{ route('antrean.polikia') }}">
+                                <i class="ti ti-circle"></i>
+                                <span class="hide-menu">Antrean</span>
+                            </a>
+                        </li>
+                        <!--
+                        <li class="sidebar-item">
+                            <a class="sidebar-link ps-5 {{ request()->is('polikia/riwayatpolikia') ? 'active' : '' }}"
+                                href="{{ route('riwayat.polikia') }}">
+                                <i class="ti ti-circle"></i>
+                                <span class="hide-menu">Riwayat</span>
+                            </a>
+                        </li>  -->
+                    </ul>
                 </li>
 
                 {{-- RAWAT INAP --}}
@@ -225,7 +273,7 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Data Pengambilan Obat</span>
+                        <span class="hide-menu">Data Resep Obat</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -234,7 +282,7 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Data Resep</span>
+                        <span class="hide-menu">Data Pengambilan Obat</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -243,14 +291,14 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Data Pengguna</span>
+                        <span class="hide-menu">Stok Opname</span>
                     </a>
                 </li>
             </ul>
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link {{ request()->is('main/pembayaran') ? 'active' : '' }}" href="/main/pembayaran"
+            <a class="sidebar-link {{ request()->is('/pembayaran') ? 'active' : '' }}" href="/pembayaran"
                 aria-expanded="false">
                 <span class="d-flex">
                     <svg class="bi bi-currency-dollar" xmlns="http://www.w3.org/2000/svg" width="16"
@@ -275,17 +323,8 @@
                 <span class="hide-menu">Persuratan</span>
             </a>
 
-            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('surat-keterangan-sakit*') || request()->is('/') || request()->is('general-consent*') ? 'show' : '' }}"
+            <ul class="first-level collapse {{ request()->is('surat-keterangan-sehat*') || request()->is('main/persuratan/kematian') || request()->is('main/persuratan/pulang-paksa') || request()->is('surat-keterangan-sakit*') || request()->is('main/persuratan/kontrol') || request()->is('general-consent*') ? 'show' : '' }}"
                 aria-expanded="true">
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('/') ? 'active' : '' }}" href="/"
-                        aria-expanded="false">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu">Surat Kematian</span>
-                    </a>
-                </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('surat-keterangan-sehat*') ? 'active' : '' }}"
@@ -294,6 +333,26 @@
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Surat Keterangan Sehat</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/persuratan/kematian') ? 'active' : '' }}"
+                        href="/main/persuratan/kematian" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Surat Kematian</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('main/persuratan/pulang-paksa') ? 'active' : '' }}"
+                        href="/main/persuratan/pulang-paksa" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Surat Pulang Paksa</span>
                     </a>
                 </li>
 
@@ -308,12 +367,12 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('main/blog-detail') ? 'active' : '' }}"
-                        href="/main/blog-detail" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('main/persuratan/kontrol') ? 'active' : '' }}"
+                        href="/main/persuratan/kontrol" aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Surat Control</span>
+                        <span class="hide-menu">Surat Kontrol</span>
                     </a>
                 </li>
 
@@ -332,7 +391,7 @@
 
         <li class="sidebar-item">
             <a class="sidebar-link {{ request()->is('riwayat-medis*') ? 'active' : '' }}"
-                href="{{ route('riwayat.medis') }}" aria-expanded="false">
+                href="{{ route('riwayat-medis.index') }}" aria-expanded="false">
                 <span>
                     <svg class="bi bi-book" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -343,9 +402,10 @@
                 <span class="hide-menu">Rekam Medis</span>
             </a>
         </li>
+
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow {{ request()->is('') ? 'active' : '' }}" href="javascript:void(0)"
-                aria-expanded="false">
+            <a class="sidebar-link has-arrow {{ request()->is('main/laporankunjungan', 'main/laporankia', 'laporan*') ? 'active' : '' }}"
+                href="javascript:void(0)" aria-expanded="{{ request()->is('laporan*') ? 'true' : 'false' }}">
                 <span class="d-flex">
                     <svg class="bi bi-journals" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
@@ -357,23 +417,55 @@
                 </span>
                 <span class="hide-menu">Laporan</span>
             </a>
-            <ul class="first-level {{ request()->is('') ? 'in' : '' }} collapse" aria-expanded="false">
+
+            <ul class="first-level collapse {{ request()->is('main/laporankunjungan', 'main/laporankia', 'poliumum/laporan*') ? 'show' : '' }}"
+                aria-expanded="{{ request()->is('poliumum/laporan*') ? 'true' : 'false' }}">
+
+                <!-- Dropdown untuk Laporan Poli Umum -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}" href="/"
-                        aria-expanded="false">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
+                        <a class="sidebar-link d-flex align-items-center px-2 {{ request()->is('poliumum/laporan') ? 'active' : '' }}"
+                            href="{{ route('poliumum.laporan') }}">
+                            <div class="round-16 d-flex align-items-center justify-content-center me-2">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu text-start flex-grow-1">Laporan Poli Umum</span>
+                        </a>
+                    </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow d-flex justify-content-between align-items-center {{ request()->is('rawat-inap/laporan*') ? 'active' : '' }}"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        aria-expanded="{{ request()->is('rawat-inap/laporan*') ? 'true' : 'false' }}"
+                        data-bs-target="#submenu-laporan-rawat-inap">
+                        <div class="d-flex align-items-center">
+                            <div class="round-16 d-flex align-items-center justify-content-center">
+                                <i class="ti ti-circle"></i>
+                            </div>
+                            <span class="hide-menu ms-4">Laporan Rawat Inap</span>
                         </div>
-                        <span class="hide-menu">10 Besar Penyakit</span>
+                        <i class="ti ti-chevron-down"></i> <!-- Add this arrow icon -->
                     </a>
+                    <ul id="submenu-laporan-rawat-inap"
+                        class="second-level collapse {{ request()->is('rawat-inap/laporan*') ? 'show' : '' }}"
+                        data-bs-parent="#sidebar-nav"> <!-- Add this parent reference -->
+                        <li class="sidebar-item">
+                            <a class="sidebar-link ps-5 {{ request()->is('rawat-inap/laporan') ? 'active' : '' }}"
+                                href="{{ route('rawat-inap.laporan') }}">
+                                <i class="ti ti-circle"></i>
+                                <span class="hide-menu">10 Besar Penyakit</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/laporankunjungan') ? 'active' : '' }}"
                         href="/main/laporankunjungan">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">Kunjungan</span>
+                        <span class="hide-menu">laporan UGD</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -386,7 +478,10 @@
                     </a>
                 </li>
             </ul>
+
         </li>
+
+
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow
         {{ request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'active' : '' }}"
@@ -400,8 +495,17 @@
                 </span>
                 <span class="hide-menu">Master Data</span>
             </a>
-            <ul class="first-level {{ request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'in' : '' }} collapse"
+            <ul class="first-level {{ request()->is('user') || request()->is('dokter') || request()->is('layanan') || request()->is('poli') ? 'in' : '' }} collapse"
                 aria-expanded="false">
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('user') ? 'active' : '' }}"
+                        href="{{ route('user.index') }}" aria-expanded="false">
+                        <div class="round-16 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-circle"></i>
+                        </div>
+                        <span class="hide-menu">Pengguna</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('dokter') ? 'active' : '' }}"
                         href="{{ route('doctor.index') }}" aria-expanded="false">

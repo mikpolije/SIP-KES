@@ -3235,7 +3235,7 @@ $('#search-results').hide();
                         overlay.src = imageDataUrl;
                     }
                 };
-                background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
+                background.src = 'Starterkit/resources/images/apps/Anatomi.jpg';
             };
 
             modalEl.addEventListener('shown.bs.modal', handleShown);

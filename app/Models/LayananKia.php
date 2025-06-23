@@ -9,11 +9,13 @@ class LayananKia extends Model
 {
     use HasFactory;
 
-    protected $table = 'layanan_kia';
+    protected $table = 'poli_kia';
 
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
+
+    protected $fillable = ['id_pendaftaran', 'jenis_pemeriksaan', 'no_rm'];
 
     public function pendaftaran()
     {

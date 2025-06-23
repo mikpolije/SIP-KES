@@ -23,30 +23,14 @@ return new class extends Migration
             $table->text('a')->nullable(); // Assessment
             $table->text('p')->nullable(); // Plan
 
-            // diagnosis
-            $table->unsignedBigInteger('id_icd10')->nullable();
-            $table->foreign('id_icd10')
-                ->references('id')
-                ->on('icd10')
-                ->onDelete('set null');
-
-            // tindakan
-            $table->unsignedBigInteger('id_icd9')->nullable();
-            $table->foreign('id_icd9')
-                ->references('id')
-                ->on('icd9')
-                ->onDelete('set null');
-
-            // foreign key ke obat table
-            $table->unsignedBigInteger('id_obat')->nullable();
-            $table->foreign('id_obat')
-                ->references('id')
-                ->on('obat')
-                ->onDelete('set null');
+            $table->json('id_icd10')->nullable();
+            $table->json('id_icd9')->nullable();
+            $table->json('id_obat')->nullable();
 
             // pemeriksaan (seharusnya milih laboratorium, radiologi, etc idk)
             $table->text('pemeriksaan')->nullable();
-            $table->string('kelas_perawatan')->nullable();
+            $table->string('file_penunjang')->nullable();
+            $table->enum('kelas', ['1', '2', '3'])->nullable();
 
             $table->timestamps();
         });

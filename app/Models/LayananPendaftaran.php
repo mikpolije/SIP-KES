@@ -10,6 +10,7 @@ class LayananPendaftaran extends Model
     protected $table = 'layanan_pendaftaran';
 
     protected $guarded = ['id'];
+    protected $fillable = ['id_pendaftaran', 'id_layanan'];
 
     public function layanan(): BelongsTo
     {

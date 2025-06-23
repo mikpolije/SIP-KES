@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>General Consent</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
         body {
             font-size: 14px;
@@ -49,15 +50,13 @@
 <body>
 
     {{-- HEADER --}}
-    <div class="row mb-4">
+    <div class="d-flex justify-content-between align-items-center">
         <div class="col-6">
-            <img src="{{ URL::asset('/build/images/logos/logopengembang.png') }}" height="40" alt="Logo">
+            <img src="{{ URL::asset('/assets/klinik-insan.png') }}" width="100" alt="Logo">
         </div>
-        <div class="col-6">
-            <div class="text-center w-100">
-                <p class="fw-bold mb-0"> KLINIK PRATAMA RAWAT JALAN INSAN MEDIKA</p>
-                <span>Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</span>
-            </div>
+        <div class="col-6 text-end">
+            <p class="fw-bold mb-0">KLINIK PRATAMA RAWAT JALAN INSAN MEDIKA</p>
+            <span>Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</span>
         </div>
     </div>
     <div class="row">
@@ -69,7 +68,7 @@
                 <tbody>
                     <tr>
                         <td>No. RM</td>
-                        <td>: {{ $data->noRm }}</td>
+                        <td>: {{ $data->no_rm }}</td>
                     </tr>
                     <tr>
                         <td>Nama</td>
@@ -130,31 +129,42 @@
             <li>Informasi tentang Hak dan Kewajiban Pasien
                 <ol class="sub-list">
                     <li>
-                        Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk mendapatkan pelayanan di Klinik Pratama "Insan Medika", saya telah mendapat informasi tentang hak dan kewajiban saya sebagai pasien.
+                        Dengan menandatangani dokumen ini saya mengakui bahwa pada proses pendaftaran untuk mendapatkan
+                        pelayanan di Klinik Pratama "Insan Medika", saya telah mendapat informasi tentang hak dan
+                        kewajiban saya sebagai pasien.
                     </li>
                     <li>
-                        Saya telah menerima informasi tentang peraturan yang diberlakukan oleh Klinik Pratama "Insan Medika", dan saya serta keluarga bersedia untuk mematuhinya.
+                        Saya telah menerima informasi tentang peraturan yang diberlakukan oleh Klinik Pratama "Insan
+                        Medika", dan saya serta keluarga bersedia untuk mematuhinya.
                     </li>
                 </ol>
             </li>
 
             <li>Persetujuan Perawatan dan Pengobatan<br>
-                Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya mengizinkan dokter dan tenaga kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis sesuai kebutuhan meliputi: pemeriksaan fisik, pemasangan alat kesehatan, asuhan keperawatan, pemeriksaan laboratorium, dan pemeriksaan radiologi.
+                Saya mengetahui bahwa saya memiliki kondisi yang membutuhkan perawatan medis, saya mengizinkan dokter
+                dan tenaga kesehatan lainnya untuk melakukan prosedur diagnostik, memberikan pengobatan medis sesuai
+                kebutuhan meliputi: pemeriksaan fisik, pemasangan alat kesehatan, asuhan keperawatan, pemeriksaan
+                laboratorium, dan pemeriksaan radiologi.
             </li>
 
             <li>Persetujuan Pelepasan Informasi
                 <ol class="sub-list">
                     <li>
-                        Saya memahami bahwa informasi tentang saya seperti diagnosis, hasil laboratorium, dan hasil tes diagnostik akan digunakan untuk perawatan medis dan dijaga kerahasiaannya oleh Klinik Pratama “Insan Medika”.
+                        Saya memahami bahwa informasi tentang saya seperti diagnosis, hasil laboratorium, dan hasil tes
+                        diagnostik akan digunakan untuk perawatan medis dan dijaga kerahasiaannya oleh Klinik Pratama
+                        “Insan Medika”.
                     </li>
                     <li>
-                        Saya <u>{{ $data->namaPasien }}</u> {{ $data->beri === "memberikan" ? 'memberi' : 'tidak memberi' }} wewenang kepada Klinik Pratama “Insan Medika” untuk memberikan informasi tentang diagnosis hasil pelayanan dan pengobatan apabila diperlukan untuk memproses klaim asuransi/BPJS dan perusahaan kerja sama.
-                        @if($data->penanggungJawab1 || $data->penanggungJawab2)
+                        Saya <u>{{ $data->namaPasien }}</u>
+                        {{ $data->beri === 'memberikan' ? 'memberi' : 'tidak memberi' }} wewenang kepada Klinik Pratama
+                        “Insan Medika” untuk memberikan informasi tentang diagnosis hasil pelayanan dan pengobatan
+                        apabila diperlukan untuk memproses klaim asuransi/BPJS dan perusahaan kerja sama.
+                        @if ($data->penanggungJawab1 || $data->penanggungJawab2)
                         <ol class="list-angka">
-                            @if($data->penanggungJawab1)
+                            @if ($data->penanggungJawab1)
                             <li>{{ $data->penanggungJawab1 }}</li>
                             @endif
-                            @if($data->penanggungJawab2)
+                            @if ($data->penanggungJawab2)
                             <li>{{ $data->penanggungJawab2 }}</li>
                             @endif
                         </ol>
@@ -164,13 +174,15 @@
             </li>
 
             <li>Kebutuhan Privasi<br>
-                Saya <u>{{ $data->namaPasien }}</u> Klinik Pratama "Insan Merdeka" akses bagi keluarga dan saudara serta orang-orang yang akan mendampingi saya saat pemeriksaan (sebutkan nama bila ada permintaan khusus yang tidak diijinkan):
-                @if($data->penanggungJawab3 || $data->penanggungJawab4)
+                Saya <u>{{ $data->namaPasien }}</u> Klinik Pratama "Insan Merdeka" akses bagi keluarga dan saudara
+                serta orang-orang yang akan mendampingi saya saat pemeriksaan (sebutkan nama bila ada permintaan khusus
+                yang tidak diijinkan):
+                @if ($data->penanggungJawab3 || $data->penanggungJawab4)
                 <ol class="sub-list">
-                    @if($data->penanggungJawab3)
+                    @if ($data->penanggungJawab3)
                     <li>{{ $data->penanggungJawab3 }}</li>
                     @endif
-                    @if($data->penanggungJawab4)
+                    @if ($data->penanggungJawab4)
                     <li>{{ $data->penanggungJawab4 }}</li>
                     @endif
                 </ol>
@@ -178,42 +190,47 @@
             </li>
 
             <li>Pemahaman Hak<br>
-                Saya mengerti dan memahami tentang bahwa saya memiliki hak untuk persetujuan atau menolak persetujuan untuk setiap prosedur/terapi.
+                Saya mengerti dan memahami tentang bahwa saya memiliki hak untuk persetujuan atau menolak persetujuan
+                untuk setiap prosedur/terapi.
             </li>
 
             <li>Peserta Didik<br>
-                Klinik Pratama “Insan Medika” telah memberikan informasi kepada saya terkait kemungkinan keterlibatan peserta didik/mahasiswa yang turut berpartisipasi dalam proses perawatan.
+                Klinik Pratama “Insan Medika” telah memberikan informasi kepada saya terkait kemungkinan keterlibatan
+                peserta didik/mahasiswa yang turut berpartisipasi dalam proses perawatan.
             </li>
 
             <li>Pengajuan Keluhan<br>
-                Saya menyatakan bahwa saya telah menerima informasi tentang adanya tata cara mengajukan dan menanggapi keluhan terkait pelayanan medis ataupun administrasi yang diberikan terhadap diri saya. Saya setuju mengikuti tata cara mengajukan keluhan sesuai prosedur yang ada.
+                Saya menyatakan bahwa saya telah menerima informasi tentang adanya tata cara mengajukan dan menanggapi
+                keluhan terkait pelayanan medis ataupun administrasi yang diberikan terhadap diri saya. Saya setuju
+                mengikuti tata cara mengajukan keluhan sesuai prosedur yang ada.
             </li>
         </ol>
 
         {{-- Pernyataan Penutup --}}
         <p>
-            Dengan tanda tangan di bawah ini, saya menyatakan bahwa saya telah membaca dan sepenuhnya setuju dengan setiap pernyataan yang terdapat pada formulir ini dan menandatanganinya tanpa paksaan dan dengan kesadaran penuh seluruh kriteria yang terdapat pada persetujuan umum (General Consent).
+            Dengan tanda tangan di bawah ini, saya menyatakan bahwa saya telah membaca dan sepenuhnya setuju dengan
+            setiap pernyataan yang terdapat pada formulir ini dan menandatanganinya tanpa paksaan dan dengan kesadaran
+            penuh seluruh kriteria yang terdapat pada persetujuan umum (General Consent).
         </p>
+
 
         {{-- Tanda Tangan --}}
         <div class="row text-center mt-5">
             <div class="col-6">
-                <p>Pasien/keluarga/penanggung jawab</p>
-            </div>
-            <div class="col-6">
-                <p>Jember, {{ \Carbon\Carbon::now('Asia/Jakarta')->format('d/m/Y') }}, Jam {{ \Carbon\Carbon::now('Asia/Jakarta')->format('H:i') }} WIB</p>
-                <p>Pemberi Informasi</p>
-            </div>
-        </div>
-
-        <div class="row text-center mt-5">
-            <div class="col-6">
+                @if ($data->ttdPenanggungJawab)
+                <img src="{{ asset('ttd/' . basename($data->ttdPenanggungJawab)) }}" alt="TTD Pasien" style="max-height: 100px;"><br>
+                @else
                 <p>( _______________________ )</p>
-                <p>Tanda tangan dan nama terang</p>
+                @endif
+                <p>{{ $data->namaPenanggungJawab ?? 'Tanda tangan dan nama terang' }}</p>
             </div>
             <div class="col-6">
+                @if ($data->ttdPemberiInformasi)
+                <img src="{{ asset('ttd/' . basename($data->ttdPemberiInformasi)) }}" alt="TTD Petugas" style="max-height: 100px;"><br>
+                @else
                 <p>( _______________________ )</p>
-                <p>Tanda tangan dan nama terang</p>
+                @endif
+                <p>{{ $data->namaPemberiInformasi ?? 'Tanda tangan dan nama terang' }}</p>
             </div>
         </div>
 
@@ -221,7 +238,7 @@
 
         {{-- TOMBOL CETAK (opsional saat preview) --}}
         <div class="no-print text-end mt-5 d-flex justify-content-end gap-2">
-            <button onclick="window.history.back()" class="btn btn-primary">Kembali</button>
+            <a href="{{ route('general-consent.index') }}" class="btn btn-primary">Kembali</a>
             <button onclick="window.print()" class="btn btn-primary">Cetak Dokumen</button>
         </div>
     </div>

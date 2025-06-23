@@ -3,236 +3,246 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap demo</title>
+        <title>Cetak UGD - {{ $data['data']->pendaftaran->data_pasien->nama_pasien ?? '-' }}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     </head>
     <body onload="printPage()">
         <div id="step-1" class="step-1 row" data-step="1">
-            <div class="card col-md-12">
+            <div class="card shadow-none col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Informasi Pasien</div>
+                            <h3 class="mt-3 shadow-none-title">Informasi Pasien</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Nama Pasien:</label>
-                                <input type="text" class="form-control" placeholder="Nama Pasien" name="nama_pasien" value="{{ $data['data']->nama }}" readonly>
+                                <label class="form-label" for="">Nama Pasien:</label>
+                                <input type="text" class="form-control" placeholder="Nama Pasien" name="nama_pasien" value="{{ $data['data']->pendaftaran->data_pasien->nama_pasien ?? '-' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Usia Pasien:</label>
-                                <input type="number" class="form-control" placeholder="Usia Pasien" name="usia_pasien" value="{{ $data['data']->usia }}" readonly>
+                                <label class="form-label" for="">Usia Pasien:</label>
+                                @php
+                                    if ($data['data']->pendaftaran->data_pasien) {
+                                        $birth_date = $data['data']->pendaftaran->data_pasien->tanggal_lahir_pasien;
+                                        $current_date = date('Y-m-d');
+                                        $birth_date_obj = new DateTime($birth_date);
+                                        $current_date_obj = new DateTime($current_date);
+                                        $diff = $current_date_obj->diff($birth_date_obj);
+                                        $age_years = $diff->y;
+                                    }
+                                @endphp
+                                <input type="number" class="form-control" placeholder="Usia Pasien" name="usia_pasien" value="{{ $age_years ?? 0 }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">No. Jamkes:</label>
-                                <input type="text" class="form-control" placeholder="No. Jamkes" name="no_jamkes" value="{{ $data['data']->no_jamkes }}" readonly>
+                                <label class="form-label" for="">No. Jamkes:</label>
+                                <input type="text" class="form-control" placeholder="No. Jamkes" name="no_jamkes" value="{{ $data['data']->pendaftaran->data_pasien->no_jamkes ?? '-' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Nama Penanggung Jawab:</label>
-                                <input type="text" class="form-control" placeholder="Nama Penanggung Jawab" name="nama_penanggung_jawab" value="{{ $data['data']->nama_penanggung_jawab }}" readonly>
+                                <label class="form-label" for="">Nama Penanggung Jawab:</label>
+                                <input type="text" class="form-control" placeholder="Nama Penanggung Jawab" name="nama_penanggung_jawab" value="{{ $data['data']->pendaftaran->wali_pasien->nama_wali ?? '-' }}" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-12">
+            <div class="col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Informasi Kondisi Pasien</div>
+                            <h3 class="mt-3 shadow-none-title">Informasi Kondisi Pasien</h3>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">*Tanggal Masuk:</label>
-                                <input type="date" class="form-control" placeholder="Tanggal Masuk" name="tanggal_masuk" value="{{ $data['data']->kondisi->tanggal_masuk }}" readonly>
+                                <label class="form-label" for="">*Tanggal Masuk:</label>
+                                <input type="date" class="form-control" placeholder="Tanggal Masuk" name="tanggal_masuk" value="{{ $data['data']->created_at }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Sarana Transportasi Kedatangan:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->sarana_transportasi_kedatangan }}" readonly>
+                                <label class="form-label" for="">Sarana Transportasi Kedatangan:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->sarana_transportasi_kedatangan }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">*Jam Masuk:</label>
-                                <input type="time" class="form-control" placeholder="Jam Masuk" name="jam_masuk" value="{{ $data['data']->kondisi->jam_masuk }}" readonly>
+                                <label class="form-label" for="">*Jam Masuk:</label>
+                                <input type="time" class="form-control" placeholder="Jam Masuk" name="jam_masuk" value="{{ $data['data']->jam_masuk }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Kondisi Pasien Tiba:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->kondisi_pasien_tiba }}" readonly>
+                                <label class="form-label" for="">Kondisi Pasien Tiba:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->kondisi_pasien_tiba }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="" class="form-label">Triase</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->triase }}" readonly>
+                                <label class="form-label" for="" class="form-label">Triase</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->triase }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Riwayat Alergi:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->riwayat_alergi }}" readonly>
+                                <label class="form-label" for="">Riwayat Alergi:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->riwayat_alergi }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Keluhan:</label>
-                                <textarea name="keluhan" id="" cols="" rows="5" class="form-control" readonly>{{ $data['data']->kondisi->keluhan }}</textarea>
+                                <label class="form-label" for="">Keluhan:</label>
+                                <textarea name="keluhan" id="" cols="" rows="5" class="form-control" disabled>{{ $data['data']->keluhan }}</textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="input-group form-floating mb-3">
-                                <input type="number" name="berat_badan" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->kondisi->berat_badan }}" readonly>
+                                <input type="number" name="berat_badan" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->berat_badan }}" disabled>
                                 <span class="input-group-text" id="basic-addon">KG</span>
-                                <label for="">Berat Badan:</label>
+                                <label class="form-label" for="">Berat Badan:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="input-group form-floating mb-3">
-                                <input type="number" name="tinggi_badan" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->kondisi->tinggi_badan }}" readonly>
+                                <input type="number" name="tinggi_badan" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->tinggi_badan }}" disabled>
                                 <span class="input-group-text" id="basic-addon">CM</span>
-                                <label for="">Tinggi Badan:</label>
+                                <label class="form-label" for="">Tinggi Badan:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="input-group form-floating mb-3">
-                                <input type="number" name="lingkar_perut" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->kondisi->lingkar_perut }}" readonly>
+                                <input type="number" name="lingkar_perut" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->lingkar_perut }}" disabled>
                                 <span class="input-group-text" id="basic-addon">CM</span>
-                                <label for="">Lingkar Perut:</label>
+                                <label class="form-label" for="">Lingkar Perut:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" placeholder="IMT" name="imt" value="{{ $data['data']->kondisi->imt }}" readonly>
-                                <label for="">IMT:</label>
+                                <input type="number" class="form-control" placeholder="IMT" name="imt" value="{{ $data['data']->imt }}" disabled>
+                                <label class="form-label" for="">IMT:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" placeholder="Nafas" name="nafas" value="{{ $data['data']->kondisi->nafas }}" readonly>
-                                <label for="">Nafas:</label>
+                                <input type="number" class="form-control" placeholder="Nafas" name="nafas" value="{{ $data['data']->nafas }}" disabled>
+                                <label class="form-label" for="">Nafas:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="input-group form-floating mb-3">
-                                <input type="number" name="sistol" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->kondisi->sistol }}" readonly>
+                                <input type="number" name="sistol" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->sistol }}" disabled>
                                 <span class="input-group-text" id="basic-addon">mmHg</span>
-                                <label for="">Tensi - Sistol:</label>
+                                <label class="form-label" for="">Tensi - Sistol:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="input-group form-floating mb-3">
-                                <input type="number" name="diastol" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->kondisi->diastol }}" readonly>
+                                <input type="number" name="diastol" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->diastol }}" disabled>
                                 <span class="input-group-text" id="basic-addon">mmHg</span>
-                                <label for="">Tensi - Diastol:</label>
+                                <label class="form-label" for="">Tensi - Diastol:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="input-group form-floating mb-3">
-                                <input type="number" name="suhu" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->kondisi->suhu }}" readonly>
+                                <input type="number" name="suhu" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->suhu }}" disabled>
                                 <span class="input-group-text" id="basic-addon">C</span>
-                                <label for="">Suhu:</label>
+                                <label class="form-label" for="">Suhu:</label>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" placeholder="Nadi" name="nadi" value="{{ $data['data']->kondisi->nadi }}" readonly>
-                                <label for="">Nadi:</label>
+                                <input type="number" class="form-control" placeholder="Nadi" name="nadi" value="{{ $data['data']->nadi }}" disabled>
+                                <label class="form-label" for="">Nadi:</label>
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Kepala:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->kepala) }}" readonly>
+                                <label class="form-label" for="">Kepala:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kepala) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Mata:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->mata) }}" readonly>
+                                <label class="form-label" for="">Mata:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->mata) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">THT:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->tht) }}" readonly>
+                                <label class="form-label" for="">THT:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->tht) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Leher:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->leher) }}" readonly>
+                                <label class="form-label" for="">Leher:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->leher) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Thorax:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->thorax) }}" readonly>
+                                <label class="form-label" for="">Thorax:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->thorax) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Abdomen:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->abdomen) }}" readonly>
+                                <label class="form-label" for="">Abdomen:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->abdomen) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Extemitas:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->extemitas) }}" readonly>
+                                <label class="form-label" for="">Extemitas:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->extemitas) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Genetalia:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->genetalia) }}" readonly>
+                                <label class="form-label" for="">Genetalia:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->genetalia) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">ECG:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->ecg) }}" readonly>
+                                <label class="form-label" for="">ECG:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->ecg) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Ronsen:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->ronsen) }}" readonly>
+                                <label class="form-label" for="">Ronsen:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->ronsen) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Terapi:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->terapi) }}" readonly>
+                                <label class="form-label" for="">Terapi:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->terapi) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Kie:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->kie) }}" readonly>
+                                <label class="form-label" for="">Kie:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kie) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Pemeriksaan Penunjang:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->pemeriksaan_penunjang) }}" readonly>
+                                <label class="form-label" for="">Pemeriksaan Penunjang:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->pemeriksaan_penunjang) }}" disabled>
                             </div>
                         </div>
                     </div>
@@ -246,20 +256,20 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Jalur Nafas:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->jalur_nafas }}" readonly>
+                                <label class="form-label" for="">Jalur Nafas:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->jalur_nafas }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Pola Nafas:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->pola_nafas }}" readonly>
+                                <label class="form-label" for="">Pola Nafas:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->pola_nafas }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Gerakan Dada:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->gerakan_dada }}" readonly>
+                                <label class="form-label" for="">Gerakan Dada:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->gerakan_dada }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -271,27 +281,27 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Kulit:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->kulit }}" readonly>
+                                <label class="form-label" for="">Kulit:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->kulit }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Turgor:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->turgor }}" readonly>
+                                <label class="form-label" for="">Turgor:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->turgor }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Akral:</label>
-                                <input type="text" class="form-control" value="{{ $data['data']->kondisi->akral }}" readonly>
+                                <label class="form-label" for="">Akral:</label>
+                                <input type="text" class="form-control" value="{{ $data['data']->akral }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">SPO:</label>
+                                <label class="form-label" for="">SPO:</label>
                                 <div class="input-group">
-                                    <input type="text" name="spo" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->kondisi->spo }}" readonly>
+                                    <input type="text" name="spo" id="" aria-describedby="basic-addon" class="form-control" value="{{ $data['data']->spo }}" disabled>
                                     <span class="input-group-text" id="basic-addon">%</span>
                                 </div>
                             </div>
@@ -307,243 +317,243 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Kesadaran:</label>
-                                <input type="text" class="form-control" placeholder="Kesadaran" name="kesadaran" value="{{ ucwords($data['data']->kondisi->kesadaran) }}" readonly>
+                                <label class="form-label" for="">Kesadaran:</label>
+                                <input type="text" class="form-control" placeholder="Kesadaran" name="kesadaran" value="{{ ucwords($data['data']->kesadaran) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group mb-3">
-                                <label for="">Mata:</label>
-                                <input type="text" class="form-control" placeholder="Mata" name="mata_neurologi" value="{{ ucwords($data['data']->kondisi->mata_neurologi) }}" readonly>
+                                <label class="form-label" for="">Mata:</label>
+                                <input type="text" class="form-control" placeholder="Mata" name="mata_neurologi" value="{{ ucwords($data['data']->mata_neurologi) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group mb-3">
-                                <label for="">Motorik:</label>
-                                <input type="text" class="form-control" placeholder="Motorik" name="motorik" value="{{ ucwords($data['data']->kondisi->motorik) }}" readonly>
+                                <label class="form-label" for="">Motorik:</label>
+                                <input type="text" class="form-control" placeholder="Motorik" name="motorik" value="{{ ucwords($data['data']->motorik) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group mb-3">
-                                <label for="">Verbal:</label>
-                                <input type="text" class="form-control" placeholder="Verbal" name="verbal" value="{{ ucwords($data['data']->kondisi->verbal) }}" readonly>
+                                <label class="form-label" for="">Verbal:</label>
+                                <input type="text" class="form-control" placeholder="Verbal" name="verbal" value="{{ ucwords($data['data']->verbal) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Kondisi Umum:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->kondisi_umum) }}" readonly>
+                                <label class="form-label" for="">Kondisi Umum:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi_umum) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="">Laborat:</label>
-                                <input type="text" class="form-control" value="{{ ucwords($data['data']->kondisi->laborat) }}" readonly>
+                                <label class="form-label" for="">Laborat:</label>
+                                <input type="text" class="form-control" value="{{ ucwords($data['data']->laborat) }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group mb-3">
-                                <label for="">Laboratorium / Farmasi:</label>
-                                <img src="{{ asset('/upload/laboratorium_farmasi/' . $data['data']->id . '/' . $data['data']->kondisi->laboratorium_farmasi) }}" class="img-fluid" alt="">
+                                <label class="form-label" for="">Laboratorium / Farmasi:</label>
+                                <img src="{{ asset('/upload/laboratorium_farmasi/' . $data['data']->id . '/' . $data['data']->laboratorium_farmasi) }}" class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-12">
+            <div class="col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Faktor Risiko</div>
+                            <h3 class="mt-3 shadow-none-title">Faktor Risiko</h3>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-3 form-group">
-                            <label for="" class="form-label">Aktifitas Fisik</label>
-                            <input type="text" class="form-control" value="{{ $data['data']->kondisi->aktivitas_fisik == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                            <label class="form-label" for="" class="form-label">Aktifitas Fisik</label>
+                            <input type="text" class="form-control" value="{{ $data['data']->aktivitas_fisik == 1 ? 'Ya' : 'Tidak' }}" disabled>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="form-label">Konsumsi Alkohol</label>
-                            <input type="text" class="form-control" value="{{ $data['data']->kondisi->konsumsi_alkohol == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                            <label class="form-label" for="" class="form-label">Konsumsi Alkohol</label>
+                            <input type="text" class="form-control" value="{{ $data['data']->konsumsi_alkohol == 1 ? 'Ya' : 'Tidak' }}" disabled>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="form-label">Makan Buah & Sayur</label>
-                            <input type="text" class="form-control" value="{{ $data['data']->kondisi->makan_buah_sayur == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                            <label class="form-label" for="" class="form-label">Makan Buah & Sayur</label>
+                            <input type="text" class="form-control" value="{{ $data['data']->makan_buah_sayur == 1 ? 'Ya' : 'Tidak' }}" disabled>
                         </div>
                         <div class="col-md-3">
-                            <label for="" class="form-label">Merokok</label>
-                            <input type="text" class="form-control" value="{{ $data['data']->kondisi->merokok == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                            <label class="form-label" for="" class="form-label">Merokok</label>
+                            <input type="text" class="form-control" value="{{ $data['data']->merokok == 1 ? 'Ya' : 'Tidak' }}" disabled>
                         </div>
                         <div class="col-md-6">
-                            <label for="" class="form-label">Riwayat Keluarga</label>
-                            <input type="text" class="form-control" value="{{ $data['data']->kondisi->riwayat_keluarga == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                            <label class="form-label" for="" class="form-label">Riwayat Keluarga</label>
+                            <input type="text" class="form-control" value="{{ $data['data']->riwayat_keluarga == 1 ? 'Ya' : 'Tidak' }}" disabled>
                         </div>
                         <div class="col-md-6">
-                            <label for="" class="form-label">Riwayat Penyakit Terdahulu</label>
-                            <input type="text" class="form-control" value="{{ $data['data']->kondisi->riwayat_penyakit_terdahulu == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                            <label class="form-label" for="" class="form-label">Riwayat Penyakit Terdahulu</label>
+                            <input type="text" class="form-control" value="{{ $data['data']->riwayat_penyakit_terdahulu == 1 ? 'Ya' : 'Tidak' }}" disabled>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div id="step-2" class="step-2 row hidden" data-step="2">
-            <div class="card col-md-12">
+            <div class="card shadow-none col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Data Pemeriksaan</div>
+                            <h3 class="mt-3 shadow-none-title">Data Pemeriksaan</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group mb-3">
-                                <label for="">Nama:</label>
-                                <input type="text" class="form-control" placeholder="Nama" readonly id="nama-readonly" value="{{ $data['data']->nama }}" readonly>
+                                <label class="form-label" for="">Nama:</label>
+                                <input type="text" class="form-control" placeholder="Nama" readonly id="nama-readonly" value="{{ $data['data']->pendaftaran->data_pasien->nama_pasien ?? '-' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-3">
-                                <label for="">No. RM:</label>
-                                <input type="text" class="form-control" placeholder="No. RM" readonly id="no_rm-readonly" value="{{ $data['data']->id }}" readonly>
+                                <label class="form-label" for="">No. RM:</label>
+                                <input type="text" class="form-control" placeholder="No. RM" readonly id="no_rm-readonly" value="{{ $data['data']->pendaftaran->data_pasien->no_rm ?? '-' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-3">
-                                <label for="">Alamat:</label>
-                                <input type="text" class="form-control" placeholder="Alamat" readonly id="alamat-readonly" value="-" readonly>
+                                <label class="form-label" for="">Alamat:</label>
+                                <input type="text" class="form-control" placeholder="Alamat" readonly id="alamat-readonly" value="{{ $data['data']->pendaftaran->data_pasien->alamat_pasien ?? '-' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mb-3">
-                                <label for="">Tanggal:</label>
-                                <input type="text" class="form-control" placeholder="Tanggal" readonly id="tanggal-readonly" value="{{ $data['data']->kondisi->tanggal_masuk }}" readonly>
+                                <label class="form-label" for="">Tanggal:</label>
+                                <input type="text" class="form-control" placeholder="Tanggal" readonly id="tanggal-readonly" value="{{ $data['data']->pendaftaran->created_at ?? '-' }}" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-6">
+            <div class="col-md-6">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Subjective / Keluhan</div>
+                            <h3 class="mt-3 shadow-none-title">Subjective / Keluhan</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group mb-3">
-                                <textarea name="keluhan" id="" cols="30" rows="5" class="form-control w-100" readonly>{{ $data['data']->detail->keluhan }}</textarea>
+                                <textarea name="keluhan" id="" cols="30" rows="5" class="form-control w-100" disabled>{{ $data['data']->pemeriksaan->keluhan }}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-6">
+            <div class="col-md-6">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Objective</div>
+                            <h3 class="mt-3 shadow-none-title">Objective</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="number" class="form-control" placeholder="Sistole" name="sistole" value="{{ $data['data']->detail->sistole }}" readonly>
+                                    <input type="number" class="form-control" placeholder="Sistole" name="sistole" value="{{ $data['data']->pemeriksaan->sistole }}" disabled>
                                     <span class="input-group-text" id="basic-addon">mmHg</span>
-                                    <label for="">Sistole:</label>
+                                    <label class="form-label" for="">Sistole:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Diastole" name="diastole" value="{{ $data['data']->detail->diastole }}" readonly>
+                                    <input type="text" class="form-control" placeholder="Diastole" name="diastole" value="{{ $data['data']->pemeriksaan->diastole }}" disabled>
                                     <span class="input-group-text" id="basic-addon">mmHg</span>
-                                    <label for="">Diastole:</label>
+                                    <label class="form-label" for="">Diastole:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Berat Badan" name="berat_badan" value="{{ $data['data']->detail->berat_badan }}" readonly>
+                                    <input type="text" class="form-control" placeholder="Berat Badan" name="berat_badan" value="{{ $data['data']->pemeriksaan->berat_badan }}" disabled>
                                     <span class="input-group-text" id="basic-addon">KG</span>
-                                    <label for="">Berat Badan:</label>
+                                    <label class="form-label" for="">Berat Badan:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Tinggi Badan" name="tinggi_badan" value="{{ $data['data']->detail->tinggi_badan }}" readonly>
+                                    <input type="text" class="form-control" placeholder="Tinggi Badan" name="tinggi_badan" value="{{ $data['data']->pemeriksaan->tinggi_badan }}" disabled>
                                     <span class="input-group-text" id="basic-addon">CM</span>
-                                    <label for="">Tinggi Badan:</label>
+                                    <label class="form-label" for="">Tinggi Badan:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Suhu" name="suhu" value="{{ $data['data']->detail->suhu }}" readonly>
+                                    <input type="text" class="form-control" placeholder="Suhu" name="suhu" value="{{ $data['data']->pemeriksaan->suhu }}" disabled>
                                     <span class="input-group-text" id="basic-addon">C</span>
-                                    <label for="">Suhu:</label>
+                                    <label class="form-label" for="">Suhu:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="SpO2" name="spo02" value="{{ $data['data']->detail->spo02 }}" readonly>
+                                    <input type="text" class="form-control" placeholder="SpO2" name="spo02" value="{{ $data['data']->pemeriksaan->spo02 }}" disabled>
                                     <span class="input-group-text" id="basic-addon">%</span>
-                                    <label for="">SpO2:</label>
+                                    <label class="form-label" for="">SpO2:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Respiration Rate" name="respiration_rate" value="{{ $data['data']->detail->respiration_rate }}" readonly>
+                                    <input type="text" class="form-control" placeholder="Respiration Rate" name="respiration_rate" value="{{ $data['data']->pemeriksaan->respiration_rate }}" disabled>
                                     <span class="input-group-text" id="basic-addon">/ mnt</span>
-                                    <label for="">Respiration Rate:</label>
+                                    <label class="form-label" for="">Respiration Rate:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Nadi" name="nadi" value="{{ $data['data']->detail->nadi }}" readonly>
+                                    <input type="text" class="form-control" placeholder="Nadi" name="nadi" value="{{ $data['data']->pemeriksaan->nadi }}" disabled>
                                     <span class="input-group-text" id="basic-addon">/ mnt</span>
-                                    <label for="">Nadi:</label>
+                                    <label class="form-label" for="">Nadi:</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-6">
+            <div class="col-md-6">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Plan</div>
+                            <h3 class="mt-3 shadow-none-title">Plan</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group mb-3">
-                                <textarea name="plan" id="" cols="30" rows="5" class="form-control w-100" readonly>{{ $data['data']->detail->plan }}</textarea>
+                                <textarea name="plan" id="" cols="30" rows="5" class="form-control w-100" disabled>{{ $data['data']->pemeriksaan->plan }}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-6">
+            <div class="col-md-6">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Assesment</div>
+                            <h3 class="mt-3 shadow-none-title">Assesment</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group mb-3">
-                                <textarea name="assesment" id="" cols="30" rows="5" class="form-control w-100" readonly>{{ $data['data']->detail->assesment }}</textarea>
+                                <textarea name="assesment" id="" cols="30" rows="5" class="form-control w-100" disabled>{{ $data['data']->pemeriksaan->assesment }}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card col-md-12">
+            <div class="col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Layanan</div>
+                            <h3 class="mt-3 shadow-none-title">Layanan</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -572,11 +582,11 @@
                     </div>
                 </div>
             </div>
-            <div class="card col-md-12">
+            <div class="col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-center mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title text-center">PENGKAJIAN RISIKO JATUH DEWASA (Moerse Fall Scale)</div>
+                            <h3 class="mt-3 shadow-none-title">PENGKAJIAN RISIKO JATUH DEWASA (Moerse Fall Scale)</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -600,7 +610,7 @@
                                                 25
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_riwayat_jatuh" id="" class="form-check-input border-dark" value="25" readonly @checked($data['data']->pengkajianRisiko->riwayat_jatuh == 25)>
+                                                <input type="radio" name="risiko_riwayat_jatuh" id="" class="form-check-input border-dark" value="25" disabled @checked($data['data']->pengkajianRisiko->riwayat_jatuh == 25)>
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark skor_riwayat_jatuh">{{ $data['data']->pengkajianRisiko->riwayat_jatuh }}</td>
                                         </tr>
@@ -611,7 +621,7 @@
                                                 0
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_riwayat_jatuh" id="" class="form-check-input border-dark" value="0" readonly @checked($data['data']->pengkajianRisiko->riwayat_jatuh == 0)>
+                                                <input type="radio" name="risiko_riwayat_jatuh" id="" class="form-check-input border-dark" value="0" disabled @checked($data['data']->pengkajianRisiko->riwayat_jatuh == 0)>
                                             </td>
                                             <td style="background-color: #E7EEFF"></td>
                                         </tr>
@@ -623,7 +633,7 @@
                                                 15
                                             </td>
                                             <td>
-                                                <input type="radio" name="risiko_diagnosa_sekunder" id="" class="form-check-input border-dark" value="15" readonly @checked($data['data']->pengkajianRisiko->diagnostik_sekunder == 15)>
+                                                <input type="radio" name="risiko_diagnosa_sekunder" id="" class="form-check-input border-dark" value="15" disabled @checked($data['data']->pengkajianRisiko->diagnostik_sekunder == 15)>
                                             </td>
                                             <td class="skor_diagnosa_sekunder">{{ $data['data']->pengkajianRisiko->diagnostik_sekunder }}</td>
                                         </tr>
@@ -634,7 +644,7 @@
                                                 0
                                             </td>
                                             <td>
-                                                <input type="radio" name="risiko_diagnosa_sekunder" id="" class="form-check-input border-dark" value="0" readonly @checked($data['data']->pengkajianRisiko->diagnostik_sekunder == 0)>
+                                                <input type="radio" name="risiko_diagnosa_sekunder" id="" class="form-check-input border-dark" value="0" disabled @checked($data['data']->pengkajianRisiko->diagnostik_sekunder == 0)>
                                             </td>
                                             <td></td>
                                         </tr>
@@ -647,7 +657,7 @@
                                                 30
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_alat_bantu" id="" class="form-check-input border-dark" value="30" readonly @checked($data['data']->pengkajianRisiko->alat_bantu == 30)>
+                                                <input type="radio" name="risiko_alat_bantu" id="" class="form-check-input border-dark" value="30" disabled @checked($data['data']->pengkajianRisiko->alat_bantu == 30)>
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark skor_alat_bantu">{{ $data['data']->pengkajianRisiko->alat_bantu }}</td>
                                         </tr>
@@ -658,7 +668,7 @@
                                                 15
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_alat_bantu" id="" class="form-check-input border-dark" value="15" readonly @checked($data['data']->pengkajianRisiko->alat_bantu == 15)>
+                                                <input type="radio" name="risiko_alat_bantu" id="" class="form-check-input border-dark" value="15" disabled @checked($data['data']->pengkajianRisiko->alat_bantu == 15)>
                                             </td>
                                             <td style="background-color: #E7EEFF"></td>
                                         </tr>
@@ -669,7 +679,7 @@
                                                 0
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_alat_bantu" id="" class="form-check-input border-dark" value="0" readonly @checked($data['data']->pengkajianRisiko->alat_bantu == 0)>
+                                                <input type="radio" name="risiko_alat_bantu" id="" class="form-check-input border-dark" value="0" disabled @checked($data['data']->pengkajianRisiko->alat_bantu == 0)>
                                             </td>
                                             <td style="background-color: #E7EEFF"></td>
                                         </tr>
@@ -681,7 +691,7 @@
                                                 20
                                             </td>
                                             <td>
-                                                <input type="radio" name="risiko_terpasang_infuse" id="" class="form-check-input border-dark" value="20" readonly @checked($data['data']->pengkajianRisiko->terpasang_infuse == 20)>
+                                                <input type="radio" name="risiko_terpasang_infuse" id="" class="form-check-input border-dark" value="20" disabled @checked($data['data']->pengkajianRisiko->terpasang_infuse == 20)>
                                             </td>
                                             <td class="skor_terpasang_infuse">{{ $data['data']->pengkajianRisiko->terpasang_infuse }}</td>
                                         </tr>
@@ -692,7 +702,7 @@
                                                 0
                                             </td>
                                             <td>
-                                                <input type="radio" name="risiko_terpasang_infuse" id="" class="form-check-input border-dark" value="0" readonly @checked($data['data']->pengkajianRisiko->terpasang_infuse == 0)>
+                                                <input type="radio" name="risiko_terpasang_infuse" id="" class="form-check-input border-dark" value="0" disabled @checked($data['data']->pengkajianRisiko->terpasang_infuse == 0)>
                                             </td>
                                             <td></td>
                                         </tr>
@@ -705,7 +715,7 @@
                                                 20
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_gaya_berjalan" id="" class="form-check-input border-dark" value="20" readonly @checked($data['data']->pengkajianRisiko->gaya_berjalan == 20)>
+                                                <input type="radio" name="risiko_gaya_berjalan" id="" class="form-check-input border-dark" value="20" disabled @checked($data['data']->pengkajianRisiko->gaya_berjalan == 20)>
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark skor_gaya_berjalan">{{ $data['data']->pengkajianRisiko->gaya_berjalan }}</td>
                                         </tr>
@@ -716,7 +726,7 @@
                                                 10
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_gaya_berjalan" id="" class="form-check-input border-dark" value="10" readonly @checked($data['data']->pengkajianRisiko->gaya_berjalan == 10)>
+                                                <input type="radio" name="risiko_gaya_berjalan" id="" class="form-check-input border-dark" value="10" disabled @checked($data['data']->pengkajianRisiko->gaya_berjalan == 10)>
                                             </td>
                                             <td style="background-color: #E7EEFF"></td>
                                         </tr>
@@ -727,7 +737,7 @@
                                                 0
                                             </td>
                                             <td style="background-color: #E7EEFF" class="text-dark">
-                                                <input type="radio" name="risiko_gaya_berjalan" id="" class="form-check-input border-dark" value="0" readonly @checked($data['data']->pengkajianRisiko->gaya_berjalan == 0)>
+                                                <input type="radio" name="risiko_gaya_berjalan" id="" class="form-check-input border-dark" value="0" disabled @checked($data['data']->pengkajianRisiko->gaya_berjalan == 0)>
                                             </td>
                                             <td style="background-color: #E7EEFF"></td>
                                         </tr>
@@ -739,7 +749,7 @@
                                                 15
                                             </td>
                                             <td>
-                                                <input type="radio" name="risiko_status_mental" id="" class="form-check-input border-dark" value="15" readonly @checked($data['data']->pengkajianRisiko->status_mental == 15)>
+                                                <input type="radio" name="risiko_status_mental" id="" class="form-check-input border-dark" value="15" disabled @checked($data['data']->pengkajianRisiko->status_mental == 15)>
                                             </td>
                                             <td class="skor_status_mental">{{ $data['data']->pengkajianRisiko->status_mental }}</td>
                                         </tr>
@@ -750,7 +760,7 @@
                                                 0
                                             </td>
                                             <td>
-                                                <input type="radio" name="risiko_status_mental" id="" class="form-check-input border-dark" value="0" readonly @checked($data['data']->pengkajianRisiko->status_mental == 0)>
+                                                <input type="radio" name="risiko_status_mental" id="" class="form-check-input border-dark" value="0" disabled @checked($data['data']->pengkajianRisiko->status_mental == 0)>
                                             </td>
                                             <td></td>
                                         </tr>
@@ -791,152 +801,52 @@
                     </div>
                 </div>
             </div>
-            <div class="card col-md-12">
+            <div class="col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-center mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">Pengkajian Fungsional (Diisi Oleh Perawat)</div>
+                            <h3 class="mt-3 shadow-none-title">Pengkajian Fungsional (Diisi Oleh Perawat)</h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Alat Bantu</label>
-                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->detail->alat_bantu == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                                <label class="form-label" for="">Alat Bantu</label>
+                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->pemeriksaan->alat_bantu == 1 ? 'Ya' : 'Tidak' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Protesa</label>
-                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->detail->protesa == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                                <label class="form-label" for="">Protesa</label>
+                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->pemeriksaan->protesa == 1 ? 'Ya' : 'Tidak' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Cacat Tubuh</label>
-                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->detail->cacat_tubuh == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                                <label class="form-label" for="">Cacat Tubuh</label>
+                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->pemeriksaan->cacat_tubuh == 1 ? 'Ya' : 'Tidak' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Mandiri</label>
-                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->detail->mandiri == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                                <label class="form-label" for="">Mandiri</label>
+                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->pemeriksaan->mandiri == 1 ? 'Ya' : 'Tidak' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">Dibantu</label>
-                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->detail->dibantu == 1 ? 'Ya' : 'Tidak' }}" readonly>
+                                <label class="form-label" for="">Dibantu</label>
+                                <input type="text" name="" id="" class="form-control" value="{{ $data['data']->pemeriksaan->dibantu == 1 ? 'Ya' : 'Tidak' }}" disabled>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label for="">ADL</label>
-                                <input type="text" name="" id="" class="form-control mb-3" value="{{ $data['data']->detail->adl == 1 ? 'Ya' : 'Tidak' }}" readonly>
-                                @if ($data['data']->detail->adl == 1)
-                                    @php
-                                        $activities = [
-                                            [
-                                                'Makan',
-                                                'makan',
-                                                [5, 10]
-                                            ],
-                                            [
-                                                'Berpindah dari kursi roda ke tempat tidur dan sebaliknya, termasuk duduk di tempat duduk',
-                                                'berpindah',
-                                                [5, 15]
-                                            ],
-                                            [
-                                                'Kebersihan diri, mencuci muka, menyisir, mencukur dan menggosok gigi',
-                                                'kebersihan_diri',
-                                                [0, 5]
-                                            ],
-                                            [
-                                                'Aktivitas di toilet (menyemprot, mengelap)',
-                                                'aktiivitas_di_toilet',
-                                                [5, 10]
-                                            ],
-                                            [
-                                                'Mandi',
-                                                'mandi',
-                                                [0, 5]
-                                            ],
-                                            [
-                                                'Berjalan di jalan yang datar (jika tidak mampu jalan melakukannya dengan kursi roda)',
-                                                'berjalan_di_datar',
-                                                [10, 15]
-                                            ],
-                                            [
-                                                'Naik turun tangga',
-                                                'naik_turun_tangga',
-                                                [5, 10]
-                                            ],
-                                            [
-                                                'Berpakaian termasuk menggunakan sepatu',
-                                                'berpakaian',
-                                                [5, 10]
-                                            ],
-                                            [
-                                                'Mengontrol BAB',
-                                                'mengontrol_bab',
-                                                [5, 10]
-                                            ],
-                                            [
-                                                'Mengontrol BAK',
-                                                'mengontrol_bak',
-                                                [5, 10]
-                                            ],
-                                        ]
-                                    @endphp 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped">
-                                            <thead class="">
-                                                <tr>
-                                                    <th style="vertical-align : middle;" rowspan="2">No.</th>
-                                                    <th style="vertical-align : middle;" rowspan="2">Aktivitas</th>
-                                                    <th class="text-center" colspan="2">Nilai</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Bantuan</th>
-                                                    <th>Mandiri</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php
-                                                    $adl = json_decode(json_encode($data['data']->adl), true);
-                                                    $total = 0;
-                                                @endphp
-                                                @foreach ($activities as $key => $item)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $item[0] }}</td>
-                                                        <td>
-                                                            <div class="form-check form-check-inline ml-3">
-                                                                <input type="radio" value="{{ $item[2][0] }}" name="adl_{{ $item[1] }}" id="" class="form-check-input border-dark" disabled @checked($adl[$item[1]] == $item[2][0])>
-                                                                <label for="">{{ $item[2][0] }}</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="form-check form-check-inline ml-3">
-                                                                <input type="radio" value="{{ $item[2][1] }}" name="adl_{{ $item[1] }}" id="" class="form-check-input border-dark" disabled @checked($adl[$item[1]] == $item[2][1])>
-                                                                <label for="">{{ $item[2][1] }}</label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    @php
-                                                        $total += $adl[$item[1]];
-                                                    @endphp
-                                                @endforeach
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td colspan="2" class="text-center">Jumlah</td>
-                                                    <td colspan="2" class="text-center"><b id="totalADL">{{ $total }}</b></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                @endif
+                                <label class="form-label" for="">ADL</label>
+                                <input type="text" name="" id="" class="form-control mb-3" value="{{ $data['data']->pemeriksaan->adl == 1 ? 'Ya' : 'Tidak' }}" disabled>
+                                <button type="button" class="btn btn-secondary {{ $data['data']->pemeriksaan->adl == 1 ? '' : 'hidden' }}" id="btnADL" class="" data-bs-toggle="modal" data-bs-target="#exampleModalADL">
+                                    <i class="ti ti-plus"></i>
+                                    Tampilkan ADL
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -944,99 +854,99 @@
             </div>
         </div>
         <div id="step-3" class="step-3 row hidden" data-step="3">
-            <div class="card col-md-12">
+            <div class="card shadow-none col-md-12">
                 <div class="card-body">
                     <div class="d-sm-flex d-block align-items-center justify-content-center mb-7">
                         <div class="mb-3 mb-sm-0">
-                            <div class="card-title">PEMERIKSAAN FISIK (Diisi Oleh Dokter)</div>
+                            <h3 class="mt-3 shadow-none-title">PEMERIKSAAN FISIK (Diisi Oleh Dokter)</h3>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">KU dan Kesadaran</div>
+                                        <h3 class="mt-3 shadow-none-title">KU dan Kesadaran</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <input type="text" name="" id="" class="form-control" value="{{ $data['data']->detail->ku_dan_kesadaran }}" readonly>
+                                            <input type="text" name="" id="" class="form-control" value="{{ $data['data']->pemeriksaan->ku_dan_kesadaran }}" disabled>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">Kepala dan Leher</div>
+                                        <h3 class="mt-3 shadow-none-title">Kepala dan Leher</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <textarea name="kepala_dan_leher" id="" cols="30" rows="10" class="form-control" readonly>{{ $data['data']->detail->kepala_dan_leher }}</textarea>
+                                            <textarea name="kepala_dan_leher" id="" cols="30" rows="10" class="form-control" disabled>{{ $data['data']->pemeriksaan->kepala_dan_leher }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">Dada</div>
+                                        <h3 class="mt-3 shadow-none-title">Dada</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <textarea name="dada" id="" cols="30" rows="10" class="form-control" readonly>{{ $data['data']->detail->dada }}</textarea>
+                                            <textarea name="dada" id="" cols="30" rows="10" class="form-control" disabled>{{ $data['data']->pemeriksaan->dada }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">Perut</div>
+                                        <h3 class="mt-3 shadow-none-title">Perut</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <textarea name="perut" id="" cols="30" rows="10" class="form-control" readonly>{{ $data['data']->detail->perut }}</textarea>
+                                            <textarea name="perut" id="" cols="30" rows="10" class="form-control" disabled>{{ $data['data']->pemeriksaan->perut }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">Ekstrimitas</div>
+                                        <h3 class="mt-3 shadow-none-title">Ekstrimitas</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <textarea name="ekstrimitas" id="" cols="30" rows="10" class="form-control" readonly>{{ $data['data']->detail->ekstrimitas }}</textarea>
+                                            <textarea name="ekstrimitas" id="" cols="30" rows="10" class="form-control" disabled>{{ $data['data']->pemeriksaan->ekstrimitas }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-12">
+                        <div class="col-md-12">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">Status Lokalis</div>
+                                        <h3 class="mt-3 shadow-none-title">Status Lokalis</h3>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -1045,154 +955,154 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="">Keterangan:</label>
-                                            <textarea name="status_lokalis" id="" cols="30" rows="10" class="form-control" readonly>{{ $data['data']->detail->status_lokalis }}</textarea>
+                                            <label class="form-label" for="">Keterangan:</label>
+                                            <textarea name="status_lokalis" id="" cols="30" rows="10" class="form-control" disabled>{{ $data['data']->pemeriksaan->status_lokalis }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-12">
+                        <div class="col-md-12">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-center mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">PENATALAKSAAN / TERAPI (Diisi oleh Dokter)</div>
+                                        <h3 class="mt-3 shadow-none-title">PENATALAKSAAN / TERAPI (Diisi oleh Dokter)</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <textarea name="penatalaksanaan" id="" cols="30" rows="10" class="form-control" readonly>{{ $data['data']->detail->penatalaksanaan }}</textarea>
+                                        <textarea name="penatalaksanaan" id="" cols="30" rows="10" class="form-control" disabled>{{ $data['data']->pemeriksaan->penatalaksanaan }}</textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-center mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">DISCHARGE PLANNING (Diisi oleh Perawat)</div>
+                                        <h3 class="mt-3 shadow-none-title">DISCHARGE PLANNING (Diisi oleh Perawat)</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="" class="form-label">Umur > 65</label>
+                                        <label class="form-label" for="" class="form-label">Umur > 65</label>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check form-check-inline">
-                                            <input type="radio" name="umur_65" id="" class="form-check-input" readonly @checked($data['data']->detail->umur_65)>
-                                            <label for="">Ya</label>
+                                            <input type="radio" name="umur_65" id="" class="form-check-input" disabled @checked($data['data']->pemeriksaan->umur_65)>
+                                            <label class="form-label" for="">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input type="radio" name="umur_65" id="" class="form-check-input" readonly @checked(!$data['data']->detail->umur_65)>
-                                            <label for="">Tidak</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="" class="form-label">Keterbatasan Mobilitas</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" name="keterbatasan_mobilitas" id="" class="form-check-input" readonly @checked($data['data']->detail->keterbatasan_mobilitas)>
-                                            <label for="">Ya</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" name="keterbatasan_mobilitas" id="" class="form-check-input" readonly @checked(!$data['data']->detail->keterbatasan_mobilitas)>
-                                            <label for="">Tidak</label>
+                                            <input type="radio" name="umur_65" id="" class="form-check-input" disabled @checked(!$data['data']->pemeriksaan->umur_65)>
+                                            <label class="form-label" for="">Tidak</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="" class="form-label">Perawatan / Pengobatan Lanjutan</label>
+                                        <label class="form-label" for="" class="form-label">Keterbatasan Mobilitas</label>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check form-check-inline">
-                                            <input type="radio" name="perawatan_lanjutan" id="" class="form-check-input" readonly @checked($data['data']->detail->perawatan_lanjutan)>
-                                            <label for="">Ya</label>
+                                            <input type="radio" name="keterbatasan_mobilitas" id="" class="form-check-input" disabled @checked($data['data']->pemeriksaan->keterbatasan_mobilitas)>
+                                            <label class="form-label" for="">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input type="radio" name="perawatan_lanjutan" id="" class="form-check-input" readonly @checked(!$data['data']->detail->perawatan_lanjutan)>
-                                            <label for="">Tidak</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="" class="form-label">Bantuan untuk melakukan aktivitas harian</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" name="bantuan" id="" class="form-check-input" readonly @checked($data['data']->detail->bantuan)>
-                                            <label for="">Ya</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" name="bantuan" id="" class="form-check-input" readonly @checked(!$data['data']->detail->bantuan)>
-                                            <label for="">Tidak</label>
+                                            <input type="radio" name="keterbatasan_mobilitas" id="" class="form-check-input" disabled @checked(!$data['data']->pemeriksaan->keterbatasan_mobilitas)>
+                                            <label class="form-label" for="">Tidak</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="" class="form-label">Tidak masuk kriteria</label>
+                                        <label class="form-label" for="" class="form-label">Perawatan / Pengobatan Lanjutan</label>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check form-check-inline">
-                                            <input type="radio" name="masuk_kriteria" id="" class="form-check-input" readonly @checked($data['data']->detail->masuk_kriteria)>
-                                            <label for="">Ya</label>
+                                            <input type="radio" name="perawatan_lanjutan" id="" class="form-check-input" disabled @checked($data['data']->pemeriksaan->perawatan_lanjutan)>
+                                            <label class="form-label" for="">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input type="radio" name="masuk_kriteria" id="" class="form-check-input" readonly @checked(!$data['data']->detail->masuk_kriteria)>
-                                            <label for="">Tidak</label>
+                                            <input type="radio" name="perawatan_lanjutan" id="" class="form-check-input" disabled @checked(!$data['data']->pemeriksaan->perawatan_lanjutan)>
+                                            <label class="form-label" for="">Tidak</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="" class="form-label">Bantuan untuk melakukan aktivitas harian</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" name="bantuan" id="" class="form-check-input" disabled @checked($data['data']->pemeriksaan->bantuan)>
+                                            <label class="form-label" for="">Ya</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" name="bantuan" id="" class="form-check-input" disabled @checked(!$data['data']->pemeriksaan->bantuan)>
+                                            <label class="form-label" for="">Tidak</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="" class="form-label">Tidak masuk kriteria</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" name="masuk_kriteria" id="" class="form-check-input" disabled @checked($data['data']->pemeriksaan->masuk_kriteria)>
+                                            <label class="form-label" for="">Ya</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input type="radio" name="masuk_kriteria" id="" class="form-check-input" disabled @checked(!$data['data']->pemeriksaan->masuk_kriteria)>
+                                            <label class="form-label" for="">Tidak</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-center mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">EDUKASI (Diisi oleh Dokter)</div>
+                                        <h3 class="mt-3 shadow-none-title">EDUKASI (Diisi oleh Dokter)</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_pemeriksaan" readonly @checked($data['data']->detail->hasil_pemeriksaan)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_pemeriksaan" disabled @checked($data['data']->pemeriksaan->hasil_pemeriksaan)>
                                             <label class="form-check-label" for="hasil_pemeriksaan">
-                                              Hasil Pemeriksaan Fisik
+                                                Hasil Pemeriksaan Fisik
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_pemeriksaan_penunjang" readonly @checked($data['data']->detail->penunjang)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_pemeriksaan_penunjang" disabled @checked($data['data']->pemeriksaan->penunjang)>
                                             <label class="form-check-label" for="hasil_pemeriksaan_penunjang">
-                                              Hasil Pemeriksaan Penunjang
+                                                Hasil Pemeriksaan Penunjang
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_asuhan" readonly @checked($data['data']->detail->hasil_asuhan)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_asuhan" disabled @checked($data['data']->pemeriksaan->hasil_asuhan)>
                                             <label class="form-check-label" for="hasil_asuhan">
-                                              Hasil Asuhan
+                                                Hasil Asuhan
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="lain_lain" readonly @checked($data['data']->detail->lain_lain)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="lain_lain" disabled @checked($data['data']->pemeriksaan->lain_lain)>
                                             <label class="form-check-label" for="lain_lain">
-                                              Lain-lain
+                                                Lain-lain
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="diagnosis" readonly @checked($data['data']->detail->diagnosis)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="diagnosis" disabled @checked($data['data']->pemeriksaan->diagnosis)>
                                             <label class="form-check-label" for="diagnosis">
-                                              Diagnosis
+                                                Diagnosis
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="rencana_asuhan" readonly @checked($data['data']->detail->rencana_asuhan)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="rencana_asuhan" disabled @checked($data['data']->pemeriksaan->rencana_asuhan)>
                                             <label class="form-check-label" for="rencana_asuhan">
-                                              Rencana Asuhan
+                                                Rencana Asuhan
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_pengobatan" readonly @checked($data['data']->detail->hasil_pengobatan)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="hasil_pengobatan" disabled @checked($data['data']->pemeriksaan->hasil_pengobatan)>
                                             <label class="form-check-label" for="hasil_pengobatan">
-                                              Hasil Pengobatan
+                                                Hasil Pengobatan
                                             </label>
                                         </div>
                                         <div class="form-group mb-3">
@@ -1202,101 +1112,128 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-12">
+                        <div class="col-md-12">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-center mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">RENCANA TINDAK LANJUT (Diisi oleh Dokter)</div>
+                                        <h3 class="mt-3 shadow-none-title">RENCANA TINDAK LANJUT (Diisi oleh Dokter)</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="rawat_jalan" readonly @checked($data['data']->detail->rawat_jalan != null)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="rawat_jalan" disabled @checked($data['data']->pemeriksaan->rawat_jalan != null)>
                                             <label class="form-check-label" for="rawat_inap">
-                                              Rawat jalan, kontrol ke:
+                                                Rawat jalan, kontrol ke:
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-8 mb-3">
                                         <div class="form">
-                                            <input class="form-control" type="text" name="rawat_jalan" value="{{ $data['data']->detail->rawat_jalan }}" readonly>
+                                            <input class="form-control" type="text" name="rawat_jalan" value="{{ $data['data']->pemeriksaan->rawat_jalan }}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="1" id="rawat_inap1" readonly @checked($data['data']->detail->rawat_inap != null)>
+                                            <input class="form-check-input" type="checkbox" value="1" id="rawat_inap1" disabled @checked($data['data']->pemeriksaan->rawat_inap != null)>
                                             <label class="form-check-label" for="rawat_inap1">
-                                              Rawat inap, kontrol ke:
+                                                Rawat inap, kontrol ke:
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-8 mb-3">
                                         <div class="form">
-                                            <input class="form-control" type="text" name="rawat_inap" value="{{ $data['data']->detail->rawat_inap }}" readonly>
+                                            <input class="form-control" type="text" name="rawat_inap" value="{{ $data['data']->pemeriksaan->rawat_inap }}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="" id="rujuk" readonly @checked($data['data']->detail->rujuk != null)>
+                                            <input class="form-check-input" type="checkbox" value="" id="rujuk" disabled @checked($data['data']->pemeriksaan->rujuk != null)>
                                             <label class="form-check-label" for="rujuk">
-                                              Rujuk, RS yang dituju:
+                                                Rujuk, RS yang dituju:
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-8 mb-3">
                                         <div class="form">
-                                            <input class="form-control" type="text" name="rujuk" value="{{ $data['data']->detail->rujuk }}" readonly>
+                                            <input class="form-control" type="text" name="rujuk" value="{{ $data['data']->pemeriksaan->rujuk }}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="" id="aps" readonly @checked($data['data']->detail->tanggal_pulang_paksa != null)>
+                                            <input class="form-check-input" type="checkbox" value="" id="aps" disabled @checked($data['data']->pemeriksaan->tanggal_pulang_paksa != null)>
                                             <label class="form-check-label" for="aps">
-                                              Tanggal Pulang Paksa / APS:
+                                                Tanggal Pulang Paksa / APS:
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-8 mb-3">
                                         <div class="form">
-                                            <input class="form-control" type="text" name="tanggal_pulang_paksa" value="{{ $data['data']->detail->tanggal_pulang_paksa }}" readonly>
+                                            <input class="form-control" type="text" name="tanggal_pulang_paksa" value="{{ $data['data']->pemeriksaan->tanggal_pulang_paksa }}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" value="" id="meninggal" readonly @checked($data['data']->detail->meninggal != null)>
+                                            <input class="form-check-input" type="checkbox" value="" id="meninggal" disabled @checked($data['data']->pemeriksaan->meninggal != null)>
                                             <label class="form-check-label" for="meninggal">
-                                              Meninggal:
+                                                Meninggal:
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-8 mb-3">
                                         <div class="form">
-                                            <input class="form-control" type="text" name="meninggal" value="{{ $data['data']->detail->meninggal }}" readonly>
+                                            <input class="form-control" type="text" name="meninggal" value="{{ $data['data']->pemeriksaan->meninggal }}" disabled>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">KONDISI SAAT KELUAR (Diisi oleh Dokter)</div>
+                                        <h3 class="mt-3 shadow-none-title">KONDISI SAAT KELUAR (Diisi oleh Dokter)</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="text" name="" id="" class="form-control" value="{{ $data['data']->detail->kondisi_saat_keluar }}" readonly>
+                                        <input type="text" name="" id="" class="form-control" value="{{ $data['data']->pemeriksaan->kondisi_saat_keluar }}" disabled>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">ICD 10</div>
+                                        <h3 class="mt-3 shadow-none-title">ICD 9</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbodyIcd">
+                                                @foreach ($data['data']->icd9 as $item)
+                                                    <tr>
+                                                        <td>{{ $item->icd9->code }} - {{ $item->icd9->display }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
+                                    <div class="mb-3 mb-sm-0">
+                                        <h3 class="mt-3 shadow-none-title">ICD 10</h3>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -1310,7 +1247,7 @@
                                             <tbody id="tbodyIcd">
                                                 @foreach ($data['data']->icd as $item)
                                                     <tr>
-                                                        <td>{{ $item->icd->kode_diagnosa }} - {{ $item->icd->display }}</td>
+                                                        <td>{{ $item->icd->code }} - {{ $item->icd->display }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -1319,11 +1256,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">Rincian</div>
+                                        <h3 class="mt-3 shadow-none-title">Rincian</h3>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -1350,11 +1287,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card col-md-6">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <div class="d-sm-flex d-block align-items-center justify-content-between mb-7">
                                     <div class="mb-3 mb-sm-0">
-                                        <div class="card-title">Rencana Kontrol</div>
+                                        <h3 class="mt-3 shadow-none-title">Rencana Kontrol</h3>
                                     </div>
                                 </div>
                                 <div class="row">

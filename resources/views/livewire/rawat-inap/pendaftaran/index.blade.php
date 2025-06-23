@@ -32,7 +32,7 @@ new class extends Component {
     public $provDomisili = '';
 
     #[Validate('required')]
-    public $kelasPerawatan = 'kelas1';
+    public $kelasPerawatan = '3';
     #[Validate('required')]
     public $ruangInap = '';
     #[Validate('required')]
@@ -51,12 +51,12 @@ new class extends Component {
 
         $this->existingRawatInap = PoliRawatInap::where('id_pendaftaran', $pendaftaranId)->first();
 
-        $this->nama = $this->currentPatient->nama_lengkap;
-        $this->alamatLengkap = $this->currentPatient->alamat_lengkap;
+        $this->nama = $this->currentPatient->nama_pasien;
+        $this->alamatLengkap = $this->currentPatient->alamat_pasien;
         $this->nomorRM = $this->currentPatient->no_rm;
-        $this->nik = $this->currentPatient->nik;
-        $this->tempatLahir = $this->currentPatient->tempat_lahir;
-        $this->tanggalLahir = $this->currentPatient->tanggal_lahir;
+        $this->nik = $this->currentPatient->nik_pasien;
+        $this->tempatLahir = $this->currentPatient->tempat_lahir_pasien;
+        $this->tanggalLahir = $this->currentPatient->tanggal_lahir_pasien;
         $this->jenisKelamin = $this->currentPatient->jenis_kelamin;
         $this->agama = $this->currentPatient->agama;
         $this->statusPerkawinan = $this->currentPatient->status_perkawinan;
@@ -72,7 +72,7 @@ new class extends Component {
         $this->pendidikan = $this->currentPatient->pendidikan;
         $this->pekerjaan = $this->currentPatient->pekerjaan;
 
-        $this->alamatDomisili = $this->currentPatient->alamat_lengkap;
+        $this->alamatDomisili = $this->currentPatient->alamat_pasien;
 
         $this->rtDomisili = $this->currentPatient->rt;
         $this->rwDomisili = $this->currentPatient->rw;

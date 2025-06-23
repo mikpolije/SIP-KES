@@ -225,12 +225,10 @@
                                                 Surat Keterangan
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="suratKeteranganDropdown">
-                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modalSehat">Surat Keterangan Sehat</a></li>
-                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#modalSakit">Surat Keterangan Sakit</a></li>
-                                                <li><a class="dropdown-item" href="#">General Consent</a></li>
-                                                <li><a class="dropdown-item" href="#">Informed Consent</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('surat.sehat') }}">Surat Keterangan Sehat</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('surat.sakit') }}">Surat Keterangan Sakit</a></li>
+                                                <li><a class="dropdown-item" href="/main/general-consent">General Consent</a></li>
+                                                {{-- <li><a class="dropdown-item" href="#">Informed Consent</a></li> --}}
                                             </ul>
                                         </div>
                                     </div>
@@ -238,14 +236,15 @@
                             </div>
                             <div class="mb-3 mb-sm-0">
                                 <div class="form-group">
-                                    <button type="button" id="btnCariPasien" class="btn btn-primary hidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" id="btnCariPasien" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="ti ti-search"></i>
                                         Cari Pasien
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="id_pasien" value="0">
+                        <input type="hidden" name="triase_id" value="0">
+                        <input type="hidden" name="pendaftaran_id" value="">
                         <div id="step-1" class="step-1 row" data-step="1">
                             <div class="card shadow-none col-md-12">
                                 <div class="">
@@ -257,26 +256,32 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
+                                                <label class="form-label" for="">No. RM:</label>
+                                                <input type="text" class="form-control" placeholder="No. RM" id="triase-no_rm" readonly value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-3">
                                                 <label class="form-label" for="">Nama Pasien:</label>
-                                                <input type="text" class="form-control" placeholder="Nama Pasien" name="nama_pasien" value="{{ old('nama_pasien') }}">
+                                                <input type="text" class="form-control" placeholder="Nama Pasien" id="triase-nama" readonly value="">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Usia Pasien:</label>
-                                                <input type="number" class="form-control" placeholder="Usia Pasien" name="usia_pasien">
+                                                <input type="text" class="form-control" placeholder="Usia Pasien" id="triase-usia" readonly value="">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">No. Jamkes:</label>
-                                                <input type="text" class="form-control" placeholder="No. Jamkes" name="no_jamkes">
+                                                <input type="text" class="form-control" placeholder="No. Jamkes" id="triase-no_jamkes" readonly value="">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Nama Penanggung Jawab:</label>
-                                                <input type="text" class="form-control" placeholder="Nama Penanggung Jawab" name="nama_penanggung_jawab">
+                                                <input type="text" class="form-control" placeholder="Nama Penanggung Jawab" id="triase-penanggung_jawab" readonly value="">
                                             </div>
                                         </div>
                                     </div>
@@ -800,25 +805,25 @@
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Nama:</label>
-                                                <input type="text" class="form-control" placeholder="Nama" readonly id="nama-readonly">
+                                                <input type="text" class="form-control" placeholder="Nama" readonly value="" id="nama-readonly">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">No. RM:</label>
-                                                <input type="text" class="form-control" placeholder="No. RM" readonly id="no_rm-readonly">
+                                                <input type="text" class="form-control" placeholder="No. RM" readonly value="" id="no_rm-readonly">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Alamat:</label>
-                                                <input type="text" class="form-control" placeholder="Alamat" readonly id="alamat-readonly">
+                                                <input type="text" class="form-control" placeholder="Alamat" value="" readonly id="alamat-readonly">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="">Tanggal:</label>
-                                                <input type="text" class="form-control" placeholder="Tanggal" readonly id="tanggal-readonly">
+                                                <input type="text" class="form-control" placeholder="Tanggal" readonly id="tanggal-readonly" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -1905,7 +1910,7 @@
                                 results: $.map(data, function (item) {
                                     return {
                                         text: 'Rp. ' + item.harga + ' - ' + item.nama,
-                                        id: item.id
+                                        id: item.id_obat
                                     }
                                 })
                             };
@@ -1927,7 +1932,8 @@
 
             function storePasien() {
                 let dataInput = {
-                    id_pasien: $("input[name=id_pasien]").val()
+                    triase_id: $("input[name=triase_id]").val(),
+                    pendaftaran_id: $("input[name=pendaftaran_id]").val()
                 }
                 $("#step-1 input, #step-1 select").each(function() {
                     const input = $(this)
@@ -1945,7 +1951,7 @@
                     method: 'POST',
                     data: dataInput,
                     success: function(res) {
-                        $("input[name=id_pasien]").val(res.id)
+                        $("input[name=triase_id]").val(res.id)
                     }
                 })
             }
@@ -1957,14 +1963,14 @@
                 $("#btnSubmit").addClass("hidden")
                 $(".title").html('Triase')
 
-                $("#btnCariPasien").addClass("hidden")
+                $("#btnCariPasien").removeClass("hidden")
             } else if (nextStep == 2) {
                 $("#btnNext").removeClass("hidden")
                 $("#btnPrev").removeClass("hidden")
                 $("#btnSubmit").addClass("hidden")
                 $(".title").html('Formulir Pemeriksaan UGD')
 
-                $("#btnCariPasien").removeClass("hidden")
+                $("#btnCariPasien").addClass("hidden")
             } else if (nextStep == 3) {
                 $("#btnNext").addClass("hidden")
                 $("#btnPrev").removeClass("hidden")
@@ -1977,20 +1983,27 @@
 
         function valCurrentStep (step) {
             let nullValue = 0
-            let nullable = ['selectObat', 'selectIcd9', 'selectIcd', 'selectLayanan', 'alamat-readonly']
+            let nullable = ['selectObat', 'selectIcd9', 'selectIcd', 'selectLayanan', 'alamat-readonly', 
+                            'no_jamkes', 'sarana_transportasi_kedatangan', 'riwayat_alergi', 'berat_badan', 
+                            'tinggi_badan', 'lingkar_perut', 'kepala', 'mata', 'tht', 'leher', 'thorax', 
+                            'abdomen', 'extemitas', 'genetalia', 'ecg', 'ronsen', 'terapi', 'kie', 'pemeriksaan-penunjang', 
+                            'jalur_nafas', 'pola_nafas', 'gerakan_dada', 'kulit', 'turgor', 'akral', 'spo', 'kesadaran',
+                            'mata', 'motorik', 'verbal', 'kondisi_umum', 'laborat', 'laboratorium_farmasi', 'aktifitas_fisik',
+                            'konsumsi_alkohol', 'makan_buah_sayur', 'merokok', 'riwayat_keluarga', 'riwayat_penyakit_terdahulu',
+                            'protesa', '']
             let adlForm = [ 'adl_makan', 'adl_berpindah', 'adl_kebersihan_diri', 'adl_aktivitas_di_toilet', 'adl_mandi', 'adl_berjalan_di_datar', 'adl_naik_turun_tangga', 'adl_berpakaian', 'adl_mengontrol_bab', 'adl_mengontrol_bak',]
 
             $(`#${step} select, #${step} input`).each(function () {
                 const input = $(this)
                 if(input.attr('type') == 'radio') {
-                    if(input.is(":checked").length === 0) {
+                    if(input.is(":checked").length === 0 && !nullable.includes(input.attr('id')) && !adlForm.includes(input.attr('name'))) {
                         nullValue++
                         console.log(input);
                         
                     }
                 } else {
                     if(input.val() === "" || input.val() === "-" || input.val() === null) {
-                        if(!nullable.includes(input.attr('id')) && !adlForm.includes(input.attr('name'))) {
+                        if(!nullable.includes(input.attr('id')) && !nullable.includes(input.attr('name')) && !adlForm.includes(input.attr('name')) && !input.is('[readonly]')) {
                             nullValue++
                             console.log(input);
                         }
@@ -2264,13 +2277,21 @@
 
             $("#tablePasien").on('click', '.btnPilihPasien', function() {
                 let btn = $(this)
+                $("#triase-no_rm").val(btn.data('no_rm'))
+                $("#triase-nama").val(btn.data('nama'))
+                $("#triase-usia").val(btn.data('usia'))
+                $("#triase-no_jamkes").val('-')
+                $("#triase-penanggung_jawab").val(btn.data('penanggung_jawab'))
+                
+                $("input[name=pendaftaran_id]").val(btn.data('pendaftaran_id'))
 
                 $("#nama-readonly").val(btn.data('nama'))
-                $("#no_rm-readonly").val(btn.data('id'))
-                $("#alamat-readonly").val('-')
+                $("#no_rm-readonly").val(btn.data('no_rm'))
+                $("#alamat-readonly").val(btn.data('alamat'))
                 $("#tanggal-readonly").val(btn.data('tanggal'))
 
                 $(".closePasien").trigger('close')
+                $("#tablePasien").DataTable().destroy()
             })
         })
     </script>

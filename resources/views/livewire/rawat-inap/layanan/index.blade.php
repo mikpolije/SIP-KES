@@ -32,7 +32,7 @@ new class extends Component {
 };
 ?>
 
-<div class="container mt-5">
+<div class="container">
     <div class="card">
         <div class="card-body p-0">
             <!-- Tab Navigation -->

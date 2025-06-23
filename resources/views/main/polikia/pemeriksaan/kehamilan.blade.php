@@ -69,7 +69,7 @@
                     <label for="kode_tindakan_kehamilan" class="form-label">ICD 10</label>
                     <div class="input-group">
                         <input type="text" class="form-control" name="kode_tindakan_kehamilan" id="kode_tindakan_kehamilan" placeholder="Ketik Kode Tindakan">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <span class="input-group-text cursor-pointer search-icd10"><i class="fa-solid fa-magnifying-glass"></i></span>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -77,7 +77,7 @@
                         <div class="icd-title">
                             <p>Nama ICD 10</p>
                         </div>
-                        <div class="icd-content">
+                        <div class="icd10-content">
                             <p>Tidak Ada Data</p>
                         </div>
                     </div>

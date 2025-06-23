@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdlUgd;
 use App\Models\DetailKondisi;
 use App\Models\ICD;
-use App\Models\Icd9Ugd;
-use App\Models\IcdUgd;
-use App\Models\KondisiPasien;
 use App\Models\Layanan;
-use App\Models\LayananUGD;
 use App\Models\Obat;
-use App\Models\ObatUGD;
-use App\Models\Pasien;
-use App\Models\PengkajianRisikoDewasa;
+use App\Models\PemeriksaanUgd;
+use App\Models\Pendaftaran;
 use App\Models\RencanaKontrolUGD;
+use App\Models\TransaksiAdlUgd;
+use App\Models\TransaksiIcd9Ugd;
+use App\Models\TransaksiIcdUgd;
+use App\Models\TransaksiLayananUgd;
+use App\Models\TransaksiObatUgd;
+use App\Models\TransaksiPengkajianRisikoDewasa;
+use App\Models\Triase;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ use Yajra\DataTables\DataTables;
 
 class TriageController extends Controller
 {
-    private $title = 'UGD SipKes | ';
+    private $title = 'SIP-Kes | ';
 
     /**
      * Display a listing of the resource.
@@ -38,10 +39,10 @@ class TriageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        $data['title'] = $this->title.'Tambah Triase';
-        $data['listLayanan'] = Layanan::get();
+        $noRm = $request->get('no_rm');
+        $data['title'] = $this->title.'Triase';
 
         return view('triase.add', compact('data'));
     }
@@ -51,79 +52,137 @@ class TriageController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // return $request->all();
         DB::beginTransaction();
         try {
-            $idPasien = $request->id_pasien;
-            $pasien = Pasien::find($idPasien);
-            $kondisi = KondisiPasien::where('pasien_id', $pasien->id)->first();
-            $detailKondisi = new DetailKondisi();
-            $layananUgd = new LayananUGD();
-            $pengkajianRisiko = new PengkajianRisikoDewasa();
-            $adlUgd = new AdlUgd();
-            $icdUgd = new IcdUgd();
-            $icd9Ugd = new Icd9Ugd();
-            $obatUgd = new ObatUGD();
+            if ($request->get('triase_id') == null) {
+                $triase = new Triase;
+            } else {
+                $triase = Triase::find($request->get('triase_id'));
+            }
+            $triase->pendaftaran_id = $request->get('pendaftaran_id');
+            $triase->tanggal_masuk = $request->get('tanggal_masuk');
+            $triase->sarana_transportasi_kedatangan = $request->get('sarana_transportasi_kedatangan');
+            $triase->jam_masuk = $request->get('jam_masuk');
+            $triase->kondisi_pasien_tiba = $request->get('kondisi_pasien_tiba');
+            $triase->triase = $request->get('triase');
+            $triase->riwayat_alergi = $request->get('riwayat_alergi');
+            $triase->keluhan = $request->get('keluhan');
+            $triase->berat_badan = $request->get('berat_badan');
+            $triase->tinggi_badan = $request->get('tinggi_badan');
+            $triase->lingkar_perut = $request->get('lingkar_perut');
+            $triase->imt = $request->get('imt');
+            $triase->nafas = $request->get('nafas');
+            $triase->sistol = $request->get('sistol');
+            $triase->diastol = $request->get('diastol');
+            $triase->suhu = $request->get('suhu');
+            $triase->nadi = $request->get('nadi');
+
+            $triase->kepala = strtolower($request->get('kepala') ?? 'normal');
+            $triase->mata = strtolower($request->get('mata') ?? 'normal');
+            $triase->tht = strtolower($request->get('tht') ?? 'normal');
+            $triase->leher = strtolower($request->get('leher') ?? 'normal');
+            $triase->thorax = strtolower($request->get('thorax') ?? 'normal');
+            $triase->abdomen = strtolower($request->get('abdomen') ?? 'normal');
+            $triase->extemitas = strtolower($request->get('extemitas') ?? 'normal');
+            $triase->genetalia = strtolower($request->get('genetalia') ?? 'normal');
+            $triase->ecg = strtolower($request->get('ecg') ?? 'normal');
+            $triase->ronsen = strtolower($request->get('ronsen') ?? 'tidak');
+            $triase->terapi = strtolower($request->get('terapi') ?? 'normal');
+            $triase->kie = strtolower($request->get('kie') ?? 'tidak');
+            $triase->pemeriksaan_penunjang = strtolower($request->get('pemeriksaan_penunjang') ?? 'tidak');
+
+            $triase->jalur_nafas = $request->get('jalur_nafas');
+            $triase->pola_nafas = $request->get('pola_nafas');
+            $triase->gerakan_dada = $request->get('gerakan_dada');
+            $triase->kulit = $request->get('kulit');
+            $triase->turgor = $request->get('turgor');
+            $triase->akral = $request->get('akral');
+            $triase->spo = $request->get('spo');
+            $triase->kesadaran = $request->get('kesadaran');
+            $triase->mata_neurologi = $request->get('mata_neurologi');
+            $triase->motorik = $request->get('motorik');
+            $triase->verbal = $request->get('verbal');
+            $triase->kondisi_umum = $request->get('kondisi_umum');
+            $triase->laborat = $request->get('laborat');
+            // $triase->laboratorium_farmasi = $request->get('laboratorium_farmasi');
+            $triase->aktivitas_fisik = $request->get('aktivitas_fisik');
+            $triase->konsumsi_alkohol = $request->get('konsumsi_alkohol');
+            $triase->makan_buah_sayur = $request->get('makan_buah_sayur');
+            $triase->merokok = $request->get('merokok');
+            $triase->riwayat_keluarga = $request->get('riwayat_keluarga');
+            $triase->riwayat_penyakit_terdahulu = $request->get('riwayat_penyakit_terdahulu');
+            $triase->created_at = now();
+            $triase->save();
+            $pemeriksaanUgd = new PemeriksaanUgd();
+            $layananUgd = new TransaksiLayananUgd();
+            $pengkajianRisiko = new TransaksiPengkajianRisikoDewasa();
+            $adlUgd = new TransaksiAdlUgd();
+            $icdUgd = new TransaksiIcdUgd();
+            $icd9Ugd = new TransaksiIcd9Ugd();
+            $obatUgd = new TransaksiObatUgd();
             $rencanaKontrol = new RencanaKontrolUGD();
 
-            $fileLab = $request->file('laboratorium_farmasi');
-            $filename = $fileLab->getClientOriginalName();
-            $filepath = public_path().'/upload/laboratorium_farmasi/'.$pasien->id;
-            if (! File::isDirectory($filepath)) {
-                mkdir($filepath, 493, true);
+            if(!is_null($request->file('laboratorium_farmasi'))) {
+                $fileLab = $request->file('laboratorium_farmasi');
+                $filename = $fileLab->getClientOriginalName();
+                $filepath = public_path().'/upload/laboratorium_farmasi/'.$triase->id;
+                if (! File::isDirectory($filepath)) {
+                    mkdir($filepath, 493, true);
+                }
+                $fileLab->move($filepath, $filename);
+                $triase->laboratorium_farmasi = $filename;
+                $triase->save();
             }
-            $fileLab->move($filepath, $filename);
-            $kondisi->laboratorium_farmasi = $filename;
-            $kondisi->save();
 
-            $detailKondisi->pasien_id = $pasien->id;
-            $detailKondisi->keluhan = $request->keluhan;
-            $detailKondisi->sistole = $request->sistole;
-            $detailKondisi->diastole = $request->diastole;
-            $detailKondisi->berat_badan = $request->berat_badan;
-            $detailKondisi->tinggi_badan = $request->tinggi_badan;
-            $detailKondisi->suhu = $request->suhu;
-            $detailKondisi->spo02 = $request->spo2;
-            $detailKondisi->respiration_rate = $request->respiration_rate;
-            $detailKondisi->nadi = $request->nadi;
-            $detailKondisi->plan = $request->plan;
-            $detailKondisi->assesment = $request->assesment;
-            $detailKondisi->alat_bantu = $request->alat_bantu;
-            $detailKondisi->protesa = $request->protesa;
-            $detailKondisi->cacat_tubuh = $request->cacat_tubuh;
-            $detailKondisi->mandiri = $request->mandiri;
-            $detailKondisi->dibantu = $request->dibantu;
-            $detailKondisi->adl = $request->adl;
-            $detailKondisi->ku_dan_kesadaran = $request->ku_dan_kesadaran;
-            $detailKondisi->kepala_dan_leher = $request->kepala_dan_leher;
-            $detailKondisi->dada = $request->dada;
-            $detailKondisi->perut = $request->perut;
-            $detailKondisi->ekstrimitas = $request->ekstrimitas;
-            $detailKondisi->status_lokalis = $request->status_lokalis;
-            $detailKondisi->penatalaksanaan = $request->penatalaksanaan;
-            $detailKondisi->umur_65 = $request->umur_65;
-            $detailKondisi->keterbatasan_mobilitas = $request->keterbatasan_mobilitas;
-            $detailKondisi->perawatan_lanjutan = $request->perawatan_lanjutan;
-            $detailKondisi->bantuan = $request->bantuan;
-            $detailKondisi->masuk_kriteria = $request->masuk_kriteria;
-            $detailKondisi->hasil_pemeriksaan_fisik = $request->hasil_pemeriksaan_fisik;
-            $detailKondisi->penunjang = $request->hasil_pemeriksaan_penunjang;
-            $detailKondisi->hasil_asuhan = $request->hasil_asuhan;
-            $detailKondisi->lain_lain = $request->lain_lain;
-            $detailKondisi->diagnosis = $request->diagnosis;
-            $detailKondisi->rencana_asuhan = $request->rencana_asuhan;
-            $detailKondisi->hasil_pengobatan = $request->hasil_pengobatan;
-            $detailKondisi->keterangan_edukasi = $request->keterangan_edukasi;
-            $detailKondisi->rawat_jalan = $request->rawat_jalan;
-            $detailKondisi->rawat_inap = $request->rawat_inap;
-            $detailKondisi->rujuk = $request->rujuk;
-            $detailKondisi->tanggal_pulang_paksa = $request->tanggal_pulang_paksa;
-            $detailKondisi->meninggal = $request->meninggal;
-            $detailKondisi->kondisi_saat_keluar = $request->kondisi_saat_keluar;
-            $detailKondisi->created_at = now();
-            $detailKondisi->save();
+            $pemeriksaanUgd->triase_id = $triase->id;
+            $pemeriksaanUgd->keluhan = $request->keluhan;
+            $pemeriksaanUgd->sistole = $request->sistole;
+            $pemeriksaanUgd->diastole = $request->diastole;
+            $pemeriksaanUgd->berat_badan = $request->berat_badan;
+            $pemeriksaanUgd->tinggi_badan = $request->tinggi_badan;
+            $pemeriksaanUgd->suhu = $request->suhu;
+            $pemeriksaanUgd->spo02 = $request->spo2;
+            $pemeriksaanUgd->respiration_rate = $request->respiration_rate;
+            $pemeriksaanUgd->nadi = $request->nadi;
+            $pemeriksaanUgd->plan = $request->plan;
+            $pemeriksaanUgd->assesment = $request->assesment;
+            $pemeriksaanUgd->alat_bantu = $request->alat_bantu;
+            $pemeriksaanUgd->protesa = $request->protesa;
+            $pemeriksaanUgd->cacat_tubuh = $request->cacat_tubuh;
+            $pemeriksaanUgd->mandiri = $request->mandiri;
+            $pemeriksaanUgd->dibantu = $request->dibantu;
+            $pemeriksaanUgd->adl = $request->adl;
+            $pemeriksaanUgd->ku_dan_kesadaran = $request->ku_dan_kesadaran;
+            $pemeriksaanUgd->kepala_dan_leher = $request->kepala_dan_leher;
+            $pemeriksaanUgd->dada = $request->dada;
+            $pemeriksaanUgd->perut = $request->perut;
+            $pemeriksaanUgd->ekstrimitas = $request->ekstrimitas;
+            $pemeriksaanUgd->status_lokalis = $request->status_lokalis;
+            $pemeriksaanUgd->penatalaksanaan = $request->penatalaksanaan;
+            $pemeriksaanUgd->umur_65 = $request->umur_65;
+            $pemeriksaanUgd->keterbatasan_mobilitas = $request->keterbatasan_mobilitas;
+            $pemeriksaanUgd->perawatan_lanjutan = $request->perawatan_lanjutan;
+            $pemeriksaanUgd->bantuan = $request->bantuan;
+            $pemeriksaanUgd->masuk_kriteria = $request->masuk_kriteria;
+            $pemeriksaanUgd->hasil_pemeriksaan_fisik = $request->hasil_pemeriksaan_fisik;
+            $pemeriksaanUgd->penunjang = $request->hasil_pemeriksaan_penunjang;
+            $pemeriksaanUgd->hasil_asuhan = $request->hasil_asuhan;
+            $pemeriksaanUgd->lain_lain = $request->lain_lain;
+            $pemeriksaanUgd->diagnosis = $request->diagnosis;
+            $pemeriksaanUgd->rencana_asuhan = $request->rencana_asuhan;
+            $pemeriksaanUgd->hasil_pengobatan = $request->hasil_pengobatan;
+            $pemeriksaanUgd->keterangan_edukasi = $request->keterangan_edukasi;
+            $pemeriksaanUgd->rawat_jalan = $request->rawat_jalan;
+            $pemeriksaanUgd->rawat_inap = $request->rawat_inap;
+            $pemeriksaanUgd->rujuk = $request->rujuk;
+            $pemeriksaanUgd->tanggal_pulang_paksa = $request->tanggal_pulang_paksa;
+            $pemeriksaanUgd->meninggal = $request->meninggal;
+            $pemeriksaanUgd->kondisi_saat_keluar = $request->kondisi_saat_keluar;
+            $pemeriksaanUgd->created_at = now();
+            $pemeriksaanUgd->save();
 
-            $adlUgd->pasien_id = $pasien->id;
+            $adlUgd->triase_id = $triase->id;
             $adlUgd->makan = $request->adl_makan;
             $adlUgd->berpindah = $request->adl_berpindah;
             $adlUgd->kebersihan_diri = $request->adl_kebersihan_diri;
@@ -137,7 +196,7 @@ class TriageController extends Controller
             $adlUgd->created_at = now();
             $adlUgd->save();
 
-            $pengkajianRisiko->pasien_id = $pasien->id;
+            $pengkajianRisiko->triase_id = $triase->id;
             $pengkajianRisiko->riwayat_jatuh = $request->risiko_riwayat_jatuh;
             $pengkajianRisiko->diagnostik_sekunder = $request->risiko_diagnosa_sekunder;
             $pengkajianRisiko->alat_bantu = $request->risiko_alat_bantu;
@@ -151,7 +210,7 @@ class TriageController extends Controller
                 $layanans = [];
                 foreach ($request->get('layanan_id') as $key => $item) {
                     array_push($layanans, [
-                        'pasien_id' => $pasien->id,
+                        'triase_id' => $triase->id,
                         'layanan_id' => $item,
                         'created_at' => now(),
                     ]);
@@ -164,7 +223,7 @@ class TriageController extends Controller
                 $obatsUgd = [];
                 foreach ($request->obat_id as $key => $item) {
                     array_push($obatsUgd, [
-                        'pasien_id' => $pasien->id,
+                        'triase_id' => $triase->id,
                         'obat_id' => $item,
                         'qty' => 1,
                         'created_at' => now(),
@@ -178,7 +237,7 @@ class TriageController extends Controller
                 $rencanaKontrols = [];
                 foreach ($request->alasan_kontrol as $key => $item) {
                     array_push($rencanaKontrols, [
-                        'pasien_id' => $pasien->id,
+                        'triase_id' => $triase->id,
                         'alasan' => $item,
                         'tanggal' => $request->tanggal_kontrol[$key],
                         'created_at' => now(),
@@ -192,7 +251,7 @@ class TriageController extends Controller
                 $icdUgds = [];
                 foreach ($request->icd_id as $key => $item) {
                     array_push($icdUgds, [
-                        'pasien_id' => $pasien->id,
+                        'triase_id' => $triase->id,
                         'icd_id' => $item,
                         'created_at' => now(),
                     ]);
@@ -205,7 +264,7 @@ class TriageController extends Controller
                 $icd9Ugds = [];
                 foreach ($request->icd9_id as $key => $item) {
                     array_push($icd9Ugds, [
-                        'pasien_id' => $pasien->id,
+                        'triase_id' => $triase->id,
                         'icd9_id' => $item,
                         'created_at' => now(),
                     ]);
@@ -216,14 +275,14 @@ class TriageController extends Controller
 
             DB::commit();
 
-            return redirect()->route('triase.show', $pasien->id)->with('success', 'Berhasil menambahkan data.');
+            return redirect()->route('triase.show', $triase->id)->with('success', 'Berhasil menambahkan data.');
         } catch (Exception $e) {
             DB::rollBack();
-
+            return $e->getMessage();
             return redirect()->back()->with('error', $e->getMessage());
         } catch (QueryException $e) {
             DB::rollBack();
-
+            return $e;
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -234,8 +293,8 @@ class TriageController extends Controller
     public function show(string $id)
     {
         $data['title'] = $this->title.'Outcome Triase';
-        $data['data'] = Pasien::where('id', $id)
-            ->with('kondisi', 'detail', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'obat', 'obat.obat', 'rencanaKontrol')
+        $data['data'] = Triase::where('id', $id)
+            ->with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.wali_pasien', 'pemeriksaan', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'icd9', 'icd9.icd9', 'obat', 'obat.obat', 'rencanaKontrol')
             ->first();
 
         // return $data['data'];
@@ -245,11 +304,11 @@ class TriageController extends Controller
     public function printPdf($id)
     {
         $data['title'] = $this->title.'Outcome Triase';
-        $data['data'] = Pasien::where('id', $id)
-            ->with('kondisi', 'detail', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'obat', 'obat.obat', 'rencanaKontrol')
+        $data['data'] = Triase::where('id', $id)
+            ->with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.wali_pasien', 'pemeriksaan', 'layanan', 'layanan.layanan', 'pengkajianRisiko', 'adl', 'icd', 'icd.icd', 'icd9', 'icd9.icd9', 'obat', 'obat.obat', 'rencanaKontrol')
             ->first();
 
-        $filenamePdf = 'Outcome Triase UGD - '.$data['data']->nama.'.pdf';
+        $filenamePdf = 'Outcome Triase UGD - '.$data['data']->pendaftaran->data_pasien->nama_lengkap.'.pdf';
 
         // $pdf = SnappyPdf::loadview('triase.print.print', compact('data'));
         // return $pdf->download($filenamePdf);
@@ -285,79 +344,70 @@ class TriageController extends Controller
         // return $request->all();
         DB::beginTransaction();
         try {
-            if ($request->get('id_pasien') == 0) {
-                $pasien = new Pasien;
-                $kondisi = new KondisiPasien;
+            if ($request->get('triase_id') == 0) {
+                $triase = new Triase;
             } else {
-                $pasien = Pasien::find($request->get('id_pasien'));
-                $kondisi = KondisiPasien::where('pasien_id', $pasien->id)->first();
+                $triase = Triase::find($request->get('triase_id'));
             }
+            $triase->pendaftaran_id = $request->get('pendaftaran_id');
+            $triase->tanggal_masuk = $request->get('tanggal_masuk');
+            $triase->sarana_transportasi_kedatangan = $request->get('sarana_transportasi_kedatangan');
+            $triase->jam_masuk = $request->get('jam_masuk');
+            $triase->kondisi_pasien_tiba = $request->get('kondisi_pasien_tiba');
+            $triase->triase = $request->get('triase');
+            $triase->riwayat_alergi = $request->get('riwayat_alergi');
+            $triase->keluhan = $request->get('keluhan');
+            $triase->berat_badan = $request->get('berat_badan');
+            $triase->tinggi_badan = $request->get('tinggi_badan');
+            $triase->lingkar_perut = $request->get('lingkar_perut');
+            $triase->imt = $request->get('imt');
+            $triase->nafas = $request->get('nafas');
+            $triase->sistol = $request->get('sistol');
+            $triase->diastol = $request->get('diastol');
+            $triase->suhu = $request->get('suhu');
+            $triase->nadi = $request->get('nadi');
 
-            $pasien->nama = $request->get('nama_pasien');
-            $pasien->usia = $request->get('usia_pasien');
-            $pasien->no_jamkes = $request->get('no_jamkes');
-            $pasien->nama_penanggung_jawab = $request->get('nama_penanggung_jawab');
-            $pasien->save();
+            $triase->kepala = strtolower($request->get('kepala'));
+            $triase->mata = strtolower($request->get('mata'));
+            $triase->tht = strtolower($request->get('tht'));
+            $triase->leher = strtolower($request->get('leher'));
+            $triase->thorax = strtolower($request->get('thorax'));
+            $triase->abdomen = strtolower($request->get('abdomen'));
+            $triase->extemitas = strtolower($request->get('extemitas'));
+            $triase->genetalia = strtolower($request->get('genetalia'));
+            $triase->ecg = strtolower($request->get('ecg'));
+            $triase->ronsen = strtolower($request->get('ronsen'));
+            $triase->terapi = strtolower($request->get('terapi'));
+            $triase->kie = strtolower($request->get('kie'));
+            $triase->pemeriksaan_penunjang = strtolower($request->get('pemeriksaan_penunjang'));
 
-            $kondisi->pasien_id = $pasien->id;
-            $kondisi->tanggal_masuk = $request->get('tanggal_masuk');
-            $kondisi->sarana_transportasi_kedatangan = $request->get('sarana_transportasi_kedatangan');
-            $kondisi->jam_masuk = $request->get('jam_masuk');
-            $kondisi->kondisi_pasien_tiba = $request->get('kondisi_pasien_tiba');
-            $kondisi->triase = $request->get('triase');
-            $kondisi->riwayat_alergi = $request->get('riwayat_alergi');
-            $kondisi->keluhan = $request->get('keluhan');
-            $kondisi->berat_badan = $request->get('berat_badan');
-            $kondisi->tinggi_badan = $request->get('tinggi_badan');
-            $kondisi->lingkar_perut = $request->get('lingkar_perut');
-            $kondisi->imt = $request->get('imt');
-            $kondisi->nafas = $request->get('nafas');
-            $kondisi->sistol = $request->get('sistol');
-            $kondisi->diastol = $request->get('diastol');
-            $kondisi->suhu = $request->get('suhu');
-            $kondisi->nadi = $request->get('nadi');
-
-            $kondisi->kepala = strtolower($request->get('kepala'));
-            $kondisi->mata = strtolower($request->get('mata'));
-            $kondisi->tht = strtolower($request->get('tht'));
-            $kondisi->leher = strtolower($request->get('leher'));
-            $kondisi->thorax = strtolower($request->get('thorax'));
-            $kondisi->abdomen = strtolower($request->get('abdomen'));
-            $kondisi->extemitas = strtolower($request->get('extemitas'));
-            $kondisi->genetalia = strtolower($request->get('genetalia'));
-            $kondisi->ecg = strtolower($request->get('ecg'));
-            $kondisi->ronsen = strtolower($request->get('ronsen'));
-            $kondisi->terapi = strtolower($request->get('terapi'));
-            $kondisi->kie = strtolower($request->get('kie'));
-            $kondisi->pemeriksaan_penunjang = strtolower($request->get('pemeriksaan_penunjang'));
-
-            $kondisi->jalur_nafas = $request->get('jalur_nafas');
-            $kondisi->pola_nafas = $request->get('pola_nafas');
-            $kondisi->gerakan_dada = $request->get('gerakan_dada');
-            $kondisi->kulit = $request->get('kulit');
-            $kondisi->turgor = $request->get('turgor');
-            $kondisi->akral = $request->get('akral');
-            $kondisi->spo = $request->get('spo');
-            $kondisi->kesadaran = $request->get('kesadaran');
-            $kondisi->mata_neurologi = $request->get('mata_neurologi');
-            $kondisi->motorik = $request->get('motorik');
-            $kondisi->verbal = $request->get('verbal');
-            $kondisi->kondisi_umum = $request->get('kondisi_umum');
-            $kondisi->laborat = $request->get('laborat');
-            // $kondisi->laboratorium_farmasi = $request->get('laboratorium_farmasi');
-            $kondisi->aktivitas_fisik = $request->get('aktivitas_fisik');
-            $kondisi->konsumsi_alkohol = $request->get('konsumsi_alkohol');
-            $kondisi->makan_buah_sayur = $request->get('makan_buah_sayur');
-            $kondisi->merokok = $request->get('merokok');
-            $kondisi->riwayat_keluarga = $request->get('riwayat_keluarga');
-            $kondisi->riwayat_penyakit_terdahulu = $request->get('riwayat_penyakit_terdahulu');
-            $kondisi->created_at = now();
-            $kondisi->save();
+            $triase->jalur_nafas = $request->get('jalur_nafas');
+            $triase->pola_nafas = $request->get('pola_nafas');
+            $triase->gerakan_dada = $request->get('gerakan_dada');
+            $triase->kulit = $request->get('kulit');
+            $triase->turgor = $request->get('turgor');
+            $triase->akral = $request->get('akral');
+            $triase->spo = $request->get('spo');
+            $triase->kesadaran = $request->get('kesadaran');
+            $triase->mata_neurologi = $request->get('mata_neurologi');
+            $triase->motorik = $request->get('motorik');
+            $triase->verbal = $request->get('verbal');
+            $triase->kondisi_umum = $request->get('kondisi_umum');
+            $triase->laborat = $request->get('laborat');
+            // $triase->laboratorium_farmasi = $request->get('laboratorium_farmasi');
+            $triase->aktivitas_fisik = $request->get('aktivitas_fisik');
+            $triase->konsumsi_alkohol = $request->get('konsumsi_alkohol');
+            $triase->makan_buah_sayur = $request->get('makan_buah_sayur');
+            $triase->merokok = $request->get('merokok');
+            $triase->riwayat_keluarga = $request->get('riwayat_keluarga');
+            $triase->riwayat_penyakit_terdahulu = $request->get('riwayat_penyakit_terdahulu');
+            $triase->created_at = now();
+            $triase->save();
 
             DB::commit();
 
             return response()->json([
-                'id' => $pasien->id,
+                'id' => $triase->id,
                 'message' => 'Berhasil menambahkan data',
             ]);
         } catch (Exception $e) {
@@ -373,24 +423,24 @@ class TriageController extends Controller
 
     public function getPasien()
     {
-        $pasien = Pasien::with('kondisi')
+        $pendaftaran = Pendaftaran::with('data_pasien', 'wali_pasien')
             ->get();
-
-        return DataTables::of($pasien)
+        // return $pendaftaran;
+        return DataTables::of($pendaftaran)
             ->addColumn('nama', function ($data) {
-                return $data->nama;
+                return $data->data_pasien->nama_pasien ?? '-';
             })
             ->addColumn('no_rm', function ($data) {
-                return $data->id;
+                return $data->no_rm ?? '-';
             })
             ->addColumn('alamat', function ($data) {
-                return '-';
+                return $data->data_pasien->alamat_pasien ?? '-';
             })
             ->addColumn('tanggal_registrasi', function ($data) {
-                return date('d/m/Y', strtotime($data->kondisi->tanggal_masuk));
+                return date('d/m/Y', strtotime($data->created_at ?? now()));
             })
             ->addColumn('dokter', function ($data) {
-                return $data->nama_penanggung_jawab;
+                return $data->wali_pasien->nama_wali ?? '-';
             })
             ->addColumn('tipe_pasien', function ($data) {
                 return '-';
@@ -423,7 +473,7 @@ class TriageController extends Controller
 
     public function getObat(Request $request)
     {
-        $obats = Obat::select('id', 'nama', 'harga')
+        $obats = Obat::select('id_obat', 'nama', 'harga')
             ->where('nama', 'like', '%'.$request->term.'%')
             ->get();
 

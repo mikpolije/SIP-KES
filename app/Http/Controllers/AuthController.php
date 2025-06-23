@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -23,7 +25,7 @@ class AuthController extends Controller
 
         // Prepare credentials for authentication
         $credentials = [
-            'email' => $request->username,
+            'username' => $request->username,
             'password' => $request->password,
         ];
 
@@ -33,7 +35,7 @@ class AuthController extends Controller
         // Attempt to authenticate the user
         if (Auth::attempt($credentials, $remember)) {
             // Redirect to the intended page (default: dashboard)
-            return redirect()->intended('layanan');
+            return redirect()->intended('main/index');
         }
 
         // If authentication fails, return back with errors

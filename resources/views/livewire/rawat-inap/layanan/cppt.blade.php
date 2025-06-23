@@ -17,7 +17,6 @@ new class extends Component {
     public $confirmingDuplicate = false;
     public $cpptToDuplicate;
 
-
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::find($pendaftaranId);
@@ -28,7 +27,7 @@ new class extends Component {
     #[On('cppt-added')]
     public function loadCppts() {
         $query = CPPT::where('id_pendaftaran', $this->pendaftaranId)
-            ->with(['icd10', 'icd9', 'obat', 'pendaftaran.poli_rawat_inap.informed_consent.dokter']);
+            ->with(['pendaftaran.poli_rawat_inap.informed_consent.dokter']);
 
         if ($this->dateFilter) {
             $query->whereDate('created_at', $this->dateFilter);
@@ -147,30 +146,49 @@ new class extends Component {
                     @forelse($cppts as $index => $cppt)
                         @php
                             $dokter = optional(optional(optional($cppt->pendaftaran)->poli_rawat_inap)->informed_consent)->dokter;
+
+                            $diagnosaList = $cppt->icd10()->get();
+                            $tindakanList = $cppt->icd9()->get();
+                            $obatList = $cppt->obat()->get();
                         @endphp
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $cppt->created_at->format('d/m/Y H:i') }}</td>
                             <td>{{ $dokter->nama ?? '-' }}</td>
                             <td>
-                                @if($cppt->icd10)
-                                    Diagnosis: {{ $cppt->icd10->code }} - {{ $cppt->icd10->display }}<br>
+                                @if($diagnosaList->count() > 0)
+                                    <strong>Diagnosis:</strong><br>
+                                    @foreach($diagnosaList as $diagnosa)
+                                        • {{ $diagnosa->code }} - {{ $diagnosa->display }}<br>
+                                    @endforeach
                                 @endif
-                                @if($cppt->icd9)
-                                    Tindakan: {{ $cppt->icd9->code }} - {{ $cppt->icd9->display }}<br>
+
+                                @if($tindakanList->count() > 0)
+                                    <strong>Tindakan:</strong><br>
+                                    @foreach($tindakanList as $tindakan)
+                                        • {{ $tindakan->code }} - {{ $tindakan->display }}<br>
+                                    @endforeach
                                 @endif
+
+                                @if($obatList->count() > 0)
+                                    <strong>Obat:</strong><br>
+                                    @foreach($obatList as $obat)
+                                        • {{ $obat->nama }}<br>
+                                    @endforeach
+                                @endif
+
                                 @if($cppt->pemeriksaan)
-                                    {{ $cppt->pemeriksaan }}<br>
+                                    <strong>Pemeriksaan:</strong><br>
+                                    {{ $cppt->pemeriksaan }}
                                 @endif
                             </td>
                             <td>{{ $dokter->nama ?? '-' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <button
-                                        class="btn btn-sm btn-primary rounded-circle me-1"
-                                        >
+                                    <a href="{{ route('main.rawat-inap.layanan.cppt-print', ['id' => $cppt->id]) }}"
+                                       class="btn btn-sm btn-primary rounded-circle me-1" target="_blank">
                                         <i class="bi bi-file-text"></i>
-                                    </button>
+                                    </a>
                                     <button class="btn btn-sm btn-primary rounded-circle" wire:click="confirmDuplicate('{{ $cppt->id }}')">
                                         <i class="bi bi-arrow-repeat"></i>
                                     </button>
@@ -197,7 +215,6 @@ new class extends Component {
         'pendaftaranId' => $pendaftaranId
     ], key('cppt-modal-'.$pendaftaranId))
 
-    <!-- Confirmation Modal -->
     @if($confirmingDuplicate)
     <div class="modal fade show" style="display: block; background: rgba(0,0,0,0.5);" tabindex="-1">
         <div class="modal-dialog">

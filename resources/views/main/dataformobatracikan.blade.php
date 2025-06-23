@@ -190,7 +190,9 @@
                     <!-- OPTION BUTTON -->
                     <div class="row mb-9 justify-content-end">
                         <div class="col-md-8 d-flex justify-content-end">
-                            <button type="button" class="btn btn-success btn-3d" style="margin-right: 10px;">Simpan</button>
+                            <button type="button" class="btn btn-success btn-3d" style="margin-right: 10px;"
+                                onclick="window.location.href='{{ url('main/dataresep') }}'">Simpan</button>
+
                         </div>
                     </div>
                     <style>
@@ -253,13 +255,6 @@
                         // Write the content of the section into the new window
                         printWindow.document.write('<html><head><title>Form Obat Racikan</title>');
                         printWindow.document.write('<style>body { font-family: Arial, sans-serif; } table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #000; padding: 8px; text-align: left; }</style>');
-                        printWindow.document.write('</head><body>');
-                        printWindow.document.write(formSection.outerHTML);
-                        printWindow.document.write('</body></html>');
-
-                        // Close the document and trigger the print dialog
-                        printWindow.document.close();
-                        printWindow.print();
                     }
                 </script>
             @endsection

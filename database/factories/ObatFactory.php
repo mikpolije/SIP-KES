@@ -14,7 +14,7 @@ class ObatFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         $bentukObat = ['gr', 'ml', 'tablet', 'kapsul', 'botol', 'tube'];
         $kategoriObat = [
@@ -32,8 +32,8 @@ class ObatFactory extends Factory
 
         return [
             'nama' => $kategori . ' ' . $this->faker->unique()->word(),
-            'keterangan' => 'Obat untuk mengatasi ' . strtolower($kategori),
             'stok' => $this->faker->numberBetween(10, 500),
+            'tanggal_kadaluarsa' => $this->faker->dateTimeBetween('now', '+3 years')->format('Y-m-d'),
             'bentuk_obat' => $this->faker->randomElement($bentukObat),
             'harga' => $this->faker->numberBetween($hargaRange[0], $hargaRange[1]),
         ];

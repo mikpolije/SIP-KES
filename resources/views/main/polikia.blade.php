@@ -115,30 +115,12 @@
         'KB' => 'KB',
         'Anak' => 'Anak',
     ];
-
-    $certificates = [
-        // 'General Consent',
-        // 'Informed Consent',
-        // 'Surat Sehat',
-        // 'Surat Sakit',
-        'Surat Kontrol' => url("main/to/polikia/persuratan/kontrol"),
-        'Surat Kematian' => url("main/to/polikia/persuratan/kematian"),
-    ];
 @endphp
 
 @section('pageContent')
 <div class="card w-100">
     <div class="card-body wizard-content">
         <h1 class="title" id="page-title">Layanan KIA</h1>
-        <div class="mt-5 d-none" id="persuratan-container">
-            <label for="persuratan" class="form-label">Buat Surat</label>
-            <select id="persuratan" name="persuratan" class="form-select">
-                <option value="" selected disabled>Pilih Jenis Persuratan</option>
-                @foreach ($certificates as $key => $certificate)
-                    <option value="{{ $certificate }}">{{ $key }}</option>
-                @endforeach
-            </select>
-        </div>
         <form action="#" class="validation-wizard wizard-circle mt-2">
             <div id="header-section" class="d-none">
                 <div class="row justify-content-between align-items-center mt-5">
@@ -155,11 +137,11 @@
                     <div class="card-body row">
                         <div class="col-md-2">
                             <label for="no_antrian" class="form-label">No Antrian</label>
-                            <input type="text" class="form-control" name="no_antrian" id="no_antrian">
+                            <input type="text" class="form-control" name="no_antrian" id="no_antrian" disabled>
                         </div>
                         <div class="col-md-2">
-                            <label for="no_rm" class="form-label">No RM</label>
-                            <input type="text" class="form-control" name="no_rm" id="no_rm" disabled>
+                            <label for="no_rm_display" class="form-label">No RM</label>
+                            <input type="text" class="form-control" name="no_rm_display" id="no_rm_display" disabled>
                         </div>
                         <div class="col-md-4">
                             <label for="nama_pemeriksaan" class="form-label">Nama</label>
@@ -167,7 +149,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="tanggal" class="form-label">Tanggal</label>
-                            <input type="date" class="form-control" name="tanggal" id="tanggal">
+                            <input type="text" class="form-control" name="tanggal" id="tanggal" disabled>
                         </div>
                         <div class="col-md-2">
                             <label for="jenis_pemeriksaan" class="form-label">Jenis Pemeriksaan</label>
@@ -190,12 +172,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-9">
-                                <label for="id_pendaftaran" class="form-label">ID Pendaftaran</label>
-                                <input type="text" class="form-control" name="id_pendaftaran" id="id_pendaftaran" required>
+                                <label for="no_rm" class="form-label">No. RM</label>
+                                <input type="text" class="form-control" name="no_rm" id="no_rm" required>
+                                <input type="hidden" class="form-control" name="id_pendaftaran" id="id_pendaftaran">
                             </div>
                             <div class="col-md-3">
-                                <label for="cari_data_pendaftaran" class="form-label">&nbsp;</label>
-                                <input type="button" class="btn btn-primary form-control" name="cari_data_pendaftaran" id="cari_data_pendaftaran" value="Cari">
+                                <label for="cari_no_rm" class="form-label">&nbsp;</label>
+                                <input type="button" class="btn btn-primary form-control" name="cari_no_rm" id="cari_no_rm" value="Cari">
                             </div>
                         </div>
                     </div>
@@ -370,7 +353,7 @@ $(".validation-wizard").steps({
             $('#page-subtitle').text('Data Pemeriksaan');
         }
 
-        if (newIndex > 0) {
+        if (newIndex > 1) {
             $('#persuratan-container').removeClass('d-none');
         } else {
             $('#persuratan-container').addClass('d-none');
@@ -397,12 +380,12 @@ $(document).on('click', '.previous-step', function (e) {
     $(".validation-wizard").steps("previous");
 })
 
-$(document).on('click', '#cari_data_pendaftaran', function (e) {
+$(document).on('click', '#cari_no_rm', function (e) {
     let eThis = $(this)
-    let id_pendaftaran = $('#id_pendaftaran').val()
+    let no_rm = $('#no_rm').val()
 
-    if (!id_pendaftaran) {
-        errorMessage('ID Pendaftaran tidak boleh kosong')
+    if (!no_rm) {
+        errorMessage('No RM tidak boleh kosong')
         return
     }
 
@@ -410,7 +393,7 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
     eThis.val('Loading...')
 
     $.ajax({
-        url: "{{ route('api.poli-kia.show', ':idPendaftaran') }}".replace(':idPendaftaran', id_pendaftaran),
+        url: "{{ route('api.poli-kia.show', ':noRm') }}".replace(':noRm', no_rm),
         type: 'GET',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -418,31 +401,61 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
     }).done(function (res) {
         let data = res.data
         $('#nama_pemeriksaan').val(data.data_pasien.nama_pasien)
+        $('#no_rm_display').val(data.data_pasien.no_rm)
         $('#no_rm').val(data.data_pasien.no_rm)
+        $('#id_pendaftaran').val(data.id_pendaftaran)
+        $('#tanggal').val(new Date().toISOString().split('T')[0])
+        $('#no_antrian').val("Sesuai Pendaftaran")
+
+        // Assesmen Awal
+        if (data.asessmen_awal) {
+            $('textarea[name=keluhan]').html(data.asessmen_awal.keluhan_utama)
+            $('input[name=sistole]').val(data.asessmen_awal.tekanan_darah_sistole)
+            $('input[name=diastole]').val(data.asessmen_awal.tekanan_darah_diastole)
+            $('input[name=bb]').val("tidak tercatat")
+            $('input[name=tb]').val("tidak tercatat")
+            $('input[name=suhu]').val(data.asessmen_awal.suhu_tubuh)
+            $('input[name=spo2]').val("tidak tercatat")
+            $('input[name=respirasi]').val(data.asessmen_awal.pernafasan)
+
+            // Persalinan
+            $('input[name=napas]').val(data.asessmen_awal.pernafasan)
+            $('input[name=nadi]').val(data.asessmen_awal.denyut_jantung)
+            $('input[name=nadi_o]').val(data.asessmen_awal.denyut_jantung)
+
+            // Kehamilan
+            $('input[name=keluhan_utama]').val(data.asessmen_awal.keluhan_utama)
+            $('input[name=tekanan_darah]').val(data.asessmen_awal.tekanan_darah_sistole+'/'+data.asessmen_awal.tekanan_darah_diastole)
+            $('input[name=alergi]').val(data.asessmen_awal.alergi+' '+data.asessmen_awal.jenis_alergi)
+
+            // KB
+            // $('input[name=berat_badan]').val("tidak tercatat")
+            // $('input[name=tinggi_badan]').val("tidak tercatat")
+
+            // Anak
+            $('input[name=tensi]').val(data.asessmen_awal.tekanan_darah_sistole+'/'+data.asessmen_awal.tekanan_darah_diastole)
+            $('input[name=keluhan]').val(data.asessmen_awal.keluhan_utama)
+        }
 
         // Set Data
         if (res.data.layanan_kia) {
-            $('#no_antrian').val(data.layanan_kia.no_antrian)
-            $('#tanggal').val(data.layanan_kia.tanggal)
             $('#jenis_pemeriksaan').val(data.layanan_kia.jenis_pemeriksaan)
 
-            layananFieldLists.forEach(field => {
-                setFieldValue(`#layanan [name=${field}]`, res.data.layanan_kia[field]);
-            });
+            // layananFieldLists.forEach(field => {
+            //     setFieldValue(`#layanan [name=${field}]`, res.data.layanan_kia[field]);
+            // });
             $(".validation-wizard").steps("next");
             $(".validation-wizard").steps("next");
         } else {
-            $('#no_antrian').val('')
-            $('#tanggal').val('')
             $('#jenis_pemeriksaan').val('Kehamilan')
 
-            layananFieldLists.forEach(field => {
-                if (field === 'jenis_pemeriksaan') {
-                    setFieldValue(`#layanan [name=${field}]`, 'Kehamilan');
-                } else {
-                    setFieldValue(`#layanan [name=${field}]`, '');
-                }
-            });
+            // layananFieldLists.forEach(field => {
+            //     if (field === 'jenis_pemeriksaan') {
+            //         setFieldValue(`#layanan [name=${field}]`, 'Kehamilan');
+            //     } else {
+            //         setFieldValue(`#layanan [name=${field}]`, '');
+            //     }
+            // });
 
             $(".validation-wizard").steps("next");
         }
@@ -457,6 +470,52 @@ $(document).on('click', '#cari_data_pendaftaran', function (e) {
         eThis.val('Cari')
     })
 });
+
+$(document).on('click', '.search-icd10', function (e) {
+    var kode = $('input[name=kode_tindakan_kehamilan]').val() || $('#pemeriksaan-anak input[name=kode_tindakan]').val() || '';
+
+    $.ajax({
+        url: "{{ route('api.icd10.index') }}?icd10="+kode,
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).done(function (res) {
+        let data = res.data
+
+        let html = '';
+        data.forEach(item => {
+            html += `<p>${item.code} - ${item.display}</p><br>`
+        });
+
+        $('.icd10-content').html(html)
+    }).fail(function (xhr, status, error) {
+        errorMessage(xhr.responseJSON.message)
+    })
+})
+
+$(document).on('click', '.search-icd9', function (e) {
+    var kode = $('#pemeriksaan-kb input[name=kode_tindakan]').val() || '';
+
+    $.ajax({
+        url: "{{ route('api.icd9.index') }}?icd9="+kode,
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).done(function (res) {
+        let data = res.data
+
+        let html = '';
+        data.forEach(item => {
+            html += `<p>${item.code} - ${item.display}</p><br>`
+        });
+
+        $('.icd9-content').html(html)
+    }).fail(function (xhr, status, error) {
+        errorMessage(xhr.responseJSON.message)
+    })
+})
 
 $(document).on('change', '#persuratan', function (e) {
     let val = $(this).val()
@@ -474,12 +533,12 @@ $(document).on('click', '#submit_layanan', function (e) {
     eThis.html('Loading...')
 
     let formData = {};
-    formData['id_pendaftaran'] = $('#id_pendaftaran').val();
-    layananFieldLists.forEach(field => {
-        formData[field] = $(`#layanan [name=${field}]`).val();
-    });
-    formData['no_antrian'] = $('#no_antrian').val()
-    formData['tanggal'] = $('#tanggal').val()
+    formData['no_rm'] = $('#no_rm').val();
+    // layananFieldLists.forEach(field => {
+    //     formData[field] = $(`#layanan [name=${field}]`).val();
+    // });
+    // formData['no_antrian'] = $('#no_antrian').val()
+    // formData['tanggal'] = $('#tanggal').val()
     formData['jenis_pemeriksaan'] = $('#jenis_pemeriksaan').val()
 
     $.ajax({
@@ -530,7 +589,8 @@ $(document).on('click', '#submit_pemeriksaan_kehamilan', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
@@ -575,7 +635,8 @@ $(document).on('click', '#submit_pemeriksaan_kb', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
@@ -614,7 +675,8 @@ $(document).on('click', '#submit_pemeriksaan_anak', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
@@ -743,7 +805,8 @@ $(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
         data: formData
     }).done(function (res) {
         successMessage(res.message)
-        $(".validation-wizard").steps("next");
+        // $(".validation-wizard").steps("next");
+        window.location.href = "{{ url('main/datapengambilanobat') }}";
     }).fail(function (xhr, status, error) {
         let errors = xhr.responseJSON.errors
         errorMessage(xhr.responseJSON.message)
@@ -755,6 +818,21 @@ $(document).on('click', '#submit_pemeriksaan_persalinan', function (e) {
         eThis.html('<i class="fas fa-save me-2"></i>Simpan')
     })
 })
+
+// Get no_rm from URL
+const urlParams = new URLSearchParams(window.location.search);
+const no_rm = urlParams.get('no_rm');
+
+if (no_rm) {
+    // Call your API to get data for this no_rm
+    $.ajax({
+        url: '/api/poli-kia/' + no_rm,
+        type: 'GET',
+        success: function(res) {
+            // Populate your form or page with res.data
+        }
+    });
+}
 
 // Function Helper
 function setFieldValue(id, value) {
@@ -798,5 +876,25 @@ function successMessage(msg) {
         closeButton: true,
     });
 }
+</script>
+
+<script>
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const no_rm = urlParams.get('no_rm');
+    const jenis = urlParams.get('jenis');
+    if (no_rm) {
+        $('#no_rm').val(no_rm);
+        $('#cari_no_rm').click();
+        // Jika ingin langsung ke step Pemeriksaan:
+        setTimeout(function() {
+            if (jenis) {
+                $('#jenis_pemeriksaan').val(jenis).trigger('change');
+            }
+            // Langsung ke step Pemeriksaan (step ke-2 atau ke-3 tergantung urutan wizard)
+            $(".validation-wizard").steps("goTo", 2); // 0: Pendaftaran, 1: Layanan, 2: Pemeriksaan
+        }, 1000); // delay agar data terisi dulu
+    }
+});
 </script>
 @endsection
