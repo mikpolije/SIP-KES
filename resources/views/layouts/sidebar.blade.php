@@ -539,7 +539,7 @@
         <!-- ---------------------------------- -->
         <!-- Logout -->
         <!-- ---------------------------------- -->
-        <li class="sidebar-item mt-auto" style="margin-top: 20px;">
+        <li class="sidebar-item mt-auto" style="margin-top: 50px;">
             <a class="sidebar-link btn btn-danger w-100 text-start d-flex align-items-center" href="{{ route('logout') }}">
                 <span class="d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

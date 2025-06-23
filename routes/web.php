@@ -181,7 +181,7 @@ Route::get('/riwayat-medis/cetak/{id}', [App\Http\Controllers\RiwayatMedisContro
 
 
 
-Route::middleware(['auth', 'profesi:admin,superadmin,test'])->group(function () {
+Route::middleware(['auth', 'profesi:pmik'])->group(function () {
     Route::resource('user', \App\Http\Controllers\UserController::class);
 });
 
