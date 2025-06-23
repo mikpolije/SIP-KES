@@ -475,7 +475,7 @@
 
     function showQRModal() {
         const token = Math.random().toString(36).substring(2, 12);
-        const url = `http://sipkes.mikpolije.com/${token}`;
+        const url = http://sipkes.mikpolije.com/${token};
 
         // Tampilkan QR
         document.getElementById('qrContainer').innerHTML = "";
@@ -485,7 +485,7 @@
         $('#modalQRSignature').modal('show');
 
         pollingInterval = setInterval(() => {
-            fetch(`/api/signature-status/${token}`)
+            fetch(/api/signature-status/${token})
                 .then(res => res.json())
                 .then(data => {
                     if (data.signed) {
@@ -494,7 +494,7 @@
                         document.getElementById('ttdPreview').src = data.ttd_base64;
                         document.getElementById('ttdPreview').style.display = "block";
                         document.getElementById("signStatus").innerText =
-                            // `Ditandatangani oleh: ${data.nama}`;
+                            // Ditandatangani oleh: ${data.nama};
                             setTimeout(() => {
                                 $('#modalQRSignature').modal('hide');
                             }, 1000);
