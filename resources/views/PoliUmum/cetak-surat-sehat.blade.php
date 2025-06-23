@@ -190,7 +190,7 @@
     </div>
 
     <div class="ttd">
-        <div style="width: 200px; height: 80px; border: 1px dashed #666;"></div>
+        <div style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block;"></div>
         <p><strong>Dr. {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}</strong></p>
         <p><strong>{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</strong></p>
     </div>
