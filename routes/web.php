@@ -27,7 +27,7 @@ Route::middleware('web')->group(function () {
     Route::get('/user/register', function () {
     return view('user.register');
         })->name('register.forms');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 
