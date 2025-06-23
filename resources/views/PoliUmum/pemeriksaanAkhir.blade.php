@@ -96,7 +96,7 @@
                     @endif
                     <section>
                         <h4 class="section-title mb-3">Data Pemeriksaan</h4>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        {{-- <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="d-flex align-items-center">
                                 <button class="btn btn-warning me-2">Rujuk Rawat Inap</button>
                                 <div class="dropdown">
@@ -114,8 +114,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-
+                        </div> --}}
 
                         <!-- Antrian - Identitas Pasien -->
                         <div class="card p-3 mb-3 shadow-sm">
