@@ -116,17 +116,17 @@
             </div>
             <div class="row">
                 <div class="label">Pekerjaan</div>:
-                {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '0'
+                {{ $rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan_pasien == '0'
                     ? 'Tidak bekerja'
-                    : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '1'
+                    : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan_pasien == '1'
                         ? 'PNS'
-                        : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '2'
+                        : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan_pasien == '2'
                             ? 'TNI/POLRI'
-                            : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '3'
+                            : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan_pasien == '3'
                                 ? 'BUMN'
-                                : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '4'
+                                : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan_pasien == '4'
                                     ? 'Pegawai Swasta/Wirausaha'
-                                    : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan == '5'
+                                    : ($rw->pemeriksaan->pendaftaran->data_pasien->pekerjaan_pasien == '5'
                                         ? 'Lain-lain'
                                         : 'Tidak diketahui'))))) }}
             </div>
