@@ -60,7 +60,7 @@
     </table>
 
     <!-- Pagination controls di bawah tabel -->
-    <div class="d-flex align-items-center mt-3" style="width: 300px;">
+    <div class="d-flex align-items-center mt-3" style="width: 50px;">
         <form method="GET" action="{{ route('user.index') }}" class="form-inline w-100">
             <input type="hidden" name="search" value="{{ request('search') }}">
             <input type="hidden" name="page" value="{{ $users->currentPage() }}">
