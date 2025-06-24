@@ -3191,7 +3191,7 @@ $('#search-results').hide();
                 image.onload = () => {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 };
-                image.src = 'Starterkit/resources/images/apps/Anatomi.jpg';
+                image.src = 'https://via.placeholder.com/500x500.png?text=Background+Test';
                 initialized = true;
             } else {
                 clearCanvas();
@@ -3235,7 +3235,7 @@ $('#search-results').hide();
                         overlay.src = imageDataUrl;
                     }
                 };
-                background.src = 'Starterkit/resources/images/apps/Anatomi.jpg';
+                background.src = 'https://via.placeholder.com/500x500.png?text=Background+Test';
             };
 
             modalEl.addEventListener('shown.bs.modal', handleShown);
