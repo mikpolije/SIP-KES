@@ -11,7 +11,11 @@ class RegisterController extends Controller
 {
     public function showForm()
     {
-        return view('user.register');
+            Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('user.register');
     }
 
     public function register(Request $request)
