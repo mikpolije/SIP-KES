@@ -475,7 +475,7 @@
 
     function showQRModal() {
         const token = Math.random().toString(36).substring(2, 12);
-        const url = http://sipkes.mikpolije.com/${token};
+        const url = `http://sipkes.mikpolije.com/${token}`;
 
         // Tampilkan QR
         document.getElementById('qrContainer').innerHTML = "";
