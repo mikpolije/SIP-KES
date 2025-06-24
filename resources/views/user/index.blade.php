@@ -44,12 +44,11 @@
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-secondary ml-2">Edit</a>
-<form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
-    @csrf
-    @method('DELETE')
-    <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger ml-2">Hapus</button>
-</form>
-
+                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger ml-2">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @empty
@@ -60,32 +59,28 @@
         </tbody>
     </table>
 
-<form method="GET" action="{{ route('user.index') }}" class="form-inline">
-    <input type="hidden" name="search" value="{{ request('search') }}">
-<div class="pagination-controls bg-white rounded-lg shadow-md p-3 flex items-center">
-        <!-- Previous Button -->
-        <button id="prev-btn" class="page-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-1 px-3 rounded mr-2" disabled>
-            &larr; Prev
-        </button>
-        
-        <!-- Items per page selector -->
-        <div class="select-wrapper">
-            <select id="perPage" class="appearance-none bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500">
-                <option value="5">5</option>
-                <option value="10" selected>10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-            <span class="ml-2 text-gray-600">items</span>
-        </div>
-        
-        <!-- Next Button -->
-        <button id="next-btn" class="page-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-1 px-3 rounded ml-2">
-            Next &rarr;
-        </button>
+    <!-- Kontrol Paginasi di pojok kiri bawah -->
+    <div id="pagination-controls" style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
+        <form method="GET" action="{{ route('user.index') }}" class="form-inline">
+            <input type="hidden" name="search" value="{{ request('search') }}">
+            <input type="hidden" name="page" value="{{ $users->currentPage() }}">
+
+            <!-- Tombol Previous -->
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo; < </a>
+
+            <!-- Select perPage -->
+            <div class="d-inline-block mx-2">
+                <select name="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
+                    @foreach ([5,10,20,50,100] as $limit)
+                        <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Tombol Next -->
+            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}"> > &raquo;</a>
+        </form>
     </div>
-</form>
 
 </div>
 @endsection
