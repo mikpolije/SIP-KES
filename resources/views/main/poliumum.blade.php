@@ -3055,7 +3055,7 @@ $('#search-results').hide();
     <script>
         const canvas = document.getElementById('bodyCanvas');
         const ctx = canvas.getContext('2d');
-        const image = new Image();
+        const defaultBackground = new Image();
         let isDrawing = false;
         let drawEnabled = false;
         let initialized = false;
@@ -3104,7 +3104,6 @@ $('#search-results').hide();
 
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         }
 
         function saveCanvas() {
@@ -3188,14 +3187,15 @@ $('#search-results').hide();
         // Saat modal dibuka pertama kali
         document.getElementById('statusLokalisModal').addEventListener('shown.bs.modal', () => {
             if (!initialized) {
-                image.onload = () => {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                defaultBackground.onload = () => {
+                    ctx.drawImage(defaultBackground, 0, 0, canvas.width, canvas.height);
                 };
-                image.src = 'https://via.placeholder.com/500x500.png?text=Background+Test';
                 initialized = true;
             } else {
                 clearCanvas();
+                ctx.drawImage(defaultBackground, 0, 0, canvas.width, canvas.height);
             }
+
         });
 
         // Reset modal saat ditutup
@@ -3203,6 +3203,7 @@ $('#search-results').hide();
             document.getElementById('bagianDiperiksa').value = '';
             document.getElementById('keteranganFisik').value = '';
             clearCanvas();
+            ctx.drawImage(defaultBackground, 0, 0, canvas.width, canvas.height);
             undoStack = [];
             redoStack = [];
             drawEnabled = false;
@@ -3224,7 +3225,7 @@ $('#search-results').hide();
 
                 const background = new Image();
                 background.onload = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    clearCanvas();
                     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
                     if (imageDataUrl) {
