@@ -18,8 +18,8 @@ class KunjunganController extends Controller
 
     public function getReport(Request $request)
     {
-        $tanggalAwal = $request->input('tanggal_awal');
-        $tanggalAkhir = $request->input('tanggal_akhir');
+        $tanggalAwal = $request->input('tanggal_awal') . ' 00:00:00';
+        $tanggalAkhir = $request->input('tanggal_akhir') . ' 23:59:59';
         $idPoli = 3;
 
         if (!$tanggalAwal || !$tanggalAkhir) {
@@ -34,7 +34,6 @@ class KunjunganController extends Controller
                 ->join('pendaftaran', 'triase.id_pendaftaran', '=', 'pendaftaran.id_pendaftaran')
                 ->where('pendaftaran.id_poli', $idPoli)
                 ->whereBetween('pendaftaran.created_at', [$tanggalAwal, $tanggalAkhir])
-                ->whereIn('pemeriksaan_ugd.kondisi_saat_keluar', ['Meninggal', 'Sembuh']) // ✅ filter kondisi
                 ->select(
                     'pemeriksaan_ugd.kondisi_saat_keluar',
                     DB::raw('COUNT(*) as total')
@@ -61,28 +60,36 @@ class KunjunganController extends Controller
 
     public function print(Request $request)
     {
-        // Ambil input dari query string
         $tanggal_awal = $request->query('tanggal_awal');
         $tanggal_akhir = $request->query('tanggal_akhir');
 
-        // Validasi sederhana
         if (!$tanggal_awal || !$tanggal_akhir) {
             return redirect()->back()->with('error', 'Tanggal awal dan tanggal akhir harus diisi.');
         }
 
-        // Query data pendaftaran sesuai rentang tanggal (gunakan created_at)
-        $data = Pendaftaran::with(['data_pasien', 'data_poli', 'triase.pemeriksaan_ugd'])
-            ->where('id_poli', 3)
-            ->whereDate('created_at', '>=', $tanggal_awal)
-            ->whereDate('created_at', '<=', $tanggal_akhir)
+        $data = DB::table('pendaftaran')
+            ->leftJoin('data_pasien', 'pendaftaran.no_rm', '=', 'data_pasien.no_rm')
+            ->leftJoin('triase', 'pendaftaran.id_pendaftaran', '=', 'triase.id_pendaftaran')
+            ->leftJoin('pemeriksaan_ugd', 'triase.id', '=', 'pemeriksaan_ugd.triase_id')
+            ->where('pendaftaran.id_poli', 3)
+            ->whereDate('pendaftaran.created_at', '>=', $tanggal_awal)
+            ->whereDate('pendaftaran.created_at', '<=', $tanggal_akhir)
+            ->select(
+                'pendaftaran.*',
+                'data_pasien.nama_pasien',
+                'data_pasien.no_rm',
+                // Data dari pemeriksaan
+                'pemeriksaan_ugd.kondisi_saat_keluar',
+                'pemeriksaan_ugd.created_at as tgl_pemeriksaan'
+            )
+            ->orderBy('pendaftaran.created_at', 'asc')
             ->get();
 
-        // Return view atau cetak PDF sesuai kebutuhan
-        // Misalnya view 'laporan.cetak_kunjungan'
         return view('main.cetak_kunjungan', [
             'data' => $data,
             'tanggal_awal' => $tanggal_awal,
             'tanggal_akhir' => $tanggal_akhir
-        ]);
-    }
+        ]);
+    }
+
 }
