@@ -33,15 +33,6 @@
             Surat Keterangan Sehat
         </h1>
 
-        <div class="d-flex justify-content-end my-4">
-            <div class="input-group" style="width: 300px;">
-                <input type="text" class="form-control" placeholder="Data Pasien">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-
         <div class="card shadow-sm">
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -109,7 +100,7 @@
                                             value="{{ $rw->id_pemeriksaan }}">
                                     </div>
                                 </div>
-                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, Dr. {{ $rw->pendaftaran->data_dokter->nama }} KLINIK
+                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, Dr. {{ $rw->pendaftaran->data_dokter->nama }}, Dokter KLINIK
                                     PRATAMA
                                     INSAN MEDIKA, menerangkan bahwa:</label>
                                 <div class="row mb-2 align-items-center">

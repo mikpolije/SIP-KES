@@ -98,15 +98,6 @@
             Surat Keterangan Sakit
         </h1>
 
-        <div class="d-flex justify-content-end my-4">
-            <select class="form-control me-2" id="searchPasien" style="width: 300px;">
-                <option value="">Cari Data Pasien...</option>
-            </select>
-            <button class="btn btn-primary" type="button" id="btnCariPasien">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-
         <div class="card shadow-sm">
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -174,7 +165,7 @@
                                         <input type="text" class="form-control" value="" name="nomor_surat">
                                     </div>
                                 </div>
-                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, Dr. {{ $rw->pendaftaran->data_dokter->nama }} Dokter KLINIK
+                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, Dr. {{ $rw->pendaftaran->data_dokter->nama }}, Dokter KLINIK
                                     PRATAMA
                                     INSAN MEDIKA, menerangkan bahwa:</label>
                                 <div class="row mb-2 align-items-center">
