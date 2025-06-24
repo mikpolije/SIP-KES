@@ -62,18 +62,28 @@
 
 <form method="GET" action="{{ route('user.index') }}" class="form-inline">
     <input type="hidden" name="search" value="{{ request('search') }}">
-    <div class="input-group input-group-sm">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="perPage">Tampilkan</label>
+<div class="pagination-controls bg-white rounded-lg shadow-md p-3 flex items-center">
+        <!-- Previous Button -->
+        <button id="prev-btn" class="page-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-1 px-3 rounded mr-2" disabled>
+            &larr; Prev
+        </button>
+        
+        <!-- Items per page selector -->
+        <div class="select-wrapper">
+            <select id="perPage" class="appearance-none bg-gray-100 border border-gray-300 text-gray-700 py-1 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <span class="ml-2 text-gray-600">items</span>
         </div>
-        <select class="form-control" id="perPage" name="perPage" onchange="this.form.submit()">
-            @foreach ([5, 10, 20, 50, 100] as $limit)
-                <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
-            @endforeach
-        </select>
-        <div class="input-group-append">
-            <span class="input-group-text">data</span>
-        </div>
+        
+        <!-- Next Button -->
+        <button id="next-btn" class="page-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-1 px-3 rounded ml-2">
+            Next &rarr;
+        </button>
     </div>
 </form>
 
