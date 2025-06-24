@@ -244,7 +244,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="triase_id" value="0">
-                        <input type="hidden" name="pendaftaran_id" value="">
+                        <input type="hidden" name="id_pendaftaran" value="">
                         <div id="step-1" class="step-1 row" data-step="1">
                             <div class="card shadow-none col-md-12">
                                 <div class="">
@@ -1937,7 +1937,7 @@
             function storePasien() {
                 let dataInput = {
                     triase_id: $("input[name=triase_id]").val(),
-                    pendaftaran_id: $("input[name=pendaftaran_id]").val()
+                    id_pendaftaran: $("input[name=id_pendaftaran]").val()
                 }
                 $("#step-1 input, #step-1 select").each(function() {
                     const input = $(this)
@@ -2287,7 +2287,7 @@
                 $("#triase-no_jamkes").val('-')
                 $("#triase-penanggung_jawab").val(btn.data('penanggung_jawab'))
                 
-                $("input[name=pendaftaran_id]").val(btn.data('pendaftaran_id'))
+                $("input[name=id_pendaftaran]").val(btn.data('id_pendaftaran'))
 
                 $("#nama-readonly").val(btn.data('nama'))
                 $("#no_rm-readonly").val(btn.data('no_rm'))
