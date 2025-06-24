@@ -60,7 +60,7 @@
     </table>
 
 <!-- Pagination controls di bawah tabel -->
-<div class="mt-3" style="width: 100px;">
+<div class="mt-3" style="width: 50px;">
     <form method="GET" action="{{ route('user.index') }}">
         <input type="hidden" name="search" value="{{ request('search') }}">
         <input type="hidden" name="page" value="{{ $users->currentPage() }}">
