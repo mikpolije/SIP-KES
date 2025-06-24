@@ -176,6 +176,7 @@
 
                         <label for="cara_bayar">Cara Bayar</label>
                         <select name="cara_bayar" id="cara_bayar">
+                            <option value="">-- Semua --</option>
                             <option value="1" {{ $caraBayar == '1' ? 'selected' : '' }}>Umum</option>
                             <option value="2" {{ $caraBayar == '2' ? 'selected' : '' }}>BPJS</option>
                         </select>

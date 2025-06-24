@@ -63,6 +63,7 @@ class LaporanController extends Controller
 
         // Mapping angka ke label
         $caraBayarLabel = [
+            '' => 'Semua',
             '1' => 'Umum',
             '2' => 'BPJS'
         ];
@@ -87,9 +88,13 @@ class LaporanController extends Controller
         $data = $this->getFilteredData($bulan, $caraBayarLabel[$caraBayarInput] ?? 'Umum');
 
         $icd10 = ICD10_Umum::select('id_icd10', DB::raw('COUNT(*) as jumlah'))
-            ->whereMonth('created_at', $bulanAngka)
+            ->when($bulanAngka, function ($query) use ($bulanAngka) {
+                $query->whereMonth('created_at', $bulanAngka);
+            })
             ->whereHas('pemeriksaan.pendaftaran', function ($query) use ($caraBayarInput) {
-                $query->where('jenis_pembayaran', $caraBayarInput);
+                if (!empty($caraBayarInput)) {
+                    $query->where('jenis_pembayaran', $caraBayarInput);
+                }
             })
             ->groupBy('id_icd10')
             ->orderByDesc('jumlah')
