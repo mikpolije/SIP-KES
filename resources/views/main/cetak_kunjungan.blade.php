@@ -59,7 +59,7 @@
                     <td>{{ $item->no_rm }}</td>
                     <td>{{ $item->data_pasien->nama_pasien ?? '-' }}</td>
                     <td>{{ $item->created_at ? $item->created_at->format('d-m-Y') : '-' }}</td>
-                    <td>{{ optional(optional($item->triase)->pemeriksaan_ugd)->kondisi_saat_keluar ?? '-' }}</td>
+                    <td>{{ $item->created_at ? \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') : '-' }}</td>
 
                 </tr>
             @endforeach 
