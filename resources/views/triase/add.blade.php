@@ -323,8 +323,12 @@
                                                 <label class="form-label" for="">Kondisi Pasien Tiba:</label>
                                                 <select name="kondisi_pasien_tiba" id="" class="form-select">
                                                     <option value="">-- Pilih --</option>
-                                                    <option value="Emergency">Emergency</option>
-                                                    <option value="Tidak">Tidak</option>
+                                                    <option value="Resusitasi">Resusitasi</option>
+                                                    <option value="Emergency">Emergency</option>                     
+                                                    <option value="Urgent">Urgent</option>
+                                                    <option value="Less Urgent">Less Urgent</option>
+                                                    <option value="Non Urgent">Non Urgent</option>
+                                                    <option value="Death on Arrival">Death on Arrival</option>
                                                 </select>
                                             </div>
                                         </div>
