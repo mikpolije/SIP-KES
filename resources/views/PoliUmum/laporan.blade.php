@@ -193,9 +193,6 @@
             <div class="col-half">
                 <div class="card">
                     <h3 class="table-title">10 BESAR PENYAKIT</h3>
-                    <p class="table-subtitle">01 {{ $bulan }} 2024 s/d {{ date('t', strtotime($bulan . ' 2024')) }}
-                        {{ $bulan }} 2024</p>
-
                     <table id="tableICD10">
                         <thead>
                             <tr>
