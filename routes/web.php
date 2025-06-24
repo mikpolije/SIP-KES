@@ -16,22 +16,23 @@ use App\Http\Controllers\Api\ARController;
 use App\Http\Middleware\CheckProfesi;
 
 
-Route::middleware(['web', 'auth', 'profesi:admin'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
         return redirect()->route('login'); });
-Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
-    Route::view('/user/register', 'user.register')->name('register.forms');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::resource('user', \App\Http\Controllers\UserController::class);
-
 Route::get('/forgot-password', [AuthController::class, 'showIdentityForm'])->name('password.forgot');
 Route::post('/forgot-password/check', [AuthController::class, 'checkIdentity'])->name('password.checkIdentity');
 Route::get('/reset-password/{id}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password/{id}', [AuthController::class, 'resetPassword'])->name('password.update');
+
+Route::middleware(['web', 'auth', 'profesi:admin'])->group(function () {
+
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+    Route::view('/user/register', 'user.register')->name('register.forms');
+
+Route::resource('user', \App\Http\Controllers\UserController::class);
 
 });
 
