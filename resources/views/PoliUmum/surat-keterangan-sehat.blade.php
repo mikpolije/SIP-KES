@@ -45,7 +45,7 @@
         <div class="card shadow-sm">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0">
+                    <table class="table table-bordered mb-0" id="myTable">
                         <thead>
                             <tr>
                                 <th>NO.</th>
@@ -109,7 +109,7 @@
                                             value="{{ $rw->id_pemeriksaan }}">
                                     </div>
                                 </div>
-                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
+                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, Dr. {{ $rw->pendaftaran->data_dokter->nama }} KLINIK
                                     PRATAMA
                                     INSAN MEDIKA, menerangkan bahwa:</label>
                                 <div class="row mb-2 align-items-center">
@@ -227,7 +227,7 @@
                                     style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
                                 </div>
 
-                                <p>{{ $rw->pendaftaran->data_dokter->nama }}</p>
+                                <p>Dr. {{ $rw->pendaftaran->data_dokter->nama }}</p>
                                 <p>{{ $rw->pendaftaran->data_dokter->no_sip }}</p>
                             </div>
                             <div style="display: flex; justify-content: center;">
