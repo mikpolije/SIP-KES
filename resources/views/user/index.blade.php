@@ -60,7 +60,7 @@
     </table>
 
 <!-- Pagination controls di bawah tabel -->
-<div class="mt-3" style="width: 50px;">
+<div class="mt-3" style="width: 100px;">
     <form method="GET" action="{{ route('user.index') }}">
         <input type="hidden" name="search" value="{{ request('search') }}">
         <input type="hidden" name="page" value="{{ $users->currentPage() }}">
@@ -75,9 +75,9 @@
         </div>
 
         <!-- Tombol Prev dan Next berdampingan -->
-        <div class="d-flex justify-content-between">
-            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo; Prev</a>
-            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}">Next &raquo;</a>
+        <div class="d-flex justify-content-between" style="height: 20px;">
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo; </a>
+            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}"> &raquo;</a>
         </div>
     </form>
 </div>
