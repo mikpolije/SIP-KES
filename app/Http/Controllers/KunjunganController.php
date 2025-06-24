@@ -88,8 +88,7 @@ class KunjunganController extends Controller
         return view('main.cetak_kunjungan', [
             'data' => $data,
             'tanggal_awal' => $tanggal_awal,
-            'tanggal_akhir' => $tanggal_akhir
-        ]);
+            'tanggal_akhir' => $tanggal_akhir,
+        ]);
     }
-
 }
