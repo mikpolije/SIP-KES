@@ -3191,7 +3191,7 @@ $('#search-results').hide();
                 image.onload = () => {
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 };
-                image.src = '';
+                image.src = 'Starterkit/resources/images/apps/Anatomi.jpg';
                 initialized = true;
             } else {
                 clearCanvas();
@@ -3235,7 +3235,7 @@ $('#search-results').hide();
                         overlay.src = imageDataUrl;
                     }
                 };
-                background.src = 'Starterkit/resources/images/apps/Anatomi.jpg';
+                background.src = '';
             };
 
             modalEl.addEventListener('shown.bs.modal', handleShown);
