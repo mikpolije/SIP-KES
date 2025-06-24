@@ -24,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        // Pastikan Laravel tahu bahwa dia di belakang proxy SSL
+        if (env('APP_ENV') === 'production') {
+            URL::forceScheme('https');
+        }
+
         View::share('listDokter', Dokter::all());
         View::share('listBidan', Bidan::all());
 
