@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function showForm()
     {
-    return redirect('/user/index');
+    return view('user.index');
     }
 
     public function register(Request $request)
