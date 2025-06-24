@@ -11,6 +11,15 @@
             color: #000;
         }
 
+        .row {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            display: block;
+        }
+
         .header {
             text-align: center;
             border-bottom: 3px solid #000;
@@ -110,7 +119,8 @@
     </div>
 
     <div class="content">
-        <p>Yang bertanda tangan di bawah ini {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}, Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan
+        <p>Yang bertanda tangan di bawah ini Dr. {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}, Dokter KLINIK
+            PRATAMA INSAN MEDIKA, menerangkan
             bahwa:</p>
 
         <div class="info">
@@ -161,8 +171,8 @@
     </div>
 
     <div class="ttd">
-        <p><strong>{{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}</strong></p>
-        <p>SIP.{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</p>
+        <p><strong>Dr. {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}</strong></p>
+        <p>{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</p>
     </div>
 
     <script>

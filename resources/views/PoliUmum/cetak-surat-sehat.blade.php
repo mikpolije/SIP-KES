@@ -128,7 +128,7 @@
     </div>
 
     <div class="content">
-        <p class="indent">Yang bertanda tangan di bawah ini {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}, Dokter KLINIK PRATAMA INSAN
+        <p class="indent">Yang bertanda tangan di bawah ini Dr. {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}, Dokter KLINIK PRATAMA INSAN
             MEDIKA,
             menerangkan bahwa:</p>
 
@@ -206,7 +206,7 @@
     <div class="ttd">
         <div style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block;"></div>
         <p><strong>Dr. {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}</strong></p>
-        <p><strong>SIP.{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</strong></p>
+        <p><strong>{{ $rw->pemeriksaan->pendaftaran->data_dokter->no_sip }}</strong></p>
     </div>
 
     <script>
