@@ -244,7 +244,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="triase_id" value="0">
-                        <input type="text" name="id_pendaftaran" value="">
+                        <input type="hidden" name="id_pendaftaran" value="">
                         <div id="step-1" class="step-1 row" data-step="1">
                             <div class="card shadow-none col-md-12">
                                 <div class="">
@@ -2246,6 +2246,10 @@
                         {
                             data: 'nama',
                             name: 'nama'
+                        },
+                        {
+                            data: 'id_pendaftaran',
+                            name: 'id_pendaftaran'
                         },
                         {
                             data: 'no_rm',
