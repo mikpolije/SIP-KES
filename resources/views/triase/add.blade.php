@@ -307,8 +307,9 @@
                                                 <select name="sarana_transportasi_kedatangan" id="" class="form-select">
                                                     <option value="">-- Pilih --</option>
                                                     <option value="Ambulans">Ambulans</option>
-                                                    <option value="Brankar">Brankar</option>
-                                                    <option value="Kursi Roda">Kursi Roda</option>
+                                                    <option value="Mobil">Mobil</option>
+                                                    <option value="Motor">Motor</option>
+                                                    <option value="Lain-lain">Lain-lain</option>
                                                 </select>
                                             </div>
                                         </div>

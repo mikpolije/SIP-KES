@@ -92,7 +92,7 @@
                         <tbody class="align-middle text-center">
                             @foreach ($data as $item)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                                     <td>{{ $item->no_rm }}</td>
                                     <td>{{ $item->data_pasien->nama_pasien ?? '-' }}</td>
