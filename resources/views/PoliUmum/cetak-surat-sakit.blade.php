@@ -110,7 +110,6 @@
                 <p>Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</p>
             </div>
         </div>
-        <hr style="border: 2px solid black; margin-top: 0px;">
     </div>
 
     <div class="title">
