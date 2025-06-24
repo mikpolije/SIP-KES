@@ -3236,7 +3236,7 @@ $('#search-results').hide();
                         overlay.src = imageDataUrl;
                     }
                 };
-                background.src = 'https://via.placeholder.com/500x500.png?text=Background+Test';
+                background.src = 'Starterkit/resources/images/apps/Anatomi.jpg';
             };
 
             modalEl.addEventListener('shown.bs.modal', handleShown);
