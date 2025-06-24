@@ -89,6 +89,6 @@ class KunjunganController extends Controller
             'data' => $data,
             'tanggal_awal' => $tanggal_awal,
             'tanggal_akhir' => $tanggal_akhir,
-        ]);
-    }
+        ]);
+    }
 }
