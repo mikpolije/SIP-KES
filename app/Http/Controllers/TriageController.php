@@ -60,7 +60,7 @@ class TriageController extends Controller
             } else {
                 $triase = Triase::find($request->get('triase_id'));
             }
-            $triase->pendaftaran_id = $request->get('pendaftaran_id');
+            $triase->id_pendaftaran = $request->get('id_pendaftaran');
             $triase->tanggal_masuk = $request->get('tanggal_masuk');
             $triase->sarana_transportasi_kedatangan = $request->get('sarana_transportasi_kedatangan');
             $triase->jam_masuk = $request->get('jam_masuk');
