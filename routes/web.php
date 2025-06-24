@@ -26,7 +26,7 @@ Route::post('/forgot-password/check', [AuthController::class, 'checkIdentity'])-
 Route::get('/reset-password/{id}', [AuthController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password/{id}', [AuthController::class, 'resetPassword'])->name('password.update');
 
-Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.forms');
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
 Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
     Route::view('/user/register', 'user.register')->name('register.forms');
 
