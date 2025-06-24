@@ -76,4 +76,17 @@ class DataPasien extends Model
     {
         return $this->belongsTo(\Laravolt\Indonesia\Models\Village::class, 'id_desa');
     }
+
+    public function getJenisKelaminTextAttribute()
+    {
+        $genderMap = [
+            0 => 'Tidak diketahui',
+            1 => 'Laki-laki',
+            2 => 'Perempuan',
+            3 => 'Tidak dapat ditentukan',
+            4 => 'Tidak mengisi'
+        ];
+
+        return $genderMap[$this->jenis_kelamin] ?? 'Tidak diketahui';
+    }
 }

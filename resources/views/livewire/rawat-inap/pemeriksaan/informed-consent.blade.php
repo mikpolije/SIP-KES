@@ -55,7 +55,7 @@ new class extends Component {
                 $this->noRM = $pendaftaran->data_pasien->no_rm;
                 $this->nama = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahir = $pendaftaran->data_pasien->tanggal_lahir_pasien;
-                $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin;
+                $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin_text;
                 $this->namaPasien = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->alamatPasien = $pendaftaran->data_pasien->alamat_pasien;

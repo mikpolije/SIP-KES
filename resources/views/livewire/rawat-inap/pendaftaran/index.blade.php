@@ -57,7 +57,7 @@ new class extends Component {
         $this->nik = $this->currentPatient->nik_pasien;
         $this->tempatLahir = $this->currentPatient->tempat_lahir_pasien;
         $this->tanggalLahir = $this->currentPatient->tanggal_lahir_pasien;
-        $this->jenisKelamin = $this->currentPatient->jenis_kelamin;
+        $this->jenisKelamin = $this->currentPatient->jenis_kelamin_text;
         $this->agama = $this->currentPatient->agama;
         $this->statusPerkawinan = $this->currentPatient->status_perkawinan;
         $this->rt = $this->currentPatient->rt;
@@ -165,12 +165,7 @@ new class extends Component {
                 <!-- jenis kelamin -->
                 <div class="mb-3">
                     <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
-                    <select wire:model="jenisKelamin" class="form-select @error('jenisKelamin') is-invalid @enderror"
-                        id="jenisKelamin" disabled>
-                        <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                        <option value="Laki-laki">Laki-laki</option>
-                        <option value="Perempuan">Perempuan</option>
-                    </select>
+                    <input type="text" wire:model="jenisKelamin" class="form-control" id="jenisKelamin" disabled>
                     @error('jenisKelamin') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
 
