@@ -59,28 +59,29 @@
         </tbody>
     </table>
 
-    <!-- Pagination controls di bawah tabel -->
-    <div class="d-flex align-items-center mt-3" style="width: 50px;">
-        <form method="GET" action="{{ route('user.index') }}" class="form-inline w-100">
-            <input type="hidden" name="search" value="{{ request('search') }}">
-            <input type="hidden" name="page" value="{{ $users->currentPage() }}">
+<!-- Pagination controls di bawah tabel -->
+<div class="mt-3" style="width: 50px;">
+    <form method="GET" action="{{ route('user.index') }}">
+        <input type="hidden" name="search" value="{{ request('search') }}">
+        <input type="hidden" name="page" value="{{ $users->currentPage() }}">
 
-            <!-- Select perPage -->
-            <div class="mx-2">
-                <select name="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
-                    @foreach ([5,10,20,50,100] as $limit)
-                        <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
-                    @endforeach
-                </select>
-            </div>
+        <!-- Select perPage -->
+        <div class="mb-2">
+            <select name="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
+                @foreach ([5,10,20,50,100] as $limit)
+                    <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
+                @endforeach
+            </select>
+        </div>
 
-            <!-- Tombol Previous -->
-            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo;</a>
+        <!-- Tombol Prev dan Next berdampingan -->
+        <div class="d-flex justify-content-between">
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo; Prev</a>
+            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}">Next &raquo;</a>
+        </div>
+    </form>
+</div>
 
-            <!-- Tombol Next -->
-            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}">&raquo;</a>
-        </form>
-    </div>
 
 </div>
 @endsection
