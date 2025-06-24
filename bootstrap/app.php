@@ -14,8 +14,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
 
-        $middleware->append(\App\Http\Middleware\TrustProxies::class);
-
         // Daftarkan global middleware web stack:
         $middleware->web();
 
