@@ -188,7 +188,7 @@ Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'
 Route::get('/cetak-kunjungan', [KunjunganController::class, 'print'])->name('laporan_kunjungan.print');
 
 Route::get('/riwayat-medis/cetak/{id}', [App\Http\Controllers\RiwayatMedisController::class, 'cetak'])->name('riwayat-medis.cetak');
-
+Route::get('/detail-riwayat-medis/{id}/cetak', [App\Http\Controllers\RiwayatMedisController::class, 'cetakDetail'])->name('detail-riwayat-medis.cetak');
 
 
 
