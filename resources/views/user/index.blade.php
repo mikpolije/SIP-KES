@@ -59,17 +59,17 @@
         </tbody>
     </table>
 
-    <!-- Kontrol Paginasi di pojok kiri bawah -->
-    <div id="pagination-controls" style="position: fixed; bottom: 20px; left: 20px; z-index: 999;">
-        <form method="GET" action="{{ route('user.index') }}" class="form-inline">
+    <!-- Pagination controls di bawah tabel -->
+    <div class="d-flex align-items-center mt-3" style="width: 300px;">
+        <form method="GET" action="{{ route('user.index') }}" class="form-inline w-100">
             <input type="hidden" name="search" value="{{ request('search') }}">
             <input type="hidden" name="page" value="{{ $users->currentPage() }}">
 
             <!-- Tombol Previous -->
-            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo; < </a>
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo;</a>
 
             <!-- Select perPage -->
-            <div class="d-inline-block mx-2">
+            <div class="mx-2">
                 <select name="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
                     @foreach ([5,10,20,50,100] as $limit)
                         <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
@@ -78,7 +78,7 @@
             </div>
 
             <!-- Tombol Next -->
-            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}"> > &raquo;</a>
+            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}">&raquo;</a>
         </form>
     </div>
 
