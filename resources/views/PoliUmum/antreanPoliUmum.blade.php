@@ -69,7 +69,7 @@
 
         {{-- Table --}}
         <div class="tabel-wrapper">
-            <table class="table table-bordered mb-0">
+            <table class="table table-bordered mb-0" id="myTable">
                 <thead>
                     <tr>
                         <th>NO ANTRIAN</th>
