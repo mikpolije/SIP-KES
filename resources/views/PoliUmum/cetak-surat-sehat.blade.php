@@ -128,7 +128,7 @@
     </div>
 
     <div class="content">
-        <p class="indent">Yang bertanda tangan di bawah ini dr. Ida Lailatul Hasanah, Dokter KLINIK PRATAMA INSAN
+        <p class="indent">Yang bertanda tangan di bawah ini {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}, Dokter KLINIK PRATAMA INSAN
             MEDIKA,
             menerangkan bahwa:</p>
 

@@ -13,7 +13,9 @@
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 0px;
         }
 
         .header h2,
@@ -86,12 +88,21 @@
 <body>
 
     <div class="header">
-        <img src="{{ URL::asset('/assets/klinik-insan.png') }}" width="100" alt="Logo" style="float: left;">
-        <h2>KLINIK PRATAMA</h2>
-        <h3>RAWAT JALAN INSAN MEDIKA</h3>
-        <p>Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</p>
+        <div class="row">
+            <!-- Logo di sebelah kiri -->
+            <div class="logo" style="flex: 1;">
+                <img src="{{ URL::asset('/assets/klinik-insan.png') }}" width="150" alt="Logo">
+            </div>
+
+            <!-- Teks di sebelah kanan -->
+            <div class="text" style="flex: 3; text-align: center;">
+                <h2>KLINIK PRATAMA</h2>
+                <h3>RAWAT JALAN INSAN MEDIKA</h3>
+                <p>Jl. R. Sosro Prawiro No. 1A Wirowongso, Ajung – Jember</p>
+            </div>
+        </div>
+        <hr style="border: 2px solid black; margin-top: 0px;">
     </div>
-    <hr>
 
     <div class="title">
         <h3>SURAT KETERANGAN SAKIT</h3>
@@ -99,7 +110,7 @@
     </div>
 
     <div class="content">
-        <p>Yang bertanda tangan di bawah ini dr. Ida Lailatul Hasanah, Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan
+        <p>Yang bertanda tangan di bawah ini {{ $rw->pemeriksaan->pendaftaran->data_dokter->nama }}, Dokter KLINIK PRATAMA INSAN MEDIKA, menerangkan
             bahwa:</p>
 
         <div class="info">
@@ -145,7 +156,7 @@
     </div>
 
     <div class="footer">
-        <p>({{ \Carbon\Carbon::now()->isoFormat('d MMMM Y') }})</p>
+        <p>Jember, {{ \Carbon\Carbon::now()->isoFormat('d MMMM Y') }}</p>
         <p>Dokter yang memeriksa:</p>
     </div>
 
