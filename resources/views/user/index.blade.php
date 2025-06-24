@@ -65,9 +65,6 @@
             <input type="hidden" name="search" value="{{ request('search') }}">
             <input type="hidden" name="page" value="{{ $users->currentPage() }}">
 
-            <!-- Tombol Previous -->
-            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo;</a>
-
             <!-- Select perPage -->
             <div class="mx-2">
                 <select name="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
@@ -76,6 +73,9 @@
                     @endforeach
                 </select>
             </div>
+
+            <!-- Tombol Previous -->
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo;</a>
 
             <!-- Tombol Next -->
             <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}">&raquo;</a>
