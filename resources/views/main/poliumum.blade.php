@@ -3053,202 +3053,188 @@ $('#search-results').hide();
 
     <!-- Script untuk menggambar di canvas -->
     <script>
-        const canvas = document.getElementById('bodyCanvas');
-        const ctx = canvas.getContext('2d');
-        const defaultBackground = new Image();
-        let isDrawing = false;
-        let drawEnabled = false;
-        let initialized = false;
-        let undoStack = [];
-        let redoStack = [];
-        let currentColor = 'red'; // Warna default
-        let handleShown = null;
+    const canvas = document.getElementById('bodyCanvas');
+    const ctx = canvas.getContext('2d');
+    const defaultBackground = new Image();
+    defaultBackground.src = 'Starterkit/resources/images/apps/Anatomi.jpg'; // PASTIKAN URL BENAR
 
-        const statusLokalisModal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
+    let isDrawing = false;
+    let drawEnabled = false;
+    let initialized = false;
+    let undoStack = [];
+    let redoStack = [];
+    let currentColor = 'red'; // Warna default
+    let handleShown = null;
 
-        function hapusBaris(button) {
-            const row = button.closest('tr');
-            row.remove();
+    const statusLokalisModal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
 
-            const tbody = document.getElementById('pemeriksaanFisikTable');
-            if (tbody.children.length === 0) {
-                const emptyRow = document.createElement('tr');
-                emptyRow.classList.add('no-data');
-                emptyRow.innerHTML = `<td colspan="3" class="text-center text-muted fst-italic">Tidak ada data</td>`;
-                tbody.appendChild(emptyRow);
-            }
+    function hapusBaris(button) {
+        const row = button.closest('tr');
+        row.remove();
+
+        const tbody = document.getElementById('pemeriksaanFisikTable');
+        if (tbody.children.length === 0) {
+            const emptyRow = document.createElement('tr');
+            emptyRow.classList.add('no-data');
+            emptyRow.innerHTML = `<td colspan="3" class="text-center text-muted fst-italic">Tidak ada data</td>`;
+            tbody.appendChild(emptyRow);
         }
+    }
 
-        function toggleDrawMode() {
-            drawEnabled = !drawEnabled;
-            const button = document.getElementById('btnDrawToggle');
-            button.classList.toggle('active', drawEnabled);
-            button.innerHTML = drawEnabled ? '🛑' : '✏️';
+    function toggleDrawMode() {
+        drawEnabled = !drawEnabled;
+        const button = document.getElementById('btnDrawToggle');
+        button.classList.toggle('active', drawEnabled);
+        button.innerHTML = drawEnabled ? '🛑' : '✏️';
+    }
+
+    function undoCanvas() {
+        if (undoStack.length > 0) {
+            const lastState = undoStack.pop();
+            redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+            ctx.putImageData(lastState, 0, 0);
         }
+    }
 
-        function undoCanvas() {
-            if (undoStack.length > 0) {
-                const lastState = undoStack.pop();
-                redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-                ctx.putImageData(lastState, 0, 0);
-            }
-        }
-
-        function redoCanvas() {
-            if (redoStack.length > 0) {
-                const nextState = redoStack.pop();
-                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-                ctx.putImageData(nextState, 0, 0);
-            }
-        }
-
-        function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        function saveCanvas() {
-            const bagian = document.getElementById('bagianDiperiksa').value.trim();
-            const keterangan = document.getElementById('keteranganFisik').value.trim();
-
-            if (!bagian || !keterangan) {
-                alert("Harap isi semua kolom terlebih dahulu.");
-                return;
-            }
-
-            const imageData = canvas.toDataURL("image/png");
-            const tbody = document.getElementById('pemeriksaanFisikTable');
-
-            const noDataRow = tbody.querySelector(".no-data");
-            if (noDataRow) noDataRow.remove();
-
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${bagian}</td>
-                <td>${keterangan}</td>
-                <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-info view-details"
-                        data-bs-toggle="modal"
-                        data-bs-target="#statusLokalisModal"
-                        data-bagian="${bagian}"
-                        data-keterangan="${keterangan}"
-                        data-image="${imageData}"
-                        title="Lihat Rincian">
-                        <i class="bi bi-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="hapusBaris(this)" title="Hapus">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </td>
-            `;
-            tbody.appendChild(row);
-
-            document.getElementById('bagianDiperiksa').value = '';
-            document.getElementById('keteranganFisik').value = '';
-            clearCanvas();
-            statusLokalisModal.hide();
-        }
-
-        function loadDummyData(dummy) {
-            document.getElementById('bagianDiperiksa').value = dummy.bagian;
-            document.getElementById('keteranganFisik').value = dummy.keterangan;
-
-            const img = new Image();
-            img.onload = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            };
-            img.src = dummy.imageData;
-        }
-
-        // Gambar manual
-        canvas.addEventListener('mousedown', (e) => {
-            if (!drawEnabled) return;
-            isDrawing = true;
+    function redoCanvas() {
+        if (redoStack.length > 0) {
+            const nextState = redoStack.pop();
             undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-            redoStack = [];
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
-            if (!isDrawing || !drawEnabled) return;
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            if (!drawEnabled) return;
-            isDrawing = false;
-        });
-
-        // Saat modal dibuka pertama kali
-        document.getElementById('statusLokalisModal').addEventListener('shown.bs.modal', () => {
-            if (!initialized) {
-                defaultBackground.onload = () => {
-                    ctx.drawImage(defaultBackground, 0, 0, canvas.width, canvas.height);
-                };
-                initialized = true;
-            } else {
-                clearCanvas();
-                ctx.drawImage(defaultBackground, 0, 0, canvas.width, canvas.height);
-            }
-
-        });
-
-        // Reset modal saat ditutup
-        document.getElementById('statusLokalisModal').addEventListener('hidden.bs.modal', () => {
-            document.getElementById('bagianDiperiksa').value = '';
-            document.getElementById('keteranganFisik').value = '';
-            clearCanvas();
-            ctx.drawImage(defaultBackground, 0, 0, canvas.width, canvas.height);
-            undoStack = [];
-            redoStack = [];
-            drawEnabled = false;
-            isDrawing = false;
-        });
-
-        // Fungsi edit aman
-        function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
-            const modalEl = document.getElementById('statusLokalisModal');
-
-            // Hapus handler lama jika ada
-            if (handleShown) {
-                modalEl.removeEventListener('shown.bs.modal', handleShown);
-            }
-
-            // Buat handler baru
-            handleShown = function () {
-                modalEl.removeEventListener('shown.bs.modal', handleShown);
-
-                const background = new Image();
-                background.onload = () => {
-                    clearCanvas();
-                    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-                    if (imageDataUrl) {
-                        const overlay = new Image();
-                        overlay.onload = () => {
-                            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
-                        };
-                        overlay.src = imageDataUrl;
-                    }
-                };
-                background.src = 'Starterkit/resources/images/apps/Anatomi.jpg';
-            };
-
-            modalEl.addEventListener('shown.bs.modal', handleShown);
-
-            // Set form
-            document.getElementById('bagianDiperiksa').value = bagian;
-            document.getElementById('keteranganFisik').value = keterangan;
-
-            // Tampilkan modal
-            statusLokalisModal.show();
+            ctx.putImageData(nextState, 0, 0);
         }
-    </script>
+    }
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawDefaultBackground() {
+        ctx.drawImage(defaultBackground, 0, 0, canvas.width, canvas.height);
+    }
+
+    function saveCanvas() {
+        const bagian = document.getElementById('bagianDiperiksa').value.trim();
+        const keterangan = document.getElementById('keteranganFisik').value.trim();
+
+        if (!bagian || !keterangan) {
+            alert("Harap isi semua kolom terlebih dahulu.");
+            return;
+        }
+
+        const imageData = canvas.toDataURL("image/png");
+        const tbody = document.getElementById('pemeriksaanFisikTable');
+
+        const noDataRow = tbody.querySelector(".no-data");
+        if (noDataRow) noDataRow.remove();
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${bagian}</td>
+        <td>${keterangan}</td>
+        <td class="text-center">
+            <button type="button" class="btn btn-sm btn-info view-details"
+            data-bs-toggle="modal"
+            data-bs-target="#statusLokalisModal"
+            data-bagian="${bagian}"
+            data-keterangan="${keterangan}"
+            data-image="${imageData}"
+            title="Lihat Rincian">
+            <i class="bi bi-eye"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" onclick="hapusBaris(this)" title="Hapus">
+            <i class="bi bi-trash"></i>
+            </button>
+        </td>
+        `;
+        tbody.appendChild(row);
+
+        document.getElementById('bagianDiperiksa').value = '';
+        document.getElementById('keteranganFisik').value = '';
+        clearCanvas();
+        drawDefaultBackground();
+        statusLokalisModal.hide();
+    }
+
+    // Gambar manual
+    canvas.addEventListener('mousedown', (e) => {
+        if (!drawEnabled) return;
+        isDrawing = true;
+        undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+        redoStack = [];
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing || !drawEnabled) return;
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        if (!drawEnabled) return;
+        isDrawing = false;
+    });
+
+    // Modal: pertama kali buka
+    document.getElementById('statusLokalisModal').addEventListener('shown.bs.modal', () => {
+        clearCanvas();
+        drawDefaultBackground();
+    });
+
+    // Modal: reset saat tutup
+    document.getElementById('statusLokalisModal').addEventListener('hidden.bs.modal', () => {
+        document.getElementById('bagianDiperiksa').value = '';
+        document.getElementById('keteranganFisik').value = '';
+        clearCanvas();
+        drawDefaultBackground();
+        undoStack = [];
+        redoStack = [];
+        drawEnabled = false;
+        isDrawing = false;
+    });
+
+    // Fungsi edit
+    function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
+        const modalEl = document.getElementById('statusLokalisModal');
+
+        if (handleShown) {
+            modalEl.removeEventListener('shown.bs.modal', handleShown);
+        }
+
+        handleShown = function () {
+        modalEl.removeEventListener('shown.bs.modal', handleShown);
+
+            const bg = new Image();
+            bg.onload = () => {
+                clearCanvas();
+                    ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+
+                if (imageDataUrl) {
+                    const overlay = new Image();
+                    overlay.onload = () => {
+                        ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+                    };
+                    overlay.src = imageDataUrl;
+                }
+            };
+                bg.src = defaultBackground.src;
+        };
+
+        modalEl.addEventListener('shown.bs.modal', handleShown);
+
+        // Set form
+        document.getElementById('bagianDiperiksa').value = bagian;
+        document.getElementById('keteranganFisik').value = keterangan;
+
+        // Tampilkan modal
+        statusLokalisModal.show();
+    }
+    </script>]
+
     <!-- Script untuk menggambar di canvas -->
 
 
