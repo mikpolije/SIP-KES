@@ -1613,7 +1613,7 @@
 
         let undoStack = [];
         let redoStack = [];
-        let defaultBackgroundUrl = '/assets/images/Anatomi.jpg'; // Pastikan path benar
+        let defaultBackgroundUrl = '/assets/images/status-lokalis.jpg'; // Pastikan path benar
         let defaultBgImage = null;
 
         // Inisialisasi background Fabric.js
