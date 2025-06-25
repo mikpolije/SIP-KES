@@ -573,8 +573,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($pemeriksaan_ugd->where('id_pendaftaran', $id_pendaftaran) as $detail)
+                            @foreach($pemeriksaan_ugd as $detail)
                             <tr>
+                                @php
+                                $opsi_ya_tidak = [
+                                0 => 'tidak',
+                                1 => 'ya'
+                                ];
+                                @endphp
                                 <td>{{ $detail->id ?? '-' }}</td>
                                 <td>{{ $detail->keluhan ?? '-' }}</td>
                                 <td>{{ $detail->sistole ?? '-' }}</td>
@@ -587,12 +593,12 @@
                                 <td>{{ $detail->nadi ?? '-' }}</td>
                                 <td>{{ $detail->plan ?? '-' }}</td>
                                 <td>{{ $detail->assesment ?? '-' }}</td>
-                                <td>{{ $detail->alat_bantu ?? '-' }}</td>
-                                <td>{{ $detail->protesa ?? '-' }}</td>
-                                <td>{{ $detail->cacat_tubuh ?? '-' }}</td>
-                                <td>{{ $detail->mandiri ?? '-' }}</td>
-                                <td>{{ $detail->dibantu ?? '-' }}</td>
-                                <td>{{ $detail->adl ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->alat_bantu] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->protesa] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->cacat_tubuh] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->mandiri] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->dibantu] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->adl] ?? '-' }}</td>
                                 <td>{{ $detail->ku_dan_kesadaran ?? '-' }}</td>
                                 <td>{{ $detail->kepala_dan_leher ?? '-' }}</td>
                                 <td>{{ $detail->dada ?? '-' }}</td>
@@ -600,19 +606,19 @@
                                 <td>{{ $detail->ekstrimitas ?? '-' }}</td>
                                 <td>{{ $detail->status_lokalis ?? '-' }}</td>
                                 <td>{{ $detail->penatalaksanaan ?? '-' }}</td>
-                                <td>{{ $detail->umur_65 ?? '-' }}</td>
-                                <td>{{ $detail->keterbatasan_mobilitas ?? '-' }}</td>
-                                <td>{{ $detail->perawatan_lanjutan ?? '-' }}</td>
-                                <td>{{ $detail->bantuan ?? '-' }}</td>
-                                <td>{{ $detail->masuk_kriteria ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->umur_65] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->keterbatasan_mobilitas] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->perawatan_lanjutan] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->bantuan] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->masuk_kriteria] ?? '-' }}</td>
                                 <td>{{ $detail->hasil_pemeriksaan_fisik ?? '-' }}</td>
                                 <td>{{ $detail->hasil_pemeriksaan ?? '-' }}</td>
-                                <td>{{ $detail->penunjang ?? '-' }}</td>
-                                <td>{{ $detail->hasil_asuhan ?? '-' }}</td>
-                                <td>{{ $detail->lain_lain ?? '-' }}</td>
-                                <td>{{ $detail->diagnosis ?? '-' }}</td>
-                                <td>{{ $detail->rencana_asuhan ?? '-' }}</td>
-                                <td>{{ $detail->hasil_pengobatan ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->penunjang] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->hasil_asuhan] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->lain_lain] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->diagnosis] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->rencana_asuhan] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->hasil_pengobatan] ?? '-' }}</td>
                                 <td>{{ $detail->keterangan_edukasi ?? '-' }}</td>
                                 <td>{{ $detail->rawat_jalan ?? '-' }}</td>
                                 <td>{{ $detail->rawat_inap ?? '-' }}</td>
@@ -739,12 +745,20 @@
                                 <td>{{ $detail->kondisi_umum ?? '-' }}</td>
                                 <td>{{ $detail->laborat ?? '-' }}</td>
                                 <td>{{ $detail->laboratorium_farmasi ?? '-' }}</td>
-                                <td>{{ $detail->aktivitas_fisik ?? '-' }}</td>
-                                <td>{{ $detail->konsumsi_alkohol ?? '-' }}</td>
-                                <td>{{ $detail->makan_buah_sayur ?? '-' }}</td>
-                                <td>{{ $detail->merokok ?? '-' }}</td>
-                                <td>{{ $detail->riwayat_keluarga ?? '-' }}</td>
-                                <td>{{ $detail->riwayat_penyakit_terdahulu ?? '-' }}</td>
+
+                                @php
+                                $opsi_ya_tidak = [
+                                0 => 'tidak',
+                                1 => 'ya'
+                                ];
+                                @endphp
+
+                                <td>{{ $opsi_ya_tidak[$detail->aktivitas_fisik] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->konsumsi_alkohol] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->makan_buah_sayur] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->merokok] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->riwayat_keluarga] ?? '-' }}</td>
+                                <td>{{ $opsi_ya_tidak[$detail->riwayat_penyakit_terdahulu] ?? '-' }}</td>
                             </tr>
                             @endforeach
                         </tbody>
