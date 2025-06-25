@@ -1607,124 +1607,89 @@
 
     <!-- Script untuk menggambar di canvas -->
     <script>
-        const canvas = document.getElementById('bodyCanvas');
-        const ctx = canvas.getContext('2d');
-        const image = new Image();
-        let isDrawing = false;
-        let drawEnabled = false;
-        let initialized = false;
+        let canvas = new fabric.Canvas('bodyCanvas', {
+        isDrawingMode: false,
+        selection: false
+        });
+
         let undoStack = [];
         let redoStack = [];
-        let currentColor = 'red'; // Warna default
 
+        const backgroundUrl = '/assets/images/Anatomi.jpg'; // Pastikan file di public folder
+
+        function setBackground() {
+        fabric.Image.fromURL(backgroundUrl, function(img) {
+            img.scaleToWidth(canvas.width);
+            img.scaleToHeight(canvas.height);
+            canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+        }, { crossOrigin: 'anonymous' });
+        }
+
+        // Toolbar
         function toggleDrawMode() {
-            drawEnabled = !drawEnabled;
-            const button = document.getElementById('btnDrawToggle');
-            if (drawEnabled) {
-                button.classList.add('active');
-                button.innerHTML = '🛑'; // misalnya ganti ikon saat aktif
-            } else {
-                button.classList.remove('active');
-                button.innerHTML = '✏️'; // ikon default
-            }
+        canvas.isDrawingMode = !canvas.isDrawingMode;
+        canvas.freeDrawingBrush.color = 'red';
+        canvas.freeDrawingBrush.width = 2;
+
+        const button = document.getElementById('btnDrawToggle');
+        button.classList.toggle('active', canvas.isDrawingMode);
+        button.innerHTML = canvas.isDrawingMode ? '🛑' : '✏️';
+        }
+
+        function saveState() {
+        redoStack = [];
+        undoStack.push(JSON.stringify(canvas));
         }
 
         function undoCanvas() {
-            if (undoStack.length > 0) {
-                const lastState = undoStack.pop();
-                redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke redo
-                ctx.putImageData(lastState, 0, 0);
-            }
+        if (undoStack.length > 0) {
+            redoStack.push(JSON.stringify(canvas));
+            let last = undoStack.pop();
+            canvas.loadFromJSON(last, () => setBackground());
+        }
         }
 
         function redoCanvas() {
-            if (redoStack.length > 0) {
-                const nextState = redoStack.pop();
-                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke undo
-                ctx.putImageData(nextState, 0, 0);
-            }
+        if (redoStack.length > 0) {
+            undoStack.push(JSON.stringify(canvas));
+            let next = redoStack.pop();
+            canvas.loadFromJSON(next, () => setBackground());
+        }
         }
 
         function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
+        canvas.clear();
+        setBackground();
+        saveState();
         }
 
-        function saveCanvas() {
-            if (event) event.preventDefault(); // penting agar tidak reload
+        // Simpan & Notifikasi
+        document.getElementById('saveButton').addEventListener('click', function () {
+        const bagian = document.getElementById('bagianDiperiksa').value.trim();
+        const keterangan = document.getElementById('keteranganFisik').value.trim();
 
-            const imageData = canvas.toDataURL();
-            console.log("Saved image data:", imageData);
-            alert("Gambar disimpan!");
-            // Kirim imageData via AJAX atau simpan sesuai kebutuhan
+        if (!bagian || !keterangan) {
+            alert('Harap isi semua kolom!');
+            return;
         }
 
-        canvas.addEventListener('mousedown', (e) => {
-            if (!drawEnabled) return;
-            isDrawing = true;
-            // Simpan state sebelum menggambar
-            undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-            // Kosongkan redoStack karena ada aksi baru
-            redoStack = [];
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
+        const notification = document.getElementById('notification');
+        notification.classList.remove('d-none');
+
+        setTimeout(() => {
+            notification.classList.add('d-none');
+        }, 3000);
+
+        document.getElementById('bagianDiperiksa').value = '';
+        document.getElementById('keteranganFisik').value = '';
+        clearCanvas();
         });
 
-        canvas.addEventListener('mousemove', (e) => {
-            if (!isDrawing || !drawEnabled) return;
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            if (!drawEnabled) return;
-            isDrawing = false;
-        });
-
-        // Load gambar saat modal dibuka pertama kali
-        $('#statusLokalisModal').on('shown.bs.modal', function() {
-            if (!initialized) {
-                image.onload = function() {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                };
-                image.src =
-                    '/assets/images/Anatomi.jpg'; // Ganti path sesuai lokasi file gambar Anda
-                initialized = true;
-            } else {
-                // setiap buka ulang, redraw image (jika dibutuhkan)
-                clearCanvas();
-            }
-        });
-
-        function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
-            document.getElementById('bagianDiperiksa').value = bagian;
-            document.getElementById('keteranganFisik').value = keterangan;
-
-            const modal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
-            modal.show();
-
-            $('#statusLokalisModal').off('shown.bs.modal').on('shown.bs.modal', function() {
-                const ctx = canvas.getContext('2d');
-                const background = new Image();
-                background.onload = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-                    if (imageDataUrl) {
-                        const overlay = new Image();
-                        overlay.onload = () => {
-                            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
-                        };
-                        overlay.src = imageDataUrl;
-                    }
-                };
-                background.src = '/assets/images/Anatomi.jpg';
-            });
-        }
+        // Inisialisasi
+        setBackground();
+        canvas.on('path:created', saveState);
     </script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
