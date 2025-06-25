@@ -554,7 +554,7 @@ new class extends Component {
                                                                 <span class="form-text">Distole</span>
                                                             </div>
                                                             <div class="col-3">
-                                                                <input type="text" class="form-control form-control-sm" wire:model.lazy="sistole">
+                                                                <input type="text" class="form-control form-control-sm" wire:model.lazy="distole">
                                                             </div>
                                                             <div class="col-2">
                                                                 <span class="form-text">mmHg</span>
