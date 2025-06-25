@@ -1744,7 +1744,7 @@
                     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                 };
                 image.src =
-                    '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
+                    '/assets/images/Anatomi.jpg'; // Ganti path sesuai lokasi file gambar Anda
                 initialized = true;
             } else {
                 // setiap buka ulang, redraw image (jika dibutuhkan)
