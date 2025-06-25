@@ -60,6 +60,20 @@ new class extends Component {
     public $distinctIcd9 = [];
     public $distinctObat = [];
 
+    public function getCurrentDateTime()
+    {
+        if ($this->existingResMed && $this->existingResMed->created_at) {
+            $now = \Carbon\Carbon::parse($this->existingResMed->created_at)->timezone('Asia/Jakarta');
+        } else {
+            $now = \Carbon\Carbon::now('Asia/Jakarta');
+        }
+
+        return [
+            'tanggal' => $now->format('d/m/Y'),
+            'jam' => $now->format('H:i')
+        ];
+    }
+
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
@@ -607,7 +621,7 @@ new class extends Component {
                                     <p>Pemberi Informasi</p>
                                 </td>
                                 <td class="text-center align-top pt-3" width="34%">
-                                    <p>Jember, ____________ 20__</p>
+                                    <p>Jember, {{ $this->getCurrentDateTime()['tanggal'] }}, Jam {{ $this->getCurrentDateTime()['jam'] }} WIB</p>
                                 </td>
                             </tr>
                             <tr style="height: 100px;">
