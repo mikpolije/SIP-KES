@@ -335,9 +335,7 @@
                                         <label class="form-label" for="kodepos">Kode Pos:<span
                                                 class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="kode_pos"
-                                            name="kode_pos" />
-                                        <input type="text" class="form-control required" id="kodepos"
-                                            name="kodepos" oninput="validateNumeric(this, 5)" maxlength="5" required>
+                                            name="kode_pos" oninput="validateNumeric(this, 5)" maxlength="5" required>
                                         <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit
                                             angka</small>
                                     </div>
