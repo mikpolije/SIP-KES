@@ -1608,87 +1608,115 @@
     <!-- Script untuk menggambar di canvas -->
     <script>
         let canvas = new fabric.Canvas('bodyCanvas', {
-        isDrawingMode: false,
-        selection: false
+            isDrawingMode: false,
+            backgroundColor: null,
+            selection: false
         });
 
         let undoStack = [];
         let redoStack = [];
 
-        const backgroundUrl = '/assets/images/Anatomi.jpg'; // Pastikan file di public folder
+        let defaultBackgroundUrl = '/assets/images/Anatomi.jpg'; // pastikan path public
+        let defaultBgImage = null;
+
+        // Load background
+        fabric.Image.fromURL(defaultBackgroundUrl, function (img) {
+            img.selectable = false;
+            img.evented = false;
+            defaultBgImage = img;
+            setBackground();
+        });
 
         function setBackground() {
-        fabric.Image.fromURL(backgroundUrl, function(img) {
-            img.scaleToWidth(canvas.width);
-            img.scaleToHeight(canvas.height);
-            canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
-        }, { crossOrigin: 'anonymous' });
+            if (defaultBgImage) {
+                canvas.setBackgroundImage(defaultBgImage, canvas.renderAll.bind(canvas), {
+                    scaleX: canvas.width / defaultBgImage.width,
+                    scaleY: canvas.height / defaultBgImage.height
+                });
+            }
         }
 
-        // Toolbar
         function toggleDrawMode() {
-        canvas.isDrawingMode = !canvas.isDrawingMode;
-        canvas.freeDrawingBrush.color = 'red';
-        canvas.freeDrawingBrush.width = 2;
+            canvas.isDrawingMode = !canvas.isDrawingMode;
+            canvas.freeDrawingBrush.color = 'red';
+            canvas.freeDrawingBrush.width = 2;
 
-        const button = document.getElementById('btnDrawToggle');
-        button.classList.toggle('active', canvas.isDrawingMode);
-        button.innerHTML = canvas.isDrawingMode ? '🛑' : '✏️';
+            const button = document.getElementById('btnDrawToggle');
+            button.classList.toggle('active', canvas.isDrawingMode);
+            button.innerHTML = canvas.isDrawingMode ? '🛑' : '✏️';
         }
 
         function saveState() {
-        redoStack = [];
-        undoStack.push(JSON.stringify(canvas));
+            redoStack = [];
+            undoStack.push(JSON.stringify(canvas));
         }
 
         function undoCanvas() {
-        if (undoStack.length > 0) {
-            redoStack.push(JSON.stringify(canvas));
-            let last = undoStack.pop();
-            canvas.loadFromJSON(last, () => setBackground());
-        }
+            if (undoStack.length > 0) {
+                redoStack.push(JSON.stringify(canvas));
+                let last = undoStack.pop();
+                canvas.loadFromJSON(last, setBackground);
+            }
         }
 
         function redoCanvas() {
-        if (redoStack.length > 0) {
-            undoStack.push(JSON.stringify(canvas));
-            let next = redoStack.pop();
-            canvas.loadFromJSON(next, () => setBackground());
-        }
+            if (redoStack.length > 0) {
+                undoStack.push(JSON.stringify(canvas));
+                let next = redoStack.pop();
+                canvas.loadFromJSON(next, setBackground);
+            }
         }
 
         function clearCanvas() {
-        canvas.clear();
-        setBackground();
-        saveState();
+            canvas.clear();
+            setBackground();
+            saveState();
         }
 
-        // Simpan & Notifikasi
-        document.getElementById('saveButton').addEventListener('click', function () {
-        const bagian = document.getElementById('bagianDiperiksa').value.trim();
-        const keterangan = document.getElementById('keteranganFisik').value.trim();
-
-        if (!bagian || !keterangan) {
-            alert('Harap isi semua kolom!');
-            return;
-        }
-
-        const notification = document.getElementById('notification');
-        notification.classList.remove('d-none');
-
-        setTimeout(() => {
-            notification.classList.add('d-none');
-        }, 3000);
-
-        document.getElementById('bagianDiperiksa').value = '';
-        document.getElementById('keteranganFisik').value = '';
-        clearCanvas();
-        });
-
-        // Inisialisasi
-        setBackground();
         canvas.on('path:created', saveState);
+
+        function saveCanvas() {
+            const bagian = document.getElementById('bagianDiperiksa').value.trim();
+            const keterangan = document.getElementById('keteranganFisik').value.trim();
+
+            if (!bagian || !keterangan) {
+                alert("Harap isi semua kolom terlebih dahulu.");
+                return;
+            }
+
+            const imageData = canvas.toDataURL({
+                format: 'png',
+                quality: 1.0
+            });
+
+            // AJAX kirim ke server (Laravel contoh)
+            fetch('/pemeriksaan-fisik/simpan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    bagian: bagian,
+                    keterangan: keterangan,
+                    gambar: imageData
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert("Data berhasil disimpan!");
+                document.getElementById('bagianDiperiksa').value = '';
+                document.getElementById('keteranganFisik').value = '';
+                clearCanvas();
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Gagal menyimpan data.");
+            });
+        }
+
     </script>
+
 
 
     <script>
