@@ -3,6 +3,9 @@
 @section('title', 'SIP-Kes - Laporan Kunjungan Poli Umum')
 
 @section('pageContent')
+    <!-- ✅ Tambah DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
     <style>
         .container {
             max-width: 1200px;
@@ -153,7 +156,6 @@
         <div class="row">
             <div class="col-half">
                 <div class="card">
-                    <!-- Tombol navigasi -->
                     <div class="filter-header">
                         <a href="{{ route('poliumum.laporan') }}">
                             <button class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
@@ -168,7 +170,6 @@
                         </a>
                     </div>
 
-                    <!-- Form Filter -->
                     <form action="{{ route('poliumum.laporan.kunjungan') }}" method="GET">
                         <div class="mb-3">
                             <label class="form-label">Tanggal</label>
@@ -210,7 +211,6 @@
                 </div>
             </div>
 
-            <!-- Kolom Hasil Tabel -->
             <div class="col-half">
                 <div class="card" id="tabelData">
                     <p id="filterText"></p>
@@ -244,8 +244,14 @@
         </div>
     </div>
 
-    <!-- Library XLSX -->
+    <!-- ✅ XLSX Export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- ✅ jQuery & DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- ✅ Export Excel + Inisialisasi DataTables -->
     <script>
         function exportKunjunganExcel() {
             var table = document.getElementById("tableKunjungan");
@@ -254,5 +260,23 @@
             });
             XLSX.writeFile(wb, 'Laporan_Kunjungan.xlsx');
         }
+
+        $(document).ready(function() {
+            $('#tableKunjungan').DataTable({
+                pageLength: 10,
+                lengthChange: false,
+                ordering: true,
+                language: {
+                    search: "Cari:",
+                    paginate: {
+                        previous: "Sebelumnya",
+                        next: "Berikutnya"
+                    },
+                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    zeroRecords: "Tidak ada data ditemukan",
+                    infoEmpty: "Tidak ada data tersedia"
+                }
+            });
+        });
     </script>
 @endsection
