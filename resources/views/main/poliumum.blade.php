@@ -3052,7 +3052,182 @@ $('#search-results').hide();
 </style> --}}
 
     <!-- Script untuk menggambar di canvas -->
+
     <script>
+        let canvas = new fabric.Canvas('bodyCanvas', {
+        isDrawingMode: false,
+        backgroundColor: null,
+        selection: false
+        });
+
+        let undoStack = [];
+        let redoStack = [];
+        let defaultBackgroundUrl = 'Starterkit/resources/images/apps/Anatomi.jpg'; // Pastikan path benar
+        let defaultBgImage = null;
+
+        // Inisialisasi background Fabric.js
+        fabric.Image.fromURL(defaultBackgroundUrl, function(img) {
+        img.selectable = false;
+        img.evented = false;
+        defaultBgImage = img;
+        setBackground();
+        });
+
+        function setBackground() {
+        if (defaultBgImage) {
+            canvas.setBackgroundImage(defaultBgImage, canvas.renderAll.bind(canvas), {
+            scaleX: canvas.width / defaultBgImage.width,
+            scaleY: canvas.height / defaultBgImage.height
+            });
+        }
+        }
+
+        // Toggle Drawing Mode
+        function toggleDrawMode() {
+        canvas.isDrawingMode = !canvas.isDrawingMode;
+        canvas.freeDrawingBrush.color = 'red';
+        canvas.freeDrawingBrush.width = 2;
+
+        const button = document.getElementById('btnDrawToggle');
+        button.classList.toggle('active', canvas.isDrawingMode);
+        button.innerHTML = canvas.isDrawingMode ? '🛑' : '✏️';
+        }
+
+        // Undo & Redo
+        function saveState() {
+        redoStack = [];
+        undoStack.push(JSON.stringify(canvas));
+        }
+
+        function undoCanvas() {
+        if (undoStack.length > 0) {
+            redoStack.push(JSON.stringify(canvas));
+            let last = undoStack.pop();
+            canvas.loadFromJSON(last, () => {
+            setBackground();
+            });
+        }
+        }
+
+        function redoCanvas() {
+        if (redoStack.length > 0) {
+            undoStack.push(JSON.stringify(canvas));
+            let next = redoStack.pop();
+            canvas.loadFromJSON(next, () => {
+            setBackground();
+            });
+        }
+        }
+
+        function clearCanvas() {
+        canvas.clear();
+        setBackground();
+        saveState();
+        }
+
+        canvas.on('path:created', saveState);
+
+        // Save
+        function saveCanvas() {
+        const bagian = document.getElementById('bagianDiperiksa').value.trim();
+        const keterangan = document.getElementById('keteranganFisik').value.trim();
+
+        if (!bagian || !keterangan) {
+            alert("Harap isi semua kolom terlebih dahulu.");
+            return;
+        }
+
+        const imageData = canvas.toDataURL({
+            format: 'png',
+            quality: 1.0
+        });
+
+        const tbody = document.getElementById('pemeriksaanFisikTable');
+        const noDataRow = tbody.querySelector(".no-data");
+        if (noDataRow) noDataRow.remove();
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${bagian}</td>
+            <td>${keterangan}</td>
+            <td class="text-center">
+            <button type="button" class="btn btn-sm btn-info view-details"
+                data-bs-toggle="modal"
+                data-bs-target="#statusLokalisModal"
+                data-bagian="${bagian}"
+                data-keterangan="${keterangan}"
+                data-image="${imageData}"
+                title="Lihat Rincian">
+                <i class="bi bi-eye"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-danger" onclick="hapusBaris(this)" title="Hapus">
+                <i class="bi bi-trash"></i>
+            </button>
+            </td>
+        `;
+        tbody.appendChild(row);
+
+        document.getElementById('bagianDiperiksa').value = '';
+        document.getElementById('keteranganFisik').value = '';
+        clearCanvas();
+        statusLokalisModal.hide();
+        }
+
+        // Hapus baris tabel
+        function hapusBaris(button) {
+        const row = button.closest('tr');
+        row.remove();
+
+        const tbody = document.getElementById('pemeriksaanFisikTable');
+        if (tbody.children.length === 0) {
+            const emptyRow = document.createElement('tr');
+            emptyRow.classList.add('no-data');
+            emptyRow.innerHTML = `<td colspan="3" class="text-center text-muted fst-italic">Tidak ada data</td>`;
+            tbody.appendChild(emptyRow);
+        }
+        }
+
+        // Modal
+        const statusLokalisModal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
+
+        document.getElementById('statusLokalisModal').addEventListener('shown.bs.modal', () => {
+        clearCanvas();
+        });
+
+        document.getElementById('statusLokalisModal').addEventListener('hidden.bs.modal', () => {
+        document.getElementById('bagianDiperiksa').value = '';
+        document.getElementById('keteranganFisik').value = '';
+        clearCanvas();
+        undoStack = [];
+        redoStack = [];
+        canvas.isDrawingMode = false;
+        });
+
+        // Edit pemeriksaan
+        function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
+        const modalEl = document.getElementById('statusLokalisModal');
+
+        const handleShown = function () {
+            modalEl.removeEventListener('shown.bs.modal', handleShown);
+
+            clearCanvas();
+            if (imageDataUrl) {
+            fabric.Image.fromURL(imageDataUrl, function(img) {
+                img.selectable = false;
+                canvas.add(img);
+            });
+            }
+        };
+
+        modalEl.addEventListener('shown.bs.modal', handleShown);
+
+        document.getElementById('bagianDiperiksa').value = bagian;
+        document.getElementById('keteranganFisik').value = keterangan;
+
+        statusLokalisModal.show();
+        }
+    </script>
+    <!-- <script>
     const canvas = document.getElementById('bodyCanvas');
     const ctx = canvas.getContext('2d');
     const defaultBackground = new Image();
@@ -3233,7 +3408,7 @@ $('#search-results').hide();
         // Tampilkan modal
         statusLokalisModal.show();
     }
-    </script>]
+    </script> -->
 
     <!-- Script untuk menggambar di canvas -->
 
