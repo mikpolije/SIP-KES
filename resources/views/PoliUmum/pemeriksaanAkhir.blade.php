@@ -316,64 +316,65 @@
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
                             <!-- Pemeriksaan Fisik (Left Column) -->
-                            <style>
-                                .custom-table {
-                                    border-radius: 10px;
-                                    overflow: hidden;
-                                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-                                }
+                                <style>
+                                    .custom-table {
+                                        border-radius: 10px;
+                                        overflow: hidden;
+                                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                                    }
 
-                                .custom-table th,
-                                .custom-table td {
-                                    padding: 10px 14px;
-                                    vertical-align: middle;
-                                }
+                                    .custom-table th,
+                                    .custom-table td {
+                                        padding: 10px 14px;
+                                        vertical-align: middle;
+                                    }
 
-                                .custom-table .text-center {
-                                    text-align: center;
-                                }
-                            </style>
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <label class="form-label" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
-                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah +</button>
-                                    </div>
-                                    <div class="d-flex gap-2 mb-2">
-                                        <input type="text" class="form-control" placeholder="Masukkan nama bagian"
-                                            name="bagian_diperiksa">
-                                        <textarea class="form-control" placeholder="Masukkan keterangan" name="keterangan"></textarea>
-                                    </div>
-                                    <!-- CANVAS -->
-                                    <div class="col-md-7 text-center">
-                                        <!-- Toolbar -->
-                                        <div class="mb-2">
-                                            <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle"
-                                                onclick="toggleDrawMode()">
-                                                ✏️
-                                            </button>
-                                            <button type="button" class="btn btn-outline-dark btn-sm"
-                                                onclick="undoCanvas()">
-                                                ↩️
-                                            </button>
-                                            <button type="button" class="btn btn-outline-dark btn-sm"
-                                                onclick="redoCanvas()">
-                                                ↪️
-                                            </button>
-                                            <button type="button "class="btn btn-outline-dark btn-sm"
-                                                onclick="clearCanvas()">
-                                                ❌
-                                            </button>
+                                    .custom-table .text-center {
+                                        text-align: center;
+                                    }
 
-                                            <!-- Canvas -->
-                                            <div style="border: 1px solid #ccc; display: inline-block;">
+                                    .canvas-wrapper {
+                                        border: 1px solid #ccc;
+                                        display: inline-block;
+                                    }
+
+                                    .toolbar button {
+                                        margin-right: 4px;
+                                    }
+                                </style>
+
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100">
+                                        <!-- Header -->
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <label class="form-label mb-0 fw-semibold" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
+                                            <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">
+                                                Tambah +
+                                            </button>
+                                        </div>
+
+                                        <!-- Form Input -->
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control mb-2" placeholder="Masukkan nama bagian" name="bagian_diperiksa" id="bagianDiperiksa">
+                                            <textarea class="form-control" placeholder="Masukkan keterangan" name="keterangan" id="keteranganFisik" rows="4"></textarea>
+                                        </div>
+
+                                        <!-- Canvas + Toolbar -->
+                                        <div class="text-center">
+                                            <div class="toolbar mb-2">
+                                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">✏️</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">↩️</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">↪️</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">❌</button>
+                                            </div>
+
+                                            <div class="canvas-wrapper">
                                                 <canvas id="bodyCanvas" width="450" height="500"></canvas>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
 
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm h-100">
