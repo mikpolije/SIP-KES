@@ -1999,7 +1999,7 @@
 
                             <!-- Canvas -->
                             <div style="border: 1px solid #ccc; display: inline-block;">
-                                <canvas id="bodyCanvas" width="500" height="500"></canvas>
+                                <canvas id="bodyCanvas" width="600" height="550"></canvas>
                             </div>
                         </div> <!-- Penutup col-md-7 -->
 
