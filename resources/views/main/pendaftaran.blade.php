@@ -895,214 +895,214 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection
 
 
 
-    @section('scripts')
+@section('scripts')
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
-        <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
-        <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
-        <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
-        <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
-        <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="{{ URL::asset('build/js/vendor.min.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/forms/form-wizard.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/inputmask/dist/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ URL::asset('build/js/forms/mask.init.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 
-        {{-- Wilayah indonesia --}}
-        <script>
-            $('#provinsi').on('change', function() {
-                let provinsi_id = $(this).val(); // ini ID sekarang
-                $('#kabupaten').html('<option value="">-- Pilih Kabupaten --</option>');
-                $('#kecamatan').html('<option value="">-- Pilih Kecamatan --</option>');
-                $('#desa').html('<option value="">-- Pilih Desa --</option>');
+    {{-- Wilayah indonesia --}}
+    <script>
+        $('#provinsi').on('change', function() {
+            let provinsi_id = $(this).val(); // ini ID sekarang
+            $('#kabupaten').html('<option value="">-- Pilih Kabupaten --</option>');
+            $('#kecamatan').html('<option value="">-- Pilih Kecamatan --</option>');
+            $('#desa').html('<option value="">-- Pilih Desa --</option>');
 
-                if (provinsi_id) {
-                    $.get('/get-kabupaten/' + provinsi_id, function(data) {
-                        console.log(data);
-                        $.each(data, function(i, kab) {
-                            $('#kabupaten').append('<option value="' + kab.id + '">' + kab.name +
-                                '</option>');
-                        });
+            if (provinsi_id) {
+                $.get('/get-kabupaten/' + provinsi_id, function(data) {
+                    console.log(data);
+                    $.each(data, function(i, kab) {
+                        $('#kabupaten').append('<option value="' + kab.id + '">' + kab.name +
+                            '</option>');
                     });
-                }
-            });
-
-            // Kabupaten -> Kecamatan
-            $('#kabupaten').on('change', function() {
-                let kabupaten_id = $(this).val(); // ini ID, bukan code
-                $('#kecamatan').html('<option value="">-- Pilih Kecamatan --</option>');
-                $('#desa').html('<option value="">-- Pilih Desa --</option>');
-
-                if (kabupaten_id) {
-                    $.get('/get-kecamatan/' + kabupaten_id, function(data) {
-                        $.each(data, function(i, kec) {
-                            // Gunakan id untuk value
-                            $('#kecamatan').append('<option value="' + kec.id + '">' + kec.name +
-                                '</option>');
-                        });
-                    });
-                }
-            });
-
-            // Kecamatan -> Desa
-            $('#kecamatan').on('change', function() {
-                let kecamatan_id = $(this).val();
-                $('#desa').html('<option value="">-- Pilih Desa --</option>');
-
-                if (kecamatan_id) {
-                    $.get('/get-desa/' + kecamatan_id, function(data) {
-                        $.each(data, function(i, desa) {
-                            $('#desa').append('<option value="' + desa.id + '">' + desa.name +
-                                '</option>');
-                        });
-                    });
-                }
-            });
-        </script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Inisialisasi canvas ketika modal ditampilkan
-                $('#modalSehat').on('shown.bs.modal', function() {
-                    initSignaturePad('signature-pad', 'clear-signature');
                 });
-                // Untuk modal surat sakit
-                $('#modalSakit').on('shown.bs.modal', function() {
-                    initSignaturePad('signature-pad-sakit', 'clear-signature-sakit');
+            }
+        });
+
+        // Kabupaten -> Kecamatan
+        $('#kabupaten').on('change', function() {
+            let kabupaten_id = $(this).val(); // ini ID, bukan code
+            $('#kecamatan').html('<option value="">-- Pilih Kecamatan --</option>');
+            $('#desa').html('<option value="">-- Pilih Desa --</option>');
+
+            if (kabupaten_id) {
+                $.get('/get-kecamatan/' + kabupaten_id, function(data) {
+                    $.each(data, function(i, kec) {
+                        // Gunakan id untuk value
+                        $('#kecamatan').append('<option value="' + kec.id + '">' + kec.name +
+                            '</option>');
+                    });
                 });
+            }
+        });
 
-                function initSignaturePad(canvasId, clearButtonId) {
-                    const canvas = document.getElementById(canvasId);
-                    const ctx = canvas.getContext('2d');
+        // Kecamatan -> Desa
+        $('#kecamatan').on('change', function() {
+            let kecamatan_id = $(this).val();
+            $('#desa').html('<option value="">-- Pilih Desa --</option>');
 
-                    // Atur ukuran canvas yang tepat
-                    function resizeCanvas() {
-                        const container = canvas.parentElement;
-                        canvas.width = container.offsetWidth;
-                        canvas.height = container.offsetHeight;
-                        ctx.lineWidth = 2;
-                        ctx.lineCap = 'round';
-                        ctx.strokeStyle = '#000000';
+            if (kecamatan_id) {
+                $.get('/get-desa/' + kecamatan_id, function(data) {
+                    $.each(data, function(i, desa) {
+                        $('#desa').append('<option value="' + desa.id + '">' + desa.name +
+                            '</option>');
+                    });
+                });
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi canvas ketika modal ditampilkan
+            $('#modalSehat').on('shown.bs.modal', function() {
+                initSignaturePad('signature-pad', 'clear-signature');
+            });
+            // Untuk modal surat sakit
+            $('#modalSakit').on('shown.bs.modal', function() {
+                initSignaturePad('signature-pad-sakit', 'clear-signature-sakit');
+            });
+
+            function initSignaturePad(canvasId, clearButtonId) {
+                const canvas = document.getElementById(canvasId);
+                const ctx = canvas.getContext('2d');
+
+                // Atur ukuran canvas yang tepat
+                function resizeCanvas() {
+                    const container = canvas.parentElement;
+                    canvas.width = container.offsetWidth;
+                    canvas.height = container.offsetHeight;
+                    ctx.lineWidth = 2;
+                    ctx.lineCap = 'round';
+                    ctx.strokeStyle = '#000000';
+                }
+
+                resizeCanvas();
+
+                // Variabel untuk tracking
+                let isDrawing = false;
+                let lastX = 0;
+                let lastY = 0;
+
+                // Fungsi untuk mendapatkan posisi mouse/touch
+                function getPosition(e) {
+                    let posX, posY;
+                    if (e.type.includes('touch')) {
+                        const touch = e.touches[0] || e.changedTouches[0];
+                        const rect = canvas.getBoundingClientRect();
+                        posX = touch.clientX - rect.left;
+                        posY = touch.clientY - rect.top;
+                    } else {
+                        const rect = canvas.getBoundingClientRect();
+                        posX = e.clientX - rect.left;
+                        posY = e.clientY - rect.top;
                     }
+                    return {
+                        x: posX,
+                        y: posY
+                    };
+                }
 
+                // Event listeners untuk mouse
+                canvas.addEventListener('mousedown', (e) => {
+                    const pos = getPosition(e);
+                    isDrawing = true;
+                    [lastX, lastY] = [pos.x, pos.y];
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mousemove', (e) => {
+                    if (!isDrawing) return;
+                    const pos = getPosition(e);
+                    draw(pos.x, pos.y);
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('mouseup', () => {
+                    isDrawing = false;
+                });
+
+                canvas.addEventListener('mouseout', () => {
+                    isDrawing = false;
+                });
+
+                // Event listeners untuk touch
+                canvas.addEventListener('touchstart', (e) => {
+                    const pos = getPosition(e);
+                    isDrawing = true;
+                    [lastX, lastY] = [pos.x, pos.y];
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('touchmove', (e) => {
+                    if (!isDrawing) return;
+                    const pos = getPosition(e);
+                    draw(pos.x, pos.y);
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('touchend', () => {
+                    isDrawing = false;
+                });
+
+                // Fungsi menggambar
+                function draw(x, y) {
+                    ctx.beginPath();
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                    [lastX, lastY] = [x, y];
+                }
+
+                // Tombol hapus
+                document.getElementById('clear-signature').addEventListener('click', () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                });
+
+                // Handle resize window
+                window.addEventListener('resize', () => {
                     resizeCanvas();
-
-                    // Variabel untuk tracking
-                    let isDrawing = false;
-                    let lastX = 0;
-                    let lastY = 0;
-
-                    // Fungsi untuk mendapatkan posisi mouse/touch
-                    function getPosition(e) {
-                        let posX, posY;
-                        if (e.type.includes('touch')) {
-                            const touch = e.touches[0] || e.changedTouches[0];
-                            const rect = canvas.getBoundingClientRect();
-                            posX = touch.clientX - rect.left;
-                            posY = touch.clientY - rect.top;
-                        } else {
-                            const rect = canvas.getBoundingClientRect();
-                            posX = e.clientX - rect.left;
-                            posY = e.clientY - rect.top;
-                        }
-                        return {
-                            x: posX,
-                            y: posY
-                        };
-                    }
-
-                    // Event listeners untuk mouse
-                    canvas.addEventListener('mousedown', (e) => {
-                        const pos = getPosition(e);
-                        isDrawing = true;
-                        [lastX, lastY] = [pos.x, pos.y];
-                        e.preventDefault();
-                    });
-
-                    canvas.addEventListener('mousemove', (e) => {
-                        if (!isDrawing) return;
-                        const pos = getPosition(e);
-                        draw(pos.x, pos.y);
-                        e.preventDefault();
-                    });
-
-                    canvas.addEventListener('mouseup', () => {
-                        isDrawing = false;
-                    });
-
-                    canvas.addEventListener('mouseout', () => {
-                        isDrawing = false;
-                    });
-
-                    // Event listeners untuk touch
-                    canvas.addEventListener('touchstart', (e) => {
-                        const pos = getPosition(e);
-                        isDrawing = true;
-                        [lastX, lastY] = [pos.x, pos.y];
-                        e.preventDefault();
-                    });
-
-                    canvas.addEventListener('touchmove', (e) => {
-                        if (!isDrawing) return;
-                        const pos = getPosition(e);
-                        draw(pos.x, pos.y);
-                        e.preventDefault();
-                    });
-
-                    canvas.addEventListener('touchend', () => {
-                        isDrawing = false;
-                    });
-
-                    // Fungsi menggambar
-                    function draw(x, y) {
-                        ctx.beginPath();
-                        ctx.moveTo(lastX, lastY);
-                        ctx.lineTo(x, y);
-                        ctx.stroke();
-                        [lastX, lastY] = [x, y];
-                    }
-
-                    // Tombol hapus
-                    document.getElementById('clear-signature').addEventListener('click', () => {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    });
-
-                    // Handle resize window
-                    window.addEventListener('resize', () => {
-                        resizeCanvas();
-                    });
-                }
-            });
-        </script>
-
-        <script>
-            // Add delete functionality
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    this.closest('tr').remove();
                 });
-            });
+            }
+        });
+    </script>
 
-            // Add search functionality (example)
-            document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
-                const searchTerm = document.getElementById('icd10Search').value;
-                // Here you would typically call an API to search ICD-10 codes
-                console.log('Searching for:', searchTerm);
+    <script>
+        // Add delete functionality
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.closest('tr').remove();
             });
-        </script>
+        });
 
-        <script>
-            // Add click event for view details button
-            document.querySelector('.view-details').addEventListener('click', function() {
-                // Set modal content based on the row data
-                const modalContent = `
+        // Add search functionality (example)
+        document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
+            const searchTerm = document.getElementById('icd10Search').value;
+            // Here you would typically call an API to search ICD-10 codes
+            console.log('Searching for:', searchTerm);
+        });
+    </script>
+
+    <script>
+        // Add click event for view details button
+        document.querySelector('.view-details').addEventListener('click', function() {
+            // Set modal content based on the row data
+            const modalContent = `
                 <p><strong>Nama:</strong> Kepala</p>
                 <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
                 <p><strong>Detail Tambahan:</strong></p>
@@ -1113,443 +1113,324 @@
                 </ul>
             `;
 
-                document.getElementById('modalBodyContent').innerHTML = modalContent;
+            document.getElementById('modalBodyContent').innerHTML = modalContent;
 
-                // Show modal
-                const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
-                modal.show();
-            });
-        </script>
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            modal.show();
+        });
+    </script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Daftar judul per step
-                const titles = [
-                    'Pendaftaran', // Step 1
-                    'Pemeriksaan Awal', // Step 2
-                    'Pemeriksaan Poli Umum', // Step 3
-                    'Farmasi', // Step 4
-                    'Pembayaran' // Step 5
-                ];
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Daftar judul per step
+            const titles = [
+                'Pendaftaran', // Step 1
+                'Pemeriksaan Awal', // Step 2
+                'Pemeriksaan Poli Umum', // Step 3
+                'Farmasi', // Step 4
+                'Pembayaran' // Step 5
+            ];
 
-                const titleElement = document.getElementById('wizard-title');
-                const wizard = document.querySelector('.validation-wizard');
+            const titleElement = document.getElementById('wizard-title');
+            const wizard = document.querySelector('.validation-wizard');
 
-                if (wizard) {
-                    $(wizard).on('stepChanged', function(event, currentIndex) {
-                        titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
-                    });
-                }
-            });
-        </script>
+            if (wizard) {
+                $(wizard).on('stepChanged', function(event, currentIndex) {
+                    titleElement.innerText = titles[currentIndex] || 'Pendaftaran Rawat Jalan';
+                });
+            }
+        });
+    </script>
 
-        <script>
-            // Function to validate NIK (16 digits)
-            function validateNIK(input) {
-                // Remove non-numeric characters
-                let value = input.value.replace(/\D/g, '');
+    <script>
+        // Function to validate NIK (16 digits)
+        function validateNIK(input) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
 
-                // Set max length
-                if (value.length > 16) {
-                    value = value.slice(0, 16);
-                }
+            // Set max length
+            if (value.length > 16) {
+                value = value.slice(0, 16);
+            }
 
-                // Update input value
-                input.value = value;
+            // Update input value
+            input.value = value;
 
-                // Show/hide error message
-                const errorElement = document.getElementById('nik-error');
-                if (value.length > 0 && value.length !== 16) {
+            // Show/hide error message
+            const errorElement = document.getElementById('nik-error');
+            if (value.length > 0 && value.length !== 16) {
+                errorElement.style.display = 'block';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        }
+
+        // Function to validate numeric inputs with specific length
+        function validateNumeric(input, maxLength) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
+
+            // Set max length if specified
+            if (maxLength && value.length > maxLength) {
+                value = value.slice(0, maxLength);
+            }
+
+            // Update input value
+            input.value = value;
+
+            // Show/hide error message
+            const fieldId = input.id;
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            if (errorElement) {
+                if (value.length > 0 && maxLength && value.length !== maxLength) {
                     errorElement.style.display = 'block';
                 } else {
                     errorElement.style.display = 'none';
                 }
             }
+        }
 
-            // Function to validate numeric inputs with specific length
-            function validateNumeric(input, maxLength) {
-                // Remove non-numeric characters
-                let value = input.value.replace(/\D/g, '');
+        // Function to validate phone numbers (10-13 digits)
+        function validateTelepon(input) {
+            // Remove non-numeric characters
+            let value = input.value.replace(/\D/g, '');
 
-                // Set max length if specified
-                if (maxLength && value.length > maxLength) {
-                    value = value.slice(0, maxLength);
-                }
-
-                // Update input value
-                input.value = value;
-
-                // Show/hide error message
-                const fieldId = input.id;
-                const errorElement = document.getElementById(`${fieldId}-error`);
-                if (errorElement) {
-                    if (value.length > 0 && maxLength && value.length !== maxLength) {
-                        errorElement.style.display = 'block';
-                    } else {
-                        errorElement.style.display = 'none';
-                    }
-                }
+            // Set max length
+            if (value.length > 13) {
+                value = value.slice(0, 13);
             }
 
-            // Function to validate phone numbers (10-13 digits)
-            function validateTelepon(input) {
-                // Remove non-numeric characters
-                let value = input.value.replace(/\D/g, '');
+            // Update input value
+            input.value = value;
 
-                // Set max length
-                if (value.length > 13) {
-                    value = value.slice(0, 13);
-                }
-
-                // Update input value
-                input.value = value;
-
-                // Show/hide error message
-                const fieldId = input.id;
-                const errorElement = document.getElementById(`${fieldId}-error`);
-                if (errorElement) {
-                    if (value.length > 0 && (value.length < 10 || value.length > 13)) {
-                        errorElement.style.display = 'block';
-                    } else {
-                        errorElement.style.display = 'none';
-                    }
-                }
-            }
-
-            // Fix for input type="number" with maxlength attribute (since maxlength doesn't work on number inputs)
-            document.addEventListener('DOMContentLoaded', function() {
-                // Apply to all numeric inputs
-                const numericInputs = document.querySelectorAll('input[type="number"]');
-                numericInputs.forEach(function(input) {
-                    input.addEventListener('input', function() {
-                        const maxLength = this.getAttribute('maxlength');
-                        if (maxLength && this.value.length > maxLength) {
-                            this.value = this.value.slice(0, maxLength);
-                        }
-                    });
-                });
-            });
-        </script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Function to process decimal input (accepts both . and , as decimal separators)
-                function processDecimalInput(input, value) {
-                    // Replace comma with dot for consistency
-                    let newValue = value.replace(/,/g, '.');
-
-                    // Remove any characters that aren't numbers or dots
-                    newValue = newValue.replace(/[^0-9.]/g, '');
-
-                    // Ensure only one decimal point
-                    const parts = newValue.split('.');
-                    if (parts.length > 2) {
-                        newValue = parts[0] + '.' + parts.slice(1).join('');
-                    }
-
-                    // If starts with dot, add 0 before
-                    if (newValue.startsWith('.')) {
-                        newValue = '0' + newValue;
-                    }
-
-                    return newValue;
-                }
-
-                // Number inputs (whole numbers only)
-                const numberInputs = document.querySelectorAll('.number-input');
-                numberInputs.forEach(input => {
-                    input.addEventListener('input', function() {
-                        this.value = this.value.replace(/[^0-9]/g, '');
-                    });
-
-                    input.addEventListener('paste', function(e) {
-                        e.preventDefault();
-                        const pasteData = e.clipboardData.getData('text/plain');
-                        const numbers = pasteData.replace(/[^0-9]/g, '');
-                        document.execCommand('insertText', false, numbers);
-                    });
-                });
-
-                // Decimal inputs (accepts numbers and decimal points)
-                const decimalInputs = document.querySelectorAll('.decimal-input');
-                decimalInputs.forEach(input => {
-                    input.addEventListener('input', function() {
-                        this.value = processDecimalInput(this, this.value);
-                    });
-
-                    input.addEventListener('paste', function(e) {
-                        e.preventDefault();
-                        const pasteData = e.clipboardData.getData('text/plain');
-                        const processedValue = processDecimalInput(this, pasteData);
-                        document.execCommand('insertText', false, processedValue);
-                    });
-
-                    // Remove trailing decimal point when losing focus
-                    input.addEventListener('blur', function() {
-                        if (this.value.endsWith('.')) {
-                            this.value = this.value.slice(0, -1);
-                        }
-                    });
-                });
-            });
-        </script>
-
-        <script>
-            function validateNumeric(input, maxLength) {
-                // Hapus karakter non-angka
-                let value = input.value.replace(/\D/g, '');
-
-                // Batasi panjang maksimal jika ditentukan
-                if (maxLength && value.length > maxLength) {
-                    value = value.slice(0, maxLength);
-                }
-
-                // Update nilai input
-                input.value = value;
-
-                // Tampilkan atau sembunyikan pesan error
-                const fieldId = input.id;
-                const errorElement = document.getElementById(`${fieldId}-error`);
-                if (errorElement) {
-                    if (value.length > 0 && maxLength && value.length !== maxLength) {
-                        errorElement.style.display = 'block';
-                    } else {
-                        errorElement.style.display = 'none';
-                    }
-                }
-            }
-        </script>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons @1.10.5/font/bootstrap-icons.min.js"></script>
-
-
-        <script>
-            // Fungsi untuk menampilkan notifikasi
-            function showNotification() {
-                const notification = document.getElementById('notification');
-                notification.style.display = 'block';
-
-                // Sembunyikan notifikasi setelah 3 detik
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 3000);
-            }
-
-            // Event listener untuk tombol "Simpan"
-            document.getElementById('saveButton').addEventListener('click', () => {
-                console.log('Data pasien berhasil disimpan.');
-                showNotification();
-            });
-        </script>
-
-        <script>
-            $(function() {
-                $("#searchNoRM").autocomplete({
-                    source: function(request, response) {
-                        $.getJSON("/cari-pasien", {
-                            term: request.term
-                        }, function(data) {
-                            response($.map(data, function(item) {
-                                return {
-                                    label: item.no_rm + " - " + item.nama_pasien,
-                                    value: item.no_rm
-                                };
-                            }));
-                        });
-                    },
-                    minLength: 2,
-                    select: function(event, ui) {
-                        let no_rm = ui.item.value;
-                        $.get('/get-data-pasien/' + no_rm, function(data) {
-                            $('#no_rm').val(data.no_rm);
-                            $('#nama_pasien').val(data.nama_pasien);
-                            // dst...
-                        });
-                    }
-                });
-            });
-        </script>
-
-        <!-- Script untuk menggambar di canvas -->
-        <script>
-            const canvas = document.getElementById('bodyCanvas');
-            const ctx = canvas.getContext('2d');
-            const image = new Image();
-            let isDrawing = false;
-            let drawEnabled = false;
-            let initialized = false;
-            let undoStack = [];
-            let redoStack = [];
-            let currentColor = 'red'; // Warna default
-
-            function toggleDrawMode() {
-                drawEnabled = !drawEnabled;
-                const button = document.getElementById('btnDrawToggle');
-                if (drawEnabled) {
-                    button.classList.add('active');
-                    button.innerHTML = '🛑'; // misalnya ganti ikon saat aktif
+            // Show/hide error message
+            const fieldId = input.id;
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            if (errorElement) {
+                if (value.length > 0 && (value.length < 10 || value.length > 13)) {
+                    errorElement.style.display = 'block';
                 } else {
-                    button.classList.remove('active');
-                    button.innerHTML = '✏️'; // ikon default
+                    errorElement.style.display = 'none';
                 }
             }
+        }
 
-            function undoCanvas() {
-                if (undoStack.length > 0) {
-                    const lastState = undoStack.pop();
-                    redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke redo
-                    ctx.putImageData(lastState, 0, 0);
+        // Fix for input type="number" with maxlength attribute (since maxlength doesn't work on number inputs)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply to all numeric inputs
+            const numericInputs = document.querySelectorAll('input[type="number"]');
+            numericInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    const maxLength = this.getAttribute('maxlength');
+                    if (maxLength && this.value.length > maxLength) {
+                        this.value = this.value.slice(0, maxLength);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to process decimal input (accepts both . and , as decimal separators)
+            function processDecimalInput(input, value) {
+                // Replace comma with dot for consistency
+                let newValue = value.replace(/,/g, '.');
+
+                // Remove any characters that aren't numbers or dots
+                newValue = newValue.replace(/[^0-9.]/g, '');
+
+                // Ensure only one decimal point
+                const parts = newValue.split('.');
+                if (parts.length > 2) {
+                    newValue = parts[0] + '.' + parts.slice(1).join('');
                 }
-            }
 
-            function redoCanvas() {
-                if (redoStack.length > 0) {
-                    const nextState = redoStack.pop();
-                    undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke undo
-                    ctx.putImageData(nextState, 0, 0);
+                // If starts with dot, add 0 before
+                if (newValue.startsWith('.')) {
+                    newValue = '0' + newValue;
                 }
+
+                return newValue;
             }
 
-            function clearCanvas() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
+            // Number inputs (whole numbers only)
+            const numberInputs = document.querySelectorAll('.number-input');
+            numberInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain');
+                    const numbers = pasteData.replace(/[^0-9]/g, '');
+                    document.execCommand('insertText', false, numbers);
+                });
+            });
+
+            // Decimal inputs (accepts numbers and decimal points)
+            const decimalInputs = document.querySelectorAll('.decimal-input');
+            decimalInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = processDecimalInput(this, this.value);
+                });
+
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain');
+                    const processedValue = processDecimalInput(this, pasteData);
+                    document.execCommand('insertText', false, processedValue);
+                });
+
+                // Remove trailing decimal point when losing focus
+                input.addEventListener('blur', function() {
+                    if (this.value.endsWith('.')) {
+                        this.value = this.value.slice(0, -1);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function validateNumeric(input, maxLength) {
+            // Hapus karakter non-angka
+            let value = input.value.replace(/\D/g, '');
+
+            // Batasi panjang maksimal jika ditentukan
+            if (maxLength && value.length > maxLength) {
+                value = value.slice(0, maxLength);
             }
 
-            function saveCanvas() {
-                if (event) event.preventDefault(); // penting agar tidak reload
+            // Update nilai input
+            input.value = value;
 
-                const imageData = canvas.toDataURL();
-                console.log("Saved image data:", imageData);
-                alert("Gambar disimpan!");
-                // Kirim imageData via AJAX atau simpan sesuai kebutuhan
-            }
-
-            canvas.addEventListener('mousedown', (e) => {
-                if (!drawEnabled) return;
-                isDrawing = true;
-                // Simpan state sebelum menggambar
-                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-                // Kosongkan redoStack karena ada aksi baru
-                redoStack = [];
-                ctx.strokeStyle = currentColor;
-                ctx.lineWidth = 2;
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                ctx.moveTo(e.offsetX, e.offsetY);
-            });
-
-            canvas.addEventListener('mousemove', (e) => {
-                if (!isDrawing || !drawEnabled) return;
-                ctx.lineTo(e.offsetX, e.offsetY);
-                ctx.stroke();
-            });
-
-            canvas.addEventListener('mouseup', () => {
-                if (!drawEnabled) return;
-                isDrawing = false;
-            });
-
-            // Load gambar saat modal dibuka pertama kali
-            $('#statusLokalisModal').on('shown.bs.modal', function() {
-                if (!initialized) {
-                    image.onload = function() {
-                        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                    };
-                    image.src =
-                        '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
-                    initialized = true;
+            // Tampilkan atau sembunyikan pesan error
+            const fieldId = input.id;
+            const errorElement = document.getElementById(`${fieldId}-error`);
+            if (errorElement) {
+                if (value.length > 0 && maxLength && value.length !== maxLength) {
+                    errorElement.style.display = 'block';
                 } else {
-                    // setiap buka ulang, redraw image (jika dibutuhkan)
-                    clearCanvas();
+                    errorElement.style.display = 'none';
                 }
-            });
+            }
+        }
+    </script>
 
-            function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
-                document.getElementById('bagianDiperiksa').value = bagian;
-                document.getElementById('keteranganFisik').value = keterangan;
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap @5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons @1.10.5/font/bootstrap-icons.min.js"></script>
 
-                const modal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
-                modal.show();
 
-                $('#statusLokalisModal').off('shown.bs.modal').on('shown.bs.modal', function() {
-                    const ctx = canvas.getContext('2d');
-                    const background = new Image();
-                    background.onload = () => {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    <script>
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.style.display = 'block';
 
-                        if (imageDataUrl) {
-                            const overlay = new Image();
-                            overlay.onload = () => {
-                                ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
+            // Sembunyikan notifikasi setelah 3 detik
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Event listener untuk tombol "Simpan"
+        document.getElementById('saveButton').addEventListener('click', () => {
+            console.log('Data pasien berhasil disimpan.');
+            showNotification();
+        });
+    </script>
+
+    <script>
+        $(function() {
+            $("#searchNoRM").autocomplete({
+                source: function(request, response) {
+                    $.getJSON("/cari-pasien", {
+                        term: request.term
+                    }, function(data) {
+                        response($.map(data, function(item) {
+                            return {
+                                label: item.no_rm + " - " + item.nama_pasien,
+                                value: item.no_rm
                             };
-                            overlay.src = imageDataUrl;
-                        }
-                    };
-                    background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
-                });
-            }
-        </script>
-
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const previousBtn = document.querySelector('a[href="#previous"]');
-                if (previousBtn) {
-                    previousBtn.textContent = "Sebelumnya";
-                }
-            });
-        </script>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const nextBtn = document.querySelector('a[href="#next"]');
-                if (nextBtn) {
-                    nextBtn.textContent = "Simpan";
-                }
-            });
-        </script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                // Inisialisasi dropdown menggunakan Bootstrap
-                const dropdownElement = document.getElementById('suratKeteranganDropdown');
-                if (dropdownElement) {
-                    const dropdown = new bootstrap.Dropdown(dropdownElement);
-                }
-
-                // Event listener untuk item dropdown
-                document.querySelectorAll('.dropdown-item').forEach(item => {
-                    item.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        const targetModal = this.getAttribute('data-bs-target');
-                        if (targetModal) {
-                            const modal = new bootstrap.Modal(document.querySelector(targetModal));
-                            modal.show();
-                        }
+                        }));
                     });
+                },
+                minLength: 2,
+                select: function(event, ui) {
+                    let no_rm = ui.item.value;
+                    $.get('/get-data-pasien/' + no_rm, function(data) {
+                        $('#no_rm').val(data.no_rm);
+                        $('#nama_pasien').val(data.nama_pasien);
+                        // dst...
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const previousBtn = document.querySelector('a[href="#previous"]');
+        if (previousBtn) {
+            previousBtn.remove(); // tombol benar-benar dihapus dari halaman
+        }
+        });
+
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nextBtn = document.querySelector('a[href="#next"]');
+            if (nextBtn) {
+                nextBtn.textContent = "Simpan";
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi dropdown menggunakan Bootstrap
+            const dropdownElement = document.getElementById('suratKeteranganDropdown');
+            if (dropdownElement) {
+                const dropdown = new bootstrap.Dropdown(dropdownElement);
+            }
+
+            // Event listener untuk item dropdown
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetModal = this.getAttribute('data-bs-target');
+                    if (targetModal) {
+                        const modal = new bootstrap.Modal(document.querySelector(targetModal));
+                        modal.show();
+                    }
                 });
             });
-        </script>
+        });
+    </script>
 
-        <script>
-            const tableIcd = new DataTable('#icdTable', {
-                responsive: true,
-                paging: true,
-                searching: true,
-                info: true,
-                pageLength: 10, // Default: tampilkan 10 entri
-                lengthMenu: [5, 10, 25, 50, 100]
-            });
-            const tableLayanan = new DataTable('#layananTable', {
-                responsive: true,
-                paging: true,
-                searching: true,
-                info: true,
-                pageLength: 10, // Default: tampilkan 10 entri
-                lengthMenu: [5, 10, 25, 50, 100]
-            });
-        </script>
+    <script>
+        const tableIcd = new DataTable('#icdTable', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            pageLength: 10, // Default: tampilkan 10 entri
+            lengthMenu: [5, 10, 25, 50, 100]
+        });
+        const tableLayanan = new DataTable('#layananTable', {
+            responsive: true,
+            paging: true,
+            searching: true,
+            info: true,
+            pageLength: 10, // Default: tampilkan 10 entri
+            lengthMenu: [5, 10, 25, 50, 100]
+        });
+    </script>
 
-    @endsection
+@endsection
