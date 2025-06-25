@@ -111,6 +111,15 @@ new class extends Component {
 
     public $agama = '';
 
+    public function getCurrentDateTime()
+    {
+        $now = \Carbon\Carbon::now('Asia/Jakarta');
+        return [
+            'tanggal' => $now->format('d/m/Y'),
+            'jam' => $now->format('H:i')
+        ];
+    }
+
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
         $this->pendaftaran = Pendaftaran::where('id_pendaftaran', $pendaftaranId)->first();
@@ -1823,7 +1832,7 @@ new class extends Component {
                         <div class="d-flex justify-content-end">
                             <div class="row mt-4 mb-5" style="width: fit-content;">
                                 <div class="col text-center">
-                                    <p>Jember, ................................20......</p>
+                                    <p>Jember, {{ $this->getCurrentDateTime()['tanggal'] }}, Jam {{ $this->getCurrentDateTime()['jam'] }} WIB</p>
                                     <p>Petugas yang mengisi,</p>
                                     <div class="border rounded mx-auto my-3" style="width: 150px; height: 100px;"></div>
                                 </div>
