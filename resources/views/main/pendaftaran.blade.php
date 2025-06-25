@@ -328,7 +328,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="kodepos">Kode Pos:</label>
+                                        <label class="form-label" for="kodepos">Kode Pos:<span
+                                             class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="kode_pos"
                                             name="kode_pos" />
                                     </div>
@@ -343,8 +344,8 @@
                                 </div>
                                 <div class="col-md-1">
                                     <div class="mb-3">
-                                        <label class="form-label" for="rt">RW:</label
-                                                class="danger">*</span></label>
+                                        <label class="form-label" for="rt">RW:<span
+                                             class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="rw"
                                             name="rw" />
                                     </div>
@@ -375,7 +376,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="agama">Agama:</label>
+                                        <label class="form-label" for="agama">Agama:<span
+                                             class="danger">*</span></label>
                                         <select class="form-select required" id="agama" name="agama">
                                             <option value="1">Islam</option>
                                             <option value="2">Kristen (Protestan)</option>
