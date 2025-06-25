@@ -1774,7 +1774,7 @@
                         overlay.src = imageDataUrl;
                     }
                 };
-                background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
+                background.src = '/assets/images/Anatomi.jpg';
             });
         }
     </script>
