@@ -331,16 +331,16 @@
                                 </div>
                                 <div class="col-md-1">
                                     <div class="mb-3">
-                                        <label class="form-label" for="rt">RT:</label>
+                                        <label class="form-label" for="rt">RT<span class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="rt"
-                                            name="rt" />
+                                            name="rt" oninput="validateNumeric(this, 3)" maxlength="3" required>
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="mb-3">
-                                        <label class="form-label" for="rt">RW:</label>
+                                        <label class="form-label" for="rw">RW<span class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="rw"
-                                            name="rw" />
+                                            name="rw" oninput="validateNumeric(this, 3)" maxlength="3" required>
                                     </div>
                                 </div>
                             </div>
