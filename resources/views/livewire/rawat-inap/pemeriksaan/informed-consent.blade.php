@@ -211,7 +211,7 @@ new class extends Component {
                                 id="pemberiInformasi" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="penerimaInformasi" class="form-label">Penerima / Pemberi Informasi
+                            <label for="penerimaInformasi" class="form-label">Penerima Informasi
                                 </label>
                             <input type="text" wire:model="penerimaInformasi" class="form-control"
                                 id="penerimaInformasi" required>
