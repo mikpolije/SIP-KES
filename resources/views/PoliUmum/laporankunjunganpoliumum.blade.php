@@ -3,8 +3,9 @@
 @section('title', 'SIP-Kes - Laporan Kunjungan Poli Umum')
 
 @section('pageContent')
-    <!-- ✅ Tambah DataTables CSS -->
+    <!-- ✅ Tambahkan CSS DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 
     <style>
         .container {
@@ -41,45 +42,15 @@
             min-width: 300px;
         }
 
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-blue {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-blue:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-gray {
-            background: #e5e7eb;
-            color: #4b5563;
-        }
-
-        .btn-gray:hover {
-            background: #d1d5db;
-        }
-
-        .btn-yellow {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .btn-yellow:hover {
-            background: #d97706;
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .form-label {
-            margin-bottom: 8px;
             font-weight: 500;
+            margin-bottom: 5px;
         }
 
         .form-control,
@@ -89,18 +60,6 @@
             border-radius: 6px;
             border: 1px solid #d1d5db;
             margin-bottom: 12px;
-            background-color: white;
-        }
-
-        .filter-header {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
         }
 
         .table-title {
@@ -116,57 +75,25 @@
             color: #6b7280;
             margin-bottom: 10px;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #e5e7eb;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f3f4f6;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9fafb;
-        }
-
-        tr:hover {
-            background-color: #f0f4f8;
-        }
-
-        #filterText {
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 8px;
-        }
     </style>
 
     <div class="container">
         <h1 class="title">LAPORAN KUNJUNGAN</h1>
 
         <div class="row">
+            <!-- Filter -->
             <div class="col-half">
                 <div class="card">
-                    <div class="filter-header">
+                    <div class="btn-group">
                         <a href="{{ route('poliumum.laporan') }}">
-                            <button class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
-                                10 Besar Penyakit
-                            </button>
+                            <button
+                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn btn-primary' : 'btn btn-secondary' }}">10
+                                Besar Penyakit</button>
                         </a>
                         <a href="{{ route('poliumum.laporan.kunjungan') }}">
                             <button
-                                class="btn {{ request()->routeIs('poliumum.laporan.kunjungan') ? 'btn-blue' : 'btn-gray' }}">
-                                Laporan Kunjungan
-                            </button>
+                                class="btn {{ request()->routeIs('poliumum.laporan.kunjungan') ? 'btn btn-primary' : 'btn btn-secondary' }}">Laporan
+                                Kunjungan</button>
                         </a>
                     </div>
 
@@ -174,17 +101,15 @@
                         <div class="mb-3">
                             <label class="form-label">Tanggal</label>
                             <div style="display: flex; gap: 10px;">
-                                <input type="date" class="form-control" id="startDate" name="startDate"
-                                    value="{{ $startDate }}">
-                                <label class="form-label" style="margin: auto 0;">s/d</label>
-                                <input type="date" class="form-control" id="endDate" name="endDate"
-                                    value="{{ $endDate }}">
+                                <input type="date" class="form-control" name="startDate" value="{{ $startDate }}">
+                                <label style="margin: auto 0;">s/d</label>
+                                <input type="date" class="form-control" name="endDate" value="{{ $endDate }}">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="Dokter">Dokter</label>
-                            <select class="form-select" id="Dokter" name="id_dokter">
+                            <label class="form-label">Dokter</label>
+                            <select class="form-select" name="id_dokter">
                                 <option value="">-- Semua Dokter --</option>
                                 @foreach ($dokter as $d)
                                     <option value="{{ $d->id }}" {{ $id_dokter == $d->id ? 'selected' : '' }}>
@@ -195,86 +120,103 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="CaraBayar">Cara Bayar</label>
-                            <select class="form-select" id="CaraBayar" name="carabayar">
+                            <label class="form-label">Cara Bayar</label>
+                            <select class="form-select" name="carabayar">
                                 <option value="">-- Semua --</option>
                                 <option value="1" {{ $carabayar == '1' ? 'selected' : '' }}>Umum</option>
                                 <option value="2" {{ $carabayar == '2' ? 'selected' : '' }}>BPJS</option>
                             </select>
                         </div>
 
-                        <div class="btn-group mt-4">
-                            <button type="submit" class="btn btn-blue">Tampilkan</button>
-                            <button onclick="exportKunjunganExcel()" type="button" class="btn btn-yellow">Download</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Tampilkan</button>
                     </form>
                 </div>
             </div>
 
+            <!-- Tabel -->
             <div class="col-half">
-                <div class="card" id="tabelData">
-                    <p id="filterText"></p>
+                <div class="card">
                     <h3 class="table-title">LAPORAN KUNJUNGAN</h3>
-                    <p class="table-subtitle" id="periodeText"></p>
+                    <p class="table-subtitle">Data kunjungan berdasarkan filter</p>
 
-                    <table id="tableKunjungan">
-                        <thead>
-                            <tr>
-                                <th>NO</th>
-                                <th>NO RM</th>
-                                <th>NAMA</th>
-                                <th>NIK</th>
-                                <th>TANGGAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($kunjungan as $k)
+                    <div style="overflow-x: auto;">
+                        <table id="tableKunjungan" class="display nowrap" style="width: 100%;">
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $k->pendaftaran->data_pasien->no_rm }}</td>
-                                    <td>{{ $k->pendaftaran->data_pasien->nama_pasien }}</td>
-                                    <td>{{ $k->pendaftaran->data_pasien->nik_pasien }}</td>
-                                    <td>{{ $k->pendaftaran->created_at->format('d-m-Y') }}</td>
+                                    <th>NO</th>
+                                    <th>NO RM</th>
+                                    <th>NAMA</th>
+                                    <th>NIK</th>
+                                    <th>TANGGAL</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($kunjungan as $k)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $k->pendaftaran->data_pasien->no_rm }}</td>
+                                        <td>{{ $k->pendaftaran->data_pasien->nama_pasien }}</td>
+                                        <td>{{ $k->pendaftaran->data_pasien->nik_pasien }}</td>
+                                        <td>{{ $k->pendaftaran->created_at->format('d-m-Y') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ✅ XLSX Export -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-    <!-- ✅ jQuery & DataTables JS -->
+    <!-- ✅ Tambahkan JS DataTables & Button Export -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
-    <!-- ✅ Export Excel + Inisialisasi DataTables -->
     <script>
-        function exportKunjunganExcel() {
-            var table = document.getElementById("tableKunjungan");
-            var wb = XLSX.utils.table_to_book(table, {
-                sheet: "Kunjungan"
-            });
-            XLSX.writeFile(wb, 'Laporan_Kunjungan.xlsx');
-        }
-
         $(document).ready(function() {
             $('#tableKunjungan').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'excelHtml5',
+                        text: 'Export Excel',
+                        className: 'btn btn-success',
+                        title: 'Laporan Kunjungan'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Export PDF',
+                        className: 'btn btn-danger',
+                        title: 'Laporan Kunjungan',
+                        orientation: 'landscape',
+                        pageSize: 'A4'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Cetak',
+                        className: 'btn btn-secondary',
+                        title: 'Laporan Kunjungan'
+                    }
+                ],
+                paging: true,
                 pageLength: 10,
-                lengthChange: false,
-                ordering: true,
+                responsive: true,
+                scrollX: true,
                 language: {
                     search: "Cari:",
+                    lengthMenu: "Tampilkan _MENU_ data",
+                    zeroRecords: "Data tidak ditemukan",
+                    info: "Menampilkan _START_ - _END_ dari _TOTAL_ data",
+                    infoEmpty: "Data tidak tersedia",
                     paginate: {
-                        previous: "Sebelumnya",
-                        next: "Berikutnya"
-                    },
-                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                    zeroRecords: "Tidak ada data ditemukan",
-                    infoEmpty: "Tidak ada data tersedia"
+                        next: "›",
+                        previous: "‹"
+                    }
                 }
             });
         });
