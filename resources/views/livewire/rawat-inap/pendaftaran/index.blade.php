@@ -68,7 +68,7 @@ new class extends Component {
         $this->kec = $this->currentPatient->kecamatan->name ?? null;
 
         $this->kodePos = $this->currentPatient->kode_pos;
-        $this->noHP = $this->currentPatient->nomor_telepon;
+        $this->noHP = $this->currentPatient->no_telepon_pasien;
         $this->pendidikan = $this->currentPatient->pendidikan;
         $this->pekerjaan = $this->currentPatient->pekerjaan;
 
@@ -119,7 +119,7 @@ new class extends Component {
     }
 }; ?>
 
-<div>
+<div id="printable-area">
     <form wire:submit.prevent="submit">
         <div class="row">
             <!-- left column -->
@@ -373,6 +373,7 @@ new class extends Component {
     </form>
 
     <div class="navigation-buttons mt-4 d-flex justify-content-end">
+        <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
         <div class="btn btn-primary" wire:click="submit">Submit</div>
     </div>
     @if (session()->has('message'))
@@ -380,4 +381,24 @@ new class extends Component {
         {{ session('message') }}
     </div>
     @endif
+
+    <style>
+        @media print {
+            .left-sidebar, .stepper, .navbar, .title {
+                visibility: hidden;
+            }
+            #printable-area, #printable-area * {
+                visibility: visible;
+            }
+            #printable-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .navigation-buttons, .btn {
+                display: none !important;
+            }
+        }
+    </style>
 </div>
