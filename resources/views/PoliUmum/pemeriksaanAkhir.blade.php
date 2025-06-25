@@ -623,7 +623,7 @@
 
     <!-- Modal Pemeriksaan Fisik dengan Canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-    {{-- <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel"
+     <!-- <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content rounded shadow">
@@ -634,9 +634,9 @@
                 <form action=""></form>
                 <div class="modal-body">
                     <div class="row">
-                        <!-- CANVAS -->
+                        //CANVAS 
                         <div class="col-md-7 text-center">
-                            <!-- Toolbar -->
+                            //Toolbar
                             <div class="mb-2">
                                 <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle"
                                     onclick="toggleDrawMode()">
@@ -652,11 +652,11 @@
                                     ❌
                                 </button>
 
-                                <!-- Canvas -->
+                               //Canvas
                                 <div style="border: 1px solid #ccc; display: inline-block;">
                                     <canvas id="bodyCanvas" width="500" height="500"></canvas>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Form Input -->
                             <div class="col-md-5">
@@ -671,7 +671,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Tombol "Simpan" -->
                     <div class="container mt-5 text-center">
                         <button type="submit" class="btn btn-primary" id="saveButton">Simpan</button>
