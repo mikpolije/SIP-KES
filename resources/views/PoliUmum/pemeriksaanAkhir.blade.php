@@ -623,10 +623,6 @@
         </div>
     </div>
 
-                    <!-- Tombol "Simpan"
-                    <div class="container mt-5 text-center">
-                        <button type="submit" class="btn btn-primary" id="saveButton">Simpan</button>
-                    </div> -->
 
                     <!-- Elemen Notifikasi -->
                     <div class="notification" id="notification">
