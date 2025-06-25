@@ -3062,7 +3062,7 @@ $('#search-results').hide();
 
         let undoStack = [];
         let redoStack = [];
-        let defaultBackgroundUrl = 'Starterkit/resources/images/apps/Anatomi.jpg'; // Pastikan path benar
+        let defaultBackgroundUrl = '/assets/images/Anatomi.jpg'; // Pastikan path benar
         let defaultBgImage = null;
 
         // Inisialisasi background Fabric.js
