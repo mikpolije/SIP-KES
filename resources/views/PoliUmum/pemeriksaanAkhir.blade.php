@@ -621,57 +621,6 @@
         </div>
     </div>
 
-    <!-- Modal Pemeriksaan Fisik dengan Canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-      <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content rounded shadow">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <form action=""></form>
-                <div class="modal-body">
-                    <div class="row">
-                        <!-- CANVAS  -->
-                        <div class="col-md-7 text-center">
-                            <!-- Toolbar -->
-                            <div class="mb-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle"
-                                    onclick="toggleDrawMode()">
-                                    ✏️
-                                </button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">
-                                    ↩️
-                                </button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">
-                                    ↪️
-                                </button>
-                                <button type="button "class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
-                                    ❌
-                                </button>
-
-                               <!-- Canvas -->
-                                <div style="border: 1px solid #ccc; display: inline-block;">
-                                    <canvas id="bodyCanvas" width="500" height="500"></canvas>
-                                </div>
-                            </div> 
-
-                            <!-- Form Input -->
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                    <input type="text" class="form-control" id="bagianDiperiksa"
-                                        name="bagian_diperiksa" placeholder="Ketik di sini">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Keterangan</label>
-                                    <textarea class="form-control" name="keterangan" id="keteranganFisik" rows="5" placeholder="Ketik di sini"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Tombol "Simpan" -->
                     <div class="container mt-5 text-center">
                         <button type="submit" class="btn btn-primary" id="saveButton">Simpan</button>
