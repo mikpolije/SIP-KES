@@ -1385,7 +1385,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const nextBtn = document.querySelector('a[href="#next"]');
             if (nextBtn) {
-                nextBtn..style.display = "none";
+                nextBtn.style.display = "none";
             }
         });
     </script>
