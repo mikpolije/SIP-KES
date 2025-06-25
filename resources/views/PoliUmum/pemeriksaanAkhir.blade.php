@@ -343,6 +343,8 @@
                                     }
                                 </style>
 
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+
                                 <div class="col-md-6">
                                     <div class="card p-3 h-100">
                                         <!-- Header -->
