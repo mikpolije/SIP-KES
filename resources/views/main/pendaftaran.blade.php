@@ -253,7 +253,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="id_provinsi">Provinsi:</label>
+                                        <label class="form-label" for="id_provinsi">Provinsi:<span
+                                             class="danger">*</span></label>
                                         <select class="form-select required" id="provinsi" name="id_provinsi">
                                             <option value=""><-- Pilih Provinsi ---></option>
                                             @foreach ($data_provinsi as $provinsi)
@@ -264,7 +265,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="kota">Kota/Kabupaten:</label>
+                                        <label class="form-label" for="kota">Kota/Kabupaten:<span
+                                             class="danger">*</span></label>
                                         {{-- <input type="text" class="form-control required" id="id_kota"
                                             name="id_kota" /> --}}
                                         <select class="form-select required" id="kabupaten" name="id_kota">
@@ -293,7 +295,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="kecamatan">Kecamatan:</label>
+                                        <label class="form-label" for="kecamatan">Kecamatan:<span
+                                             class="danger">*</span></label>
                                         {{-- <input type="text" class="form-control required" id="id_kecamatan"
                                             name="id_kecamatan" /> --}}
                                         <select id="kecamatan" name="id_kecamatan" class="form-control">
@@ -308,7 +311,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="kelurahan">Kelurahan/Desa: </label>
+                                        <label class="form-label" for="kelurahan">Kelurahan/Desa: <span
+                                             class="danger">*</span></label>
                                         {{-- <input type="text" class="form-control required" id="id_desa"
                                             name="id_desa" /> --}}
                                         <select class="form-select required" id="desa" name="id_desa">
