@@ -342,7 +342,8 @@
                                 </div>
                                 <div class="col-md-1">
                                     <div class="mb-3">
-                                        <label class="form-label" for="rt">RW:</label>
+                                        <label class="form-label" for="rt">RW:</label
+                                                class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="rw"
                                             name="rw" />
                                     </div>
