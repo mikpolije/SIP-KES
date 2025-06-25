@@ -60,9 +60,9 @@ new class extends Component {
                 $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->alamatPasien = $pendaftaran->data_pasien->alamat_pasien;
 
-                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_pasien ?? '';
-                $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir_pasien ?? '';
-                $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_pasien ?? '';
+                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_wali ?? '';
+                $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir_wali ?? '';
+                $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_wali ?? '';
 
                 $this->timestamp = now();
 
