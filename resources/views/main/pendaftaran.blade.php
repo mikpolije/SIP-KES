@@ -459,7 +459,11 @@
                                         <label class="form-label" for="telepon">Nomor Telepon:<span
                                                 class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="no_telepon_pasien"
-                                            name="no_telepon_pasien" placeholder="08xxxxxxxxxx" required>
+                                            name="no_telepon_pasien" placeholder="08xxxxxxxxxx" required 
+                                            oninput="validateNumeric(this, 13)" maxlength="13"
+                                        required>
+                                    <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
+                                        angka</small>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
