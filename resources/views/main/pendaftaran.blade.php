@@ -297,7 +297,7 @@
                                         {{-- <input type="text" class="form-control required" id="id_kecamatan"
                                             name="id_kecamatan" /> --}}
                                         <select id="kecamatan" name="id_kecamatan" class="form-control">
-                                            <option value="">-- Pilih Kecamatan --</option>
+                                            <option value=""><-- Pilih Kecamatan ---></option>
                                             {{-- @foreach ($data_kecamatan as $kecamatan)
                                                 <option value="{{ $kecamatan->id }}">
                                                     {{ $kecamatan->name }}
