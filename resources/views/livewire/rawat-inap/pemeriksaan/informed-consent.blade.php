@@ -317,9 +317,8 @@ new class extends Component {
                     </div>
                 </div>
 
-                <!-- is_menyatakan / PENOLAKAN TINDAKAN KEDOKTERAN -->
                 <div class="mb-4">
-                    <h5>PENOLAKAN TINDAKAN KEDOKTERAN</h5>
+                    <h5>PERSETUJUAN / PENOLAKAN TINDAKAN KEDOKTERAN</h5>
                     <div class="mb-3">
                         <p>Yang bertandatangan dibawah ini, saya</p>
                     </div>
