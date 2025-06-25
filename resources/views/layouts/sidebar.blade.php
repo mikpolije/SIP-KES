@@ -95,14 +95,14 @@
                 aria-expanded="false">
 
                 {{-- POLI UMUM 1 --}}
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
                         aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Poli Umum</span>
-                    </a>
+                    </a> --}}
                     {{-- <ul class="second-level collapse" aria-expanded="false">
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
