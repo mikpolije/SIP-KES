@@ -62,7 +62,6 @@ new class extends Component {
                         <th scope="col">No.</th>
                         <th scope="col">Nomor Surat</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Pasien</th>
                         <th scope="col">Nama Lengkap</th>
                         <th scope="col">Hubungan</th>
                         <th scope="col">No. Telepon</th>
@@ -76,7 +75,6 @@ new class extends Component {
                         <th scope="row">{{ $suratPulangPaksas->firstItem() + $index }}</th>
                         <td>{{ $surat->nomor }}</td>
                         <td>{{ $surat->tanggal }}</td>
-                        <td>{{ $surat->data_pasien->nama_lengkap ?? '-' }}</td>
                         <td>{{ $surat->nama_lengkap }}</td>
                         <td>
                             @switch($surat->hubungan)

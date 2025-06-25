@@ -253,12 +253,6 @@ new class extends Component {
                             </span>
                         </button>
 
-                        <button type="button" class="btn btn-warning px-4 text-white d-flex align-items-center gap-2"
-                            style="background-color: #f0ad4e; border: none;"
-                            onclick="printSurat()">
-                            <i class="bi bi-printer"></i> Cetak
-                        </button>
-
                         <a href="/main/persuratan/pulang-paksa" class="btn btn-secondary px-4">
                             <i class="bi bi-arrow-left"></i> Kembali
                         </a>
@@ -344,7 +338,6 @@ new class extends Component {
         });
 
         function printSurat() {
-            // Implement print functionality here
             window.print();
         }
     </script>
