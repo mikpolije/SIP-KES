@@ -41,7 +41,7 @@ class LaporanController extends Controller
                 }
             })
             ->orderByDesc('created_at')
-            ->limit(10)
+            // ->limit(10)
             ->get();
 
         $dokter = Dokter::all();
