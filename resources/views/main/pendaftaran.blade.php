@@ -1378,8 +1378,6 @@
             previousBtn.remove(); // tombol benar-benar dihapus dari halaman
         }
         });
-
-        });
     </script>
 
 
@@ -1387,7 +1385,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             const nextBtn = document.querySelector('a[href="#next"]');
             if (nextBtn) {
-                nextBtn.textContent = "Simpan";
+                nextBtn..style.display = "none";
             }
         });
     </script>
