@@ -8,14 +8,23 @@ new class extends Component {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    public $searchNoRM = '';
 
     public function with()
     {
         return [
             'suratPulangPaksas' => SuratPulangPaksa::with(['data_pasien'])
+                ->when($this->searchNoRM, function ($query) {
+                    $query->where('no_rm', 'like', '%' . $this->searchNoRM . '%');
+                })
                 ->latest()
                 ->paginate(10)
         ];
+    }
+
+    public function search()
+    {
+        $this->resetPage();
     }
 
     public function detail($id)
@@ -42,10 +51,15 @@ new class extends Component {
         </a>
     </div>
     <div class="d-flex justify-content-end my-4">
-        <select class="form-control me-2" id="searchPasien" style="width: 300px;">
-            <option value="">Cari Data Pasien...</option>
-        </select>
-        <button class="btn btn-primary" type="button" id="btnCariPasien">
+        <input
+            type="text"
+            class="form-control me-2"
+            style="width: 300px;"
+            placeholder="Cari berdasarkan No. RM..."
+            wire:model.live="searchNoRM"
+            wire:keydown.enter="search"
+        >
+        <button class="btn btn-primary" type="button" wire:click="search">
             <i class="fas fa-search"></i>
         </button>
     </div>
@@ -60,6 +74,7 @@ new class extends Component {
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">No.</th>
+                        <th scope="col">No. RM</th>
                         <th scope="col">Nomor Surat</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Nama Lengkap</th>
@@ -73,6 +88,7 @@ new class extends Component {
                     @foreach($suratPulangPaksas as $index => $surat)
                     <tr>
                         <th scope="row">{{ $suratPulangPaksas->firstItem() + $index }}</th>
+                        <td>{{ $surat->no_rm }}</td>
                         <td>{{ $surat->nomor }}</td>
                         <td>{{ $surat->tanggal }}</td>
                         <td>{{ $surat->nama_lengkap }}</td>
