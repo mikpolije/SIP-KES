@@ -229,14 +229,106 @@ new class extends Component {
             $now = Carbon::now();
             $diff = $now->diff($birthday);
 
-            $this->lahirTahun = $diff->y; // Tahun
-            $this->lahirBulan = $diff->m; // Bulan
-            $this->lahirHari = $diff->d;  // Hari
+            $this->lahirTahun = $diff->y;
+            $this->lahirBulan = $diff->m;
+            $this->lahirHari = $diff->d;
         }
     }
 
     public function submit()
     {
+        $requiredFields = [
+            'alasanMasuk' => 'Alasan Masuk',
+            'diagnosaMedis' => 'Diagnosa Medis',
+            'riwayatPenyakit' => 'Riwayat Penyakit',
+            'sistole' => 'Sistole',
+            'distole' => 'Distole',
+            'suhu' => 'Suhu',
+            'nadi' => 'Nadi',
+            'pernapasan' => 'Pernapasan',
+            'berat_badan' => 'Berat Badan',
+            'tinggi_badan' => 'Tinggi Badan',
+            'lila' => 'LILA',
+            'bentuk_makanan' => 'Bentuk Makanan',
+            'minum' => 'Minum',
+            'frekuensi_bak' => 'Frekuensi BAK',
+            'frekuensi_bab' => 'Frekuensi BAB',
+            'frekuensi_bab_warna' => 'Warna BAB',
+            'frekuensi_bab_bau' => 'Bau BAB',
+            'frekuensi_bab_konsistensi' => 'Konsistensi BAB',
+            'frekuensi_bab_terakhir' => 'BAB Terakhir',
+            'jumlah_tidur' => 'Jumlah Tidur',
+            'kegiatan_sehari_hari' => 'Kegiatan Sehari-hari',
+            'kegiatan_rumah_sakit' => 'Kegiatan Rumah Sakit',
+            'pekerjaan' => 'Pekerjaan',
+            'nafsu_makan' => 'Nafsu Makan',
+            'turgor' => 'Turgor',
+            'gaya_berjalan' => 'Gaya Berjalan',
+        ];
+
+        $emptyFields = [];
+        foreach ($requiredFields as $field => $label) {
+            if (empty($this->$field) || $this->$field === '' || $this->$field === null) {
+                $emptyFields[] = $label;
+            }
+        }
+
+        if ($this->is_obat_tidur && (empty($this->is_obat_tidur_note) || empty($this->is_obat_tidur_dosis))) {
+            if (empty($this->is_obat_tidur_note)) $emptyFields[] = 'Catatan Obat Tidur';
+            if (empty($this->is_obat_tidur_dosis)) $emptyFields[] = 'Dosis Obat Tidur';
+        }
+
+        if ($this->is_berbicara && empty($this->is_berbicara_note)) {
+            $emptyFields[] = 'Catatan Berbicara';
+        }
+
+        if ($this->is_disorientasi && empty($this->is_disorientasi_note)) {
+            $emptyFields[] = 'Catatan Disorientasi';
+        }
+
+        $adlFields = [
+            'can_mandi_dibantu' => 'Bantuan Mandi',
+            'can_berpakaian_dibantu' => 'Bantuan Berpakaian',
+            'can_makan_dibantu' => 'Bantuan Makan',
+            'can_bab_bak_dibantu' => 'Bantuan BAB/BAK',
+            'can_transfering_dibantu' => 'Bantuan Transfer',
+        ];
+
+        foreach ($adlFields as $field => $label) {
+            if (empty($this->$field) || $this->$field === '') {
+                $emptyFields[] = $label;
+            }
+        }
+
+        if (!empty($emptyFields)) {
+            flash()->error('Anda harus mengisi semua field yang diperlukan: ' . implode(', ', $emptyFields));
+            return;
+        }
+
+        $numericFields = [
+            'sistole' => 'Sistole',
+            'distole' => 'Distole',
+            'suhu' => 'Suhu',
+            'nadi' => 'Nadi',
+            'pernapasan' => 'Pernapasan',
+            'berat_badan' => 'Berat Badan',
+            'tinggi_badan' => 'Tinggi Badan',
+            'lila' => 'LILA',
+            'jumlah_tidur' => 'Jumlah Tidur',
+        ];
+
+        $invalidNumeric = [];
+        foreach ($numericFields as $field => $label) {
+            if (!is_numeric($this->$field)) {
+                $invalidNumeric[] = $label;
+            }
+        }
+
+        if (!empty($invalidNumeric)) {
+            flash()->error('Field berikut harus berupa angka: ' . implode(', ', $invalidNumeric));
+            return;
+        }
+
         $data = [
             'alasan_masuk' => $this->alasanMasuk,
             'diagnosa_medis' => $this->diagnosaMedis,
@@ -246,42 +338,42 @@ new class extends Component {
             'suhu' => $this->suhu,
             'nadi' => $this->nadi,
             'pernapasan' => $this->pernapasan,
-            'pernapasan_lain' => $this->pernapasan_lain,
+            'pernapasan_lain' => $this->pernapasan_lain ?? '',
             'berat_badan' => $this->berat_badan,
             'tinggi_badan' => $this->tinggi_badan,
             'lila' => $this->lila,
             'bentuk_makanan' => $this->bentuk_makanan,
             'minum' => $this->minum,
-            'kebutuhan_cairan_lain' => $this->kebutuhan_cairan_lain,
+            'kebutuhan_cairan_lain' => $this->kebutuhan_cairan_lain ?? '',
             'frekuensi_bak' => $this->frekuensi_bak,
-            'frekuensi_bak_jumlah' => $this->frekuensi_bak_jumlah,
-            'frekuensi_bak_lain' => $this->frekuensi_bak_lain,
+            'frekuensi_bak_jumlah' => $this->frekuensi_bak_jumlah ?? '',
+            'frekuensi_bak_lain' => $this->frekuensi_bak_lain ?? '',
             'frekuensi_bab' => $this->frekuensi_bab,
             'frekuensi_bab_warna' => $this->frekuensi_bab_warna,
             'frekuensi_bab_bau' => $this->frekuensi_bab_bau,
             'frekuensi_bab_konsistensi' => $this->frekuensi_bab_konsistensi,
             'frekuensi_bab_terakhir' => $this->frekuensi_bab_terakhir,
-            'gaya_berjalan_lain' => $this->gaya_berjalan_lain,
+            'gaya_berjalan_lain' => $this->gaya_berjalan_lain ?? '',
             'jumlah_tidur' => $this->jumlah_tidur,
-            'is_obat_tidur_note' => $this->is_obat_tidur_note,
-            'is_obat_tidur_dosis' => $this->is_obat_tidur_dosis,
-            'kebutuhan_aktifitas_lain' => $this->kebutuhan_aktifitas_lain,
-            'kebutuhan_emosional_lain' => $this->kebutuhan_emosional_lain,
-            'kebutuhan_penyuluhan_lain' => $this->kebutuhan_penyuluhan_lain,
-            'is_berbicara_note' => $this->is_berbicara_note,
-            'is_pembicaraan' => $this->is_pembicaraan,
-            'is_disorientasi_note' => $this->is_disorientasi_note,
-            'kebutuhan_komunikasi_lain' => $this->kebutuhan_komunikasi_lain,
+            'is_obat_tidur_note' => $this->is_obat_tidur_note ?? '',
+            'is_obat_tidur_dosis' => $this->is_obat_tidur_dosis ?? '',
+            'kebutuhan_aktifitas_lain' => $this->kebutuhan_aktifitas_lain ?? '',
+            'kebutuhan_emosional_lain' => $this->kebutuhan_emosional_lain ?? '',
+            'kebutuhan_penyuluhan_lain' => $this->kebutuhan_penyuluhan_lain ?? '',
+            'is_berbicara_note' => $this->is_berbicara_note ?? '',
+            'is_pembicaraan' => $this->is_pembicaraan ?? '',
+            'is_disorientasi_note' => $this->is_disorientasi_note ?? '',
+            'kebutuhan_komunikasi_lain' => $this->kebutuhan_komunikasi_lain ?? '',
             'kegiatan_sehari_hari' => $this->kegiatan_sehari_hari,
             'kegiatan_rumah_sakit' => $this->kegiatan_rumah_sakit,
             'pekerjaan' => $this->pekerjaan,
-            'resiko_jatuh_note' => $this->resiko_jatuh_note,
-            'tingkat_ketergantungan_note' => $this->tingkat_ketergantungan_note,
-            'rontgen' => $this->rontgen,
-            'lab' => $this->lab,
-            'lain_lain' => $this->lain_lain,
-            'berat_badan_naik' => $this->berat_badan_naik,
-            'agama' => $this->agama,
+            'resiko_jatuh_note' => $this->resiko_jatuh_note ?? '',
+            'tingkat_ketergantungan_note' => $this->tingkat_ketergantungan_note ?? '',
+            'rontgen' => $this->rontgen ?? '',
+            'lab' => $this->lab ?? '',
+            'lain_lain' => $this->lain_lain ?? '',
+            'berat_badan_naik' => $this->berat_badan_naik ?? '',
+            'agama' => $this->agama ?? '',
 
             'is_sianosis' => $this->is_sianosis,
             'is_nyeri_dada' => $this->is_nyeri_dada,
