@@ -254,7 +254,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="id_provinsi">Provinsi:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="provinsi" name="id_provinsi">
                                             <option value=""><-- Pilih Provinsi ---></option>
                                             @foreach ($data_provinsi as $provinsi)
@@ -266,7 +266,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="kota">Kota/Kabupaten:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         {{-- <input type="text" class="form-control required" id="id_kota"
                                             name="id_kota" /> --}}
                                         <select class="form-select required" id="kabupaten" name="id_kota">
@@ -296,7 +296,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="kecamatan">Kecamatan:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         {{-- <input type="text" class="form-control required" id="id_kecamatan"
                                             name="id_kecamatan" /> --}}
                                         <select id="kecamatan" name="id_kecamatan" class="form-control">
@@ -312,7 +312,7 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="kelurahan">Kelurahan/Desa: <span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         {{-- <input type="text" class="form-control required" id="id_desa"
                                             name="id_desa" /> --}}
                                         <select class="form-select required" id="desa" name="id_desa">
@@ -333,23 +333,25 @@
                                 <div class="col-md-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="kodepos">Kode Pos:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="kode_pos"
                                             name="kode_pos" />
+                                        <input type="text" class="form-control required" id="kodepos"
+                                            name="kodepos" oninput="validateNumeric(this, 5)" maxlength="5" required>
+                                        <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit
+                                            angka</small>
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="mb-3">
-                                        <label class="form-label" for="rt">RT:<span
-                                             class="danger">*</span></label>
+                                        <label class="form-label" for="rt">RT:<span class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="rt"
                                             name="rt" />
                                     </div>
                                 </div>
                                 <div class="col-md-1">
                                     <div class="mb-3">
-                                        <label class="form-label" for="rt">RW:<span
-                                             class="danger">*</span></label>
+                                        <label class="form-label" for="rt">RW:<span class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="rw"
                                             name="rw" />
                                     </div>
@@ -381,7 +383,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="agama">Agama:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="agama" name="agama">
                                             <option value="1">Islam</option>
                                             <option value="2">Kristen (Protestan)</option>
@@ -399,7 +401,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="perkawinan">Status Perkawinan:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="status_perkawinan"
                                             name="status_perkawinan">
                                             <option value="1">Belum Kawin</option>
@@ -412,7 +414,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="pendidikan">Pendidikan:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="pendidikan_pasien"
                                             name="pendidikan_pasien">
                                             <option value="0">Tidak Sekolah</option>
@@ -430,7 +432,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="pekerjaan">Pekerjaan:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="pekerjaan_pasien"
                                             name="pekerjaan_pasien">
                                             <option value="0">Tidak bekerja</option>
@@ -447,7 +449,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="kewarganegaraan">Kewarganegaraan:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="kewarganegaraan" name="kewarganegaraan">
                                             <option value="1">WNI</option>
                                             <option value="2">WNA</option>
@@ -457,7 +459,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="telepon">Nomor Telepon:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="no_telepon_pasien"
                                             name="no_telepon_pasien" placeholder="08xxxxxxxxxx" required>
                                     </div>
@@ -465,7 +467,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="ibukandung">Nama Ibu Kandung:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="nama_ibu_kandung"
                                             name="nama_ibu_kandung" />
                                     </div>
@@ -475,7 +477,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="goldar">Golongan Darah:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="gol_darah" name="gol_darah">
                                             <option value="0">Tidak Diketahui</option>
                                             <option value="1">A</option>
@@ -492,7 +494,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="hubungan">Hubungan dengan pasien:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <select class="form-select required" id="hubungan"
                                             name="hubungan_dengan_pasien">
                                             <option value="1">Diri Sendiri</option>
@@ -507,7 +509,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="namawali">Nama Wali:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="nama_wali"
                                             name="nama_wali" />
                                     </div>
@@ -515,7 +517,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="tlwali">Tanggal Lahir Wali :<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <input type="date" class="form-control required" id="tlwali"
                                             name="tanggal_lahir_wali" />
                                     </div>
@@ -525,7 +527,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="notelpwali">Nomor Telepon Wali:<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <input type="texr" class="form-control required" id="notelpwali"
                                             name="no_telepon_wali" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}"
                                             required>
@@ -534,7 +536,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="alamatwali">Alamat Wali<span
-                                             class="danger">*</span></label>
+                                                class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="alamatwali"
                                             name="alamat_wali" />
                                     </div>
@@ -543,7 +545,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="layanan">Layanan<span
-                                             class="danger">*</span></label>
+                                                    class="danger">*</span></label>
                                             <select class="form-select required" id="id_poli" name="id_poli">
                                                 <option value="">
                                                     <-- Pilih Poli --->
@@ -557,7 +559,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="layanan">Dokter<span
-                                             class="danger">*</span></label>
+                                                    class="danger">*</span></label>
                                             <select class="form-select required" id="id_dokter" name="id_data_dokter">
                                                 <option value="">
                                                     <-- Pilih Dokter --->
@@ -573,7 +575,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="bayar">Cara Pembayaran<span
-                                             class="danger">*</span></label>
+                                                    class="danger">*</span></label>
                                             <select class="form-select required" id="bayar" name="jenis_pembayaran">
                                                 <option value="1">Umum</option>
                                                 <option value="2">BPJS</option>
