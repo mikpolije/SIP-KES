@@ -25,7 +25,7 @@ class extends Component {
         </button>
     </div>
 
-    <div class="container py-3" style="max-width: 210mm; min-height: 297mm;">
+    <div class="container py-1" style="max-width: 210mm; min-height: 297mm;">
         <div class="card border-0">
             <div class="card-body p-4">
                 <div class="row align-items-center">
