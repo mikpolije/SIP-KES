@@ -78,6 +78,15 @@ new class extends Component {
         }
     }
 
+    public function getCurrentDateTime()
+    {
+        $now = \Carbon\Carbon::now('Asia/Jakarta');
+        return [
+            'tanggal' => $now->format('d/m/Y'),
+            'jam' => $now->format('H:i')
+        ];
+    }
+
     #[On('submit-step1')]
     public function submit()
     {
@@ -311,7 +320,7 @@ new class extends Component {
             <p class="mb-4">Dengan tanda tangan saya di bawah ini, saya menyatakan bahwa saya telah membaca dan sepenuhnya setuju dengan setiap pernyataan yang terdapat pada formulir ini dan menandatangani tanpa paksaan dan dengan kesadaran penuh seluruh kriteria yang terdapat pada persetujuan umum (General Consent).</p>
 
             <div class="text-end mb-4">
-                <p>Jember, ___/___/20___, Jam ___WIB</p>
+                <p>Jember, {{ $this->getCurrentDateTime()['tanggal'] }}, Jam {{ $this->getCurrentDateTime()['jam'] }} WIB</p>
             </div>
         </div>
 
@@ -330,8 +339,9 @@ new class extends Component {
             </div>
         </div>
 
-        <div class="d-flex justify-content-end gap-3">
-            <button type="button" class="btn btn-warning px-4 py-2">Cetak</button>
-        </div>
     </form>
+
+    <div class="d-flex justify-content-end gap-3">
+        <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
+    </div>
 </div>

@@ -59,8 +59,8 @@ Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
     Volt::route('/kontrol/create', 'persuratan.kontrol.create')->name('.kontrol.create');
     Volt::route('/sakit/print', 'persuratan.sakit.create')->name('.sakit.print');
     Volt::route('/sakit/create', 'persuratan.sakit.print')->name('.sakit.create');
-    Volt::route('/pulang-paksa/print', 'persuratan.pulang-paksa.create')->name('.pulang-paksa.print');
-    Volt::route('/pulang-paksa/create', 'persuratan.pulang-paksa.print')->name('.pulang-paksa.create');
+    Volt::route('/pulang-paksa/print', 'persuratan.pulang-paksa.print')->name('.pulang-paksa.print');
+    Volt::route('/pulang-paksa/create', 'persuratan.pulang-paksa.create')->name('.pulang-paksa.create');
     Volt::route('/kematian/print', 'persuratan.kematian.print')->name('.kematian.print');
     Volt::route('/kematian/create', 'persuratan.kematian.create')->name('.kematian.create');
 });

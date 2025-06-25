@@ -2,6 +2,6 @@
 @section('title', 'SIP-Kes | Rawat Inap')
 
 @section('pageContent')
-@livewire('persuratan.pulang-paksa')
+@livewire('persuratan.pulang-paksa.list')
 @endsection
 
