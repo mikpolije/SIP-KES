@@ -280,9 +280,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="nik">NIK: <span class="danger">*</span></label>
+                                        <label class="form-label" for="nik_pasien">NIK: <span
+                                                class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="nik_pasien"
-                                            name="nik_pasien" placeholder="16 digit" />
+                                            name="nik_pasien" placeholder="16 digit" oninput="validateNumeric(this, 16)"
+                                            maxlength="16" required>
+                                        <small class="error-message" id="nik_pasien-error" style="display: none;">
+                                            NIK harus berupa 16 digit angka
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
