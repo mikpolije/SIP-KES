@@ -459,11 +459,11 @@
                                         <label class="form-label" for="telepon">Nomor Telepon:<span
                                                 class="danger">*</span></label>
                                         <input type="text" class="form-control required" id="no_telepon_pasien"
-                                            name="no_telepon_pasien" placeholder="08xxxxxxxxxx" required 
-                                            oninput="validateNumeric(this, 13)" maxlength="13"
-                                        required>
-                                    <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13 digit
-                                        angka</small>
+                                            name="no_telepon_pasien" placeholder="08xxxxxxxxxx" required
+                                            oninput="validateNumeric(this, 13)" maxlength="13" required>
+                                        <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13
+                                            digit
+                                            angka</small>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -532,7 +532,10 @@
                                                 class="danger">*</span></label>
                                         <input type="texr" class="form-control required" id="notelpwali"
                                             name="no_telepon_wali" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}"
-                                            required>
+                                            required oninput="validateNumeric(this, 13)" maxlength="13" required>
+                                        <small class="error-message" id="telepon-error">Nomor telepon harus berupa 10-13
+                                            digit
+                                            angka</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
