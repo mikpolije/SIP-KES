@@ -324,9 +324,12 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="kodepos">Kode Pos:</label>
-                                        <input type="text" class="form-control required" id="kode_pos"
-                                            name="kode_pos" />
+                                        <label class="form-label" for="kodepos">Kode Pos<span
+                                                class="danger">*</span></label>
+                                        <input type="text" class="form-control required" id="kodepos"
+                                            name="kodepos" oninput="validateNumeric(this, 5)" maxlength="5" required>
+                                        <small class="error-message" id="kodepos-error">Kode Pos harus berupa 5 digit
+                                            angka</small>
                                     </div>
                                 </div>
                                 <div class="col-md-1">
