@@ -348,9 +348,6 @@
                                         <!-- Header -->
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <label class="form-label mb-0 fw-semibold" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
-                                            <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#statusLokalisModal">
-                                                Tambah +
-                                            </button>
                                         </div>
 
                                         <!-- Form Input -->
