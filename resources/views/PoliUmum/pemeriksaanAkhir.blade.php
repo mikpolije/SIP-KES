@@ -432,7 +432,7 @@
                         </div>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
-                        {{-- <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
+                        <!-- <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -442,7 +442,7 @@
                                     </div>
                                     <div class="modal-body" id="physicalExamModalBody">
                                         <div id="physicalExamDetails">
-                                            <!-- Detail content will be inserted here -->
+                                            //Detail content will be inserted here 
                                             <p><strong>Nama Pemeriksaan:</strong> Kepala</p>
                                             <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
                                             <p><strong>Detail:</strong></p>
@@ -460,7 +460,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div> -->
 
                         <!-- Layanan and Obat -->
                         <div class="row-container">
