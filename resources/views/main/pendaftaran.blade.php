@@ -285,10 +285,10 @@
                                         <input type="text" class="form-control required" id="nik_pasien"
                                             name="nik_pasien" placeholder="16 digit" oninput="validateNumeric(this, 16)"
                                             maxlength="16" required>
-                                        <small class="error-message" id="nik_pasien-error">NIK harus berupa 16 digit
-                                            angka</small>
+                                        <small class="error-message" id="nik_pasien-error" style="display: none;">
+                                            NIK harus berupa 16 digit angka
+                                        </small>
                                     </div>
-
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
