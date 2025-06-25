@@ -339,8 +339,9 @@ new class extends Component {
             </div>
         </div>
 
-        <div class="d-flex justify-content-end gap-3">
-            <button type="button" class="btn btn-warning px-4 py-2">Cetak</button>
-        </div>
     </form>
+
+    <div class="d-flex justify-content-end gap-3">
+        <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
+    </div>
 </div>

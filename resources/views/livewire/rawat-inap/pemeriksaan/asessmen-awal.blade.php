@@ -294,5 +294,10 @@ new class extends Component {
                 </div>
             </div>
         </form>
+
+        <div class="d-flex justify-content-end gap-3">
+            <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
+        </div>
+
     </div>
 </div>
