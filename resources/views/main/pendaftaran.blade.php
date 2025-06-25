@@ -1,3 +1,4 @@
+@ -1,3992 +1,4012 @@
 @extends('layouts.master')
 
 @section('title', 'SIP-Kes | Pendaftaran')
@@ -326,45 +327,25 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="kode_pos">Kode Pos<span
-                                                    class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="kode_pos"
-                                                name="kode_pos" oninput="validateNumeric(this, 5)" maxlength="5"
-                                                required>
-                                            <small class="error-message" id="kode_pos-error" style="display: none;">
-                                                Kode Pos harus berupa 5 digit angka
-                                            </small>
-                                        </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="kodepos">Kode Pos:</label>
+                                        <input type="text" class="form-control required" id="kode_pos"
+                                            name="kode_pos" />
                                     </div>
-
-                                    <div class="col-md-1">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="rt">RT<span
-                                                    class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="rt"
-                                                name="rt" oninput="validateNumeric(this, 3)" maxlength="3"
-                                                required>
-                                            <small class="error-message" id="rt-error" style="display: none;">
-                                                RT harus berupa maksimal 3 digit angka
-                                            </small>
-                                        </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="rt">RT:</label>
+                                        <input type="text" class="form-control required" id="rt"
+                                            name="rt" />
                                     </div>
-
-                                    <div class="col-md-1">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="rw">RW<span
-                                                    class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="rw"
-                                                name="rw" oninput="validateNumeric(this, 3)" maxlength="3"
-                                                required>
-                                            <small class="error-message" id="rw-error" style="display: none;">
-                                                RW harus berupa maksimal 3 digit angka
-                                            </small>
-                                        </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="rt">RW:</label>
+                                        <input type="text" class="form-control required" id="rw"
+                                            name="rw" />
                                     </div>
-
                                 </div>
                             </div>
                             <div class="row">
