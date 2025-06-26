@@ -14,4 +14,9 @@ class SuratPulangPaksa extends Model
     protected $primaryKey = 'id';
 
     protected $guarded = ['id'];
+
+    public function data_pasien()
+    {
+        return $this->belongsTo(DataPasien::class, 'no_rm', 'no_rm');
+    }
 }

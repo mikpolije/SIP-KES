@@ -8,7 +8,7 @@ use Livewire\Volt\Component;
 new class extends Component {
     public $no_rm = '';
     public $nik = '';
-    public $jenis_kelamin = 'Laki-laki';
+    public $jenis_kelamin = '';
     public $nama_pasien = '';
     public $tanggal_lahir_pasien = '';
 
@@ -46,7 +46,7 @@ new class extends Component {
         if ($pendaftaran->data_pasien) {
             $this->no_rm = $pendaftaran->data_pasien['no_rm'] ?? '';
             $this->nik = $pendaftaran->data_pasien['nik_pasien'] ?? '';
-            $this->jenis_kelamin = $pendaftaran->data_pasien['jenis_kelamin'] ?? 'Laki-laki';
+            $this->jenis_kelamin = $pendaftaran->data_pasien['jenis_kelamin_text'] ?? 'Laki-laki';
             $this->nama_pasien = $pendaftaran->data_pasien['nama_pasien'] ?? '';
             $this->tanggal_lahir_pasien = $pendaftaran->data_pasien['tanggal_lahir_pasien'] ?? '';
 
@@ -76,6 +76,15 @@ new class extends Component {
             $this->nama_keluarga = $general_consent->nama_keluarga;
             $this->hubungan_keluarga = $general_consent->hubungan_keluarga;
         }
+    }
+
+    public function getCurrentDateTime()
+    {
+        $now = \Carbon\Carbon::now('Asia/Jakarta');
+        return [
+            'tanggal' => $now->format('d/m/Y'),
+            'jam' => $now->format('H:i')
+        ];
     }
 
     #[On('submit-step1')]
@@ -138,10 +147,7 @@ new class extends Component {
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-semibold">JENIS KELAMIN</label>
-                    <select class="form-select" wire:model="jenis_kelamin" disabled>
-                        <option value="Laki-laki">Laki-laki</option>
-                        <option value="Perempuan">Perempuan</option>
-                    </select>
+                    <input type="text" wire:model="jenis_kelamin" class="form-control" id="jenisKelamin" disabled>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">NAMA</label>
@@ -314,7 +320,7 @@ new class extends Component {
             <p class="mb-4">Dengan tanda tangan saya di bawah ini, saya menyatakan bahwa saya telah membaca dan sepenuhnya setuju dengan setiap pernyataan yang terdapat pada formulir ini dan menandatangani tanpa paksaan dan dengan kesadaran penuh seluruh kriteria yang terdapat pada persetujuan umum (General Consent).</p>
 
             <div class="text-end mb-4">
-                <p>Jember, ___/___/20___, Jam ___WIB</p>
+                <p>Jember, {{ $this->getCurrentDateTime()['tanggal'] }}, Jam {{ $this->getCurrentDateTime()['jam'] }} WIB</p>
             </div>
         </div>
 
@@ -333,8 +339,9 @@ new class extends Component {
             </div>
         </div>
 
-        <div class="d-flex justify-content-end gap-3">
-            <button type="button" class="btn btn-warning px-4 py-2">Cetak</button>
-        </div>
     </form>
+
+    <div class="d-flex justify-content-end gap-3">
+        <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
+    </div>
 </div>

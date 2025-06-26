@@ -19,7 +19,7 @@
 
         @media print {
             .no-print {
-                display: none;
+                display: none !important;
             }
         }
 

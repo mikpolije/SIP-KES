@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
     public function showForm()
     {
-        return view('user.register');
+    return view('user.register');
     }
 
     public function register(Request $request)

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Livewire;
 
 use Livewire\Attributes\On;
@@ -23,11 +22,22 @@ new class extends Component {
     public $sistole = '';
     public $diastole = '';
     public $skalaNyeri = '';
-    public $statusPsikologi = [];
+    public $statusPsikologi = '';
     public $bunuhDiri = false;
     public $bunuhDiriLaporan = '';
     public $lainLain = false;
     public $lainLainText = '';
+
+    // Define options in properties
+    public $skalaNyeriOptions = [0, 2, 4, 6, 8, 10];
+    public $statusPsikologiOptions = [
+        'tidak_ada' => 'Tidak ada kelainan',
+        'cemas' => 'Cemas',
+        'takut' => 'Takut',
+        'marah' => 'Marah',
+        'sedih' => 'Sedih',
+        'lain_lain' => 'Lain-lain'
+    ];
 
     public function mount($pendaftaranId = null)
     {
@@ -76,9 +86,9 @@ new class extends Component {
             'sistole' => 'required|numeric|min:60|max:250',
             'diastole' => 'required|numeric|min:40|max:150',
             'skalaNyeri' => 'required|in:0,2,4,6,8,10',
-            'statusPsikologi' => 'required|in:tenang,cemas,takut,marah',
+            'statusPsikologi' => 'required|in:tidak_ada,cemas,takut,marah,sedih,lain_lain',
             'bunuhDiri' => 'boolean',
-            'bunuhDiriLaporan' => 'nullable:bunuhDiri,true|max:255',
+            'bunuhDiriLaporan' => 'nullable|required_if:bunuhDiri,true|max:255',
             'lainLain' => 'boolean',
             'lainLainText' => 'required_if:lainLain,true|max:2000',
         ];
@@ -104,7 +114,7 @@ new class extends Component {
     #[On('submit-step2')]
     public function submit()
     {
-        try{
+        try {
             $this->validate();
 
             $data = [
@@ -137,7 +147,7 @@ new class extends Component {
 
             flash()->success('Asesmen awal berhasil disimpan');
             $this->dispatch('go-next-step');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             flash()->error('Terjadi kesalahan: ' . $e->getMessage());
             return;
         }
@@ -152,6 +162,7 @@ new class extends Component {
                     {{ session('message') }}
                 </div>
             @endif
+
             <div class="row mb-4">
                 <div class="col-md-6">
                     <div class="mb-3">
@@ -160,40 +171,33 @@ new class extends Component {
                         @error('keluhan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                <div class="mb-3">
-                    <label for="riwayat-penyakit" class="form-label">Riwayat Penyakit</label>
-                    <textarea wire:model="riwayatPenyakit" class="form-control @error('riwayatPenyakit') is-invalid @enderror" id="riwayat-penyakit"
-                        rows="3"></textarea>
-                    @error('riwayatPenyakit') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div>
+                    <div class="mb-3">
+                        <label for="riwayat-penyakit" class="form-label">Riwayat Penyakit</label>
+                        <textarea wire:model="riwayatPenyakit" class="form-control @error('riwayatPenyakit') is-invalid @enderror" id="riwayat-penyakit" rows="3"></textarea>
+                        @error('riwayatPenyakit') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    </div>
 
                     <div class="mb-3">
                         <label class="form-label">Riwayat Alergi</label>
                         <div class="mb-2">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" wire:model="alergi" name="alergi"
-                                    id="tidak-alergi" value="tidak">
+                                <input class="form-check-input" type="radio" wire:model="alergi" name="alergi" id="tidak-alergi" value="tidak">
                                 <label class="form-check-label" for="tidak-alergi">Tidak</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" wire:model="alergi" name="alergi"
-                                    id="ya-alergi" value="ya">
+                                <input class="form-check-input" type="radio" wire:model="alergi" name="alergi" id="ya-alergi" value="ya">
                                 <label class="form-check-label" for="ya-alergi">Ya</label>
                             </div>
                         </div>
-                        <input type="text" wire:model="jenisAlergi" class="form-control" id="jenis-alergi"
-                            placeholder="Jenis alergi">
+                        <input type="text" wire:model="jenisAlergi" class="form-control @error('jenisAlergi') is-invalid @enderror" id="jenis-alergi" placeholder="Jenis alergi">
                         @error('jenisAlergi') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="riwayat-pengobatan" class="form-label">Riwayat Pengobatan</label>
-                        <textarea wire:model="riwayatPengobatan" class="form-control" id="riwayat-pengobatan"
-                            rows="3"></textarea>
+                        <textarea wire:model="riwayatPengobatan" class="form-control @error('riwayatPengobatan') is-invalid @enderror" id="riwayat-pengobatan" rows="3"></textarea>
+                        @error('riwayatPengobatan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
-                    @error('riwayatPengobatan')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
 
                 <div class="col-md-6">
@@ -201,34 +205,27 @@ new class extends Component {
                         <div class="col-md-4">
                             <label for="denyut-jantung" class="form-label">Denyut Jantung</label>
                             <div class="position-relative">
-                                <input type="text" wire:model="denyutJantung" class="form-control"
-                                    id="denyut-jantung">
+                                <input type="text" wire:model="denyutJantung" class="form-control @error('denyutJantung') is-invalid @enderror" id="denyut-jantung">
                                 <span class="unit-label">bpm</span>
-                                @error('denyutJantung')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                @error('denyutJantung') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <label for="pernafasan" class="form-label">Pernafasan</label>
                             <div class="position-relative">
-                                <input type="text" wire:model="pernafasan" class="form-control" id="pernafasan">
+                                <input type="text" wire:model="pernafasan" class="form-control @error('pernafasan') is-invalid @enderror" id="pernafasan">
                                 <span class="unit-label">x/menit</span>
-                                @error('pernafasan')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                @error('pernafasan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <label for="suhu-tubuh" class="form-label">Suhu Tubuh</label>
                             <div class="position-relative">
-                                <input type="text" wire:model="suhuTubuh" class="form-control" id="suhu-tubuh">
+                                <input type="text" wire:model="suhuTubuh" class="form-control @error('suhuTubuh') is-invalid @enderror" id="suhu-tubuh">
                                 <span class="unit-label">°C</span>
-                                @error('suhuTubuh')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                @error('suhuTubuh') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                         </div>
                     </div>
@@ -238,22 +235,16 @@ new class extends Component {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="position-relative">
-                                    <input type="text" wire:model="sistole" class="form-control" id="sistole"
-                                        placeholder="Sistole">
+                                    <input type="text" wire:model="sistole" class="form-control @error('sistole') is-invalid @enderror" id="sistole" placeholder="Sistole">
                                     <span class="unit-label">mmHg</span>
-                                @error('sistole')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                    @error('sistole') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="position-relative">
-                                    <input type="text" wire:model="diastole" class="form-control" id="diastole"
-                                        placeholder="Diastole">
+                                    <input type="text" wire:model="diastole" class="form-control @error('diastole') is-invalid @enderror" id="diastole" placeholder="Diastole">
                                     <span class="unit-label">mmHg</span>
-                                    @error('diastole')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                    @error('diastole') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
@@ -262,64 +253,51 @@ new class extends Component {
                     <div class="mb-3">
                         <label class="form-label">Skala Nyeri</label>
                         <div class="pain-scale-checkbox">
-                            @foreach([0, 2, 4, 6, 8, 10] as $value)
+                            @foreach($skalaNyeriOptions as $value)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" wire:model="skalaNyeri"
-                                    name="skala-nyeri" id="nyeri-{{ $value }}" value="{{ $value }}">
+                                <input class="form-check-input" type="radio" wire:model="skalaNyeri" name="skala-nyeri" id="nyeri-{{ $value }}" value="{{ $value }}">
                                 <label class="form-check-label" for="nyeri-{{ $value }}">{{ $value }}</label>
                             </div>
                             @endforeach
-                            @error('skalaNyeri')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @error('skalaNyeri') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Status Psikologi</label>
                         <div class="mb-2">
-                            @foreach(['tenang', 'cemas', 'takut', 'marah'] as $status)
+                            @foreach($statusPsikologiOptions as $value => $label)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio"
-                                       wire:model="statusPsikologi"
-                                       name="status-psikologi"
-                                       id="psikologi-{{ $status }}"
-                                       value="{{ $status }}">
-                                <label class="form-check-label" for="psikologi-{{ $status }}">
-                                    {{ ucfirst($status) }}
-                                </label>
-                                @error('statusPsikologi')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <input class="form-check-input" type="radio" wire:model="statusPsikologi" name="status-psikologi" id="psikologi-{{ $value }}" value="{{ $value }}">
+                                <label class="form-check-label" for="psikologi-{{ $value }}">{{ $label }}</label>
                             </div>
                             @endforeach
+                            @error('statusPsikologi') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" wire:model="bunuhDiri" id="bunuh-diri"
-                                value="1">
+                            <input class="form-check-input" type="checkbox" wire:model="bunuhDiri" id="bunuh-diri" value="1">
                             <label class="form-check-label" for="bunuh-diri">
                                 Kecenderungan bunuh diri, dilapor ke
-                                <input type="text" wire:model="bunuhDiriLaporan"
-                                    class="form-control form-control-sm d-inline-block" style="width: 150px;">
+                                <input type="text" wire:model="bunuhDiriLaporan" class="form-control form-control-sm d-inline-block @error('bunuhDiriLaporan') is-invalid @enderror" style="width: 150px;">
                             </label>
+                            @error('bunuhDiriLaporan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" wire:model="lainLain" id="lain-lain"
-                                value="1">
+                            <input class="form-check-input" type="checkbox" wire:model="lainLain" id="lain-lain" value="1">
                             <label class="form-check-label" for="lain-lain">Lain-lain, tuliskan</label>
-                            <textarea wire:model="lainLainText" class="form-control mt-2" id="lain-lain-text"
-                                rows="2"></textarea>
-                            @error('lainLainText')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <textarea wire:model="lainLainText" class="form-control mt-2 @error('lainLainText') is-invalid @enderror" id="lain-lain-text" rows="2"></textarea>
+                            @error('lainLainText') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
                 </div>
             </div>
-
         </form>
+
+        <div class="d-flex justify-content-end gap-3">
+            <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
+        </div>
 
     </div>
 </div>

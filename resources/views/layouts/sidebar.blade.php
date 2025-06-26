@@ -95,14 +95,14 @@
                 aria-expanded="false">
 
                 {{-- POLI UMUM 1 --}}
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('main/poliumum') ? 'active' : '' }}" href="/main/poliumum"
                         aria-expanded="false">
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
                         <span class="hide-menu">Poli Umum</span>
-                    </a>
+                    </a> --}}
                     {{-- <ul class="second-level collapse" aria-expanded="false">
                         <li class="sidebar-item">
                             <a class="sidebar-link {{ request()->is('') ? 'active' : '' }}"
@@ -465,7 +465,7 @@
                         <div class="round-16 d-flex align-items-center justify-content-center">
                             <i class="ti ti-circle"></i>
                         </div>
-                        <span class="hide-menu">laporan UGD</span>
+                        <span class="hide-menu">Laporan UGD</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -535,6 +535,26 @@
                 </li>
             </ul>
         </li>
+
+        <!-- ---------------------------------- -->
+        <!-- Logout -->
+        <!-- ---------------------------------- -->
+        <li class="sidebar-item mt-auto" style="margin-top: 50px;">
+            <a class="sidebar-link btn btn-danger w-100 text-start d-flex align-items-center" href="{{ route('logout') }}">
+                <span class="d-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                        d="M10 15a1 1 0 0 0 1-1v-2a.5.5 0 0 1 1 0v2a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v2a.5.5 0 0 1-1 0V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7z"/>
+                        <path fill-rule="evenodd"
+                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 8l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        <path fill-rule="evenodd"
+                        d="M5 8a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 0-1h-8A.5.5 0 0 0 5 8z"/>
+                    </svg>
+                </span>
+            <span class="hide-menu ms-2">Logout</span>
+        </a>
+    </li>
 
     </ul>
 </nav>

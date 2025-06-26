@@ -244,7 +244,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="triase_id" value="0">
-                        <input type="hidden" name="pendaftaran_id" value="">
+                        <input type="hidden" name="id_pendaftaran" value="">
                         <div id="step-1" class="step-1 row" data-step="1">
                             <div class="card shadow-none col-md-12">
                                 <div class="">
@@ -307,8 +307,9 @@
                                                 <select name="sarana_transportasi_kedatangan" id="" class="form-select">
                                                     <option value="">-- Pilih --</option>
                                                     <option value="Ambulans">Ambulans</option>
-                                                    <option value="Brankar">Brankar</option>
-                                                    <option value="Kursi Roda">Kursi Roda</option>
+                                                    <option value="Mobil">Mobil</option>
+                                                    <option value="Motor">Motor</option>
+                                                    <option value="Lain-lain">Lain-lain</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -323,8 +324,12 @@
                                                 <label class="form-label" for="">Kondisi Pasien Tiba:</label>
                                                 <select name="kondisi_pasien_tiba" id="" class="form-select">
                                                     <option value="">-- Pilih --</option>
-                                                    <option value="Emergency">Emergency</option>
-                                                    <option value="Tidak">Tidak</option>
+                                                    <option value="Resusitasi">Resusitasi</option>
+                                                    <option value="Emergency">Emergency</option>                     
+                                                    <option value="Urgent">Urgent</option>
+                                                    <option value="Less Urgent">Less Urgent</option>
+                                                    <option value="Non Urgent">Non Urgent</option>
+                                                    <option value="Death on Arrival">Death on Arrival</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -1933,7 +1938,7 @@
             function storePasien() {
                 let dataInput = {
                     triase_id: $("input[name=triase_id]").val(),
-                    pendaftaran_id: $("input[name=pendaftaran_id]").val()
+                    id_pendaftaran: $("input[name=id_pendaftaran]").val()
                 }
                 $("#step-1 input, #step-1 select").each(function() {
                     const input = $(this)
@@ -2244,6 +2249,10 @@
                             name: 'nama'
                         },
                         {
+                            data: 'id_pendaftaran',
+                            name: 'id_pendaftaran'
+                        },
+                        {
                             data: 'no_rm',
                             name: 'no_rm'
                         },
@@ -2283,7 +2292,7 @@
                 $("#triase-no_jamkes").val('-')
                 $("#triase-penanggung_jawab").val(btn.data('penanggung_jawab'))
                 
-                $("input[name=pendaftaran_id]").val(btn.data('pendaftaran_id'))
+                $("input[name=id_pendaftaran]").val(btn.data('id_pendaftaran'))
 
                 $("#nama-readonly").val(btn.data('nama'))
                 $("#no_rm-readonly").val(btn.data('no_rm'))

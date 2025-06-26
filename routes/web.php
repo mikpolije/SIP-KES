@@ -8,7 +8,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\TriageController;
-use App\Http\Controllers\Master\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PoliUmum\PendafataranController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -16,19 +16,21 @@ use App\Http\Controllers\Api\ARController;
 use App\Http\Middleware\CheckProfesi;
 
 
-Route::middleware('web')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/', function () {
-        return redirect()->route('login');
-    Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
-    Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
-    });
-    Route::get('/user/register', function () {
-    return view('user.register');
-})->name('register.forms');
-});
+        return redirect()->route('login'); });
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/forgot-password', [AuthController::class, 'showIdentityForm'])->name('password.forgot');
+Route::post('/forgot-password/check', [AuthController::class, 'checkIdentity'])->name('password.checkIdentity');
+Route::get('/reset-password/{id}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password/{id}', [AuthController::class, 'resetPassword'])->name('password.update');
 
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'showForm'])->name('register.form');
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'register'])->name('register.users');
+    Route::view('/user/register', 'user.register')->name('register.forms');
+
+Route::resource('user', \App\Http\Controllers\UserController::class);
 
 Route::prefix('dokter')->name('doctor.')->group(function () {
     Volt::route('/', 'doctor.index')->name('index');
@@ -39,10 +41,12 @@ Route::prefix('dokter')->name('doctor.')->group(function () {
 Volt::route('pembayaran', 'pembayaran.index')->name('pembayaran.index');
 
 // Route General Consent
-Route::post('/main/general-content/save', [GeneralConsentController::class, 'store'])->name('general-consent.store');
-Route::get('/main/cetak-general-consent/{id}', [GeneralConsentController::class, 'cetak'])->name('general-consent.cetak');
-Route::get('/sign-request/{token}', [GeneralConsentController::class, 'showForm']);
-Route::post('/sign-request/{token}', [GeneralConsentController::class, 'submitForm']);
+Route::get('/main/general-consent', [GeneralConsentController::class, 'index'])->name('general-consent.index');
+Route::post('/main/general-content/save', [generalConsentController::class, 'store'])->name('general-consent.store');
+Route::get('/main/cetak-general-consent/{id}', [generalConsentController::class, 'cetak'])->name('general-consent.cetak');
+Route::get('/sign-request/{token}', [generalConsentController::class, 'showForm']);
+Route::post('/sign-request/{token}', [generalConsentController::class, 'submitForm']);
+Route::post('/api/register-token/{token}', [generalConsentController::class, 'registerToken']);
 
 Route::prefix('rawat-inap')->name('rawat-inap.')->group(function () {
     Volt::route('/laporan', 'laporan.penyakit-terbesar')->name('laporan');
@@ -55,8 +59,8 @@ Route::prefix('/main/persuratan')->name('main.persuratan')->group(function () {
     Volt::route('/kontrol/create', 'persuratan.kontrol.create')->name('.kontrol.create');
     Volt::route('/sakit/print', 'persuratan.sakit.create')->name('.sakit.print');
     Volt::route('/sakit/create', 'persuratan.sakit.print')->name('.sakit.create');
-    Volt::route('/pulang-paksa/print', 'persuratan.pulang-paksa.create')->name('.pulang-paksa.print');
-    Volt::route('/pulang-paksa/create', 'persuratan.pulang-paksa.print')->name('.pulang-paksa.create');
+    Volt::route('/pulang-paksa/print', 'persuratan.pulang-paksa.print')->name('.pulang-paksa.print');
+    Volt::route('/pulang-paksa/create', 'persuratan.pulang-paksa.create')->name('.pulang-paksa.create');
     Volt::route('/kematian/print', 'persuratan.kematian.print')->name('.kematian.print');
     Volt::route('/kematian/create', 'persuratan.kematian.create')->name('.kematian.create');
 });
@@ -144,6 +148,7 @@ Route::get('/poli-umum/search-pasien', [App\Http\Controllers\PoliUmum\AntrianRiw
 use App\Http\Controllers\PoliUmum\LaporanController;
 
 Route::get('laporan', [LaporanController::class, 'index'])->name('poliumum.laporan');
+// Route::get('/poli-umum/laporan', [LaporanController::class, 'getDataPenyakit'])->name('poliumum.laporan.filter');
 Route::get('poliumum/laporan/download', [LaporanController::class, 'downloadExcel'])->name('poliumum.laporan.download');
 Route::prefix('poliumum/laporan')->group(function () {
     Route::get('/', [LaporanController::class, 'index'])->name(''); // poliumum.laporan
@@ -161,6 +166,8 @@ Route::get('surat-keterangan-sehat/cetak/{id}', [SuratKeteranganSehatController:
 
 // Route Surat Keterangan Sakit
 Route::get('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'index'])->name('surat.sakit');
+Route::post('surat-keterangan-sakit', [SuratKeteranganSakitController::class, 'storeSuratSakit'])->name('surat.sakit.store');
+Route::get('surat-keterangan-sakit/cetak/{id}', [SuratKeteranganSakitController::class, 'cetak'])->name('surat.sakit.cetak');
 
 // Route Riwayat Medis
 use App\Http\Controllers\RiwayatMedisController;
@@ -175,17 +182,16 @@ Route::get('riwayat-medis/{id}', [RiwayatMedisController::class, 'show'])->name(
 Route::resource('/poli', PoliController::class);
 
 // Laporan Kunjungan
-Route::get('/laporan/kunjungan', [KunjunganController::class, 'index']);
+Route::get('/main/laporanUGD', [KunjunganController::class, 'index'])->name('laporan.kunjungan.index');
 Route::get('/laporan/kunjungan/report', [KunjunganController::class, 'getReport'])->name('api.kunjungan.report');
+Route::get('/cetak-kunjungan', [KunjunganController::class, 'print'])->name('laporan_kunjungan.print');
 
 Route::get('/riwayat-medis/cetak/{id}', [App\Http\Controllers\RiwayatMedisController::class, 'cetak'])->name('riwayat-medis.cetak');
+Route::get('/detail-riwayat-medis/{id}/cetak', [App\Http\Controllers\RiwayatMedisController::class, 'cetakDetail'])->name('detail-riwayat-medis.cetak');
 
 
 
 
-Route::middleware(['auth', 'profesi:admin,superadmin,test'])->group(function () {
-    Route::resource('user', \App\Http\Controllers\UserController::class);
-});
 
 //route autocomplete cari data pasien
 Route::get('/cari-pasien', [PendafataranController::class, 'cariPasien']);

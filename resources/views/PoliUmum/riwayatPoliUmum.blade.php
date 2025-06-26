@@ -120,16 +120,6 @@
     <div class="container-fluid py-4">
         <h1 class="judul-riwayat mb-4">Riwayat Pemeriksaan</h1>
 
-        <!-- Search Pasien -->
-        <div class="mb-3 d-flex justify-content-end">
-            <select id="searchPasien" class="form-control w-25 me-2">
-                <option value="">Cari Data Pasien...</option>
-            </select>
-            <a href="#" id="btnCariPasien" class="btn btn-primary">
-                <i class="ti ti-search"></i>
-            </a>
-        </div>
-
         <!-- Tabel Riwayat -->
         <div class="tabel-wrapper">
             <table class="table table-bordered mb-0" id='myTable'>
@@ -161,26 +151,6 @@
                     @endforelse
                 </tbody>
             </table>
-
-            <!-- Pagination -->
-            <div class="pagination-wrapper">
-                <div class="pagination-info">
-                    Tampilan
-                    <select class="select-entries" id="perPage">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select> entri
-                </div>
-                <ul class="pagination">
-                    {{-- Ganti ini dengan pagination dinamis kalau pakai Laravel paginator --}}
-                    <li class="disabled"><a href="#">Sebelumnya</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">Selanjutnya</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 

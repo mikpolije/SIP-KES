@@ -130,7 +130,7 @@
     </style>
 
     <div class="container-fluid py-4">
-        <h1 class="judul-riwayat mb-4">Riwayat Pemeriksaan</h1>
+        <h1 class="judul-riwayat mb-4">Antrean Pemeriksaan</h1>
         <div class="tabel-wrapper">
             <table class="table table-bordered mb-0" id="myTable">
                 <thead>

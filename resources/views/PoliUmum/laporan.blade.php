@@ -154,8 +154,7 @@
                 <div class="card">
                     <div class="filter-header mb-4">
                         <a href="{{ route('poliumum.laporan') }}">
-                            <button
-                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
+                            <button class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
                                 10 Besar Penyakit
                             </button>
                         </a>
@@ -177,14 +176,14 @@
 
                         <label for="cara_bayar">Cara Bayar</label>
                         <select name="cara_bayar" id="cara_bayar">
-                            <option value="Umum" {{ $caraBayar == 'Umum' ? 'selected' : '' }}>Umum</option>
-                            <option value="BPJS" {{ $caraBayar == 'BPJS' ? 'selected' : '' }}>BPJS</option>
-                            <option value="Asuransi" {{ $caraBayar == 'Asuransi' ? 'selected' : '' }}>Asuransi</option>
+                            <option value="">-- Semua --</option>
+                            <option value="1" {{ $caraBayar == '1' ? 'selected' : '' }}>Umum</option>
+                            <option value="2" {{ $caraBayar == '2' ? 'selected' : '' }}>BPJS</option>
                         </select>
 
                         <div class="btn-group">
                             <button type="submit" class="btn btn-blue">Tampilkan</button>
-                            <button type="button" class="btn btn-yellow">Download</button>
+                            <button onclick="exportIcd10Excel()" type="button" class="btn btn-yellow">Download</button>
                         </div>
                     </form>
                 </div>
@@ -194,10 +193,13 @@
             <div class="col-half">
                 <div class="card">
                     <h3 class="table-title">10 BESAR PENYAKIT</h3>
-                    <p class="table-subtitle">01 {{ $bulan }} 2024 s/d {{ date('t', strtotime($bulan . ' 2024')) }}
-                        {{ $bulan }} 2024</p>
+                    <p class="table-subtitle">
+                        01 {{ $bulan }} {{ date('Y') }} s/d
+                        {{ date('t', strtotime($bulan . ' ' . date('Y'))) }} {{ $bulan }} {{ date('Y') }}
+                    </p>
 
-                    <table>
+
+                    <table id="tableICD10">
                         <thead>
                             <tr>
                                 <th width="5%">NO</th>
@@ -208,13 +210,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $index => $row)
+                            @foreach ($icd10 as $icd)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $row[0] }}</td>
-                                    <td>{{ $row[1] }}</td>
-                                    <td class="text-right">{{ number_format($row[2], 0, ',', '.') }}</td>
-                                    <td class="text-right">{{ $row[3] }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $icd->icd10->code ?? '-' }}</td>
+                                    <td>{{ $icd->icd10->display ?? '-' }}</td>
+                                    <td class="text-right">{{ $icd->jumlah }}</td>
+                                    <td class="text-right">
+                                        {{ number_format(($icd->jumlah / $icd10->sum('jumlah')) * 100, 2) }}%
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -224,21 +228,17 @@
         </div>
     </div>
 
+    <!-- Library XLSX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Fungsi export -->
     <script>
-        document.querySelector('.btn-yellow').addEventListener('click', function() {
-            // Get form values
-            const form = document.querySelector('form');
-            const formData = new FormData(form);
-
-            // Build query string
-            const params = new URLSearchParams();
-            params.append('bulan', formData.get('bulan'));
-            params.append('cara_bayar', formData.get('cara_bayar'));
-
-            // Redirect to download URL
-            window.location.href = {{ route('poliumum.laporan.download') }} ? $ {
-                params.toString()
-            };
-        });
+        function exportIcd10Excel() {
+            var table = document.getElementById("tableICD10");
+            var wb = XLSX.utils.table_to_book(table, {
+                sheet: "ICD10"
+            });
+            XLSX.writeFile(wb, 'Laporan_Data_Penyakit.xlsx');
+        }
     </script>
 @endsection

@@ -60,16 +60,10 @@
 
     <div class="container py-4">
         <h1 class="judul-antrean mb-4">Antrean Poli Umum</h1>
-
-        {{-- Search Bar --}}
-        <div class="mb-3 d-flex justify-content-end">
-            <input type="text" class="form-control w-25 me-2" placeholder="Data Pasien">
-            <button class="btn btn-primary"><i class="ti ti-search"></i></button>
-        </div>
-
+        
         {{-- Table --}}
         <div class="tabel-wrapper">
-            <table class="table table-bordered mb-0">
+            <table class="table table-bordered mb-0" id="myTable">
                 <thead>
                     <tr>
                         <th>NO ANTRIAN</th>

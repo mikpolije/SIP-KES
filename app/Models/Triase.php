@@ -9,7 +9,7 @@ class Triase extends Model
     protected $table = 'triase';
 
     protected $fillable = [
-        'pendaftaran_id',
+        'id_pendaftaran',
         'tanggal_masuk',
         'sarana_transportasi_kedatangan',
         'jam_masuk',
@@ -65,7 +65,7 @@ class Triase extends Model
 
     public function pendaftaran()
     {
-        return $this->belongsTo(Pendaftaran::class, 'pendaftaran_id', 'id_pendaftaran');
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran', 'id_pendaftaran');
     }
     
     public function rencanaKontrol ()

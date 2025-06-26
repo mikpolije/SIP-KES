@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataPasien;
-use App\Models\generalConsent;
+use App\Models\GeneralConsent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class generalConsentController extends Controller
+class GeneralConsentController extends Controller
 {
     public function index()
     {
@@ -73,7 +73,7 @@ class generalConsentController extends Controller
         }
         $hubungan = $request->hubungan === '7' ? $request->lain : $request->hubungan;
 
-        $data = generalConsent::create([
+        $data = GeneralConsent::create([
             'no_rm' => $request->no_rm,
             'nik' => $request->nik,
             'jenisKelamin' => $request->jenisKelamin,

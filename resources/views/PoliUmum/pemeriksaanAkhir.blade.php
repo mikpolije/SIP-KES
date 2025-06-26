@@ -316,64 +316,64 @@
                         <!-- Pemeriksaan Fisik dan ICD 9 -->
                         <div class="row mb-3">
                             <!-- Pemeriksaan Fisik (Left Column) -->
-                            <style>
-                                .custom-table {
-                                    border-radius: 10px;
-                                    overflow: hidden;
-                                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-                                }
+                                <style>
+                                    .custom-table {
+                                        border-radius: 10px;
+                                        overflow: hidden;
+                                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                                    }
 
-                                .custom-table th,
-                                .custom-table td {
-                                    padding: 10px 14px;
-                                    vertical-align: middle;
-                                }
+                                    .custom-table th,
+                                    .custom-table td {
+                                        padding: 10px 14px;
+                                        vertical-align: middle;
+                                    }
 
-                                .custom-table .text-center {
-                                    text-align: center;
-                                }
-                            </style>
-                            <div class="col-md-6">
-                                <div class="card p-3 h-100">
-                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                        <label class="form-label" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
-                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#statusLokalisModal">Tambah +</button>
-                                    </div>
-                                    <div class="d-flex gap-2 mb-2">
-                                        <input type="text" class="form-control" placeholder="Masukkan nama bagian"
-                                            name="bagian_diperiksa">
-                                        <textarea class="form-control" placeholder="Masukkan keterangan" name="keterangan"></textarea>
-                                    </div>
-                                    <!-- CANVAS -->
-                                    <div class="col-md-7 text-center">
-                                        <!-- Toolbar -->
-                                        <div class="mb-2">
-                                            <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle"
-                                                onclick="toggleDrawMode()">
-                                                ✏️
-                                            </button>
-                                            <button type="button" class="btn btn-outline-dark btn-sm"
-                                                onclick="undoCanvas()">
-                                                ↩️
-                                            </button>
-                                            <button type="button" class="btn btn-outline-dark btn-sm"
-                                                onclick="redoCanvas()">
-                                                ↪️
-                                            </button>
-                                            <button type="button "class="btn btn-outline-dark btn-sm"
-                                                onclick="clearCanvas()">
-                                                ❌
-                                            </button>
+                                    .custom-table .text-center {
+                                        text-align: center;
+                                    }
 
-                                            <!-- Canvas -->
-                                            <div style="border: 1px solid #ccc; display: inline-block;">
+                                    .canvas-wrapper {
+                                        border: 1px solid #ccc;
+                                        display: inline-block;
+                                    }
+
+                                    .toolbar button {
+                                        margin-right: 4px;
+                                    }
+                                </style>
+
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100">
+                                        <!-- Header -->
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <label class="form-label mb-0 fw-semibold" for="pemeriksaanfisik">Pemeriksaan Fisik</label>
+                                        </div>
+
+                                        <!-- Form Input -->
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control mb-2" placeholder="Masukkan nama bagian" name="bagian_diperiksa" id="bagianDiperiksa">
+                                            <textarea class="form-control" placeholder="Masukkan keterangan" name="keterangan" id="keteranganFisik" rows="4"></textarea>
+                                        </div>
+
+                                        <!-- Canvas + Toolbar -->
+                                        <div class="text-center">
+                                            <div class="toolbar mb-2">
+                                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle" onclick="toggleDrawMode()">✏️</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">↩️</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">↪️</button>
+                                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">❌</button>
+                                            </div>
+
+                                            <div class="canvas-wrapper">
                                                 <canvas id="bodyCanvas" width="450" height="500"></canvas>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
 
                             <div class="col-md-6">
                                 <div class="card p-3 shadow-sm h-100">
@@ -431,7 +431,7 @@
                         </div>
 
                         <!-- Modal for Pemeriksaan Fisik Details -->
-                        {{-- <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
+                        <!-- <div class="modal fade" id="physicalExamModal" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -441,7 +441,7 @@
                                     </div>
                                     <div class="modal-body" id="physicalExamModalBody">
                                         <div id="physicalExamDetails">
-                                            <!-- Detail content will be inserted here -->
+                                            //Detail content will be inserted here 
                                             <p><strong>Nama Pemeriksaan:</strong> Kepala</p>
                                             <p><strong>Keterangan:</strong> Kelainan pada pembuluh darah</p>
                                             <p><strong>Detail:</strong></p>
@@ -459,7 +459,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div> -->
 
                         <!-- Layanan and Obat -->
                         <div class="row-container">
@@ -623,61 +623,6 @@
         </div>
     </div>
 
-    <!-- Modal Pemeriksaan Fisik dengan Canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
-    {{-- <div class="modal fade" id="statusLokalisModal" tabindex="-1" aria-labelledby="statusLokalisModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content rounded shadow">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold" id="statusLokalisModalLabel">Pemeriksaan Fisik</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <form action=""></form>
-                <div class="modal-body">
-                    <div class="row">
-                        <!-- CANVAS -->
-                        <div class="col-md-7 text-center">
-                            <!-- Toolbar -->
-                            <div class="mb-2">
-                                <button type="button" class="btn btn-outline-dark btn-sm" id="btnDrawToggle"
-                                    onclick="toggleDrawMode()">
-                                    ✏️
-                                </button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="undoCanvas()">
-                                    ↩️
-                                </button>
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="redoCanvas()">
-                                    ↪️
-                                </button>
-                                <button type="button "class="btn btn-outline-dark btn-sm" onclick="clearCanvas()">
-                                    ❌
-                                </button>
-
-                                <!-- Canvas -->
-                                <div style="border: 1px solid #ccc; display: inline-block;">
-                                    <canvas id="bodyCanvas" width="500" height="500"></canvas>
-                                </div>
-                            </div>
-
-                            <!-- Form Input -->
-                            <div class="col-md-5">
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Bagian yang Diperiksa</label>
-                                    <input type="text" class="form-control" id="bagianDiperiksa"
-                                        name="bagian_diperiksa" placeholder="Ketik di sini">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Keterangan</label>
-                                    <textarea class="form-control" name="keterangan" id="keteranganFisik" rows="5" placeholder="Ketik di sini"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tombol "Simpan" -->
-                    <div class="container mt-5 text-center">
-                        <button type="submit" class="btn btn-primary" id="saveButton">Simpan</button>
-                    </div>
 
                     <!-- Elemen Notifikasi -->
                     <div class="notification" id="notification">
@@ -1660,124 +1605,101 @@
 
     <!-- Script untuk menggambar di canvas -->
     <script>
-        const canvas = document.getElementById('bodyCanvas');
-        const ctx = canvas.getContext('2d');
-        const image = new Image();
-        let isDrawing = false;
-        let drawEnabled = false;
-        let initialized = false;
+        let canvas = new fabric.Canvas('bodyCanvas', {
+        isDrawingMode: false,
+        backgroundColor: null,
+        selection: false
+        });
+
         let undoStack = [];
         let redoStack = [];
-        let currentColor = 'red'; // Warna default
+        let defaultBackgroundUrl = '/assets/images/Tubuh.jpg'; // Pastikan path benar
+        let defaultBgImage = null;
 
+        // Inisialisasi background Fabric.js
+        fabric.Image.fromURL(defaultBackgroundUrl, function(img) {
+        img.selectable = false;
+        img.evented = false;
+        defaultBgImage = img;
+        setBackground();
+        });
+
+        function setBackground() {
+        if (defaultBgImage) {
+            canvas.setBackgroundImage(defaultBgImage, canvas.renderAll.bind(canvas), {
+            scaleX: canvas.width / defaultBgImage.width,
+            scaleY: canvas.height / defaultBgImage.height
+            });
+        }
+        }
+
+        // Toggle Drawing Mode
         function toggleDrawMode() {
-            drawEnabled = !drawEnabled;
-            const button = document.getElementById('btnDrawToggle');
-            if (drawEnabled) {
-                button.classList.add('active');
-                button.innerHTML = '🛑'; // misalnya ganti ikon saat aktif
-            } else {
-                button.classList.remove('active');
-                button.innerHTML = '✏️'; // ikon default
-            }
+        canvas.isDrawingMode = !canvas.isDrawingMode;
+        canvas.freeDrawingBrush.color = 'red';
+        canvas.freeDrawingBrush.width = 2;
+
+        const button = document.getElementById('btnDrawToggle');
+        button.classList.toggle('active', canvas.isDrawingMode);
+        button.innerHTML = canvas.isDrawingMode ? '🛑' : '✏️';
+        }
+
+        // Undo & Redo
+        function saveState() {
+        redoStack = [];
+        undoStack.push(JSON.stringify(canvas));
         }
 
         function undoCanvas() {
-            if (undoStack.length > 0) {
-                const lastState = undoStack.pop();
-                redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke redo
-                ctx.putImageData(lastState, 0, 0);
-            }
+        if (undoStack.length > 0) {
+            redoStack.push(JSON.stringify(canvas));
+            let last = undoStack.pop();
+            canvas.loadFromJSON(last, () => {
+            setBackground();
+            });
+        }
         }
 
         function redoCanvas() {
-            if (redoStack.length > 0) {
-                const nextState = redoStack.pop();
-                undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); // simpan state saat ini ke undo
-                ctx.putImageData(nextState, 0, 0);
-            }
+        if (redoStack.length > 0) {
+            undoStack.push(JSON.stringify(canvas));
+            let next = redoStack.pop();
+            canvas.loadFromJSON(next, () => {
+            setBackground();
+            });
+        }
         }
 
         function clearCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height); // redraw the body image
+        canvas.clear();
+        setBackground();
+        saveState();
         }
 
+        canvas.on('path:created', saveState);
+
+        // Save
         function saveCanvas() {
-            if (event) event.preventDefault(); // penting agar tidak reload
+        const bagian = document.getElementById('bagianDiperiksa').value.trim();
+        const keterangan = document.getElementById('keteranganFisik').value.trim();
 
-            const imageData = canvas.toDataURL();
-            console.log("Saved image data:", imageData);
-            alert("Gambar disimpan!");
-            // Kirim imageData via AJAX atau simpan sesuai kebutuhan
+        if (!bagian || !keterangan) {
+            alert("Harap isi semua kolom terlebih dahulu.");
+            return;
         }
 
-        canvas.addEventListener('mousedown', (e) => {
-            if (!drawEnabled) return;
-            isDrawing = true;
-            // Simpan state sebelum menggambar
-            undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-            // Kosongkan redoStack karena ada aksi baru
-            redoStack = [];
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.moveTo(e.offsetX, e.offsetY);
+        const imageData = canvas.toDataURL({
+            format: 'png',
+            quality: 1.0
         });
 
-        canvas.addEventListener('mousemove', (e) => {
-            if (!isDrawing || !drawEnabled) return;
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.stroke();
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            if (!drawEnabled) return;
-            isDrawing = false;
-        });
-
-        // Load gambar saat modal dibuka pertama kali
-        $('#statusLokalisModal').on('shown.bs.modal', function() {
-            if (!initialized) {
-                image.onload = function() {
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                };
-                image.src =
-                    '/build/images/gambarmedis/Status-lokalis.jpg'; // Ganti path sesuai lokasi file gambar Anda
-                initialized = true;
-            } else {
-                // setiap buka ulang, redraw image (jika dibutuhkan)
-                clearCanvas();
-            }
-        });
-
-        function editPemeriksaan(bagian, keterangan, imageDataUrl = null) {
-            document.getElementById('bagianDiperiksa').value = bagian;
-            document.getElementById('keteranganFisik').value = keterangan;
-
-            const modal = new bootstrap.Modal(document.getElementById('statusLokalisModal'));
-            modal.show();
-
-            $('#statusLokalisModal').off('shown.bs.modal').on('shown.bs.modal', function() {
-                const ctx = canvas.getContext('2d');
-                const background = new Image();
-                background.onload = () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-                    if (imageDataUrl) {
-                        const overlay = new Image();
-                        overlay.onload = () => {
-                            ctx.drawImage(overlay, 0, 0, canvas.width, canvas.height);
-                        };
-                        overlay.src = imageDataUrl;
-                    }
-                };
-                background.src = '/build/images/gambarmedis/Status-lokalis.jpg';
-            });
+        document.getElementById('bagianDiperiksa').value = '';
+        document.getElementById('keteranganFisik').value = '';
+        clearCanvas();
         }
     </script>
+
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

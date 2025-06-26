@@ -471,11 +471,11 @@
 <script>
     let pollingInterval;
 
-    document.getElementById('namaPenanggungJawab').addEventListener('click', showQRModal);
+
 
     function showQRModal() {
         const token = Math.random().toString(36).substring(2, 12);
-        const url = http://sipkes.mikpolije.com/${token};
+        const url = `http://sipkes.mikpolije.com/sign-request/${token}`;
 
         // Tampilkan QR
         document.getElementById('qrContainer').innerHTML = "";
@@ -485,7 +485,7 @@
         $('#modalQRSignature').modal('show');
 
         pollingInterval = setInterval(() => {
-            fetch(/api/signature-status/${token})
+            fetch(`/api/signature-status/${token}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.signed) {
@@ -502,6 +502,7 @@
                 });
         }, 3000);
     }
+        document.getElementById('namaPenanggungJawab').addEventListener('click', showQRModal);
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

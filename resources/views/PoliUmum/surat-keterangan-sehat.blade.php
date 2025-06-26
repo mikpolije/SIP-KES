@@ -33,19 +33,10 @@
             Surat Keterangan Sehat
         </h1>
 
-        <div class="d-flex justify-content-end my-4">
-            <div class="input-group" style="width: 300px;">
-                <input type="text" class="form-control" placeholder="Data Pasien">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-
         <div class="card shadow-sm">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0">
+                    <table class="table table-bordered mb-0" id="myTable">
                         <thead>
                             <tr>
                                 <th>NO.</th>
@@ -57,12 +48,13 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle text-center">
-                            @foreach ($riwayat as $rw)
+                            @foreach ($riyawat as $rw)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ \Carbon\Carbon::parse($rw->tanggal_periksa_pasien)->format('d-m-Y') }}</td>
                                     <td>{{ $rw->pendaftaran->data_pasien->no_rm }}</td>
-                                    <td>30/B/IIM/IV/2025</td>
+                                    <td>{{ $rw->SuratSehat->nomor_surat ?? 'belum ada nomor surat' }}</td>
+
                                     <td>{{ $rw->pendaftaran->data_pasien->nama_pasien }}</td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="{{ route('surat.sehat.cetak', $rw->id_pemeriksaan) }}" target="_blank"
@@ -83,8 +75,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    @foreach ($riwayat as $rw)
+    @foreach ($riyawat as $rw)
         <div class="modal fade" id="detailModal{{ $rw->id_pemeriksaan }}" tabindex="-1"
             aria-labelledby="detailModalLabel{{ $rw->id_pemeriksaan }}" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -109,7 +100,7 @@
                                             value="{{ $rw->id_pemeriksaan }}">
                                     </div>
                                 </div>
-                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, dr. Trik Hujan Dokter KLINIK
+                                <label class="fw-semibold">Yang bertanda tangan di bawah ini, Dr. {{ $rw->pendaftaran->data_dokter->nama }}, Dokter KLINIK
                                     PRATAMA
                                     INSAN MEDIKA, menerangkan bahwa:</label>
                                 <div class="row mb-2 align-items-center">
@@ -159,8 +150,7 @@
                                     <label class="fw-semibold">dengan hasil: </label>
                                 </div>
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="3" name="hasil" style="resize: none; white-space: pre-wrap;"
-                                        placeholder="silahkan diisi"></textarea>
+                                    <textarea class="form-control" rows="3" name="hasil" style="resize: none; white-space: pre-wrap;" placeholder="silahkan diisi"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="fw-semibold">Surat ini dipergunakan untuk</label>
@@ -228,7 +218,7 @@
                                     style="width: 200px; height: 80px; border: 1px dashed #666; display: inline-block; margin: 10px 0;">
                                 </div>
 
-                                <p>{{ $rw->pendaftaran->data_dokter->nama }}</p>
+                                <p>Dr. {{ $rw->pendaftaran->data_dokter->nama }}</p>
                                 <p>{{ $rw->pendaftaran->data_dokter->no_sip }}</p>
                             </div>
                             <div style="display: flex; justify-content: center;">

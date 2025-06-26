@@ -55,14 +55,14 @@ new class extends Component {
                 $this->noRM = $pendaftaran->data_pasien->no_rm;
                 $this->nama = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahir = $pendaftaran->data_pasien->tanggal_lahir_pasien;
-                $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin;
+                $this->jenisKelamin = $pendaftaran->data_pasien->jenis_kelamin_text;
                 $this->namaPasien = $pendaftaran->data_pasien->nama_pasien;
                 $this->tanggalLahirPasien = $pendaftaran->data_pasien->tanggal_lahir_pasien;
                 $this->alamatPasien = $pendaftaran->data_pasien->alamat_pasien;
 
-                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_pasien ?? '';
-                $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir_pasien ?? '';
-                $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_pasien ?? '';
+                $this->namaPerwakilan = $pendaftaran->wali_pasien->nama_wali ?? '';
+                $this->tanggalLahirPerwakilan = $pendaftaran->wali_pasien->tanggal_lahir_wali ?? '';
+                $this->alamatPerwakilan = $pendaftaran->wali_pasien->alamat_wali ?? '';
 
                 $this->timestamp = now();
 
@@ -211,7 +211,7 @@ new class extends Component {
                                 id="pemberiInformasi" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="penerimaInformasi" class="form-label">Penerima / Pemberi Informasi
+                            <label for="penerimaInformasi" class="form-label">Penerima Informasi
                                 </label>
                             <input type="text" wire:model="penerimaInformasi" class="form-control"
                                 id="penerimaInformasi" required>
@@ -317,25 +317,24 @@ new class extends Component {
                     </div>
                 </div>
 
-                <!-- is_menyatakan / PENOLAKAN TINDAKAN KEDOKTERAN -->
                 <div class="mb-4">
-                    <h5>PENOLAKAN TINDAKAN KEDOKTERAN</h5>
+                    <h5>PERSETUJUAN / PENOLAKAN TINDAKAN KEDOKTERAN</h5>
                     <div class="mb-3">
                         <p>Yang bertandatangan dibawah ini, saya</p>
                     </div>
                     <div class="row g-3">
                         <div class="col-12">
-                            <label for="namaPasien" class="form-label">Nama</label>
-                            <input type="text" wire:model="namaPasien" class="form-control" id="namaPasien" disabled>
+                            <label for="namaPerwakilan" class="form-label">Nama</label>
+                            <input type="text" wire:model="namaPerwakilan" class="form-control" id="namaPerwakilan" disabled>
                         </div>
                         <div class="col-12">
-                            <label for="tanggalLahirPasien" class="form-label">Tanggal Lahir</label>
-                            <input type="text" wire:model="tanggalLahirPasien" class="form-control"
-                                id="tanggalLahirPasien" disabled>
+                            <label for="tanggalLahirPerwakilan" class="form-label">Tanggal Lahir</label>
+                            <input type="text" wire:model="tanggalLahirPerwakilan" class="form-control"
+                                id="tanggalLahirPerwakilan" disabled>
                         </div>
                         <div class="col-12">
-                            <label for="alamatPasien" class="form-label">Alamat</label>
-                            <textarea class="form-control" wire:model="alamatPasien" id="alamatPasien"
+                            <label for="alamatPerwakilan" class="form-label">Alamat</label>
+                            <textarea class="form-control" wire:model="alamatPerwakilan" id="alamatPerwakilan"
                                 rows="3" disabled></textarea>
                         </div>
                         <div class="col-12">
@@ -356,17 +355,17 @@ new class extends Component {
                             </div>
                         </div>
                         <div class="col-12">
-                            <label for="namaPerwakilan" class="form-label">Nama</label>
-                            <input type="text" wire:model="namaPerwakilan" class="form-control" id="namaPerwakilan" disabled>
+                            <label for="namaPasien" class="form-label">Nama</label>
+                            <input type="text" wire:model="namaPasien" class="form-control" id="namaPasien" disabled>
                         </div>
                         <div class="col-12">
-                            <label for="tanggalLahirPerwakilan" class="form-label">Tanggal Lahir</label>
-                            <input type="text" wire:model="tanggalLahirPerwakilan" class="form-control"
-                                id="tanggalLahirPerwakilan" disabled>
+                            <label for="tanggalLahirPasien" class="form-label">Tanggal Lahir</label>
+                            <input type="text" wire:model="tanggalLahirPasien" class="form-control"
+                                id="tanggalLahirPasien" disabled>
                         </div>
                         <div class="col-12">
-                            <label for="alamatPerwakilan" class="form-label">Alamat</label>
-                            <textarea class="form-control" wire:model="alamatPerwakilan" id="alamatPerwakilan"
+                            <label for="alamatPasien" class="form-label">Alamat</label>
+                            <textarea class="form-control" wire:model="alamatPasien" id="alamatPasien"
                                 rows="3" disabled></textarea>
                         </div>
                     </div>
@@ -404,5 +403,9 @@ new class extends Component {
                 </div>
             </form>
         </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-3">
+        <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
     </div>
 </div>

@@ -6,26 +6,107 @@ use App\Http\Controllers\Controller;
 use App\Exports\PoliUmumExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
+use App\Models\ICD10_Umum;
+use App\Models\PemeriksaanAwal;
+use App\Models\Dokter;
 
 class LaporanController extends Controller
 {
-    public function kunjungan()
+    public function kunjungan(Request $request)
     {
-        return view('PoliUmum.laporankunjunganpoliumum');
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+        $idDokter = $request->input('id_dokter');
+        $caraBayar = $request->input('carabayar');
+
+        $kunjungan = PemeriksaanAwal::with(['pendaftaran.data_pasien'])
+            ->whereHas('pendaftaran', function ($query) use ($startDate, $endDate, $idDokter, $caraBayar) {
+                $query->where('id_poli', 1)
+                    ->where('status', 'selesai');
+
+                // Filter tanggal
+                if ($startDate && $endDate) {
+                    $query->whereBetween('created_at', [$startDate, $endDate]);
+                }
+
+                // Filter dokter
+                if ($idDokter) {
+                    $query->where('id_dokter', $idDokter);
+                }
+
+                // Filter jenis bayar
+                if ($caraBayar) {
+                    $query->where('jenis_pembayaran', $caraBayar);
+                }
+            })
+            ->orderByDesc('created_at')
+            // ->limit(10)
+            ->get();
+
+        $dokter = Dokter::all();
+
+        return view('PoliUmum.laporankunjunganpoliumum', [
+            'kunjungan' => $kunjungan,
+            'dokter' => $dokter,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'id_dokter' => $idDokter,
+            'carabayar' => $caraBayar,
+        ]);
     }
 
     public function index(Request $request)
     {
         $bulan = $request->input('bulan', date('F'));
-        $caraBayar = $request->input('cara_bayar', 'Umum');
-        $data = $this->getFilteredData($bulan, $caraBayar);
+        $caraBayarInput = $request->input('cara_bayar', '1');
+
+        // Mapping angka ke label
+        $caraBayarLabel = [
+            '' => 'Semua',
+            '1' => 'Umum',
+            '2' => 'BPJS'
+        ];
+
+        $bulanIndoToAngka = [
+            'Januari' => '01',
+            'Februari' => '02',
+            'Maret' => '03',
+            'April' => '04',
+            'Mei' => '05',
+            'Juni' => '06',
+            'Juli' => '07',
+            'Agustus' => '08',
+            'September' => '09',
+            'Oktober' => '10',
+            'November' => '11',
+            'Desember' => '12',
+        ];
+
+        $bulanAngka = $bulanIndoToAngka[$bulan] ?? date('m');
+
+        $data = $this->getFilteredData($bulan, $caraBayarLabel[$caraBayarInput] ?? 'Umum');
+
+        $icd10 = ICD10_Umum::select('id_icd10', DB::raw('COUNT(*) as jumlah'))
+            ->when($bulanAngka, function ($query) use ($bulanAngka) {
+                $query->whereMonth('created_at', $bulanAngka);
+            })
+            ->whereHas('pemeriksaan.pendaftaran', function ($query) use ($caraBayarInput) {
+                if (!empty($caraBayarInput)) {
+                    $query->where('jenis_pembayaran', $caraBayarInput);
+                }
+            })
+            ->groupBy('id_icd10')
+            ->orderByDesc('jumlah')
+            ->take(10)
+            ->with('icd10')
+            ->get();
 
         return view('PoliUmum.laporan', [
-            'bulan' => $this->translateMonthToIndonesian($bulan),
-            'caraBayar' => $caraBayar,
-            'data' => $data
+            'bulan' => $bulan,
+            'caraBayar' => $caraBayarInput,
+            'data' => $data,
+            'icd10' => $icd10
         ]);
     }
 

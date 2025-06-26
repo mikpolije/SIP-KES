@@ -12,15 +12,15 @@ class SuratKeteranganSehatController extends Controller
 {
     public function index()
     {
-        $riwayat = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien')
+        $riyawat = PemeriksaanAwal::with('SuratSakit', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
             ->whereHas('pendaftaran', function ($q) {
                 $q->where('status', 'selesai')
-                  ->where('id_poli', 1);
+                    ->where('id_poli', 1);
             })
             ->get();
 
         return view('PoliUmum.surat-keterangan-sehat', [
-            'riwayat' => $riwayat
+            'riyawat' => $riyawat
         ]);
     }
 
@@ -40,7 +40,7 @@ class SuratKeteranganSehatController extends Controller
 
     public function cetak($id)
     {
-        $rw = PemeriksaanAwal::with('pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
+        $rw = SuratSehat::with('pemeriksaan', 'pemeriksaan.pendaftaran', 'pendaftaran.data_pasien', 'pendaftaran.data_dokter')
             ->where('id_pemeriksaan', $id)
             ->firstOrFail();
 

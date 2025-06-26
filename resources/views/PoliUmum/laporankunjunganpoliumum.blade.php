@@ -3,6 +3,10 @@
 @section('title', 'SIP-Kes - Laporan Kunjungan Poli Umum')
 
 @section('pageContent')
+    <!-- ✅ Tambahkan CSS DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
     <style>
         .container {
             max-width: 1200px;
@@ -38,45 +42,15 @@
             min-width: 300px;
         }
 
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn-blue {
-            background: #2563eb;
-            color: white;
-        }
-
-        .btn-blue:hover {
-            background: #1d4ed8;
-        }
-
-        .btn-gray {
-            background: #e5e7eb;
-            color: #4b5563;
-        }
-
-        .btn-gray:hover {
-            background: #d1d5db;
-        }
-
-        .btn-yellow {
-            background: #f59e0b;
-            color: white;
-        }
-
-        .btn-yellow:hover {
-            background: #d97706;
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .form-label {
-            margin-bottom: 8px;
             font-weight: 500;
+            margin-bottom: 5px;
         }
 
         .form-control,
@@ -86,18 +60,6 @@
             border-radius: 6px;
             border: 1px solid #d1d5db;
             margin-bottom: 12px;
-            background-color: white;
-        }
-
-        .filter-header {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
         }
 
         .table-title {
@@ -113,146 +75,150 @@
             color: #6b7280;
             margin-bottom: 10px;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid #e5e7eb;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f3f4f6;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9fafb;
-        }
-
-        tr:hover {
-            background-color: #f0f4f8;
-        }
-
-        #filterText {
-            font-size: 14px;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 8px;
-        }
     </style>
 
     <div class="container">
         <h1 class="title">LAPORAN KUNJUNGAN</h1>
 
         <div class="row">
+            <!-- Filter -->
             <div class="col-half">
                 <div class="card">
-                    <!-- Tombol navigasi -->
-                    <div class="filter-header">
+                    <div class="btn-group">
                         <a href="{{ route('poliumum.laporan') }}">
                             <button
-                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn-blue' : 'btn-gray' }}">
-                                10 Besar Penyakit
-                            </button>
+                                class="btn {{ request()->routeIs('poliumum.laporan') ? 'btn btn-primary' : 'btn btn-secondary' }}">10
+                                Besar Penyakit</button>
                         </a>
                         <a href="{{ route('poliumum.laporan.kunjungan') }}">
                             <button
-                                class="btn {{ request()->routeIs('poliumum.laporan.kunjungan') ? 'btn-blue' : 'btn-gray' }}">
-                                Laporan Kunjungan
-                            </button>
+                                class="btn {{ request()->routeIs('poliumum.laporan.kunjungan') ? 'btn btn-primary' : 'btn btn-secondary' }}">Laporan
+                                Kunjungan</button>
                         </a>
                     </div>
 
-                    <!-- Form Filter -->
-                    <div class="mb-3">
-                        <label class="form-label">Tanggal</label>
-                        <div style="display: flex; gap: 10px;">
-                            <input type="date" class="form-control" id="startDate" placeholder="DD/MM/YYYY">
-                            <label class="form-label" style="margin: auto 0;">s/d</label>
-                            <input type="date" class="form-control" id="endDate" placeholder="DD/MM/YYYY">
+                    <form action="{{ route('poliumum.laporan.kunjungan') }}" method="GET">
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="date" class="form-control" name="startDate" value="{{ $startDate }}">
+                                <label style="margin: auto 0;">s/d</label>
+                                <input type="date" class="form-control" name="endDate" value="{{ $endDate }}">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="Dokter">Dokter</label>
-                        <select class="form-select" id="Dokter" name="dokter">
-                            <option value="dr. Jenie">dr. Jenie</option>
-                            <option value="dr. Jisoo">dr. Jisoo</option>
-                        </select>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label">Dokter</label>
+                            <select class="form-select" name="id_dokter">
+                                <option value="">-- Semua Dokter --</option>
+                                @foreach ($dokter as $d)
+                                    <option value="{{ $d->id }}" {{ $id_dokter == $d->id ? 'selected' : '' }}>
+                                        {{ $d->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="CaraBayar">Cara Bayar</label>
-                        <select class="form-select" id="CaraBayar" name="carabayar">
-                            <option value="Umum">Umum</option>
-                            <option value="BPJS">BPJS</option>
-                            <option value="Asuransi">Asuransi</option>
-                        </select>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cara Bayar</label>
+                            <select class="form-select" name="carabayar">
+                                <option value="">-- Semua --</option>
+                                <option value="1" {{ $carabayar == '1' ? 'selected' : '' }}>Umum</option>
+                                <option value="2" {{ $carabayar == '2' ? 'selected' : '' }}>BPJS</option>
+                            </select>
+                        </div>
 
-                    <!-- Tombol -->
-                    <div class="btn-group mt-4">
-                        <button type="button" class="btn btn-blue" id="btnTampilkan">Tampilkan</button>
-                        <button type="button" class="btn btn-yellow">Download</button>
-                    </div>
+                        <button type="submit" class="btn btn-primary w-100">Tampilkan</button>
+                    </form>
                 </div>
             </div>
 
-            <!-- Kolom Hasil Tabel -->
+            <!-- Tabel -->
             <div class="col-half">
-                <div class="card" id="tabelData" style="display: none;">
-                    <p id="filterText"></p>
+                <div class="card">
                     <h3 class="table-title">LAPORAN KUNJUNGAN</h3>
-                    <p class="table-subtitle" id="periodeText"></p>
+                    <p class="table-subtitle">Data kunjungan berdasarkan filter</p>
 
-                    <table class="table-auto">
-                        <thead>
-                            <tr>
-                                <th>NO</th>
-                                <th>NO RM</th>
-                                <th>NAMA</th>
-                                <th>NIK</th>
-                                <th>TANGGAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>RM000754</td><td>Mudafiatun</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>2</td><td>RM000841</td><td>Vivi</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>3</td><td>RM000645</td><td>Na Jaemin</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>4</td><td>RM000312</td><td>Oktavia</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>5</td><td>RM00410</td><td>Jennie</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>6</td><td>RM000453</td><td>Laili</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>7</td><td>RM000458</td><td>Shofi</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>8</td><td>RM000777</td><td>Jaehyun</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>9</td><td>RM000934</td><td>Asahi</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                            <tr><td>10</td><td>RM000422</td><td>Erwiyan</td><td>3509XXXXXXXXXXXX</td><td>25-05-2025</td></tr>
-                        </tbody>
-                    </table>
+                    <div style="overflow-x: auto;">
+                        <table id="tableKunjungan" class="display nowrap" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>NO RM</th>
+                                    <th>NAMA</th>
+                                    <th>NIK</th>
+                                    <th>TANGGAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($kunjungan as $k)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $k->pendaftaran->data_pasien->no_rm }}</td>
+                                        <td>{{ $k->pendaftaran->data_pasien->nama_pasien }}</td>
+                                        <td>{{ $k->pendaftaran->data_pasien->nik_pasien }}</td>
+                                        <td>{{ $k->pendaftaran->created_at->format('d-m-Y') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Script -->
+    <!-- ✅ Tambahkan JS DataTables & Button Export -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
     <script>
-        document.getElementById("btnTampilkan").addEventListener("click", function () {
-            const start = document.getElementById("startDate").value;
-            const end = document.getElementById("endDate").value;
-
-            const formatter = new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
-
-            let tglStart = start ? formatter.format(new Date(start)) : '-';
-            let tglEnd = end ? formatter.format(new Date(end)) : '-';
-
-            document.getElementById("filterText").textContent = `Filter: ${tglStart} s/d ${tglEnd}`;
-            document.getElementById("periodeText").textContent = `${tglStart} s/d ${tglEnd}`;
-
-            document.getElementById("tabelData").style.display = "block";
+        $(document).ready(function() {
+            $('#tableKunjungan').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'excelHtml5',
+                        text: 'Export Excel',
+                        className: 'btn btn-success',
+                        title: 'Laporan Kunjungan'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Export PDF',
+                        className: 'btn btn-danger',
+                        title: 'Laporan Kunjungan',
+                        orientation: 'landscape',
+                        pageSize: 'A4'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Cetak',
+                        className: 'btn btn-secondary',
+                        title: 'Laporan Kunjungan'
+                    }
+                ],
+                paging: true,
+                pageLength: 10,
+                responsive: true,
+                scrollX: true,
+                language: {
+                    search: "Cari:",
+                    lengthMenu: "Tampilkan _MENU_ data",
+                    zeroRecords: "Data tidak ditemukan",
+                    info: "Menampilkan _START_ - _END_ dari _TOTAL_ data",
+                    infoEmpty: "Data tidak tersedia",
+                    paginate: {
+                        next: "›",
+                        previous: "‹"
+                    }
+                }
+            });
         });
     </script>
 @endsection

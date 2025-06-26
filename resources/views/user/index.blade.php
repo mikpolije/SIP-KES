@@ -4,7 +4,8 @@
 
 @section('pageContent')
 <div class="container mt-4">
-    <h2 class="mb-4">Data Pengguna</h2>
+    <h1 class="mb-4">Master Data</h1>
+    <h3 class="mb-4">Data Pengguna</h3>
 
     <div class="d-flex justify-content-between mb-3">
         <div>
@@ -42,11 +43,11 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at->format('d-m-Y') }}</td>
                     <td>
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-secondary ml-2">Edit</a>
+                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-secondary ml-2">Edit</a>
                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger">Hapus</button>
+                            <button onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-sm btn-danger ml-2">Hapus</button>
                         </form>
                     </td>
                 </tr>
@@ -57,5 +58,30 @@
             @endforelse
         </tbody>
     </table>
+
+<!-- Pagination controls di bawah tabel -->
+<div class="mt-3" style="width: 50px;">
+    <form method="GET" action="{{ route('user.index') }}">
+        <input type="hidden" name="search" value="{{ request('search') }}">
+        <input type="hidden" name="page" value="{{ $users->currentPage() }}">
+
+        <!-- Select perPage -->
+        <div class="mb-2">
+            <select name="perPage" class="form-control form-control-sm" onchange="this.form.submit()">
+                @foreach ([5,10,20,50,100] as $limit)
+                    <option value="{{ $limit }}" {{ request('perPage', 10) == $limit ? 'selected' : '' }}>{{ $limit }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Tombol Prev dan Next berdampingan -->
+        <div class="d-flex justify-content-between" style="height: 20px;">
+            <a href="{{ $users->previousPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->onFirstPage() ? 'disabled' : '' }}">&laquo; </a>
+            <a href="{{ $users->nextPageUrl() }}" class="btn btn-sm btn-secondary {{ $users->hasMorePages() ? '' : 'disabled' }}"> &raquo;</a>
+        </div>
+    </form>
+</div>
+
+
 </div>
 @endsection

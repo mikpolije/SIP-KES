@@ -2,6 +2,7 @@
 
 use App\Models\AsessmenAwal;
 use App\Models\CPPT;
+use App\Models\Diagnosa;
 use App\Models\InformedConsent;
 use App\Models\Pendaftaran;
 use App\Models\ResumeMedis;
@@ -31,6 +32,7 @@ new class extends Component {
     public $namaDPJP;
     public $diagnosisUtama;
     public $kodeICD10;
+    public $kodeICD10second;
     public $diagnosisSekunder;
     public $kodeICD9;
 
@@ -59,6 +61,20 @@ new class extends Component {
     public $distinctIcd10 = [];
     public $distinctIcd9 = [];
     public $distinctObat = [];
+
+    public function getCurrentDateTime()
+    {
+        if ($this->existingResMed && $this->existingResMed->created_at) {
+            $now = \Carbon\Carbon::parse($this->existingResMed->created_at)->timezone('Asia/Jakarta');
+        } else {
+            $now = \Carbon\Carbon::now('Asia/Jakarta');
+        }
+
+        return [
+            'tanggal' => $now->format('d/m/Y'),
+            'jam' => $now->format('H:i')
+        ];
+    }
 
     public function mount($pendaftaranId = null) {
         $this->pendaftaranId = $pendaftaranId;
@@ -116,11 +132,13 @@ new class extends Component {
             $this->riwayatPenyakit = $asesmen_awal->riwayat_penyakit;
             $this->alergi = $asesmen_awal->alergi;
             $this->namaDPJP = $informed_consent->dokter->nama;
-            $this->diagnosisUtama = $cpptAwal->id_icd10 ?? '-';
-            $this->kodeICD10 = $cpptAwal->id_icd10->code ?? '-';
-            $this->diagnosisSekunder = ($cpptAkhir->id_icd9 ?? '-');
+            $this->diagnosisUtama = $cpptAwal->icd10()->first()->display ?? '-';
+            $this->kodeICD10 = $cpptAwal->icd10()->first()->code ?? '-';
+            $this->kodeICD10second = $cpptAwal->icd10()->orderBy('id', 'desc')->first()->display ?? '-';
+            $this->diagnosisSekunder = $cpptAwal->icd10()->orderBy('id', 'desc')->first()->display ?? '-';
+            $this->kodeICD9 = $cpptAwal->icd9()->orderBy('id', 'desc')->first()->code ?? '-';
+            $this->tindakan = $cpptAwal->icd10()->first()->display ?? '-';
             $this->dokterPenanggungJawab = $informed_consent->dokter->nama;
-            $this->kodeICD9 = ($cpptAkhir->id_icd9 ?? '-');
 
             if ($this->existingResMed) {
                 $this->no = $this->existingResMed->no;
@@ -450,8 +468,14 @@ new class extends Component {
                     <div class="col-md-3">
                         <label class="form-label">Diagnosis Sekunder / Komorbid</label>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-5">
                         <input type="text" class="form-control" wire:model="diagnosisSekunder" disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text">KODE ICD 10</span>
+                            <input type="text" class="form-control" wire:model="kodeICD10second" disabled>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -607,7 +631,7 @@ new class extends Component {
                                     <p>Pemberi Informasi</p>
                                 </td>
                                 <td class="text-center align-top pt-3" width="34%">
-                                    <p>Jember, ____________ 20__</p>
+                                    <p>Jember, {{ $this->getCurrentDateTime()['tanggal'] }}, Jam {{ $this->getCurrentDateTime()['jam'] }} WIB</p>
                                 </td>
                             </tr>
                             <tr style="height: 100px;">
@@ -644,5 +668,9 @@ new class extends Component {
                 </div>
             </form>
         </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-3">
+        <button class="btn btn-success me-2" onclick="window.print()">Cetak</button>
     </div>
 </div>

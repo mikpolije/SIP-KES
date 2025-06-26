@@ -16,9 +16,8 @@ class RiwayatMedisController extends Controller
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
             $query->whereHas('data_pasien', function ($q) use ($search) {
-                $q->where('nama_lengkap', 'like', "%$search%")
-                    ->orWhere('no_rm', 'like', "%$search%")
-                    ->orWhere('nomor_telepon', 'like', "%$search%");
+                $q->where('nama_pasien', 'like', "%$search%")
+                    ->orWhere('no_rm', 'like', "%$search%");
             });
         }
 
@@ -56,7 +55,7 @@ class RiwayatMedisController extends Controller
         $pemeriksaan_ugd = DB::table('pemeriksaan_ugd')
             ->join('triase', 'pemeriksaan_ugd.triase_id', '=', 'triase.id')
             ->where('triase.id_pendaftaran', $id_pendaftaran)
-            ->select('pemeriksaan_ugd.*')
+            ->select('pemeriksaan_ugd.*', 'triase.id_pendaftaran')
             ->get();
 
         // Triase
@@ -217,3 +216,4 @@ class RiwayatMedisController extends Controller
         ));
     }
 }
+    
